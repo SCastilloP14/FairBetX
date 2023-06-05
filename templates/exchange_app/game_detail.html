@@ -1,0 +1,16 @@
+{% extends "exchange_app/base.html" %}
+
+{% block body_block %}
+    <h1>Welcome to the Match detail page</h1>
+    <h2>Match details:</h2>
+    <p>{{game_detail.league}}</p>
+    <p>{{game_detail.home_team.name}}:{{game_detail.home_team_score}}</p>
+    <p>{{game_detail.away_team.name}}:{{game_detail.away_team_score}}</p>
+
+    <h3>Tickers</h3>
+        {% for ticker in game_detail.tickers.all %}
+            <a href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">{{ticker.ticker_id}} @ {{ticker.last_price}}</a>
+        {% endfor %}
+
+    {% comment %} <p><a class="btn" href="{% url 'exchane_app:game_list' pk=school_detail.pk %}">Update</a></p> {% endcomment %}
+{% endblock %}
