@@ -13,8 +13,8 @@
 </head>
 
 {% block body_block %}
-    {% comment %} Ticker Data {% endcomment %}
-    <div class="row mt-2 mb-2 ml-100 bg-dark border-top border-bottom border-warning">
+<div class="container">
+    <div class="row mt-2 mb-2 bg-dark border-top border-bottom border-warning">
         <div class="col m-2">
             <h2 class="text-start text-warning">{{ticker_detail.match.away_team.name}} @ {{ticker_detail.match.home_team.name}}</h2>
             <h4 class="text-start">
@@ -196,5 +196,5 @@
     {% else %}
         <p>Log in to display data</p>
     {% endif %}
-    {% endblock %}
 </div>
+{% endblock %}

@@ -2,11 +2,12 @@
 {% extends "exchange_app/base.html" %}
 
 {% block body_block %}
-    <h1>Welcome to the list of Games</h1>
-
-    <div class="col m2- list-group">
-        {% for game in games %}
-            <a class="list-group-item list-group-item-action text-start" href="{{game.id}}">{{game.home_team.name}} vs {{game.away_team.name}}</a>
-        {% endfor %}
+    <div class="container">
+        <h1 class="text-warning">Welcome to the list of Games</h1>
+        <div class="col m2- list-group">
+            {% for game in games %}
+                <a class="list-group-item list-group-item-action text-start" href="{{game.id}}">{{game.home_team.name}} vs {{game.away_team.name}}</a>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

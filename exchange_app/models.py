@@ -8,7 +8,7 @@ import random, string
 
 # ------------------- ENUMS NEEDED FOR THE MODELS --------------
 class MatchStatus(Enum):
-    SCHEDULED = "Open"
+    SCHEDULED = "Scheduled"
     PLAYING = "Playing"
     FINISHED = "Finished"
     CANCELLED = "Cancelled"

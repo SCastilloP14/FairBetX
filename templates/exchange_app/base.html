@@ -14,8 +14,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-warning sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand text-warning" href="{% url "index" %}"><img src="{% static 'exchange_app/fbx_logo.jpeg'%}" alt="fbx_logo" width="40" height="40"></a>
-            <a class="navbar-link link-underline link-underline-opacity-0 text-warning" href="{% url "exchange_app:game_list" %}">Games</a>
             <a class="navbar-link link-underline link-underline-opacity-0 text-warning" href="{% url "admin:index" %}">Admin</a>
+            <a class="navbar-link link-underline link-underline-opacity-0 text-warning" href="{% url "exchange_app:game_list" %}">Games</a>
             {% if user.is_authenticated %}
                 <div class="dropdown">
                     <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
