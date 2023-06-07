@@ -32,7 +32,7 @@
         <div class="col m-2 bg-dark">
             <div class="row m-2">
                 <h4>Order Book</h4>
-                <table class="table table-danger text-danger">
+                <table class="table text-white">
                     <thead>
                         <tr>
                         <th>Price</th>
@@ -42,7 +42,7 @@
                     <tbody>
                     {% for sell_order in sell_orders %}
                         <tr>
-                        <td>{{ sell_order.price }}</td>
+                        <td class="text-danger">{{ sell_order.price }}</td>
                         <td>{{ sell_order.total_quantity }}</td>
                         </tr>
                     {% endfor %}
@@ -51,7 +51,7 @@
             </div>
             <div class="row m-2">
                 <!-- Display Buy Orders -->
-                <table class="table table-success text-success">
+                <table class="table text-white">
                     <thead>
                         <tr>
                             <th>Price</th>
@@ -61,7 +61,7 @@
                     <tbody>
                     {% for buy_order in buy_orders %}
                         <tr>
-                            <td>{{ buy_order.price }}</td>
+                            <td class="text-success">{{ buy_order.price }}</td>
                             <td>{{ buy_order.total_quantity }}</td>
                         </tr>
                     {% endfor %}
