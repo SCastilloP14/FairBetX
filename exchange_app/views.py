@@ -77,7 +77,6 @@ def user_logout(request):
 
 
 
-
 # ---------------------- USER PAGES -------------------------
 
 class UserDetailView(DeleteView):

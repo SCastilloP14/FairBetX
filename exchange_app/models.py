@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from enum import Enum
-from exchange_app.api_scheduler.api_methods import fetch_team_data, fetch_player_data,fecth_season_games, fetch_live_scores_data
+from exchange_app.api_scheduler.api_methods import fetch_team_data, fetch_player_data,fetch_season_games, fetch_live_scores_data
 from datetime import datetime
 import time
 import random, string
@@ -102,7 +102,7 @@ def update_teams(league_name):
 
 
 def update_season_games(league_id, season_str):
-    season_games_list = fecth_season_games(league_id, season_str)
+    season_games_list = fetch_season_games(league_id, season_str)
     for game in season_games_list:
         create_or_update_game(**game)
     

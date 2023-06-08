@@ -28,7 +28,7 @@ def fetch_team_data(league_name):
         return []
 
 
-def fecth_season_games(league_id, season_str):
+def fetch_season_games(league_id, season_str):
     try:
         season_games_url = f"https://www.thesportsdb.com/api/v1/json/40130162/eventsseason.php?id={league_id}&s={season_str}"
         season_games_data = requests.get(season_games_url)
