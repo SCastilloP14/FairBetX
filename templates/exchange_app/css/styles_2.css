@@ -39,17 +39,95 @@ body {
 }
 
 h1 {
-  font-size: 6rem;
+  font-size: 7rem;
+  color: var(--color-font-light);
 }
 h2 {
   font-size: 4rem;
+  color: var(--color-font-light);
 }
 h3 {
   font-size: 3rem;
+  color: var(--color-font-light);
 }
 
 p {
   margin-top: 0;
+}
+
+.welcome__header {
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.welcome__img {
+  width: 80%;
+  height: auto;
+  margin: 6rem 3rem;
+  border-radius: var(--border-radius-soft);
+  box-shadow: 0px 0px 5px 5px rgba(109, 109, 109, 0.2);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.logos {
+  text-align: center;
+}
+
+.logo-1 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    object-fit: contain;
+}
+.logo-1 img {
+    width: 50%;
+}
+
+
+.logo-3 {
+    grid-column: 1/2;
+    grid-row: 1/1;
+    overflow: hidden;
+        align-items: left;
+
+}
+
+.logo-2 img {
+  width: 60%;
+  height: 80%;
+}
+
+.logo-3 {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 1;
+    object-fit: contain;
+}
+
+.logo-3 img {
+  width: 70%;
+  height: 100%;
+}
+
+.logo-4 {
+    grid-column-start: 3;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;    
+    object-fit: contain;
+}
+
+.logo-4 img {
+  width: 60%;
+  /* width: 50% */
 }
 
 /* Buttons */
@@ -200,6 +278,14 @@ p {
   width: 100%;
 }
 
+.grid--2x2 {
+  align-items: center;
+  grid-template-columns: 35% 35% 30%;
+  grid-template-rows: 67% 33%;
+  grid-gap: 0;
+  overflow: hidden;
+}
+
 /* Cards  */
 .card__container {
   background: var(--color-card);
@@ -267,6 +353,7 @@ p {
 .logo--span {
   color: var(--color-font-light);
   font-size: 3rem;
+  text-align: center;
 }
 
 .login--form {
@@ -342,3 +429,5 @@ label {
 label {
   padding-left: 2px;
 }
+
+/* Animation  */
