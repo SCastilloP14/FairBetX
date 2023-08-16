@@ -11,7 +11,7 @@
     />
     <link rel="stylesheet" href="/templates/exchange_app/css/normalize.css" />
     <link rel="stylesheet" href="/templates/exchange_app/css/styles_2.css" />
-    <title>Login</title>
+    <title>Registration</title>
   </head>
   <body>
     <nav class="nav grid--1x3">
@@ -25,11 +25,11 @@
       </div>
 
       <div class="nav--list">
-          <ul class="list">
-            <li class="list--item list--inline">Admin</li>
-            <li class="list--item list--inline">Games</li>
-            <li class="list--item list--inline">Sports</li>
-          </ul>
+        <ul class="list">
+          <li class="list--item list--inline">Admin</li>
+          <li class="list--item list--inline">Games</li>
+          <li class="list--item list--inline">Sports</li>
+        </ul>
       </div>
 
       <div class="nav--btn">
@@ -41,7 +41,7 @@
 
     <div class="login--form card__container">
       <div class="card-title">
-        <h2 class="card-title">LOGIN</h2>
+        <h2 class="card-title">REGISTRATION</h2>
         <div class="underline-title"></div>
       </div>
 
@@ -65,7 +65,16 @@
           name="password"
           required
         />
-
+        <label for="user-password" style="padding-top: 22px"
+          >&nbsp;Confirm Password:
+        </label>
+        <input
+          id="user-password"
+          class="form-content"
+          type="password"
+          name="password"
+          required
+        />
         <!-- <a href="#">
           <legend class="forgot--pass">Forgot password?</legend>
         </a> -->
@@ -73,9 +82,9 @@
           class="btn btn--secondary submit-btn btn--stretched"
           type="submit"
           name="submit"
-          value="LOGIN"
+          value="REGISTER"
         />
-        <a href="#" class="signup--link">Don't have account yet?</a>
+        <!-- <a href="#" class="signup--link">Don't have account yet?</a> -->
       </form>
     </div>
 
