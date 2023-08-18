@@ -1,25 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    {% extends "exchange_app/base.html" %} {% load static %} {% block body_block
-    %}
-    <div class="container">
-      <h1>Welcome to FBX!</h1>
-      <h1>Sports Betting 2.0</h1>
-      <p></p>
-      <img
-        src="{% static 'exchange_app/fbx_logo.png'%}"
-        alt="fbx_logo"
-        width="600"
-        height="600"
-      />
-    </div>
+{% extends "exchange_app/base.html" %}
+{% load static %}
 
-    {% endblock %}
-  </body>
-</html>
+{% block body_block %}
+<div class="container">
+    <h1>Welcome to FBX!</h1>
+    <h1>Sports Betting 2.0</h1>
+    <p></p>
+    <img src="{% static 'exchange_app/fbx_logo.png'%}" alt="fbx_logo" width="600" height="600">
+</div>
+
+{% endblock %}
