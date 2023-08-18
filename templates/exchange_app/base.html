@@ -5,9 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Home</title>
-    {% comment %}
     
-    {% endcomment %}
+    {% comment %} <link rel="icon" type="image/jpeg" sizes="16x16" href="./images/favicon.png"> {% endcomment %}
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -39,17 +39,54 @@
 
       <div class="nav--list">
           <ul class="list">
-            <li class="list--item list--inline">Admin</li>
-            <li class="list--item list--inline">Games</li>
-            <li class="list--item list--inline">Sports</li>
-          </ul>
-      </div>
+            <!-- <li class="list--item list--inline">Admin</li> -->
+            <!-- <li class="list--item list--inline">Games</li> -->
+            <!-- <li class="list--item list--inline">Sports</li> -->
 
-      <div class="nav--btn">
+            <a class="list--item list--inline" href="{% url "admin:index" %}">Admin</a>
+            <a class="list--item list--inline" href="{% url "exchange_app:game_list" %}">Games</a>
+            <a class="list--item list--inline" href="{% url "exchange_app:game_list" %}">Sports</a>
+          </ul>
+
+
+    </div>
+
+      <!-- <div class="nav--btn">
         <button class="btn btn--primary btn--radius">LOGIN</button>
         <span style="color:#fff">|</span>
         <button class="btn btn--secondary btn--radius">SIGNUP</button>
-      </div>
+      </div> -->
+
+        {% if user.is_authenticated %}
+        <div class="nav--btn">
+            <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ user.first_name }} {{ user.last_name }}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'user_detail' pk=user.id %}">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Balance</a></li>
+                <li><a class="dropdown-item" href="#">History</a></li>
+                <li><a class="dropdown-item" href="{% url "user_logout" %}">Log Out</a></li>
+            </ul>
+        </div>
+
+        {% else %}
+        <!-- <a class="" href="{% url "user_registration" %}">Registration</a>
+        <a class="" href="{% url "user_login" %}">Log In</a> -->
+    
+        <div class="nav--btn">
+          <button class="btn--copy btn--primary btn--radius">
+            <a  class="" href="{% url "user_registration" %}">signup</a>
+          </button>
+
+          <span style="color:#fff">|</span>
+          <button class="btn--copy btn--secondary btn--radius">
+             <a class="" href="{% url "user_login" %}">login</a>
+          </button>
+        </div>
+        {% endif %}
+
+
     </nav>
         </div>
     

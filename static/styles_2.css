@@ -55,6 +55,10 @@ p {
   margin-top: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 .welcome__header {
   text-align: center;
   text-transform: uppercase;
@@ -149,17 +153,19 @@ p {
   white-space: nowrap;
 }
 
-.btn--radius {
+.btn--radius, .btn--radius a {
   border-radius: var(--border-radius-soft);
 }
-.btn--primary {
+.btn--primary, .btn--primary a {
   background: var(--color-btn-primary);
   color: var(--font-btn-primary);
+  text-transform: uppercase;
 }
 
-.btn--secondary {
+.btn--secondary, .btn--secondary a {
   background: var(--color-btn-secondary);
-  color: var(--font-btn-secondary);
+  color: var(--color-font-dark);
+  text-transform: uppercase;
 }
 
 .btn:hover {
@@ -194,6 +200,7 @@ p {
 .list--item {
   list-style: none;
   color: var(--color-font-light);
+  
 }
 
 .list--item:hover {
@@ -227,6 +234,7 @@ p {
   padding: 1rem 1rem;
   text-align: right;
   margin-right: 0;
+  white-space:nowrap;
 }
 
 /* .nav:hover{
