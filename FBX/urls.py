@@ -22,7 +22,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("admin/", admin.site.urls),
     path("exchange/", include("exchange_app.urls")),
-    path("register", views.registration, name="user_registration"),
+    path("register/", views.registration, name="user_registration"),
     path("user_login/", views.user_login, name="user_login"),
     path("logout/", views.user_logout, name="user_logout"),
     path("user/<int:pk>/", views.UserDetailView.as_view(), name="user_detail"),

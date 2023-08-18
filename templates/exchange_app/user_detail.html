@@ -2,14 +2,119 @@
 {% extends "exchange_app/base.html" %}
 
 {% block body_block %}
-<div class="row mt-2 mb-2 bg-secondary border-top border-bottom border-white">
-    <div class="col-2 m2- list-group">
-        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">User Info</a>
-        <a href="#" class="list-group-item list-group-item-action">Hisoric Transactions</a>
-        <a href="#" class="list-group-item list-group-item-action">Manage Balance</a>
+<div class="container">
+    <div class="row mt-2 mb-2 bg-secondary border-top border-bottom border-white">
+        <div class="col-2 m2- list-group">
+            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">User Info</a>
+            <a href="#" class="list-group-item list-group-item-action">Hisoric Transactions</a>
+            <a href="#" class="list-group-item list-group-item-action">Manage Balance</a>
+        </div>
+        <div class="col-2 m2- list-group">
+            <p>User Info</p>
+            </div>
+            {% if user.is_authenticated %}
+            <div id="orders-section">
+                {% if user_orders %}
+                    <!-- Iterate over user_orders and display order information -->
+                    <table class="table mt-4 mb-4 table-white text-white">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Order Type</th>
+                                <th>Side</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Filled Quantity</th>
+                                <th>Working Quantity</th>
+                                <th>Avg Fill Price</th>
+                                <th>Status</th>
+                                <th>Paid Fees</th>
+                                <th>Cancel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in user_orders %}
+                                <tr>
+                                    <td>{{ order.creation_timestamp }}</td>
+                                    <td>{{ order.order_type }}</td>
+                                    <td>{{ order.side }}</td>
+                                    <td>{{ order.price }}</td>
+                                    <td>{{ order.quantity }}</td>
+                                    <td>{{ order.filled_quantity }}</td>
+                                    <td>{{ order.working_quantity }}</td>
+                                    <td>{{ order.avg_fill_price }}</td>
+                                    <td>{{ order.status }}</td>
+                                    <td>{{ order.paid_fees }}</td>
+                                    <td><button type="submit" class="btn btn-warning">CANCEL</button></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No orders available.</p>
+                {% endif %}
+            </div>
+            <div id="positions-section">
+                {% if user_positions %}
+                    <table class="table mt-4 mb-4 table-white text-white">
+                        <thead>
+                            <tr>
+                                <th>Ticker</th>
+                                <th>Position</th>
+                                <th>Avg Price</th>
+                                <th>Open Pnl</th>
+                                <th>Closed PnL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for position in user_positions %}
+                                <tr>
+                                    <td>{{ position.ticker.ticker_id }}</td>
+                                    <td>{{ position.quantity }}</td>
+                                    <td>{{ position.average_price }}</td>
+                                    <td>{{ position.open_pnl }}</td>
+                                    <td>{{ position.closed_pnl }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No positions available.</p>
+                {% endif %}
+            </div>
+            <div id="fills-section">
+                {% comment %} DISPLAY POSITIONS OF THE USER {% endcomment %}
+                {% if user_fills %}
+                    <!-- Iterate over user_POSITIONS and display order information -->
+                    <table class="table mt-4 mb-4 table-white text-white">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Ticker</th>
+                                <th>Side</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for fill in user_fills %}
+                                <tr>
+                                    <td>{{ fill.timestamp }}</td>
+                                    <td>{{ fill.ticker.ticker_id }}</td>
+                                    <td>{{ fill.side }}</td>
+                                    <td>{{ fill.quantity }}</td>
+                                    <td>{{ fill.price }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>No fills available.</p>
+                {% endif %}
+            </div>
+            {% else %}
+                <p>Log in to display data</p>
+            {% endif %}
+        </div>
     </div>
-    <div class="col-2 m2- list-group">
-        <p>User Info</p>
-    </div>
-</div>
 {% endblock %}

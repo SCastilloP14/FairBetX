@@ -9,7 +9,7 @@ from exchange_app.models import *
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from exchange_app.forms import UserForm, UserProfileInfoForm, OrderForm
+from exchange_app.forms import UserForm, UserProfileInfoForm, OrderForm, BalanceForm
 import random, string
 from django.http import JsonResponse
 
@@ -83,6 +83,31 @@ class UserDetailView(DeleteView):
     context_object_name = "user_detail"
     model = User
     template_name = "exchange_app/user_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        ticker = self.get_object()
+        context["modify_balance_url"] = reverse("user_detail", kwargs={"pk": self.kwargs["pk"]})
+        if self.request.user.is_authenticated:
+            context["user_orders"] = Order.objects.filter(user=self.request.user)
+            context["user_positions"] = Position.objects.filter(user=self.request.user)
+            context["user_fills"] = Fill.objects.filter(user=self.request.user)
+        else:
+            context["user_orders"] = Order.objects.none()
+            context["user_positions"] = Position.objects.none()
+            context["user_fills"] = Fill.objects.none()
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        if request.method == "POST":
+            form = UserForm(request.POST)
+            if form.is_valid():
+                user_id = request.POST.get("user_id")
+                user = User.objects.get(id=user_id)
+                user.balance += request.POST.get("balance")
+                user.save()
+                return redirect("user_detail", pk=self.kwargs["pk"])
+    
 
 
 # -------------------- OBJECT VIEWS ------------------------

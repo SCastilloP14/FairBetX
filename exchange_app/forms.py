@@ -15,6 +15,11 @@ class UserProfileInfoForm(forms.ModelForm):
         model = UserProfileInfo
         fields = ()
 
+class BalanceForm(forms.ModelForm):
+    class Meta:
+        model = UserProfileInfo
+        fields = ()
+
 
 class OrderForm(forms.ModelForm):
     class Meta:
