@@ -285,6 +285,8 @@ p {
   justify-content: space-between;
   text-align: center;
   width: 100%;
+  margin-top:2rem;
+  margin-bottom: 2rem;
 }
 
 .grid--1x4 {
@@ -599,7 +601,23 @@ justify-content: center;
   height: 100%;
 }
 
-/* .ticker-info-ob #tradingview_8efd8 {
-  height:50px;
-  /* width: 10px; */
-} */
+.table {
+  font-size: 1.8rem;
+}
+
+.sell-orderbook {
+  margin-top:0;
+}
+
+.tables__order-detail {
+  height: 500px;
+  border: 1px solid red;
+  font-size: 1.5rem;;
+  overflow: hidden;
+  width: 100%;
+}
+
+table {
+  table-layout:fixed;
+  width:100%;
+}

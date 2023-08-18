@@ -29,6 +29,8 @@
     <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
   </head>
 
+  {% block body_block %}
+
   <body>
     <nav class="nav grid--1x3">
       <div class="logo">
@@ -76,8 +78,11 @@
               <!-- TradingView Widget BEGIN -->
               <!-- TradingView Widget BEGIN -->
               <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container" id="tradingview_8efd8"></div>
-                
+                <div
+                  class="tradingview-widget-container"
+                  id="tradingview_8efd8"
+                ></div>
+
                 <script
                   type="text/javascript"
                   src="https://s3.tradingview.com/tv.js"
@@ -103,8 +108,50 @@
               <!-- <!-- TradingView Widget END -->
             </div>
 
-            <div class="ticker-info-ob">
+            <!-- <div class="ticker-info-ob">
               <h3 class="place-order-header">Orderbook</h3>
+            </div> -->
+
+            <div class="ticker-info-ob">
+              <div class="row m-2 orderbook sell-orderbook">
+                <h3 class="place-order-header">Orderbook</h3>
+
+                <table class="table text-white">
+                  <thead>
+                    <tr>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for sell_order in sell_orders %}
+                    <tr>
+                      <td class="text-danger">{{ sell_order.price }}</td>
+                      <td>{{ sell_order.total_quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+              <div class="row m-2 orderbook buy-orderbook">
+                <!-- Display Buy Orders -->
+                <table class="table text-white">
+                  <thead>
+                    <tr>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                    </tr>
+                  </thead>
+                  <!-- <tbody>
+                    {% for buy_order in buy_orders %}
+                    <tr>
+                      <td class="text-success">{{ buy_order.price }}</td>
+                      <td>{{ buy_order.total_quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody> -->
+                </table>
+              </div>
             </div>
 
             <div class="ticker-info-ob">
@@ -164,11 +211,121 @@
           <h4>Positions</h4>
           <h4>Historic Orders</h4>
         </div>
-        <div class="try" style="border-top: 1px solid gold">
-          <h2 style="text-align: center">Table</h2>
+        <div style="border-top: 1px solid var(--color-border)"></div>
+
+        <!-- Tables  -->
+        {% if user.is_authenticated %}
+        <div id="orders-section" class="tables__order-detail">
+          {% if user_orders %}
+          <!-- Iterate over user_orders and display order information -->
+          <table class="table mt-4 mb-4 table-white text-white">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Order Type</th>
+                <th>Side</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Filled Quantity</th>
+                <th>Working Quantity</th>
+                <th>Avg Fill Price</th>
+                <th>Status</th>
+                <th>Paid Fees</th>
+                <th>Cancel</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in user_orders %}
+              <tr>
+                <td>{{ order.creation_timestamp }}</td>
+                <td>{{ order.order_type }}</td>
+                <td>{{ order.side }}</td>
+                <td>{{ order.price }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.filled_quantity }}</td>
+                <td>{{ order.working_quantity }}</td>
+                <td>{{ order.avg_fill_price }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.paid_fees }}</td>
+                <td>
+                  <button type="submit" class="btn btn-warning">CANCEL</button>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <p>No orders available.</p>
+          {% endif %}
         </div>
+        <div id="positions-section">
+          {% if user_positions %}
+          <table class="table mt-4 mb-4 table-white text-white">
+            <thead>
+              <tr>
+                <th>Ticker</th>
+                <th>Position</th>
+                <th>Avg Price</th>
+                <th>Open Pnl</th>
+                <th>Closed PnL</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for position in user_positions %}
+              <tr>
+                <td>{{ position.ticker.ticker_id }}</td>
+                <td>{{ position.quantity }}</td>
+                <td>{{ position.average_price }}</td>
+                <td>{{ position.open_pnl }}</td>
+                <td>{{ position.closed_pnl }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <p>No positions available.</p>
+          {% endif %}
+        </div>
+        <div id="fills-section">
+          {% comment %} DISPLAY POSITIONS OF THE USER {% endcomment %} {% if
+          user_fills %}
+          <!-- Iterate over user_POSITIONS and display order information -->
+          <table class="table mt-4 mb-4 table-white text-white">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Ticker</th>
+                <th>Side</th>
+                <th>Quantity</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for fill in user_fills %}
+              <tr>
+                <td>{{ fill.timestamp }}</td>
+                <td>{{ fill.ticker.ticker_id }}</td>
+                <td>{{ fill.side }}</td>
+                <td>{{ fill.quantity }}</td>
+                <td>{{ fill.price }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <p>No fills available.</p>
+          {% endif %}
+        </div>
+        {% else %}
+        <p>Log in to display data</p>
+        {% endif %}
+
+        <!-- Tables End -->
       </div>
       <div class="empty"></div>
     </div>
+
+    <div class="footer"></div>
   </body>
+  {% endblock %}
 </html>
