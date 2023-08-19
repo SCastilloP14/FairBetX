@@ -1,20 +1,54 @@
 <!DOCTYPE html>
-<!-- {% extends "exchange_app/base.html" %}
+{% extends "exchange_app/base.html" %}
 
-{% block body_block %} -->
-<div class="container">
-    {% if registered %}
-        <h1>Thank you for registering</h1>
-    {% else %}
-        <h1>Register here!</h1>
-        <h3>Please fill out the registration form:</h3>
-<!--    enctype is for acepting images-->
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
-            <input type="submit" name="" value="Register Now">
-        </form>
-    {%endif%}
-</div>
+{% block body_block %}
+<div class="login--form card__container">
+      <div class="card-title">
+        <h2 class="card-title">REGISTRATION</h2>
+        <div class="underline-title"></div>
+      </div>
+
+      <form method="post" class="form">
+        <label for="user-email" style="padding-top: 13px"> &nbsp;Email: </label>
+        <input
+          id="user-email"
+          class="form-content"
+          type="email"
+          name="email"
+          autocomplete="on"
+          required
+        />
+        <label for="user-password" style="padding-top: 22px"
+          >&nbsp;Password:
+        </label>
+        <input
+          id="user-password"
+          class="form-content"
+          type="password"
+          name="password"
+          required
+        />
+        <label for="user-password" style="padding-top: 22px"
+          >&nbsp;Confirm Password:
+        </label>
+        <input
+          id="user-password"
+          class="form-content"
+          type="password"
+          name="password"
+          required
+        />
+        <!-- <a href="#">
+          <legend class="forgot--pass">Forgot password?</legend>
+        </a> -->
+        <input
+          class="btn btn--secondary submit-btn btn--stretched"
+          type="submit"
+          name="submit"
+          value="REGISTER"
+        />
+        <!-- <a href="#" class="signup--link">Don't have account yet?</a> -->
+      </form>
+    </div>
+
 {% endblock %}

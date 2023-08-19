@@ -18,7 +18,7 @@ from django.http import JsonResponse
 # --------=======-------- INDEX/WELCOME --------------------
 
 def index(request):
-    return render(request, "exchange_app/base.html")
+    return render(request, "exchange_app/welcome.html")
 
 class WelcomeView(TemplateView):
     template_name = "exchange_app/welcome.html"
