@@ -246,6 +246,15 @@ select li {
   white-space: nowrap;
 }
 
+.nav--table a {
+  color: var(--color-font-light);
+}
+
+.nav--table {
+    border-bottom: 2px solid var(--color-border);
+    margin-bottom: 10rem;
+}
+
 /* .nav:hover{
     background:tomato;
 } */
@@ -639,9 +648,8 @@ label {
   font-size: 1.5rem;
   overflow: hidden;
   width: 100%;
-}d--1x4
-
-table {
+}
+d--1x4 table {
   table-layout: fixed;
   width: 100%;
 }
@@ -656,29 +664,21 @@ table {
 
 .game-list__sports h3 {
   padding: 1rem 2rem;
-  margin:0;
+  margin: 0;
 }
-
 
 .NBA {
   color: var(--color-font-light);
-  background-color:var(--color-main);
-  margin:0;
-}
-/* .NBA {
-  background: gold;
-  position: relative;
-  grid-column:2/2;
+  background-color: var(--color-main);
+  margin: 0;
 }
 
-.NFL {
-  grid-column: 2/2;
+
+.user-table {
+  color: var(--color-font-light);
+  margin-bottom: 4rem;
 }
 
-.NHL {
-  grid-column: 2/2;
+.user-table__unauthorized {
+  padding-bottom:300px; text-align:center;
 }
-
-.MLB {
-  grid-column: 2/2
-} */
