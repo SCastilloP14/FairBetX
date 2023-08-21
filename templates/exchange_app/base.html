@@ -52,23 +52,24 @@
 
         {% if user.is_authenticated %}
 
-        <div class="nav--btn">
-            <button class="btn--copy" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ user.first_name }} {{ user.last_name }}
-            </button>
-            <ul class="">
-                <li><a class="" href="{% url 'user_detail' pk=user.id %}" style="color:white">Profile</a></li>
-                 <li><a class="" style="color:white" href="#">Balance</a></li> 
-                <li><a class="" style="color:white" href="#">History</a></li>
-                <li><a class="" style="color:white" href="{% url "user_logout" %}">Log Out</a></li> -->
-            </ul>
-
-            <!-- <select class="btn--copy btn--secondary" name="dropdown" id=""  >
-              <ul>
-                <li>History</li>
-              </ul>
-            </select> -->
-        </div>
+          <div class="dropdown">
+            <button class="btn btn--secondary btn--stretched">Menu</button>
+              <!-- <button class="dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{ user.first_name }} {{ user.last_name }}
+              </button>
+              <ul class="">
+                  <li><a class="" href="{% url 'user_detail' pk=user.id %}" style="color:white">Profile</a></li>
+                  <li><a class="" style="color:white" href="#">Balance</a></li>
+                  <li><a class="" style="color:white" href="#">History</a></li>
+                  <li><a class="" style="color:white" href="{% url "user_logout" %}">Log Out</a></li> -->
+              <!-- </ul>  -->
+              <div class="dropdown-content">
+                <a href="{% url 'user_detail' pk=user.id %}">Profile</a>
+                <a href="#">Balance</a>
+                <a href="#">History</a>
+                <a href="{% url "user_logout" %}">Log Out</a>
+              </div>
+          </div>
 
         {% else %}
         <!-- <a class="" href="{% url "user_registration" %}">Registration</a>

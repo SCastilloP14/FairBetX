@@ -1,23 +1,18 @@
-<!DOCTYPE html>
 {% extends "exchange_app/base.html" %}
 
 {% block body_block %}
-
-<div class="banner ticker ticker__detail">
+<div class="container" style="color:white">
     <div class="row mt-2 mb-2 bg-dark border-top border-bottom border-warning">
         <div class="col m-2">
             <h2 class="text-start text-warning">{{game_detail.away_team.name}} @ {{game_detail.home_team.name}}</h2>
-            <h3 class="text-start">Sport: {{game_detail.sport}} League: {{game_detail.league}}</h4>
-            <h3 class="text-start">Start Time: {{game_detail.start_time}} Status: {{game_detail.status}}</h4>
-            <h3 class="text-start">Current Score: {{game_detail.away_team_score}} : {{game_detail.home_team_score}} </h4>
+            <h4 class="text-start">Sport: {{game_detail.sport}} League: {{game_detail.league}}</h4>
+            <h4 class="text-start">Start Time: {{game_detail.start_time}} Status: {{game_detail.status}}</h4>
+            <h4 class="text-start">Current Score: {{game_detail.away_team_score}} : {{game_detail.home_team_score}} </h4>
             </h4>
         </div>
     </div>
 
     <h3>Tickers</h3>
-
-
-    
         {% for ticker in game_detail.tickers.all %}
             <a href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">{{ticker.ticker_id}} @ {{ticker.last_price}}</a>
         {% endfor %}
