@@ -59,6 +59,11 @@ a {
   text-decoration: none;
 }
 
+select, select ul, select li {
+  width: 200px;
+  color:white;
+}
+
 .welcome__header {
   text-align: center;
   text-transform: uppercase;

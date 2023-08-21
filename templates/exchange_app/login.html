@@ -7,21 +7,22 @@
     <div class="underline-title"></div>
   </div>
 
-  <form method="post" class="form">
-    <label for="user-email" style="padding-top: 13px"> &nbsp;Email: </label>
+  <form method="post" class="form" action="{% url "user_login" %}">
+    {% csrf_token %}
+    <label for="username" style="padding-top: 13px"> &nbsp;Username: </label>
     <input
-      id="user-email"
+      id="username"
       class="form-content"
-      type="email"
-      name="email"
+      type="text"
+      name="username"
       autocomplete="on"
       required
     />
-    <label for="user-password" style="padding-top: 22px"
+    <label for="password" style="padding-top: 22px"
       >&nbsp;Password:
     </label>
     <input
-      id="user-password"
+      id="password"
       class="form-content"
       type="password"
       name="password"
@@ -34,10 +35,10 @@
     <input
       class="btn btn--secondary submit-btn btn--stretched"
       type="submit"
-      name="submit"
-      value="LOGIN"
+      name=""
+      value="login"
     />
-    <a href="#" class="signup--link">Don't have account yet?</a>
+    <a href="{% url "user_registration" %}" class="signup--link">Don't have account yet?</a>
   </form>
 </div>
 

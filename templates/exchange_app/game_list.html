@@ -1,13 +1,28 @@
 <!DOCTYPE html>
-{% extends "exchange_app/base.html" %}
+<html lang="en">
+  {% extends "exchange_app/base.html" %} {% block body_block %}
 
-{% block body_block %}
-    <div class="container">
-        <h1 class="text-warning">Welcome to the list of Games</h1>
-        <div class="col m2- list-group">
-            {% for game in games %}
-                <a class="list-group-item list-group-item-action text-start" href="{{game.id}}">{{game.home_team.name}} vs {{game.away_team.name}}</a>
-            {% endfor %}
-        </div>
-    </div>
-{% endblock %}
+  <div class="game-list__sports">
+    <h3>NBA</h3>
+  </div>
+
+  <div class="game-list__sports">
+    <h3>NHL</h3>
+  </div>
+
+  <div class="game-list__sports">
+    <h3>NFL</h3>
+  </div>
+  <div class="game-list__sports">
+    <h3>MLB</h3>
+  </div>
+
+  <div class="ticker__info">Boston Celtic</div>
+  {% for game in games %}
+  <a
+    class="list-group-item list-group-item-action text-start"
+    href="{{game.id}}"
+    >{{game.home_team.name}} vs {{game.away_team.name}}</a
+  >
+  {% endfor %} {% endblock %}
+</html>

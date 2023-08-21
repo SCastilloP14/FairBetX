@@ -3,18 +3,23 @@
 
 {% block body_block %}
 <div class="login--form card__container">
+    {% if registered %}
+        <h1>Thank you for registering</h1>
+    {% else %}
       <div class="card-title">
         <h2 class="card-title">REGISTRATION</h2>
         <div class="underline-title"></div>
       </div>
 
-      <form method="post" class="form">
-        <label for="user-email" style="padding-top: 13px"> &nbsp;Email: </label>
+      <form method="post" class="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ profile_form.as_p }}
+        <label for="username" style="padding-top: 13px"> &nbsp;Email: </label>
         <input
-          id="user-email"
+          id="username"
           class="form-content"
-          type="email"
-          name="email"
+          type="username"
+          name="username"
           autocomplete="on"
           required
         />
@@ -22,20 +27,20 @@
           >&nbsp;Password:
         </label>
         <input
-          id="user-password"
+          id="password"
           class="form-content"
           type="password"
           name="password"
           required
         />
-        <label for="user-password" style="padding-top: 22px"
+        <label for="confirm-password" style="padding-top: 22px"
           >&nbsp;Confirm Password:
         </label>
         <input
-          id="user-password"
+          id="confirm-password"
           class="form-content"
-          type="password"
-          name="password"
+          type="confirm-password"
+          name="confirm-password"
           required
         />
         <!-- <a href="#">
@@ -44,10 +49,12 @@
         <input
           class="btn btn--secondary submit-btn btn--stretched"
           type="submit"
-          name="submit"
-          value="REGISTER"
+          name=""
+          value="Register Now"
         />
         <!-- <a href="#" class="signup--link">Don't have account yet?</a> -->
+            {%endif%}
+
       </form>
     </div>
 
