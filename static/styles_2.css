@@ -52,16 +52,18 @@ h3 {
 }
 
 p {
-  margin-top: 0;
+  /* margin-top: 0; */
 }
 
 a {
   text-decoration: none;
 }
 
-select, select ul, select li {
+select,
+select ul,
+select li {
   width: 200px;
-  color:white;
+  color: white;
 }
 
 .welcome__header {
@@ -158,16 +160,19 @@ select, select ul, select li {
   white-space: nowrap;
 }
 
-.btn--radius, .btn--radius a {
+.btn--radius,
+.btn--radius a {
   border-radius: var(--border-radius-soft);
 }
-.btn--primary, .btn--primary a {
+.btn--primary,
+.btn--primary a {
   background: var(--color-btn-primary);
   color: var(--font-btn-primary);
   text-transform: uppercase;
 }
 
-.btn--secondary, .btn--secondary a {
+.btn--secondary,
+.btn--secondary a {
   background: var(--color-btn-secondary);
   color: var(--color-font-dark);
   text-transform: uppercase;
@@ -205,7 +210,6 @@ select, select ul, select li {
 .list--item {
   list-style: none;
   color: var(--color-font-light);
-  
 }
 
 .list--item:hover {
@@ -239,7 +243,7 @@ select, select ul, select li {
   padding: 1rem 1rem;
   text-align: right;
   margin-right: 0;
-  white-space:nowrap;
+  white-space: nowrap;
 }
 
 /* .nav:hover{
@@ -298,7 +302,7 @@ select, select ul, select li {
   justify-content: space-between;
   text-align: center;
   width: 100%;
-  margin-top:2rem;
+  margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
@@ -309,6 +313,15 @@ select, select ul, select li {
   text-align: center;
   width: 100%;
   margin-top: 3rem;
+}
+
+.grid--1x4-game-detail {
+  align-items: center;
+  grid-template-columns: 52% 16% 16% 16%;
+  text-align: center;
+  justify-content: space-between;
+  list-style: none;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .grid--1x5 {
@@ -559,17 +572,17 @@ label {
   /* align-self: center; */
 }
 
-.form__order-type, 
+.form__order-type,
 .form__order-side {
   /* align-self: center; */
   align-items: center;
   display: flex;
   margin: 0;
-justify-content: center;  
-
+  justify-content: center;
 }
 
-.form__order-type select, .form__order-side select {
+.form__order-type select,
+.form__order-side select {
   border: 0;
   background-color: var(--color-card);
   border-radius: var(--border-radius-soft);
@@ -585,18 +598,17 @@ justify-content: center;
 }
 
 .place-order-header {
-  margin-bottom:1rem;
+  margin-bottom: 1rem;
   padding-top: 1rem;
   text-align: center;
   font-size: 2rem;
 }
 
-
 .form__input {
-  align-items: center; 
+  align-items: center;
   display: flex;
   justify-content: center;
-  
+
   /* margin: auto; */
 }
 
@@ -605,8 +617,7 @@ justify-content: center;
   width: 80%;
   height: 50%;
   font-size: 1.8rem;
-  border:0;
- 
+  border: 0;
 }
 
 .tradingview-widget-container {
@@ -619,18 +630,55 @@ justify-content: center;
 }
 
 .sell-orderbook {
-  margin-top:0;
+  margin-top: 0;
 }
 
 .tables__order-detail {
   height: 500px;
   border: 1px solid red;
-  font-size: 1.5rem;;
+  font-size: 1.5rem;
   overflow: hidden;
+  width: 100%;
+}d--1x4
+
+table {
+  table-layout: fixed;
   width: 100%;
 }
 
-table {
-  table-layout:fixed;
-  width:100%;
+.game-list__sports {
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  width: 80%;
+  text-align: left;
+  grid-column: 2/2;
 }
+
+.game-list__sports h3 {
+  padding: 1rem 2rem;
+  margin:0;
+}
+
+
+.NBA {
+  color: var(--color-font-light);
+  background-color:var(--color-main);
+  margin:0;
+}
+/* .NBA {
+  background: gold;
+  position: relative;
+  grid-column:2/2;
+}
+
+.NFL {
+  grid-column: 2/2;
+}
+
+.NHL {
+  grid-column: 2/2;
+}
+
+.MLB {
+  grid-column: 2/2
+} */

@@ -2,27 +2,75 @@
 <html lang="en">
   {% extends "exchange_app/base.html" %} {% block body_block %}
 
-  <div class="game-list__sports">
-    <h3>NBA</h3>
+  <div class="grid grid--1x3">
+    <div></div>
+
+    <div>
+      <div class="login--form game-list__sports">
+        <h3>NBA</h3>
+        <div class="game-list__sports-NBA NBA grid grid--1x4-game-detail">
+          {% for game in games %}
+
+          <a class="NBA" href="{{game.id}}"
+            >{{game.home_team.name}} vs {{game.away_team.name}}</a>
+          <p>Score</p>
+          <p>Status</p>
+          <p>Price</p>
+
+        </div>
+        <!-- {% endfor %} -->
+      </div>
+      <div class="login--form game-list__sports">
+        <h3>NHL</h3>
+        <div class="game-list__sports-NBA NBA grid grid--1x4-game-detail">
+          {% for game in games %}
+
+          <a class="NBA" href="{{game.id}}"
+            >{{game.home_team.name}} vs {{game.away_team.name}}</a>
+          <p>Score</p>
+          <p>Status</p>
+          <p>Price</p>
+        </div>
+        <!-- {% endfor %} -->
+      </div>
+      <div class="login--form game-list__sports">
+        <h3>NFL</h3>
+        <div class="game-list__sports-NBA  grid grid--1x4-game-detail">
+          {% for game in games %}
+
+          <a class="NBA" href="{{game.id}}"
+            >{{game.home_team.name}} vs {{game.away_team.name}}</a>
+          <p>Score</p>
+          <p>Status</p>
+          <p>Price</p>
+        </div>
+        <!-- {% endfor %} -->
+      </div>
+      <div class="login--form game-list__sports">
+        <h3>MLB</h3>
+        <div class="game-list__sports-NBA NBA grid grid--1x4-game-detail">
+          {% for game in games %}
+
+          <a class="NBA" href="{{game.id}}"
+            >{{game.home_team.name}} vs {{game.away_team.name}}</a>
+          <p>Score</p>
+          <p>Status</p>
+          <p>Price</p>
+        </div>
+        <!-- {% endfor %} -->
+      </div>
+    </div>
+
+    <div></div>
   </div>
 
-  <div class="game-list__sports">
-    <h3>NHL</h3>
-  </div>
-
-  <div class="game-list__sports">
-    <h3>NFL</h3>
-  </div>
-  <div class="game-list__sports">
-    <h3>MLB</h3>
-  </div>
-
-  <div class="ticker__info">Boston Celtic</div>
-  {% for game in games %}
+  <!-- <div class="ticker__info">Boston Celtic</div> -->
+  <!-- {% for game in games %}
   <a
     class="list-group-item list-group-item-action text-start"
     href="{{game.id}}"
     >{{game.home_team.name}} vs {{game.away_team.name}}</a
   >
-  {% endfor %} {% endblock %}
+  {% endfor %} -->
+  {% endblock %}
 </html>
