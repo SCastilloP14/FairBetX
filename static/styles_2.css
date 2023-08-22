@@ -252,7 +252,7 @@ select li {
 
 .nav--table {
   border-bottom: 1px solid var(--color-border);
-  margin-bottom: 10rem;
+  margin-bottom: 2rem;
 }
 
 /* .nav:hover{
@@ -741,6 +741,7 @@ d--1x4 table {
   color: var(--color-font-light);
   margin-bottom: 10rem;
   border-collapse: collapse;
+  margin-top: 2rem;
 }
 
 /* #orders-section {
