@@ -318,7 +318,7 @@ select li {
 .grid--3x1 {
   /* align-items: center; */
   grid-template-rows: 10% 45% 45%;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .grid--2x {
@@ -527,6 +527,7 @@ label {
   border-radius: var(--border-radius-soft);
   height: 95%;
   overflow: auto;
+  /* width: 95%; */
 }
 
 .orderbook {
@@ -736,10 +737,23 @@ d--1x4 table {
   margin: 0;
 }
 
-.user-table {
+.user-table, .orders_table {
   color: var(--color-font-light);
-  margin-bottom: 4rem;
+  margin-bottom: 10rem;
+  border-collapse: collapse;
 }
+
+/* #orders-section {
+  background:gold;
+  color:red;
+}
+#positions-section {
+  background: blue;
+  color:white;
+} */
+
+
+
 
 .user-table__unauthorized {
   padding-bottom: 300px;

@@ -19,7 +19,8 @@ const chartProperties = {
   width:1500,
   height:600,
   timeScale:{
-    timeVisible:true,
-    secondsVisible:false, 
+  timeVisible:true,
+  secondsVisible:false, 
   }
 }
+

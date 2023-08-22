@@ -1,21 +1,21 @@
-<!DOCTYPE html>
-
 {% extends "exchange_app/base.html" %}
 
 {% block body_block %}
+
+
   <body>
    
     <div class="grid grid--1x3">
       <div class="empty"></div>
       <div class="ticker-info-middle-column">
         <div class="ticker-info-game-stat">
-          <h2 class="ticker__team">Boston Celtics @ Miami Heat</h2>
+          <h2 class="ticker__team">{{ticker_detail.match.away_team.name}} @ {{ticker_detail.match.home_team.name}}</h2>
           <!-- Middle Section that includes that ticker, status, score and volume -->
           <div class="grid grid--1x4">
-            <h3 class="ticker__team">Current Score: 8</h3>
-            <h3 class="ticker__team">Status: Open</h3>
-            <h3 class="ticker__team">Last Price: 4.00</h3>
-            <h3 class="ticker__team">Volume: 25</h3>
+            <h3 class="ticker__team">Score: {{ticker_detail.match.away_team_score}} : {{ticker_detail.match.home_team_score}}</h3>
+            <h3 class="ticker__team">Status: {{ticker_detail.status}} </h3>
+            <h3 class="ticker__team">Last Price: {{ticker_detail.last_price}}</h3>
+            <h3 class="ticker__team">Volume: {{ticker_detail.volume}}</h3>
           </div>
         </div>
 
@@ -124,6 +124,7 @@
                   <select name="" id="form__order-side">
                     <option value="Buy">BUY</option>
                     <option value="Sell">SELL</option>
+                    <input type="hidden" name="ticker_id" value="{{ ticker_detail.pk }}">
                   </select>
                 </form>
                 {% else %}
@@ -133,7 +134,7 @@
                 <div class="form__input form__order-price">
                   <input
                     type="text"
-                    name=""
+                    name="price"
                     id=""
                     class="input"
                     placeholder=""
@@ -143,7 +144,7 @@
                 <div class="form__input form__order-qty">
                   <input
                     type="text"
-                    name=""
+                    name="quantity"
                     id=""
                     class="input"
                     placeholder=""
@@ -182,7 +183,7 @@
 
           {% if user_orders %}
           <!-- Iterate over user_orders and display order information -->
-          <table class="">
+          <table class="user_table orders_table">
             <thead>
               <tr>
                 <th>Timestamp</th>
@@ -212,7 +213,7 @@
                 <td>{{ order.status }}</td>
                 <td>{{ order.paid_fees }}</td>
                 <td>
-                  <button type="submit" class="">CANCEL</button>
+                  <button type="submit" class="btn btn--secondary">CANCEL</button>
                 </td>
               </tr>
               {% endfor %}
@@ -253,7 +254,6 @@
         <div id="fills-section">
           {% comment %} DISPLAY POSITIONS OF THE USER {% endcomment %}
            {% if user_fills %}
-          <!-- Iterate over user_POSITIONS and display order information -->
           <table class="">
             <thead>
               <tr>
