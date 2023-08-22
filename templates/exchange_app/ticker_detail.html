@@ -56,18 +56,20 @@
             </div>
 
             
-            <div class="ticker-info-ob">
-              <div class="row m-2 orderbook sell-orderbook">
-                <h3 class="place-order-header">Orderbook</h3>
+            <div class="ticker-info-ob grid grid--3x1">
+              <h3 class="place-order-header">Orderbook</h3>
 
-                <table class="table text-white">
+              <div class="sell-orderbook">
+
+                <table class="orderbook__sell-side">
                   <thead>
                     <tr>
-                      <th>Price</th>
-                      <th>Quantity</th>
+                      <th class="orderbook__sell-side-header-price">Price</th>
+                      <th class="orderbook__sell-side-header-qty">Quantity</th>
                     </tr>
+                    
                   </thead>
-                  <tbody>
+                  <tbody class="">
                     {% for sell_order in sell_orders %}
                     <tr>
                       <td class="text-danger">{{ sell_order.price }}</td>
@@ -75,25 +77,29 @@
                     </tr>
                     {% endfor %}
                   </tbody>
+                  
                 </table>
               </div>
-              <div class="row m-2 orderbook buy-orderbook">
+              <div class="buy-orderbook">
                 <!-- Display Buy Orders -->
-                <table class="table text-white">
+                <table class="orderbook__buy-side">
                   <thead>
                     <tr>
                       <th>Price</th>
                       <th>Quantity</th>
                     </tr>
                   </thead>
-                  <!-- <tbody>
-                    {% for buy_order in buy_orders %}
-                    <tr>
-                      <td class="text-success">{{ buy_order.price }}</td>
-                      <td>{{ buy_order.total_quantity }}</td>
-                    </tr>
-                    {% endfor %}
-                  </tbody> -->
+                    <tbody class="">
+                      {% for buy_order in buy_orders %}
+                    
+                      <tr>
+                        <td class="orderbook__buy-side-order">{{ buy_order.price }}</td>
+                        <td class="orderbook__buy-side-order">{{ buy_order.total_quantity }}</td>
+                      </tr>
+                     
+                      {% endfor %}
+                     
+                    </tbody>
                 </table>
               </div>
             </div>
@@ -105,7 +111,10 @@
                 <p class="place-order-fields PO2">Side</p>
                 <p class="place-order-fields PO3">Price</p>
                 <p class="place-order-fields PO4">Quantity</p>
-                <form class="form__order-type">
+                
+                 {% if order_form %}
+                <form class="form__order-type" id="order-form" method="POST">
+
                   <select name="" id="form__order-type">
                     <option value="Market">Market</option>
                     <option value="Limit">Limit</option>
@@ -117,6 +126,9 @@
                     <option value="Sell">SELL</option>
                   </select>
                 </form>
+                {% else %}
+                  <p>Please log in to place orders.</p>
+                {% endif %}
 
                 <div class="form__input form__order-price">
                   <input

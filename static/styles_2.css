@@ -311,8 +311,20 @@ select li {
   justify-content: space-between;
   text-align: center;
   width: 100%;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   margin-bottom: 2rem;
+}
+
+.grid--3x1 {
+  /* align-items: center; */
+  grid-template-rows: 10% 45% 45%;
+  width: 100%;
+}
+
+.grid--2x {
+  width: 100%;
+  grid-template-rows: repeat(5, 20%);
+  grid-template-columns: repeat(2, 50%);
 }
 
 .grid--1x4 {
@@ -345,6 +357,7 @@ select li {
   grid-template-rows: 67% 33%;
   grid-gap: 0;
   overflow: hidden;
+  text-align: center;
 }
 
 /* Cards  */
@@ -513,12 +526,13 @@ label {
   margin: 1rem;
   border-radius: var(--border-radius-soft);
   height: 95%;
+  overflow: auto;
 }
 
 .orderbook {
   /* height:100%;
   width: 100%; */
-  background: var(--color-header);
+  /* background: var(--color-header); */
 }
 
 .place-order {
@@ -608,9 +622,10 @@ label {
 
 .place-order-header {
   margin-bottom: 1rem;
-  padding-top: 1rem;
+  /* padding-top: 1rem; */
   text-align: center;
   font-size: 2rem;
+  margin-top: 1rem;
 }
 
 .form__input {
@@ -639,8 +654,56 @@ label {
 }
 
 .sell-orderbook {
-  margin-top: 0;
+  position: relative;
+  z-index: 1;
+  top: 0;
 }
+.buy-orderbook {
+  position: relative;
+  z-index: 1;
+}
+
+.orderbook__buy-side-order {
+  height: 20%;
+  overflow: hidden;
+}
+.sell-orderbook,
+.buy-orderbook {
+  margin-top: 0;
+  padding-top: 5px;
+}
+
+.orderbook__sell-side,
+.orderbook__buy-side {
+  text-align: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table {
+  text-align: center;
+  vertical-align: bottom;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border-bottom: 1px solid var(--color-border);
+  border-width: 100%;
+}
+
+/* .orderbook__sell-side-header-price {
+text-align: center;
+grid-column: 1/1;
+grid-row: 1/1;
+} */
+
+/* .orderbook__sell-side-header-qty {
+text-align: center;
+grid-column-start: 2;
+} */
 
 .tables__order-detail {
   height: 500px;
@@ -683,27 +746,24 @@ d--1x4 table {
   text-align: center;
 }
 
-
 .game-detail__tickers,
 .game-detail__tickers a {
-  margin-top:2rem;
-  color:var(--color-font-light);
-  padding-top:2rem;
+  margin-top: 2rem;
+  color: var(--color-font-light);
+  padding-top: 2rem;
 }
 
-
-
 .dropdown {
-  position:relative;
+  position: relative;
   display: inline-block;
 }
 .dropdown-content {
-  margin-left:22%;
+  margin-left: 22%;
   display: none;
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   max-width: 180px;
   text-align: center;
@@ -716,15 +776,19 @@ d--1x4 table {
   display: block;
   border-radius: var(--border-radius-soft);
   background-color: var(--color-btn-secondary);
-
 }
 
 .dropdown-content a:hover {
-  background-color:var(--color-btn-primary);
-color:var(--color-font-light)}
+  background-color: var(--color-btn-primary);
+  color: var(--color-font-light);
+}
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
