@@ -744,17 +744,6 @@ d--1x4 table {
   margin-top: 2rem;
 }
 
-/* #orders-section {
-  background:gold;
-  color:red;
-}
-#positions-section {
-  background: blue;
-  color:white;
-} */
-
-
-
 
 .user-table__unauthorized {
   padding-bottom: 300px;
@@ -806,4 +795,32 @@ d--1x4 table {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
+}
+
+
+.user-card {
+  align-items: center;
+  height: 30rem;
+  width: 90%;
+  margin-top:3rem;
+  box-shadow:0 0 10px  rgba(102, 101, 101, 0.295); 
+  background: var(--color-btn-primary)
+}
+
+.line {
+  background: var(--color-footer);
+  width: 100%;
+  height: 1px;
+  /* display: flex; */
+  /* position: relative; */
+}
+
+.line-top {
+  position: relative;
+}
+
+.line-bottom {
+  margin-top:auto;
+  margin-bottom:0;
+  /* bottom:1; */
 }

@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-{% extends "exchange_app/base.html" %}
+{% extends "exchange_app/base.html" %} {% block body_block %}
+<div class="grid grid--1x3">
+  <div class="empty"></div>
+  <div class="ticker-info-middle-column">
+    <div class="grid grid--1x2">
+      <div class="login--form card__container user-card">
+        <div class="line line-top"></div>
+        {{user.username}}
+        <div class="line line-bottom"></div>
+      </div>
 
-{% block body_block %}
-<div class="row mt-2 mb-2 bg-secondary border-top border-bottom border-white">
-    <div class="col-2 m2- list-group">
-        <a href="#" style="color:white;" class="list-group-item list-group-item-action active" aria-current="true">User Info</a>
-        <a href="#" style="color:white;" class="list-group-item list-group-item-action">Hisoric Transactions</a>
-        <a href="#" style="color:white;" class="list-group-item list-group-item-action">Manage Balance</a>
+      <div class="login--form card__container user-card">
+        <div class="line line-top"></div>
+        
+        <div class="line line-bottom"></div>
+      </div>
+
     </div>
-    <div class="col-2 m2- list-group">
-        <p style="color:white;">User Info</p>
     </div>
+  </div>
 </div>
 {% endblock %}

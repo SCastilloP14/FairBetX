@@ -84,6 +84,11 @@ class UserDetailView(DeleteView):
     model = User
     template_name = "exchange_app/user_detail.html"
 
+class UserActivityView(DeleteView):
+    context_object_name = "user_detail"
+    model = User
+    template_name = "exchange_app/user_activity.html"
+
 
 # -------------------- OBJECT VIEWS ------------------------
 
