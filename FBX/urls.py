@@ -26,4 +26,6 @@ urlpatterns = [
     path("user_login/", views.user_login, name="user_login"),
     path("logout/", views.user_logout, name="user_logout"),
     path("user/<int:pk>/", views.UserDetailView.as_view(), name="user_detail"),
+    # Custom Trading View Chart Api
+    path('api/get_custom_symbol_data', views.get_custom_symbol_data, name='get_custom_symbol_data'),
 ]

@@ -14,12 +14,30 @@
       <form method="post" class="form" enctype="multipart/form-data">
         {% csrf_token %}
         {{ profile_form.as_p }}
+        <label for="username" style="padding-top: 13px"> &nbsp;First Name: </label>
+        <input
+          id="first_name"
+          class="form-content"
+          type="first_name"
+          name="first_name"
+          autocomplete="on"
+          required
+        />
+        <label for="username" style="padding-top: 13px"> &nbsp;Last Name: </label>
+        <input
+          id="last_name"
+          class="form-content"
+          type="last_name"
+          name="last_name"
+          autocomplete="on"
+          required
+        />
         <label for="username" style="padding-top: 13px"> &nbsp;Email: </label>
         <input
-          id="username"
+          id="email"
           class="form-content"
-          type="username"
-          name="username"
+          type="email"
+          name="email"
           autocomplete="on"
           required
         />
