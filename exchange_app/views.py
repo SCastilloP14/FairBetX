@@ -110,6 +110,7 @@ class UserDetailView(DeleteView):
     
 
 
+
 # -------------------- OBJECT VIEWS ------------------------
 
 class GamesListView(ListView):
@@ -179,3 +180,14 @@ class TickerDetailView(DetailView):
                 order.execute_order()
                 order.save()
                 return redirect("exchange_app:ticker_detail", pk=self.kwargs["pk"])
+            
+
+# ======== Ticker Data ========    
+#    
+def get_custom_symbol_data(request):
+    # Fetch and prepare your custom symbol data
+    symbol_data = {
+        'symbol': 'YOUR_CUSTOM_SYMBOL',  # Replace with the actual symbol
+        # Include other necessary data here
+    }
+    return JsonResponse(symbol_data)

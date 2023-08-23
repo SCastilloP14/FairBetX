@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 {% extends "exchange_app/base.html" %}
-{% load static %}
 
 {% block body_block %}
-<div class="container">
-    <h1>Welcome to FBX!</h1>
-    <h1>Sports Betting 2.0</h1>
-    <p></p>
-    <img src="{% static 'exchange_app/fbx_logo.png'%}" alt="fbx_logo" width="600" height="600">
+{% if user.is_authenticated %}
+<h1 class="welcome__header animate__animated animate__fadeInDown">Welcome back {{user.username}} </h1>
+<h3 class="welcome__header animate__animated animate__fadeInDown">FBX is the most exciting Sports Betting site!</h2>
+
+
+{% else %}
+<h1 class="welcome__header animate__animated animate__fadeInDown">Welcome to FBX</h1>
+<h3 class="welcome__header animate__animated animate__fadeInDown">Experience Sports Betting in a new way!</h2>
+
+{% endif %}
+
+<div class="grid grid--1x2">
+    <img class="welcome__img animate__animated animate__fadeInLeft animate__delay-1s" src="/static/exchange_app/exchange.jpeg" alt="Exchange Picture">
+    <div class="logos grid grid--2x2">
+        <div class="logo-1"><img src="/static/exchange_app/mlb.png" alt="MLB Logo"></div>
+        <div class="logo-2"><img src="/static/exchange_app/nfl.png" alt="NFL Logo"></div>
+        <div class="logo-3"><img src="/static/exchange_app/nhl.png" alt="NHL Logo"></div>
+        <div class="logo-4">
+            <img  class="rotate p" src="/static/exchange_app/nba.png" alt="NBA Logo">
+        </div>
+    </div>
 </div>
 
 {% endblock %}
+
