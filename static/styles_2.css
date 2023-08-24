@@ -857,7 +857,9 @@ d--1x4 table {
   66.67%,
   100% {
     background-image: url("/static/exchange_app/ncaa.png");
-  background-size: contain;
+        /* transform: scaleX(-1); */
+
+    background-size: 80%;
 
   }
 }
