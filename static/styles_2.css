@@ -17,6 +17,7 @@
   --border-radius: 30px;
   --border-radius-soft: 10px;
   --border-shadow: 2px;
+  --x: 20s;
 }
 
 *,
@@ -86,9 +87,6 @@ select li {
   text-align: center;
 }
 
-.logos {
-  text-align: center;
-}
 
 .logo-1 {
   grid-column-start: 1;
@@ -737,13 +735,13 @@ d--1x4 table {
   margin: 0;
 }
 
-.user-table, .orders_table {
+.user-table,
+.orders_table {
   color: var(--color-font-light);
   margin-bottom: 10rem;
   border-collapse: collapse;
   margin-top: 2rem;
 }
-
 
 .user-table__unauthorized {
   padding-bottom: 300px;
@@ -797,14 +795,13 @@ d--1x4 table {
   background-color: #3e8e41;
 }
 
-
 .user-card {
   align-items: center;
   height: 30rem;
   width: 90%;
-  margin-top:3rem;
-  box-shadow:0 0 10px  rgba(102, 101, 101, 0.295); 
-  background: var(--color-btn-primary)
+  margin-top: 3rem;
+  box-shadow: 0 0 10px rgba(102, 101, 101, 0.295);
+  background: var(--color-btn-primary);
 }
 
 .line {
@@ -820,7 +817,53 @@ d--1x4 table {
 }
 
 .line-bottom {
-  margin-top:auto;
-  margin-bottom:0;
+  margin-top: auto;
+  margin-bottom: 0;
   /* bottom:1; */
+}
+
+
+
+
+.coin {
+  margin-right:30rem;
+  margin-left:auto;
+  height: 500px;
+  width: 500px;
+  animation: spin var(--x) linear infinite,
+    change calc(3 * var(--x) / 2) infinite linear calc(var(--x) / 4);
+  /* border-radius: 50%; */
+  background-image:url("/static/exchange_app/mls.png");
+  /* background-size: contain; */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 75%;
+}
+
+@keyframes change {
+
+  0%,
+  33.33% {
+    background-image: url("/static/exchange_app/mlb.png");
+  background-size: contain;
+
+  }
+  33.34%,
+  66.66% {
+    background-image: url("/static/exchange_app/nhl.png");
+  background-size: contain;
+
+  }
+  66.67%,
+  100% {
+    background-image: url("/static/exchange_app/ncaa.png");
+  background-size: contain;
+
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotateY(360deg);
+  }
 }
