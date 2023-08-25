@@ -106,15 +106,27 @@
 
             <div class="ticker-info-ob">
               <h3 class="place-order-header">Place Order</h3>
-              <div class="grid grid--5x2">
-                <p class="place-order-fields PO1">Order Type</p>
+              <!-- <div class="grid grid--5x2"> -->
+                <div class="order__form">
+                {% if order_form %}
+                    <form id="order-form" method="POST" action="" class="form__order">
+                        {% csrf_token %}
+                        {{ order_form.as_p }}
+                        <input type="hidden" name="ticker_id" value="{{ ticker_detail.pk }}">
+                        <button type="submit" class="btn--copy btn--primary btn--order">Submit Order</button>
+                        
+                    </form>
+                {% else %}
+                    <p>Please log in to place orders.</p>
+                {% endif %}
+                
+                <!-- <p class="place-order-fields PO1">Order Type</p>
                 <p class="place-order-fields PO2">Side</p>
                 <p class="place-order-fields PO3">Price</p>
-                <p class="place-order-fields PO4">Quantity</p>
+                <p class="place-order-fields PO4">Quantity</p> -->
                 
-                 {% if order_form %}
+                 <!-- {% if order_form %}
                 <form class="form__order-type" id="order-form" method="POST">
-
                   <select name="" id="form__order-type">
                     <option value="Market">Market</option>
                     <option value="Limit">Limit</option>
@@ -129,9 +141,9 @@
                 </form>
                 {% else %}
                   <p>Please log in to place orders.</p>
-                {% endif %}
+                {% endif %} -->
 
-                <div class="form__input form__order-price">
+                <!-- <div class="form__input form__order-price">
                   <input
                     type="text"
                     name="price"
@@ -139,9 +151,9 @@
                     class="input"
                     placeholder=""
                   />
-                </div>
+                </div> -->
 
-                <div class="form__input form__order-qty">
+                <!-- <div class="form__input form__order-qty">
                   <input
                     type="text"
                     name="quantity"
@@ -149,13 +161,13 @@
                     class="input"
                     placeholder=""
                   />
-                </div>
+                </div> -->
 
-                <button
+                <!-- <button type="submit"
                   class="btn--copy btn--order btn--primary place-order-fields PO5"
                 >
                   Submit Order
-                </button>
+                </button> -->
               </div>
             </div>
           </div>
@@ -180,7 +192,6 @@
         <!-- Tables  -->
         {% if user.is_authenticated %}
         <div id="orders-section" class="user_table orders_table">
-
           {% if user_orders %}
           <!-- Iterate over user_orders and display order information -->
           <table class="user_table orders_table">
