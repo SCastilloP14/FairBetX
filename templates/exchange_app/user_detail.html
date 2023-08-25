@@ -5,36 +5,148 @@
   <div class="ticker-info-middle-column">
     <div class="grid grid--1x2">
       <div class="line line__top"></div>
-      <div       class="login--form card__container user-card">
+      <div class="login--form card__container user-card">
         <div class="grid grid--1x2 grid__user-card">
-            <div class="user-card-info-left">
-            <p>Username</p>
-            <p>First Name</p>
-            <p>Last Name</p>
-            <p>Email</p>
+          <div class="user-card-info-left">
+            <p>Username:</p>
+            <p>First Name:</p>
+            <p>Last Name:</p>
+            <p>Email:</p>
+            <p>Last Login:</p>
+            <p>Date Joined:</p>
           </div>
           <div class="user-card-info-right">
             <p>{{user.username}}</p>
             <p>{{user.first_name}}</p>
             <p>{{user.last_name}}</p>
             <p>{{user.email}}</p>
+            <p>{{user.last_login}}</p>
+            <p>{{user.date_joined}}</p>
           </div>
         </div>
       </div>
 
       <div class="login--form card__container user-card">
-        <div
-          class="grid grid--1x2 grid__user-card"
-        >
-          <div class="user__balance">{{user.balance}}</div>
-          <div class="btn btn--secondary user__balance__btn">
+        <div class="grid grid--1x2 grid__user-card">
+          <div class="user__balance">${{user.userprofileinfo.balance}}</div>
+
+          <button class="btn btn--secondary user__balance__btn">
             <a href="">Reload</a>
-          </div>
+          </button>
         </div>
       </div>
       <div class="line line__bottom"></div>
     </div>
 
-    {% endblock %}
+    <nav class="nav nav--table grid grid--1x4">
+      <a id="orders-tab" class="" aria-current="page" href="#">Orders</a>
+      <a id="fills-tab" class="" href="#">Fills</a>
+      <a id="positions-tab" class="" href="#">Positions</a>
+      <a id="historic-orders-tab" class="" href="#">Historic Orders</a>
+    </nav>
+
+    <div id="orders-section" class="user_table orders_table">
+      {% if user_orders %}
+      <!-- Iterate over user_orders and display order information -->
+      <table class="user_table orders_table">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Order Type</th>
+            <th>Side</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Filled Quantity</th>
+            <th>Working Quantity</th>
+            <th>Avg Fill Price</th>
+            <th>Status</th>
+            <th>Paid Fees</th>
+            <th>Cancel</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in user_orders %}
+          <tr>
+            <td>{{ order.creation_timestamp }}</td>
+            <td>{{ order.order_type }}</td>
+            <td>{{ order.side }}</td>
+            <td>{{ order.price }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.filled_quantity }}</td>
+            <td>{{ order.working_quantity }}</td>
+            <td>{{ order.avg_fill_price }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.paid_fees }}</td>
+            <td>
+              <button type="submit" class="btn btn--secondary">CANCEL</button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>No orders available.</p>
+      {% endif %}
+    </div>
+
+    <div id="positions-section">
+      {% if user_positions %}
+      <table class="">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Position</th>
+            <th>Avg Price</th>
+            <th>Open Pnl</th>
+            <th>Closed PnL</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for position in user_positions %}
+          <tr>
+            <td>{{ position.ticker.ticker_id }}</td>
+            <td>{{ position.quantity }}</td>
+            <td>{{ position.average_price }}</td>
+            <td>{{ position.open_pnl }}</td>
+            <td>{{ position.closed_pnl }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>No positions available.</p>
+      {% endif %}
+    </div>
+
+    <div id="fills-section">
+      {% if user_fills %}
+      <table class="">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Ticker</th>
+            <th>Side</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for fill in user_fills %}
+          <tr>
+            <td>{{ fill.timestamp }}</td>
+            <td>{{ fill.ticker.ticker_id }}</td>
+            <td>{{ fill.side }}</td>
+            <td>{{ fill.quantity }}</td>
+            <td>{{ fill.price }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p>No fills available.</p>
+      {% endif %}
+    </div>
   </div>
+  <div class="empty"></div>
 </div>
+{% endblock %}
