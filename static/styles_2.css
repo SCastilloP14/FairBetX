@@ -87,7 +87,6 @@ select li {
   text-align: center;
 }
 
-
 .logo-1 {
   grid-column-start: 1;
   grid-column-end: 3;
@@ -292,6 +291,24 @@ select li {
   margin: 0;
   display: grid;
   color: var(--color-font-light);
+}
+
+.grid__user-card {
+  height: 100%;
+  text-align: center;
+  background: var(--color-btn-primary);
+}
+
+.user-card-info-left {
+  margin: 3rem auto;
+  grid-column: 1/1;
+  grid-row: 1/2;
+}
+
+.user-card-info-right {
+  margin: 3rem auto;
+  grid-column: 2/2;
+  grid-row: 1/2;
 }
 
 .grid--1x2 {
@@ -804,14 +821,37 @@ d--1x4 table {
   background: var(--color-btn-primary);
 }
 
+.user__balance {
+  grid-column: 1/1;
+  grid-row: 1/1;
+  align-self: center;
+  vertical-align: middle;
+  font-size: 4rem;
+  text-decoration: underline;
+}
+
+.user__balance__btn {
+  text-align: center;
+  align-self: center;
+  height: 6rem;
+  width: 90%;
+  margin: 0 auto;
+}
+
 .line {
   background: var(--color-footer);
   width: 100%;
   height: 1px;
-  /* display: flex; */
-  /* position: relative; */
+}
+.line__top {
+  grid-column: 1/3;
+  grid-row: 1/1;
 }
 
+.line__bottom {
+  grid-column: 1/3;
+  grid-row: 3/3;
+}
 .line-top {
   position: relative;
 }
@@ -822,18 +862,15 @@ d--1x4 table {
   /* bottom:1; */
 }
 
-
-
-
 .coin {
-  margin-right:30rem;
-  margin-left:auto;
+  margin-right: 30rem;
+  margin-left: auto;
   height: 500px;
   width: 500px;
   animation: spin var(--x) linear infinite,
     change calc(3 * var(--x) / 2) infinite linear calc(var(--x) / 4);
   /* border-radius: 50%; */
-  background-image:url("/static/exchange_app/mls.png");
+  background-image: url("/static/exchange_app/mls.png");
   /* background-size: contain; */
   background-repeat: no-repeat;
   background-position: center center;
@@ -841,26 +878,22 @@ d--1x4 table {
 }
 
 @keyframes change {
-
   0%,
   33.33% {
     background-image: url("/static/exchange_app/mlb.png");
-  background-size: contain;
-
+    background-size: contain;
   }
   33.34%,
   66.66% {
     background-image: url("/static/exchange_app/nhl.png");
-  background-size: contain;
-
+    background-size: contain;
   }
   66.67%,
   100% {
     background-image: url("/static/exchange_app/ncaa.png");
-        /* transform: scaleX(-1); */
+    /* transform: scaleX(-1); */
 
     background-size: 80%;
-
   }
 }
 
