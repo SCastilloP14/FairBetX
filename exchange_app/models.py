@@ -7,11 +7,23 @@ import time
 import random, string
 
 # ------------------- ENUMS NEEDED FOR THE MODELS --------------
+
 class MatchStatus(Enum):
     SCHEDULED = "Scheduled"
     PLAYING = "Playing"
     FINISHED = "Finished"
     CANCELLED = "Cancelled"
+    POSTPONED = "Postponed"
+    ABD = "Abd"
+
+match_stauts_mapping = {
+                        'NS': MatchStatus.SCHEDULED.value,
+                        'IN': MatchStatus.PLAYING.value,
+                        'FT': MatchStatus.FINISHED.value,
+                        'POST': MatchStatus.POSTPONED.value,
+                        'CANC': MatchStatus.CANCELLED.value,
+                        'ABD': MatchStatus.CANCELLED.value,
+                        }
 
 
 class OrderType(Enum):
@@ -34,11 +46,21 @@ class OrderStatus(Enum):
 class TickerStatus(Enum):
     OPEN = "Open"
     CLOSED = "Closed"
+    CANCELED = "Canceled"
+
+ticker_stauts_mapping = {
+                        'NS': TickerStatus.OPEN.value,
+                        'IN': TickerStatus.OPEN.value,
+                        'FT': TickerStatus.CLOSED.value,
+                        'POST': TickerStatus.CANCELED.value,
+                        'CANC': TickerStatus.CANCELED.value,
+                        'ABD': TickerStatus.CANCELED.value,
+                        }
 
 # ------------------- METHODS TO UPDATE MODELS ----------------------
 def create_or_update_team(**kwargs):
     try:
-        existing_team = Team.objects.get(player_id=kwargs["team_id"])
+        existing_team = Team.objects.get(team_id=kwargs["team_id"])
         existing_team.name = kwargs["name"]
         existing_team.sport = kwargs["sport"]
         existing_team.short_name = kwargs["short_name"]
@@ -49,12 +71,12 @@ def create_or_update_team(**kwargs):
         existing_team.save()
     except Team.DoesNotExist:
         # Object does not exist, create a new object
-        new_object = Team(player_id=kwargs["player_id"], name=kwargs["name"], sport=kwargs["sport"], short_name=kwargs["short_name"],
+        new_object = Team(team_id=kwargs["team_id"], name=kwargs["name"], sport=kwargs["sport"], short_name=kwargs["short_name"],
                           stadium = kwargs["stadium"], badge=kwargs["badge"], jersey=kwargs["jersey"], logo=kwargs["logo"])
         new_object.save()
-        return new_object
     
-def create_or_update_player(**kwargs):
+def create_or_update_player(team, **kwargs):
+    player_team = Team.objects.get(team_id=team["team_id"])
     try:
         existing_player = Player.objects.get(player_id=kwargs["player_id"])
         existing_player.name = kwargs["name"]
@@ -62,35 +84,46 @@ def create_or_update_player(**kwargs):
         existing_player.save()
     except Player.DoesNotExist:
         # Object does not exist, create a new object
-        new_object = Team(player_id=kwargs["player_id"], name=kwargs["name"], number=kwargs["number"])
+        new_object = Player(player_id=kwargs["player_id"], name=kwargs["name"], number=kwargs["number"], team=player_team)
         new_object.save()
-        return new_object
     
 def create_or_update_game(**kwargs):
     try:
         existing_game = Game.objects.get(game_id=kwargs["game_id"])
-        # Check what needs to be updated
-        existing_game.sport = kwargs["sport"]
-        existing_game.league = kwargs["league"]
-        existing_game.league_id = kwargs["league"]
-        existing_game.home_team = Team.objects.get(team_id=kwargs["home_team_id"])
-        existing_game.away_team = Team.objects.get(team_id=kwargs["away_team_id"])
         existing_game.home_team_score = kwargs["home_team_score"]
         existing_game.away_team_score = kwargs["away_team_score"]
         existing_game.start_time = kwargs["start_time"]
-        existing_game.status = kwargs["status"]
+        existing_game.status = match_stauts_mapping[kwargs["status"]]
+        existing_game.progress = kwargs["progress"]
         existing_game.save()
     except Game.DoesNotExist:
-        # Object does not exist, create a new object
-        new_object = Team(game_id=kwargs["game_id"], sport=kwargs["sport"], league_id=kwargs["league"], 
-                          home_team=Team.objects.get(id=kwargs["home_team_id"]), 
-                          away_team=Team.objects.get(id=kwargs["away_team_id"]),
-                          home_team_score=kwargs["home_team_score"], away_team_score=kwargs["away_team_score"],
-                          start_time=kwargs["start_time"], status=kwargs["status"]
-                          )
-        new_object.save()
-        return new_object
+        try:
+            # Object does not exist, create a new object
+            home_team = Team.objects.get(team_id=kwargs["home_team_id"])
+            away_team=Team.objects.get(team_id=kwargs["away_team_id"])
+            new_game = Game(game_id=kwargs["game_id"], sport=kwargs["sport"], league=kwargs["league"], league_id=kwargs["league_id"], 
+                            home_team=home_team, away_team=away_team, progress = kwargs["progress"],
+                            home_team_score=kwargs["home_team_score"], away_team_score=kwargs["away_team_score"],
+                            start_time=kwargs["start_time"], status=match_stauts_mapping[kwargs["status"]]
+                            )
+            new_game.save()
+        except Team.DoesNotExist:
+            print(kwargs["home_team_id"], kwargs["away_team_id"])
+    existing_game = Game.objects.get(game_id=kwargs["game_id"])
+    create_or_update_ticker(existing_game, **kwargs)
 
+
+def create_or_update_ticker(match, **kwargs):
+    try:
+        existing_ticker = Ticker.objects.get(ticker_id=f"{kwargs['game_id']}-T")
+        if existing_ticker.status == TickerStatus.OPEN.value:
+            existing_ticker.status = ticker_stauts_mapping[kwargs["status"]]
+            existing_ticker.save()
+    except Ticker.DoesNotExist:
+        new_ticker = Ticker(ticker_id=f"{kwargs['game_id']}-T", 
+                            match = match, status=ticker_stauts_mapping[kwargs["status"]])
+        new_ticker.save()
+        print(f"Created ticker {kwargs['game_id']}-T")
 
 def update_teams(league_name):
     team_list = fetch_team_data(league_name)
@@ -98,24 +131,25 @@ def update_teams(league_name):
             create_or_update_team(**team)
             team_players_list = fetch_player_data(team["team_id"])
             for player in team_players_list:
-                create_or_update_player(**team)
+                create_or_update_player(team, **player)
 
 
 def update_season_games(league_id, season_str):
     season_games_list = fetch_season_games(league_id, season_str)
     for game in season_games_list:
         create_or_update_game(**game)
-    
+
 
 def update_live_games(league_id):
     live_games_list = fetch_live_scores_data(league_id)
     for live_game in live_games_list:
+        print("Updating live game", live_game)
         create_or_update_game(**live_game)
 
 
 # ----------------------- MODELS NEEDED -----------------------
 class UserProfileInfo(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)     
     balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
@@ -131,14 +165,14 @@ class Team(models.Model):
     badge = models.CharField(max_length=100)
     jersey = models.CharField(max_length=100)
     logo = models.CharField(max_length=100)
-
     def __str__(self):
         return self.name
 
 
 class Player(models.Model):
+    player_id = models.IntegerField()
     name = models.CharField(max_length=100)
-    number = models.IntegerField(default="")
+    number = models.IntegerField(null=True)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -152,9 +186,10 @@ class Game(models.Model):
     league_id = models.IntegerField(default=0)
     home_team = models.ForeignKey(Team, related_name="home_games", on_delete=models.CASCADE)
     away_team = models.ForeignKey(Team, related_name="away_games", on_delete=models.CASCADE)
-    home_team_score = models.IntegerField()
-    away_team_score = models.IntegerField() 
-    start_time = models.DateTimeField(auto_now_add=True)
+    home_team_score = models.IntegerField(null=True)
+    away_team_score = models.IntegerField(null=True) 
+    start_time = models.DateTimeField()
+    progress = models.CharField(max_length=100, default="")
     status = models.CharField(max_length=20, choices=[(s.name, s.value) for s in MatchStatus], default=MatchStatus.SCHEDULED.value)
 
 
@@ -177,7 +212,6 @@ class Ticker(models.Model):
     
     def update_ticker(self, trades):
         for trade in trades:
-            print(trade.quantity, trade.price)
             self.volume += trade.quantity
             self.last_price = trade.price
             self.save()
@@ -208,8 +242,6 @@ class Order(models.Model):
             self.save()
 
     def update_order(self, fill):
-        print(self.user.first_name, self.quantity, self.filled_quantity, self.working_quantity)
-        print(fill.quantity)
         if self.avg_fill_price:
             self.avg_fill_price = ((self.filled_quantity * self.avg_fill_price) + (fill.quantity * fill.price)) / (self.filled_quantity + fill.quantity)
         else:
@@ -221,7 +253,6 @@ class Order(models.Model):
             self.status = OrderStatus.FILLED.name
         else:
             self.status = OrderStatus.PARTIAL.name
-        print(self.user.first_name, self.quantity, self.filled_quantity, self.working_quantity)
         self.save()
 
     def execute_order(self):
@@ -243,7 +274,6 @@ class Order(models.Model):
         remaining_quantity = self.quantity
         trades = []
         for counterparty in counterparties:
-            print('Remaining', remaining_quantity)
             if remaining_quantity <= 0:
                 break
             trade_quantity = min(remaining_quantity, counterparty.working_quantity)
@@ -257,16 +287,13 @@ class Order(models.Model):
             user_fill = Fill.objects.create(user=self.user, ticker=self.ticker, quantity=trade_quantity, side=self.side, 
                                             price=trade_price, timestamp=models.DateTimeField(auto_now_add=True),
                                             fill_id = ''.join(random.choices(string.ascii_letters + string.digits, k=16)))
-            print("UPDATING", self.user.first_name)
             user_fill.save()
             self.update_order(user_fill)
             counterparty_fill = Fill.objects.create(user=counterparty.user, ticker=self.ticker, quantity=trade_quantity, side=counterparty.side, 
                                                     price=trade_price, timestamp=models.DateTimeField(auto_now_add=True),
                                                     fill_id = ''.join(random.choices(string.ascii_letters + string.digits, k=16)))
-            print("UPDATING", counterparty.user.first_name)
             counterparty_fill.save()
             counterparty.update_order(counterparty_fill)
-        print(trades)
         self.ticker.update_ticker(trades)
         Position.update_positions(trades)
 

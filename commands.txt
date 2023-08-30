@@ -1,0 +1,3 @@
+activate FBXEnv
+pyhton manage.py runserver
+pyhton manage.py startapp
