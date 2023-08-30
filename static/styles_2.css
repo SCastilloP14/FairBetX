@@ -621,6 +621,12 @@ label {
   /* align-self: center; */
 }
 
+
+.form__order-btn {
+  align-items: center ;
+  vertical-align: middle;
+}
+
 .form__order-type,
 .form__order-side {
   /* align-self: center; */
