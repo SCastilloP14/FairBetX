@@ -118,6 +118,12 @@ class GamesListView(ListView):
     model = Game
     template_name = "exchange_app/game_list.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["games_in_play"] = Game.objects.filter(status=MatchStatus.PLAYING.value)
+        context["games_scheduled"] = Game.objects.filter(status=MatchStatus.SCHEDULED.value)
+        return context
+
     # def get_queryset(self):
     #     return Game.objects.filter().order_by("league")
 
