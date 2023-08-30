@@ -7,20 +7,28 @@
 
     <div>
       <div class="login--form game-list__sports">
-        <h3>NBA</h3>
+        <h3>MLB</h3>
         <div class="game-list__sports-NBA">
-          {% for game in games %}
-
-          <div class="NBA grid grid--1x4-game-detail">
-            <a class="NBA" href="{{game.id}}"
-              >{{game.home_team.name}} vs {{game.away_team.name}}</a>
-            <p>{{game.away_team_score}} : {{game.home_team_score}}</p>
-            <p>{{game.status}}</p>
-            <p>{{game.price}}</p>
-          </div>
-
-        </div>
-        {% endfor %}
+          {% for game in MLB_games_in_play %}
+            {% for ticker in game.tickers.all %}
+            <div class="NBA grid grid--1x4-game-detail">
+              <a href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">{{game.home_team.name}} vs {{game.away_team.name}}</a>
+              <p>{{game.away_team_score}} : {{game.home_team_score}}</p>
+              <p>{{game.status}}</p>
+              <p>{{game.price}}</p>
+            </div>
+            {% endfor %}
+          {% endfor %}
+          {% for game in MLB_games_scheduled %}
+            {% for ticker in game.tickers.all %}
+            <div class="NBA grid grid--1x4-game-detail">
+              <a href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">{{game.home_team.name}} vs {{game.away_team.name}}</a>
+              <p>{{game.start_time}}</p>
+              <p>{{game.status}}</p>
+              <p>{{game.price}}</p>
+            </div>
+            {% endfor %}
+          {% endfor %}
       </div>
       <div class="login--form game-list__sports">
         <h3>NHL</h3>
@@ -55,7 +63,7 @@
         {% endfor %} -->
       </div>
       <div class="login--form game-list__sports">
-        <h3>MLB</h3>
+        <h3>NBA</h3>
         <!-- <div class="game-list__sports-NBA">
           {% for game in games %}
 

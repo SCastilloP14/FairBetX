@@ -29,10 +29,14 @@
       <div class="login--form card__container user-card">
         <div class="grid grid--1x2 grid__user-card">
           <div class="user__balance">${{user.userprofileinfo.balance}}</div>
-
-          <button class="btn btn--secondary user__balance__btn">
-            <a href="">Reload</a>
-          </button>
+          {%if balance_form%}
+          <form id="balance-form" method="POST" action="" class="form__order">
+            {% csrf_token %}
+            <input type="hidden" name="username" value={{user.username}}>
+            <input type="hidden" name="new_balance" value=100>
+            <button type="submit", class="btn btn--secondary user__balance__btn">Reload Balance</button>
+          </form>
+          {%endif%}
         </div>
       </div>
       <div class="line line__bottom"></div>

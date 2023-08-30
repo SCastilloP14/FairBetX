@@ -45,9 +45,8 @@
 
         <div class="nav--list">
           <ul class="list">
-            <a class="list--item list--inline" href="{% url "admin:index" %}">Admin</a>
+            {% comment %} <a class="list--item list--inline" href="{% url "admin:index" %}">Admin</a> {% endcomment %}
             <a class="list--item list--inline" href="{% url "exchange_app:game_list" %}">Games</a>
-            <a class="list--item list--inline" href="{% url "exchange_app:game_list" %}">Sports</a>
           </ul>
         </div>
 

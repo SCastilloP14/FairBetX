@@ -12,6 +12,7 @@ from django.contrib.auth import authenticate, login, logout
 from exchange_app.forms import UserForm, UserProfileInfoForm, OrderForm, BalanceForm
 import random, string
 from django.http import JsonResponse
+from datetime import datetime
 
 # Create your views here.
 
@@ -87,7 +88,7 @@ class UserDetailView(DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         ticker = self.get_object()
-        context["modify_balance_url"] = reverse("user_detail", kwargs={"pk": self.kwargs["pk"]})
+        context["balance_form"] = BalanceForm()
         if self.request.user.is_authenticated:
             context["user_orders"] = Order.objects.filter(user=self.request.user)
             context["user_positions"] = Position.objects.filter(user=self.request.user)
@@ -100,15 +101,15 @@ class UserDetailView(DeleteView):
     
     def post(self, request, *args, **kwargs):
         if request.method == "POST":
-            form = UserForm(request.POST)
+            form = BalanceForm(request.POST)
             if form.is_valid():
-                user_id = request.POST.get("user_id")
-                user = User.objects.get(id=user_id)
-                user.balance += request.POST.get("balance")
-                user.save()
+                print(request.POST)
+                username = request.POST.get("username")
+                user = User.objects.get(username=username)
+                user_info = UserProfileInfo.objects.get(user=user)
+                user_info.balance = request.POST.get("new_balance")
+                user_info.save()
                 return redirect("user_detail", pk=self.kwargs["pk"])
-    
-
 
 
 # -------------------- OBJECT VIEWS ------------------------
@@ -120,8 +121,8 @@ class GamesListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["games_in_play"] = Game.objects.filter(status=MatchStatus.PLAYING.value)
-        context["games_scheduled"] = Game.objects.filter(status=MatchStatus.SCHEDULED.value)
+        context["MLB_games_in_play"] = Game.objects.filter(status=MatchStatus.PLAYING.value)
+        context["MLB_games_scheduled"] = Game.objects.filter(status=MatchStatus.SCHEDULED.value)
         return context
 
     # def get_queryset(self):

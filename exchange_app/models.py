@@ -172,7 +172,7 @@ class Team(models.Model):
 class Player(models.Model):
     player_id = models.IntegerField()
     name = models.CharField(max_length=100)
-    number = models.IntegerField(null=True)
+    number = models.IntegerField(null=True, blank=True)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
     def __str__(self):
