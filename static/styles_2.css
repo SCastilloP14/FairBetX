@@ -757,7 +757,8 @@ d--1x4 table {
   margin: 0;
 }
 
-.NBA {
+.NBA, 
+.NBA a {
   color: var(--color-font-light);
   background-color: var(--color-main);
   margin: 0;
