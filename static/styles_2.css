@@ -621,6 +621,12 @@ label {
   /* align-self: center; */
 }
 
+
+.form__order-btn {
+  align-items: center ;
+  vertical-align: middle;
+}
+
 .form__order-type,
 .form__order-side {
   /* align-self: center; */
@@ -757,7 +763,8 @@ d--1x4 table {
   margin: 0;
 }
 
-.NBA {
+.NBA, 
+.NBA a {
   color: var(--color-font-light);
   background-color: var(--color-main);
   margin: 0;
