@@ -17,6 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from exchange_app import views
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register(r"trades", views.TradeViewSet)
 
 urlpatterns = [
     path("", views.index, name="index"),
@@ -27,5 +31,5 @@ urlpatterns = [
     path("logout/", views.user_logout, name="user_logout"),
     path("user/<int:pk>/", views.UserDetailView.as_view(), name="user_detail"),
     # Custom Trading View Chart Api
-    path('api/get_custom_symbol_data', views.get_custom_symbol_data, name='get_custom_symbol_data'),
+    path('api/', include(router.urls)),
 ]

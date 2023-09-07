@@ -16,13 +16,16 @@ class MatchStatus(Enum):
     POSTPONED = "Postponed"
     ABD = "Abd"
 
+    def __str__(self):
+        return self.value
+
 match_stauts_mapping = {
-                        'NS': MatchStatus.SCHEDULED.value,
-                        'IN': MatchStatus.PLAYING.value,
-                        'FT': MatchStatus.FINISHED.value,
-                        'POST': MatchStatus.POSTPONED.value,
-                        'CANC': MatchStatus.CANCELLED.value,
-                        'ABD': MatchStatus.CANCELLED.value,
+                        'NS': MatchStatus.SCHEDULED,
+                        'IN': MatchStatus.PLAYING,
+                        'FT': MatchStatus.FINISHED,
+                        'POST': MatchStatus.POSTPONED,
+                        'CANC': MatchStatus.CANCELLED,
+                        'ABD': MatchStatus.CANCELLED
                         }
 
 
@@ -48,13 +51,21 @@ class TickerStatus(Enum):
     CLOSED = "Closed"
     CANCELED = "Canceled"
 
+class TickerOutcome(Enum):
+    LONGS_WIN = "Longs Win"
+    SHORTS_WIN = "Shorts Win"
+    CANCELED = "Cancelled"
+
+    def __str__(self):
+        return self.value
+
 ticker_stauts_mapping = {
-                        'NS': TickerStatus.OPEN.value,
-                        'IN': TickerStatus.OPEN.value,
-                        'FT': TickerStatus.CLOSED.value,
-                        'POST': TickerStatus.CANCELED.value,
-                        'CANC': TickerStatus.CANCELED.value,
-                        'ABD': TickerStatus.CANCELED.value,
+                        'NS': TickerStatus.OPEN,
+                        'IN': TickerStatus.OPEN,
+                        'FT': TickerStatus.CLOSED,
+                        'POST': TickerStatus.CANCELED,
+                        'CANC': TickerStatus.CANCELED,
+                        'ABD': TickerStatus.CANCELED
                         }
 
 # ------------------- METHODS TO UPDATE MODELS ----------------------
@@ -88,13 +99,16 @@ def create_or_update_player(team, **kwargs):
         new_object.save()
     
 def create_or_update_game(**kwargs):
+    print(kwargs)
+    print(match_stauts_mapping[kwargs["status"]])
     try:
         existing_game = Game.objects.get(game_id=kwargs["game_id"])
         existing_game.home_team_score = kwargs["home_team_score"]
         existing_game.away_team_score = kwargs["away_team_score"]
         existing_game.start_time = kwargs["start_time"]
-        existing_game.status = match_stauts_mapping[kwargs["status"]]
+        print(match_stauts_mapping[kwargs["status"]])
         existing_game.progress = kwargs["progress"]
+        existing_game.status = match_stauts_mapping.get(kwargs["status"])
         existing_game.save()
     except Game.DoesNotExist:
         try:
@@ -104,7 +118,7 @@ def create_or_update_game(**kwargs):
             new_game = Game(game_id=kwargs["game_id"], sport=kwargs["sport"], league=kwargs["league"], league_id=kwargs["league_id"], 
                             home_team=home_team, away_team=away_team, progress = kwargs["progress"],
                             home_team_score=kwargs["home_team_score"], away_team_score=kwargs["away_team_score"],
-                            start_time=kwargs["start_time"], status=match_stauts_mapping[kwargs["status"]]
+                            start_time=kwargs["start_time"], status=match_stauts_mapping.get(kwargs["status"])
                             )
             new_game.save()
         except Team.DoesNotExist:
@@ -119,11 +133,22 @@ def create_or_update_ticker(match, **kwargs):
         if existing_ticker.status == TickerStatus.OPEN.value:
             existing_ticker.status = ticker_stauts_mapping[kwargs["status"]]
             existing_ticker.save()
+            if existing_ticker.status == TickerStatus.CLOSED.value:
+                if Ticker.match.home_team_score > Ticker.match.away_team_score:
+                    outcome = TickerOutcome.LONGS_WIN.value
+                elif Ticker.match.home_team_score < Ticker.match.away_team_score:
+                    outcome = TickerOutcome.SHORTS_WIN.value
+                existing_ticker.close_ticker(existing_ticker, outcome)
+            elif existing_ticker.status == TickerStatus.CANCELED.value:
+                existing_ticker.cancel_ticker(existing_ticker)
+            existing_ticker.save()
+
     except Ticker.DoesNotExist:
         new_ticker = Ticker(ticker_id=f"{kwargs['game_id']}-T", 
                             match = match, status=ticker_stauts_mapping[kwargs["status"]])
         new_ticker.save()
         print(f"Created ticker {kwargs['game_id']}-T")
+
 
 def update_teams(league_name):
     team_list = fetch_team_data(league_name)
@@ -142,15 +167,23 @@ def update_season_games(league_id, season_str):
 
 def update_live_games(league_id):
     live_games_list = fetch_live_scores_data(league_id)
+    print(len(live_games_list))
+    i = 1
     for live_game in live_games_list:
-        print("Updating live game", live_game)
+        print(i)
+        i += 1
         create_or_update_game(**live_game)
 
 
 # ----------------------- MODELS NEEDED -----------------------
 class UserProfileInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)     
-    balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    available_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    locked_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    fees_paid = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+    def total_balance(self):
+        return self.available_balance + self.locked_balance
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
@@ -190,12 +223,7 @@ class Game(models.Model):
     away_team_score = models.IntegerField(null=True) 
     start_time = models.DateTimeField()
     progress = models.CharField(max_length=100, default="")
-    status = models.CharField(max_length=20, choices=[(s.name, s.value) for s in MatchStatus], default=MatchStatus.SCHEDULED.value)
-
-
-    # @classmethod
-    # def create_ticker(cls):
-    #     Ticker.objects.create(match=cls, ticker_id=cls.id)
+    status = models.CharField(max_length=20, choices=[(s.name, s) for s in MatchStatus])
 
     def __str__(self):
         return f"{self.home_team} vs {self.away_team}"
@@ -204,17 +232,28 @@ class Game(models.Model):
 class Ticker(models.Model):
     ticker_id = models.CharField(max_length=100)
     match = models.ForeignKey(Game, on_delete=models.CASCADE, related_name="tickers")
-    status = models.CharField(max_length=20, choices=[(s.name, s.value) for s in TickerStatus], default=TickerStatus.OPEN.value)
+    status = models.CharField(max_length=20, choices=[(s.name, s) for s in TickerStatus])
     last_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     volume = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     maker_fee_pct = models.DecimalField(max_digits=10, decimal_places=4, default=0.5)
     taker_fee_pct = models.DecimalField(max_digits=10, decimal_places=4, default=1.0)
+    payout = models.IntegerField(default=10)
     
     def update_ticker(self, trades):
         for trade in trades:
             self.volume += trade.quantity
             self.last_price = trade.price
             self.save()
+
+    def close_ticker(self, outcome):
+        ticker_positions = Position.objects.get(ticker=self)
+        for position in ticker_positions:
+            if position > 0 and  self.status == TickerOutcome.LONGS_WIN.value:
+                user_info = position.user.userprofileinfo
+                user_info.balance += self.payout * position.quantity
+            elif position > 0 and  self.status == TickerOutcome.SHORTS_WIN.value:
+                user_info = position.user.userprofileinfo
+                user_info.balance += self.payout * -position.quantity
 
     def __str__(self):
         return self.ticker_id
@@ -256,7 +295,6 @@ class Order(models.Model):
         self.save()
 
     def execute_order(self):
-        # Find counterparties
         if self.side == OrderSide.BUY.name:
             if self.order_type == OrderType.LIMIT.name:
                 counterparties = Order.objects.filter(ticker=self.ticker, price__lte=self.price, side=OrderSide.SELL.name, working_quantity__gt=0
@@ -324,7 +362,7 @@ class Trade(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.trade_id}"
+        return f"{self.ticker.ticker_id}-{self.trade_id}"
     
 
 class Position(models.Model):

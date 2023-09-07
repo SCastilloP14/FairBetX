@@ -105,6 +105,7 @@ def parse_season_games_data(raw_games_list):
 def parse_live_games_data(raw_games_list):
     parsed_live_matches_data = []
     for game in raw_games_list:
+        print(game)
         game_time_str = f"{game['dateEvent']}T{game['strEventTime']}:00+00:00"
         parsed_live_match = {"game_id": game["idEvent"],
                         "sport": game["strSport"],
@@ -118,5 +119,6 @@ def parse_live_games_data(raw_games_list):
                         "progress": game["strProgress"],
                         "status": game["strStatus"] if 'IN' not in game["strStatus"] else "IN",
                         }
+        print(parsed_live_match)
         parsed_live_matches_data.append(parsed_live_match)
     return parsed_live_matches_data

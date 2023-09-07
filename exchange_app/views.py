@@ -1,6 +1,5 @@
 
 from django.shortcuts import render, redirect
-# Creating views using Django views
 from django.db.models import Sum
 from django.db.models.query import QuerySet
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -12,7 +11,9 @@ from django.contrib.auth import authenticate, login, logout
 from exchange_app.forms import UserForm, UserProfileInfoForm, OrderForm, BalanceForm
 import random, string
 from django.http import JsonResponse
-from datetime import datetime
+from rest_framework import viewsets
+from exchange_app.serializer import TradeSerializer
+
 
 # Create your views here.
 
@@ -87,7 +88,6 @@ class UserDetailView(DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        ticker = self.get_object()
         context["balance_form"] = BalanceForm()
         if self.request.user.is_authenticated:
             context["user_orders"] = Order.objects.filter(user=self.request.user)
@@ -119,14 +119,29 @@ class GamesListView(ListView):
     model = Game
     template_name = "exchange_app/game_list.html"
 
+    def get_queryset(self):
+        league_filter = self.request.GET.get('league')
+        queryset = Game.objects.filter(league=league_filter) if league_filter else Game.objects.all()
+        return queryset
+
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["MLB_games_in_play"] = Game.objects.filter(status=MatchStatus.PLAYING.value)
-        context["MLB_games_scheduled"] = Game.objects.filter(status=MatchStatus.SCHEDULED.value)
+        games = self.get_queryset()
+        grouped_games = {}
+        print(grouped_games.keys())
+        for game in games:
+            if game.league not in grouped_games.keys():
+                grouped_games[game.league] = [game]
+            else:
+                grouped_games[game.league].append(game)
+        context["grouped_games"] = grouped_games
+        for league, games in context["grouped_games"].items():
+            for game in games:
+                print(league, game, type(game))
         return context
 
-    # def get_queryset(self):
-    #     return Game.objects.filter().order_by("league")
+
 
 class GameDetailView(DetailView):
     # If this line does note exist default would be ticker
@@ -191,10 +206,16 @@ class TickerDetailView(DetailView):
 
 # ======== Ticker Data ========    
 #    
-def get_custom_symbol_data(request):
-    # Fetch and prepare your custom symbol data
-    symbol_data = {
-        'symbol': 'YOUR_CUSTOM_SYMBOL',  # Replace with the actual symbol
-        # Include other necessary data here
-    }
-    return JsonResponse(symbol_data)
+class TradeViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = TradeSerializer
+    queryset = Trade.objects.all()
+    basename = "trade"  # Set a suitable basename for your viewset
+
+    def get_queryset(self):
+        ticker_id_filter = self.request.query_params.get("ticker_id", None)
+        queryset = Trade.objects.all()  # Start with all trades
+        if ticker_id_filter is not None:
+            # Use .filter() to retrieve trades related to the selected ticker
+            queryset = queryset.filter(ticker__id=ticker_id_filter)
+
+        return queryset
