@@ -13,6 +13,8 @@ import random, string
 from django.http import JsonResponse
 from rest_framework import viewsets
 from exchange_app.serializer import TradeSerializer
+import json
+import pandas as pd
 
 
 # Create your views here.
@@ -211,11 +213,33 @@ class TradeViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Trade.objects.all()
     basename = "trade"  # Set a suitable basename for your viewset
 
-    def get_queryset(self):
-        ticker_id_filter = self.request.query_params.get("ticker_id", None)
-        queryset = Trade.objects.all()  # Start with all trades
-        if ticker_id_filter is not None:
-            # Use .filter() to retrieve trades related to the selected ticker
-            queryset = queryset.filter(ticker__id=ticker_id_filter)
+    def custom_data_view(self):
+        queryset = Trade.objects.all()
+        ticker_id_filter = self.POST.get("ticker",None)
 
-        return queryset
+        OHLC = pd.DataFrame(columns=["Time, Price"])   
+
+        # if ticker_id_filter is not None:
+        # #     Use .filter() to retrieve trades related to the selected ticker
+        #     queryset = queryset.filter(ticker=ticker_id_filter)
+        
+        for trade in queryset:  
+            df = pd.DataFrame.from_dict({"Time":[trade.timestamp], "Price" : [float(trade.price)]})
+            OHLC = pd.concat([OHLC, df])
+
+        OHLC = OHLC.assign(Timestamp = pd.to_datetime(OHLC['Time'],utc=True)).set_index('Time')
+        OHLC = OHLC.resample('10min')['Price'].ohlc().ffill()
+        chart_data = OHLC.reset_index().to_dict(orient='records')
+
+        formatted_data = [{
+                            "time": record["Time"].timestamp(),  # F
+                            "open": record["open"],
+                            "high": record["high"],
+                            "low": record["low"],
+                            "close": record["close"],
+                        } for record in chart_data]
+
+
+        return JsonResponse(formatted_data, safe=False)
+
+

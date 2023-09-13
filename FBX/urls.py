@@ -32,4 +32,7 @@ urlpatterns = [
     path("user/<int:pk>/", views.UserDetailView.as_view(), name="user_detail"),
     # Custom Trading View Chart Api
     path('api/', include(router.urls)),
+
+    path('custom-data/', views.TradeViewSet.custom_data_view, name='custom_data'),
+
 ]
