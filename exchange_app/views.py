@@ -17,6 +17,8 @@ import json
 import pandas as pd
 from datetime import timedelta
 from django.db.models import Min
+from rest_framework.response import Response
+
 
 # Create your views here.
 
@@ -203,91 +205,8 @@ class TickerDetailView(DetailView):
                 order.save()
                 order.execute_order()
                 order.save()
-                return redirect("exchange_app:ticker_detail", pk=self.kwargs["pk"])
-            
+                return redirect("exchange_app:ticker_detail", pk=self.kwargs["pk"])             
 
-# ======== Ticker Data ========    
-#    
-# class TradeViewSet(viewsets.ReadOnlyModelViewSet):
-#     serializer_class = TradeSerializer
-#     queryset = Trade.objects.all()
-#     basename = "trade"  # Set a suitable basename for your viewset
-
-#     # custom_serializer = CustomTradeSerializer(queryset, many=True)
-#     # print("Custom", custom_serializer)
-
-#     def get_queryset(self):
-        
-#         ticker_id_filter = self.request.query_params.get("ticker_id", None)
-#         timeframe_filter = self.request.query_params.get("timeframe", None)
-      
-#         if ticker_id_filter is not None:
-#             selected_ticker = Ticker.objects.get(id=ticker_id_filter)
-#             trades = Trade.objects.filter(ticker=selected_ticker).order_by('timestamp')
-#             # Calculate OHLC candles based on the specified timeframe
-#             if timeframe_filter:
-#                 ohlc_candles = []
-#                 current_candle = None
-#                 timeframe_minutes = int(timeframe_filter.split(" ")[0])  # Extract the number of minutes from the timeframe
-#                 for trade in trades:
-#                     if current_candle is None:
-
-#                         # custom_serializer = CustomTradeSerializer(data=trade, many=True)
-#                         # if custom_serializer.is_valid():
-#                         #     print("here" , Response(custom_serializer.data))
-#                         # print("Shit", custom_serializer, type(trade))
-
-
-#                         current_candle = {
-#                             'ticker':trade.ticker,
-#                             'quantity':trade.quantity,
-#                             'price':trade.price,
-
-#                             'timestamp': trade.timestamp,
-#                             'open': trade.price,
-#                             'high': trade.price,
-#                             'low': trade.price,
-#                             'close': trade.price,
-#                         }
-                        
-#                     elif trade.timestamp - current_candle['timestamp'] >= timedelta(minutes=timeframe_minutes):
-#                         # Close the current candle and append it to the list
-#                         ohlc_candles.append(current_candle)
-                        
-#                         # Start a new candle
-#                         current_candle = {
-#                             'ticker': trade.ticker,
-#                             'quantity':trade.quantity,
-#                             'price':trade.price,
-
-#                             'timestamp': trade.timestamp,
-#                             'open': trade.price,
-#                             'high': trade.price,
-#                             'low': trade.price,
-#                             'close': trade.price,
-#                         }
-#                     else:
-#                         # Update high and low prices within the current candle
-#                         current_candle['high'] = max(current_candle['high'], trade.price)
-#                         current_candle['low'] = min(current_candle['low'], trade.price)
-#                         # Update the close price with each trade
-#                         current_candle['close'] = trade.price
-
-#                 # Append the last candle
-#                 if current_candle is not None:
-#                     ohlc_candles.append(current_candle)
-
-#                 return ohlc_candles
-
-#             else:
-#                 # If no timeframe is provided, return all trades
-#                 return trades
-
-#         else:
-#             return Trade.objects.none()
-            
-
-from rest_framework.response import Response
 
 class TradeViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = TradeSerializer
