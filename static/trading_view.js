@@ -1,43 +1,3 @@
-// // custom-lightweight-chart.js
-// document.addEventListener("DOMContentLoaded", function () {
-//   // Fetch custom data from Django backend
-//   fetch("/custom-data/")
-//     .then((response) => response.json())
-//     .then((data) => {
-//       // Parse data for use in the chart
-//       const chartData = data.map((point) => ({
-//         time: point.time,
-//         open: point.open,
-//         high: point.high,
-//         low: point.low,
-//         close: point.close,
-//       }));
-
-//       // Create a new TradingView Lightweight Chart
-//       const chart = LightweightCharts.createChart(
-//         document.getElementById("chart-container"),
-//         {
-//           width: document.getElementById("chart-container").offsetWidth,
-//           layout: {
-//             background: { color: '#00171f' },
-//             textColor: '#DDD',
-//         },
-//         grid: {
-//             vertLines: { color: 'white' },
-//             horzLines: { color: 'white' },
-//         },
-//         }
-//       );
-        
-//       // Add a candlestick series with the custom data
-//       const candlestickSeries = chart.addCandlestickSeries();
-    
-//       // Apply the custom data to the series
-//       candlestickSeries.setData(chartData);
-//     })
-//     .catch((error) => console.error("Error fetching custom data:", error));
-// });
-
 //  document.addEventListener("DOMContentLoaded", function () {
 //     // Fetch custom data from Django backend
 //     fetch('/custom-data/')
@@ -170,6 +130,8 @@
 //   });
 
 
+
+
   document.addEventListener("DOMContentLoaded", function () {
   // Create the TradingView lightweight chart
   var container = document.getElementById("chart-container");
@@ -198,8 +160,6 @@
         rightOffset: 0,
           // Ensure the right-most candlestick stays on scroll
         rightBarStaysOnScroll: true,
- 
-        
   });
 
 chart.applyOptions({
@@ -207,12 +167,15 @@ chart.applyOptions({
         barSpacing: 5,
         // fixLeftEdge: true,
         // rightOffset: 80,
-        rightBarStaysOnScroll: false,
+        // rightBarStaysOnScroll: false,
         borderVisible: false,
         borderColor: '#fff000',
         visible: true,
         timeVisible: true,
-        secondsVisible: true        }
+        secondsVisible: true,
+           
+      },
+
     }
 );
 
@@ -226,20 +189,30 @@ chart.priceScale('right').applyOptions({
         bottom: 0,
     },
 });
-  function updateChartData() {
+
+    var timeframe ="5"; //Default Value
+
+    function updateChartData() {
+    var ticker_id =document.getElementById("chart-container").textContent ;
+
+    console.log("ticker", ticker_id);
+    console.log("Time", timeframe);
+
+    var url = '/api/trades/?ticker_id=' + ticker_id + '&timeframe=' + timeframe;
+    console.log(url);
     // Make an AJAX request to get the JSON data
-    fetch('/custom-data/')  // Update with the correct URL
+    fetch(url)  // Update with the correct URL
       .then(response => response.json())
       .then(data => {
+        console.log(data)
         // Map the fetched JSON data to the required format (open, high, low, close)
         var formattedData = data.map(item => ({
-          time: item.time , 
+          time: new Date(item.timestamp).getTime()/1000 , 
           open: item.open,
           high: item.high,
           low: item.low,
           close: item.close,
         }));
-
         // Set the new data on the candlestick series
         candlestickSeries.setData(formattedData);
       })
@@ -248,9 +221,40 @@ chart.priceScale('right').applyOptions({
       });
   }
 
+  // Event listeners for interval buttons
+  document.getElementById("btn-1m").addEventListener("click", function () {
+    timeframe = '1';
+    console.log("Inside 1");
+    updateChartData(timeframe);
+  });
+
+  document.getElementById("btn-5m").addEventListener("click", function () {
+    timeframe = '5';
+    updateChartData(timeframe);
+  });
+
+  document.getElementById("btn-1h").addEventListener("click", function () {
+    timeframe = '60';
+    console.log("60 Minutes");
+    updateChartData(timeframe);
+  });
+
+    document.getElementById("btn-6h").addEventListener("click", function () {
+    timeframe = '300';
+    updateChartData(timeframe);
+  });
+
+    document.getElementById("btn-1d").addEventListener("click", function () {
+    timeframe = '1440';
+    updateChartData(timeframe);
+  });
+
+   
+
   // Call the updateChartData function to initially load data
   updateChartData();
 
   // Set up an interval to update data periodically (adjust the interval time as needed)
   setInterval(updateChartData, 60000); // Update every 60 seconds (1 minute)
 });
+

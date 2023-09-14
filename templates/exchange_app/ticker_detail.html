@@ -23,13 +23,20 @@
         <div class="ticker-info-trading">
           <div class="grid grid--1x3 grid-trading">
             <div class="ticker-info-ob">
+              <div id="interval-buttons">
+                <button id="btn-1m" class="btn interval-btn" value="1">1M</button>
+                <button id="btn-5m" class="btn interval-btn" value="5">5M</button>
+                <button id="btn-1h" class="btn interval-btn" value="60">1H</button>
+                <button id="btn-6h" class="btn interval-btn" value="300">6H</button>
+                <button id="btn-1d" class="btn interval-btn" value="1440">1D</button>
+              </div>
               <!-- TradingView Widget BEGIN -->
 
               <!-- Include TradingView Lightweight Charts library -->
               <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 
               <!-- Create a div to hold the chart -->
-              <div id="chart-container" style="width: 100%; height: 100%;"></div>
+              <div id="chart-container" style="width: 100%; height: 88%;" value="{{ticker_detail.id}}">{{ticker_detail.id}}</div>
 
 
 
