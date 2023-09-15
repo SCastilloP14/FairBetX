@@ -12,8 +12,12 @@ from exchange_app.forms import UserForm, UserProfileInfoForm, OrderForm, Balance
 import random, string
 from django.http import JsonResponse
 from rest_framework import viewsets
-from exchange_app.serializer import TradeSerializer
-from django.db.models import Q
+from exchange_app.serializer import TradeSerializer, CustomTradeSerializer
+import json
+import pandas as pd
+from datetime import timedelta
+from django.db.models import Min
+from rest_framework.response import Response
 
 
 # Create your views here.
@@ -104,10 +108,11 @@ class UserDetailView(DeleteView):
         if request.method == "POST":
             form = BalanceForm(request.POST)
             if form.is_valid():
+                print(request.POST)
                 username = request.POST.get("username")
                 user = User.objects.get(username=username)
                 user_info = UserProfileInfo.objects.get(user=user)
-                user_info.available_balance = request.POST.get("new_balance")
+                user_info.balance = request.POST.get("new_balance")
                 user_info.save()
                 return redirect("user_detail", pk=self.kwargs["pk"])
 
@@ -122,7 +127,6 @@ class GamesListView(ListView):
     def get_queryset(self):
         league_filter = self.request.GET.get('league')
         queryset = Game.objects.filter(league=league_filter) if league_filter else Game.objects.all()
-        queryset = queryset.filter(Q(status=MatchStatus.PLAYING.name) | Q(status=MatchStatus.SCHEDULED.name))
         return queryset
 
 
@@ -130,12 +134,16 @@ class GamesListView(ListView):
         context = super().get_context_data(**kwargs)
         games = self.get_queryset()
         grouped_games = {}
+        print(grouped_games.keys())
         for game in games:
             if game.league not in grouped_games.keys():
                 grouped_games[game.league] = [game]
             else:
                 grouped_games[game.league].append(game)
         context["grouped_games"] = grouped_games
+        for league, games in context["grouped_games"].items():
+            for game in games:
+                print(league, game, type(game))
         return context
 
 
@@ -158,7 +166,6 @@ class TickerListView(ListView):
 
 class TickerDetailView(DetailView):
     # If this line does note exist default would be ticker
-
     context_object_name = "ticker_detail"
     model = Ticker
     template_name = "exchange_app/ticker_detail.html"
@@ -179,7 +186,7 @@ class TickerDetailView(DetailView):
             context["user_positions"] = Position.objects.none()
             context["user_fills"] = Fill.objects.none()
         return context
-    
+        
     def post(self, request, *args, **kwargs):
         if request.method == "POST":
             form = OrderForm(request.POST)
@@ -198,11 +205,9 @@ class TickerDetailView(DetailView):
                 order.save()
                 order.execute_order()
                 order.save()
-                return redirect("exchange_app:ticker_detail", pk=self.kwargs["pk"])
-            
+                return redirect("exchange_app:ticker_detail", pk=self.kwargs["pk"])             
 
-# ======== Ticker Data ========    
-#    
+
 class TradeViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = TradeSerializer
     queryset = Trade.objects.all()
@@ -210,9 +215,81 @@ class TradeViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         ticker_id_filter = self.request.query_params.get("ticker_id", None)
-        queryset = Trade.objects.all()  # Start with all trades
+        timeframe_filter = self.request.query_params.get("timeframe", None)
+      
         if ticker_id_filter is not None:
-            # Use .filter() to retrieve trades related to the selected ticker
-            queryset = queryset.filter(ticker__id=ticker_id_filter)
+            selected_ticker = Ticker.objects.get(id=ticker_id_filter)
+            trades = Trade.objects.filter(ticker=selected_ticker).order_by('timestamp')
+            
+            if timeframe_filter:
+                # Your OHLC candle calculation logic here
+                ohlc_candles = []  # Store OHLC candle data here
 
-        return queryset
+                # Your OHLC candle calculation logic goes here
+                current_candle = None
+                timeframe_minutes = int(timeframe_filter.split(" ")[0])
+                next_candle_timestamp = None
+
+                for trade in trades:
+                    if current_candle is None:
+                        current_candle = {
+                            'ticker': trade.ticker,
+                            'quantity': trade.quantity,
+                            'price': trade.price,
+                            'timestamp': trade.timestamp.replace(second=0, microsecond=0),
+                            'open': trade.price,
+                            'high': trade.price,
+                            'low': trade.price,
+                            'close': trade.price,
+                        }
+                        next_candle_timestamp = current_candle['timestamp'] + timedelta(minutes=timeframe_minutes)
+                    elif trade.timestamp >= next_candle_timestamp:
+                        # Close the current candle and append it to the list
+                        ohlc_candles.append(current_candle)
+
+                        # Calculate the next timestamp for the new candle
+                        next_candle_timestamp += timedelta(minutes=timeframe_minutes)
+
+                        # Start a new candle
+                        current_candle = {
+                            'ticker': trade.ticker,
+                            'quantity': trade.quantity,
+                            'price': trade.price,
+                            'timestamp': next_candle_timestamp,
+                            'open': trade.price,
+                            'high': trade.price,
+                            'low': trade.price,
+                            'close': trade.price,
+                        }
+                    else:
+                        # Update high and low prices within the current candle
+                        current_candle['high'] = max(current_candle['high'], trade.price)
+                        current_candle['low'] = min(current_candle['low'], trade.price)
+                        # Update the close price with each trade
+                        current_candle['close'] = trade.price
+
+                # Append the last candle
+                if current_candle is not None:
+                    ohlc_candles.append(current_candle)
+
+                return ohlc_candles  # Return the list of OHLC candle dictionaries
+
+            else:
+                # If no timeframe is provided, return all trades
+                return trades
+
+        else:
+            return Trade.objects.none()
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        
+        # Check if "timeframe" is in the request query params
+        if "timeframe" in request.query_params:
+            # Use the custom serializer for candlestick data
+            serializer = CustomTradeSerializer(queryset, many=True)
+        else:
+            # Use the regular TradeSerializer for other cases
+            serializer = self.get_serializer(queryset, many=True)
+        
+        return Response(serializer.data)
