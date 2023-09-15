@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from enum import Enum
-from exchange_app.api_scheduler.api_methods import fetch_team_data, fetch_player_data,fetch_season_games, fetch_live_scores_data
+from exchange_app.api_scheduler.api_methods import fetch_team_data, fetch_player_data,fetch_season_games, fetch_live_scores_data, fetch_upcoming_games_data
 from datetime import datetime
 import time
 import random, string
@@ -17,13 +17,13 @@ class MatchStatus(Enum):
     ABD = "Abd"
 
     def __str__(self):
-        return self.value
+        return self.name
 
-match_stauts_mapping = {
+match_status_mapping = {
                         'NS': MatchStatus.SCHEDULED,
-                        'IN': MatchStatus.PLAYING,
+                        'PLAYING': MatchStatus.PLAYING,
                         'FT': MatchStatus.FINISHED,
-                        'POST': MatchStatus.POSTPONED,
+                        'POST': MatchStatus.CANCELLED,
                         'CANC': MatchStatus.CANCELLED,
                         'ABD': MatchStatus.CANCELLED
                         }
@@ -33,10 +33,16 @@ class OrderType(Enum):
     LIMIT = "limit"
     MARKET = "market"
 
+    def __str__(self):
+        return self.name
+
 
 class OrderSide(Enum):
     BUY = "buy"
     SELL = "sell"
+
+    def __str__(self):
+        return self.name
 
 
 class OrderStatus(Enum):
@@ -45,11 +51,17 @@ class OrderStatus(Enum):
     FILLED = "Filled"
     CANCELLED = "Cancelled"
 
+    def __str__(self):
+        return self.name
+
 
 class TickerStatus(Enum):
     OPEN = "Open"
     CLOSED = "Closed"
     CANCELED = "Canceled"
+
+    def __str__(self):
+        return self.name
 
 class TickerOutcome(Enum):
     LONGS_WIN = "Longs Win"
@@ -61,7 +73,7 @@ class TickerOutcome(Enum):
 
 ticker_stauts_mapping = {
                         'NS': TickerStatus.OPEN,
-                        'IN': TickerStatus.OPEN,
+                        'PLAYING': TickerStatus.OPEN,
                         'FT': TickerStatus.CLOSED,
                         'POST': TickerStatus.CANCELED,
                         'CANC': TickerStatus.CANCELED,
@@ -90,25 +102,23 @@ def create_or_update_player(team, **kwargs):
     player_team = Team.objects.get(team_id=team["team_id"])
     try:
         existing_player = Player.objects.get(player_id=kwargs["player_id"])
-        existing_player.name = kwargs["name"]
-        existing_player.number = kwargs["number"]
-        existing_player.save()
     except Player.DoesNotExist:
         # Object does not exist, create a new object
+        if kwargs["number"] == '':
+            kwargs["number"] = 0
         new_object = Player(player_id=kwargs["player_id"], name=kwargs["name"], number=kwargs["number"], team=player_team)
         new_object.save()
     
 def create_or_update_game(**kwargs):
+    print("-----------------------------")
     print(kwargs)
-    print(match_stauts_mapping[kwargs["status"]])
     try:
         existing_game = Game.objects.get(game_id=kwargs["game_id"])
         existing_game.home_team_score = kwargs["home_team_score"]
         existing_game.away_team_score = kwargs["away_team_score"]
         existing_game.start_time = kwargs["start_time"]
-        print(match_stauts_mapping[kwargs["status"]])
         existing_game.progress = kwargs["progress"]
-        existing_game.status = match_stauts_mapping.get(kwargs["status"])
+        existing_game.status = match_status_mapping.get(kwargs["status"])
         existing_game.save()
     except Game.DoesNotExist:
         try:
@@ -118,7 +128,7 @@ def create_or_update_game(**kwargs):
             new_game = Game(game_id=kwargs["game_id"], sport=kwargs["sport"], league=kwargs["league"], league_id=kwargs["league_id"], 
                             home_team=home_team, away_team=away_team, progress = kwargs["progress"],
                             home_team_score=kwargs["home_team_score"], away_team_score=kwargs["away_team_score"],
-                            start_time=kwargs["start_time"], status=match_stauts_mapping.get(kwargs["status"])
+                            start_time=kwargs["start_time"], status=match_status_mapping.get(kwargs["status"])
                             )
             new_game.save()
         except Team.DoesNotExist:
@@ -142,10 +152,10 @@ def create_or_update_ticker(match, **kwargs):
             elif existing_ticker.status == TickerStatus.CANCELED.value:
                 existing_ticker.cancel_ticker(existing_ticker)
             existing_ticker.save()
-
     except Ticker.DoesNotExist:
         new_ticker = Ticker(ticker_id=f"{kwargs['game_id']}-T", 
-                            match = match, status=ticker_stauts_mapping[kwargs["status"]])
+                            match = match, 
+                            status=ticker_stauts_mapping.get(kwargs["status"]))
         new_ticker.save()
         print(f"Created ticker {kwargs['game_id']}-T")
 
@@ -154,9 +164,9 @@ def update_teams(league_name):
     team_list = fetch_team_data(league_name)
     for team in team_list:
             create_or_update_team(**team)
-            team_players_list = fetch_player_data(team["team_id"])
-            for player in team_players_list:
-                create_or_update_player(team, **player)
+            # team_players_list = fetch_player_data(team["team_id"])
+            # for player in team_players_list:
+            #     create_or_update_player(team, **player)
 
 
 def update_season_games(league_id, season_str):
@@ -167,23 +177,43 @@ def update_season_games(league_id, season_str):
 
 def update_live_games(league_id):
     live_games_list = fetch_live_scores_data(league_id)
-    print(len(live_games_list))
-    i = 1
     for live_game in live_games_list:
-        print(i)
-        i += 1
         create_or_update_game(**live_game)
 
+
+def update_upcoming_games(league_id):
+    upcomng_games_list = fetch_upcoming_games_data(league_id)
+    for upcoming_game in upcomng_games_list:
+        create_or_update_game(**upcoming_game)
 
 # ----------------------- MODELS NEEDED -----------------------
 class UserProfileInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)     
     available_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     locked_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    fees_paid = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
+    @property
+    def fees_paid(self):
+        user_orders = Order.objects.get(user=self.user)
+        fees_paid = 0
+        for order in user_orders:
+            order_fees_paid = order.fees_paid
+            fees_paid += order_fees_paid
+        return fees_paid
+        
+    @property
     def total_balance(self):
         return self.available_balance + self.locked_balance
+    
+    def lock_balance(self, balance_to_lock):
+        self.locked_balance =+ balance_to_lock
+        self.available_balance =- balance_to_lock
+        self.save()
+
+    def unlock_balance(self, balance_to_unlock):
+        self.locked_balance =- balance_to_unlock
+        self.available_balance =+ balance_to_unlock
+        self.save()
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
@@ -248,15 +278,15 @@ class Ticker(models.Model):
     def close_ticker(self, outcome):
         ticker_positions = Position.objects.get(ticker=self)
         for position in ticker_positions:
-            if position > 0 and  self.status == TickerOutcome.LONGS_WIN.value:
+            if position > 0 and outcome == TickerOutcome.LONGS_WIN.value:
                 user_info = position.user.userprofileinfo
-                user_info.balance += self.payout * position.quantity
-            elif position > 0 and  self.status == TickerOutcome.SHORTS_WIN.value:
+                user_info.available_balance += self.payout * position.quantity
+            elif position > 0 and outcome == TickerOutcome.SHORTS_WIN.value:
                 user_info = position.user.userprofileinfo
-                user_info.balance += self.payout * -position.quantity
+                user_info.available_balance += self.payout * -position.quantity
 
     def __str__(self):
-        return self.ticker_id
+        return f"{self.ticker_id} {self.match}"
 
 
 class Order(models.Model):
@@ -278,7 +308,18 @@ class Order(models.Model):
     def cancel(self):
         if self.status != OrderStatus.FILLED.value:
             self.status = OrderStatus.CANCELLED.value
+            if self.side == OrderSide.BUY.name:
+                balance_to_unlock = self.price * self.quantity
+            else:
+                balance_to_unlock = (self.ticker.payout - self.price) * self.quantity 
+            self.unlock_balance(balance_to_unlock)
             self.save()
+
+    def lock_balance(self, balance_to_lock):
+        self.user.userprofileinfo.lock_balance(balance_to_lock)
+
+    def unlock_balance(self, balance_to_unlock):
+        self.user.userprofileinfo.unlock_balance(balance_to_unlock)
 
     def update_order(self, fill):
         if self.avg_fill_price:
@@ -288,6 +329,14 @@ class Order(models.Model):
         self.working_quantity -= fill.quantity
         self.filled_quantity += fill.quantity
         self.paid_fees += fill.price * fill.quantity * (self.ticker.maker_fee_pct / 100)
+        
+        if self.order_type == OrderType.MARKET.name:
+            if self.side == OrderSide.BUY.name:
+                balance_to_lock = fill.price * self.quantity
+            else:
+                balance_to_lock = (self.ticker.payout - fill.price) * self.quantity 
+            self.lock_balance(balance_to_lock)
+        
         if self.working_quantity == 0:
             self.status = OrderStatus.FILLED.name
         else:
@@ -297,17 +346,21 @@ class Order(models.Model):
     def execute_order(self):
         if self.side == OrderSide.BUY.name:
             if self.order_type == OrderType.LIMIT.name:
-                counterparties = Order.objects.filter(ticker=self.ticker, price__lte=self.price, side=OrderSide.SELL.name, working_quantity__gt=0
-                                                    ).order_by("price", "modification_timestamp")
+                balance_to_lock = self.price * self.quantity
+                self.lock_balance(balance_to_lock)
+                counterparties = Order.objects.filter(ticker=self.ticker, price__lte=self.price, side=OrderSide.SELL.name, working_quantity__gt=0,
+                                                      status__ne=OrderStatus.CANCELED.name).order_by("price", "modification_timestamp")
             else:
-                counterparties = Order.objects.filter(ticker=self.ticker, side=OrderSide.SELL.name, working_quantity__gt=0,
+                counterparties = Order.objects.filter(ticker=self.ticker, side=OrderSide.SELL.name, working_quantity__gt=0, status__ne=OrderStatus.CANCELED.name
                                                       ).order_by("price", "modification_timestamp")
         else:
             if self.order_type == OrderType.LIMIT.name:
-                counterparties = Order.objects.filter(ticker=self.ticker, price__gte=self.price, side=OrderSide.BUY.name, working_quantity__gt=0
-                                                    ).order_by("-price", "modification_timestamp")
+                balance_to_lock = (self.ticker.payout - self.price) * self.quantity 
+                self.lock_balance(balance_to_lock)
+                counterparties = Order.objects.filter(ticker=self.ticker, price__gte=self.price, side=OrderSide.BUY.name, working_quantity__gt=0,
+                                                      status__ne=OrderStatus.CANCELED.name).order_by("-price", "modification_timestamp")
             else:
-                counterparties = Order.objects.filter(ticker=self.ticker, side=OrderSide.BUY.name, working_quantity__gt=0,
+                counterparties = Order.objects.filter(ticker=self.ticker, side=OrderSide.BUY.name, working_quantity__gt=0, status__ne=OrderStatus.CANCELED.name
                                                       ).order_by("-price", "modification_timestamp")
         remaining_quantity = self.quantity
         trades = []

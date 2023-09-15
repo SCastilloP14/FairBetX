@@ -28,7 +28,7 @@
 
       <div class="login--form card__container user-card">
         <div class="grid grid--1x2 grid__user-card">
-          <div class="user__balance">${{user.userprofileinfo.balance}}</div>
+          <div class="user__balance">${{user.userprofileinfo.available_balance}}</div>
           {%if balance_form%}
           <form id="balance-form" method="POST" action="" class="user__balance__btn">
             {% csrf_token %}

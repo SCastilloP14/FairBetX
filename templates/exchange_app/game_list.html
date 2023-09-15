@@ -12,10 +12,16 @@
           {% for game in games_in_league %}
             {% for ticker in game.tickers.all %}
             <div class="NBA grid grid--1x4-game-detail">
-              <a href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">{{game.home_team.name}} vs {{game.away_team.name}}</a>
+              <a href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">{{game.away_team.name}} @ {{game.home_team.name}}</a>
+              {% if game.status == "PLAYING" %}
               <p>{{game.away_team_score}} : {{game.home_team_score}}</p>
+              <p>{{game.progress}}</p>
+              <p>{{game.price}}</p>
+              {% else %}
+              <p>{{game.start_time}}</p>
               <p>{{game.status}}</p>
               <p>{{game.price}}</p>
+              {% endif %}
             </div>
             {% endfor %}
           {% endfor %}

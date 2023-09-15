@@ -13,6 +13,7 @@ import random, string
 from django.http import JsonResponse
 from rest_framework import viewsets
 from exchange_app.serializer import TradeSerializer
+from django.db.models import Q
 
 
 # Create your views here.
@@ -103,11 +104,10 @@ class UserDetailView(DeleteView):
         if request.method == "POST":
             form = BalanceForm(request.POST)
             if form.is_valid():
-                print(request.POST)
                 username = request.POST.get("username")
                 user = User.objects.get(username=username)
                 user_info = UserProfileInfo.objects.get(user=user)
-                user_info.balance = request.POST.get("new_balance")
+                user_info.available_balance = request.POST.get("new_balance")
                 user_info.save()
                 return redirect("user_detail", pk=self.kwargs["pk"])
 
@@ -122,6 +122,7 @@ class GamesListView(ListView):
     def get_queryset(self):
         league_filter = self.request.GET.get('league')
         queryset = Game.objects.filter(league=league_filter) if league_filter else Game.objects.all()
+        queryset = queryset.filter(Q(status=MatchStatus.PLAYING.name) | Q(status=MatchStatus.SCHEDULED.name))
         return queryset
 
 
@@ -129,16 +130,12 @@ class GamesListView(ListView):
         context = super().get_context_data(**kwargs)
         games = self.get_queryset()
         grouped_games = {}
-        print(grouped_games.keys())
         for game in games:
             if game.league not in grouped_games.keys():
                 grouped_games[game.league] = [game]
             else:
                 grouped_games[game.league].append(game)
         context["grouped_games"] = grouped_games
-        for league, games in context["grouped_games"].items():
-            for game in games:
-                print(league, game, type(game))
         return context
 
 
