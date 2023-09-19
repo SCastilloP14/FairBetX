@@ -67,14 +67,14 @@ def fetch_live_scores_data(league_id):
 def fetch_upcoming_games_data(league_id):
     # Fetch games data and return list of dicts
     try:
-        live_games_url = f"https://www.thesportsdb.com/api/v1/json/40130162/eventsnextleague.php?id={league_id}"
-        print(live_games_url)
-        live_games_data = requests.get(live_games_url)
-        live_games_dict = json.loads(live_games_data.text)
-        live_games_list = live_games_dict["events"]
-        if live_games_list:
-            parsed_live_games = parse_live_games_data(live_games_list)
-            return parsed_live_games
+        upcoming_games_url = f"https://www.thesportsdb.com/api/v1/json/40130162/eventsnextleague.php?id={league_id}"
+        print(upcoming_games_url)
+        upcoming_games_data = requests.get(upcoming_games_url)
+        upcoming_games_dict = json.loads(upcoming_games_data.text)
+        upcoming_games_list = upcoming_games_dict["events"]
+        if upcoming_games_list:
+            parsed_upcoming_games = parse_upcoming_games_data(upcoming_games_list)
+            return parsed_upcoming_games
         else:
             return []
     except Exception as e:
@@ -130,8 +130,8 @@ def parse_season_games_data(raw_games_list):
 def parse_live_games_data(raw_games_list):
     parsed_live_matches_data = []
     for game in raw_games_list:
-        print("-----------------------------")
-        print(game)
+        # print("--------------------")
+        # print(game)
         if game["strSport"]=="Baseball":
             game_time_str = f"{game['dateEvent']}T{game['strEventTime']}:00+00:00"
             if "IN" in game["strProgress"]:
@@ -139,11 +139,15 @@ def parse_live_games_data(raw_games_list):
 
         elif game["strSport"]=="American Football":
             game_time_str = f"{game['dateEvent']}T{game['strEventTime']}:00+00:00"
-            if "Q" in game["strProgress"]:
+            if "Q" in game["strProgress"] or game["strProgress"] == "Halftime" or ":" in game["strProgress"] or "End of " in game["strProgress"]:
                 game["strStatus"] = "PLAYING"
             elif "pre" in game["strProgress"]:
                 game["strStatus"] = "NS"
                 game["strProgress"] = ""
+            elif "Final" in game["strProgress"]:
+                game["strStatus"] = "FT"
+                game["strProgress"] = ""
+
 
         elif game["strSport"]=="Basketball":
             game["strEventTime"] = game["strTime"]
@@ -166,6 +170,57 @@ def parse_live_games_data(raw_games_list):
                         "progress": game["strProgress"],
                         "status": game["strStatus"],
                         }
-        print(parsed_live_match)
+        # print(parsed_live_match)
+        # print("--------------------")
         parsed_live_matches_data.append(parsed_live_match)
     return parsed_live_matches_data
+
+
+def parse_upcoming_games_data(raw_games_list):
+    parsed_upcoming_matches_data = []
+    for game in raw_games_list:
+        print("--------------------")
+        print(game)
+        if game["strSport"]=="Baseball":
+            game_time_str = f"{game['dateEvent']}T{game['strTime']}+00:00"
+            if "IN" in game["strStatus"]:
+                game["strProgress"] = game["strStatus"]
+                game["strStatus"] = "PLAYING"
+
+        elif game["strSport"]=="American Football":
+            game_time_str = f"{game['dateEvent']}T{game['strTime']}+00:00"
+            if game["strStatus"] == "NS":
+                game["strProgress"] = ""
+            elif "Q" in game["strStatus"]:
+                game["strProgress"] = game["strStatus"]
+                game["strStatus"] = "PLAYING"
+            elif "pre" in game["strProgress"]:
+                game["strStatus"] = "NS"
+                game["strProgress"] = ""
+
+        elif game["strSport"]=="Basketball":
+            game["strEventTime"] = game["strTime"]
+            game_time_str = f"{game['dateEvent']}T{game['strEventTime']}+00:00"
+            if game["strStatus"] == "NS":
+                game["strProgress"]=""
+            if "Q" in game["strProgress"]:
+                game["strStatus"] = "PLAYING"
+
+        elif game["strSport"]=="Ice Hockey":
+            game_time_str = f"{game['dateEvent']}T{game['strTime']}+00:00"
+
+        parsed_upcooming_match = {"game_id": game["idEvent"],
+                        "sport": game["strSport"],
+                        "league": game["strLeague"],
+                        "league_id": game["idLeague"],
+                        "home_team_id": game["idHomeTeam"],
+                        "away_team_id": game["idAwayTeam"],
+                        "home_team_score": game["intHomeScore"],
+                        "away_team_score": game["intAwayScore"],
+                        "start_time": datetime.strptime(game_time_str, '%Y-%m-%dT%H:%M:%S%z'),
+                        "progress": game.get("strProgress", ""),
+                        "status": game["strStatus"],
+                        }
+        print(parsed_upcooming_match)
+        parsed_upcoming_matches_data.append(parsed_upcooming_match)
+    return parsed_upcoming_matches_data

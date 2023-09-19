@@ -18,6 +18,7 @@ import pandas as pd
 from datetime import timedelta
 from django.db.models import Min
 from rest_framework.response import Response
+from django.db.models import Q
 
 
 # Create your views here.
@@ -112,7 +113,7 @@ class UserDetailView(DeleteView):
                 username = request.POST.get("username")
                 user = User.objects.get(username=username)
                 user_info = UserProfileInfo.objects.get(user=user)
-                user_info.balance = request.POST.get("new_balance")
+                user_info.available_balance = request.POST.get("new_balance")
                 user_info.save()
                 return redirect("user_detail", pk=self.kwargs["pk"])
 
@@ -126,7 +127,10 @@ class GamesListView(ListView):
 
     def get_queryset(self):
         league_filter = self.request.GET.get('league')
-        queryset = Game.objects.filter(league=league_filter) if league_filter else Game.objects.all()
+        queryset = Game.objects.filter(
+            league=league_filter,
+            status__in=[MatchStatus.PLAYING.name, MatchStatus.SCHEDULED.name]) if league_filter else Game.objects.filter(
+            status__in=[MatchStatus.PLAYING.name, MatchStatus.SCHEDULED.name])        
         return queryset
 
 

@@ -110,8 +110,6 @@ def create_or_update_player(team, **kwargs):
         new_object.save()
     
 def create_or_update_game(**kwargs):
-    print("-----------------------------")
-    print(kwargs)
     try:
         existing_game = Game.objects.get(game_id=kwargs["game_id"])
         existing_game.home_team_score = kwargs["home_team_score"]
@@ -132,7 +130,7 @@ def create_or_update_game(**kwargs):
                             )
             new_game.save()
         except Team.DoesNotExist:
-            print(kwargs["home_team_id"], kwargs["away_team_id"])
+            print("Missing a team:", kwargs["home_team_id"], kwargs["away_team_id"])
     existing_game = Game.objects.get(game_id=kwargs["game_id"])
     create_or_update_ticker(existing_game, **kwargs)
 
@@ -206,13 +204,13 @@ class UserProfileInfo(models.Model):
         return self.available_balance + self.locked_balance
     
     def lock_balance(self, balance_to_lock):
-        self.locked_balance =+ balance_to_lock
-        self.available_balance =- balance_to_lock
+        self.locked_balance += balance_to_lock
+        self.available_balance -= balance_to_lock
         self.save()
 
     def unlock_balance(self, balance_to_unlock):
-        self.locked_balance =- balance_to_unlock
-        self.available_balance =+ balance_to_unlock
+        self.locked_balance -= balance_to_unlock
+        self.available_balance += balance_to_unlock
         self.save()
 
     def __str__(self):
@@ -349,16 +347,18 @@ class Order(models.Model):
                 balance_to_lock = self.price * self.quantity
                 self.lock_balance(balance_to_lock)
                 counterparties = Order.objects.filter(ticker=self.ticker, price__lte=self.price, side=OrderSide.SELL.name, working_quantity__gt=0,
-                                                      status__ne=OrderStatus.CANCELED.name).order_by("price", "modification_timestamp")
+                                                      status__ne=OrderStatus.CANCELLED.name).order_by("price", "modification_timestamp")
             else:
-                counterparties = Order.objects.filter(ticker=self.ticker, side=OrderSide.SELL.name, working_quantity__gt=0, status__ne=OrderStatus.CANCELED.name
+                counterparties = Order.objects.filter(ticker=self.ticker, side=OrderSide.SELL.name, working_quantity__gt=0, 
+                                                    #   status__ne=OrderStatus.CANCELED.name
                                                       ).order_by("price", "modification_timestamp")
         else:
             if self.order_type == OrderType.LIMIT.name:
                 balance_to_lock = (self.ticker.payout - self.price) * self.quantity 
                 self.lock_balance(balance_to_lock)
                 counterparties = Order.objects.filter(ticker=self.ticker, price__gte=self.price, side=OrderSide.BUY.name, working_quantity__gt=0,
-                                                      status__ne=OrderStatus.CANCELED.name).order_by("-price", "modification_timestamp")
+                                                    #   status__ne=OrderStatus.CANCELLED.name
+                                                      ).order_by("-price", "modification_timestamp")
             else:
                 counterparties = Order.objects.filter(ticker=self.ticker, side=OrderSide.BUY.name, working_quantity__gt=0, status__ne=OrderStatus.CANCELED.name
                                                       ).order_by("-price", "modification_timestamp")
