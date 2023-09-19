@@ -142,7 +142,7 @@
       textColor: '#DDD',
     },
     grid: {
-      vertLines: { color: 'white' },
+      vertLines: { color: 'rgba(0, 0, 0, 0)'},
       horzLines: { color: 'white' },
     },
     timeScale: {
