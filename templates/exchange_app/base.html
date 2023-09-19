@@ -48,15 +48,11 @@
 
         <div class="nav--list">
           <ul class="list">
-            <a class="list--item list--inline" href="{% url "admin:index" %}">Admin</a>
             <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}">All Games</a>
-            <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}?league=MLB">MLB Games</a>
-            <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}?league=NFL">NFL Games</a>
-            <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}?league=NHL">NHL Games</a>
-            <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}?league=NBA">NBA Games</a>
-            {% if user.is_authenticated %}
-              <a class="list--item list--inline">{{user.userprofileinfo.available_balance}}</h1>
-            {% endif %}
+            <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}?league=MLB">MLB</a>
+            <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}?league=NFL">NFL</a>
+            <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}?league=NHL">NHL</a>
+            <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}?league=NBA">NBA</a>
           </ul>
         </div>
 
