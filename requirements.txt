@@ -10,12 +10,17 @@ django-compat==1.0.15
 django-cron==0.6.0
 django-crontab==0.7.1
 django-filter==23.2
+django-scheduler==0.10.1
 djangorestframework==3.14.0
 docopt==0.6.2
 funcsigs==1.0.2
+icalendar==5.0.8
 idna==3.4
 Markdown==3.4.3
+numpy==1.25.2
+pandas==2.1.0
 pipreqs==0.4.13
+python-dateutil==2.8.2
 pytz==2023.3
 pytz-deprecation-shim==0.1.0.post0
 requests==2.30.0
