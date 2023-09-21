@@ -130,8 +130,6 @@ def parse_season_games_data(raw_games_list):
 def parse_live_games_data(raw_games_list):
     parsed_live_matches_data = []
     for game in raw_games_list:
-        # print("--------------------")
-        # print(game)
         if game["strSport"]=="Baseball":
             game_time_str = f"{game['dateEvent']}T{game['strEventTime']}:00+00:00"
             if "IN" in game["strProgress"]:
@@ -170,8 +168,6 @@ def parse_live_games_data(raw_games_list):
                         "progress": game["strProgress"],
                         "status": game["strStatus"],
                         }
-        # print(parsed_live_match)
-        # print("--------------------")
         parsed_live_matches_data.append(parsed_live_match)
     return parsed_live_matches_data
 
@@ -179,8 +175,6 @@ def parse_live_games_data(raw_games_list):
 def parse_upcoming_games_data(raw_games_list):
     parsed_upcoming_matches_data = []
     for game in raw_games_list:
-        print("--------------------")
-        print(game)
         if game["strSport"]=="Baseball":
             game_time_str = f"{game['dateEvent']}T{game['strTime']}+00:00"
             if "IN" in game["strStatus"]:
@@ -221,6 +215,5 @@ def parse_upcoming_games_data(raw_games_list):
                         "progress": game.get("strProgress", ""),
                         "status": game["strStatus"],
                         }
-        print(parsed_upcooming_match)
         parsed_upcoming_matches_data.append(parsed_upcooming_match)
     return parsed_upcoming_matches_data

@@ -82,6 +82,8 @@ ticker_stauts_mapping = {
 
 # ------------------- METHODS TO UPDATE MODELS ----------------------
 def create_or_update_team(**kwargs):
+    if not kwargs["short_name"]:
+        kwargs["short_name"] = kwargs["name"]
     try:
         existing_team = Team.objects.get(team_id=kwargs["team_id"])
         existing_team.name = kwargs["name"]
@@ -138,24 +140,34 @@ def create_or_update_game(**kwargs):
 def create_or_update_ticker(match, **kwargs):
     try:
         existing_ticker = Ticker.objects.get(ticker_id=f"{kwargs['game_id']}-T")
-        if existing_ticker.status == TickerStatus.OPEN.value:
+        if "IN" in kwargs["status"]:
+            print(existing_ticker.status, TickerStatus.OPEN.name, existing_ticker.status == TickerStatus.OPEN.name)
+        if existing_ticker.status == TickerStatus.OPEN.name:
             existing_ticker.status = ticker_stauts_mapping[kwargs["status"]]
             existing_ticker.save()
-            if existing_ticker.status == TickerStatus.CLOSED.value:
+            if existing_ticker.status == TickerStatus.CLOSED.name:
                 if Ticker.match.home_team_score > Ticker.match.away_team_score:
-                    outcome = TickerOutcome.LONGS_WIN.value
+                    print("Closing Ticker", f"{kwargs['game_id']}-T with longs win")
+                    outcome = TickerOutcome.LONGS_WIN.name
                 elif Ticker.match.home_team_score < Ticker.match.away_team_score:
-                    outcome = TickerOutcome.SHORTS_WIN.value
+                    outcome = TickerOutcome.SHORTS_WIN.name
+                    print("Closing Ticker", f"{kwargs['game_id']}-T with shorts win")
                 existing_ticker.close_ticker(existing_ticker, outcome)
-            elif existing_ticker.status == TickerStatus.CANCELED.value:
+            elif existing_ticker.status == TickerStatus.CANCELED.name:
+                print("Canceling Ticker", f"{kwargs['game_id']}-T")
                 existing_ticker.cancel_ticker(existing_ticker)
             existing_ticker.save()
     except Ticker.DoesNotExist:
-        new_ticker = Ticker(ticker_id=f"{kwargs['game_id']}-T", 
-                            match = match, 
-                            status=ticker_stauts_mapping.get(kwargs["status"]))
-        new_ticker.save()
-        print(f"Created ticker {kwargs['game_id']}-T")
+        if ticker_stauts_mapping[kwargs["status"]] == TickerStatus.OPEN:
+            new_ticker = Ticker(ticker_id=f"{kwargs['game_id']}-T", 
+                                match = match, 
+                                status=TickerStatus.OPEN)
+            new_ticker.save()
+            print(f"Created ticker {kwargs['game_id']}-T")
+    if "IN" in kwargs["status"]:
+            existing_ticker = Ticker.objects.get(ticker_id=f"{kwargs['game_id']}-T")
+            print(existing_ticker.status, TickerStatus.OPEN.name, existing_ticker.status == TickerStatus.OPEN.name)
+            print("---------------------------")
 
 
 def update_teams(league_name):
@@ -276,12 +288,15 @@ class Ticker(models.Model):
     def close_ticker(self, outcome):
         ticker_positions = Position.objects.get(ticker=self)
         for position in ticker_positions:
-            if position > 0 and outcome == TickerOutcome.LONGS_WIN.value:
+            position_payout= self.payout * position.quantity
+            if position.quantity > 0 and outcome == TickerOutcome.LONGS_WIN.value:
+                user = position.user
+                user.userprofileinfo.available_balance += position_payout
+                user.userprofileinfo.locked_balance -= position.quantitity * position.average_price 
+            elif position.quantity < 0 and outcome == TickerOutcome.SHORTS_WIN.value:
                 user_info = position.user.userprofileinfo
-                user_info.available_balance += self.payout * position.quantity
-            elif position > 0 and outcome == TickerOutcome.SHORTS_WIN.value:
-                user_info = position.user.userprofileinfo
-                user_info.available_balance += self.payout * -position.quantity
+                user_info.available_balance += position_payout
+                user.userprofileinfo.locked_balance -= position.quantitity * (self.payout - position.average_price)
 
     def __str__(self):
         return f"{self.ticker_id} {self.match}"

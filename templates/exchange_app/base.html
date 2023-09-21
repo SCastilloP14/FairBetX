@@ -70,6 +70,7 @@
                   <li><a class="" style="color:white" href="{% url "user_logout" %}">Log Out</a></li> -->
               <!-- </ul>  -->
               <div class="dropdown-content">
+                <a>{{user.userprofileinfo.available_balance}}</a>
                 <a href="{% url 'user_detail' pk=user.id %}">Profile</a>
                 <a href="{% url "user_logout" %}">Log Out</a>
               </div>
