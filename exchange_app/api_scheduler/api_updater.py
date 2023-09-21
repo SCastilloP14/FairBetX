@@ -21,8 +21,8 @@ def start():
                       next_run_time=datetime.now())
 
         # # Backfill Season Games
-        # scheduler.add_job(update_season_games, "interval", days=30, id=f"update_{league}_season_games", args=[info["league_id"], info["season"]], 
-        #               replace_existing=True, next_run_time=datetime.now() + timedelta(minutes=0))
+        scheduler.add_job(update_season_games, "interval", days=30, id=f"update_{league}_season_games", args=[info["league_id"], info["season"]], 
+                      replace_existing=True, next_run_time=datetime.now() + timedelta(minutes=0))
         
         # Fecth upcoming games data
         # scheduler.add_job(update_upcoming_games, "interval", hours=12, id=f"update_{league}_upcoming_games", args=[info["league_id"]], 

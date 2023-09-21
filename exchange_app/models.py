@@ -140,8 +140,8 @@ def create_or_update_game(**kwargs):
 def create_or_update_ticker(match, **kwargs):
     try:
         existing_ticker = Ticker.objects.get(ticker_id=f"{kwargs['game_id']}-T")
-        if "IN" in kwargs["status"]:
-            print(existing_ticker.status, TickerStatus.OPEN.name, existing_ticker.status == TickerStatus.OPEN.name)
+        # if "IN" in kwargs["status"]:
+        #     print(existing_ticker.status, TickerStatus.OPEN.name, existing_ticker.status == TickerStatus.OPEN.name)
         if existing_ticker.status == TickerStatus.OPEN.name:
             existing_ticker.status = ticker_stauts_mapping[kwargs["status"]]
             existing_ticker.save()
@@ -164,10 +164,10 @@ def create_or_update_ticker(match, **kwargs):
                                 status=TickerStatus.OPEN)
             new_ticker.save()
             print(f"Created ticker {kwargs['game_id']}-T")
-    if "IN" in kwargs["status"]:
-            existing_ticker = Ticker.objects.get(ticker_id=f"{kwargs['game_id']}-T")
-            print(existing_ticker.status, TickerStatus.OPEN.name, existing_ticker.status == TickerStatus.OPEN.name)
-            print("---------------------------")
+    # if "IN" in kwargs["status"]:
+    #         existing_ticker = Ticker.objects.get(ticker_id=f"{kwargs['game_id']}-T")
+    #         print(existing_ticker.status, TickerStatus.OPEN.name, existing_ticker.status == TickerStatus.OPEN.name)
+    #         print("---------------------------")
 
 
 def update_teams(league_name):
