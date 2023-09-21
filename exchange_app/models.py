@@ -133,6 +133,8 @@ def create_or_update_game(**kwargs):
             new_game.save()
         except Team.DoesNotExist:
             print("Missing a team:", kwargs["home_team_id"], kwargs["away_team_id"])
+    except Exception as e:
+        print('ERROR ON GAME!!!', e, kwargs)
     existing_game = Game.objects.get(game_id=kwargs["game_id"])
     create_or_update_ticker(existing_game, **kwargs)
 
