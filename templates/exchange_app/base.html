@@ -13,111 +13,50 @@
     <!-- Include Moment.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter&family=Raleway&display=swap"
-      rel="stylesheet"
-    />
+    <script src="https://unpkg.com/htmlincludejs"></script>
+ 
 
-    <!-- <link rel="stylesheet" href="css/normalize.css" /> -->
-    <!-- <link rel="stylesheet" href="css/styles_2.css" /> -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <link rel="stylesheet" href="{% static 'normalize.css' %}" />
-    <link rel="stylesheet" href="{% static 'styles_2.css' %}" />
-
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <style>
+      @import url('https://fonts.cdnfonts.com/css/satoshi');
+    </style>
 </head>
 
   <body class="body">
+  
     <!-- Header + Navigation Bar -->
     
-    <div class="container__nav"></div>
-      <nav class="nav grid--1x3">
-        <div class="logo">
-            <a href="{% url "index" %}">
-                <img
-                class="logo--img"
-                src="/static/exchange_app/fbx_logo.png"
-                alt=""
-                />
-            </a>
-            <a href="{% url "index" %}">
-                <span class="logo--span">FBX</span>
-            </a>
-        </div>
+          {% include './components/header___non_user.html' %}
 
-        <div class="nav--list">
-          <ul class="list">
-            <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}">All Games</a>
-            <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}?league=MLB">MLB</a>
-            <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}?league=NFL">NFL</a>
-            <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}?league=NHL">NHL</a>
-            <a class="list--item list--inline" href="{% url 'exchange_app:game_list' %}?league=NBA">NBA</a>
-          </ul>
-        </div>
+
+
 
         {% if user.is_authenticated %}
 
-          <div class="dropdown">
-            <button class="btn btn--secondary btn--stretched">Menu</button>
-              <!-- <button class="dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {{ user.first_name }} {{ user.last_name }}
-              </button>
-              <ul class="">
-                  <li><a class="" href="{% url 'user_detail' pk=user.id %}" style="color:white">Profile</a></li>
-                  <li><a class="" style="color:white" href="#">Balance</a></li>
-                  <li><a class="" style="color:white" href="#">History</a></li>
-                  <li><a class="" style="color:white" href="{% url "user_logout" %}">Log Out</a></li> -->
-              <!-- </ul>  -->
-              <div class="dropdown-content">
-                <a>{{user.userprofileinfo.available_balance}}</a>
-                <a href="{% url 'user_detail' pk=user.id %}">Profile</a>
-                <a href="{% url "user_logout" %}">Log Out</a>
-              </div>
-          </div>
+          <!-- {% include './components/header___user.html' %} -->
 
         {% else %}
-        <!-- <a class="" href="{% url "user_registration" %}">Registration</a>
-        <a class="" href="{% url "user_login" %}">Log In</a> -->
 
-        <div class="nav--btn">
-          <button class="btn--copy btn--primary btn--radius">
-            <a  class="" href="{% url "user_registration" %}">signup</a>
-          </button>
-
-          <span style="color:#fff">|</span>
-          <button class="btn--copy btn--secondary btn--radius">
-             <a class="" href="{% url "user_login" %}">login</a>
-          </button>
-        </div>
+          <!-- {% include './components/header___non_user.html' %} -->
+ 
         {% endif %}
 
 
-        </nav>
-    </div>
+       
+    
     
 
-    <!-- 2x1 Grid with option to sign up, some info  -->
-    <!-- <h1 class="welcome__header animate__animated animate__fadeInDown">Welcome to FBX</h1>
-    <h3 class="welcome__header animate__animated animate__fadeInDown">Experience Sports Betting in a new way!</h2>
-
-    <div class="grid grid--1x2">
-        <img class="welcome__img animate__animated animate__fadeInLeft animate__delay-1s" src="/static/exchange_app/exchange.jpeg" alt="Exchange Picture">
-
-        <div class="logos grid grid--2x2">
-            <div class="logo-1"><img src="/static/exchange_app/mlb.png" alt="MLB Logo"></div>
-            <div class="logo-2"><img src="/static/exchange_app/nfl.png" alt="NFL Logo"></div>
-            <div class="logo-3"><img src="/static/exchange_app/nhl.png" alt="NHL Logo"></div>
-            <div class="logo-4"><img src="/static/exchange_app/nba.png" alt="NBA Logo"></div>
-
-        </div>
-
-    </div> -->
+   
     
-    <div class="footer"></div>
+    <!-- {% include './components/footer.html' %} -->
+
+
 
     {% block body_block %}
 <!--        Anything outside of this will be inherited if extended-->
+
     {% endblock %}
 
   </body>
