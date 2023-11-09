@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{ % load static %}
 <html>
 <head>
 <meta charset="utf-8"/>
@@ -3511,8 +3512,8 @@ window.application = new Application();
 				</div>
 			</div>
 			<div id="Group_484_c">
-				<img id="Group_484_da" src="Group_484_da.png" srcset="Group_484_da.png 1x, Group_484_da@2x.png 2x">
-					
+				<img id="Group_484_da" src="{% static 'img/Group_484_da.png' %}" srcset="{% static 'img/Group_484_da.png' %} 1x, {% static 'img/Group_484_da@2x.png' %} 2x">
+
 				</svg>
 			</div>
 		</div>
