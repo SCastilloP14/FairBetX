@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nav Bar User</title>
+  </head>
+  <style>
+    :root {
+        --font-family: 'Satoshi',sans-serif;
+        --font-weight: 600;
+        --font-color: white;
+    }
+    body {
+        font-family: var(--font-family);
+        font-weight: var(--font-weight);
+    }
+    .gradient-container {
+      background: linear-gradient(to bottom, #016d74, #01373a);
+      align-items: center;
+      justify-content: center;
+    }
+    .nav_bar {
+      height: 86px;
+      width: 100%;
+      background-color: green;
+      top: 0px;
+      left: 0px;
+      position: absolute;
+    }
+    .nav_bar_center {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;   
+     }
+     .nav_bar_left {
+        text-align: left;   
+     }
+     .nav_bar_right {
+        text-align: right;   
+     }
+    .nav_bar_center_center {
+        width:500px;   
+        text-align: center; 
+     }
+    .nav_bar_header {
+        color:white;
+        font-size: 1.2rem;
+        padding-left: 20px;
+        padding-right: 20px;
+         }
+
+    .nav_button {
+        border-radius: 25px;
+        color:white;
+        font-size: 1rem;
+        background-color: transparent;
+        border: solid 1px white;
+        padding: 10px 35px
+    }
+    .grid {
+      display: grid;
+      align-items: center;
+      place-items: center;
+      height: 100%;
+    }
+    .grid_nav_1x3 {
+      grid-template-columns: auto 1200px auto;
+    }
+    .grid_nav_1x3_middle {
+      grid-template-columns: auto;
+    }
+  </style>
+
+  <body>
+    <!-- Navigation Container -->
+    <div class="nav_bar gradient-container">
+     <!-- Grid 1x3  -->
+      <div class="grid grid_nav_1x3">
+
+        <!-- Left Section  -->
+        <div class="nav_bar_left_edge">
+            <!-- Empty  -->
+        </div>
+
+        <!-- Middle Section  -->
+        <div class="nav_bar_center">
+          <!-- Logo -->
+          <div class="nav_bar_left">
+            <img src="../../../static/img/Group_486.png">
+            <img src="../../../static/img/Group_496.png">
+            <img src="../../../static/img/Group_492.png">
+
+            <!-- <svg class="Union_1_b" viewBox="0 0 32.945 35.247">
+                <path id="Union_1_b" d="M 24.78678131103516 35.24599838256836 L 0 0 L 8.16081714630127 0 L 16.47255325317383 11.82087230682373 L 24.78428840637207 0 L 32.94529724121094 0 L 20.55214691162109 17.62284660339355 L 32.94443511962891 35.24709701538086 L 24.78678131103516 35.24599838256836 Z">
+                </path>
+            </svg> -->
+            
+          </div>
+          <!-- Buttons -->
+          <div class="nav_bar_center_center">
+            <a class="nav_bar_header">Home</a>
+            <a class="nav_bar_header">Sports Bet</a>
+            <a class="nav_bar_header">About Us</a>
+          </div>
+
+          <!-- Buttons -->
+
+          <!-- Login -->
+          <div class="nav_bar_right">
+            <button class="nav_button">Log In</button>
+          </div>
+
+        </div>
+        <!-- Right Section  -->
+        <div class="nav_bar_right_edge">
+            <!-- Empty  -->
+        </div>
+
+        <!-- <div onclick="application.goToTargetView(event)" id="Group_538_b">
+                <div id="Group_487_b">
+                    <img id="Group_486_b" src="{% static 'img/Group_486_b.png' %}" srcset="{% static 'img/Group_486_b.png' %} 1x, {% static 'img/Group_486_b@2x.png' %} 2x">
+                </div>
+                <div id="Group_489_b">
+                    <img id="Group_488_b" src="{% static 'img/Group_488_b.png' %}" srcset="{% static 'img/Group_488_b.png' %} 1x, {% static 'img/Group_488_b@2x.png' %} 2x">
+                </div>
+                <svg class="Union_1_b" viewBox="0 0 32.945 35.247">
+                    <path id="Union_1_b" d="M 24.78678131103516 35.24599838256836 L 0 0 L 8.16081714630127 0 L 16.47255325317383 11.82087230682373 L 24.78428840637207 0 L 32.94529724121094 0 L 20.55214691162109 17.62284660339355 L 32.94443511962891 35.24709701538086 L 24.78678131103516 35.24599838256836 Z">
+                    </path>
+                </svg>
+                <div id="Group_493_b">
+                    <img id="Group_492_b" src="{% static 'img/Group_492_b.png' %}" srcset="{% static 'img/Group_492_b.png' %} 1x, {% static 'img/Group_492_b@2x.png' %} 2x">
+                </div>
+                <div id="Group_497_b">
+                    <img id="Group_496_ca" src="{% static 'img/Group_496_b.png' %}" srcset="{% static 'img/Group_496_b.png' %} 1x, {% static 'img/Group_496_b@2x.png' %} 2x">
+                </div>
+            </div> -->
+      </div>
+    </div>
+  </body>
+</html>

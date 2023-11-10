@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-{ % load static %}
+{% load static %}
+
+
 
 <html>
 <head>
@@ -27,7 +29,7 @@
 	}
 	#Home {
 		position: absolute;
-		width: 1920px;
+		width: 100%;
 		height: 3896px;
 		overflow: hidden;
 		cursor: pointer;
@@ -38,33 +40,14 @@
 		--web-scale-on-resize: true;
 		--web-enable-deep-linking: true;
 	}
-	@keyframes  {
 	
-	
-	}
-	@keyframes  {
-	
-	
-	}
-	@keyframes  {
-	
-	
-	}
-	@keyframes  {
-	
-	
-	}
-	@keyframes  {
-	
-	
-	}
 	#Background {
 		fill: rgba(247,247,247,1);
 	}
 	.Background {
 		position: absolute;
 		overflow: visible;
-		width: 1920px;
+		width: 100%;
 		height: 1080px;
 		left: 0px;
 		top: 1078px;
@@ -443,7 +426,7 @@
 	.Background_bu {
 		position: absolute;
 		overflow: visible;
-		width: 1920px;
+		width: 100%;
 		height: 946px;
 		left: 0px;
 		top: 2158px;
@@ -833,7 +816,7 @@
 	}
 	#Footer_Comp {
 		position: absolute;
-		width: 1920px;
+		width: 100%;
 		height: 793px;
 		left: 0px;
 		top: 3104px;
@@ -845,7 +828,7 @@
 	.Background_STYLESTYLE3_cu {
 		position: absolute;
 		overflow: visible;
-		width: 1920px;
+		width: 100%;
 		height: 708px;
 		left: 0px;
 		top: 0px;
@@ -1080,7 +1063,7 @@
 	.Background_STYLESTYLE2 {
 		position: absolute;
 		overflow: visible;
-		width: 1920px;
+		width: 100%;
 		height: 85px;
 		left: 0px;
 		top: 708px;
@@ -1285,7 +1268,7 @@
 	}
 	#Home_Comp {
 		position: absolute;
-		width: 1920px;
+		width: 100%;
 		height: 86px;
 		left: 0px;
 		top: 0px;
@@ -1297,7 +1280,7 @@
 	.Rectangle_176_dr {
 		position: absolute;
 		overflow: visible;
-		width: 1920px;
+		width: 100%;
 		height: 86px;
 		left: 0px;
 		top: 0px;
@@ -1512,7 +1495,7 @@
 <body>
 <div id="Home" onclick="application.goBack()">
 	<svg class="Background">
-		<rect id="Background" rx="0" ry="0" x="0" y="0" width="1920" height="1080">
+		<rect id="Background" rx="0" ry="0" x="0" y="0" width="100%" height="1080">
 		</rect>
 	</svg>
 	<div id="Button">
@@ -1607,7 +1590,7 @@
 		
 	</svg>
 	<svg class="Background_bu">
-		<rect id="Background_bu" rx="0" ry="0" x="0" y="0" width="1920" height="946">
+		<rect id="Background_bu" rx="0" ry="0" x="0" y="0" width="100%" height="946">
 		</rect>
 	</svg>
 	<img id="Mask_Group_9" src="{% static 'img/Mask_Group_9.png' %}" srcset="{% static 'img/Mask_Group_9.png' %} 1x, {% static 'img/Mask_Group_9@2x.png' %} 2x">
@@ -1634,22 +1617,22 @@
 			</rect>
 		</svg>
 		<div id="Label_ca">
-			<span>Begin Journey</span>
+			<button>Begin Journey</button>
 		</div>
 	</div>
 	<div id="Sweet_Ice_Cream_TAGH2">
 		<span>Trading Guide</span>
 	</div>
 	<div id="Neque_porro_quisquam_est_qui_d_b">
-		<span>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et  dolore magnam aliquam quaerat voluptatem. </span>
+		<span>Trading your favourite bets is easy with FBX! Just follow the simple 3 step plan and start trading within 5 minutes </span>
 	</div>
 	<div id="Repeat_Grid_10">
 		<div id="Group" class="">
 			<div id="Sweet_Ice_Cream_TAGH2_b">
-				<span>Lorem Ipsum</span>
+				<span>Sign Up</span>
 			</div>
 			<div id="Neque_porro_quisquam_est_qui_d_ca">
-				<span>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,</span>
+				<span>Sign up using your email and username, confirm your identity and location</span>
 			</div>
 			<div id="Group_512">
 				<svg class="Ellipse_14_cc">
@@ -1667,10 +1650,10 @@
 		</div>
 		<div id="Group_ce" class="">
 			<div id="Sweet_Ice_Cream_TAGH2_cf">
-				<span>Lorem Ipsum</span>
+				<span>Enter Payment Details</span>
 			</div>
 			<div id="Neque_porro_quisquam_est_qui_d_cg">
-				<span>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,</span>
+				<span>Deposit funds via Debit, Credit or Paypal and get be able to trade within minutes</span>
 			</div>
 			<div id="Group_512_ch">
 				<svg class="Ellipse_14_cj">
@@ -1688,10 +1671,10 @@
 		</div>
 		<div id="Group_cl" class="">
 			<div id="Sweet_Ice_Cream_TAGH2_cm">
-				<span>Lorem Ipsum</span>
+				<span>Place Your First Trade</span>
 			</div>
 			<div id="Neque_porro_quisquam_est_qui_d_cn">
-				<span>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,</span>
+				<span>Browse our large selection of matches and place your first trade</span>
 			</div>
 			<div id="Group_512_co">
 				<svg class="Ellipse_14_cq">
@@ -1714,7 +1697,7 @@
 				<stop offset="0" stop-color="#00474f" stop-opacity="1"></stop>
 				<stop offset="1" stop-color="#000e10" stop-opacity="1"></stop>
 			</linearGradient>
-			<rect id="Background_STYLESTYLE3_cu" rx="0" ry="0" x="0" y="0" width="1920" height="708">
+			<rect id="Background_STYLESTYLE3_cu" rx="0" ry="0" x="0" y="0" width="100%" height="708">
 			</rect>
 		</svg>
 		<div id="Description_STYLESTYLE3TAGP">
@@ -1769,7 +1752,7 @@
 			<span>Information</span>
 		</div>
 		<svg class="Background_STYLESTYLE2">
-			<rect id="Background_STYLESTYLE2" rx="0" ry="0" x="0" y="0" width="1920" height="85">
+			<rect id="Background_STYLESTYLE2" rx="0" ry="0" x="0" y="0" width="100%" height="85">
 			</rect>
 		</svg>
 		<div id="Terms_of_Service_STYLESTYLE2TA">
@@ -1815,7 +1798,7 @@
 				<stop offset="0" stop-color="#00474f" stop-opacity="1"></stop>
 				<stop offset="1" stop-color="#000e10" stop-opacity="1"></stop>
 			</linearGradient>
-			<rect id="Rectangle_176_dr" rx="0" ry="0" x="0" y="0" width="1920" height="86">
+			<rect id="Rectangle_176_dr" rx="0" ry="0" x="0" y="0" width="100%" height="86">
 			</rect>
 		</svg>
 		<div id="Group_35">
