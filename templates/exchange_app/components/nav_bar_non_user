@@ -111,7 +111,7 @@
 
           <!-- Login -->
           <div class="nav_bar_right">
-            <button class="nav_button">My Account</button>
+            <button class="nav_button">Log In</button>
           </div>
 
         </div>
