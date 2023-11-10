@@ -36,6 +36,13 @@
 --unnamed-line-spacing-42: 42px;
 }
 
+
+body, html {
+    margin:0;
+    padding: 0;
+    width: 100%
+}
+
 /* Character Styles */
 .small-body {
 font-family: var(--unnamed-font-family-satoshi);
@@ -92,3 +99,309 @@ letter-spacing: var(--unnamed-character-spacing-0);
 color: var(--unnamed-color-3d3d3d);
 }
 
+
+
+
+.mediaViewInfo {
+    --web-view-name: Header – Non User;
+    --web-view-id: Header__Non_User;
+    --web-scale-on-resize: true;
+    --web-enable-deep-linking: true;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+#Header__Non_User {
+    position: absolute;
+    width: 100%;
+    height: 84px;
+    background-color: rgba(255,255,255,1);
+    margin-bottom: 2rem;
+    /* overflow: hidden; */
+    --web-view-name: Header – Non User;
+    --web-view-id: Header__Non_User;
+    --web-scale-on-resize: true;
+    --web-enable-deep-linking: true;
+}
+@keyframes  {
+
+
+}
+@keyframes  {
+
+
+}
+@keyframes  {
+
+
+}
+@keyframes  {
+
+
+}
+#Home_Comp {
+    position: absolute;
+    width: 100%;
+    height: 86px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+}
+#Rectangle_176_ {
+    fill: url(#Rectangle_176_);
+    height: 86px;
+}
+.Rectangle_176_ {
+    position: absolute;
+    overflow: visible;
+    width: 100%;
+    height: 86px;
+    left: 0px;
+    top: 0px;
+}
+#Group_35 {
+    position: absolute;
+    width: 370px;
+    height: 27px;
+    left: 775px;
+    top: 29px;
+    overflow: visible;
+}
+#Label {
+    left: 273px;
+    top: 0px;
+    position: absolute;
+    overflow: visible;
+    width: 98px;
+    white-space: nowrap;
+    --web-animation: fadein undefineds undefined;
+    --web-action-type: page;
+    --web-action-target: About_Us.html;
+    cursor: pointer;
+    text-align: left;
+    font-family: Satoshi;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    color: rgba(235,235,235,1);
+}
+#Label_ {
+    left: 113px;
+    top: 0px;
+    position: absolute;
+    overflow: visible;
+    width: 111px;
+    white-space: nowrap;
+    --web-animation: fadein undefineds undefined;
+    --web-action-type: page;
+    --web-action-target: Sports_Bet_.html;
+    cursor: pointer;
+    text-align: left;
+    font-family: Satoshi;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    color: rgba(251,251,251,1);
+}
+#Label_ba {
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    overflow: visible;
+    width: 64px;
+    white-space: nowrap;
+    --web-animation: fadein undefineds undefined;
+    --web-action-type: page;
+    --web-action-target: Home.html;
+    cursor: pointer;
+    text-align: left;
+    font-family: Satoshi;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    color: rgba(251,251,251,1);
+}
+#Action_Button {
+    position: absolute;
+    width: 141px;
+    height: 45px;
+    left: 1579px;
+    top: 21px;
+    overflow: visible;
+}
+#Rectangle_219 {
+    fill: transparent;
+    stroke: rgba(251,251,251,1);
+    stroke-width: 2px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.Rectangle_219 {
+    position: absolute;
+    overflow: visible;
+    width: 141px;
+    height: 45px;
+    left: 0px;
+    top: 0px;
+}
+#Label_bb {
+    left: 45px;
+    top: 12px;
+    position: absolute;
+    overflow: visible;
+    width: 53px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Satoshi;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(251,251,251,1);
+}
+#Group_538 {
+    position: absolute;
+    width: 83.653px;
+    height: 35.262px;
+    left: 200px;
+    top: 24.977px;
+    overflow: visible;
+    --web-animation: fadein undefineds undefined;
+    --web-action-type: page;
+    --web-action-target: Home.html;
+    cursor: pointer;
+}
+#Group_487 {
+    position: absolute;
+    width: 18.861px;
+    height: 35.175px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+}
+#Group_486 {
+    position: absolute;
+    width: 18.861px;
+    height: 35.175px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+}
+#Group_489 {
+    position: absolute;
+    width: 8.128px;
+    height: 8.127px;
+    left: 10.332px;
+    top: 14.667px;
+    overflow: visible;
+}
+#Group_488 {
+    position: absolute;
+    width: 8.127px;
+    height: 8.127px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+}
+#Union_1 {
+    fill: rgba(251,251,251,1);
+    stroke: rgba(0,0,0,0);
+    stroke-width: 1px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 10;
+    shape-rendering: auto;
+}
+.Union_1 {
+    overflow: visible;
+    position: absolute;
+    width: 34.871px;
+    height: 36.247px;
+    left: 50.707px;
+    top: 0.015px;
+    transform: matrix(1,0,0,1,0,0);
+}
+#Group_493 {
+    position: absolute;
+    width: 13.006px;
+    height: 12.658px;
+    left: 50.709px;
+    top: 22.603px;
+    overflow: visible;
+}
+#Group_492 {
+    position: absolute;
+    width: 13.006px;
+    height: 12.658px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+}
+#Group_497 {
+    position: absolute;
+    width: 23.579px;
+    height: 35.214px;
+    left: 24.102px;
+    top: 0.015px;
+    overflow: visible;
+}
+#Group_496 {
+    position: absolute;
+    width: 23.578px;
+    height: 35.214px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+}
+#Action_Button_bm {
+    position: absolute;
+    width: 141px;
+    height: 45px;
+    left: 1418px;
+    top: 21px;
+    overflow: visible;
+}
+#Rectangle_219_bn {
+    fill: transparent;
+    stroke: rgba(251,251,251,1);
+    stroke-width: 2px;
+    stroke-linejoin: miter;
+    stroke-linecap: butt;
+    stroke-miterlimit: 4;
+    shape-rendering: auto;
+}
+.Rectangle_219_bn {
+    position: absolute;
+    overflow: visible;
+    width: 141px;
+    height: 45px;
+    left: 0px;
+    top: 0px;
+}
+#Label_bo {
+    left: 23px;
+    top: 12px;
+    position: absolute;
+    overflow: visible;
+    width: 97px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Satoshi;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(251,251,251,1);
+}
+
+/* Footer  */
+
+#Footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
