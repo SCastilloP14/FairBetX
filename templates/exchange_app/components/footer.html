@@ -18,7 +18,7 @@
     .footer {
         width: 100%;
         height: 700px;
-        background-color: red;
+        background: linear-gradient(to bottom, #00474f, #000e10);
         margin:0;
         left: 0;
         bottom:0;
@@ -38,9 +38,24 @@
     }
     .footer_center {
         width: 100%;
+        margin-top:50px;
+        vertical-align: text-top;
+        display: flex;
+        align-items: flex-start;   
     }
     .footer_follow_us {
       place-items: left;
+      margin-top:90px;  
+      margin-right:50px;
+    }
+    #Follow_Us {
+        font-size: 2.3rem;
+        font-weight: 600;
+    }
+    #Follow_Us_Desc {
+        font-weight: 500;
+        font-size: 1.2rem;
+        line-height: 3rem;
     }
     .grid {
       display: grid;
@@ -59,15 +74,45 @@
         justify-content: space-between;
     }
     .footer_button {
+       width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color:transparent; 
+        border: 2px solid white;
+        margin-right:20px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+  }
+    .footer_button img {
+        display: block;
+        max-width: 60%;
+        max-height: 60%;
+    }
+    .footer_button_container {    
+        display: flex;
+        margin-top:50px;
+    }
+    .footer_blog a {
+        font-weight: 400;
+        margin-top:50px;
+        display: flex;
+        color:var(--font-color);
+        text-decoration: none;
+    }
+    .footer_blog_header {
+        color: #13C2C1;
+        margin-bottom:50px;
+    }
 
+    .footer_blog {
+        align-self: flex-start;
+        margin-top: 100px;
     }
-    #Follow_Us {
-        font-size: 2rem;    
-    }
-    #Follow_Us_Desc {
-        font-size: 1.3rem;
-        font-weight: 500;
-    }
+
 
     </style>
 </head>
@@ -82,28 +127,38 @@
                 <!-- Middle Section  -->
                 <div class="footer_center">
 
-                    <div class="grid grid_footer_1x4">
+                    <div class="grid grid_footer_1x4" >
                         <div class="footer_follow_us">
                             <h2 id="Follow_Us">Follow Us!</h2>
-                            <h4 id="Follow_Us_Desc">Follow us on Reddit, Facebook or Instagram to stay up to date with updates and new features</h4>
-                            <button class="footer_button footer_instagram">
-                                <img src="../../../static/img/Group_486.png" alt="Instagram Logo">
-                            </button>
-                            <button class="footer_button footer_facebook">
-                                <img src="../../../static/img/Group_486.png" alt="Facebook Logo">
-                            </button>
-                            <button class="footer_button footer_reddit">
-                                <img src="../../../static/img/Group_486.png" alt="Reddit Logo">
-                            </button>
+                            <h4 id="Follow_Us_Desc">Follow us on Facebook, Instagram or Reddit to stay up to date with updates,<br>new features and exciting betting opportunities that are only available on FBX</h4>
+                            <div class="footer_button_container">                       
+                                <button class="footer_button">
+                                    <img src="../../../static/img/facebook.png" alt="Facebook Logo">
+                                </button>
+                                <button class="footer_button ">
+                                    <img  src="../../../static/img/instagram.png" alt="Instagram Logo">
+                                </button>
+                                <button class="footer_button ">
+                                    <img  src="../../../static/img/reddit.png" alt="Reddit Logo">
+                                </button>
+                             </div>
+                        </div>
+
+                        <div class="footer_blog">
+                            <h2 class="footer_blog_header">Blog</h2>
+                            <a href="">News</a>
+                            <a href="">Sports Updates</a>
+                            <a href="">Betting Tips</a>
                         </div>
                         <div class="footer_blog">
-                            Blog
+                            <h2 class="footer_blog_header">Help</h2>
+                            <a href="">FAQs</a>
+                            <a href="">Contact Us</a>
                         </div>
-                        <div class="footer_help">
-                            Help
-                        </div>
-                        <div class="footer_about_us">
-                            About Us
+                        <div class="footer_blog">
+                            <h2 class="footer_blog_header">About US</h2>    
+                            <a href="">Information</a>
+                            <a href="">Mission</a>                
                         </div>
                     </div>
 
@@ -113,6 +168,8 @@
                 <div class="empty"></div>
             </div>
         </div>
+
+        <!-- End Section  -->
         <div class="footer_end">
             <div class="grid grid_footer_1x3">
                 <!-- Left Section  -->
