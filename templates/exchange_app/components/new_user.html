@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <style>
-    :root {
+       :root {
         --font-family: 'Satoshi',sans-serif;
         --font-weight: 600;
         --font-color-light: white;
@@ -31,7 +31,7 @@
     font-size: 34px;
     font-weight: 700;
     letter-spacing: 0;
-    padding-top: 95px;
+    padding-top: 50px;
     margin-bottom: 10px;
 }
 .card_new_user {
@@ -43,13 +43,22 @@
 }
 .card_input_form input {
     height: 53px;
-    width: 300px;
+    width: 400px;
     border-radius: 15px;
     padding-left: 17px;
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 20px;
 }
+.card_input_form_small input {
+    height: 53px;
+    width: 185px;
+    border-radius: 15px;
+    /* padding-left: 17px; */
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;    
+} 
 .card_keep_logged_in {
     display: flex;
     justify-content: center;
@@ -65,12 +74,12 @@
     font-size: 18px;
 }
 .login_button {
-        border-radius: 25px;
-        color:white;
-        font-size: 1rem;
-        background-color: transparent;
-        border: solid 1px white;
-        padding: 10px 35px
+    border-radius: 25px;
+    color:white;
+    font-size: 1rem;
+    background-color: transparent;
+    border: solid 1px white;
+    padding: 10px 35px
     }
 .login_button:hover {
     background-color: #13C2C1  ;
@@ -98,33 +107,36 @@
 .card_button {
     margin: 20px 0;
 }
-
 </style>
 <body>
     <div class="card_container">
         <div class="card_header">
-            <span>Log In</span>
+            <span>Create an Account</span>
         </div>
         <div class="card_new_user">
-            <span>New user?</span>
-            <a href="">Create an account</a>
+            <span>Already an user?</span>
+            <a href="">Log in</a>
         </div>
+        <!-- Input Forms  -->
+        <!-- First Name + Last Name  -->
+        <div class="card_input_form card_input_form_small">
+            <input action="First Name" placeholder="First Name"></input>
+            <input action="Last Name" placeholder="Last Name"></input>
+        </div>
+        <!-- Email  -->
         <div class="card_input_form">
-            <input action="Username" placeholder="Username or Email"></input>
+            <input action="Email" placeholder="Email Address"></input>
         </div>
+        <!-- Password  -->
         <div class="card_input_form">
-            <input action="Username" placeholder="Password"></input>
-        </div>
-        <div class="card_keep_logged_in">
-            <input class="card_button_check" type="checkbox">
-           <span>Keep me logged in</span> 
+            <input action="Password" placeholder="Password"></input>
         </div>
         <div class="card_button">
-            <button class="login_button">Log In</button>
+            <button class="login_button">Let's Begin</button>
         </div>
         <div class="card_horizontal_line_seperator">
             <div class="horizontal-line"></div>
-            <div>Or log in with</div>
+            <div>Or Sign Up With</div>
             <div class="horizontal-line"></div>
         </div>
         <div class="card_logos">
