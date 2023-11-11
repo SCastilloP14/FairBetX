@@ -1,0 +1,3744 @@
+<!DOCTYPE html>
+{ % load static %}
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help</title>
+<style id="applicationStylesheet" type="text/css">
+	.mediaViewInfo {
+		--web-view-name: Help;
+		--web-view-id: Help;
+		--web-scale-to-fit: true;
+		--web-scale-to-fit-type: fit;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	:root {
+		--web-view-ids: Help;
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		border: none;
+	}
+	#Help {
+		position: absolute;
+		width: 1920px;
+		height: 3334px;
+		background-color: rgba(251,251,251,1);
+		overflow: hidden;
+		--web-view-name: Help;
+		--web-view-id: Help;
+		--web-scale-to-fit: true;
+		--web-scale-to-fit-type: fit;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+
+	#Background_STYLESTYLE2 {
+		fill: rgba(247,247,247,1);
+	}
+	.Background_STYLESTYLE2 {
+		position: absolute;
+		overflow: visible;
+		width: 1920px;
+		height: 2245px;
+		left: 0px;
+		top: 296px;
+	}
+	#METADATA {
+		display: none;
+		left: 0px;
+		top: 14px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#METADATA_bc {
+		display: none;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#METADATA_ba {
+		display: none;
+		left: -1px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#METADATA_bc {
+		display: none;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#METADATA_bc {
+		display: none;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#METADATA_bd {
+		display: none;
+		left: 0px;
+		top: 6px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#METADATA_bl {
+		display: none;
+		left: 688.782px;
+		top: 60.439px;
+		position: absolute;
+		overflow: hidden;
+		width: 15.056px;
+		height: 14.05563735961914px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#PLACEHOLDER_Tab_Item {
+		position: absolute;
+		width: 59px;
+		height: 59px;
+		left: 959px;
+		top: 60px;
+		display: none;
+		overflow: visible;
+	}
+	#METADATA_bf {
+		display: none;
+		left: -0.35px;
+		top: 0.439px;
+		position: absolute;
+		overflow: hidden;
+		width: 15.056px;
+		height: 14.05563735961914px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area {
+		position: absolute;
+		width: 59px;
+		height: 59px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#METADATA_bg {
+		display: none;
+		left: -0.35px;
+		top: 0.439px;
+		position: absolute;
+		overflow: hidden;
+		width: 15.056px;
+		height: 14.05563735961914px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Placement_Area {
+		opacity: 0;
+		fill: rgba(255,255,255,1);
+	}
+	.Placement_Area {
+		position: absolute;
+		overflow: visible;
+		width: 59px;
+		height: 59px;
+		left: 0px;
+		top: 0px;
+	}
+	#Bar {
+		opacity: 0;
+		fill: rgba(62,62,62,1);
+	}
+	.Bar {
+		position: absolute;
+		overflow: visible;
+		width: 59px;
+		height: 2px;
+		left: 0px;
+		top: 57px;
+	}
+	#Label {
+		left: 0px;
+		top: 14px;
+		position: absolute;
+		overflow: visible;
+		width: 59px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Noto Sans;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 22px;
+		color: rgba(139,139,139,1);
+	}
+	#METADATA_bh {
+		display: none;
+		left: 908.05px;
+		top: 60.439px;
+		position: absolute;
+		overflow: hidden;
+		width: 15.056px;
+		height: 14.05563735961914px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#METADATA_bi {
+		display: none;
+		left: 1044.39px;
+		top: 60.439px;
+		position: absolute;
+		overflow: hidden;
+		width: 15.056px;
+		height: 14.05563735961914px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#METADATA_bj {
+		display: none;
+		left: 1144.185px;
+		top: 60.439px;
+		position: absolute;
+		overflow: hidden;
+		width: 15.056px;
+		height: 14.05563735961914px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#METADATA_bk {
+		display: none;
+		left: 788.577px;
+		top: 60.439px;
+		position: absolute;
+		overflow: hidden;
+		width: 15.056px;
+		height: 14.05563735961914px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#METADATA_bl {
+		display: none;
+		left: 688.782px;
+		top: 60.439px;
+		position: absolute;
+		overflow: hidden;
+		width: 15.056px;
+		height: 14.05563735961914px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#METADATA_bm {
+		display: none;
+		left: 1517px;
+		top: 56px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Icon_DISPLAY_ELEMENTSLabelICON {
+		position: absolute;
+		width: 29px;
+		height: 28px;
+		left: 1668px;
+		top: 76px;
+		display: none;
+		overflow: visible;
+	}
+	#METADATA_bo {
+		display: none;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_DISPLAY_ELEMENTSLabelICON {
+		opacity: 0;
+		fill: rgba(252,252,252,1);
+	}
+	.Area_DISPLAY_ELEMENTSLabelICON {
+		position: absolute;
+		overflow: visible;
+		width: 29px;
+		height: 28px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon {
+		position: absolute;
+		width: 28.111px;
+		height: 24.519px;
+		left: 0.404px;
+		top: 1.697px;
+		overflow: visible;
+	}
+	#n_d5716f2-9556-4a4f-ac0d-52d8d {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(252,252,252,1);
+		stroke-width: 1.9136162996292114px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_d5716f2-9556-4a4f-ac0d-52d8d {
+		overflow: visible;
+		position: absolute;
+		width: 30.024px;
+		height: 26.432px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#METADATA_bs {
+		display: none;
+		left: 1292px;
+		top: 56px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Icon_DISPLAY_ELEMENTSLabelICON_bt {
+		position: absolute;
+		width: 28.486px;
+		height: 28px;
+		left: 1443.514px;
+		top: 76px;
+		display: none;
+		overflow: visible;
+	}
+	#METADATA_bu {
+		display: none;
+		left: 0.486px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_DISPLAY_ELEMENTSLabelICON_bv {
+		opacity: 0;
+		fill: rgba(253,73,198,0.349);
+	}
+	.Area_DISPLAY_ELEMENTSLabelICON_bv {
+		position: absolute;
+		overflow: visible;
+		width: 28px;
+		height: 28px;
+		left: 0.486px;
+		top: 0px;
+	}
+	#Icon_bw {
+		position: absolute;
+		width: 28.111px;
+		height: 24.519px;
+		left: 0px;
+		top: 1.697px;
+		overflow: visible;
+	}
+	#f53121af-58d2-4146-b7f4-4df1b3 {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(62,62,62,1);
+		stroke-width: 1.9136162996292114px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.f53121af-58d2-4146-b7f4-4df1b3 {
+		overflow: visible;
+		position: absolute;
+		width: 30.024px;
+		height: 26.432px;
+		left: 0.001px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Description_STYLESTYLE2 {
+		left: 442px;
+		top: 406px;
+		position: absolute;
+		overflow: visible;
+		width: 1037px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(95,95,95,1);
+	}
+	#Description_STYLESTYLE2_bz {
+		left: 908px;
+		top: 326px;
+		position: absolute;
+		overflow: visible;
+		width: 105px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 40px;
+		color: rgba(95,95,95,1);
+	}
+	#Dropdown_FAQs {
+		position: absolute;
+		width: 1638px;
+		height: 840px;
+		left: 141px;
+		top: 466px;
+		overflow: visible;
+	}
+	#Dropdown_FAQs_b {
+		position: absolute;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 710px;
+		overflow: visible;
+	}
+	#Background_STYLESTYLE2_ca {
+		fill: rgba(251,251,251,1);
+	}
+	.Background_STYLESTYLE2_ca {
+		position: absolute;
+		overflow: visible;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 0px;
+	}
+	#Text_Body {
+		left: 56px;
+		top: 35px;
+		position: absolute;
+		overflow: visible;
+		width: 1502px;
+		height: 91px;
+		line-height: 30px;
+		margin-top: -3px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(27,28,30,1);
+	}
+	#Background_STYLESTYLE2_ca {
+		fill: rgba(251,251,251,1);
+	}
+	.Background_STYLESTYLE2_ca {
+		position: absolute;
+		overflow: visible;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_b {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		left: 60px;
+		top: 40px;
+		overflow: visible;
+	}
+	#METADATA_b {
+		display: none;
+		left: 0.038px;
+		top: 0.037px;
+		position: absolute;
+		overflow: hidden;
+		width: 7px;
+		height: 6px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_b {
+		opacity: 0;
+		fill: rgba(252,252,252,1);
+	}
+	.Area_b {
+		position: absolute;
+		overflow: visible;
+		width: 50px;
+		height: 50px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_ca {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_941b066-8b8e-400d-8760-c9eb1 {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_941b066-8b8e-400d-8760-c9eb1 {
+		position: absolute;
+		overflow: visible;
+		width: 54px;
+		height: 54px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_273762e-cdd5-4883-90ce-53af6 {
+		fill: transparent;
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_273762e-cdd5-4883-90ce-53af6 {
+		overflow: visible;
+		position: absolute;
+		width: 4px;
+		height: 14px;
+		left: 25px;
+		top: 14.737px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_e35af02-1991-45c4-947e-1a9d9 {
+		fill: transparent;
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_e35af02-1991-45c4-947e-1a9d9 {
+		overflow: visible;
+		position: absolute;
+		width: 4.024px;
+		height: 4px;
+		left: 25.001px;
+		top: 35px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Text_FAQ {
+		left: 161px;
+		top: 50px;
+		position: absolute;
+		overflow: visible;
+		width: 1082px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(0,71,79,1);
+	}
+	#Arrow {
+		transform: translate(0px, 0px) matrix(1,0,0,1,1547.9044,50.119) rotate(-90deg);
+		transform-origin: center;
+		position: absolute;
+		width: 30.238px;
+		height: 30px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Path_36 {
+		fill: rgba(0,71,79,1);
+		stroke: rgba(251,251,251,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Path_36 {
+		overflow: visible;
+		position: absolute;
+		width: 23.86px;
+		height: 31.657px;
+		left: 4.686px;
+		top: 1.272px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Rectangle_1467 {
+		fill: transparent;
+	}
+	.Rectangle_1467 {
+		position: absolute;
+		overflow: visible;
+		width: 30px;
+		height: 30.048px;
+		left: 0px;
+		top: 0px;
+	}
+	#Dropdown_FAQs_cg {
+		position: absolute;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 568px;
+		overflow: visible;
+	}
+	#Background_STYLESTYLE2_cj {
+		fill: rgba(251,251,251,1);
+	}
+	.Background_STYLESTYLE2_cj {
+		position: absolute;
+		overflow: visible;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 0px;
+	}
+	#Text_Body_ci {
+		left: 56px;
+		top: 35px;
+		position: absolute;
+		overflow: visible;
+		width: 1502px;
+		height: 91px;
+		line-height: 30px;
+		margin-top: -3px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(27,28,30,1);
+	}
+	#Background_STYLESTYLE2_cj {
+		fill: rgba(251,251,251,1);
+	}
+	.Background_STYLESTYLE2_cj {
+		position: absolute;
+		overflow: visible;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_ck {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		left: 60px;
+		top: 40px;
+		overflow: visible;
+	}
+	#METADATA_cl {
+		display: none;
+		left: 0.038px;
+		top: 0.037px;
+		position: absolute;
+		overflow: hidden;
+		width: 7px;
+		height: 6px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_cm {
+		opacity: 0;
+		fill: rgba(252,252,252,1);
+	}
+	.Area_cm {
+		position: absolute;
+		overflow: visible;
+		width: 50px;
+		height: 50px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_cn {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_941b066-8b8e-400d-8760-c9eb1_co {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_941b066-8b8e-400d-8760-c9eb1_co {
+		position: absolute;
+		overflow: visible;
+		width: 54px;
+		height: 54px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_273762e-cdd5-4883-90ce-53af6_cp {
+		fill: transparent;
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_273762e-cdd5-4883-90ce-53af6_cp {
+		overflow: visible;
+		position: absolute;
+		width: 4px;
+		height: 14px;
+		left: 25px;
+		top: 14.737px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_e35af02-1991-45c4-947e-1a9d9_cq {
+		fill: transparent;
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_e35af02-1991-45c4-947e-1a9d9_cq {
+		overflow: visible;
+		position: absolute;
+		width: 4.024px;
+		height: 4px;
+		left: 25.001px;
+		top: 35px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Text_FAQ_cr {
+		left: 161px;
+		top: 50px;
+		position: absolute;
+		overflow: visible;
+		width: 1082px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(0,71,79,1);
+	}
+	#Arrow_cs {
+		transform: translate(0px, 0px) matrix(1,0,0,1,1547.9044,50.119) rotate(-90deg);
+		transform-origin: center;
+		position: absolute;
+		width: 30.238px;
+		height: 30px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Path_36_ct {
+		fill: rgba(0,71,79,1);
+		stroke: rgba(251,251,251,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Path_36_ct {
+		overflow: visible;
+		position: absolute;
+		width: 23.86px;
+		height: 31.657px;
+		left: 4.686px;
+		top: 1.272px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Rectangle_1467_cu {
+		fill: transparent;
+	}
+	.Rectangle_1467_cu {
+		position: absolute;
+		overflow: visible;
+		width: 30px;
+		height: 30.048px;
+		left: 0px;
+		top: 0px;
+	}
+	#Dropdown_FAQs_cv {
+		position: absolute;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 426px;
+		overflow: visible;
+	}
+	#Background_STYLESTYLE2_cy {
+		fill: rgba(251,251,251,1);
+	}
+	.Background_STYLESTYLE2_cy {
+		position: absolute;
+		overflow: visible;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 0px;
+	}
+	#Text_Body_cx {
+		left: 56px;
+		top: 35px;
+		position: absolute;
+		overflow: visible;
+		width: 1502px;
+		height: 91px;
+		line-height: 30px;
+		margin-top: -3px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(27,28,30,1);
+	}
+	#Background_STYLESTYLE2_cy {
+		fill: rgba(251,251,251,1);
+	}
+	.Background_STYLESTYLE2_cy {
+		position: absolute;
+		overflow: visible;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_cz {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		left: 60px;
+		top: 40px;
+		overflow: visible;
+	}
+	#METADATA_c {
+		display: none;
+		left: 0.038px;
+		top: 0.037px;
+		position: absolute;
+		overflow: hidden;
+		width: 7px;
+		height: 6px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_c {
+		opacity: 0;
+		fill: rgba(252,252,252,1);
+	}
+	.Area_c {
+		position: absolute;
+		overflow: visible;
+		width: 50px;
+		height: 50px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_c {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_941b066-8b8e-400d-8760-c9eb1_c {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_941b066-8b8e-400d-8760-c9eb1_c {
+		position: absolute;
+		overflow: visible;
+		width: 54px;
+		height: 54px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_273762e-cdd5-4883-90ce-53af6_c {
+		fill: transparent;
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_273762e-cdd5-4883-90ce-53af6_c {
+		overflow: visible;
+		position: absolute;
+		width: 4px;
+		height: 14px;
+		left: 25px;
+		top: 14.737px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_e35af02-1991-45c4-947e-1a9d9_c {
+		fill: transparent;
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_e35af02-1991-45c4-947e-1a9d9_c {
+		overflow: visible;
+		position: absolute;
+		width: 4.024px;
+		height: 4px;
+		left: 25.001px;
+		top: 35px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Text_FAQ_c {
+		left: 161px;
+		top: 50px;
+		position: absolute;
+		overflow: visible;
+		width: 1082px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(0,71,79,1);
+	}
+	#Arrow_c {
+		transform: translate(0px, 0px) matrix(1,0,0,1,1547.9044,50.119) rotate(-90deg);
+		transform-origin: center;
+		position: absolute;
+		width: 30.238px;
+		height: 30px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Path_36_c {
+		fill: rgba(0,71,79,1);
+		stroke: rgba(251,251,251,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Path_36_c {
+		overflow: visible;
+		position: absolute;
+		width: 23.86px;
+		height: 31.657px;
+		left: 4.686px;
+		top: 1.272px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Rectangle_1467_c {
+		fill: transparent;
+	}
+	.Rectangle_1467_c {
+		position: absolute;
+		overflow: visible;
+		width: 30px;
+		height: 30.048px;
+		left: 0px;
+		top: 0px;
+	}
+	#Dropdown_FAQs_da {
+		position: absolute;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 284px;
+		overflow: visible;
+	}
+	#Background_STYLESTYLE2_dd {
+		fill: rgba(251,251,251,1);
+	}
+	.Background_STYLESTYLE2_dd {
+		position: absolute;
+		overflow: visible;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 0px;
+	}
+	#Text_Body_dc {
+		left: 56px;
+		top: 35px;
+		position: absolute;
+		overflow: visible;
+		width: 1502px;
+		height: 91px;
+		line-height: 30px;
+		margin-top: -3px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(27,28,30,1);
+	}
+	#Background_STYLESTYLE2_dd {
+		fill: rgba(251,251,251,1);
+	}
+	.Background_STYLESTYLE2_dd {
+		position: absolute;
+		overflow: visible;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_de {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		left: 60px;
+		top: 40px;
+		overflow: visible;
+	}
+	#METADATA_df {
+		display: none;
+		left: 0.038px;
+		top: 0.037px;
+		position: absolute;
+		overflow: hidden;
+		width: 7px;
+		height: 6px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_dg {
+		opacity: 0;
+		fill: rgba(252,252,252,1);
+	}
+	.Area_dg {
+		position: absolute;
+		overflow: visible;
+		width: 50px;
+		height: 50px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_dh {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_941b066-8b8e-400d-8760-c9eb1_di {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_941b066-8b8e-400d-8760-c9eb1_di {
+		position: absolute;
+		overflow: visible;
+		width: 54px;
+		height: 54px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_273762e-cdd5-4883-90ce-53af6_dj {
+		fill: transparent;
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_273762e-cdd5-4883-90ce-53af6_dj {
+		overflow: visible;
+		position: absolute;
+		width: 4px;
+		height: 14px;
+		left: 25px;
+		top: 14.737px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_e35af02-1991-45c4-947e-1a9d9_dk {
+		fill: transparent;
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_e35af02-1991-45c4-947e-1a9d9_dk {
+		overflow: visible;
+		position: absolute;
+		width: 4.024px;
+		height: 4px;
+		left: 25.001px;
+		top: 35px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Text_FAQ_dl {
+		left: 161px;
+		top: 50px;
+		position: absolute;
+		overflow: visible;
+		width: 1082px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(0,71,79,1);
+	}
+	#Arrow_dm {
+		transform: translate(0px, 0px) matrix(1,0,0,1,1547.9044,50.119) rotate(-90deg);
+		transform-origin: center;
+		position: absolute;
+		width: 30.238px;
+		height: 30px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Path_36_dn {
+		fill: rgba(0,71,79,1);
+		stroke: rgba(251,251,251,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Path_36_dn {
+		overflow: visible;
+		position: absolute;
+		width: 23.86px;
+		height: 31.657px;
+		left: 4.686px;
+		top: 1.272px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Rectangle_1467_do {
+		fill: transparent;
+	}
+	.Rectangle_1467_do {
+		position: absolute;
+		overflow: visible;
+		width: 30px;
+		height: 30.048px;
+		left: 0px;
+		top: 0px;
+	}
+	#Dropdown_FAQs_dp {
+		position: absolute;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 142px;
+		overflow: visible;
+	}
+	#Background_STYLESTYLE2_ds {
+		fill: rgba(251,251,251,1);
+	}
+	.Background_STYLESTYLE2_ds {
+		position: absolute;
+		overflow: visible;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 0px;
+	}
+	#Text_Body_dr {
+		left: 56px;
+		top: 35px;
+		position: absolute;
+		overflow: visible;
+		width: 1502px;
+		height: 91px;
+		line-height: 30px;
+		margin-top: -3px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(27,28,30,1);
+	}
+	#Background_STYLESTYLE2_ds {
+		fill: rgba(251,251,251,1);
+	}
+	.Background_STYLESTYLE2_ds {
+		position: absolute;
+		overflow: visible;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_dt {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		left: 60px;
+		top: 40px;
+		overflow: visible;
+	}
+	#METADATA_du {
+		display: none;
+		left: 0.038px;
+		top: 0.037px;
+		position: absolute;
+		overflow: hidden;
+		width: 7px;
+		height: 6px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_dv {
+		opacity: 0;
+		fill: rgba(252,252,252,1);
+	}
+	.Area_dv {
+		position: absolute;
+		overflow: visible;
+		width: 50px;
+		height: 50px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_dw {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_941b066-8b8e-400d-8760-c9eb1_dx {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_941b066-8b8e-400d-8760-c9eb1_dx {
+		position: absolute;
+		overflow: visible;
+		width: 54px;
+		height: 54px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_273762e-cdd5-4883-90ce-53af6_dy {
+		fill: transparent;
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_273762e-cdd5-4883-90ce-53af6_dy {
+		overflow: visible;
+		position: absolute;
+		width: 4px;
+		height: 14px;
+		left: 25px;
+		top: 14.737px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_e35af02-1991-45c4-947e-1a9d9_dz {
+		fill: transparent;
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_e35af02-1991-45c4-947e-1a9d9_dz {
+		overflow: visible;
+		position: absolute;
+		width: 4.024px;
+		height: 4px;
+		left: 25.001px;
+		top: 35px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Text_FAQ_d {
+		left: 161px;
+		top: 50px;
+		position: absolute;
+		overflow: visible;
+		width: 1082px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(0,71,79,1);
+	}
+	#Arrow_d {
+		transform: translate(0px, 0px) matrix(1,0,0,1,1547.9044,50.119) rotate(-90deg);
+		transform-origin: center;
+		position: absolute;
+		width: 30.238px;
+		height: 30px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Path_36_d {
+		fill: rgba(0,71,79,1);
+		stroke: rgba(251,251,251,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Path_36_d {
+		overflow: visible;
+		position: absolute;
+		width: 23.86px;
+		height: 31.657px;
+		left: 4.686px;
+		top: 1.272px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Rectangle_1467_d {
+		fill: transparent;
+	}
+	.Rectangle_1467_d {
+		position: absolute;
+		overflow: visible;
+		width: 30px;
+		height: 30.048px;
+		left: 0px;
+		top: 0px;
+	}
+	#Dropdown_FAQs_d {
+		position: absolute;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Background_STYLESTYLE2_ea {
+		fill: rgba(251,251,251,1);
+	}
+	.Background_STYLESTYLE2_ea {
+		position: absolute;
+		overflow: visible;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 0px;
+	}
+	#Text_Body_d {
+		left: 56px;
+		top: 35px;
+		position: absolute;
+		overflow: visible;
+		width: 1502px;
+		height: 91px;
+		line-height: 30px;
+		margin-top: -3px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(27,28,30,1);
+	}
+	#Background_STYLESTYLE2_ea {
+		fill: rgba(251,251,251,1);
+	}
+	.Background_STYLESTYLE2_ea {
+		position: absolute;
+		overflow: visible;
+		width: 1638px;
+		height: 130px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_d {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		left: 60px;
+		top: 40px;
+		overflow: visible;
+	}
+	#METADATA_d {
+		display: none;
+		left: 0.038px;
+		top: 0.037px;
+		position: absolute;
+		overflow: hidden;
+		width: 7px;
+		height: 6px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_ea {
+		opacity: 0;
+		fill: rgba(252,252,252,1);
+	}
+	.Area_ea {
+		position: absolute;
+		overflow: visible;
+		width: 50px;
+		height: 50px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_eb {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_941b066-8b8e-400d-8760-c9eb1_ec {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_941b066-8b8e-400d-8760-c9eb1_ec {
+		position: absolute;
+		overflow: visible;
+		width: 54px;
+		height: 54px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_273762e-cdd5-4883-90ce-53af6_ed {
+		fill: transparent;
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_273762e-cdd5-4883-90ce-53af6_ed {
+		overflow: visible;
+		position: absolute;
+		width: 4px;
+		height: 14px;
+		left: 25px;
+		top: 14.737px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_e35af02-1991-45c4-947e-1a9d9_ee {
+		fill: transparent;
+		stroke: rgba(0,71,79,1);
+		stroke-width: 4px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_e35af02-1991-45c4-947e-1a9d9_ee {
+		overflow: visible;
+		position: absolute;
+		width: 4.024px;
+		height: 4px;
+		left: 25.001px;
+		top: 35px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Text_FAQ_ef {
+		left: 161px;
+		top: 50px;
+		position: absolute;
+		overflow: visible;
+		width: 1082px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(0,71,79,1);
+	}
+	#Arrow_eg {
+		transform: translate(0px, 0px) matrix(1,0,0,1,1547.9044,50.119) rotate(-90deg);
+		transform-origin: center;
+		position: absolute;
+		width: 30.238px;
+		height: 30px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Path_36_eh {
+		fill: rgba(0,71,79,1);
+		stroke: rgba(251,251,251,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Path_36_eh {
+		overflow: visible;
+		position: absolute;
+		width: 23.86px;
+		height: 31.657px;
+		left: 4.686px;
+		top: 1.272px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Rectangle_1467_ei {
+		fill: transparent;
+	}
+	.Rectangle_1467_ei {
+		position: absolute;
+		overflow: visible;
+		width: 30px;
+		height: 30.048px;
+		left: 0px;
+		top: 0px;
+	}
+	#Background_STYLESTYLE2_ek {
+		fill: url(#Background_STYLESTYLE2_ek);
+	}
+	.Background_STYLESTYLE2_ek {
+		position: absolute;
+		overflow: visible;
+		width: 1639px;
+		height: 949px;
+		left: 140px;
+		top: 1547px;
+	}
+	#Company_STYLESTYLE3TAGH4 {
+		left: 200px;
+		top: 1694px;
+		position: absolute;
+		overflow: visible;
+		width: 489px;
+		white-space: nowrap;
+		line-height: 58px;
+		margin-top: -9px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 40px;
+		color: rgba(247,247,247,1);
+	}
+	#Company_STYLESTYLE3TAGH4_em {
+		left: 200px;
+		top: 1607px;
+		position: absolute;
+		overflow: visible;
+		width: 152px;
+		white-space: nowrap;
+		line-height: 58px;
+		margin-top: -14px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 30px;
+		color: rgba(247,247,247,1);
+	}
+	#Value {
+		left: 200px;
+		top: 1852px;
+		position: absolute;
+		overflow: visible;
+		width: 49px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(251,251,251,1);
+	}
+	#Value_eo {
+		left: 200px;
+		top: 1952px;
+		position: absolute;
+		overflow: visible;
+		width: 45px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(251,251,251,1);
+	}
+	#Value_ep {
+		left: 200px;
+		top: 2052px;
+		position: absolute;
+		overflow: visible;
+		width: 72px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(251,251,251,1);
+	}
+	#Value_eq {
+		opacity: 0.5;
+		left: 200px;
+		top: 1885px;
+		position: absolute;
+		overflow: visible;
+		width: 269px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 22px;
+		color: rgba(251,251,251,1);
+	}
+	#Value_er {
+		opacity: 0.5;
+		left: 200px;
+		top: 1985px;
+		position: absolute;
+		overflow: visible;
+		width: 167px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 22px;
+		color: rgba(251,251,251,1);
+	}
+	#Line_15 {
+		fill: transparent;
+		stroke: rgba(251,251,251,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Line_15 {
+		overflow: visible;
+		position: absolute;
+		width: 551px;
+		height: 1px;
+		left: 202px;
+		top: 1922px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Line_16 {
+		fill: transparent;
+		stroke: rgba(251,251,251,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Line_16 {
+		overflow: visible;
+		position: absolute;
+		width: 551px;
+		height: 1px;
+		left: 202px;
+		top: 2022px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Line_17 {
+		fill: transparent;
+		stroke: rgba(251,251,251,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Line_17 {
+		overflow: visible;
+		position: absolute;
+		width: 551px;
+		height: 1px;
+		left: 202px;
+		top: 2212px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Group_469 {
+		position: absolute;
+		width: 553px;
+		height: 119px;
+		left: 200px;
+		top: 2085px;
+		overflow: visible;
+	}
+	#Write_your_message_here {
+		opacity: 0.5;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 554px;
+		height: 119px;
+		line-height: 30px;
+		margin-top: -4px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 22px;
+		color: rgba(251,251,251,1);
+	}
+	#Background_STYLESTYLE2_ex {
+		position: absolute;
+		width: 809px;
+		height: 829px;
+		left: 910px;
+		top: 1607px;
+		overflow: visible;
+	}
+	#Background_STYLESTYLE2_ez {
+		opacity: 0.35;
+		fill: url(#Background_STYLESTYLE2_ez);
+	}
+	.Background_STYLESTYLE2_ez {
+		mix-blend-mode: multiply;
+		position: absolute;
+		overflow: visible;
+		width: 809px;
+		height: 829px;
+		left: 910px;
+		top: 1607px;
+	}
+	#Sweet_Ice_Cream_TAGH2 {
+		left: 1074px;
+		top: 1868px;
+		position: absolute;
+		overflow: visible;
+		width: 392px;
+		white-space: nowrap;
+		line-height: 80px;
+		margin-top: -28px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(251,251,251,1);
+	}
+	#Sweet_Ice_Cream_TAGH2_e {
+		left: 1074px;
+		top: 1955px;
+		position: absolute;
+		overflow: visible;
+		width: 197px;
+		white-space: nowrap;
+		line-height: 80px;
+		margin-top: -28px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(251,251,251,1);
+	}
+	#Sweet_Ice_Cream_TAGH2_fa {
+		left: 1074px;
+		top: 2042px;
+		position: absolute;
+		overflow: visible;
+		width: 262px;
+		white-space: nowrap;
+		line-height: 80px;
+		margin-top: -28px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(251,251,251,1);
+	}
+	#Icon_e {
+		position: absolute;
+		width: 45px;
+		height: 45px;
+		left: 994px;
+		top: 1861px;
+		overflow: visible;
+	}
+	#METADATA_e {
+		display: none;
+		left: 0.042px;
+		top: 0.041px;
+		position: absolute;
+		overflow: hidden;
+		width: 7.625px;
+		height: 6.624998569488525px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_e {
+		opacity: 0;
+		fill: rgba(252,252,252,1);
+	}
+	.Area_e {
+		position: absolute;
+		overflow: visible;
+		width: 45px;
+		height: 45px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_fa {
+		position: absolute;
+		width: 35.364px;
+		height: 45px;
+		left: 4.818px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_8733921-92a9-4722-afc5-8b20e {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(251,251,251,1);
+		stroke-width: 3px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_8733921-92a9-4722-afc5-8b20e {
+		overflow: visible;
+		position: absolute;
+		width: 38.363px;
+		height: 48px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_812fb84-bfb3-4532-a091-e2cb1 {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(251,251,251,1);
+		stroke-width: 3px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_812fb84-bfb3-4532-a091-e2cb1 {
+		position: absolute;
+		overflow: visible;
+		width: 17.454px;
+		height: 17.455px;
+		left: 10.455px;
+		top: 11.455px;
+	}
+	#Icon_fb {
+		position: absolute;
+		width: 45px;
+		height: 45px;
+		left: 994px;
+		top: 1948px;
+		overflow: visible;
+	}
+	#METADATA_fa {
+		display: none;
+		left: 0.042px;
+		top: 0.041px;
+		position: absolute;
+		overflow: hidden;
+		width: 7.625px;
+		height: 6.625px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_fb {
+		opacity: 0;
+		fill: rgba(252,252,252,1);
+	}
+	.Area_fb {
+		position: absolute;
+		overflow: visible;
+		width: 45px;
+		height: 45px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_fc {
+		position: absolute;
+		width: 44.895px;
+		height: 45px;
+		left: 0.053px;
+		top: 0px;
+		overflow: visible;
+	}
+	#n_3cf6acd-0a61-4c15-a2eb-903b5 {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(251,251,251,1);
+		stroke-width: 3px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_3cf6acd-0a61-4c15-a2eb-903b5 {
+		overflow: visible;
+		position: absolute;
+		width: 47.896px;
+		height: 48.004px;
+		left: 0.001px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Icon_fe {
+		position: absolute;
+		width: 45px;
+		height: 45px;
+		left: 994px;
+		top: 2035px;
+		overflow: visible;
+	}
+	#METADATA_ff {
+		display: none;
+		left: 0.041px;
+		top: 0.041px;
+		position: absolute;
+		overflow: hidden;
+		width: 7.588px;
+		height: 6.5880126953125px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_fg {
+		opacity: 0;
+		fill: rgba(252,252,252,1);
+	}
+	.Area_fg {
+		position: absolute;
+		overflow: visible;
+		width: 45px;
+		height: 45px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_fh {
+		position: absolute;
+		width: 37px;
+		height: 45px;
+		left: 4px;
+		top: 0px;
+		overflow: visible;
+	}
+	#a709d45b-18ee-4929-b759-277a57 {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(251,251,251,1);
+		stroke-width: 3px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.a709d45b-18ee-4929-b759-277a57 {
+		position: absolute;
+		overflow: visible;
+		width: 40px;
+		height: 48px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_3648715-3470-459e-b478-f3e78 {
+		fill: transparent;
+		stroke: rgba(251,251,251,1);
+		stroke-width: 3px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_3648715-3470-459e-b478-f3e78 {
+		overflow: visible;
+		position: absolute;
+		width: 3.026px;
+		height: 3px;
+		left: 18.353px;
+		top: 35.799px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Circle_Button_SIZEMEDIUMSTATED {
+		position: absolute;
+		width: 51px;
+		height: 52px;
+		left: 1063px;
+		top: 2130px;
+		overflow: visible;
+	}
+	#METADATA_fl {
+		display: none;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 12px;
+		height: 11px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_SIZEMEDIUMSTATEDEFAULTSTY {
+		fill: transparent;
+		stroke: rgba(247,247,247,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Area_SIZEMEDIUMSTATEDEFAULTSTY {
+		position: absolute;
+		overflow: visible;
+		width: 51px;
+		height: 52px;
+		left: 0px;
+		top: 0px;
+	}
+	#Instagram {
+		position: absolute;
+		width: 20.9px;
+		height: 20.9px;
+		left: 15.111px;
+		top: 15.729px;
+		overflow: visible;
+	}
+	#Path_3 {
+		fill: rgba(247,247,247,1);
+	}
+	.Path_3 {
+		overflow: visible;
+		position: absolute;
+		width: 20.9px;
+		height: 20.9px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Circle_Button_SIZEMEDIUMSTATED_fp {
+		position: absolute;
+		width: 52px;
+		height: 52px;
+		left: 994px;
+		top: 2130px;
+		overflow: visible;
+	}
+	#METADATA_fq {
+		display: none;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 12px;
+		height: 11px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_SIZEMEDIUMSTATEDEFAULTSTY_fr {
+		fill: transparent;
+		stroke: rgba(247,247,247,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Area_SIZEMEDIUMSTATEDEFAULTSTY_fr {
+		position: absolute;
+		overflow: visible;
+		width: 52px;
+		height: 52px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_ICONfeatherfacebookSIZEME {
+		position: absolute;
+		width: 22px;
+		height: 22px;
+		left: 14.999px;
+		top: 15px;
+		overflow: visible;
+	}
+	#METADATA_ft {
+		display: none;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 12px;
+		height: 11px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_ICONfeatherfacebookSIZEME {
+		opacity: 0;
+		fill: transparent;
+		stroke: rgba(253,73,198,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Area_ICONfeatherfacebookSIZEME {
+		position: absolute;
+		overflow: visible;
+		width: 22px;
+		height: 22px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_fv {
+		position: absolute;
+		width: 11.931px;
+		height: 21.693px;
+		left: 5.063px;
+		top: 0.187px;
+		overflow: visible;
+	}
+	#cd31758e-db74-42ca-84e2-b339be {
+		fill: transparent;
+		stroke: rgba(247,247,247,1);
+		stroke-width: 2px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.cd31758e-db74-42ca-84e2-b339be {
+		overflow: visible;
+		position: absolute;
+		width: 13.932px;
+		height: 23.693px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Action_Button {
+		position: absolute;
+		width: 165px;
+		height: 53px;
+		left: 200px;
+		top: 2254px;
+		overflow: visible;
+	}
+	#Rectangle_219 {
+		fill: transparent;
+		stroke: rgba(251,251,251,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_219 {
+		position: absolute;
+		overflow: visible;
+		width: 165px;
+		height: 53px;
+		left: 0px;
+		top: 0px;
+	}
+	#Label_fz {
+		left: 28px;
+		top: 17px;
+		position: absolute;
+		overflow: visible;
+		width: 111px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 16px;
+		color: rgba(251,251,251,1);
+	}
+	#Help_f {
+		left: 915px;
+		top: 148px;
+		position: absolute;
+		overflow: visible;
+		width: 91px;
+		white-space: nowrap;
+		line-height: 42px;
+		margin-top: -1px;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 40px;
+		color: rgba(1,109,116,1);
+	}
+	#Footer_Comp {
+		position: absolute;
+		width: 1920px;
+		height: 793px;
+		left: 0px;
+		top: 2541px;
+		overflow: visible;
+	}
+	#Background_STYLESTYLE3_f {
+		fill: url(#Background_STYLESTYLE3_f);
+	}
+	.Background_STYLESTYLE3_f {
+		position: absolute;
+		overflow: visible;
+		width: 1920px;
+		height: 708px;
+		left: 0px;
+		top: 0px;
+	}
+	#Description_STYLESTYLE3TAGP {
+		left: 201px;
+		top: 267px;
+		position: absolute;
+		overflow: visible;
+		width: 611px;
+		height: 91px;
+		line-height: 30px;
+		margin-top: -3px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(247,247,247,1);
+	}
+	#Company_STYLESTYLE3TAGH4_f {
+		left: 201px;
+		top: 187px;
+		position: absolute;
+		overflow: visible;
+		width: 192px;
+		white-space: nowrap;
+		line-height: 58px;
+		margin-top: -9px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 40px;
+		color: rgba(247,247,247,1);
+	}
+	#Circle_Button_SIZEMEDIUMSTATED_f {
+		position: absolute;
+		width: 67px;
+		height: 67px;
+		left: 290px;
+		top: 408px;
+		overflow: visible;
+	}
+	#METADATA_f {
+		display: none;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_SIZEMEDIUMSTATEDEFAULTSTY_f {
+		fill: transparent;
+		stroke: rgba(247,247,247,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Area_SIZEMEDIUMSTATEDEFAULTSTY_f {
+		position: absolute;
+		overflow: visible;
+		width: 67px;
+		height: 67px;
+		left: 0px;
+		top: 0px;
+	}
+	#Instagram_f {
+		position: absolute;
+		width: 27.084px;
+		height: 27.084px;
+		left: 19.996px;
+		top: 19.997px;
+		overflow: visible;
+	}
+	#Path_3_ga {
+		fill: rgba(247,247,247,1);
+	}
+	.Path_3_ga {
+		overflow: visible;
+		position: absolute;
+		width: 27.084px;
+		height: 27.084px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Circle_Button_SIZEMEDIUMSTATED_gb {
+		position: absolute;
+		width: 67px;
+		height: 67px;
+		left: 201px;
+		top: 408.001px;
+		overflow: visible;
+	}
+	#METADATA_gc {
+		display: none;
+		left: 0px;
+		top: -0.001px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_SIZEMEDIUMSTATEDEFAULTSTY_gd {
+		fill: transparent;
+		stroke: rgba(247,247,247,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Area_SIZEMEDIUMSTATEDEFAULTSTY_gd {
+		position: absolute;
+		overflow: visible;
+		width: 67px;
+		height: 67px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_ICONfeatherfacebookSIZEME_ge {
+		position: absolute;
+		width: 28px;
+		height: 28.405px;
+		left: 20px;
+		top: 19px;
+		overflow: visible;
+	}
+	#METADATA_gf {
+		display: none;
+		left: 0px;
+		top: -0.001px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_ICONfeatherfacebookSIZEME_gg {
+		opacity: 0;
+		fill: transparent;
+		stroke: rgba(253,73,198,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Area_ICONfeatherfacebookSIZEME_gg {
+		position: absolute;
+		overflow: visible;
+		width: 28px;
+		height: 28px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_gh {
+		position: absolute;
+		width: 15.461px;
+		height: 28.111px;
+		left: 5.999px;
+		top: 0.294px;
+		overflow: visible;
+	}
+	#cd31758e-db74-42ca-84e2-b339be_gi {
+		fill: transparent;
+		stroke: rgba(247,247,247,1);
+		stroke-width: 2px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.cd31758e-db74-42ca-84e2-b339be_gi {
+		overflow: visible;
+		position: absolute;
+		width: 17.461px;
+		height: 30.111px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Product_STYLESTYLE3TAGUI_L {
+		left: 1498px;
+		top: 360px;
+		position: absolute;
+		overflow: visible;
+		width: 62px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Product_STYLESTYLE3TAGUI_L_gk {
+		left: 1498px;
+		top: 293px;
+		position: absolute;
+		overflow: visible;
+		width: 94px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Background_STYLESTYLE2_gl {
+		fill: rgba(27,28,30,1);
+	}
+	.Background_STYLESTYLE2_gl {
+		position: absolute;
+		overflow: visible;
+		width: 1920px;
+		height: 85px;
+		left: 0px;
+		top: 708px;
+	}
+	#Terms_of_Service_STYLESTYLE2TA {
+		left: 1550px;
+		top: 740px;
+		position: absolute;
+		overflow: visible;
+		width: 177px;
+		white-space: nowrap;
+		line-height: 26px;
+		margin-top: -4px;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+		letter-spacing: 0.4px;
+	}
+	#Privacy_Policy_STYLESTYLE2TAGU {
+		left: 1032px;
+		top: 740px;
+		position: absolute;
+		overflow: visible;
+		width: 127px;
+		white-space: nowrap;
+		line-height: 26px;
+		margin-top: -4px;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+		letter-spacing: 0.4px;
+	}
+	#Copyright_STYLESTYLE2TAGUI_S {
+		left: 201px;
+		top: 739px;
+		position: absolute;
+		overflow: visible;
+		width: 269px;
+		white-space: nowrap;
+		line-height: 26px;
+		margin-top: -4px;
+		text-align: center;
+		font-family: Noto Sans;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+		letter-spacing: 0.4px;
+	}
+	#Terms_of_Service_STYLESTYLE2TA_gp {
+		left: 1266px;
+		top: 740px;
+		position: absolute;
+		overflow: visible;
+		width: 177px;
+		white-space: nowrap;
+		line-height: 26px;
+		margin-top: -4px;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+		letter-spacing: 0.4px;
+	}
+	#Service_STYLESTYLE3TAGUI_L {
+		left: 1032px;
+		top: 428px;
+		position: absolute;
+		overflow: visible;
+		width: 97px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Service_STYLESTYLE3TAGUI_L_gr {
+		left: 1032px;
+		top: 360px;
+		position: absolute;
+		overflow: visible;
+		width: 126px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Service_STYLESTYLE3TAGUI_L_gs {
+		left: 1032px;
+		top: 293px;
+		position: absolute;
+		overflow: visible;
+		width: 45px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Services_STYLESTYLE3TAGH5 {
+		left: 1032px;
+		top: 199px;
+		position: absolute;
+		overflow: visible;
+		width: 52px;
+		white-space: nowrap;
+		--web-animation: fadein undefineds undefined;
+		--web-action-type: page;
+		--web-action-target: Blog.html;
+		cursor: pointer;
+		line-height: 48px;
+		margin-top: -12px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(19,194,193,1);
+	}
+	#Resource_STYLESTYLE3TAGUI_L {
+		left: 1267px;
+		top: 360px;
+		position: absolute;
+		overflow: visible;
+		width: 91px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Resource_STYLESTYLE3TAGUI_L_gv {
+		left: 1267px;
+		top: 293px;
+		position: absolute;
+		overflow: visible;
+		width: 44px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Resources_STYLESTYLE3TAGH5 {
+		left: 1266px;
+		top: 198px;
+		position: absolute;
+		overflow: visible;
+		width: 53px;
+		white-space: nowrap;
+		line-height: 47px;
+		margin-top: -11.5px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(19,194,193,1);
+	}
+	#Resources_STYLESTYLE3TAGH5_gx {
+		left: 1495px;
+		top: 198px;
+		position: absolute;
+		overflow: visible;
+		width: 103px;
+		white-space: nowrap;
+		--web-animation: fadein undefineds undefined;
+		--web-action-type: page;
+		--web-action-target: About_Us.html;
+		cursor: pointer;
+		line-height: 47px;
+		margin-top: -11.5px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(19,194,193,1);
+	}
+	#Home_Comp {
+		position: absolute;
+		width: 1920px;
+		height: 86px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Rectangle_176_g {
+		fill: url(#Rectangle_176_g);
+	}
+	.Rectangle_176_g {
+		position: absolute;
+		overflow: visible;
+		width: 1920px;
+		height: 86px;
+		left: 0px;
+		top: 0px;
+	}
+	#Group_35 {
+		position: absolute;
+		width: 370px;
+		height: 27px;
+		left: 775px;
+		top: 29px;
+		overflow: visible;
+	}
+	#Label_g {
+		left: 273px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 98px;
+		white-space: nowrap;
+		--web-animation: fadein undefineds undefined;
+		--web-action-type: page;
+		--web-action-target: About_Us.html;
+		cursor: pointer;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 22px;
+		color: rgba(251,251,251,1);
+	}
+	#Label_ha {
+		left: 113px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 111px;
+		white-space: nowrap;
+		--web-animation: fadein undefineds undefined;
+		--web-action-type: page;
+		--web-action-target: Sports_Bet_.html;
+		cursor: pointer;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 22px;
+		color: rgba(251,251,251,1);
+	}
+	#Label_hb {
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 64px;
+		white-space: nowrap;
+		--web-animation: fadein undefineds undefined;
+		--web-action-type: page;
+		--web-action-target: Home.html;
+		cursor: pointer;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 22px;
+		color: rgba(251,251,251,1);
+	}
+	#Action_Button_g {
+		position: absolute;
+		width: 150px;
+		height: 45px;
+		left: 1570px;
+		top: 21px;
+		overflow: visible;
+	}
+	#Rectangle_219_g {
+		fill: transparent;
+		stroke: rgba(251,251,251,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_219_g {
+		position: absolute;
+		overflow: visible;
+		width: 150px;
+		height: 45px;
+		left: 0px;
+		top: 0px;
+	}
+	#Label_hc {
+		left: 25px;
+		top: 12px;
+		position: absolute;
+		overflow: visible;
+		width: 101px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		color: rgba(251,251,251,1);
+	}
+	#Group_538 {
+		position: absolute;
+		width: 83.653px;
+		height: 35.262px;
+		left: 200px;
+		top: 24.977px;
+		overflow: visible;
+		--web-animation: fadein undefineds undefined;
+		--web-action-type: page;
+		--web-action-target: Home.html;
+		cursor: pointer;
+	}
+	#Group_487 {
+		position: absolute;
+		width: 18.861px;
+		height: 35.175px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Group_486 {
+		position: absolute;
+		width: 18.861px;
+		height: 35.175px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Group_489 {
+		position: absolute;
+		width: 8.128px;
+		height: 8.127px;
+		left: 10.331px;
+		top: 14.667px;
+		overflow: visible;
+	}
+	#Group_488 {
+		position: absolute;
+		width: 8.128px;
+		height: 8.127px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Union_1 {
+		fill: rgba(251,251,251,1);
+		stroke: rgba(0,0,0,0);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 10;
+		shape-rendering: auto;
+	}
+	.Union_1 {
+		overflow: visible;
+		position: absolute;
+		width: 34.871px;
+		height: 36.247px;
+		left: 50.708px;
+		top: 0.015px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Group_493 {
+		position: absolute;
+		width: 13.006px;
+		height: 12.658px;
+		left: 50.709px;
+		top: 22.603px;
+		overflow: visible;
+	}
+	#Group_492 {
+		position: absolute;
+		width: 13.006px;
+		height: 12.658px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Group_497 {
+		position: absolute;
+		width: 23.579px;
+		height: 35.214px;
+		left: 24.102px;
+		top: 0.015px;
+		overflow: visible;
+	}
+	#Group_496 {
+		position: absolute;
+		width: 23.578px;
+		height: 35.214px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+</style>
+
+
+<body>
+<div id="Help">
+	<svg class="Background_STYLESTYLE2">
+		<rect id="Background_STYLESTYLE2" rx="0" ry="0" x="0" y="0" width="1920" height="2245">
+		</rect>
+	</svg>
+	<div id="METADATA">
+		<span>{"config":{},"nodeName":"We’re Hiring","type":"Group","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.711Z"}</span>
+	</div>
+	<div id="METADATA_bc">
+		<span>{"config":{},"nodeName":"Hero","type":"Group","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.989Z"}</span>
+	</div>
+	<div id="METADATA_ba">
+		<span>{"config":{},"nodeName":"Meet Our Leaders","type":"Group","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.946Z"}</span>
+	</div>
+	<div id="METADATA_bc">
+		<span>{"config":{},"nodeName":"Hero","type":"Group","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.989Z"}</span>
+	</div>
+	<div id="METADATA_bc">
+		<span>{"config":{},"nodeName":"Hero","type":"Group","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.989Z"}</span>
+	</div>
+	<div id="METADATA_bd">
+		<span>{"config":{},"nodeName":"Header","type":"Group","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:18.107Z"}</span>
+	</div>
+	<div id="METADATA_bl">
+		<span>{"config":{},"type":"TabItem","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:18.049Z","nodeName":"Tab Item [STATE=DEFAULT]"}</span>
+	</div>
+	<div id="PLACEHOLDER_Tab_Item">
+		<div id="METADATA_bf">
+			<span>{"config":{},"nodeName":"[PLACEHOLDER] Tab Item","type":"Group","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.997Z"}</span>
+		</div>
+		<div id="Area">
+			<div id="METADATA_bg">
+				<span>{"config":{},"nodeName":"Area","type":"Group","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.995Z"}</span>
+			</div>
+			<svg class="Placement_Area">
+				<rect id="Placement_Area" rx="0" ry="0" x="0" y="0" width="59" height="59">
+				</rect>
+			</svg>
+			<svg class="Bar">
+				<rect id="Bar" rx="1" ry="1" x="0" y="0" width="59" height="2">
+				</rect>
+			</svg>
+		</div>
+		<div id="Label">
+			<span>Label</span>
+		</div>
+	</div>
+	<div id="METADATA_bh">
+		<span>{"config":{},"type":"TabItem","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:18.009Z","nodeName":"Tab Item [STATE=DEFAULT]"}</span>
+	</div>
+	<div id="METADATA_bi">
+		<span>{"config":{"STATE":"ACTIVE"},"type":"TabItem","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:18.016Z","nodeName":"Tab Item [STATE=ACTIVE]"}</span>
+	</div>
+	<div id="METADATA_bj">
+		<span>{"config":{},"type":"TabItem","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:18.026Z","nodeName":"Tab Item [STATE=DEFAULT]"}</span>
+	</div>
+	<div id="METADATA_bk">
+		<span>{"config":{},"type":"TabItem","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:18.035Z","nodeName":"Tab Item [STATE=DEFAULT]"}</span>
+	</div>
+	<div id="METADATA_bl">
+		<span>{"config":{},"type":"TabItem","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:18.049Z","nodeName":"Tab Item [STATE=DEFAULT]"}</span>
+	</div>
+	<div id="METADATA_bm">
+		<span>{"config":{},"type":"Button","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:18.082Z","nodeName":"Button [DISPLAY_ELEMENTS=Label][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}</span>
+	</div>
+	<div id="Icon_DISPLAY_ELEMENTSLabelICON">
+		<div id="METADATA_bo">
+			<span>{"config":{"STATE":"DEFAULT"},"type":"Icon","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:18.077Z","nodeName":"Icon [DISPLAY_ELEMENTS=Label][ICON=feather/heart][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE1]"}</span>
+		</div>
+		<svg class="Area_DISPLAY_ELEMENTSLabelICON">
+			<rect id="Area_DISPLAY_ELEMENTSLabelICON" rx="0" ry="0" x="0" y="0" width="29" height="28">
+			</rect>
+		</svg>
+		<div id="Icon">
+			<svg class="n_d5716f2-9556-4a4f-ac0d-52d8d" viewBox="1.482 2.869 28.111 24.519">
+				<path id="n_d5716f2-9556-4a4f-ac0d-52d8d" d="M 27.42589569091797 5.036378860473633 C 24.53746223449707 2.14654016494751 19.85131072998047 2.14654016494751 16.9628791809082 5.036378860473633 L 15.53763771057129 6.461621284484863 L 14.11098957061768 5.036378860473633 C 11.22255611419678 2.14654016494751 6.537813186645508 2.14654016494751 3.649379014968872 5.036378860473633 C 0.7595403790473938 7.924812793731689 0.7595403790473938 12.60955715179443 3.649379014968872 15.49939441680908 L 5.074621200561523 16.92463684082031 L 15.53763771057129 27.38765335083008 L 26.00065422058105 16.92463684082031 L 27.42589569091797 15.49939441680908 C 30.31573486328125 12.61096286773682 30.31573486328125 7.924812793731689 27.42589569091797 5.036378860473633 Z">
+				</path>
+			</svg>
+		</div>
+	</div>
+	<div id="METADATA_bs">
+		<span>{"config":{"STYLE":"STYLE3"},"type":"Button","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:18.105Z","nodeName":"Button [DISPLAY_ELEMENTS=Label][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}</span>
+	</div>
+	<div id="Icon_DISPLAY_ELEMENTSLabelICON_bt">
+		<div id="METADATA_bu">
+			<span>{"config":{"STATE":"DEFAULT","STYLE":"STYLE3"},"type":"Icon","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:18.098Z","nodeName":"Icon [DISPLAY_ELEMENTS=Label][ICON=feather/heart][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}</span>
+		</div>
+		<svg class="Area_DISPLAY_ELEMENTSLabelICON_bv">
+			<rect id="Area_DISPLAY_ELEMENTSLabelICON_bv" rx="0" ry="0" x="0" y="0" width="28" height="28">
+			</rect>
+		</svg>
+		<div id="Icon_bw">
+			<svg class="f53121af-58d2-4146-b7f4-4df1b3" viewBox="1.482 2.869 28.111 24.519">
+				<path id="f53121af-58d2-4146-b7f4-4df1b3" d="M 27.42589569091797 5.036378860473633 C 24.53746223449707 2.14654016494751 19.85131072998047 2.14654016494751 16.9628791809082 5.036378860473633 L 15.53763771057129 6.461621284484863 L 14.11098957061768 5.036378860473633 C 11.22255611419678 2.14654016494751 6.537813186645508 2.14654016494751 3.649379014968872 5.036378860473633 C 0.7595403790473938 7.924812793731689 0.7595403790473938 12.60955715179443 3.649379014968872 15.49939441680908 L 5.074621200561523 16.92463684082031 L 15.53763771057129 27.38765335083008 L 26.00065422058105 16.92463684082031 L 27.42589569091797 15.49939441680908 C 30.31573486328125 12.61096286773682 30.31573486328125 7.924812793731689 27.42589569091797 5.036378860473633 Z">
+				</path>
+			</svg>
+		</div>
+	</div>
+	<div id="Description_STYLESTYLE2">
+		<span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+	</div>
+	<div id="Description_STYLESTYLE2_bz">
+		<span>FAQ’s</span>
+	</div>
+	<div id="Dropdown_FAQs" class="Dropdown_FAQs">
+		<div id="Dropdown_FAQs_b">
+			<svg class="Background_STYLESTYLE2_ca">
+				<rect id="Background_STYLESTYLE2_ca" rx="20" ry="20" x="0" y="0" width="1638" height="130">
+				</rect>
+			</svg>
+			<div id="Text_Body">
+				<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+			</div>
+			<svg class="Background_STYLESTYLE2_ca">
+				<rect id="Background_STYLESTYLE2_ca" rx="20" ry="20" x="0" y="0" width="1638" height="130">
+				</rect>
+			</svg>
+			<div id="Icon_b">
+				<div id="METADATA_b">
+					<span>{"config":{"ICON":"feather/alert-circle"},"type":"Icon","nodeName":"Icon","children":["160761b4-b450-4f4c-8701-1c33377d6d7d","6bd1de52-4381-42ba-b473-a74a40a9809a","cf16e02f-94d5-4382-8a56-e8b4dfcbc523","6265eabc-7010-4a32-95bb-dae732f9f947"],"theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-18T23:10:12.469Z"}</span>
+				</div>
+				<svg class="Area_b">
+					<rect id="Area_b" rx="0" ry="0" x="0" y="0" width="50" height="50">
+					</rect>
+				</svg>
+				<div id="Icon_ca">
+					<svg class="n_941b066-8b8e-400d-8760-c9eb1">
+						<ellipse id="n_941b066-8b8e-400d-8760-c9eb1" rx="25" ry="25" cx="25" cy="25">
+						</ellipse>
+					</svg>
+					<svg class="n_273762e-cdd5-4883-90ce-53af6" viewBox="0 0 4 10">
+						<path id="n_273762e-cdd5-4883-90ce-53af6" d="M 0 0 L 0 10">
+						</path>
+					</svg>
+					<svg class="n_e35af02-1991-45c4-947e-1a9d9" viewBox="0 0 0.024 4">
+						<path id="n_e35af02-1991-45c4-947e-1a9d9" d="M 0 0 L 0.02400000020861626 0">
+						</path>
+					</svg>
+				</div>
+			</div>
+			<div id="Text_FAQ">
+				<span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur?</span>
+			</div>
+			<div id="Arrow">
+				<svg class="Path_36" viewBox="2 2 28.966 20.872">
+					<path id="Path_36" d="M 16.48280906677246 22.87232780456543 L 2.000000238418579 6.790369987487793 L 6.314027786254883 2.000000238418579 L 16.48280906677246 13.29158687591553 L 26.65158843994141 2.000000238418579 L 30.96561622619629 6.790369987487793 L 16.48280906677246 22.87232780456543 Z">
+					</path>
+				</svg>
+				<svg class="Rectangle_1467">
+					<rect id="Rectangle_1467" rx="0" ry="0" x="0" y="0" width="30.048" height="30">
+					</rect>
+				</svg>
+			</div>
+		</div>
+		<div id="Dropdown_FAQs_cg">
+			<svg class="Background_STYLESTYLE2_cj">
+				<rect id="Background_STYLESTYLE2_cj" rx="20" ry="20" x="0" y="0" width="1638" height="130">
+				</rect>
+			</svg>
+			<div id="Text_Body_ci">
+				<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+			</div>
+			<svg class="Background_STYLESTYLE2_cj">
+				<rect id="Background_STYLESTYLE2_cj" rx="20" ry="20" x="0" y="0" width="1638" height="130">
+				</rect>
+			</svg>
+			<div id="Icon_ck">
+				<div id="METADATA_cl">
+					<span>{"config":{"ICON":"feather/alert-circle"},"type":"Icon","nodeName":"Icon","children":["160761b4-b450-4f4c-8701-1c33377d6d7d","6bd1de52-4381-42ba-b473-a74a40a9809a","cf16e02f-94d5-4382-8a56-e8b4dfcbc523","6265eabc-7010-4a32-95bb-dae732f9f947"],"theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-18T23:10:12.469Z"}</span>
+				</div>
+				<svg class="Area_cm">
+					<rect id="Area_cm" rx="0" ry="0" x="0" y="0" width="50" height="50">
+					</rect>
+				</svg>
+				<div id="Icon_cn">
+					<svg class="n_941b066-8b8e-400d-8760-c9eb1_co">
+						<ellipse id="n_941b066-8b8e-400d-8760-c9eb1_co" rx="25" ry="25" cx="25" cy="25">
+						</ellipse>
+					</svg>
+					<svg class="n_273762e-cdd5-4883-90ce-53af6_cp" viewBox="0 0 4 10">
+						<path id="n_273762e-cdd5-4883-90ce-53af6_cp" d="M 0 0 L 0 10">
+						</path>
+					</svg>
+					<svg class="n_e35af02-1991-45c4-947e-1a9d9_cq" viewBox="0 0 0.024 4">
+						<path id="n_e35af02-1991-45c4-947e-1a9d9_cq" d="M 0 0 L 0.02400000020861626 0">
+						</path>
+					</svg>
+				</div>
+			</div>
+			<div id="Text_FAQ_cr">
+				<span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur?</span>
+			</div>
+			<div id="Arrow_cs">
+				<svg class="Path_36_ct" viewBox="2 2 28.966 20.872">
+					<path id="Path_36_ct" d="M 16.48280906677246 22.87232780456543 L 2.000000238418579 6.790369987487793 L 6.314027786254883 2.000000238418579 L 16.48280906677246 13.29158687591553 L 26.65158843994141 2.000000238418579 L 30.96561622619629 6.790369987487793 L 16.48280906677246 22.87232780456543 Z">
+					</path>
+				</svg>
+				<svg class="Rectangle_1467_cu">
+					<rect id="Rectangle_1467_cu" rx="0" ry="0" x="0" y="0" width="30.048" height="30">
+					</rect>
+				</svg>
+			</div>
+		</div>
+		<div id="Dropdown_FAQs_cv">
+			<svg class="Background_STYLESTYLE2_cy">
+				<rect id="Background_STYLESTYLE2_cy" rx="20" ry="20" x="0" y="0" width="1638" height="130">
+				</rect>
+			</svg>
+			<div id="Text_Body_cx">
+				<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+			</div>
+			<svg class="Background_STYLESTYLE2_cy">
+				<rect id="Background_STYLESTYLE2_cy" rx="20" ry="20" x="0" y="0" width="1638" height="130">
+				</rect>
+			</svg>
+			<div id="Icon_cz">
+				<div id="METADATA_c">
+					<span>{"config":{"ICON":"feather/alert-circle"},"type":"Icon","nodeName":"Icon","children":["160761b4-b450-4f4c-8701-1c33377d6d7d","6bd1de52-4381-42ba-b473-a74a40a9809a","cf16e02f-94d5-4382-8a56-e8b4dfcbc523","6265eabc-7010-4a32-95bb-dae732f9f947"],"theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-18T23:10:12.469Z"}</span>
+				</div>
+				<svg class="Area_c">
+					<rect id="Area_c" rx="0" ry="0" x="0" y="0" width="50" height="50">
+					</rect>
+				</svg>
+				<div id="Icon_c">
+					<svg class="n_941b066-8b8e-400d-8760-c9eb1_c">
+						<ellipse id="n_941b066-8b8e-400d-8760-c9eb1_c" rx="25" ry="25" cx="25" cy="25">
+						</ellipse>
+					</svg>
+					<svg class="n_273762e-cdd5-4883-90ce-53af6_c" viewBox="0 0 4 10">
+						<path id="n_273762e-cdd5-4883-90ce-53af6_c" d="M 0 0 L 0 10">
+						</path>
+					</svg>
+					<svg class="n_e35af02-1991-45c4-947e-1a9d9_c" viewBox="0 0 0.024 4">
+						<path id="n_e35af02-1991-45c4-947e-1a9d9_c" d="M 0 0 L 0.02400000020861626 0">
+						</path>
+					</svg>
+				</div>
+			</div>
+			<div id="Text_FAQ_c">
+				<span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur?</span>
+			</div>
+			<div id="Arrow_c">
+				<svg class="Path_36_c" viewBox="2 2 28.966 20.872">
+					<path id="Path_36_c" d="M 16.48280906677246 22.87232780456543 L 2.000000238418579 6.790369987487793 L 6.314027786254883 2.000000238418579 L 16.48280906677246 13.29158687591553 L 26.65158843994141 2.000000238418579 L 30.96561622619629 6.790369987487793 L 16.48280906677246 22.87232780456543 Z">
+					</path>
+				</svg>
+				<svg class="Rectangle_1467_c">
+					<rect id="Rectangle_1467_c" rx="0" ry="0" x="0" y="0" width="30.048" height="30">
+					</rect>
+				</svg>
+			</div>
+		</div>
+		<div id="Dropdown_FAQs_da">
+			<svg class="Background_STYLESTYLE2_dd">
+				<rect id="Background_STYLESTYLE2_dd" rx="20" ry="20" x="0" y="0" width="1638" height="130">
+				</rect>
+			</svg>
+			<div id="Text_Body_dc">
+				<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+			</div>
+			<svg class="Background_STYLESTYLE2_dd">
+				<rect id="Background_STYLESTYLE2_dd" rx="20" ry="20" x="0" y="0" width="1638" height="130">
+				</rect>
+			</svg>
+			<div id="Icon_de">
+				<div id="METADATA_df">
+					<span>{"config":{"ICON":"feather/alert-circle"},"type":"Icon","nodeName":"Icon","children":["160761b4-b450-4f4c-8701-1c33377d6d7d","6bd1de52-4381-42ba-b473-a74a40a9809a","cf16e02f-94d5-4382-8a56-e8b4dfcbc523","6265eabc-7010-4a32-95bb-dae732f9f947"],"theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-18T23:10:12.469Z"}</span>
+				</div>
+				<svg class="Area_dg">
+					<rect id="Area_dg" rx="0" ry="0" x="0" y="0" width="50" height="50">
+					</rect>
+				</svg>
+				<div id="Icon_dh">
+					<svg class="n_941b066-8b8e-400d-8760-c9eb1_di">
+						<ellipse id="n_941b066-8b8e-400d-8760-c9eb1_di" rx="25" ry="25" cx="25" cy="25">
+						</ellipse>
+					</svg>
+					<svg class="n_273762e-cdd5-4883-90ce-53af6_dj" viewBox="0 0 4 10">
+						<path id="n_273762e-cdd5-4883-90ce-53af6_dj" d="M 0 0 L 0 10">
+						</path>
+					</svg>
+					<svg class="n_e35af02-1991-45c4-947e-1a9d9_dk" viewBox="0 0 0.024 4">
+						<path id="n_e35af02-1991-45c4-947e-1a9d9_dk" d="M 0 0 L 0.02400000020861626 0">
+						</path>
+					</svg>
+				</div>
+			</div>
+			<div id="Text_FAQ_dl">
+				<span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur?</span>
+			</div>
+			<div id="Arrow_dm">
+				<svg class="Path_36_dn" viewBox="2 2 28.966 20.872">
+					<path id="Path_36_dn" d="M 16.48280906677246 22.87232780456543 L 2.000000238418579 6.790369987487793 L 6.314027786254883 2.000000238418579 L 16.48280906677246 13.29158687591553 L 26.65158843994141 2.000000238418579 L 30.96561622619629 6.790369987487793 L 16.48280906677246 22.87232780456543 Z">
+					</path>
+				</svg>
+				<svg class="Rectangle_1467_do">
+					<rect id="Rectangle_1467_do" rx="0" ry="0" x="0" y="0" width="30.048" height="30">
+					</rect>
+				</svg>
+			</div>
+		</div>
+		<div id="Dropdown_FAQs_dp">
+			<svg class="Background_STYLESTYLE2_ds">
+				<rect id="Background_STYLESTYLE2_ds" rx="20" ry="20" x="0" y="0" width="1638" height="130">
+				</rect>
+			</svg>
+			<div id="Text_Body_dr">
+				<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+			</div>
+			<svg class="Background_STYLESTYLE2_ds">
+				<rect id="Background_STYLESTYLE2_ds" rx="20" ry="20" x="0" y="0" width="1638" height="130">
+				</rect>
+			</svg>
+			<div id="Icon_dt">
+				<div id="METADATA_du">
+					<span>{"config":{"ICON":"feather/alert-circle"},"type":"Icon","nodeName":"Icon","children":["160761b4-b450-4f4c-8701-1c33377d6d7d","6bd1de52-4381-42ba-b473-a74a40a9809a","cf16e02f-94d5-4382-8a56-e8b4dfcbc523","6265eabc-7010-4a32-95bb-dae732f9f947"],"theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-18T23:10:12.469Z"}</span>
+				</div>
+				<svg class="Area_dv">
+					<rect id="Area_dv" rx="0" ry="0" x="0" y="0" width="50" height="50">
+					</rect>
+				</svg>
+				<div id="Icon_dw">
+					<svg class="n_941b066-8b8e-400d-8760-c9eb1_dx">
+						<ellipse id="n_941b066-8b8e-400d-8760-c9eb1_dx" rx="25" ry="25" cx="25" cy="25">
+						</ellipse>
+					</svg>
+					<svg class="n_273762e-cdd5-4883-90ce-53af6_dy" viewBox="0 0 4 10">
+						<path id="n_273762e-cdd5-4883-90ce-53af6_dy" d="M 0 0 L 0 10">
+						</path>
+					</svg>
+					<svg class="n_e35af02-1991-45c4-947e-1a9d9_dz" viewBox="0 0 0.024 4">
+						<path id="n_e35af02-1991-45c4-947e-1a9d9_dz" d="M 0 0 L 0.02400000020861626 0">
+						</path>
+					</svg>
+				</div>
+			</div>
+			<div id="Text_FAQ_d">
+				<span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur?</span>
+			</div>
+			<div id="Arrow_d">
+				<svg class="Path_36_d" viewBox="2 2 28.966 20.872">
+					<path id="Path_36_d" d="M 16.48280906677246 22.87232780456543 L 2.000000238418579 6.790369987487793 L 6.314027786254883 2.000000238418579 L 16.48280906677246 13.29158687591553 L 26.65158843994141 2.000000238418579 L 30.96561622619629 6.790369987487793 L 16.48280906677246 22.87232780456543 Z">
+					</path>
+				</svg>
+				<svg class="Rectangle_1467_d">
+					<rect id="Rectangle_1467_d" rx="0" ry="0" x="0" y="0" width="30.048" height="30">
+					</rect>
+				</svg>
+			</div>
+		</div>
+		<div id="Dropdown_FAQs_d">
+			<svg class="Background_STYLESTYLE2_ea">
+				<rect id="Background_STYLESTYLE2_ea" rx="20" ry="20" x="0" y="0" width="1638" height="130">
+				</rect>
+			</svg>
+			<div id="Text_Body_d">
+				<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+			</div>
+			<svg class="Background_STYLESTYLE2_ea">
+				<rect id="Background_STYLESTYLE2_ea" rx="20" ry="20" x="0" y="0" width="1638" height="130">
+				</rect>
+			</svg>
+			<div id="Icon_d">
+				<div id="METADATA_d">
+					<span>{"config":{"ICON":"feather/alert-circle"},"type":"Icon","nodeName":"Icon","children":["160761b4-b450-4f4c-8701-1c33377d6d7d","6bd1de52-4381-42ba-b473-a74a40a9809a","cf16e02f-94d5-4382-8a56-e8b4dfcbc523","6265eabc-7010-4a32-95bb-dae732f9f947"],"theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-18T23:10:12.469Z"}</span>
+				</div>
+				<svg class="Area_ea">
+					<rect id="Area_ea" rx="0" ry="0" x="0" y="0" width="50" height="50">
+					</rect>
+				</svg>
+				<div id="Icon_eb">
+					<svg class="n_941b066-8b8e-400d-8760-c9eb1_ec">
+						<ellipse id="n_941b066-8b8e-400d-8760-c9eb1_ec" rx="25" ry="25" cx="25" cy="25">
+						</ellipse>
+					</svg>
+					<svg class="n_273762e-cdd5-4883-90ce-53af6_ed" viewBox="0 0 4 10">
+						<path id="n_273762e-cdd5-4883-90ce-53af6_ed" d="M 0 0 L 0 10">
+						</path>
+					</svg>
+					<svg class="n_e35af02-1991-45c4-947e-1a9d9_ee" viewBox="0 0 0.024 4">
+						<path id="n_e35af02-1991-45c4-947e-1a9d9_ee" d="M 0 0 L 0.02400000020861626 0">
+						</path>
+					</svg>
+				</div>
+			</div>
+			<div id="Text_FAQ_ef">
+				<span>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur?</span>
+			</div>
+			<div id="Arrow_eg">
+				<svg class="Path_36_eh" viewBox="2 2 28.966 20.872">
+					<path id="Path_36_eh" d="M 16.48280906677246 22.87232780456543 L 2.000000238418579 6.790369987487793 L 6.314027786254883 2.000000238418579 L 16.48280906677246 13.29158687591553 L 26.65158843994141 2.000000238418579 L 30.96561622619629 6.790369987487793 L 16.48280906677246 22.87232780456543 Z">
+					</path>
+				</svg>
+				<svg class="Rectangle_1467_ei">
+					<rect id="Rectangle_1467_ei" rx="0" ry="0" x="0" y="0" width="30.048" height="30">
+					</rect>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<svg class="Background_STYLESTYLE2_ek">
+		<linearGradient id="Background_STYLESTYLE2_ek" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
+			<stop offset="0" stop-color="#016d74" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#01373a" stop-opacity="1"></stop>
+		</linearGradient>
+		<rect id="Background_STYLESTYLE2_ek" rx="24" ry="24" x="0" y="0" width="1639" height="949">
+		</rect>
+	</svg>
+	<div id="Company_STYLESTYLE3TAGH4">
+		<span>Have a question?<br/>Let’s get in touch with us!</span>
+	</div>
+	<div id="Company_STYLESTYLE3TAGH4_em">
+		<span>Contact Us</span>
+	</div>
+	<div id="Value">
+		<span>Name</span>
+	</div>
+	<div id="Value_eo">
+		<span>Email</span>
+	</div>
+	<div id="Value_ep">
+		<span>Message</span>
+	</div>
+	<div id="Value_eq">
+		<span>Please enter your full name</span>
+	</div>
+	<div id="Value_er">
+		<span>user@gmail.com</span>
+	</div>
+	<svg class="Line_15" viewBox="0 0 551 1">
+		<path id="Line_15" d="M 0 0 L 551 0">
+		</path>
+	</svg>
+	<svg class="Line_16" viewBox="0 0 551 1">
+		<path id="Line_16" d="M 0 0 L 551 0">
+		</path>
+	</svg>
+	<svg class="Line_17" viewBox="0 0 551 1">
+		<path id="Line_17" d="M 0 0 L 551 0">
+		</path>
+	</svg>
+	<div id="Group_469">
+		<div id="Write_your_message_here">
+			<span>Write your message here</span>
+		</div>
+	</div>
+	<img id="Background_STYLESTYLE2_ex" src="{% static 'img/Background_STYLESTYLE2_ex.png' %}" srcset="{% static 'img/Background_STYLESTYLE2_ex.png' %} 1x, {% static 'img/Background_STYLESTYLE2_ex@2x.png' %} 2x">
+		
+	<svg class="Background_STYLESTYLE2_ez">
+		<linearGradient id="Background_STYLESTYLE2_ez" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
+			<stop offset="0" stop-color="#016d74" stop-opacity="1"></stop>
+			<stop offset="1" stop-color="#01373a" stop-opacity="1"></stop>
+		</linearGradient>
+		<rect id="Background_STYLESTYLE2_ez" rx="20" ry="20" x="0" y="0" width="809" height="829">
+		</rect>
+	</svg>
+	<div id="Sweet_Ice_Cream_TAGH2">
+		<span>123 Lorem St, Toronto, ON, MMM 111</span>
+	</div>
+	<div id="Sweet_Ice_Cream_TAGH2_e">
+		<span>(+1) 123 456 7890</span>
+	</div>
+	<div id="Sweet_Ice_Cream_TAGH2_fa">
+		<span>loremipsum@gmail.com</span>
+	</div>
+	<div id="Icon_e">
+		<div id="METADATA_e">
+			<span>{"config":{"ICON":"feather/map-pin"},"type":"Icon","nodeName":"Icon","children":["160761b4-b450-4f4c-8701-1c33377d6d7d","6bd1de52-4381-42ba-b473-a74a40a9809a","cf16e02f-94d5-4382-8a56-e8b4dfcbc523","6265eabc-7010-4a32-95bb-dae732f9f947"],"theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-18T22:25:58.477Z"}</span>
+		</div>
+		<svg class="Area_e">
+			<rect id="Area_e" rx="0" ry="0" x="0" y="0" width="45" height="45">
+			</rect>
+		</svg>
+		<div id="Icon_fa">
+			<svg class="n_8733921-92a9-4722-afc5-8b20e" viewBox="10.909 3.636 35.364 45">
+				<path id="n_8733921-92a9-4722-afc5-8b20e" d="M 46.27294158935547 22.04549217224121 C 46.27294158935547 36.36336517333984 28.59070205688477 48.635986328125 28.59070205688477 48.635986328125 C 28.59070205688477 48.635986328125 10.90900039672852 36.36336517333984 10.90900039672852 22.04549217224121 C 10.90900039672852 11.87831020355225 18.82570457458496 3.63599967956543 28.59070205688477 3.63599967956543 C 38.35623550415039 3.63599967956543 46.27294158935547 11.87831020355225 46.27294158935547 22.04549217224121 Z">
+				</path>
+			</svg>
+			<svg class="n_812fb84-bfb3-4532-a091-e2cb1">
+				<ellipse id="n_812fb84-bfb3-4532-a091-e2cb1" rx="7.227272987365723" ry="7.227271556854248" cx="7.227272987365723" cy="7.227271556854248">
+				</ellipse>
+			</svg>
+		</div>
+	</div>
+	<div id="Icon_fb">
+		<div id="METADATA_fa">
+			<span>{"config":{"ICON":"feather/phone"},"type":"Icon","nodeName":"Icon","children":["160761b4-b450-4f4c-8701-1c33377d6d7d","6bd1de52-4381-42ba-b473-a74a40a9809a","cf16e02f-94d5-4382-8a56-e8b4dfcbc523","6265eabc-7010-4a32-95bb-dae732f9f947"],"theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-18T22:26:19.897Z"}</span>
+		</div>
+		<svg class="Area_fb">
+			<rect id="Area_fb" rx="0" ry="0" x="0" y="0" width="45" height="45">
+			</rect>
+		</svg>
+		<div id="Icon_fc">
+			<svg class="n_3cf6acd-0a61-4c15-a2eb-903b5" viewBox="8.478 8.029 44.895 45">
+				<path id="n_3cf6acd-0a61-4c15-a2eb-903b5" d="M 53.37170791625977 41.71975708007812 L 53.37170791625977 48.49394226074219 C 53.37676620483398 49.76575469970703 52.8459587097168 50.98019409179688 51.90916061401367 51.84025573730469 C 50.97237014770508 52.69975280761719 49.71675109863281 53.12443923950195 48.45101165771484 53.01025390625 C 41.50490188598633 52.25537872314453 34.8326416015625 49.8805046081543 28.97008895874023 46.0780029296875 C 23.51632881164551 42.61075592041016 18.89196586608887 37.98531723022461 15.42650318145752 32.52907180786133 C 11.61129188537598 26.63800811767578 9.23725700378418 19.93132400512695 8.496706008911133 12.95126152038574 C 8.382558822631836 11.6890115737915 8.804285049438477 10.43632411956787 9.658420562744141 9.500324249267578 C 10.5125560760498 8.563761711120605 11.72094058990479 8.029949188232422 12.98836803436279 8.028824806213379 L 19.76015853881836 8.028824806213379 C 22.02622985839844 8.006324768066406 23.95773696899414 9.667949676513672 24.27487373352051 11.91288566589355 C 24.56108665466309 14.08076095581055 25.09077262878418 16.20926094055176 25.85494041442871 18.25788688659668 C 26.47515869140625 19.90826034545898 26.0787353515625 21.76901054382324 24.83942413330078 23.02225875854492 L 21.97281455993652 25.89044761657715 C 25.1858024597168 31.54356956481934 29.86527061462402 36.2241325378418 35.51639556884766 39.43881607055664 L 38.38300704956055 36.57119369506836 C 39.63637924194336 35.33144378662109 41.4964714050293 34.93487930297852 43.14626693725586 35.55475616455078 C 45.19416046142578 36.31975555419922 47.32190704345703 36.84962844848633 49.48902130126953 37.13594436645508 C 51.75902557373047 37.45600509643555 53.42850112915039 39.42700576782227 53.37170791625977 41.71975708007812 Z">
+				</path>
+			</svg>
+		</div>
+	</div>
+	<div id="Icon_fe">
+		<div id="METADATA_ff">
+			<span>{"config":{"ICON":"feather/smartphone"},"type":"Icon","nodeName":"Icon","children":["160761b4-b450-4f4c-8701-1c33377d6d7d","6bd1de52-4381-42ba-b473-a74a40a9809a","cf16e02f-94d5-4382-8a56-e8b4dfcbc523","6265eabc-7010-4a32-95bb-dae732f9f947"],"theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-18T22:26:33.598Z"}</span>
+		</div>
+		<svg class="Area_fg">
+			<rect id="Area_fg" rx="0" ry="0" x="0" y="0" width="45" height="45">
+			</rect>
+		</svg>
+		<div id="Icon_fh">
+			<svg class="a709d45b-18ee-4929-b759-277a57">
+				<rect id="a709d45b-18ee-4929-b759-277a57" rx="2" ry="2" x="0" y="0" width="37" height="45">
+				</rect>
+			</svg>
+			<svg class="n_3648715-3470-459e-b478-f3e78" viewBox="0 0 0.026 3">
+				<path id="n_3648715-3470-459e-b478-f3e78" d="M 0 0 L 0.0263520497828722 0">
+				</path>
+			</svg>
+		</div>
+	</div>
+	<div id="Circle_Button_SIZEMEDIUMSTATED">
+		<div id="METADATA_fl">
+			<span>{"config":{"STYLE":"STYLE3"},"type":"CircleButton","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.409Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}</span>
+		</div>
+		<svg class="Area_SIZEMEDIUMSTATEDEFAULTSTY">
+			<rect id="Area_SIZEMEDIUMSTATEDEFAULTSTY" rx="25.5" ry="25.5" x="0" y="0" width="51" height="52">
+			</rect>
+		</svg>
+		<div id="Instagram">
+			<svg class="Path_3" viewBox="0 0 20.9 20.9">
+				<path id="Path_3" d="M 10.45016193389893 1.857795000076294 C 13.23687076568604 1.857795000076294 13.58520889282227 1.857795000076294 14.63022613525391 1.973907232284546 C 15.67524147033691 1.973907232284546 16.25580787658691 2.20613169670105 16.60414505004883 2.322243690490723 C 17.06859588623047 2.554467916488647 17.41693496704102 2.786692380905151 17.7652759552002 3.135029077529907 C 18.11361312866211 3.483365297317505 18.34584045410156 3.83170223236084 18.57806587219238 4.296150684356689 C 18.69417762756348 4.644487380981445 18.9264030456543 5.225048065185547 18.9264030456543 6.270058155059814 C 18.9264030456543 7.315067291259766 19.04251670837402 7.66340446472168 19.04251670837402 10.45009613037109 C 19.04251670837402 13.23678874969482 19.04251670837402 13.58512401580811 18.9264030456543 14.63013458251953 C 18.9264030456543 15.67514324188232 18.69417572021484 16.25570678710938 18.57806587219238 16.60404205322266 C 18.34584045410156 17.06848907470703 18.11361312866211 17.41682624816895 17.76527214050293 17.76516532897949 C 17.41693496704102 18.11350059509277 17.06859588623047 18.34572601318359 16.60414505004883 18.57794952392578 C 16.25580596923828 18.69406127929688 15.67524147033691 18.92628479003906 14.63022613525391 18.92628479003906 C 13.58520889282227 18.92628479003906 13.23687076568604 19.04239845275879 10.45016193389893 19.04239845275879 C 7.663451671600342 19.04239845275879 7.315113067626953 19.04239845275879 6.270097732543945 18.92628479003906 C 5.225080966949463 18.92628479003906 4.644516468048096 18.69405937194824 4.296177387237549 18.57794952392578 C 3.831725835800171 18.34572601318359 3.483387231826782 18.11349868774414 3.135048866271973 17.76516151428223 C 2.786709785461426 17.41682624816895 2.554483890533447 17.06848907470703 2.322258234024048 16.60404014587402 C 2.206145048141479 16.25570487976074 1.97391951084137 15.67514324188232 1.97391951084137 14.63013458251953 C 1.97391951084137 13.58512401580811 1.85780656337738 13.23678874969482 1.85780656337738 10.45009613037109 C 1.85780656337738 7.663403987884521 1.85780656337738 7.315067291259766 1.97391951084137 6.270058155059814 C 1.97391951084137 5.225048065185547 2.206145048141479 4.644487380981445 2.322258234024048 4.296150684356689 C 2.554483890533447 3.831701993942261 2.786709785461426 3.483365297317505 3.135048866271973 3.135029077529907 C 3.483387231826782 2.67057991027832 3.831725835800171 2.438355684280396 4.296177387237549 2.322243690490723 C 4.644516468048096 2.206131219863892 5.225080966949463 1.973907232284546 6.270097732543945 1.973907232284546 C 7.315113067626953 1.857795000076294 7.663451671600342 1.857795000076294 10.45016193389893 1.857795000076294 M 10.45016193389893 0 C 7.663451671600342 0 7.198999881744385 0 6.153985023498535 0.1161121875047684 C 4.992855072021484 0.1161121875047684 4.296177864074707 0.3483365476131439 3.599499940872192 0.5805609226226807 C 2.902822732925415 0.8127853274345398 2.322258234024048 1.161121845245361 1.741693615913391 1.741682648658752 C 1.161129117012024 2.322243690490723 0.8127903938293457 2.902804374694824 0.580564558506012 3.599477529525757 C 0.2322258204221725 4.296150684356689 0.1161129102110863 4.992823600769043 0.1161129102110863 6.153946399688721 C 0 7.198955059051514 0 7.663403987884521 0 10.45009613037109 C 0 13.23678874969482 0 13.70123672485352 0.1161129102110863 14.74624729156494 C 0.1161129102110863 15.90736865997314 0.3483387231826782 16.60404205322266 0.580564558506012 17.30071449279785 C 0.8127903938293457 17.99738883972168 1.161129117012024 18.57794952392578 1.741693615913391 19.15851020812988 C 2.322258234024048 19.73907089233398 2.902822732925415 20.08740615844727 3.599499940872192 20.31963157653809 C 4.296177387237549 20.55185699462891 4.992855072021484 20.78407859802246 6.153985023498535 20.78407859802246 C 7.198999881744385 20.90019226074219 7.663451671600342 20.90019226074219 10.45016193389893 20.90019226074219 C 13.23687076568604 20.90019226074219 13.70132255554199 20.90019226074219 14.74633979797363 20.78407859802246 C 15.90746784210205 20.78407859802246 16.60414505004883 20.55185508728027 17.30082321166992 20.31963157653809 C 17.99750137329102 20.08740615844727 18.57806587219238 19.73907089233398 19.15863037109375 19.15851020812988 C 19.73919486999512 18.57794952392578 20.08753204345703 17.99738883972168 20.31975936889648 17.30071449279785 C 20.55198669433594 16.60404014587402 20.78420829772949 15.90736865997314 20.78420829772949 14.74624729156494 C 20.78420829772949 13.58512401580811 20.90032386779785 13.23678874969482 20.90032386779785 10.45009613037109 C 20.90032386779785 7.663403987884521 20.90032386779785 7.198955059051514 20.78420829772949 6.153946399688721 C 20.78420829772949 4.992823600769043 20.5519847869873 4.296151161193848 20.31975936889648 3.599477529525757 C 20.08753204345703 2.902804374694824 19.73919486999512 2.322243690490723 19.15863037109375 1.741682887077332 C 18.57806587219238 1.161121845245361 17.99750137329102 0.8127853870391846 17.30082321166992 0.580561101436615 C 16.60414505004883 0.3483367264270782 15.90746784210205 0.1161123141646385 14.74633979797363 0.1161123141646385 C 13.70132255554199 0 13.23687076568604 0 10.45016193389893 0 M 10.45016193389893 5.108935832977295 C 7.431226253509521 5.108935832977295 5.108967781066895 7.431180000305176 5.108967781066895 10.45009613037109 C 5.108967781066895 13.46901321411133 7.547338485717773 15.79125785827637 10.45016193389893 15.79125785827637 C 13.46909713745117 15.79125785827637 15.79135608673096 13.35290050506592 15.79135608673096 10.45009613037109 C 15.79135608673096 7.547291278839111 13.46909713745117 5.108935832977295 10.45016193389893 5.108935832977295 M 10.45016193389893 13.93346118927002 C 8.476243019104004 13.93346118927002 6.966774463653564 12.4240026473999 6.966774463653564 10.45009613037109 C 6.966774463653564 8.476189613342285 8.476243019104004 6.96673059463501 10.45016193389893 6.96673059463501 C 12.42408084869385 6.96673059463501 13.93354892730713 8.476189613342285 13.93354892730713 10.45009613037109 C 13.93354892730713 12.4240026473999 12.42408084869385 13.93346118927002 10.45016193389893 13.93346118927002 M 16.02358245849609 3.599477529525757 C 15.32690334320068 3.599477529525757 14.74633979797363 4.180038452148438 14.74633979797363 4.876711368560791 C 14.74633979797363 5.573384284973145 15.32690334320068 6.153945446014404 16.02358245849609 6.153945446014404 C 16.72025871276855 6.153945446014404 17.30082321166992 5.573384284973145 17.30082321166992 4.876711368560791 C 17.30082321166992 4.180038452148438 16.72025871276855 3.599477529525757 16.02358245849609 3.599477529525757">
+				</path>
+			</svg>
+		</div>
+	</div>
+	<div id="Circle_Button_SIZEMEDIUMSTATED_fp">
+		<div id="METADATA_fq">
+			<span>{"config":{"STYLE":"STYLE3"},"type":"CircleButton","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.446Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}</span>
+		</div>
+		<svg class="Area_SIZEMEDIUMSTATEDEFAULTSTY_fr">
+			<rect id="Area_SIZEMEDIUMSTATEDEFAULTSTY_fr" rx="26" ry="26" x="0" y="0" width="52" height="52">
+			</rect>
+		</svg>
+		<div id="Icon_ICONfeatherfacebookSIZEME">
+			<div id="METADATA_ft">
+				<span>{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/facebook"},"type":"Icon","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.443Z","nodeName":"Icon [ICON=feather/facebook][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}</span>
+			</div>
+			<svg class="Area_ICONfeatherfacebookSIZEME">
+				<rect id="Area_ICONfeatherfacebookSIZEME" rx="0" ry="0" x="0" y="0" width="22" height="22">
+				</rect>
+			</svg>
+			<div id="Icon_fv">
+				<svg class="cd31758e-db74-42ca-84e2-b339be" viewBox="7 2 11.931 21.693">
+					<path id="cd31758e-db74-42ca-84e2-b339be" d="M 18.93118667602539 2 L 15.67722797393799 2 C 12.68249988555908 2 10.25396156311035 4.428523540496826 10.25396156311035 7.423233032226562 L 10.25396156311035 10.67717266082764 L 7.000000476837158 10.67717266082764 L 7.000000476837158 15.01576042175293 L 10.25396156311035 15.01576042175293 L 10.25396156311035 23.69293212890625 L 14.59257507324219 23.69293212890625 L 14.59257507324219 15.01576042175293 L 17.84653282165527 15.01576042175293 L 18.93118667602539 10.67717266082764 L 14.59257507324219 10.67717266082764 L 14.59257507324219 7.423233032226562 C 14.59257507324219 6.824508190155029 15.07849884033203 6.338586330413818 15.67722797393799 6.338586330413818 L 18.93118667602539 6.338586330413818 L 18.93118667602539 2 Z">
+					</path>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div id="Action_Button" class="Action_Button">
+		<svg class="Rectangle_219">
+			<rect id="Rectangle_219" rx="26.5" ry="26.5" x="0" y="0" width="165" height="53">
+			</rect>
+		</svg>
+		<div id="Label_fz">
+			<span>Send Message</span>
+		</div>
+	</div>
+	<div id="Help_f">
+		<span>Help</span>
+	</div>
+	<div id="Footer_Comp" class="Footer_Comp">
+		<svg class="Background_STYLESTYLE3_f">
+			<linearGradient id="Background_STYLESTYLE3_f" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
+				<stop offset="0" stop-color="#00474f" stop-opacity="1"></stop>
+				<stop offset="1" stop-color="#000e10" stop-opacity="1"></stop>
+			</linearGradient>
+			<rect id="Background_STYLESTYLE3_f" rx="0" ry="0" x="0" y="0" width="1920" height="708">
+			</rect>
+		</svg>
+		<div id="Description_STYLESTYLE3TAGP">
+			<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+		</div>
+		<div id="Company_STYLESTYLE3TAGH4_f">
+			<span>Follow Us!</span>
+		</div>
+		<div id="Circle_Button_SIZEMEDIUMSTATED_f">
+			<div id="METADATA_f">
+				<span>{"config":{"STYLE":"STYLE3"},"type":"CircleButton","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.409Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}</span>
+			</div>
+			<svg class="Area_SIZEMEDIUMSTATEDEFAULTSTY_f">
+				<rect id="Area_SIZEMEDIUMSTATEDEFAULTSTY_f" rx="33.5" ry="33.5" x="0" y="0" width="67" height="67">
+				</rect>
+			</svg>
+			<div id="Instagram_f">
+				<svg class="Path_3_ga" viewBox="0 0 27.084 27.084">
+					<path id="Path_3_ga" d="M 13.54199314117432 2.40746545791626 C 17.15319061279297 2.40746545791626 17.60458946228027 2.40746545791626 18.95878982543945 2.557932138442993 C 20.31298828125 2.557932138442993 21.06532287597656 2.85886549949646 21.51672172546387 3.009331703186035 C 22.11858749389648 3.310264825820923 22.56998634338379 3.61119818687439 23.02138900756836 4.06259822845459 C 23.47278785705566 4.513997554779053 23.77372169494629 4.965397834777832 24.07465362548828 5.567263603210449 C 24.22512054443359 6.01866340637207 24.52605247497559 6.770996570587158 24.52605247497559 8.12519645690918 C 24.52605247497559 9.479394912719727 24.67652130126953 9.930795669555664 24.67652130126953 13.54199314117432 C 24.67652130126953 17.15319061279297 24.67652130126953 17.60458946228027 24.52605247497559 18.95878982543945 C 24.52605247497559 20.31298828125 24.22511863708496 21.06532287597656 24.07465362548828 21.51672172546387 C 23.77372169494629 22.11858749389648 23.47278594970703 22.56998634338379 23.02138519287109 23.02138900756836 C 22.56998634338379 23.47278785705566 22.11858558654785 23.77372169494629 21.51671981811523 24.07465362548828 C 21.06532096862793 24.22512054443359 20.31298828125 24.52605247497559 18.95878982543945 24.52605247497559 C 17.60458946228027 24.52605247497559 17.15319061279297 24.67652130126953 13.54199314117432 24.67652130126953 C 9.930794715881348 24.67652130126953 9.479394912719727 24.67652130126953 8.12519645690918 24.52605247497559 C 6.770996570587158 24.52605247497559 6.01866340637207 24.22511863708496 5.567263603210449 24.07465362548828 C 4.965397357940674 23.77372169494629 4.513997554779053 23.47278594970703 4.06259822845459 23.02138519287109 C 3.61119818687439 22.56998634338379 3.310264825820923 22.11858558654785 3.009331703186035 21.51671981811523 C 2.858865022659302 21.06532096862793 2.557932138442993 20.31298828125 2.557932138442993 18.95878982543945 C 2.557932138442993 17.60458946228027 2.40746545791626 17.15319061279297 2.40746545791626 13.54199314117432 C 2.40746545791626 9.930794715881348 2.40746545791626 9.479394912719727 2.557932138442993 8.12519645690918 C 2.557932138442993 6.770996570587158 2.858865022659302 6.01866340637207 3.009331703186035 5.567263603210449 C 3.310264825820923 4.965397357940674 3.61119818687439 4.513997554779053 4.06259822845459 4.06259822845459 C 4.513997554779053 3.460731267929077 4.965397357940674 3.159798145294189 5.567263603210449 3.009331703186035 C 6.01866340637207 2.858865022659302 6.770996570587158 2.557932138442993 8.12519645690918 2.557932138442993 C 9.479394912719727 2.40746545791626 9.930794715881348 2.40746545791626 13.54199314117432 2.40746545791626 M 13.54199314117432 0 C 9.930794715881348 0 9.328927993774414 0 7.974730014801025 0.1504665911197662 C 6.470063209533691 0.1504665911197662 5.567264080047607 0.4513997733592987 4.664463996887207 0.7523329257965088 C 3.761664628982544 1.053266167640686 3.009331703186035 1.504665851593018 2.256998777389526 2.256998777389526 C 1.504665851593018 3.009331703186035 1.053266167640686 3.761664628982544 0.7523329257965088 4.664463996887207 C 0.3009331822395325 5.567263603210449 0.1504665911197662 6.470063209533691 0.1504665911197662 7.974730014801025 C 0 9.328927993774414 0 9.930794715881348 0 13.54199314117432 C 0 17.15319061279297 0 17.75505638122559 0.1504665911197662 19.10925674438477 C 0.1504665911197662 20.61392211914062 0.4513997733592987 21.51672172546387 0.7523329257965088 22.41952133178711 C 1.053266167640686 23.32232093811035 1.504665851593018 24.07465362548828 2.256998777389526 24.82698822021484 C 3.009331703186035 25.57932090759277 3.761664628982544 26.03071784973145 4.664463996887207 26.3316535949707 C 5.567263603210449 26.63258743286133 6.470063209533691 26.93351745605469 7.974730014801025 26.93351745605469 C 9.328927993774414 27.08398628234863 9.930794715881348 27.08398628234863 13.54199314117432 27.08398628234863 C 17.15319061279297 27.08398628234863 17.75505638122559 27.08398628234863 19.10925674438477 26.93351745605469 C 20.61392211914062 26.93351745605469 21.51672172546387 26.6325855255127 22.41952133178711 26.3316535949707 C 23.32232093811035 26.03071784973145 24.07465362548828 25.57932090759277 24.82698822021484 24.82698822021484 C 25.57932090759277 24.07465362548828 26.03071784973145 23.32232093811035 26.3316535949707 22.41952133178711 C 26.63258743286133 21.51671981811523 26.93351745605469 20.61392211914062 26.93351745605469 19.10925674438477 C 26.93351745605469 17.60458946228027 27.08398628234863 17.15319061279297 27.08398628234863 13.54199314117432 C 27.08398628234863 9.930794715881348 27.08398628234863 9.328927993774414 26.93351745605469 7.974730014801025 C 26.93351745605469 6.470063209533691 26.6325855255127 5.567264080047607 26.3316535949707 4.664463996887207 C 26.03071784973145 3.761664628982544 25.57932090759277 3.009331703186035 24.82698822021484 2.256999015808105 C 24.07465362548828 1.504665970802307 23.32232093811035 1.053266286849976 22.41952133178711 0.7523331642150879 C 21.51671981811523 0.4513999819755554 20.61392211914062 0.1504667550325394 19.10925674438477 0.1504667550325394 C 17.75505638122559 0 17.15319061279297 0 13.54199314117432 0 M 13.54199314117432 6.620529651641846 C 9.629861831665039 6.620529651641846 6.620529651641846 9.629861831665039 6.620529651641846 13.54199314117432 C 6.620529651641846 17.45412445068359 9.780327796936035 20.46345710754395 13.54199314117432 20.46345710754395 C 17.45412445068359 20.46345710754395 20.46345710754395 17.30365753173828 20.46345710754395 13.54199314117432 C 20.46345710754395 9.780327796936035 17.45412445068359 6.620529651641846 13.54199314117432 6.620529651641846 M 13.54199314117432 18.05599021911621 C 10.9840612411499 18.05599021911621 9.027995109558105 16.09992408752441 9.027995109558105 13.54199314117432 C 9.027995109558105 10.9840612411499 10.9840612411499 9.027995109558105 13.54199314117432 9.027995109558105 C 16.09992408752441 9.027995109558105 18.05599021911621 10.9840612411499 18.05599021911621 13.54199314117432 C 18.05599021911621 16.09992408752441 16.09992408752441 18.05599021911621 13.54199314117432 18.05599021911621 M 20.76439094543457 4.664463996887207 C 19.8615894317627 4.664463996887207 19.10925674438477 5.416797161102295 19.10925674438477 6.319596290588379 C 19.10925674438477 7.222395420074463 19.8615894317627 7.974729061126709 20.76439094543457 7.974729061126709 C 21.66718864440918 7.974729061126709 22.41952133178711 7.222395420074463 22.41952133178711 6.319596290588379 C 22.41952133178711 5.416797161102295 21.66718864440918 4.664463996887207 20.76439094543457 4.664463996887207">
+					</path>
+				</svg>
+			</div>
+		</div>
+		<div id="Circle_Button_SIZEMEDIUMSTATED_gb">
+			<div id="METADATA_gc">
+				<span>{"config":{"STYLE":"STYLE3"},"type":"CircleButton","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.446Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}</span>
+			</div>
+			<svg class="Area_SIZEMEDIUMSTATEDEFAULTSTY_gd">
+				<rect id="Area_SIZEMEDIUMSTATEDEFAULTSTY_gd" rx="33.5" ry="33.5" x="0" y="0" width="67" height="67">
+				</rect>
+			</svg>
+			<div id="Icon_ICONfeatherfacebookSIZEME_ge">
+				<div id="METADATA_gf">
+					<span>{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/facebook"},"type":"Icon","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.443Z","nodeName":"Icon [ICON=feather/facebook][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}</span>
+				</div>
+				<svg class="Area_ICONfeatherfacebookSIZEME_gg">
+					<rect id="Area_ICONfeatherfacebookSIZEME_gg" rx="0" ry="0" x="0" y="0" width="28" height="28">
+					</rect>
+				</svg>
+				<div id="Icon_gh">
+					<svg class="cd31758e-db74-42ca-84e2-b339be_gi" viewBox="7 2 15.461 28.111">
+						<path id="cd31758e-db74-42ca-84e2-b339be_gi" d="M 22.46120071411133 2 L 18.24451065063477 2 C 14.36374855041504 2 11.2166919708252 5.147057056427002 11.2166919708252 9.02781867980957 L 11.2166919708252 13.24450969696045 L 7.000000476837158 13.24450969696045 L 7.000000476837158 18.86676597595215 L 11.2166919708252 18.86676597595215 L 11.2166919708252 30.11127471923828 L 16.83894729614258 30.11127471923828 L 16.83894729614258 18.86676597595215 L 21.05563735961914 18.86676597595215 L 22.46120071411133 13.24450969696045 L 16.83894729614258 13.24450969696045 L 16.83894729614258 9.02781867980957 C 16.83894729614258 8.251947402954102 17.4686393737793 7.622254848480225 18.24451065063477 7.622254848480225 L 22.46120071411133 7.622254848480225 L 22.46120071411133 2 Z">
+						</path>
+					</svg>
+				</div>
+			</div>
+		</div>
+		<div id="Product_STYLESTYLE3TAGUI_L">
+			<span>Mission</span>
+		</div>
+		<div id="Product_STYLESTYLE3TAGUI_L_gk">
+			<span>Information</span>
+		</div>
+		<svg class="Background_STYLESTYLE2_gl">
+			<rect id="Background_STYLESTYLE2_gl" rx="0" ry="0" x="0" y="0" width="1920" height="85">
+			</rect>
+		</svg>
+		<div id="Terms_of_Service_STYLESTYLE2TA">
+			<span>iGaming Regulation</span>
+		</div>
+		<div id="Privacy_Policy_STYLESTYLE2TAGU">
+			<span>Privacy Policy</span>
+		</div>
+		<div id="Copyright_STYLESTYLE2TAGUI_S">
+			<span>© 2023  All Rights Reserved.</span>
+		</div>
+		<div id="Terms_of_Service_STYLESTYLE2TA_gp">
+			<span>Terms & Conditions</span>
+		</div>
+		<div id="Service_STYLESTYLE3TAGUI_L">
+			<span>Betting Tips</span>
+		</div>
+		<div id="Service_STYLESTYLE3TAGUI_L_gr">
+			<span>Sports Updates</span>
+		</div>
+		<div id="Service_STYLESTYLE3TAGUI_L_gs">
+			<span>News</span>
+		</div>
+		<div onclick="application.goToTargetView(event)" id="Services_STYLESTYLE3TAGH5">
+			<span>Blog</span>
+		</div>
+		<div id="Resource_STYLESTYLE3TAGUI_L">
+			<span>Contact Us</span>
+		</div>
+		<div id="Resource_STYLESTYLE3TAGUI_L_gv">
+			<span>FAQs</span>
+		</div>
+		<div id="Resources_STYLESTYLE3TAGH5">
+			<span>Help</span>
+		</div>
+		<div onclick="application.goToTargetView(event)" id="Resources_STYLESTYLE3TAGH5_gx">
+			<span>About Us</span>
+		</div>
+	</div>
+	<div id="Home_Comp" class="Home_Comp">
+		<svg class="Rectangle_176_g">
+			<linearGradient id="Rectangle_176_g" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
+				<stop offset="0" stop-color="#00474f" stop-opacity="1"></stop>
+				<stop offset="1" stop-color="#000e10" stop-opacity="1"></stop>
+			</linearGradient>
+			<rect id="Rectangle_176_g" rx="0" ry="0" x="0" y="0" width="1920" height="86">
+			</rect>
+		</svg>
+		<div id="Group_35">
+			<div onclick="application.goToTargetView(event)" id="Label_g">
+				<span>About Us</span>
+			</div>
+			<div onclick="application.goToTargetView(event)" id="Label_ha">
+				<span>Sports Bet</span>
+			</div>
+			<div onclick="application.goToTargetView(event)" id="Label_hb">
+				<span>Home</span>
+			</div>
+		</div>
+		<div id="Action_Button_g" class="Action_Button">
+			<svg class="Rectangle_219_g">
+				<rect id="Rectangle_219_g" rx="22.5" ry="22.5" x="0" y="0" width="150" height="45">
+				</rect>
+			</svg>
+			<div id="Label_hc">
+				<span>My Account</span>
+			</div>
+		</div>
+		<div onclick="application.goToTargetView(event)" id="Group_538">
+			<div id="Group_487">
+				<img id="Group_486" src="{% static 'img/Group_486.png' %}" srcset="{% static 'img/Group_486.png' %} 1x, {% static 'img/Group_486@2x.png' %} 2x ">
+					
+				</svg>
+			</div>
+			<div id="Group_489">
+				<img id="Group_488" src="{% static 'img/Group_488.png' %}" srcset="{% static 'img/Group_488.png' %} 1x, {% static 'img/Group_488@2x.png' %} 2x">
+					
+				</svg>
+			</div>
+			<svg class="Union_1" viewBox="0 0 32.945 35.247">
+				<path id="Union_1" d="M 24.78678131103516 35.24599838256836 L 0 0 L 8.16081714630127 0 L 16.47255325317383 11.82087230682373 L 24.78428840637207 0 L 32.94529724121094 0 L 20.55214691162109 17.62284660339355 L 32.94443511962891 35.24709701538086 L 24.78678131103516 35.24599838256836 Z">
+				</path>
+			</svg>
+			<div id="Group_493">
+				<img id="Group_492" src="{% static 'img/Group_492.png' %}" srcset="{% static 'img/Group_492.png' %} 1x, {% static 'img/Group_492@2x.png' %} 2x">
+					
+				</svg>
+			</div>
+			<div id="Group_497">
+				<img id="Group_496" src="{% static 'img/Group_496.png' %}" srcset="{% static 'img/Group_496.png' %} 1x, {% static 'img/Group_496@2x.png' %} 2x">
+					
+				</svg>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -27,14 +27,13 @@
     
 
 
-
         {% if user.is_authenticated %}
         
-          {% include './components/header___user.html' %}
+          {% include './components/nav_bar_user.html' %}
 
         {% else %}
 
-         {% include './components/header___non_user.html' %}
+          {% include './components/nav_bar_non_user.html' %}
 
         {% endif %}
 
