@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+</head>
+<style>
+
+
+   
+h1 {
+    font-family:'Satoshi', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color:#016D74;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    text-align: center;
+    }
+
+.account {
+    width:100%;
+    height: 900px;
+    padding-top:86px;
+    background-color: #F7F7F7;
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+
+.grid_nav_1x3 {
+    grid-template-columns: auto 1500px auto;
+}
+.grid_1x2 {
+    grid-template-columns: 25% 75%;
+}
+.grid_user_input_1x2 {
+    grid-template-columns: 70% 30%;
+}
+.my_account_middle_section {
+    width:100%;
+}
+
+.card_container {
+    width: 100%;
+    height:700px;
+    background: linear-gradient(to bottom, #00474f, #000e10);
+    line-height: 42px;
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+}
+.card_user_info {
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.card_user_input {
+    width: 1100px;
+    margin-left:25px;
+    height: 160px;
+    background:white;
+    border-radius: 15px;
+    text-align: center;
+}
+/* .card_user_input input {
+    box-sizing: border-box; 
+    text-align: left;
+} */
+
+.user_input_field {
+    font-size: 20px;
+    width: 300px;
+    border:0;
+    justify-self: left;
+    margin-left: 60px;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+.user_input_field input {
+    border:none;
+    text-align: left;
+    justify-content: left;
+    width: 2000px;
+}
+input:focus {
+    outline: none;
+}
+
+.edit_button {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+}
+.edit_button:hover {
+    color:white;
+    border: none;
+    background-color: #016D74;
+}
+.footer_blog a {
+    font-weight: 400;
+    font-size: 22px;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
+    text-decoration: none;
+    padding-left: 50px;
+}
+.footer_blog a:hover {
+    color:#13C2C1
+}
+.footer_blog_header {
+    color: #13C2C1;
+    padding-top:30px;
+    padding-left: 50px;
+    text-align: left;
+
+}
+</style>
+    <!-- Account Side  -->
+    <div class="account grid grid_nav_1x3">
+        <!-- Empty Left Side  -->
+        <div class="empty"></div>
+
+        <div class="my_account_middle_section">
+            <h1>My Account</h1>
+     
+            <div class="grid grid_1x2">
+                <div class="card_container">
+                    <div class="footer_blog">
+                            <h2 class="footer_blog_header">Personal Information</h2>
+                            <a href="">Personal Security</a>
+                            <a href="">Card Information</a>
+                            <a href="">Balance</a>
+                            <a href="">My Activity</a>
+
+                        </div>
+
+                </div>
+                <div class="card_user_info">
+                    <div class="card_user_input">
+                        <div class="grid grid_user_input_1x2">
+                            
+                            <input class="user_input_field" type="text" placeholder="Profile Name">                       
+                            <button class="edit_button">Edit</button>
+
+                        </div>
+                        
+                    </div>
+                    <div class="card_user_input">
+                        <div class="grid grid_user_input_1x2">
+
+                            <input class="user_input_field" type="text" placeholder="User Name">
+                            <button class="edit_button">Edit</button>
+
+                        </div>
+                    </div>
+                    <div class="card_user_input">
+                        <div class="grid grid_user_input_1x2">
+
+                            <input class="user_input_field" type="text" placeholder="Email">
+                            <button class="edit_button">Edit</button>
+
+                        </div>
+                    </div>
+                    <div class="card_user_input">
+                        <div class="grid grid_user_input_1x2">
+
+                            <input class="user_input_field" type="text" placeholder="Phone Number">
+                            <button class="edit_button">Edit</button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+           
+        </div>
+
+        <!-- Empty Right Side  -->
+        <div class="empty"></div>
+
+
+    </div>
+
+</html>

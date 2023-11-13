@@ -5,139 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-    :root {
-        --font-family: 'Satoshi',sans-serif;
-        --font-weight: 600;
-        --font-color-light: white;
-        --font-color-dark: black;
+:root {
+    --font-family: 'Satoshi',sans-serif;
+    --font-weight: 600;
+    --font-color-light: white;
+    --font-color-dark: black;
 
-    }
-    body {
-        font-family: var(--font-family);
-        font-weight: var(--font-weight);
-        color: var(--font-color-light);
-    }
-    .footer {
-        width: 100%;
-        height: 700px;
-        background: linear-gradient(to bottom, #00474f, #000e10);
-        margin:0;
-        left: 0;
-        bottom:0;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-    }
-    .footer_end {
-        background-color: #1B1C1E;
-        height: 100px;
-        bottom:0;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-    }
-    .footer_center {
-        width: 100%;
-        margin-top:50px;
-        vertical-align: text-top;
-        display: flex;
-        align-items: flex-start;   
-    }
-    .footer_follow_us {
-        color:var(--font-color-light);
-      place-items: left;
-      margin-top:90px;  
-      margin-right:50px;
-    }
-    #Follow_Us {
-        font-size: 2.3rem;
-        font-weight: 600;
-    }
-    #Follow_Us_Desc {
-        font-weight: 500;
-        font-size: 1.2rem;
-        line-height: 3rem;
-        padding-top: 20px;;
-    }
-    .grid {
-      display: grid;
-      align-items: center;
-      place-items: center;
-      height: 100%;
-      width: 100%;
-    }
-    .grid_footer_1x3 {
-      grid-template-columns: auto 1500px auto;
-    }
-    .grid_footer_1x4 {
-        grid-template-columns: 40% 20% 20% 20%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    .grid_footer_1x4 a {
-        color: var(--font-color-light);
-        text-decoration: none;
-    }
+}
+div {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight);
+    color: var(--font-color-light);
+}
+.footer {
+    height: 700px;
+    background: linear-gradient(to bottom, #00474f, #000e10);
+    margin:0;
+    padding:0;
+    left:0px;
+    width: 100%;
+}
+.footer_start {
+    width: 100%;
+    height: 600px;
+}
+.footer_end {
+    background-color: #1B1C1E;
+    height: 100px;
+    /* bottom:0; */
+    /* position: fixed; */
+    left: 0;
+    width: 100%;
+}
+.footer_start_center {
+    height: 100%;
+    width: 100%;
+    vertical-align: text-top;
+    display: flex;
+    align-items: flex-start;   
+}
+.footer_start_center_follow_us {
+    color:var(--font-color-light);
+    place-items: left;
+    margin-right:50px;
+    margin-top: 150px;
+    align-self: flex-start;
+}
 
-    .footer_button {
-       width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        overflow: hidden;
-        background-color:transparent; 
-        border: 2px solid white;
-        margin-right:20px;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-  }
-    .footer_button img {
-        display: block;
-        max-width: 60%;
-        max-height: 60%;
-    }
-    .footer_button_container {    
-        display: flex;
-        margin-top:50px;
-    }
-    .footer_blog a {
-        font-weight: 400;
-        margin-top:50px;
-        display: flex;
-        color:var(--font-color-light);
-        text-decoration: none;
-    }
-    .footer_blog_header {
-        color: #13C2C1;
-        margin-bottom:50px;
-    }
+.footer_blog {
+    align-self: flex-start;
+    margin-top: 150px;
+}
 
-    .footer_blog {
-        align-self: flex-start;
-        margin-top: 100px;
-    }
+#Follow_Us {
+    font-size: 2.3rem;
+    font-weight: 600;
+}
+#Follow_Us_Desc {
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 3rem;
+    padding-top: 20px;;
+}
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%;
+}
+.grid_footer_1x3 {
+    grid-template-columns: auto 1500px auto;
+}
+.grid_footer_1x4 {
+    grid-template-columns: 40% 20% 20% 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.grid_footer_1x4 a {
+    color: var(--font-color-light);
+    text-decoration: none;
+}
+
+.footer_button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color:transparent; 
+    border: 2px solid white;
+    margin-right:20px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.footer_button img {
+    display: block;
+    max-width: 60%;
+    max-height: 60%;
+}
+.footer_button_container {    
+    display: flex;
+    margin-top:50px;
+}
+.footer_blog a {
+    font-weight: 400;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
+    text-decoration: none;
+}
+.footer_blog_header {
+    color: #13C2C1;
+    margin-bottom:50px;
+}
+
+
+
+/* ============================== */
+
 
 
     </style>
 </head>
-<body>
 
     <div class="footer">
-        <div class="footer_card">
+        <div class="footer_start">
             <div class="grid grid_footer_1x3">
                 <!-- Left Section  -->
                 <div class="empty"></div>
 
                 <!-- Middle Section  -->
-                <div class="footer_center">
+                <div class="footer_start_center">
 
                     <div class="grid grid_footer_1x4" >
-                        <div class="footer_follow_us">
+                        <div class="footer_start_center_follow_us">
                             <h2 id="Follow_Us">Follow Us!</h2>
                             <h4 id="Follow_Us_Desc">Follow us on Facebook, Instagram or Reddit to stay up to date with updates,<br>new features and exciting betting opportunities that are only available on FBX</h4>
                             <div class="footer_button_container"> 
@@ -171,7 +176,7 @@
                             <a href="">Contact Us</a>
                         </div>
                         <div class="footer_blog">
-                            <h2 class="footer_blog_header">About US</h2>    
+                            <h2 class="footer_blog_header">About Us</h2>    
                             <a href="">Information</a>
                             <a href="">Mission</a>                
                         </div>
@@ -213,5 +218,4 @@
         </div>
     </div>
 
-</body>
 </html>

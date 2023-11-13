@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home</title>
+<style id="applicationStylesheet" type="text/css">
+	.mediaViewInfo {
+		--web-view-name: Home;
+		--web-view-id: Home;
+		--web-scale-to-fit: true;
+		--web-scale-to-fit-type: fit;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	:root {
+		--web-view-ids: Home;
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		border: none;
+	}
+	#Home {
+		position: absolute;
+		width: 100%;
+		height: 3896px;
+		overflow: hidden;
+		cursor: pointer;
+		--web-view-name: Home;
+		--web-view-id: Home;
+		--web-scale-to-fit: true;
+		--web-scale-to-fit-type: fit;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	
+	#Background {
+		fill: rgba(247,247,247,1);
+	}
+	.Background {
+		position: absolute;
+		overflow: visible;
+		width: 100%;
+		height: 1080px;
+		left: 0px;
+		top: 1078px;
+	}
+	#Button {
+		position: absolute;
+		width: 213px;
+		height: 38px;
+		left: 960px;
+		top: 1939px;
+		overflow: visible;
+	}
+	#METADATA {
+		display: none;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 11px;
+		height: 10px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area {
+		fill: rgba(228,240,235,1);
+	}
+	.Area {
+		filter: drop-shadow(-2px 2px 5px rgba(67, 67, 67, 0.078));
+		overflow: visible;
+		position: absolute;
+		width: 228px;
+		height: 53px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Label {
+		left: 40px;
+		top: 8px;
+		position: absolute;
+		overflow: visible;
+		width: 29px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 16px;
+		color: rgba(21,150,90,1);
+	}
+	#Icon {
+		transform: translate(-0.5px, 0.327px) matrix(1,0,0,1,15.4999,7.6732) rotate(180deg);
+		transform-origin: center;
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#METADATA_ {
+		display: none;
+		left: 10px;
+		top: 10px;
+		position: absolute;
+		overflow: hidden;
+		width: 11px;
+		height: 10px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_ {
+		opacity: 0;
+		fill: rgba(252,252,252,1);
+	}
+	.Area_ {
+		position: absolute;
+		overflow: visible;
+		width: 20px;
+		height: 20px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_ {
+		position: absolute;
+		width: 18.305px;
+		height: 18.305px;
+		left: 0.738px;
+		top: 0.957px;
+		overflow: visible;
+	}
+	#n_aeff42d-4036-4294-830f-a529e {
+		fill: rgba(0,0,0,0);
+	}
+	.n_aeff42d-4036-4294-830f-a529e {
+		overflow: visible;
+		position: absolute;
+		width: 18.305px;
+		height: 18.305px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_10fc49e-f8d4-4922-8cb0-d88e4 {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(21,150,90,1);
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_10fc49e-f8d4-4922-8cb0-d88e4 {
+		overflow: visible;
+		position: absolute;
+		width: 14.729px;
+		height: 14.729px;
+		left: 2.289px;
+		top: 2.288px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#edc5b595-8b2f-45d8-9016-535583 {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(21,150,90,1);
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.edc5b595-8b2f-45d8-9016-535583 {
+		overflow: visible;
+		position: absolute;
+		width: 4.465px;
+		height: 4.465px;
+		left: 9.152px;
+		top: 6.102px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_93f8f69-0f3a-45d5-8821-939d7 {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(21,150,90,1);
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_93f8f69-0f3a-45d5-8821-939d7 {
+		overflow: visible;
+		position: absolute;
+		width: 1px;
+		height: 7.101px;
+		left: 9.152px;
+		top: 6.102px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#c954bcbc-8bbf-4217-bf85-d93956 {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(21,150,90,1);
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.c954bcbc-8bbf-4217-bf85-d93956 {
+		overflow: visible;
+		position: absolute;
+		width: 4.465px;
+		height: 4.465px;
+		left: 6.102px;
+		top: 6.102px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Button_bf {
+		position: absolute;
+		width: 213px;
+		height: 38px;
+		left: 1002px;
+		top: 1997px;
+		overflow: visible;
+	}
+	#METADATA_bg {
+		display: none;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 11px;
+		height: 10px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_bh {
+		fill: rgba(245,228,229,1);
+	}
+	.Area_bh {
+		filter: drop-shadow(-2px 2px 5px rgba(67, 67, 67, 0.078));
+		overflow: visible;
+		position: absolute;
+		width: 228px;
+		height: 53px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Label_bi {
+		left: 40px;
+		top: 8px;
+		position: absolute;
+		overflow: visible;
+		width: 27px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 16px;
+		color: rgba(181,31,31,1);
+	}
+	#Icon_bj {
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		left: 15px;
+		top: 8px;
+		overflow: visible;
+	}
+	#METADATA_bk {
+		display: none;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 11px;
+		height: 10px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_bl {
+		opacity: 0;
+		fill: rgba(252,252,252,1);
+	}
+	.Area_bl {
+		position: absolute;
+		overflow: visible;
+		width: 20px;
+		height: 20px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_bm {
+		position: absolute;
+		width: 18.295px;
+		height: 18.295px;
+		left: 0.961px;
+		top: 0.743px;
+		overflow: visible;
+	}
+	#n_aeff42d-4036-4294-830f-a529e_bn {
+		fill: rgba(0,0,0,0);
+	}
+	.n_aeff42d-4036-4294-830f-a529e_bn {
+		overflow: visible;
+		position: absolute;
+		width: 18.295px;
+		height: 18.295px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_10fc49e-f8d4-4922-8cb0-d88e4_bo {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(181,31,31,1);
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_10fc49e-f8d4-4922-8cb0-d88e4_bo {
+		overflow: visible;
+		position: absolute;
+		width: 14.721px;
+		height: 14.722px;
+		left: 2.287px;
+		top: 2.287px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#edc5b595-8b2f-45d8-9016-535583_bp {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(181,31,31,1);
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.edc5b595-8b2f-45d8-9016-535583_bp {
+		overflow: visible;
+		position: absolute;
+		width: 4.465px;
+		height: 4.463px;
+		left: 6.1px;
+		top: 9.148px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_93f8f69-0f3a-45d5-8821-939d7_bq {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(181,31,31,1);
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_93f8f69-0f3a-45d5-8821-939d7_bq {
+		overflow: visible;
+		position: absolute;
+		width: 1px;
+		height: 7.098px;
+		left: 9.148px;
+		top: 6.099px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#c954bcbc-8bbf-4217-bf85-d93956_br {
+		fill: rgba(0,0,0,0);
+		stroke: rgba(181,31,31,1);
+		stroke-width: 1px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.c954bcbc-8bbf-4217-bf85-d93956_br {
+		overflow: visible;
+		position: absolute;
+		width: 4.463px;
+		height: 4.463px;
+		left: 9.148px;
+		top: 9.148px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_83shots_so {
+		position: absolute;
+		width: 1166.666px;
+		height: 875px;
+		left: 753.334px;
+		top: 1283px;
+		overflow: visible;
+	}
+	#Mask_Group_10 {
+		position: absolute;
+		width: 1920px;
+		height: 994px;
+		left: 0px;
+		top: 86px;
+		overflow: visible;
+	}
+	#Background_bu {
+		fill: rgba(240,255,253,1);
+	}
+	.Background_bu {
+		position: absolute;
+		overflow: visible;
+		width: 100%;
+		height: 946px;
+		left: 0px;
+		top: 2158px;
+	}
+	#Mask_Group_9 {
+		position: absolute;
+		width: 1920px;
+		height: 994px;
+		left: 0px;
+		top: 86px;
+		overflow: visible;
+	}
+	#Meet_Our_Leaders_TAGH2 {
+		left: 860px;
+		top: 1180px;
+		position: absolute;
+		overflow: visible;
+		width: 201px;
+		white-space: nowrap;
+		line-height: 80px;
+		margin-top: -20px;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 40px;
+		color: rgba(1,109,116,1);
+	}
+	#Neque_porro_quisquam_est_qui_d {
+		left: 396px;
+		top: 1250px;
+		position: absolute;
+		overflow: visible;
+		width: 1130px;
+		height: 61px;
+		line-height: 30px;
+		margin-top: -4px;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 22px;
+		color: rgba(95,95,95,1);
+	}
+	#Action_Button {
+		position: absolute;
+		width: 165px;
+		height: 53px;
+		left: 878px;
+		top: 1361px;
+		overflow: visible;
+	}
+	#Rectangle_219 {
+		fill: transparent;
+		stroke: rgba(1,109,116,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_219 {
+		position: absolute;
+		overflow: visible;
+		width: 165px;
+		height: 53px;
+		left: 0px;
+		top: 0px;
+	}
+	#Label_b {
+		left: 30px;
+		top: 16px;
+		position: absolute;
+		overflow: visible;
+		width: 107px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		color: rgba(1,109,116,1);
+	}
+	#Action_Button_b {
+		position: absolute;
+		width: 189px;
+		height: 53px;
+		left: 206px;
+		top: 2951px;
+		overflow: visible;
+	}
+	#Rectangle_219_b {
+		fill: transparent;
+		stroke: rgba(1,109,116,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_219_b {
+		position: absolute;
+		overflow: visible;
+		width: 189px;
+		height: 53px;
+		left: 0px;
+		top: 0px;
+	}
+	#Label_ca {
+		left: 33px;
+		top: 16px;
+		position: absolute;
+		overflow: visible;
+		width: 125px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(1,109,116,1);
+	}
+	#Sweet_Ice_Cream_TAGH2 {
+		left: 202px;
+		top: 2257.999px;
+		position: absolute;
+		overflow: visible;
+		width: 561px;
+		height: 50px;
+		line-height: 50px;
+		margin-top: -5px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 40px;
+		color: rgba(1,109,116,1);
+	}
+	#Neque_porro_quisquam_est_qui_d_b {
+		left: 201px;
+		top: 2328.001px;
+		position: absolute;
+		overflow: visible;
+		width: 647px;
+		height: 130px;
+		line-height: 30px;
+		margin-top: -4px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 22px;
+		color: rgba(95,95,95,1);
+	}
+	#Repeat_Grid_10 {
+		position: absolute;
+		width: 635px;
+		height: 393.002px;
+		left: 206px;
+		top: 2508px;
+		overflow: hidden;
+	}
+	#Group {
+		position: absolute;
+		width: 635px;
+		height: 96px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Sweet_Ice_Cream_TAGH2_b {
+		left: 75px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 561px;
+		height: 30px;
+		line-height: 50px;
+		margin-top: -13px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(1,109,116,1);
+	}
+	#Neque_porro_quisquam_est_qui_d_ca {
+		left: 74px;
+		top: 40.002px;
+		position: absolute;
+		overflow: visible;
+		width: 425px;
+		height: 55.998046875px;
+		line-height: 30px;
+		margin-top: -6px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(95,95,95,1);
+	}
+	#Group_512 {
+		position: absolute;
+		width: 52px;
+		height: 52px;
+		left: 0px;
+		top: 6px;
+		overflow: visible;
+	}
+	#Ellipse_14_cc {
+		fill: url(#Ellipse_14_cc);
+	}
+	.Ellipse_14_cc {
+		position: absolute;
+		overflow: visible;
+		width: 52px;
+		height: 52px;
+		left: 0px;
+		top: 0px;
+	}
+	#n_ {
+		left: 21px;
+		top: 8px;
+		position: absolute;
+		overflow: visible;
+		width: 11px;
+		white-space: nowrap;
+		line-height: 50px;
+		margin-top: -10px;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 30px;
+		color: rgba(251,251,251,1);
+	}
+	#Group_ce {
+		position: absolute;
+		width: 635px;
+		height: 96px;
+		left: 0px;
+		top: 147px;
+		overflow: visible;
+	}
+	#Sweet_Ice_Cream_TAGH2_cf {
+		left: 75px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 561px;
+		height: 30px;
+		line-height: 50px;
+		margin-top: -13px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(1,109,116,1);
+	}
+	#Neque_porro_quisquam_est_qui_d_cg {
+		left: 74px;
+		top: 40.002px;
+		position: absolute;
+		overflow: visible;
+		width: 425px;
+		height: 55.998046875px;
+		line-height: 30px;
+		margin-top: -6px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(95,95,95,1);
+	}
+	#Group_512_ch {
+		position: absolute;
+		width: 52px;
+		height: 52px;
+		left: 0px;
+		top: 6px;
+		overflow: visible;
+	}
+	#Ellipse_14_cj {
+		fill: url(#Ellipse_14_cj);
+	}
+	.Ellipse_14_cj {
+		position: absolute;
+		overflow: visible;
+		width: 52px;
+		height: 52px;
+		left: 0px;
+		top: 0px;
+	}
+	#n__ck {
+		left: 17px;
+		top: 8px;
+		position: absolute;
+		overflow: visible;
+		width: 19px;
+		white-space: nowrap;
+		line-height: 50px;
+		margin-top: -10px;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 30px;
+		color: rgba(251,251,251,1);
+	}
+	#Group_cl {
+		position: absolute;
+		width: 635px;
+		height: 96px;
+		left: 0px;
+		top: 294px;
+		overflow: visible;
+	}
+	#Sweet_Ice_Cream_TAGH2_cm {
+		left: 75px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 561px;
+		height: 30px;
+		line-height: 50px;
+		margin-top: -13px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(1,109,116,1);
+	}
+	#Neque_porro_quisquam_est_qui_d_cn {
+		left: 74px;
+		top: 40.002px;
+		position: absolute;
+		overflow: visible;
+		width: 425px;
+		height: 55.998046875px;
+		line-height: 30px;
+		margin-top: -6px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(95,95,95,1);
+	}
+	#Group_512_co {
+		position: absolute;
+		width: 52px;
+		height: 52px;
+		left: 0px;
+		top: 6px;
+		overflow: visible;
+	}
+	#Ellipse_14_cq {
+		fill: url(#Ellipse_14_cq);
+	}
+	.Ellipse_14_cq {
+		position: absolute;
+		overflow: visible;
+		width: 52px;
+		height: 52px;
+		left: 0px;
+		top: 0px;
+	}
+	#n__cr {
+		left: 17px;
+		top: 8px;
+		position: absolute;
+		overflow: visible;
+		width: 19px;
+		white-space: nowrap;
+		line-height: 50px;
+		margin-top: -10px;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 30px;
+		color: rgba(251,251,251,1);
+	}
+	#Footer_Comp {
+		position: absolute;
+		width: 100%;
+		height: 793px;
+		left: 0px;
+		top: 3104px;
+		overflow: visible;
+	}
+	#Background_STYLESTYLE3_cu {
+		fill: url(#Background_STYLESTYLE3_cu);
+	}
+	.Background_STYLESTYLE3_cu {
+		position: absolute;
+		overflow: visible;
+		width: 100%;
+		height: 708px;
+		left: 0px;
+		top: 0px;
+	}
+	#Description_STYLESTYLE3TAGP {
+		left: 201px;
+		top: 267px;
+		position: absolute;
+		overflow: visible;
+		width: 611px;
+		height: 91px;
+		line-height: 30px;
+		margin-top: -3px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 24px;
+		color: rgba(247,247,247,1);
+	}
+	#Company_STYLESTYLE3TAGH4 {
+		left: 201px;
+		top: 187px;
+		position: absolute;
+		overflow: visible;
+		width: 192px;
+		white-space: nowrap;
+		line-height: 58px;
+		margin-top: -9px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 40px;
+		color: rgba(247,247,247,1);
+	}
+	#Circle_Button_SIZEMEDIUMSTATED {
+		position: absolute;
+		width: 67px;
+		height: 67px;
+		left: 290px;
+		top: 408px;
+		overflow: visible;
+	}
+	#METADATA_cy {
+		display: none;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_SIZEMEDIUMSTATEDEFAULTSTY {
+		fill: transparent;
+		stroke: rgba(247,247,247,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Area_SIZEMEDIUMSTATEDEFAULTSTY {
+		position: absolute;
+		overflow: visible;
+		width: 67px;
+		height: 67px;
+		left: 0px;
+		top: 0px;
+	}
+	#Instagram {
+		position: absolute;
+		width: 27.084px;
+		height: 27.084px;
+		left: 19.996px;
+		top: 19.997px;
+		overflow: visible;
+	}
+	#Path_3 {
+		fill: rgba(247,247,247,1);
+	}
+	.Path_3 {
+		overflow: visible;
+		position: absolute;
+		width: 27.084px;
+		height: 27.084px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Circle_Button_SIZEMEDIUMSTATED_c {
+		position: absolute;
+		width: 67px;
+		height: 67px;
+		left: 201px;
+		top: 408.001px;
+		overflow: visible;
+	}
+	#METADATA_c {
+		display: none;
+		left: 0px;
+		top: -0.001px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_SIZEMEDIUMSTATEDEFAULTSTY_c {
+		fill: transparent;
+		stroke: rgba(247,247,247,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Area_SIZEMEDIUMSTATEDEFAULTSTY_c {
+		position: absolute;
+		overflow: visible;
+		width: 67px;
+		height: 67px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_ICONfeatherfacebookSIZEME {
+		position: absolute;
+		width: 28px;
+		height: 28.405px;
+		left: 20px;
+		top: 19px;
+		overflow: visible;
+	}
+	#METADATA_da {
+		display: none;
+		left: 0px;
+		top: -0.001px;
+		position: absolute;
+		overflow: hidden;
+		width: 15px;
+		height: 14px;
+		text-align: left;
+		font-family: Arial;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 3px;
+	}
+	#Area_ICONfeatherfacebookSIZEME {
+		opacity: 0;
+		fill: transparent;
+		stroke: rgba(253,73,198,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Area_ICONfeatherfacebookSIZEME {
+		position: absolute;
+		overflow: visible;
+		width: 28px;
+		height: 28px;
+		left: 0px;
+		top: 0px;
+	}
+	#Icon_c {
+		position: absolute;
+		width: 15.461px;
+		height: 28.111px;
+		left: 6px;
+		top: 0.294px;
+		overflow: visible;
+	}
+	#cd31758e-db74-42ca-84e2-b339be {
+		fill: transparent;
+		stroke: rgba(247,247,247,1);
+		stroke-width: 2px;
+		stroke-linejoin: round;
+		stroke-linecap: round;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.cd31758e-db74-42ca-84e2-b339be {
+		overflow: visible;
+		position: absolute;
+		width: 17.461px;
+		height: 30.111px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Product_STYLESTYLE3TAGUI_L {
+		left: 1498px;
+		top: 360px;
+		position: absolute;
+		overflow: visible;
+		width: 62px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Product_STYLESTYLE3TAGUI_L_db {
+		left: 1498px;
+		top: 293px;
+		position: absolute;
+		overflow: visible;
+		width: 94px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Background_STYLESTYLE2 {
+		fill: rgba(27,28,30,1);
+	}
+	.Background_STYLESTYLE2 {
+		position: absolute;
+		overflow: visible;
+		width: 100%;
+		height: 85px;
+		left: 0px;
+		top: 708px;
+	}
+	#Terms_of_Service_STYLESTYLE2TA {
+		left: 1550px;
+		top: 740px;
+		position: absolute;
+		overflow: visible;
+		width: 177px;
+		white-space: nowrap;
+		line-height: 26px;
+		margin-top: -4px;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+		letter-spacing: 0.4px;
+	}
+	#Privacy_Policy_STYLESTYLE2TAGU {
+		left: 1032px;
+		top: 740px;
+		position: absolute;
+		overflow: visible;
+		width: 127px;
+		white-space: nowrap;
+		line-height: 26px;
+		margin-top: -4px;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+		letter-spacing: 0.4px;
+	}
+	#Copyright_STYLESTYLE2TAGUI_S {
+		left: 201px;
+		top: 739px;
+		position: absolute;
+		overflow: visible;
+		width: 269px;
+		white-space: nowrap;
+		line-height: 26px;
+		margin-top: -4px;
+		text-align: center;
+		font-family: Noto Sans;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+		letter-spacing: 0.4px;
+	}
+	#Terms_of_Service_STYLESTYLE2TA_dg {
+		left: 1266px;
+		top: 740px;
+		position: absolute;
+		overflow: visible;
+		width: 177px;
+		white-space: nowrap;
+		line-height: 26px;
+		margin-top: -4px;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+		letter-spacing: 0.4px;
+	}
+	#Service_STYLESTYLE3TAGUI_L {
+		left: 1032px;
+		top: 428px;
+		position: absolute;
+		overflow: visible;
+		width: 97px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Service_STYLESTYLE3TAGUI_L_di {
+		left: 1032px;
+		top: 360px;
+		position: absolute;
+		overflow: visible;
+		width: 126px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Service_STYLESTYLE3TAGUI_L_dj {
+		left: 1032px;
+		top: 293px;
+		position: absolute;
+		overflow: visible;
+		width: 45px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Services_STYLESTYLE3TAGH5 {
+		left: 1032px;
+		top: 199px;
+		position: absolute;
+		overflow: visible;
+		width: 52px;
+		white-space: nowrap;
+		--web-animation: fadein undefineds undefined;
+		--web-action-type: page;
+		--web-action-target: Blog.html;
+		cursor: pointer;
+		line-height: 48px;
+		margin-top: -12px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(19,194,193,1);
+	}
+	#Resource_STYLESTYLE3TAGUI_L {
+		left: 1267px;
+		top: 360px;
+		position: absolute;
+		overflow: visible;
+		width: 91px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Resource_STYLESTYLE3TAGUI_L_dm {
+		left: 1267px;
+		top: 293px;
+		position: absolute;
+		overflow: visible;
+		width: 44px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		color: rgba(247,247,247,1);
+	}
+	#Resources_STYLESTYLE3TAGH5 {
+		left: 1266px;
+		top: 198px;
+		position: absolute;
+		overflow: visible;
+		width: 53px;
+		white-space: nowrap;
+		--web-animation: fadein undefineds undefined;
+		--web-action-type: page;
+		--web-action-target: Help.html;
+		cursor: pointer;
+		line-height: 47px;
+		margin-top: -11.5px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(19,194,193,1);
+	}
+	#Resources_STYLESTYLE3TAGH5_do {
+		left: 1495px;
+		top: 198px;
+		position: absolute;
+		overflow: visible;
+		width: 103px;
+		white-space: nowrap;
+		--web-animation: fadein undefineds undefined;
+		--web-action-type: page;
+		--web-action-target: About_Us.html;
+		cursor: pointer;
+		line-height: 47px;
+		margin-top: -11.5px;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(19,194,193,1);
+	}
+	#Home_Comp {
+		position: absolute;
+		width: 100%;
+		height: 86px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Rectangle_176_dr {
+		fill: url(#Rectangle_176_dr);
+	}
+	.Rectangle_176_dr {
+		position: absolute;
+		overflow: visible;
+		width: 100%;
+		height: 86px;
+		left: 0px;
+		top: 0px;
+	}
+	#Group_35 {
+		position: absolute;
+		width: 370px;
+		height: 27px;
+		left: 775px;
+		top: 29px;
+		overflow: visible;
+	}
+	#Label_dt {
+		left: 273px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 98px;
+		white-space: nowrap;
+		--web-animation: fadein undefineds undefined;
+		--web-action-type: page;
+		--web-action-target: About_Us.html;
+		cursor: pointer;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 22px;
+		color: rgba(235,235,235,1);
+	}
+	#Label_du {
+		left: 113px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 111px;
+		white-space: nowrap;
+		--web-animation: fadein undefineds undefined;
+		--web-action-type: page;
+		--web-action-target: Sports_Bet_.html;
+		cursor: pointer;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 22px;
+		color: rgba(251,251,251,1);
+	}
+	#Label_dv {
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		overflow: visible;
+		width: 64px;
+		white-space: nowrap;
+		text-align: left;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 22px;
+		color: rgba(19,194,193,1);
+	}
+	#Action_Button_dw {
+		position: absolute;
+		width: 141px;
+		height: 45px;
+		left: 1579px;
+		top: 21px;
+		overflow: visible;
+	}
+	#Rectangle_219_dx {
+		fill: transparent;
+		stroke: rgba(251,251,251,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.Rectangle_219_dx {
+		position: absolute;
+		overflow: visible;
+		width: 141px;
+		height: 45px;
+		left: 0px;
+		top: 0px;
+	}
+	#Label_dy {
+		left: 45px;
+		top: 12px;
+		position: absolute;
+		overflow: visible;
+		width: 53px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Satoshi;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		color: rgba(251,251,251,1);
+	}
+	#Group_538 {
+		position: absolute;
+		width: 83.653px;
+		height: 35.262px;
+		left: 200px;
+		top: 24.977px;
+		overflow: visible;
+	}
+	#Group_487 {
+		position: absolute;
+		width: 18.861px;
+		height: 35.175px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Group_486 {
+		position: absolute;
+		width: 18.861px;
+		height: 35.175px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Group_489 {
+		position: absolute;
+		width: 8.128px;
+		height: 8.127px;
+		left: 10.332px;
+		top: 14.667px;
+		overflow: visible;
+	}
+	#Group_488 {
+		position: absolute;
+		width: 8.127px;
+		height: 8.127px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Union_1 {
+		fill: rgba(251,251,251,1);
+		stroke: rgba(0,0,0,0);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 10;
+		shape-rendering: auto;
+	}
+	.Union_1 {
+		overflow: visible;
+		position: absolute;
+		width: 34.871px;
+		height: 36.247px;
+		left: 50.707px;
+		top: 0.015px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#Group_493 {
+		position: absolute;
+		width: 13.006px;
+		height: 12.658px;
+		left: 50.709px;
+		top: 22.603px;
+		overflow: visible;
+	}
+	#Group_492 {
+		position: absolute;
+		width: 13.006px;
+		height: 12.658px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#Group_497 {
+		position: absolute;
+		width: 23.579px;
+		height: 35.214px;
+		left: 24.102px;
+		top: 0.015px;
+		overflow: visible;
+	}
+	#Group_496 {
+		position: absolute;
+		width: 23.578px;
+		height: 35.214px;
+		left: 0px;
+		top: 0px;
+		overflow: visible;
+	}
+	#SMac {
+		position: absolute;
+		width: 1460.707px;
+		height: 974px;
+		left: 648px;
+		top: 2103px;
+		overflow: visible;
+	}
+	#n_75shots_so {
+		filter: drop-shadow(-3px 3px 10px rgba(67, 67, 67, 0.271));
+		position: absolute;
+		width: 883px;
+		height: 662px;
+		left: 77px;
+		top: 1464px;
+		overflow: visible;
+	}
+</style>
+
+
+<body>
+<div id="Home" onclick="application.goBack()">
+	<svg class="Background">
+		<rect id="Background" rx="0" ry="0" x="0" y="0" width="100%" height="1080">
+		</rect>
+	</svg>
+	<div id="Button">
+		<div id="METADATA">
+			<span>{"config":{},"type":"Button","theme":"Base","nodeName":"Button","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-17T07:48:57.453Z"}</span>
+		</div>
+		<svg class="Area" viewBox="0 0 213 38">
+			<path id="Area" d="M 12 0 L 201 0 C 207.6274108886719 0 213 5.37258243560791 213 12 L 213 26 C 213 32.62741851806641 207.6274108886719 38 201 38 L 12 38 C 5.37258243560791 38 0 32.62741851806641 0 26 L 0 12 C 0 5.37258243560791 5.37258243560791 0 12 0 Z">
+			</path>
+		</svg>
+		<div id="Label">
+			<span>Buy</span>
+		</div>
+		<div id="Icon">
+			<div id="METADATA_">
+				<span>{"config":{"ICON":"tabler/arrow-down-circle"},"type":"Icon","nodeName":"Icon","children":["e1e4396c-a597-45d7-9d97-d2724d275f5b","a4b14e42-7946-4497-891a-cd20dce13c63","e2d46477-51c4-4b85-81c7-2a0e7028203c","9e5b20af-372a-4c8a-88f8-d965906b980a"],"theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-11-04T01:15:57.075Z"}</span>
+			</div>
+			<svg class="Area_">
+				<rect id="Area_" rx="0" ry="0" x="0" y="0" width="20" height="20">
+				</rect>
+			</svg>
+			<div id="Icon_">
+				<svg class="n_aeff42d-4036-4294-830f-a529e" viewBox="0 0 18.305 18.305">
+					<path id="n_aeff42d-4036-4294-830f-a529e" d="M 0 0 L 18.30479049682617 0 L 18.30479049682617 18.30479049682617 L 0 18.30479049682617 L 0 0 Z">
+					</path>
+				</svg>
+				<svg class="n_10fc49e-f8d4-4922-8cb0-d88e4" viewBox="2.5 2.5 13.729 13.729">
+					<path id="n_10fc49e-f8d4-4922-8cb0-d88e4" d="M 16.22859382629395 9.364297866821289 C 16.22859382629395 13.15521907806396 13.15521907806396 16.22859382629395 9.364297866821289 16.22859382629395 C 5.573374271392822 16.22859382629395 2.500000238418579 13.15521907806396 2.500000238418579 9.364297866821289 C 2.500000238418579 5.573374271392822 5.573374271392822 2.500000238418579 9.364297866821289 2.500000238418579 C 13.15521907806396 2.500000238418579 16.22859382629395 5.573374271392822 16.22859382629395 9.364297866821289 Z">
+					</path>
+				</svg>
+				<svg class="edc5b595-8b2f-45d8-9016-535583" viewBox="6.667 10 3.05 3.05">
+					<path id="edc5b595-8b2f-45d8-9016-535583" d="M 6.666999816894531 10.00000095367432 L 9.717493057250977 13.05049324035645">
+					</path>
+				</svg>
+				<svg class="n_93f8f69-0f3a-45d5-8821-939d7" viewBox="10 6.667 1 6.101">
+					<path id="n_93f8f69-0f3a-45d5-8821-939d7" d="M 10 6.666999816894531 L 10 12.76798725128174">
+					</path>
+				</svg>
+				<svg class="c954bcbc-8bbf-4217-bf85-d93956" viewBox="10 10 3.05 3.05">
+					<path id="c954bcbc-8bbf-4217-bf85-d93956" d="M 13.05049324035645 10.00000095367432 L 10.00000095367432 13.05049324035645">
+					</path>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div id="Button_bf">
+		<div id="METADATA_bg">
+			<span>{"config":{},"type":"Button","theme":"Base","nodeName":"Button","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-17T07:48:57.453Z"}</span>
+		</div>
+		<svg class="Area_bh" viewBox="0 0 213 38">
+			<path id="Area_bh" d="M 12 0 L 201 0 C 207.6274108886719 0 213 5.37258243560791 213 12 L 213 26 C 213 32.62741851806641 207.6274108886719 38 201 38 L 12 38 C 5.37258243560791 38 0 32.62741851806641 0 26 L 0 12 C 0 5.37258243560791 5.37258243560791 0 12 0 Z">
+			</path>
+		</svg>
+		<div id="Label_bi">
+			<span>Sell</span>
+		</div>
+		<div id="Icon_bj">
+			<div id="METADATA_bk">
+				<span>{"config":{"ICON":"tabler/arrow-down-circle"},"type":"Icon","nodeName":"Icon","children":["e1e4396c-a597-45d7-9d97-d2724d275f5b","a4b14e42-7946-4497-891a-cd20dce13c63","e2d46477-51c4-4b85-81c7-2a0e7028203c","9e5b20af-372a-4c8a-88f8-d965906b980a"],"theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-11-04T01:15:57.075Z"}</span>
+			</div>
+			<svg class="Area_bl">
+				<rect id="Area_bl" rx="0" ry="0" x="0" y="0" width="20" height="20">
+				</rect>
+			</svg>
+			<div id="Icon_bm">
+				<svg class="n_aeff42d-4036-4294-830f-a529e_bn" viewBox="0 0 18.295 18.295">
+					<path id="n_aeff42d-4036-4294-830f-a529e_bn" d="M 0 0 L 18.29546737670898 0 L 18.29546737670898 18.29546737670898 L 0 18.29546737670898 L 0 0 Z">
+					</path>
+				</svg>
+				<svg class="n_10fc49e-f8d4-4922-8cb0-d88e4_bo" viewBox="2.5 2.5 13.722 13.722">
+					<path id="n_10fc49e-f8d4-4922-8cb0-d88e4_bo" d="M 16.22160148620605 9.360801696777344 C 16.22160148620605 13.14979267120361 13.14979267120361 16.22160148620605 9.360801696777344 16.22160148620605 C 5.571808815002441 16.22160148620605 2.500000238418579 13.14979267120361 2.500000238418579 9.360801696777344 C 2.500000238418579 5.571808815002441 5.571808815002441 2.500000238418579 9.360801696777344 2.500000238418579 C 13.14979267120361 2.500000238418579 16.22160148620605 5.571808815002441 16.22160148620605 9.360801696777344 Z">
+					</path>
+				</svg>
+				<svg class="edc5b595-8b2f-45d8-9016-535583_bp" viewBox="6.667 10 3.049 3.049">
+					<path id="edc5b595-8b2f-45d8-9016-535583_bp" d="M 6.666999816894531 10.00000095367432 L 9.715939521789551 13.04893970489502">
+					</path>
+				</svg>
+				<svg class="n_93f8f69-0f3a-45d5-8821-939d7_bq" viewBox="10 6.667 1 6.098">
+					<path id="n_93f8f69-0f3a-45d5-8821-939d7_bq" d="M 10 6.666999816894531 L 10 12.76487922668457">
+					</path>
+				</svg>
+				<svg class="c954bcbc-8bbf-4217-bf85-d93956_br" viewBox="10 10 3.049 3.049">
+					<path id="c954bcbc-8bbf-4217-bf85-d93956_br" d="M 13.04893970489502 10.00000095367432 L 10.00000095367432 13.04893970489502">
+					</path>
+				</svg>
+			</div>
+		</div>
+	</div>
+	<img id="n_83shots_so" src="{% static 'img/n_83shots_so.png' %}" srcset="{% static 'img/n_83shots_so.png' %} 1x, {% static 'img/n_83shots_so@2x.png' %} 2x">
+
+	<img id="Mask_Group_10" src="{% static 'img/Mask_Group_10.png' %}" srcset="{% static 'img/Mask_Group_10.png' %} 1x, {% static 'img/Mask_Group_10@2x.png' %} 2x">
+		
+	</svg>
+	<svg class="Background_bu">
+		<rect id="Background_bu" rx="0" ry="0" x="0" y="0" width="100%" height="946">
+		</rect>
+	</svg>
+	<img id="Mask_Group_9" src="{% static 'img/Mask_Group_9.png' %}" srcset="{% static 'img/Mask_Group_9.png' %} 1x, {% static 'img/Mask_Group_9@2x.png' %} 2x">
+		
+	</svg>
+	<div id="Meet_Our_Leaders_TAGH2">
+		<span>Sports Bet</span>
+	</div>
+	<div id="Neque_porro_quisquam_est_qui_d">
+		<span>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et  dolore magnam aliquam quaerat voluptatem. </span>
+	</div>
+	<div id="Action_Button" class="Action_Button">
+		<svg class="Rectangle_219">
+			<rect id="Rectangle_219" rx="26.5" ry="26.5" x="0" y="0" width="165" height="53">
+			</rect>
+		</svg>
+		<div id="Label_b">
+			<span>Start Betting</span>
+		</div>
+	</div>
+	<div id="Action_Button_b" class="Action_Button">
+		<svg class="Rectangle_219_b">
+			<rect id="Rectangle_219_b" rx="26.5" ry="26.5" x="0" y="0" width="189" height="53">
+			</rect>
+		</svg>
+		<div id="Label_ca">
+			<button>Begin Journey</button>
+		</div>
+	</div>
+	<div id="Sweet_Ice_Cream_TAGH2">
+		<span>Trading Guide</span>
+	</div>
+	<div id="Neque_porro_quisquam_est_qui_d_b">
+		<span>Trading your favourite bets is easy with FBX! Just follow the simple 3 step plan and start trading within 5 minutes </span>
+	</div>
+	<div id="Repeat_Grid_10">
+		<div id="Group" class="">
+			<div id="Sweet_Ice_Cream_TAGH2_b">
+				<span>Sign Up</span>
+			</div>
+			<div id="Neque_porro_quisquam_est_qui_d_ca">
+				<span>Sign up using your email and username, confirm your identity and location</span>
+			</div>
+			<div id="Group_512">
+				<svg class="Ellipse_14_cc">
+					<linearGradient id="Ellipse_14_cc" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
+						<stop offset="0" stop-color="#016d74" stop-opacity="1"></stop>
+						<stop offset="1" stop-color="#01373a" stop-opacity="1"></stop>
+					</linearGradient>
+					<ellipse id="Ellipse_14_cc" rx="26" ry="26" cx="26" cy="26">
+					</ellipse>
+				</svg>
+				<div id="n_">
+					<span>1</span>
+				</div>
+			</div>
+		</div>
+		<div id="Group_ce" class="">
+			<div id="Sweet_Ice_Cream_TAGH2_cf">
+				<span>Enter Payment Details</span>
+			</div>
+			<div id="Neque_porro_quisquam_est_qui_d_cg">
+				<span>Deposit funds via Debit, Credit or Paypal and get be able to trade within minutes</span>
+			</div>
+			<div id="Group_512_ch">
+				<svg class="Ellipse_14_cj">
+					<linearGradient id="Ellipse_14_cj" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
+						<stop offset="0" stop-color="#016d74" stop-opacity="1"></stop>
+						<stop offset="1" stop-color="#01373a" stop-opacity="1"></stop>
+					</linearGradient>
+					<ellipse id="Ellipse_14_cj" rx="26" ry="26" cx="26" cy="26">
+					</ellipse>
+				</svg>
+				<div id="n__ck">
+					<span>2</span>
+				</div>
+			</div>
+		</div>
+		<div id="Group_cl" class="">
+			<div id="Sweet_Ice_Cream_TAGH2_cm">
+				<span>Place Your First Trade</span>
+			</div>
+			<div id="Neque_porro_quisquam_est_qui_d_cn">
+				<span>Browse our large selection of matches and place your first trade</span>
+			</div>
+			<div id="Group_512_co">
+				<svg class="Ellipse_14_cq">
+					<linearGradient id="Ellipse_14_cq" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
+						<stop offset="0" stop-color="#016d74" stop-opacity="1"></stop>
+						<stop offset="1" stop-color="#01373a" stop-opacity="1"></stop>
+					</linearGradient>
+					<ellipse id="Ellipse_14_cq" rx="26" ry="26" cx="26" cy="26">
+					</ellipse>
+				</svg>
+				<div id="n__cr">
+					<span>3</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="Footer_Comp" class="Footer_Comp">
+		<svg class="Background_STYLESTYLE3_cu">
+			<linearGradient id="Background_STYLESTYLE3_cu" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
+				<stop offset="0" stop-color="#00474f" stop-opacity="1"></stop>
+				<stop offset="1" stop-color="#000e10" stop-opacity="1"></stop>
+			</linearGradient>
+			<rect id="Background_STYLESTYLE3_cu" rx="0" ry="0" x="0" y="0" width="100%" height="708">
+			</rect>
+		</svg>
+		<div id="Description_STYLESTYLE3TAGP">
+			<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+		</div>
+		<div id="Company_STYLESTYLE3TAGH4">
+			<span>Follow Us!</span>
+		</div>
+		<div id="Circle_Button_SIZEMEDIUMSTATED">
+			<div id="METADATA_cy">
+				<span>{"config":{"STYLE":"STYLE3"},"type":"CircleButton","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.409Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}</span>
+			</div>
+			<svg class="Area_SIZEMEDIUMSTATEDEFAULTSTY">
+				<rect id="Area_SIZEMEDIUMSTATEDEFAULTSTY" rx="33.5" ry="33.5" x="0" y="0" width="67" height="67">
+				</rect>
+			</svg>
+			<div id="Instagram">
+				<svg class="Path_3" viewBox="0 0 27.084 27.084">
+					<path id="Path_3" d="M 13.54199314117432 2.40746545791626 C 17.15319061279297 2.40746545791626 17.60458946228027 2.40746545791626 18.95878982543945 2.557932138442993 C 20.31298828125 2.557932138442993 21.06532287597656 2.85886549949646 21.51672172546387 3.009331703186035 C 22.11858749389648 3.310264825820923 22.56998634338379 3.61119818687439 23.02138900756836 4.06259822845459 C 23.47278785705566 4.513997554779053 23.77372169494629 4.965397834777832 24.07465362548828 5.567263603210449 C 24.22512054443359 6.01866340637207 24.52605247497559 6.770996570587158 24.52605247497559 8.12519645690918 C 24.52605247497559 9.479394912719727 24.67652130126953 9.930795669555664 24.67652130126953 13.54199314117432 C 24.67652130126953 17.15319061279297 24.67652130126953 17.60458946228027 24.52605247497559 18.95878982543945 C 24.52605247497559 20.31298828125 24.22511863708496 21.06532287597656 24.07465362548828 21.51672172546387 C 23.77372169494629 22.11858749389648 23.47278594970703 22.56998634338379 23.02138519287109 23.02138900756836 C 22.56998634338379 23.47278785705566 22.11858558654785 23.77372169494629 21.51671981811523 24.07465362548828 C 21.06532096862793 24.22512054443359 20.31298828125 24.52605247497559 18.95878982543945 24.52605247497559 C 17.60458946228027 24.52605247497559 17.15319061279297 24.67652130126953 13.54199314117432 24.67652130126953 C 9.930794715881348 24.67652130126953 9.479394912719727 24.67652130126953 8.12519645690918 24.52605247497559 C 6.770996570587158 24.52605247497559 6.01866340637207 24.22511863708496 5.567263603210449 24.07465362548828 C 4.965397357940674 23.77372169494629 4.513997554779053 23.47278594970703 4.06259822845459 23.02138519287109 C 3.61119818687439 22.56998634338379 3.310264825820923 22.11858558654785 3.009331703186035 21.51671981811523 C 2.858865022659302 21.06532096862793 2.557932138442993 20.31298828125 2.557932138442993 18.95878982543945 C 2.557932138442993 17.60458946228027 2.40746545791626 17.15319061279297 2.40746545791626 13.54199314117432 C 2.40746545791626 9.930794715881348 2.40746545791626 9.479394912719727 2.557932138442993 8.12519645690918 C 2.557932138442993 6.770996570587158 2.858865022659302 6.01866340637207 3.009331703186035 5.567263603210449 C 3.310264825820923 4.965397357940674 3.61119818687439 4.513997554779053 4.06259822845459 4.06259822845459 C 4.513997554779053 3.460731267929077 4.965397357940674 3.159798145294189 5.567263603210449 3.009331703186035 C 6.01866340637207 2.858865022659302 6.770996570587158 2.557932138442993 8.12519645690918 2.557932138442993 C 9.479394912719727 2.40746545791626 9.930794715881348 2.40746545791626 13.54199314117432 2.40746545791626 M 13.54199314117432 0 C 9.930794715881348 0 9.328927993774414 0 7.974730014801025 0.1504665911197662 C 6.470063209533691 0.1504665911197662 5.567264080047607 0.4513997733592987 4.664463996887207 0.7523329257965088 C 3.761664628982544 1.053266167640686 3.009331703186035 1.504665851593018 2.256998777389526 2.256998777389526 C 1.504665851593018 3.009331703186035 1.053266167640686 3.761664628982544 0.7523329257965088 4.664463996887207 C 0.3009331822395325 5.567263603210449 0.1504665911197662 6.470063209533691 0.1504665911197662 7.974730014801025 C 0 9.328927993774414 0 9.930794715881348 0 13.54199314117432 C 0 17.15319061279297 0 17.75505638122559 0.1504665911197662 19.10925674438477 C 0.1504665911197662 20.61392211914062 0.4513997733592987 21.51672172546387 0.7523329257965088 22.41952133178711 C 1.053266167640686 23.32232093811035 1.504665851593018 24.07465362548828 2.256998777389526 24.82698822021484 C 3.009331703186035 25.57932090759277 3.761664628982544 26.03071784973145 4.664463996887207 26.3316535949707 C 5.567263603210449 26.63258743286133 6.470063209533691 26.93351745605469 7.974730014801025 26.93351745605469 C 9.328927993774414 27.08398628234863 9.930794715881348 27.08398628234863 13.54199314117432 27.08398628234863 C 17.15319061279297 27.08398628234863 17.75505638122559 27.08398628234863 19.10925674438477 26.93351745605469 C 20.61392211914062 26.93351745605469 21.51672172546387 26.6325855255127 22.41952133178711 26.3316535949707 C 23.32232093811035 26.03071784973145 24.07465362548828 25.57932090759277 24.82698822021484 24.82698822021484 C 25.57932090759277 24.07465362548828 26.03071784973145 23.32232093811035 26.3316535949707 22.41952133178711 C 26.63258743286133 21.51671981811523 26.93351745605469 20.61392211914062 26.93351745605469 19.10925674438477 C 26.93351745605469 17.60458946228027 27.08398628234863 17.15319061279297 27.08398628234863 13.54199314117432 C 27.08398628234863 9.930794715881348 27.08398628234863 9.328927993774414 26.93351745605469 7.974730014801025 C 26.93351745605469 6.470063209533691 26.6325855255127 5.567264080047607 26.3316535949707 4.664463996887207 C 26.03071784973145 3.761664628982544 25.57932090759277 3.009331703186035 24.82698822021484 2.256999015808105 C 24.07465362548828 1.504665970802307 23.32232093811035 1.053266286849976 22.41952133178711 0.7523331642150879 C 21.51671981811523 0.4513999819755554 20.61392211914062 0.1504667550325394 19.10925674438477 0.1504667550325394 C 17.75505638122559 0 17.15319061279297 0 13.54199314117432 0 M 13.54199314117432 6.620529651641846 C 9.629861831665039 6.620529651641846 6.620529651641846 9.629861831665039 6.620529651641846 13.54199314117432 C 6.620529651641846 17.45412445068359 9.780327796936035 20.46345710754395 13.54199314117432 20.46345710754395 C 17.45412445068359 20.46345710754395 20.46345710754395 17.30365753173828 20.46345710754395 13.54199314117432 C 20.46345710754395 9.780327796936035 17.45412445068359 6.620529651641846 13.54199314117432 6.620529651641846 M 13.54199314117432 18.05599021911621 C 10.9840612411499 18.05599021911621 9.027995109558105 16.09992408752441 9.027995109558105 13.54199314117432 C 9.027995109558105 10.9840612411499 10.9840612411499 9.027995109558105 13.54199314117432 9.027995109558105 C 16.09992408752441 9.027995109558105 18.05599021911621 10.9840612411499 18.05599021911621 13.54199314117432 C 18.05599021911621 16.09992408752441 16.09992408752441 18.05599021911621 13.54199314117432 18.05599021911621 M 20.76439094543457 4.664463996887207 C 19.8615894317627 4.664463996887207 19.10925674438477 5.416797161102295 19.10925674438477 6.319596290588379 C 19.10925674438477 7.222395420074463 19.8615894317627 7.974729061126709 20.76439094543457 7.974729061126709 C 21.66718864440918 7.974729061126709 22.41952133178711 7.222395420074463 22.41952133178711 6.319596290588379 C 22.41952133178711 5.416797161102295 21.66718864440918 4.664463996887207 20.76439094543457 4.664463996887207">
+					</path>
+				</svg>
+			</div>
+		</div>
+		<div id="Circle_Button_SIZEMEDIUMSTATED_c">
+			<div id="METADATA_c">
+				<span>{"config":{"STYLE":"STYLE3"},"type":"CircleButton","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.446Z","nodeName":"Circle Button [SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}</span>
+			</div>
+			<svg class="Area_SIZEMEDIUMSTATEDEFAULTSTY_c">
+				<rect id="Area_SIZEMEDIUMSTATEDEFAULTSTY_c" rx="33.5" ry="33.5" x="0" y="0" width="67" height="67">
+				</rect>
+			</svg>
+			<div id="Icon_ICONfeatherfacebookSIZEME">
+				<div id="METADATA_da">
+					<span>{"config":{"STYLE":"STYLE3","STATE":"DEFAULT","ICON":"feather/facebook"},"type":"Icon","theme":"Base","__plugin":"Mockup","__version":"1.5.0","__lastUpdate":"2023-10-04T23:38:17.443Z","nodeName":"Icon [ICON=feather/facebook][SIZE=MEDIUM][STATE=DEFAULT][STYLE=STYLE3]"}</span>
+				</div>
+				<svg class="Area_ICONfeatherfacebookSIZEME">
+					<rect id="Area_ICONfeatherfacebookSIZEME" rx="0" ry="0" x="0" y="0" width="28" height="28">
+					</rect>
+				</svg>
+				<div id="Icon_c">
+					<svg class="cd31758e-db74-42ca-84e2-b339be" viewBox="7 2 15.461 28.111">
+						<path id="cd31758e-db74-42ca-84e2-b339be" d="M 22.46120071411133 2 L 18.24451065063477 2 C 14.36374855041504 2 11.2166919708252 5.147057056427002 11.2166919708252 9.02781867980957 L 11.2166919708252 13.24450969696045 L 7.000000476837158 13.24450969696045 L 7.000000476837158 18.86676597595215 L 11.2166919708252 18.86676597595215 L 11.2166919708252 30.11127471923828 L 16.83894729614258 30.11127471923828 L 16.83894729614258 18.86676597595215 L 21.05563735961914 18.86676597595215 L 22.46120071411133 13.24450969696045 L 16.83894729614258 13.24450969696045 L 16.83894729614258 9.02781867980957 C 16.83894729614258 8.251947402954102 17.4686393737793 7.622254848480225 18.24451065063477 7.622254848480225 L 22.46120071411133 7.622254848480225 L 22.46120071411133 2 Z">
+						</path>
+					</svg>
+				</div>
+			</div>
+		</div>
+		<div id="Product_STYLESTYLE3TAGUI_L">
+			<span>Mission</span>
+		</div>
+		<div id="Product_STYLESTYLE3TAGUI_L_db">
+			<span>Information</span>
+		</div>
+		<svg class="Background_STYLESTYLE2">
+			<rect id="Background_STYLESTYLE2" rx="0" ry="0" x="0" y="0" width="100%" height="85">
+			</rect>
+		</svg>
+		<div id="Terms_of_Service_STYLESTYLE2TA">
+			<span>iGaming Regulation</span>
+		</div>
+		<div id="Privacy_Policy_STYLESTYLE2TAGU">
+			<span>Privacy Policy</span>
+		</div>
+		<div id="Copyright_STYLESTYLE2TAGUI_S">
+			<span>© 2023  All Rights Reserved.</span>
+		</div>
+		<div id="Terms_of_Service_STYLESTYLE2TA_dg">
+			<span>Terms & Conditions</span>
+		</div>
+		<div id="Service_STYLESTYLE3TAGUI_L">
+			<span>Betting Tips</span>
+		</div>
+		<div id="Service_STYLESTYLE3TAGUI_L_di">
+			<span>Sports Updates</span>
+		</div>
+		<div id="Service_STYLESTYLE3TAGUI_L_dj">
+			<span>News</span>
+		</div>
+		<div onclick="application.goToTargetView(event)" id="Services_STYLESTYLE3TAGH5">
+			<span>Blog</span>
+		</div>
+		<div id="Resource_STYLESTYLE3TAGUI_L">
+			<span>Contact Us</span>
+		</div>
+		<div id="Resource_STYLESTYLE3TAGUI_L_dm">
+			<span>FAQs</span>
+		</div>
+		<div onclick="application.goToTargetView(event)" id="Resources_STYLESTYLE3TAGH5">
+			<span>Help</span>
+		</div>
+		<div onclick="application.goToTargetView(event)" id="Resources_STYLESTYLE3TAGH5_do">
+			<span>About Us</span>
+		</div>
+	</div>
+	<div id="Home_Comp" class="Home_Comp">
+		<svg class="Rectangle_176_dr">
+			<linearGradient id="Rectangle_176_dr" spreadMethod="pad" x1="0.5" x2="0.5" y1="0" y2="1">
+				<stop offset="0" stop-color="#00474f" stop-opacity="1"></stop>
+				<stop offset="1" stop-color="#000e10" stop-opacity="1"></stop>
+			</linearGradient>
+			<rect id="Rectangle_176_dr" rx="0" ry="0" x="0" y="0" width="100%" height="86">
+			</rect>
+		</svg>
+		<div id="Group_35">
+			<div onclick="application.goToTargetView(event)" id="Label_dt">
+				<span>About Us</span>
+			</div>
+			<div onclick="application.goToTargetView(event)" id="Label_du">
+				<span>Sports Bet</span>
+			</div>
+			<div id="Label_dv">
+				<span>Home</span>
+			</div>
+		</div>
+		<div id="Action_Button_dw" class="Action_Button">
+			<svg class="Rectangle_219_dx">
+				<rect id="Rectangle_219_dx" rx="22.5" ry="22.5" x="0" y="0" width="141" height="45">
+				</rect>
+			</svg>
+			<div id="Label_dy">
+				<span>Log In</span>
+			</div>
+		</div>
+		<div id="Group_538">
+			<div id="Group_487">
+				<img id="Group_486" src="{% static 'img/Group_486.png' %}" srcset="{% static 'img/Group_486.png' %} 1x, {% static 'img/Group_486@2x.png' %} 2x ">
+					
+				</svg>
+			</div>
+			<div id="Group_489">
+				<img id="Group_488" src="{% static 'img/Group_488.png' %}" srcset="{% static 'img/Group_488.png' %} 1x, {% static 'img/Group_488@2x.png' %} 2x">
+					
+				</svg>
+			</div>
+			<svg class="Union_1" viewBox="0 0 32.945 35.247">
+				<path id="Union_1" d="M 24.78678131103516 35.24599838256836 L 0 0 L 8.16081714630127 0 L 16.47255325317383 11.82087230682373 L 24.78428840637207 0 L 32.94529724121094 0 L 20.55214691162109 17.62284660339355 L 32.94443511962891 35.24709701538086 L 24.78678131103516 35.24599838256836 Z">
+				</path>
+			</svg>
+			<div id="Group_493">
+				<img id="Group_492" src="{% static 'img/Group_492.png' %}" srcset="{% static 'img/Group_492.png' %} 1x, {% static 'img/Group_492@2x.png' %} 2x">
+					
+				</svg>
+			</div>
+			<div id="Group_497">
+				<img id="Group_496" src="{% static 'img/Group_496.png' %}" srcset="{% static 'img/Group_496.png' %} 1x, {% static 'img/Group_496@2x.png' %} 2x">
+					
+				</svg>
+			</div>
+		</div>
+	</div>
+	<img id="SMac" src="{% static 'img/SMac.png' %}" srcset="{% static 'img/SMac.png' %} 1x, {% static 'img/SMac@2x.png' %} 2x">
+		
+	<img id="n_75shots_so" src="{% static 'img/n_75shots_so.png' %}" srcset="{% static 'img/n_75shots_so.png' %} 1x, {% static 'img/n_75shots_so@2x.png' %} 2x">
+		
+</div>
+</body>
+</html>

@@ -19,14 +19,45 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
     <style>
       @import url('https://fonts.cdnfonts.com/css/satoshi');
-    </style>
-</head>
 
-  <body class="">
-    <!-- Header + Navigation Bar -->
+    /* body {
+      padding-top: 86px;
+      height: 100%;
+      font-family: sans-serif;
+      } */
     
+  /* .Site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
 
+  .Site-content {
+    flex: 1;
+  } */
 
+  body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+}
+
+/* Optional */
+main {
+  margin: 0 0 50 0;
+  /* or: align-self: center */
+width:100%
+}
+
+    </style>
+
+  <body class="Site">
+    <!-- Header + Navigation Bar -->
+    <header>
         {% if user.is_authenticated %}
         
           {% include './components/nav_bar_user.html' %}
@@ -36,15 +67,17 @@
           {% include './components/nav_bar_non_user.html' %}
 
         {% endif %}
+    </header>
 
-        
-         {% include './components/footer.html' %}
+    <!-- Main Page  -->
+     <main class="Site-content">
+        {% block body_block %}
+            <!-- Your content goes here -->
+        {% endblock %}
+    </main>
 
-
-
-    {% block body_block %}
-<!--        Anything outside of this will be inherited if extended-->
-
-    {% endblock %}
+    <!-- Footer -->
+  
+    
   </body>
 </html>
