@@ -49,7 +49,8 @@ background-color: #f7f7f7;
 }
 .standings_overview {
     width:1500px;
-    height: 1500px;
+    min-height: 300px;
+    height:auto;
     background-color: white;
     border-radius: 15px;
     margin-top:10px;
@@ -72,7 +73,7 @@ table {
 }
 th, tr {
     font-size: 22px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 }
 #Team, #Last_5 {
     text-align: left;
@@ -83,6 +84,7 @@ th, tr {
 }
 td {
     font-size:24px;
+    padding-bottom:30px;
 }
 </style>
 </head>
@@ -127,6 +129,160 @@ td {
                     <tr>
                         <td data-cell="Pos.">1</td> 
                         <td data-cell="Team" id="Teams">Boston Celtics</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">2</td> 
+                        <td data-cell="Team" id="Teams">Brooklyn Nets</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">3</td> 
+                        <td data-cell="Team" id="Teams">New York Knicks</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">4</td> 
+                        <td data-cell="Team" id="Teams">Philadelphia 76ers</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">5</td> 
+                        <td data-cell="Team" id="Teams">Toronto Raptors</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">6</td> 
+                        <td data-cell="Team" id="Teams">Chicago Bulls</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">7</td> 
+                        <td data-cell="Team" id="Teams">Cleveland Cavaliers</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">8</td> 
+                        <td data-cell="Team" id="Teams">Detroit Pistons</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">9</td> 
+                        <td data-cell="Team" id="Teams">Indiana Pacers</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">10</td> 
+                        <td data-cell="Team" id="Teams">Milwaukee Bucks</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">11</td> 
+                        <td data-cell="Team" id="Teams">Atlants Hawks</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">12</td> 
+                        <td data-cell="Team" id="Teams">Charlotte Hornets</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">13</td> 
+                        <td data-cell="Team" id="Teams">Miami Heat</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">14</td> 
+                        <td data-cell="Team" id="Teams">Orlando Magic</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">15</td> 
+                        <td data-cell="Team" id="Teams">Washington Wizards</td>
                         <td data-cell="W">0</td>
                         <td data-cell="L">0</td>
                         <td data-cell="Win %">.000</td>
