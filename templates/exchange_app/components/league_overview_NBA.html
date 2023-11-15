@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Overview</title>
+
+<style>
+.header {
+    margin-top:86px;
+    position: relative;
+}    
+.header_img {
+    width:100%;
+    height:50%;
+}
+.header_centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.8rem; /* Adjust font size as needed */
+    color: white;
+}
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+.grid_nav_1x3 {
+    grid-template-columns: auto 1500px auto;
+}
+.grid_2x1 {
+    grid-template-rows: 50px 150px ;
+
+}
+
+.game_overview {
+    width:1500px;
+    height: 200px;
+    background-color: white;
+    border-radius: 15px;
+    margin-top:10px;
+}
+.league_overview {
+background-color: #f7f7f7;
+}
+.standings_overview {
+    width:1500px;
+    height: 1500px;
+    background-color: white;
+    border-radius: 15px;
+    margin-top:10px;
+}
+.wrapper {
+    width: min(900px, 100%-3rem);
+    margin-inline: auto;
+}
+caption {
+    text-align: left;
+    font-size: 28px;
+    padding:2rem 3rem;
+
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    padding:1rem;
+}
+th, tr {
+    font-size: 22px;
+    padding-bottom: 20px;
+}
+#Team, #Last_5 {
+    text-align: left;
+}
+#Teams {
+    text-align: left;
+    color:#06979C;
+}
+td {
+    font-size:24px;
+}
+</style>
+</head>
+<div class="league_overview">    
+    <div class="header">
+        <img class="header_img"src="../../../static/img/NBA_Pg.png" alt="">
+        <div class="header_centered">NBA</div>
+    </div>
+    <div class="grid grid_nav_1x3">
+        <!-- Left Section  -->
+        <div class="empty"></div>
+
+        <!-- Middle Section  -->
+        <div class="middle_section">
+            <div class="game_overview grid grid_2x1">
+                <h2 style="text-align: left;">Games</h2>
+                <h2>Toronto vs  </h2>
+            </div>
+            <div class="standings_overview wrapper">
+                <!-- <span>Standings</span> -->
+                <table>
+                    <!-- Title of the Table  -->
+                    <caption>Standings
+
+                    </caption>
+
+                    <!-- Conference Button  -->
+                    
+                    <!-- Table Headers  -->
+                    <tr>
+                        <th>Pos.</th>
+                        <th id="Team">Team</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>Win %</th>
+                        <th>GB</th>
+                        <th>Conference</th>
+                        <th>Division</th>
+                        <th id="Last_5">Last 5</th>
+                    </tr>
+
+                    <tr>
+                        <td data-cell="Pos.">1</td> 
+                        <td data-cell="Team" id="Teams">Boston Celtics</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+
+                </table>
+            </div>
+
+
+        </div>
+        <!-- Right Section  -->
+        <div class="empty"></div>
+
+    </div>
+
+</div>
+</html>

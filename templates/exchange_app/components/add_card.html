@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+</head>
+<style>
+
+
+   
+h1 {
+    font-family:'Satoshi', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color:#016D74;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    text-align: center;
+    }
+input {
+    text-align: left;
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+
+}
+input:focus {
+    outline: none;
+}
+.account {
+    width:100%;
+    height: 900px;
+    padding-top:86px;
+    background-color: #F7F7F7;
+    
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+
+.grid_nav_1x3 {
+    grid-template-columns: auto 1500px auto;
+}
+.grid_1x2 {
+    grid-template-columns: 25% 75%;
+}
+.grid_user_input_1x2 {
+    grid-template-columns: 70% 30%;
+}
+.my_account_middle_section {
+    width:100%;
+}
+
+.card_container {
+    width: 100%;
+    height:700px;
+    background: linear-gradient(to bottom, #00474f, #000e10);
+    line-height: 42px;
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+}
+.card_user_info {
+    height: 700px;
+    width: 1100px;
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.card_user_input {
+    /* margin-left:25px; */
+    height: 700px;
+    background:white;
+    border-radius: 15px;
+    text-align: left;
+    padding-left: 60px;
+    padding-top:30px;
+}
+
+.user_input_field {
+    font-size: 20px;
+    width: 400px;
+    border:0;
+    justify-self: left;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+.user_input_field_short {
+    font-size: 20px;
+    width: 100px;
+    border:0;
+    justify-self: left;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+.confirm_button {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:600;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+    margin-left:40px
+}
+.confirm_button:hover {
+    color:white;
+    border: none;
+    background-color: #016D74;
+}
+.footer_blog a {
+    font-weight: 400;
+    font-size: 22px;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
+    text-decoration: none;
+    padding-left: 50px;
+}
+.footer_blog a:hover {
+    color:#13C2C1
+}
+.footer_blog_header {
+    color: #13C2C1;
+    padding-top:30px;
+    padding-left: 50px;
+    text-align: left;
+
+}
+.credit_card_details {
+    display: flex;
+    padding-top:20px;
+}
+.credit_card_expiry, .credit_card_cvv {
+    /* margin-top:20px; */
+    margin-right: 20px;
+}
+.credit_card_save_card {
+    display:flex;
+    margin-top: 40px;
+    /* justify-content: center; */
+    align-items: center;
+
+}
+#Save_Card {
+    margin-left:20px;
+}
+#Checkbox {
+    height: 20px;
+    width: 20px;
+    align-self: center;
+}
+</style>
+    <!-- Account Side  -->
+    <div class="account grid grid_nav_1x3">
+        <!-- Empty Left Side  -->
+        <div class="empty"></div>
+
+        <div class="my_account_middle_section">
+            <h1>My Account</h1>
+     
+            <div class="grid grid_1x2">
+                <div class="card_container">
+                    <!-- Side Card  -->
+                    <div class="footer_blog">
+                        <a >Personal Information</a>
+                        <a href="">Personal Security</a>
+                        <h2 class="footer_blog_header">Card Information</h2>
+                        <a href="">Balance</a>
+                        <a href="">My Activity</a>
+                    </div>
+
+                </div>
+
+                <div class="card_user_info">
+                    <div class="card_user_input">
+                        <h2>Card Information</h2>
+                        <h4 style="padding-top:20px;">Card Holder Name</h4>
+                        <input class="user_input_field" type="text" placeholder="Full Name">                       
+                        <h4 style="padding-top:20px;">Card Number</h4>
+                        <input class="user_input_field" type="text" placeholder="1234   5678   9012   3456">              
+                        <div class="credit_card_details">     
+                            <div class="credit_card_expiry">    
+                                <h4>Expiry</h4>
+                                <input class="user_input_field_short" type="text" placeholder="MM/YY">      
+                            </div>
+                            <div class="credit_card_cvv">             
+                                <h4>CVV</h4>
+                                <input class="user_input_field_short" type="text" placeholder="123">            
+                            </div>               
+                        </div>
+
+                        <div class="credit_card_save_card">
+                            <div style="display:flex" class="credit_card_expiry">
+                                <input id="Checkbox" type="checkbox">
+                                <h4 id="Save_Card">Save Card</h4>
+                            </div>
+                            <div>
+                                <button class="confirm_button">Confirm</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+           
+        </div>
+
+        <!-- Empty Right Side  -->
+        <div class="empty"></div>
+
+
+    </div>
+
+</html>
