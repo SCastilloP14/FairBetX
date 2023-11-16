@@ -7,6 +7,9 @@
 
 </head>
 <style>
+.page_background{
+        background: #f7f7f7;
+    }
 .grid {
     display: grid;
     align-items: center;
@@ -136,7 +139,7 @@
     width: 745px;
     height:500px;
     border-radius: 25px;
-    background: #f7f7f7;    
+    background: white;    
     margin-top:10px;
     margin-right:5px;
     display: flex;
@@ -148,7 +151,7 @@
     width: 745px;
     height:500px;
     border-radius: 25px;
-    background: #f7f7f7;;
+    background: white;;
     margin-top:10px;
     margin-left:5px;
 }
@@ -164,10 +167,9 @@
     text-align: center;
     padding-bottom: 20px;
     border-collapse: collapse;
-
 }
 
-tr:nth-child(odd) {background-color: white;}
+.statistics_card tr:nth-child(odd):not(:first-child) {background-color: white;}
 
 .statistics_card_button_left {
     padding: 4px 40px;
@@ -183,23 +185,102 @@ tr:nth-child(odd) {background-color: white;}
     color:white;
     border: none;
 }
+
+/* Buy Orderbook  */
 .buy_orderbook_card {
     margin-top:10px;
     width:495px;
     height:500px;
-    background:orange;
+    background: white;
     margin-right:5px;
     border-radius: 25px;
+    text-align: center;
 }
+.buy_orderbook_card header, .sell_orderbook_card header {
+    font-size:30px;
+    color:black;
+    margin-top:30px;
+    margin-bottom:10px;
+}
+.buy_orderbook_table {
+    height: 400px;
+    table-layout: fixed;
+    margin:0 auto;
+    border-collapse: collapse;
+    margin-top:35px
+}
+.buy_orderbook_table tr th {
+    width:160px;
+} 
+
+.left_table_header {
+    background:#f7f7f7;
+    /* border-radius: 15px 0 0 15px; */
+    font-size: 24px;
+
+}
+.right_table_header {
+    background:#f7f7f7;
+    /* border-radius:0 15px 15px 0; */
+    font-size: 24px;
+}
+
+.buy_orderbook_table td {
+    color:#15965A;
+}
+.buy_right {
+    background: #E4F0EB;
+}
+ /* Sell Orderbook  */
 .sell_orderbook_card {
-    margin-top:10px;
-    width:490px;
+     margin-top:10px;
+    width:495px;
     height:500px;
-    background:blue;
+    background: white;
     margin-right:5px;
-    margin-left:5px;
     border-radius: 25px;
+    text-align: center;
 }
+.buy_orderbook_card header, .sell_orderbook_card header {
+    font-size:30px;
+    color:black;
+    margin-top:30px;
+    margin-bottom:10px;
+}
+.sell_orderbook_table {
+    height: 400px;
+    table-layout: fixed;
+    margin:0 auto;
+    border-collapse: collapse;
+    margin-top:35px
+}
+.sell_orderbook_table tr th {
+    width:160px;
+} 
+
+.left_table_header {
+    background:#f7f7f7;
+    font-size: 24px;
+
+}
+.right_table_header {
+    background:#f7f7f7;
+    font-size: 24px;
+}
+
+.sell_orderbook_table td {
+    color:#B51F1F;
+}
+.sell_right {
+    background: #F5E4E5;
+}
+
+
+
+
+
+
+
 .order_submission_card {
     margin-top:10px;
     width:495px;
@@ -237,6 +318,7 @@ tr:nth-child(odd) {background-color: white;}
     border:none;
     color:#00474f;
     font-size:20px;
+    background: white;
 }
 .button_orders_middle {
     width:100%;
@@ -245,6 +327,8 @@ tr:nth-child(odd) {background-color: white;}
     color:#00474f;
     font-size:20px;
     border-left: 1px solid #FFF;
+    background: white;
+
 }
 .button_orders_right {
     width:100%;
@@ -254,6 +338,8 @@ tr:nth-child(odd) {background-color: white;}
     color:#00474f;
     font-size:20px;
     border-left: 1px solid #FFF;
+    background: white;
+
 }
 .button_orders_left:hover,.button_orders_middle:hover, .button_orders_right:hover  {
     color:white;
@@ -261,7 +347,7 @@ tr:nth-child(odd) {background-color: white;}
 }
 
 </style>
-<div class="grid grid_nav_1x3">
+<div class="grid grid_nav_1x3 page_background">
     <div class="empty"></div>
     <div class="middle_section">
         <!-- Header  -->
@@ -410,8 +496,118 @@ tr:nth-child(odd) {background-color: white;}
 
         <!-- Orderbook + Order Submission Field  -->
         <div class="grid grid_1x3">
-            <div class="buy_orderbook_card"></div>
-            <div class="sell_orderbook_card"></div>
+
+            <!-- Buy Orderbook  -->
+            <div class="buy_orderbook_card">
+                <header>Orderbook Buy</header>
+                <table class="buy_orderbook_table">
+                    
+                    <tr>
+                        <th class="left_table_header">Price</th>
+                        <th class="right_table_header">Quantity</th>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="buy_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="buy_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="buy_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="buy_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="buy_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="buy_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="buy_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="buy_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="buy_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="buy_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td style="color:white">0</td>
+                        <td class="buy_right" style="color:#E4F0EB">0</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Sell Side  -->
+            <div class="sell_orderbook_card">
+                <header>Orderbook Sell</header>
+                <table class="sell_orderbook_table">
+                    
+                    <tr>
+                        <th class="left_table_header">Price</th>
+                        <th class="right_table_header">Quantity</th>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="sell_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="sell_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="sell_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="sell_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="sell_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="sell_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="sell_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="sell_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="sell_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td data-class="Price">0.00</td>
+                        <td class="sell_right" data-class="Quantity">0</td>
+                    </tr>
+                    <tr>
+                        <td style="color:white">0</td>
+                        <td class="sell_right" style="color:#E4F0EB">0</td>
+                    </tr>
+                </table>
+            </div>
             <div class="order_submission_card"></div>
 
         </div>
