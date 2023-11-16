@@ -143,19 +143,46 @@
     flex-direction:column;
     justify-content: center;
     text-align: center;
-   
 }
 .statistics_card {
     width: 745px;
     height:500px;
     border-radius: 25px;
-    background:greenyellow;
+    background: #f7f7f7;;
     margin-top:10px;
     margin-left:5px;
-    /* padding-left:5px; */
+}
+.statistics_card header {
+    text-align: center;
+    font-size:24px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.statistics_card table {
+    height: 434px;
+    width:100%;
+    text-align: center;
+    padding-bottom: 20px;
+    border-collapse: collapse;
+
 }
 
+tr:nth-child(odd) {background-color: white;}
 
+.statistics_card_button_left {
+    padding: 4px 40px;
+    background: #016D74;
+    border-radius: 25px;
+    color:white;
+    border: none;
+}
+.statistics_card_button_right {
+    padding: 4px 40px;  
+    background: #06979C;
+    border-radius: 25px;
+    color:white;
+    border: none;
+}
 .buy_orderbook_card {
     margin-top:10px;
     width:495px;
@@ -184,6 +211,11 @@
 .user_statistics {
     width:100%;
 }
+.user_statistics_header {
+    text-align: center;
+    font-size: 24px;
+    margin:40px 0;
+}
 .user_table_card {
     width: 100%;
     margin-top:10px;
@@ -192,14 +224,11 @@
     min-height:500px;
     height:auto;
 }
-
-
 .button_container {
     width:100%;
     background:paleturquoise;
     height:50px;
     border-radius: 25px;
-    
 }
 .button_orders_left {
     width:100%;
@@ -228,13 +257,9 @@
 }
 .button_orders_left:hover,.button_orders_middle:hover, .button_orders_right:hover  {
     color:white;
-    background:#00474f;
+    background:linear-gradient(to bottom, #00474f, #000e10);;
 }
-table {
-    width:100%;
-    padding: 20px 10px;
-    text-align: center;
-}
+
 </style>
 <div class="grid grid_nav_1x3">
     <div class="empty"></div>
@@ -303,6 +328,83 @@ table {
             </div>
             <div class="statistics_card">
                 <header>Statistics</header>
+                
+                <table class="statistics_card_table">
+                    <tr>
+                        <td>
+                            <button class="statistics_card_button_left">X</button>
+                        </td>
+                        <td>Rebounds</td>
+                        <td>
+                            <button class="statistics_card_button_right">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="statistics_card_button_left">X</button>
+                        </td>
+                        <td>Assits</td>
+                        <td>
+                            <button class="statistics_card_button_right">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="statistics_card_button_left">X</button>
+                        </td>
+                        <td>Steals</td>
+                        <td>
+                            <button class="statistics_card_button_right">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="statistics_card_button_left">X</button>
+                        </td>
+                        <td>Blocks</td>
+                        <td>
+                            <button class="statistics_card_button_right">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="statistics_card_button_left">X</button>
+                        </td>
+                        <td>Turnovers</td>
+                        <td>
+                            <button class="statistics_card_button_right">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="statistics_card_button_left">X</button>
+                        </td>
+                        <td>3 Points</td>
+                        <td>
+                            <button class="statistics_card_button_right">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="statistics_card_button_left">X</button>
+                        </td>
+                        <td>Free Throws</td>
+                        <td>
+                            <button class="statistics_card_button_right">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="statistics_card_button_left">X</button>
+                        </td>
+                        <td>Fouls Drawn</td>
+                        <td>
+                            <button class="statistics_card_button_right">X</button>
+                        </td>
+                    </tr>
+                </table>
+
+                    
             </div>
         </div>
 
@@ -316,7 +418,7 @@ table {
 
         <!-- User Statistics  -->
         <div class="user_statistics">
-            <div>Recent Activity</div>
+            <div class="user_statistics_header">Recent Activity</div>
             <div class="button_container grid grid_1x4">
                 <button class="button_orders_left">Orders</button>
                 <button class="button_orders_middle">Fills</button>
