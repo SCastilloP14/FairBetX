@@ -1,145 +1,21 @@
-//  document.addEventListener("DOMContentLoaded", function () {
-//     // Fetch custom data from Django backend
-//     fetch('/custom-data/')
-//         .then(response => response.json())
-//         .then(data => {
-//             // Sort data by timestamp in ascending order
-//             data.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
-
-//             // Convert datetime strings to timestamps in milliseconds
-//             const candlestickData = [];
-//             let currentCandle = null;
-
-//             data.forEach(item => {
-//                 const timestamp = new Date(item.timestamp).getTime(); // Convert to milliseconds
-//                 const price = item.price;
-
-//                 // Define the desired interval (e.g., 1 minute in milliseconds)
-//                 const interval = 60 * 1000; // 1 minute
-
-//                 // Initialize a new candle if needed
-//                 if (!currentCandle || timestamp - currentCandle.time >= interval) {
-//                     if (currentCandle) {
-//                         candlestickData.push(currentCandle);
-//                     }
-//                     // Calculate the start time of the new candle
-//                     const startTime = Math.floor(timestamp / interval) * interval;
-//                     currentCandle = {
-//                         time: startTime,
-//                         open: price,
-//                         high: price,
-//                         low: price,
-//                         close: price,
-//                     };
-//                 } else {
-//                     // Update the existing candle
-//                     currentCandle.high = Math.max(currentCandle.high, price);
-//                     currentCandle.low = Math.min(currentCandle.low, price);
-//                     currentCandle.close = price;
-//                 }
-//             });
-
-//             // Push the last candle to the candlestick data
-//             if (currentCandle) {
-//                 candlestickData.push(currentCandle);
-//             }
-
-//             // Create a new TradingView Lightweight Chart
-//             const chart = LightweightCharts.createChart(document.getElementById('chart-container'), {
-//             width: document.getElementById("chart-container").offsetWidth,
-//             layout: {
-//                 background: { color: '#00171f' },
-//                 textColor: '#DDD',
-//             },
-//             grid: {
-//                 vertLines: { color: 'white' },
-//                 horzLines: { color: 'white' },
-//             },
-//             });
-
-//             // Add a candlestick series with the converted data
-//             const candlestickSeries = chart.addCandlestickSeries();
-
-//             // Apply the candlestick data to the series
-//             candlestickSeries.setData(candlestickData);
-//         })
-//         .catch(error => console.error("Error fetching custom data:", error));
-// });
-
-
-// document.addEventListener("DOMContentLoaded", function () {
-//     // Make an AJAX request to get the JSON data
-//     fetch('/custom-data/')  // Update with the correct URL
-//       .then(response => response.json())
-//       .then(data => {
-//         // Create the TradingView lightweight chart
-        
-//         // Split the date and time parts
-//                var container = document.getElementById("chart-container");
-//         var chart = LightweightCharts.createChart(container, 
-//              {
-//             width: document.getElementById("chart-container").offsetWidth,
-//             layout: {
-//                 background: { color: '#00171f' },
-//                 textColor: '#DDD',
-//             },
-//             grid: {
-//                 vertLines: { color: 'white' },
-//                 horzLines: { color: 'white' },
-//             },
-//             timeScale: {
-//             timeVisible: true, // Show the time
-//             borderColor: '#485c7b',
-//             timeBorderColor: '#485c7b',
-//             timeBackgroundColor: '#00171f',
-//             secondsVisible: true,
-//           },
-//             }
-//             );
-//         var candlestickSeries = chart.addCandlestickSeries();
-
-//         // Map the fetched JSON data to the required format (open, high, low, close)
-//         var formattedData = data.map(item => ({
-//           time: item.time,// Assuming "Time" is a string timestamp
-//           open: item.open,
-//           high: item.high,
-//           low: item.low,
-//           close: item.close,
-//         }));
-
-//         // Add the formatted data to the candlestick series
-//         candlestickSeries.setData(formattedData);
-//         chart.timeScale().fitContent();
-
-//         // update the most recent bar
-//         areaSeries.update({ time: '2023-09-12', value: 25 });
-//         candlestickSeries.update({ time: '2023-09-12', open: 109.87, high: 114.69, low: 85.66, close: 112 });
-
-//         // creating the new bar
-//         areaSeries.update({ time: '2023-09-12-01', value: 20 });
-//         candlestickSeries.update({ time: '2023-09-12', open: 112, high: 112, low: 100, close: 101 });
-//       })
-//       .catch(error => {
-//         console.error('Error fetching chart data:', error);
-//       });
-
-//        updateChartData();
-
-//         // Set up an interval to update data periodically (adjust the interval time as needed)
-//         setInterval(updateChartData, 60000); 
-//   });
-
-
-
-
   document.addEventListener("DOMContentLoaded", function () {
   // Create the TradingView lightweight chart
   var container = document.getElementById("chart-container");
+  // container.style.height = "250px"; // Set the desired height
+  container.style.height = "230px"; // Set the desired height
+  // container.style.height = document.getElementById("chart-container").offsetHeight
+
   var chart = LightweightCharts.createChart(container, {
     width: document.getElementById("chart-container").offsetWidth,
+    height: container.offsetHeight, // Set the height dynamically
+
+    // height: document.getElementById("chart-container").offsetHeight,
+
+    // width: "500px", // Set the width to 100%
+    // height: "100%", 
     layout: {
-      background: { color: '#00171f' },
-      textColor: '#DDD',
+      background: { color: '#f7f7f7' },
+      textColor: '#white',
     },
     grid: {
       vertLines: { color: 'rgba(0, 0, 0, 0)'},
@@ -147,9 +23,9 @@
     },
     timeScale: {
           timeVisible: true,
-          borderColor: '#485c7b',
-          timeBorderColor: '#485c7b',
-          timeBackgroundColor: '#00171f',
+          borderColor: 'red',
+          timeBorderColor: 'red',
+          timeBackgroundColor: 'red',
           secondsVisible: true,
           // Specify the format for displaying time
           timeFormat: ['%Y-%m-%d %H:%M'],
@@ -162,14 +38,13 @@
         rightBarStaysOnScroll: true,
   });
 
+
 chart.applyOptions({
     timeScale: {
         barSpacing: 5,
-        // fixLeftEdge: true,
-        // rightOffset: 80,
-        // rightBarStaysOnScroll: false,
+
         borderVisible: false,
-        borderColor: '#fff000',
+        borderColor: 'red',
         visible: true,
         timeVisible: true,
         secondsVisible: true,

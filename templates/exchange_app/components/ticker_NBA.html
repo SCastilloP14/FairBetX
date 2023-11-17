@@ -152,6 +152,15 @@
     justify-content: center;
     text-align: center;
 }
+
+#chart-div {
+    width:96%;
+    height:98%;
+    border-radius: 25px;
+    margin:0 auto;
+    margin-top:20px;
+    }
+
 .statistics_card {
     width: 745px;
     height:500px;
@@ -515,9 +524,19 @@
 
         <!-- Chart + Statistics Card  -->
         <div class="grid grid_1x2">
+
+            <!-- Candlestick Graph  -->
             <div class="candlestick_card">
-                Candlestick Graph
+                
+                <div id="chart-div">
+                    <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+                    <script type="text/javascript" src="../../../static/trading_view.js"></script>
+                    <div id="chart-container" value="{{ticker_detail.id}}">{{ticker_detail.id}}</div>
+                </div>
+                
             </div>
+
+            <!-- Statistics Graph  -->
             <div class="statistics_card">
                 <header>Statistics</header>
                 
