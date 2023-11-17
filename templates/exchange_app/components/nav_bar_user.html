@@ -1,127 +1,142 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Nav Bar User</title>
-  </head>
-  <style>
-    :root {
-        --font-family: 'Satoshi',sans-serif;
-        --font-weight: 600;
-        --font-color: white;
-    }
-    body {
-        font-family: var(--font-family);
-        font-weight: var(--font-weight);
-    }
-    .gradient-container {
-      background: linear-gradient(to bottom, #00474f, #000e10);
-      align-items: center;
-      justify-content: center;
-    }
-    .nav_bar {
-      height: 86px;
-      width: 100%;
-      background-color: green;
-      top: 0px;
-      left: 0px;
-      position: absolute;
-    }
-    .nav_bar_center {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;   
-     }
-     .nav_bar_left {
-        text-align: left;   
-     }
-     .nav_bar_right {
-        text-align: right;   
-     }
-    .nav_bar_center_center {
-        width:500px;   
-        text-align: center; 
-     }
-    .nav_bar_header {
-        color:white;
-        font-size: 1.2rem;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-    .nav_bar_header:hover {
-        color:#13C2C1;
-    }
-    .nav_button {
-        border-radius: 25px;
-        color:white;
-        font-size: 1rem;
-        background-color: transparent;
-        border: solid 1px white;
-        padding: 10px 35px
-    }
-    .nav_button:hover {
-        background-color: #13C2C1  ;
-        border: none;
-    }
-    .grid {
-      display: grid;
-      align-items: center;
-      place-items: center;
-      height: 100%;
-    }
-    .grid_nav_1x3 {
-      grid-template-columns: auto 1200px auto;
-    }
-    .grid_nav_1x3_middle {
-      grid-template-columns: auto;
-    }
-  </style>
+</head>
+<style>
+:root {
+    --font-family: 'Satoshi', sans-serif;
+    --font-weight: 600;
+    --font-color: white;
+}
 
-  <body>
-    <!-- Navigation Container -->
-    <div class="nav_bar gradient-container">
-     <!-- Grid 1x3  -->
-      <div class="grid grid_nav_1x3">
+body {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight);
+}
+
+.gradientContainer {
+    background: linear-gradient(to bottom, #00474f, #000e10);
+    align-items: center;
+    justify-content: center;
+}
+
+.navBar {
+    height: 86px;
+    width: 100%;
+    background-color: green;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    margin-bottom: 100px;
+}
+
+.navBarCenter {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navBarLeft {
+    text-align: left;
+}
+
+.navBarRight {
+    text-align: right;
+}
+
+.navBarCenterCenter {
+    width: 500px;
+    text-align: center;
+}
+
+.navBarHeader {
+    color: white;
+    font-size: 1.2rem;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.navBarHeader:hover {
+    color: #13C2C1;
+}
+
+.navButton {
+    border-radius: 25px;
+    color: white;
+    font-size: 1rem;
+    background-color: transparent;
+    border: solid 1px white;
+    padding: 10px 35px;
+}
+
+.navButton:hover {
+    background-color: #13C2C1;
+    border: none;
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+}
+
+.gridNav13 {
+    grid-template-columns: auto 1500px auto;
+}
+
+.gridNav13Middle {
+    grid-template-columns: auto;
+}
+</style>
+
+<body>
+<!-- Navigation Container -->
+<div class="navBar gradientContainer">
+    <!-- Grid 1x3  -->
+    <div class="grid gridNav13">
 
         <!-- Left Section  -->
-        <div class="nav_bar_left_edge">
+        <div class="navBarLeftEdge">
             <!-- Empty  -->
         </div>
 
         <!-- Middle Section  -->
-        <div class="nav_bar_center">
-          <!-- Logo -->
-          <div class="nav_bar_left">
-            <img src="../../../static/img/Group_486.png">
-            <img src="../../../static/img/Group_496.png">
-            <img src="../../../static/img/Group_492.png">           
-          </div>
+        <div class="navBarCenter">
+            <!-- Logo -->
+            <div class="navBarLeft">
+                <img src="../../../static/img/Group_486.png">
+                <img src="../../../static/img/Group_496.png">   
+                <img src="../../../static/img/Group_492.png">
+            </div>
 
-          <!-- Buttons -->
-          <div class="nav_bar_center_center">
-            <a class="nav_bar_header">Home</a>
-            <a class="nav_bar_header">Sports Bet</a>
-            <a class="nav_bar_header">About Us</a>
-          </div>
+            <!-- Buttons -->
+            <div class="navBarCenterCenter">
+                <a class="navBarHeader">Home</a>
+                <a class="navBarHeader">Sports Bet</a>
+                <a class="navBarHeader">About Us</a>
+            </div>
 
-          <!-- Buttons -->
+            <!-- Buttons -->
 
-          <!-- Login -->
-          <div class="nav_bar_right">
-            <button class="nav_button">My Account</button>
-          </div>
+            <!-- Login -->
+            <div class="navBarRight">
+                <button class="navButton">My Account</button>
+            </div>
 
         </div>
         <!-- Right Section  -->
-        <div class="nav_bar_right_edge">
+        <div class="navBarRightEdge">
             <!-- Empty  -->
         </div>
 
-        
-      </div>
+
     </div>
-  </body>
+</div>
+</body>
 </html>

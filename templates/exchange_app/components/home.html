@@ -4,118 +4,254 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<style>
-    :root {
-        --font-family: 'Satoshi',sans-serif;
-        --font-weight: 600;
-        --font-color-light: white;
-        --font-color-dark: black;
-
-    }
-    body {
-        font-family: var(--font-family);
-        color:var(--font-color-light);
-    }
-    .home_container {
-        background-color: red;
-        width: 100%;
-        height: 100px;
-    }
-    .home_first_section img{
-        width: 100%
-    }
-    .home_second_section {
-        height: 700px;
-        width:100%;
-        background-color: #FBFBFB;
-        color:darkgrey
-    }
-    #Home_Second_Section_Header {
-        padding-top:100px;
-        color:#016D74;
-        font-size: 40px;
-        font-weight: 600
-    }
-    #Home_Second_Section_Description {
-        color: black;
-        font-size: 18px;
-        font-weight: 500
-    }
-    .betting_button {
-        border-radius: 25px;
-        color:#016D74;
-        font-size: 18px;
-        background-color: transparent;
-        border: solid 3px #016D74;
-        padding: 10px 35px
-    }
-    .betting_button:hover {
-        background-color: #13C2C1  ;
-        border: none;
-        color: white;
-    }
-    .home_second_section_images {
-        width: 100%;
-        height: 650px;
-        /* background-color: blue; */
-        display: flex;
-
-        overflow: visible; /* Allow content to overflow the container */
-        position: relative; 
-    }
-    .overflow-image {
-        position: static; 
-        right: 0; 
+    <style>
+        :root {
+            --font-family: 'Satoshi', sans-serif;
+            --font-weight: 600;
+            --font-color-light: white;
+            --font-color-dark: black;
         }
 
-    .home_third_section {
-        height: 100vh;
-        width:100%;
-        background-color: #E5FFFB;
-    }
-    .grid {
-      display: grid;
-      align-items: center;
-      place-items: center;
-      height: 100%;
-    }
-    .grid_home_1x3 {
-      grid-template-columns: auto 1500px auto;
-    }
+        body {
+            font-family: var(--font-family);
+            color: var(--font-color-light);
+        }
 
-</style>
+        .homeContainer {
+            background-color: #f7f7f7;
+            width: 100%;
+            height: auto;
+            margin-bottom:20px;
+            text-align: center;
+        }
+        .homeFirstSection {
+            background:linear-gradient(to bottom, #016970, #01373A);
+            width:100%
+        }
+        .homeFirstSection img {
+            width: 1840px;
+        }
 
-<div class="home_container">
-     <!-- First Section Below Nav Bar  -->
-    <div class="home_first_section">
+        .homeSecondSection {
+            height: 700px;
+            width: 100%;
+            background-color: #FBFBFB;
+            color: darkgrey;
+        }
+
+        #homeSecondSectionHeader {
+            padding-top: 100px;
+            color: #016D74;
+            font-size: 40px;
+            font-weight: 600;
+        }
+
+        #homeSecondSectionDescription {
+            color: black;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .homeThirdSection {
+            background: #F0FFFD;
+            color:black;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .homeThirdSectionButton {
+            width: 55px;
+            height:55px;
+            border-radius: 100%;
+            background:linear-gradient(to bottom, #00474F, #000E10);;
+            color:white;
+            font-size: 30px;
+        }
+
+        /* Third Section Rigth Side  */
+        .homeThirdSectionRightSide {
+            width:100%;
+            height:900px;
+        }
+
+        .homeThirdSectionRightSide img {
+            position: relative;
+            right:140px;
+        }
+
+        /* Third Section Left Side  */
+        .homeThirdSectionLeftSide {
+            width: 100%;
+            height: 900px;
+            align-self: flex-start;
+           }
+        #homeThirdSectionHeader {
+            padding-top:80px;
+            font-size:34px;
+            font-weight:600;
+            color: #00474F;
+        }
+        #homeThirdSectionDescription {
+            padding-top:20px;
+            font-size:22px;
+            font-weight:500;
+            color: #5F5F5F;
+            padding-bottom:0
+        }
+        .homeThirdSectionText h2 {
+            font-size: 24px;
+            color: #00474F;
+            padding-bottom:0
+        }
+        .homeThirdSectionText span {
+            font-size: 18px;
+            color: #5F5F5F;
+            line-height: 20px;
+        }
+
+        .beginJourneyButton {
+            border-radius: 25px;
+            color: #016D74;
+            font-size: 18px;
+            background-color: transparent;
+            border: solid 3px #016D74;
+            margin-top:80px;
+            padding: 10px 35px;
+        }
+
+        .beginJourneyButton:hover {
+            color:white;
+            background:#016D74
+        }
+
+        .bettingButton {
+            border-radius: 25px;
+            color: #016D74;
+            font-size: 18px;
+            background-color: transparent;
+            border: solid 3px #016D74;
+            padding: 10px 35px;
+        }
+
+        .bettingButton:hover {
+            background-color: #13C2C1;
+            border: none;
+            color: white;
+        }
+
+        .homeSecondSectionImages {
+            width: 100%;
+            height: 650px;
+            display: flex;
+            overflow: visible; /* Allow content to overflow the container */
+            position: relative;
+        }
+
+        .overflowImage {
+            position: static;
+            right: 0;
+        }
+
+         /* Grid  */
+
+        .grid {
+            display: grid;
+            align-items: center;
+            place-items: center;
+            height: 100%;
+        }
+
+        .gridHome1x2 {
+            grid-template-columns: 35% 65%;
+
+        }
+
+        .gridHome1x3 {
+            grid-template-columns: auto 1500px auto;
+        }
+
+        .gridHome3x2 {
+            grid-template-columns: 20% 80%;
+            grid-template-rows: repeat(3, 150px);
+        }
+    </style>
+</head>
+
+<!-- Home Container -->
+<div class="homeContainer">
+    <!-- First Section Below Nav Bar -->
+    <div class="homeFirstSection">
         <img src="../../../static/img/Mask_Group_9.png" alt="">
         <!-- <img  src="../../../static/img/Mask_Group_10.png"  alt=""> -->
-
     </div>
-     <!-- Second Section Below Nav Bar  -->
+    <!-- Second Section Below Nav Bar -->
+    <div class="homeSecondSection grid gridHome1x3">
 
-    <div class="home_second_section grid grid_home_1x3">
+        <!-- Left Section  -->
         <div class="empty"></div>
+
+        <!-- Middle Section  -->
         <div style="text-align: center;">
-            <h2 id="Home_Second_Section_Header">Sports Bet</h2>
-            <H4 id="Home_Second_Section_Description">FBX offers a truly new and innovative betting experience. You control the game, place your bet and see exactly what other are doing</H4>
-            <button class="betting_button"> Start Betting</button>
-            <div class="home_second_section_images">
+            <h2 id="homeSecondSectionHeader">Sports Bet</h2>
+            <h4 id="homeSecondSectionDescription">FBX offers a truly new and innovative betting experience. You control the game, place your bet and see exactly what others are doing</h4>
+            <button class="bettingButton"> Start Betting</button>
+            <!-- Second Image  -->
+            <div class="homeSecondSectionImages">
                 <img src="../../../static/img/n_75shots_so.png" alt="">
-                <img class="overflow-image" src="../../../static/img/n_83shots_so.png" alt="">
+                <img class="overflowImage" src="../../../static/img/n_83shots_so.png" alt="">
+            </div>
+
+            
+        </div>
+
+        <!-- Right Section  -->
+        <div class="empty"></div>
+    </div>
+
+    <!-- Third Section  -->
+    <div class="homeThirdSection grid gridHome1x3">
+        <!-- Left Section  -->
+        <div class="empty"></div>
+
+        <!-- Middle Section -->
+        <div class="grid gridHome1x2">
+            <!-- Left Side with Text  -->
+            <div class="homeThirdSectionLeftSide">
+                <h2 id="homeThirdSectionHeader">Trading Guide</h2>
+                <h4 id="homeThirdSectionDescription">Trade your favourite sport in a completely new and excitign way! FBX offers a unique betting experience you will not find anywhere else.</h4>
+                <div class="grid gridHome3x2" style="height:auto">
+                    <button class="homeThirdSectionButton">1</button>
+                    <div class="homeThirdSectionText">
+                        <h2>Low Cost</h2>
+                        <span>Betting on FBX is significantly cheaper compared to other betting sites as you only pay for bets that get filled</span>
+                    </div>
+                    <button class="homeThirdSectionButton">2</button>
+                    <div class="homeThirdSectionText">
+                        <h2>Full Transparency</h2>
+                        <span>FBX offers full transparency where you can see all bets being placed on your favourite games!</span>
+                    </div>
+                    <button class="homeThirdSectionButton">3</button>
+                    <div class="homeThirdSectionText">
+                        <h2>Unique Betting Experience</h2>
+                        <span>Take advantage of the open market and trade whenever you want. Take advantage of the happening in real time to place new and exciting bets!</span>
+                    </div>
+                </div>
+            
+                <button class="beginJourneyButton">Begin Journey</button>
+
+            </div>
+
+            <!-- Right Side with Image  -->
+            <div class="homeThirdSectionRightSide">
+                <img src="../../../static/img/SMac.png" alt="">
             </div>
         </div>
+
+        <!-- Right Section  -->
         <div class="empty"></div>
 
     </div>
-     <!-- <div class="home_third_section">
-        <h2>Sports Bet</h2>
-        <H4>FBX offers a truly new and innovative betting experience. You control the game, place your bet and see exactly what other are doing</H4>
-        <button> Start Betting</button>
-        <img src="../../../static/img/SMac.png" alt="">
-
-    </div> -->
+    <di
 </div>
 
 </html>

@@ -1,18 +1,10 @@
   document.addEventListener("DOMContentLoaded", function () {
-  // Create the TradingView lightweight chart
   var container = document.getElementById("chart-container");
-  // container.style.height = "250px"; // Set the desired height
   container.style.height = "230px"; // Set the desired height
-  // container.style.height = document.getElementById("chart-container").offsetHeight
 
   var chart = LightweightCharts.createChart(container, {
     width: document.getElementById("chart-container").offsetWidth,
     height: container.offsetHeight, // Set the height dynamically
-
-    // height: document.getElementById("chart-container").offsetHeight,
-
-    // width: "500px", // Set the width to 100%
-    // height: "100%", 
     layout: {
       background: { color: '#f7f7f7' },
       textColor: '#white',

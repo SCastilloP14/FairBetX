@@ -7,18 +7,18 @@
 </head>
 <style>
 .header {
-    margin-top: 86px;
+    margin-top:86px;
     position: relative;
 }    
-.headerImg {
-    width: 100%;
+.header_img {
+    width:100%
 }
-.headerCentered {
+.header_centered {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2.8rem;
+    font-size: 2.8rem; /* Adjust font size as needed */
     color: white;
 }
 
@@ -27,135 +27,140 @@
     align-items: center;
     place-items: center;
     height: 100%;
-    width: 100%;
+    width: 100%
 }
-.gridNav13 {
+.grid_nav_1x3 {
     grid-template-columns: auto 1500px auto;
 }
-.grid12 {
+.grid_1x2 {
     grid-template-columns: 25% 75%;
 }
-.grid16 {
+.grid_1x6{
     grid-template-columns: 30% 10% 15% 15% 15% 15%;
 }
-.leftCardContainer {
+.left_card_container {
     width: 100%;
-    min-height: 700px;
-    height: auto;
+    min-height:700px;
+    height:auto;
     background: linear-gradient(to bottom, #00474f, #000e10);
     line-height: 42px;
     border-radius: 25px;
     text-align: center;
     color: white;
 }
-.rightCardContainer {
+.right_card_container {
     width: 100%;
-    min-height: 700px;
-    height: auto;
+    min-height:700px;
+    height:auto;
     background: white;    
     line-height: 42px;
     border-radius: 25px;
-    margin-left: 25px;
+    margin-left:25px;
     text-align: center;
     color: black;
 }
 
-.rightCardContainerHeader {
+.right_card_container_header {
     /* display: flex; */
 }
-.sportsPage {
+.sports_page {
     padding-top: 20px;
-    background: #F7F7F7;
+    background:#F7F7F7
 }
-.searchBar {
-    margin-top: 40px;
+.search_bar {
+    margin-top:40px;
     width: 220px;
     padding: 10px 20px;
     border-radius: 25px;
 }
-.nbaLogo {
-    width: 30px;
+.NBA_logo {
+    width:30px;
     height: 30px;
-    margin-right: 10px;
+    margin-right:10px;
 }
-.leftCardNba {
+.left_card_NBA {
     display: flex;
-    margin-left: 50px;
+    /* justify-content: center; */
+    margin-left:50px;
     align-items: center;
 }
 h4 {
     font-size: 26px;
 }
 
-.liveButton {
+.live_button {
     border-radius: 25px;
-    color: #016D74;
+    color:#016D74;
     font-size: 16px;
-    font-weight: 600;
+    font-weight:600;
     background-color: transparent;
     border: solid 3px #016D74;
     padding: 10px 50px;
-    margin-left: 40px;
+    margin-left:40px
 }
-.liveButton:hover {
-    color: white;
+.live_button:hover {
+    color:white;
     border: none;
     background-color: #016D74;
 }
-.liveButtonSmall {
+.live_button_small {
     border-radius: 25px;
-    color: #B51F1F;
+    color:#B51F1F;
     font-size: 12px;
-    font-weight: 600;
+    font-weight:600;
     background-color: #F5E4E5;
     border: solid 3px #B51F1F;
     padding: 2px 10px;
-    display: flex;
+    display: flex
 }
-.eventsButton {
+.events_button {
     border-radius: 25px;
-    color: #016D74;
+    color:#016D74;
     font-size: 16px;
-    font-weight: 600;
+    font-weight:600;
     background-color: #E4F0EB;
     border: none;
     padding: 10px 30px;
-    margin-left: 40px;
+    margin-left:40px
 }
-.eventsButton:hover {
-    color: white;
+.events_button:hover {
+    color:white;
     border: none;
     background-color: #016D74;
 }
 
-.rightCardMatchCard {
+.right_card_match_card {
     width: 98%;
     height: 160px;
     border-radius: 25px;    
     background: #f7f7f7;
     align-items: center;
+
     margin: 10px auto;
 }
 
-.rightCardMatchCard1 {
+.right_card_match_card_1 {
     height: 100%;
     display: flex;
     flex-direction: column;
+    /* align-items: left; */
+    
     font-size: 24px;
-    font-weight: 600;
+    font-weight:600;
     justify-content: space-evenly;
-    margin-right: 150px;
+    margin-right:150px;
 }
-.rightCardMatchCard2 {
+.right_card_match_card_2 {
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: 28px;
-    justify-content: space-evenly;
+        justify-content: space-evenly;
+
 }
-.rightCardMatchCard3 {
+.right_card_match_card_3 {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -163,7 +168,7 @@ h4 {
     justify-content: center;
     font-size: 18px;
 }
-.rightCardMatchCard4 {
+.right_card_match_card_4 {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -171,7 +176,7 @@ h4 {
     justify-content: center;
     font-size: 16px;
 }
-.rightCardMatchCard5 {
+.right_card_match_card_5 {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -179,7 +184,7 @@ h4 {
     justify-content: center;
     font-size: 16px;
 }
-.rightCardMatchCard6 {
+.right_card_match_card_6 {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -187,8 +192,8 @@ h4 {
     justify-content: center;
     font-size: 16px;
 }
-.matchDetails {
-    padding: 15px 30px;
+.match_details {
+    padding:15px 30px;
     background-color: white;
     border-radius: 15px;
 }
@@ -196,105 +201,119 @@ h4 {
 
 <div>
     <div class="header">
-        <img class="headerImg" src="../../../static/img/SB_pg.png" alt="">
-        <div class="headerCentered">Sports Bet</div>
+        <img class="header_img"src="../../../static/img/SB_pg.png" alt="">
+        <div class="header_centered">Sports Bet</div>
     </div>
-    <div class="grid gridNav13 sportsPage">
+    <div class="grid grid_nav_1x3 sports_page">
         <!-- Left Section  -->
         <div class="empty"></div>
 
         <!-- Middle Section  -->
-        <div class="grid grid12">
+        <div class="grid grid_1x2">
             <!-- Left Card  -->
-            <div class="leftCardContainer">
-                <input type="text" class="searchBar" placeholder="Search">
-                <div class="leftCardNba">
-                    <img class="nbaLogo" src="../../../static/img/basketball-logo.png" alt="">
+            <div class="left_card_container">
+                <input type="text" class="search_bar" placeholder="Search">
+                <div class="left_card_NBA">
+                    <img class="NBA_logo" src="../../../static/img/basketball-logo.png" alt="">
                     <h4>NBA</h4>
+                           
                 </div>
-                <div class="leftCardNba">
-                    <img class="nbaLogo" src="../../../static/img/basketball-logo.png" alt="">
+                <div class="left_card_NBA">
+                    <img class="NBA_logo" src="../../../static/img/basketball-logo.png" alt="">
                     <h4>NFL</h4>
                     <a href="" style="color:white; text-decoration: none;"> > </a>
                 </div>
+
+
             </div>
 
             <!-- Right Card  -->
-            <div class="rightCardContainer">
-                <div class="rightCardContainerHeader">
+            <div class="right_card_container">
+                <div class="right_card_container_header">
                     <div>All Sports</div>
-                    <button class="eventsButton">All Events</button>
-                    <button class="liveButton">Live</button>
-                    <input type="text" class="searchBar" placeholder="Search">
+                    <button class="events_button">All Events</button>
+
+                    <button class="live_button">Live</button>
+                    <input type="text" class="search_bar" placeholder="Search">
+
                 </div>
-                <div class="rightCardContainerMatches">
-                    <div class="rightCardMatchCard grid grid16">
-                        <div class="rightCardMatchCard1">
+                <div class="right_card_container_matches">
+                    <div class="right_card_match_card grid grid_1x6">
+                        <div class="right_card_match_card_1">
                             <div>Lorem</div>
                             <div>Lorem</div>
                         </div>
-                        <div class="rightCardMatchCard2">
+                        <div class="right_card_match_card_2">
                             <span>0</span>
                             <span>0</span>
+
                         </div>
-                        <div class="rightCardMatchCard3">
-                            <button class="liveButtonSmall">
+                        <div class="right_card_match_card_3">
+                            <button class="live_button_small">
                                 <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
                                 Live
                             </button>
                             <span>Q1 - 0:00</span>
                         </div>
-                        <div class="rightCardMatchCard4">
+                        <div class="right_card_match_card_4">
                             <header>Buy</header>
-                            <div class="matchDetails"> 9.00</div>
+                            <div class="match_details"> 9.00</div>
                         </div>
-                        <div class="rightCardMatchCard5">
+                        <div class="right_card_match_card_5">
                             <header>Sell</header>
-                            <div class="matchDetails"> 9.00</div>
+                            <div class="match_details"> 9.00</div>
                         </div>
-                        <div class="rightCardMatchCard6">
+                        <div class="right_card_match_card_6">
                             <header>Price Change</header>
-                            <div class="matchDetails"> +0.00</div>
-                        </div>
+                            <div class="match_details"> +0.00</div></div>
+
                     </div>
                 </div>
                 
-                <div class="rightCardContainerMatches">
-                    <div class="rightCardMatchCard grid grid16">
-                        <div class="rightCardMatchCard1">
+                <div class="right_card_container_matches">
+                    <div class="right_card_match_card grid grid_1x6">
+                        <div class="right_card_match_card_1">
                             <div>Lorem</div>
                             <div>Lorem</div>
                         </div>
-                        <div class="rightCardMatchCard2">
+                        <div class="right_card_match_card_2">
                             <span>0</span>
                             <span>0</span>
+
                         </div>
-                        <div class="rightCardMatchCard3">
-                            <button class="liveButtonSmall">
+                        <div class="right_card_match_card_3">
+                            <button class="live_button_small">
                                 <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
                                 Live
                             </button>
                             <span>Q1 - 0:00</span>
                         </div>
-                        <div class="rightCardMatchCard4">
+                        <div class="right_card_match_card_4">
                             <header>Buy</header>
-                            <div class="matchDetails"> 9.00</div>
+                            <div class="match_details"> 9.00</div>
                         </div>
-                        <div class="rightCardMatchCard5">
+                        <div class="right_card_match_card_5">
                             <header>Sell</header>
-                            <div class="matchDetails"> 9.00</div>
+                            <div class="match_details"> 9.00</div>
                         </div>
-                        <div class="rightCardMatchCard6">
+                        <div class="right_card_match_card_6">
                             <header>Price Change</header>
-                            <div class="matchDetails"> +0.00</div>
-                        </div>
+                            <div class="match_details"> +0.00</div></div>
+
                     </div>
                 </div>
+
             </div>
+
+            
         </div>
 
         <!-- Right Section  -->
         <div class="empty"></div>
+
     </div>
+    
 </div>
+
+
 </html>
