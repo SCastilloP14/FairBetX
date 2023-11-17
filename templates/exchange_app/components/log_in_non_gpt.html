@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    :root {
+        --font-family: 'Satoshi',sans-serif;
+        --font-weight: 600;
+        --font-color-light: white;
+        --font-color-dark: black;
+
+    }
+    body {
+        font-family: var(--font-family);
+        color:var(--font-color-light);
+    }
+.card_container {
+    width: 510px;
+    height:635px;
+    background: linear-gradient(to bottom, #00474f, #000e10);
+    line-height: 42px;
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+}
+.card_header {
+    width: 100%;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0;
+    padding-top: 95px;
+    margin-bottom: 10px;
+}
+.card_new_user {
+    font-size: 16px;
+    margin-bottom:10px;
+}
+.card_new_user a {
+    color: #13C2C1
+}
+.card_input_form input {
+    height: 53px;
+    width: 300px;
+    border-radius: 15px;
+    padding-left: 17px;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.card_keep_logged_in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+.card_button_check {
+    width: 25px;
+    height: 25px;
+    color:white;
+    border-radius: 25px;
+    margin-right: 10px;
+    font-size: 18px;
+}
+.login_button {
+        border-radius: 25px;
+        color:white;
+        font-size: 1rem;
+        background-color: transparent;
+        border: solid 1px white;
+        padding: 10px 35px
+    }
+.login_button:hover {
+    background-color: #13C2C1  ;
+    border: none;
+}
+.card_horizontal_line_seperator {
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+    margin:10px 0;
+}
+.horizontal-line {
+    /* flex: 1; */
+    width: 100px;
+    height: 1px;
+    background-color: white;
+    margin: 0 10px;
+}
+.card_logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:20px;
+}
+.card_button {
+    margin: 20px 0;
+}
+
+</style>
+    <div class="card_container">
+        <div class="card_header">
+            <span>Log In</span>
+        </div>
+        <div class="card_new_user">
+            <span>New user?</span>
+            <a href="">Create an account</a>
+        </div>
+        <div class="card_input_form">
+            <input action="Username" placeholder="Username or Email"></input>
+        </div>
+        <div class="card_input_form">
+            <input action="Username" placeholder="Password"></input>
+        </div>
+        <div class="card_keep_logged_in">
+            <input class="card_button_check" type="checkbox">
+           <span>Keep me logged in</span> 
+        </div>
+        <div class="card_button">
+            <button class="login_button">Log In</button>
+        </div>
+        <div class="card_horizontal_line_seperator">
+            <div class="horizontal-line"></div>
+            <div>Or log in with</div>
+            <div class="horizontal-line"></div>
+        </div>
+        <div class="card_logos">
+            <a href="https://www.google.ca/" target="_blank">
+                <img style="height: 48px; width: 48px; margin-right:10px;" src="../../../static/img/Group_484.png" alt="">
+            </a>
+            <a href="https://www.facebook.com/" target="_blank">
+                <img style="height: 64px; width: 64px; margin-left:10px;" src="../../../static/img/icons-facebook.png" alt="">
+            </a> 
+        </div>
+    </div>
+</html>

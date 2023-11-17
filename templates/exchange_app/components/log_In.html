@@ -1,145 +1,162 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<title>Log in</title>
 <style>
     :root {
-        --font-family: 'Satoshi',sans-serif;
-        --font-weight: 600;
-        --font-color-light: white;
-        --font-color-dark: black;
+            --font-family: 'Satoshi', sans-serif;
+            --font-weight: 600;
+            --font-color-light: white;
+            --font-color-dark: black;
+        }
 
+        body {
+            font-family: var(--font-family);
+            color: var(--font-color-light);
+            margin: 0;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+            z-index: 1;
+        }
+
+        .cardContainer {
+            width: 510px;
+            height: 635px;
+            background: linear-gradient(to bottom, #00474f, #000e10);
+            line-height: 42px;
+            border-radius: 25px;
+            text-align: center;
+            color: white;
+            z-index: 2;
+            position: relative; /* Needed for the absolute positioning of the close button */
+        }
+
+    
+    .cardHeader {
+        width: 100%;
+        font-size: 34px;
+        font-weight: 700;
+        letter-spacing: 0;
+        padding-top: 95px;
+        margin-bottom: 10px;
     }
-    body {
-        font-family: var(--font-family);
-        color:var(--font-color-light);
+
+    .cardNewUser {
+        font-size: 16px;
+        margin-bottom: 10px;
     }
-.card_container {
-    width: 510px;
-    height:635px;
-    background: linear-gradient(to bottom, #00474f, #000e10);
-    line-height: 42px;
-    border-radius: 25px;
-    text-align: center;
-    color: white;
-}
-.card_header {
-    width: 100%;
-    font-size: 34px;
-    font-weight: 700;
-    letter-spacing: 0;
-    padding-top: 95px;
-    margin-bottom: 10px;
-}
-.card_new_user {
-    font-size: 16px;
-    margin-bottom:10px;
-}
-.card_new_user a {
-    color: #13C2C1
-}
-.card_input_form input {
-    height: 53px;
-    width: 300px;
-    border-radius: 15px;
-    padding-left: 17px;
-    font-size: 18px;
-    font-weight: 500;
-    margin-bottom: 20px;
-}
-.card_keep_logged_in {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
-}
-.card_button_check {
-    width: 25px;
-    height: 25px;
-    color:white;
-    border-radius: 25px;
-    margin-right: 10px;
-    font-size: 18px;
-}
-.login_button {
+
+    .cardNewUser a {
+        color: #13C2C1;
+    }
+
+    .cardInputForm input {
+        height: 53px;
+        width: 300px;
+        border-radius: 15px;
+        padding-left: 17px;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    .cardKeepLoggedIn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+    }
+
+    .cardButtonCheck {
+        width: 25px;
+        height: 25px;
+        color: white;
         border-radius: 25px;
-        color:white;
+        margin-right: 10px;
+        font-size: 18px;
+    }
+
+    .loginButton {
+        border-radius: 25px;
+        color: white;
         font-size: 1rem;
         background-color: transparent;
         border: solid 1px white;
-        padding: 10px 35px
+        padding: 10px 35px;
     }
-.login_button:hover {
-    background-color: #13C2C1  ;
-    border: none;
-}
-.card_horizontal_line_seperator {
-    display: flex;
-    align-items: center ;
-    justify-content: center;
-    margin:10px 0;
-}
-.horizontal-line {
-    /* flex: 1; */
-    width: 100px;
-    height: 1px;
-    background-color: white;
-    margin: 0 10px;
-}
-.card_logos {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top:20px;
-}
-.card_button {
-    margin: 20px 0;
-}
+
+    .loginButton:hover {
+        background-color: #13C2C1;
+        border: none;
+    }
+
+    .cardHorizontalLineSeparator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    .horizontalLine {
+        width: 100px;
+        height: 1px;
+        background-color: white;
+        margin: 0 10px;
+    }
+
+    .cardLogos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .cardButton {
+        margin: 20px 0;
+    }
 
 </style>
-<body>
-    <div class="card_container">
-        <div class="card_header">
+
+<div class="overlay">
+    <div class="cardContainer">
+        <div class="cardHeader">
             <span>Log In</span>
         </div>
-        <div class="card_new_user">
+        <div class="cardNewUser">
             <span>New user?</span>
-            <a href="">Create an account</a>
         </div>
-        <div class="card_input_form">
+        <div class="cardInputForm">
             <input action="Username" placeholder="Username or Email"></input>
         </div>
-        <div class="card_input_form">
-            <input action="Username" placeholder="Password"></input>
+        <div class="cardInputForm">
+            <input action="Password" placeholder="Password"></input>
         </div>
-        <div class="card_keep_logged_in">
-            <input class="card_button_check" type="checkbox">
-           <span>Keep me logged in</span> 
+        <div class="cardKeepLoggedIn">
+            <input class="cardButtonCheck" type="checkbox">
+            <span>Keep me logged in</span>
         </div>
-        <div class="card_button">
-            <button class="login_button">Log In</button>
+        <div class="cardButton">
+            <button class="loginButton">Log In</button>
         </div>
-        <div class="card_horizontal_line_seperator">
-            <div class="horizontal-line"></div>
+        <div class="cardHorizontalLineSeparator">
+            <div class="horizontalLine"></div>
             <div>Or log in with</div>
-            <div class="horizontal-line"></div>
+            <div class="horizontalLine"></div>
         </div>
-        <div class="card_logos">
+        <div class="cardLogos">
             <a href="https://www.google.ca/" target="_blank">
-                <img style="height: 48px; width: 48px; margin-right:10px;" src="../../../static/img/Group_484.png" alt="">
+                <img style="height: 48px; width: 48px; margin-right: 10px;" src="../../../static/img/Group_484.png" alt="">
             </a>
             <a href="https://www.facebook.com/" target="_blank">
-                <img style="height: 64px; width: 64px; margin-left:10px;" src="../../../static/img/icons-facebook.png" alt="">
-            </a> 
+                <img style="height: 64px; width: 64px; margin-left: 10px;" src="../../../static/img/icons-facebook.png" alt="">
+            </a>
         </div>
-
-
-
-
     </div>
-
-</body>
-</html>
+</div>
