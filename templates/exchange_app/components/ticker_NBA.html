@@ -29,6 +29,11 @@
 .grid_1x4 {
     grid-template-columns:repeat(4,calc(100%/4));
 }
+.grid_4x2 {
+    grid-template-rows:repeat(4,calc(340px/4));
+    grid-template-columns: repeat(2,calc(360px/2));
+
+}
 .grid_1x10 {
     grid-template-columns: 10% 15% 10% 15% 10% 15% 10% 15% 10% 15%;
 }
@@ -196,7 +201,7 @@
     border-radius: 25px;
     text-align: center;
 }
-.buy_orderbook_card header, .sell_orderbook_card header {
+.buy_orderbook_card header, .sell_orderbook_card header, .order_submission_card header {
     font-size:30px;
     color:black;
     margin-top:30px;
@@ -275,20 +280,68 @@
     background: #F5E4E5;
 }
 
-
-
-
-
-
-
+/* Order Submission Card  */
 .order_submission_card {
     margin-top:10px;
     width:495px;
     height:500px;
-    background:orange;
+    background:white;
     margin-left:5px;
     border-radius: 25px;
+    text-align: center;   
 }
+.order_submission_field {
+    height:auto;
+    margin: 0 auto;
+    justify-content: center;
+}
+.place_order_left {
+    width:100%;
+    text-align: left;
+    font-size:24px;
+    color: #5F5F5F
+}
+
+.order_select {
+    padding-left:15px;
+    width: 100%;
+    background: #f7f7f7;
+    border-radius: 15px;
+    height: 40px;
+    border:none
+}
+
+.side_select {
+    padding-left:15px;
+    width: 100%;
+    background: #f7f7f7;
+    border-radius: 15px;
+    height: 40px;
+    border:none;
+    color:#000E10
+
+}
+.price_input {
+    width:100%;
+    background: #f7f7f7;
+    border: none;
+    height:40px;
+    border-radius: 15px;
+
+}
+.price_input::placeholder, .quantity_input::placeholder {
+    padding-left:15px;
+}
+.quantity_input {
+        /* padding-left:15px; */
+    width:100%;
+    height:40px;
+    border: none;
+    border-radius: 15px;
+    background: #f7f7f7;
+}
+
+/* User Stats  */
 .user_statistics {
     width:100%;
 }
@@ -346,6 +399,22 @@
     background:linear-gradient(to bottom, #00474f, #000e10);;
 }
 
+.submit_button {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:600;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 12px 50px;
+    justify-content: center;
+    margin-top:10px;
+}
+.submit_button:hover {
+    border:none;
+    color:white;
+    background: #016D74;
+}
 </style>
 <div class="grid grid_nav_1x3 page_background">
     <div class="empty"></div>
@@ -608,10 +677,39 @@
                     </tr>
                 </table>
             </div>
-            <div class="order_submission_card"></div>
+            <div class="order_submission_card">
+                <header>Place Order</header>
+                <div class="order_submission_field grid grid_4x2">
+                    
+                        <div class="place_order_left">Order Type</div>
+                        <select class="order_select">
+                            <option value="" style="color:#000E10;" disabled selected>Select</option>
+                            <option value="market">Market</option>
+                            <option value="limit">Limit</option>
+                        </select>
+                        <div class="place_order_left">Side</div>
+                        <select class="side_select">
+                            <option value="" style="color:#000E10;" disabled selected>Select</option>
+                            <option value="buy">Buy</option>
+                            <option value="sell">Sell</option>
+                        </select>
+                        <div class="place_order_left">Price</div>
+                        <input class="price_input" type="text" placeholder="$0.00">
+                        <div class="place_order_left">Quantity</div>
+                       <input class="quantity_input" type="text" placeholder="Quantity">
+                </div>
+                <button class="submit_button">Submit</button>
+            </div>
 
         </div>
 
+        
+
+
+
+
+
+    
         <!-- User Statistics  -->
         <div class="user_statistics">
             <div class="user_statistics_header">Recent Activity</div>
