@@ -90,12 +90,12 @@
         font-size: 1rem;
         background-color: transparent;
         border: solid 1px white;
-        padding: 10px 35px;
+        padding: 10px 40px;
     }
 
     .loginButton:hover {
         background-color: #13C2C1;
-        border: none;
+        border: 1px solid #13C2C1;
     }
 
     .cardHorizontalLineSeparator {
@@ -135,25 +135,33 @@
             <a href="">Create an account</a>
         </div>
 
-        /* Login Form Start */
-        
-        <form action="">
-        <div class="cardInputForm">
-            <input action="Username" placeholder="Username or Email"></input>
-        </div>
-        <div class="cardInputForm">
-            <input action="Password" placeholder="Password"></input>
-        </div>
-        <div class="cardKeepLoggedIn">
-            <input class="cardButtonCheck" type="checkbox">
-            <span>Keep me logged in</span>
-        </div>
-        <div class="cardButton">
-            <button class="loginButton">Log In</button>
-        </div>
+
+        <form method="post" class="form" action="{% url "user_login" %}">
+            {% csrf_token %}
+
+            <div class="cardInputForm">
+                <input 
+                    action="username"
+                    name="username"
+                    type="text"
+                    autocomplete="on"
+                    placeholder="Username or Email"></input>
+            </div>
+            <div class="cardInputForm">
+                <input 
+                    action="password" 
+                    name="password"
+                    type="password"
+                    placeholder="Password"></input>
+            </div>
+            
+            <input 
+                class="loginButton"
+                type="submit"
+                value="Log In">
+            
         </form>
 
-        /* Login Form End */
 
         
         <div class="cardHorizontalLineSeparator">
