@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+        <script src="../../../static/start_betting.js"></script>
+        <script src="../../../static/begin_journey.js"></script>
+</head>
+
     <style>
         :root {
             --font-family: 'Satoshi', sans-serif;
@@ -175,7 +179,6 @@
             grid-template-rows: repeat(3, 150px);
         }
     </style>
-</head>
 
 <!-- Home Container -->
 <div class="homeContainer">
@@ -194,7 +197,16 @@
         <div style="text-align: center;">
             <h2 id="homeSecondSectionHeader">Sports Bet</h2>
             <h4 id="homeSecondSectionDescription">FBX offers a truly new and innovative betting experience. You control the game, place your bet and see exactly what others are doing</h4>
-            <button class="bettingButton"> Start Betting</button>
+            
+            <!-- Button leading to Signin sheet -->
+            <button id="startBettingDropdownButton" class="bettingButton">Start Betting</button>
+            <div id="startBettingOverlay" class="overlay">
+                <div id="startBettingDropdownContainer" class="cardContainer">
+                    {% include './log_in.html' %}
+                </div>
+            </div>
+            <!-- <button class="bettingButton"> Start Betting</button> -->
+
             <!-- Second Image  -->
             <div class="homeSecondSectionImages">
                 <img src="../../../static/img/n_75shots_so.png" alt="">
@@ -237,7 +249,13 @@
                     </div>
                 </div>
             
-                <button class="beginJourneyButton">Begin Journey</button>
+                <button id="beginJourneyDropdownButton" class="beginJourneyButton">Begin Journey</button>
+                <div id="beginJourneyOverlay" class="overlay">
+                    <div id="beginJourneyDropdownContainer" class="cardContainer">
+                        {% include './log_in.html' %}
+                    </div>
+                </div>
+                <!-- <button class="beginJourneyButton">Begin Journey</button> -->
 
             </div>
 
