@@ -28,7 +28,6 @@
     }
 
     .loginCardContainer {
-
         width: 510px;
         height: 635px;
         background: linear-gradient(to bottom, #00474f, #000e10);
@@ -46,7 +45,10 @@
         padding-top: 20px;
         padding-right: 20px;
     }
-
+    #newUserButton {
+        text-decoration:underline ;
+        cursor: pointer;
+     }
 
     .closingButton img {
         width:40px;
@@ -157,10 +159,8 @@
         </div>
         <div class="cardNewUser">
             <span>New user?</span>
-            <a id="newUser" href="">Create an account</a>
+            <a id="newUserButton">Create an account</a>
         </div>
-
-
         <form method="post" class="form" action="{% url "user_login" %}">
             {% csrf_token %}
 
@@ -179,16 +179,11 @@
                     type="password"
                     placeholder="Password"></input>
             </div>
-            
             <input 
                 class="loginButton"
                 type="submit"
                 value="Log In">
-            
-        </form>
-
-
-        
+            </form>
         <div class="cardHorizontalLineSeparator">
             <div class="horizontalLine"></div>
             <div>Or log in with</div>

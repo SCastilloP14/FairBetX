@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+
+<title>Sign Up</title>
+
 <style>
        :root {
         --font-family: 'Satoshi',sans-serif;
@@ -17,7 +13,41 @@
         font-family: var(--font-family);
         color:var(--font-color-light);
     }
-.card_container {
+
+#existingUserButton {
+    text-decoration: underline;
+    cursor: pointer;
+}
+.closingButton {
+    height:50px;
+    margin-bottom:0;
+    text-align: right;
+    padding-top: 20px;
+    padding-right: 20px;
+    }
+
+.cancelButton {
+    border-radius: 100%;
+    width:40px;
+    height:40px;
+    color:white;
+    background: transparent;
+    border: 1px solid white;
+}
+.signUpOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(0, 0, 0,0.5); /* Semi-transparent overlay */
+    z-index: 10;
+}
+
+.signUpCardContainer {
     width: 510px;
     height:635px;
     background: linear-gradient(to bottom, #00474f, #000e10);
@@ -25,13 +55,15 @@
     border-radius: 25px;
     text-align: center;
     color: white;
+    z-index: 200;
+    position: relative;
 }
 .card_header {
     width: 100%;
     font-size: 34px;
     font-weight: 700;
     letter-spacing: 0;
-    padding-top: 50px;
+    padding-top: 0;
     margin-bottom: 10px;
 }
 .card_new_user {
@@ -108,26 +140,28 @@
     margin: 20px 0;
 }
 </style>
-<body>
-    <div class="card_container">
+
+<div id="signUpOverlay" class="signUpOverlay">
+    <div id="signUpCardContainer" class="signUpCardContainer">
+        <div class="closingButton">
+            <button id="registrationCancelButton" class="cancelButton">X
+            </button>
+        </div>
         <div class="card_header">
             <span>Create an Account</span>
         </div>
         <div class="card_new_user">
             <span>Already a User?</span>
-            <a href="">Log In</a>
+            <a id="existingUserButton">Log In</a>
         </div>
-        <!-- Input Forms  -->
-        <!-- First Name + Last Name  -->
         <div class="card_input_form card_input_form_small">
             <input action="First Name" placeholder="First Name"></input>
             <input action="Last Name" placeholder="Last Name"></input>
         </div>
-        <!-- Email  -->
+        
         <div class="card_input_form">
             <input action="Email" placeholder="Email Address"></input>
         </div>
-        <!-- Password  -->
         <div class="card_input_form">
             <input action="Password" placeholder="Password"></input>
         </div>
@@ -147,11 +181,9 @@
                 <img style="height: 64px; width: 64px; margin-left:10px;" src="../../../static/img/icons-facebook.png" alt="">
             </a> 
         </div>
-
-
-
-
     </div>
+</div>
 
-</body>
-</html>
+
+
+
