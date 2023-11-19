@@ -105,7 +105,7 @@
     margin-right: 10px;
     font-size: 18px;
 }
-.login_button {
+.letsBeginButton {
     border-radius: 25px;
     color:white;
     font-size: 1rem;
@@ -113,7 +113,7 @@
     border: solid 1px white;
     padding: 10px 35px
     }
-.login_button:hover {
+.letsBeginButton:hover {
     background-color: #13C2C1  ;
     border: none;
 }
@@ -154,19 +154,47 @@
             <span>Already a User?</span>
             <a id="existingUserButton">Log In</a>
         </div>
+
+        <form method="post" class="form" action="{% url "user_registration" %}">
+            {% csrf_token %}
+
         <div class="card_input_form card_input_form_small">
-            <input action="First Name" placeholder="First Name"></input>
-            <input action="Last Name" placeholder="Last Name"></input>
+            <input 
+                action="First Name" 
+                type="first_name"
+                name="first_name"
+                required
+                placeholder="First Name"></input>
+            <input 
+                action="Last Name" 
+                type="last_name"
+                name="last_name"
+                required
+                placeholder="Last Name"></input>
         </div>
         
         <div class="card_input_form">
-            <input action="Email" placeholder="Email Address"></input>
+            <input 
+                action="Email" 
+                type="email"
+                name="email"
+                required
+                placeholder="Email Address"></input>
         </div>
         <div class="card_input_form">
-            <input action="Password" placeholder="Password"></input>
+            <input 
+            action="Password" 
+            type="password"
+            name="password"
+            required
+            placeholder="Password"></input>
         </div>
         <div class="card_button">
-            <button class="login_button">Let's Begin</button>
+            <input 
+                type="submit"
+                class="letsBeginButton"
+                 value="Register Now">
+            <!-- <button class="login_button">Let's Begin</button> -->
         </div>
         <div class="card_horizontal_line_seperator">
             <div class="horizontal-line"></div>

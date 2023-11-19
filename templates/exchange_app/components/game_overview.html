@@ -34,6 +34,7 @@
 }
 .grid12 {
     grid-template-columns: 25% 75%;
+    margin-bottom:50px;
 }
 .grid16 {
     grid-template-columns: 30% 10% 15% 15% 15% 15%;
@@ -42,7 +43,7 @@
     width: 100%;
     min-height: 700px;
     height: auto;
-    background: linear-gradient(to bottom, #00474f, #000e10);
+    background: linear-gradient(to bottom, #016D74, #01373A);
     line-height: 42px;
     border-radius: 25px;
     text-align: center;
@@ -58,31 +59,64 @@
     margin-left: 25px;
     text-align: center;
     color: black;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
 }
 
 .rightCardContainerHeader {
     /* display: flex; */
+    margin-top:60px;
+    height:60px;
+    width:100%;
+    border-radius: 25px;
+    text-align: left;
 }
+
+.allSportsButton {
+    font-size:16px;
+    text-transform: uppercase;
+    text-align: left;
+    color:white;
+    width:150px;
+    background:linear-gradient(to bottom, #016D74, #01373A);;
+    border-radius:10px;
+    padding:5px 12px;
+    margin-left: 60px;
+}
+
+
 .sportsPage {
     padding-top: 20px;
     background: #F7F7F7;
 }
+
+
 .searchBar {
-    margin-top: 40px;
-    width: 220px;
-    padding: 10px 20px;
+    width: 300px;
+    padding: 12px 20px;
     border-radius: 25px;
+    margin-left:30px;;
+    border: 2px solid #5F5F5F;
 }
+.searchBarLeftCard {
+    width: 220px;
+    padding: 12px 20px;
+    border-radius: 25px;
+    margin-top:30px;
+    border: 2px solid #5F5F5F;
+}
+
 .nbaLogo {
     width: 30px;
     height: 30px;
     margin-right: 10px;
 }
+
 .leftCardNba {
     display: flex;
     margin-left: 50px;
     align-items: center;
 }
+
 h4 {
     font-size: 26px;
 }
@@ -95,11 +129,12 @@ h4 {
     background-color: transparent;
     border: solid 3px #016D74;
     padding: 10px 50px;
-    margin-left: 40px;
+    margin-left: 30px;
+    margin-right: auto;
 }
 .liveButton:hover {
     color: white;
-    border: none;
+    /* border: none; */
     background-color: #016D74;
 }
 .liveButtonSmall {
@@ -112,39 +147,46 @@ h4 {
     padding: 2px 10px;
     display: flex;
 }
-.eventsButton {
+.allEventsButton {
     border-radius: 25px;
     color: #016D74;
     font-size: 16px;
     font-weight: 600;
     background-color: #E4F0EB;
     border: none;
-    padding: 10px 30px;
-    margin-left: 40px;
+    padding: 12px 40px;
+    margin-left: 180px;
 }
-.eventsButton:hover {
+.allEventsButton:hover {
     color: white;
     border: none;
-    background-color: #016D74;
+    background-color: #15965A;
+}
+.rightCardContainerMatches {
+    width:98%;
+    margin:0 auto;
+    border-radius: 15px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .rightCardMatchCard {
-    width: 98%;
+    width: 100%;
     height: 160px;
-    border-radius: 25px;    
+    border-radius: 15px;    
     background: #f7f7f7;
     align-items: center;
-    margin: 10px auto;
+    margin: 10px 0;
 }
 
 .rightCardMatchCard1 {
     height: 100%;
     display: flex;
     flex-direction: column;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
     justify-content: space-evenly;
     margin-right: 150px;
+    color:#5F5F5F
 }
 .rightCardMatchCard2 {
     height: 100%;
@@ -154,6 +196,7 @@ h4 {
     justify-content: center;
     font-size: 28px;
     justify-content: space-evenly;
+    color:#016D74
 }
 .rightCardMatchCard3 {
     height: 100%;
@@ -162,6 +205,8 @@ h4 {
     align-items: center;
     justify-content: center;
     font-size: 18px;
+    margin-bottom:10px;
+    color:#5F5F5F
 }
 .rightCardMatchCard4 {
     height: 100%;
@@ -169,7 +214,10 @@ h4 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 18px;
+    margin-bottom:10px;
+    color:#5F5F5F
+
 }
 .rightCardMatchCard5 {
     height: 100%;
@@ -177,7 +225,9 @@ h4 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 18px;
+    margin-bottom:10px;
+    color:#5F5F5F;
 }
 .rightCardMatchCard6 {
     height: 100%;
@@ -185,9 +235,23 @@ h4 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: 18px;
+    margin-bottom:10px;
+    color:#5F5F5F
 }
-.matchDetails {
+.matchDetailsBuy {
+    padding: 15px 30px;
+    background-color: #E4F0EB;
+    color: #15965A;
+    border-radius: 15px;
+}
+.matchDetailsSell {
+    padding: 15px 30px;
+    background-color: #F5E4E5;
+    color: #B51F1F;
+    border-radius: 15px;
+}
+.matchDetailsChange {
     padding: 15px 30px;
     background-color: white;
     border-radius: 15px;
@@ -207,7 +271,7 @@ h4 {
         <div class="grid grid12">
             <!-- Left Card  -->
             <div class="leftCardContainer">
-                <input type="text" class="searchBar" placeholder="Search">
+                <input type="text" class="searchBarLeftCard" placeholder="Search">
                 <div class="leftCardNba">
                     <img class="nbaLogo" src="../../../static/img/basketball-logo.png" alt="">
                     <h4>NBA</h4>
@@ -222,8 +286,8 @@ h4 {
             <!-- Right Card  -->
             <div class="rightCardContainer">
                 <div class="rightCardContainerHeader">
-                    <div>All Sports</div>
-                    <button class="eventsButton">All Events</button>
+                    <button class="allSportsButton">All Sports</button>
+                    <button class="allEventsButton">All Events</button>
                     <button class="liveButton">Live</button>
                     <input type="text" class="searchBar" placeholder="Search">
                 </div>
@@ -246,19 +310,19 @@ h4 {
                         </div>
                         <div class="rightCardMatchCard4">
                             <header>Buy</header>
-                            <div class="matchDetails"> 9.00</div>
+                            <div class="matchDetailsBuy"> 9.00</div>
                         </div>
                         <div class="rightCardMatchCard5">
                             <header>Sell</header>
-                            <div class="matchDetails"> 9.00</div>
+                            <div class="matchDetailsSell"> 9.00</div>
                         </div>
                         <div class="rightCardMatchCard6">
                             <header>Price Change</header>
-                            <div class="matchDetails"> +0.00</div>
+                            <div class="matchDetailsChange"> +0.00</div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="rightCardContainerMatches">
                     <div class="rightCardMatchCard grid grid16">
                         <div class="rightCardMatchCard1">
@@ -278,18 +342,20 @@ h4 {
                         </div>
                         <div class="rightCardMatchCard4">
                             <header>Buy</header>
-                            <div class="matchDetails"> 9.00</div>
+                            <div class="matchDetailsBuy"> 9.00</div>
                         </div>
                         <div class="rightCardMatchCard5">
                             <header>Sell</header>
-                            <div class="matchDetails"> 9.00</div>
+                            <div class="matchDetailsSell"> 9.00</div>
                         </div>
                         <div class="rightCardMatchCard6">
                             <header>Price Change</header>
-                            <div class="matchDetails"> +0.00</div>
+                            <div class="matchDetailsChange"> +0.00</div>
                         </div>
                     </div>
                 </div>
+                
+                
             </div>
         </div>
 
