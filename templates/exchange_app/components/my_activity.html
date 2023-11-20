@@ -1,0 +1,400 @@
+<style>
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    
+}
+
+.gridHome1x3 {
+    grid-template-columns: auto 1500px auto;
+}
+.grid_1x4 {
+    grid-template-columns:repeat(4,calc(100%/4));
+}
+.gridMyActivity1x5 {
+    grid-template-columns: repeat(5,300px);
+
+}
+.myActivityContainer {
+    margin-top:86px;
+    text-align: center;
+    width:100%;
+    background: #f7f7f7;
+}
+.myActivityMiddle h2 {
+    padding-top:40px;
+    color:#00474F;
+    padding-bottom:30px;
+    font-size:32px;
+    text-align: center;
+}
+.myActivityCard {
+    background: linear-gradient(to bottom,#016D74, #01373A);
+    min-height:160px;
+    border-radius: 25px;
+    color:white;
+    /* padding?-bottom:20px; */
+    text-align: center;
+}
+.myActivityCard a {
+    color:white;
+    font-size: 24px;
+    font-weight:400;
+    text-decoration: none;
+    text-align: center;
+    /* padding-bottom:20px; */
+}
+
+
+/* Uer Stats  */
+.user_statistics {
+    width:100%;
+    margin-bottom:50px;
+}
+.user_statistics_header {
+    text-align: center;
+    font-size: 24px;
+    margin:20px 0;
+}
+.user_table_card {
+    width: 100%;
+    margin-top:10px;
+    background: #FFF;
+    border-radius: 25px;
+    min-height:500px;
+    height:auto;
+}
+.user_table_card table {
+    text-align: center;
+    align-items: center;
+    width: 99%;
+    height:100%;
+    margin: 0 auto;
+    /* margin-top:10px; */
+    border-radius: 25px;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);    /* border: 2px solid red; */
+
+}
+.user_table_card th {
+    padding:20px 20px 16px 20px;
+    font-size: 16px;
+    color:#1B1C1E
+}
+.user_table_card tr {
+    margin-bottom:10px;
+}
+.user_table_card td {
+    font-size: 14px;
+    font-weight:400;
+    color:#5F5F5F;
+    padding-bottom:20px;
+}
+
+.cancel_button {
+    border-radius: 15px;
+    color:#016D74;
+    font-size: 12px;
+    font-weight:600;
+    background-color: transparent;
+    border: solid 1px #016D74;
+    padding: 5px 20px;
+    justify-content: center;
+}
+.cancel_button:hover {
+    color:white;
+    background: #016D74;
+}
+
+.button_container {
+    width:100%;
+    height:50px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);    /* border: 2px solid red; */
+}
+
+.button_orders_left {
+    width:100%;
+    border-radius: 25px 0 0 25px;
+    height:100%;
+    border:none;
+    color:#00474f;
+    font-size:18px;
+    background: white;
+}
+.button_orders_middle {
+    width:100%;
+    height:100%;
+    border:none;
+    color:#00474f;
+    font-size:18px;
+    border-left: 1px solid #FFF;
+    background: white;
+
+}
+.button_orders_right {
+    width:100%;
+    border-radius: 0 25px 25px 0;
+    height:100%;
+    border:none;
+    color:#00474f;
+    font-size:18px;
+    border-left: 1px solid #FFF;
+    background: white;
+    padding:10px 0
+
+}
+.button_orders_left:hover,.button_orders_middle:hover, .button_orders_right:hover  {
+    color:white;
+    background:linear-gradient(to bottom, #00474f, #000e10);;
+}
+</style>
+<div class="myActivityContainer"></div>
+<div class="grid gridHome1x3">
+    <!-- Left Section  -->
+    <div class="empty" ></div>
+
+    <!-- Middle Section  -->
+    <div class="myActivityMiddle">
+        <h2>My Account</h2>
+        <div class="myActivityCard grid gridMyActivity1x5">
+
+               <a href="">Personal Information</a>
+                <a href="">Security</a>
+                <a href="">Card Information</a>
+                <a href="">Balance</a>
+                <a href="" style="color:#13C2C1; font-weight:600">My Activity</a>
+
+        </div>
+
+        <!-- User Statistics  -->
+
+        <div class="user_statistics">
+            <div class="user_statistics_header">Recent Activity</div>
+            <div class="button_container grid grid_1x4">
+                <button class="button_orders_left">Orders</button>
+                <button class="button_orders_middle">Fills</button>
+                <button class="button_orders_middle">Positions</button>
+                <button class="button_orders_right">Historic Orders</button>    
+            </div>
+            <div class="user_table_card">
+                <table>
+                    <tr>
+                        <th>Match</th>
+                        <th>Timestamp</th>
+                        <th>Order Type</th>
+                        <th>Side</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Filled Quantity</th>
+                        <th>Working Quantity</th>
+                        <th>Avg. Fill Price</th>
+                        <th>Status</th>
+                        <th>Paid Fees</th>
+                        <th>Cancel</th>
+                    </tr>
+                    <tr>
+                        <td data-class="Match">XXX-XXX</td>
+                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
+                        <td data-class="Order Type">Market</td>
+                        <td data-class="Side">XXX</td>
+                        <td data-class="Price">0.00</td>
+                        <td data-class="Quantity">0</td>
+                        <td data-class="Filled Quantity">0.00</td>
+                        <td data-class="Working Quantity">0.00</td>
+                        <td data-class="Avg. Fill Price">0.00</td>
+                        <td data-class="Status">Open</td>
+                        <td data-class="Paid Fees">0.00</td>
+                        <td data-class="Cancel"> 
+                            <button class="cancel_button">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-class="Match">XXX-XXX</td>
+                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
+                        <td data-class="Order Type">Market</td>
+                        <td data-class="Side">XXX</td>
+                        <td data-class="Price">0.00</td>
+                        <td data-class="Quantity">0</td>
+                        <td data-class="Filled Quantity">0.00</td>
+                        <td data-class="Working Quantity">0.00</td>
+                        <td data-class="Avg. Fill Price">0.00</td>
+                        <td data-class="Status">Open</td>
+                        <td data-class="Paid Fees">0.00</td>
+                        <td data-class="Cancel"> 
+                            <button class="cancel_button">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-class="Match">XXX-XXX</td>
+                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
+                        <td data-class="Order Type">Market</td>
+                        <td data-class="Side">XXX</td>
+                        <td data-class="Price">0.00</td>
+                        <td data-class="Quantity">0</td>
+                        <td data-class="Filled Quantity">0.00</td>
+                        <td data-class="Working Quantity">0.00</td>
+                        <td data-class="Avg. Fill Price">0.00</td>
+                        <td data-class="Status">Open</td>
+                        <td data-class="Paid Fees">0.00</td>
+                        <td data-class="Cancel"> 
+                            <button class="cancel_button">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-class="Match">XXX-XXX</td>
+                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
+                        <td data-class="Order Type">Market</td>
+                        <td data-class="Side">XXX</td>
+                        <td data-class="Price">0.00</td>
+                        <td data-class="Quantity">0</td>
+                        <td data-class="Filled Quantity">0.00</td>
+                        <td data-class="Working Quantity">0.00</td>
+                        <td data-class="Avg. Fill Price">0.00</td>
+                        <td data-class="Status">Open</td>
+                        <td data-class="Paid Fees">0.00</td>
+                        <td data-class="Cancel"> 
+                            <button class="cancel_button">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-class="Match">XXX-XXX</td>
+                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
+                        <td data-class="Order Type">Market</td>
+                        <td data-class="Side">XXX</td>
+                        <td data-class="Price">0.00</td>
+                        <td data-class="Quantity">0</td>
+                        <td data-class="Filled Quantity">0.00</td>
+                        <td data-class="Working Quantity">0.00</td>
+                        <td data-class="Avg. Fill Price">0.00</td>
+                        <td data-class="Status">Open</td>
+                        <td data-class="Paid Fees">0.00</td>
+                        <td data-class="Cancel"> 
+                            <button class="cancel_button">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-class="Match">XXX-XXX</td>
+                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
+                        <td data-class="Order Type">Market</td>
+                        <td data-class="Side">XXX</td>
+                        <td data-class="Price">0.00</td>
+                        <td data-class="Quantity">0</td>
+                        <td data-class="Filled Quantity">0.00</td>
+                        <td data-class="Working Quantity">0.00</td>
+                        <td data-class="Avg. Fill Price">0.00</td>
+                        <td data-class="Status">Open</td>
+                        <td data-class="Paid Fees">0.00</td>
+                        <td data-class="Cancel"> 
+                            <button class="cancel_button">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-class="Match">XXX-XXX</td>
+                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
+                        <td data-class="Order Type">Market</td>
+                        <td data-class="Side">XXX</td>
+                        <td data-class="Price">0.00</td>
+                        <td data-class="Quantity">0</td>
+                        <td data-class="Filled Quantity">0.00</td>
+                        <td data-class="Working Quantity">0.00</td>
+                        <td data-class="Avg. Fill Price">0.00</td>
+                        <td data-class="Status">Open</td>
+                        <td data-class="Paid Fees">0.00</td>
+                        <td data-class="Cancel"> 
+                            <button class="cancel_button">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-class="Match">XXX-XXX</td>
+                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
+                        <td data-class="Order Type">Market</td>
+                        <td data-class="Side">XXX</td>
+                        <td data-class="Price">0.00</td>
+                        <td data-class="Quantity">0</td>
+                        <td data-class="Filled Quantity">0.00</td>
+                        <td data-class="Working Quantity">0.00</td>
+                        <td data-class="Avg. Fill Price">0.00</td>
+                        <td data-class="Status">Open</td>
+                        <td data-class="Paid Fees">0.00</td>
+                        <td data-class="Cancel"> 
+                            <button class="cancel_button">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-class="Match">XXX-XXX</td>
+                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
+                        <td data-class="Order Type">Market</td>
+                        <td data-class="Side">XXX</td>
+                        <td data-class="Price">0.00</td>
+                        <td data-class="Quantity">0</td>
+                        <td data-class="Filled Quantity">0.00</td>
+                        <td data-class="Working Quantity">0.00</td>
+                        <td data-class="Avg. Fill Price">0.00</td>
+                        <td data-class="Status">Open</td>
+                        <td data-class="Paid Fees">0.00</td>
+                        <td data-class="Cancel"> 
+                            <button class="cancel_button">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-class="Match">XXX-XXX</td>
+                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
+                        <td data-class="Order Type">Market</td>
+                        <td data-class="Side">XXX</td>
+                        <td data-class="Price">0.00</td>
+                        <td data-class="Quantity">0</td>
+                        <td data-class="Filled Quantity">0.00</td>
+                        <td data-class="Working Quantity">0.00</td>
+                        <td data-class="Avg. Fill Price">0.00</td>
+                        <td data-class="Status">Open</td>
+                        <td data-class="Paid Fees">0.00</td>
+                        <td data-class="Cancel"> 
+                            <button class="cancel_button">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-class="Match">XXX-XXX</td>
+                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
+                        <td data-class="Order Type">Market</td>
+                        <td data-class="Side">XXX</td>
+                        <td data-class="Price">0.00</td>
+                        <td data-class="Quantity">0</td>
+                        <td data-class="Filled Quantity">0.00</td>
+                        <td data-class="Working Quantity">0.00</td>
+                        <td data-class="Avg. Fill Price">0.00</td>
+                        <td data-class="Status">Open</td>
+                        <td data-class="Paid Fees">0.00</td>
+                        <td data-class="Cancel"> 
+                            <button class="cancel_button">Cancel</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-class="Match">XXX-XXX</td>
+                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
+                        <td data-class="Order Type">Market</td>
+                        <td data-class="Side">XXX</td>
+                        <td data-class="Price">0.00</td>
+                        <td data-class="Quantity">0</td>
+                        <td data-class="Filled Quantity">0.00</td>
+                        <td data-class="Working Quantity">0.00</td>
+                        <td data-class="Avg. Fill Price">0.00</td>
+                        <td data-class="Status">Open</td>
+                        <td data-class="Paid Fees">0.00</td>
+                        <td data-class="Cancel"> 
+                            <button class="cancel_button">Cancel</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Right Section  -->
+
+<div class="empty" ></div>
+
+</div>

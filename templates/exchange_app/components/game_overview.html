@@ -48,6 +48,8 @@
     border-radius: 25px;
     text-align: center;
     color: white;
+    align-self: start;
+    margin-top:25px;
 }
 .rightCardContainer {
     width: 100%;
@@ -137,6 +139,10 @@ h4 {
     /* border: none; */
     background-color: #016D74;
 }
+.liveButton:active {
+    background-color: #016D74;
+    color: white;
+}
 .liveButtonSmall {
     border-radius: 25px;
     color: #B51F1F;
@@ -180,12 +186,14 @@ h4 {
 
 .rightCardMatchCard1 {
     height: 100%;
+    width:100%;
     display: flex;
     flex-direction: column;
-    font-size: 22px;
+    text-align: left;
+    padding-left:30px;
+    font-size: 18px;
     font-weight: 600;
     justify-content: space-evenly;
-    margin-right: 150px;
     color:#5F5F5F
 }
 .rightCardMatchCard2 {
@@ -291,39 +299,53 @@ h4 {
                     <button class="liveButton">Live</button>
                     <input type="text" class="searchBar" placeholder="Search">
                 </div>
+                {% for league, games_in_league in grouped_games.items %}
+                {% for game in games_in_league %}
                 <div class="rightCardContainerMatches">
                     <div class="rightCardMatchCard grid grid16">
                         <div class="rightCardMatchCard1">
-                            <div>Lorem</div>
-                            <div>Lorem</div>
+                            <div>{{game.away_team.name}}</div>
+                            <div>{{game.home_team.name}}</div>
                         </div>
                         <div class="rightCardMatchCard2">
-                            <span>0</span>
-                            <span>0</span>
+                            <span>{{game.away_team_score}}</span>
+                            <span>{{game.home_team_score}}</span>
                         </div>
                         <div class="rightCardMatchCard3">
+                            {% if game.status == "scheduled" %}
                             <button class="liveButtonSmall">
                                 <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
                                 Live
                             </button>
-                            <span>Q1 - 0:00</span>
-                        </div>
-                        <div class="rightCardMatchCard4">
-                            <header>Buy</header>
-                            <div class="matchDetailsBuy"> 9.00</div>
-                        </div>
-                        <div class="rightCardMatchCard5">
-                            <header>Sell</header>
-                            <div class="matchDetailsSell"> 9.00</div>
-                        </div>
-                        <div class="rightCardMatchCard6">
-                            <header>Price Change</header>
-                            <div class="matchDetailsChange"> +0.00</div>
-                        </div>
-                    </div>
-                </div>
+                              {% else %}
 
-                <div class="rightCardContainerMatches">
+                            <button class="liveButtonSmall">{{game.status}}</button>
+                              {% endif %}
+
+                            <span>{{game.progress}} - 0:00</span>
+                        </div>
+                        <div class="rightCardMatchCard4">
+                            <header>Buy</header>
+                            {% if game.buy_price  %}
+                            <div class="matchDetailsBuy">{{game.buy_price}}</div>
+                            {% else %}
+                            <div class="matchDetailsBuy"> 0.00</div>
+                            {% endif %}
+                        </div>
+                        <div class="rightCardMatchCard5">
+                            <header>Sell</header>
+                            <div class="matchDetailsSell"> 9.00</div>
+                        </div>
+                        <div class="rightCardMatchCard6">
+                            <header>Price Change</header>
+                            <div class="matchDetailsChange"> +0.00</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endfor %}
+
+                <!-- <div class="rightCardContainerMatches">
                     <div class="rightCardMatchCard grid grid16">
                         <div class="rightCardMatchCard1">
                             <div>Lorem</div>
@@ -353,7 +375,7 @@ h4 {
                             <div class="matchDetailsChange"> +0.00</div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 
                 
             </div>
