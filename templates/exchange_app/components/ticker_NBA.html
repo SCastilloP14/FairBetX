@@ -73,7 +73,7 @@
     height:100%;
     font-size:26px;
     color:white;
-    background:linear-gradient(to bottom, #00474f, #000e10);
+    background:linear-gradient(to bottom, #016D74, #01373A);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,7 +112,7 @@
     width: 100%;
     height: 130px !important;
     border-radius: 25px;
-    background: linear-gradient(to bottom, #00474f, #000e10);
+    background: linear-gradient(to bottom, #016D74, #01373A);
     margin-top:30px;
     color:white;
     align-content: left;
@@ -216,7 +216,7 @@
         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 
 }
-.tickerPageBuyOrderbookCard header, .sell_orderbook_card header, .order_submission_card header {
+.tickerPageBuyOrderbookCard header, .tickerPageSellOrderbookCard header, .tickerPageOrderSubmissionCard header {
     font-size:30px;
     color:black;
     margin-top:30px;
@@ -254,7 +254,7 @@
     background: #E4F0EB;
 }
  /* Sell Orderbook  */
-.sell_orderbook_card {
+.tickerPageSellOrderbookCard {
      margin-top:10px;
     width:495px;
     height:500px;
@@ -265,20 +265,20 @@
         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 
 }
-.tickerPageBuyOrderbookCard header, .sell_orderbook_card header {
+.tickerPageBuyOrderbookCard header, .tickerPageSellOrderbookCard header {
     font-size:30px;
     color:black;
     margin-top:30px;
     margin-bottom:10px;
 }
-.sell_orderbook_table {
+.tickerPageSellOrderbookTable {
     height: 400px;
     table-layout: fixed;
     margin:0 auto;
     border-collapse: collapse;
     margin-top:35px
 }
-.sell_orderbook_table tr th {
+.tickerPageSellOrderbookTable tr th {
     width:160px;
 } 
 
@@ -287,20 +287,20 @@
     font-size: 24px;
 
 }
-.right_table_header {
+.tickerPageBuyOrderbookRightTableHeader {
     background:#f7f7f7;
     font-size: 24px;
 }
 
-.sell_orderbook_table td {
+.tickerPageSellOrderbookTable td {
     color:#B51F1F;
 }
-.sell_right {
+.tickerPageSellRight {
     background: #F5E4E5;
 }
 
 /* Order Submission Card  */
-.order_submission_card {
+.tickerPageOrderSubmissionCard {
     margin-top:10px;
     width:495px;
     height:500px;
@@ -311,19 +311,19 @@
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 
 }
-.order_submission_field {
-    height:auto;
+.tickerPageOrderSubmissionField {
+    height: auto !important;;
     margin: 0 auto;
     justify-content: center;
 }
-.place_order_left {
+.tickerPageOrderSubmissionPlaceOrderLeft {
     width:100%;
     text-align: left;
     font-size:24px;
     color: #5F5F5F
 }
 
-.order_select {
+.tickerPageOrderSelect {
     padding-left:15px;
     width: 100%;
     background: #f7f7f7;
@@ -332,7 +332,7 @@
     border:none
 }
 
-.side_select {
+.tickerPageSideSelect {
     padding-left:15px;
     width: 100%;
     background: #f7f7f7;
@@ -342,7 +342,7 @@
     color:#000E10
 
 }
-.price_input {
+.tickerPagePriceInput {
     width:100%;
     background: #f7f7f7;
     border: none;
@@ -350,10 +350,10 @@
     border-radius: 15px;
 
 }
-.price_input::placeholder, .quantity_input::placeholder {
+.tickerPagePriceInput::placeholder, .tickerPageQuantityInput::placeholder {
     padding-left:15px;
 }
-.quantity_input {
+.tickerPageQuantityInput {
         /* padding-left:15px; */
     width:100%;
     height:40px;
@@ -694,9 +694,9 @@
             </div>
 
             <!-- Sell Side  -->
-            <div class="sell_orderbook_card">
+            <div class="tickerPageSellOrderbookCard">
                 <header>Orderbook Sell</header>
-                <table class="sell_orderbook_table">
+                <table class="tickerPageSellOrderbookTable">
                     
                     <tr>
                         <th class="tickerPageBuyOrderbookLeftTableHeader">Price</th>
@@ -704,70 +704,72 @@
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="sell_right" data-class="Quantity">0</td>
+                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="sell_right" data-class="Quantity">0</td>
+                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="sell_right" data-class="Quantity">0</td>
+                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="sell_right" data-class="Quantity">0</td>
+                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="sell_right" data-class="Quantity">0</td>
+                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="sell_right" data-class="Quantity">0</td>
+                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="sell_right" data-class="Quantity">0</td>
+                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="sell_right" data-class="Quantity">0</td>
+                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="sell_right" data-class="Quantity">0</td>
+                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="sell_right" data-class="Quantity">0</td>
+                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td style="color:white">0</td>
-                        <td class="sell_right" style="color:#E4F0EB">0</td>
+                        <td class="tickerPageSellRight" style="color:#F5E4E5">0</td>
                     </tr>
                 </table>
             </div>
-            <div class="order_submission_card">
+
+            <!-- Order Submission Card  -->
+            <div class="tickerPageOrderSubmissionCard">
                 <header>Place Order</header>
-                <div class="order_submission_field grid grid_4x2">
+                <div class="tickerPageOrderSubmissionField grid grid_4x2">
                     
-                        <div class="place_order_left">Order Type</div>
-                        <select class="order_select">
+                        <div class="tickerPageOrderSubmissionPlaceOrderLeft">Order Type</div>
+                        <select class="tickerPageOrderSelect">
                             <option value="" style="color:#000E10;" disabled selected>Select</option>
                             <option value="market">Market</option>
                             <option value="limit">Limit</option>
                         </select>
-                        <div class="place_order_left">Side</div>
-                        <select class="side_select">
+                        <div class="tickerPageOrderSubmissionPlaceOrderLeft">Side</div>
+                        <select class="tickerPageSideSelect">
                             <option value="" style="color:#000E10;" disabled selected>Select</option>
                             <option value="buy">Buy</option>
                             <option value="sell">Sell</option>
                         </select>
-                        <div class="place_order_left">Price</div>
-                        <input class="price_input" type="text" placeholder="$0.00">
-                        <div class="place_order_left">Quantity</div>
-                       <input class="quantity_input" type="text" placeholder="Quantity">
+                        <div class="tickerPageOrderSubmissionPlaceOrderLeft">Price</div>
+                        <input class="tickerPagePriceInput" type="text" placeholder="$0.00">
+                        <div class="tickerPageOrderSubmissionPlaceOrderLeft">Quantity</div>
+                       <input class="tickerPageQuantityInput" type="text" placeholder="Quantity">
                 </div>
                 <button class="tickerPageSubmitButton">Submit</button>
             </div>
