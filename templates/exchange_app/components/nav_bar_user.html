@@ -118,8 +118,9 @@ body {
             <!-- Logo -->
             <div class="navBarLeft">
                 <!-- New Logo  -->
-                <img id="FBX-Logo" src="../../../static/img/FBX_Logo.png">
-
+                <a href="{% url 'index' %}">
+                    <img id="FBX-Logo" src="../../../static/img/FBX_Logo.png">
+                </a>
                 <!-- <img src="../../../static/img/Group_486.png">
                 <img src="../../../static/img/Group_496.png">   
                 <img src="../../../static/img/Group_492.png"> -->
@@ -127,8 +128,8 @@ body {
 
             <!-- Buttons -->
             <div class="navBarCenterCenter">
-                <a class="navBarHeader" href="../welcome.html">Home</a>
-                <a class="navBarHeader">Sports Bet</a>
+                <a class="navBarHeader" href="{% url 'index' %}">Home</a>
+                <a class="navBarHeader" href="{% url 'exchange_app:game_list' %}">Sports Bet</a>
                 <a class="navBarHeader">About Us</a>
             </div>
 

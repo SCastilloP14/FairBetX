@@ -364,7 +364,8 @@ class Order(models.Model):
                 balance_to_lock = self.price * self.quantity
                 self.lock_balance(balance_to_lock)
                 counterparties = Order.objects.filter(ticker=self.ticker, price__lte=self.price, side=OrderSide.SELL.name, working_quantity__gt=0,
-                                                      status__ne=OrderStatus.CANCELLED.name).order_by("price", "modification_timestamp")
+                                                    #   status__ne=OrderStatus.CANCELLED.name
+                                                      ).order_by("price", "modification_timestamp")
             else:
                 counterparties = Order.objects.filter(ticker=self.ticker, side=OrderSide.SELL.name, working_quantity__gt=0, 
                                                     #   status__ne=OrderStatus.CANCELED.name

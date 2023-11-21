@@ -204,8 +204,26 @@
     border: none;
 }
 
-/* Buy Orderbook  */
-.tickerPageBuyOrderbookCard {
+
+/* Buy Orders  */
+.tickerPageBuyOrderbookTable td {
+    color:#15965A;
+}
+.tickerPageBuyRight {
+    background: #E4F0EB;
+}
+
+ /* Sell Orderbook  */
+.tickerPageSellOrderbookTable td {
+    color:#B51F1F;
+}
+.tickerPageSellRight {
+    background: #F5E4E5;
+}
+
+ /* Buy and Sell Orderbook  */
+.tickerPageBuyOrderbookCard ,
+.tickerPageSellOrderbookCard {
     margin-top:10px;
     width:495px;
     height:500px;
@@ -213,64 +231,17 @@
     margin-right:5px;
     border-radius: 25px;
     text-align: center;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-}
-.tickerPageBuyOrderbookCard header, .tickerPageSellOrderbookCard header, .tickerPageOrderSubmissionCard header {
-    font-size:30px;
-    color:black;
-    margin-top:30px;
-    margin-bottom:10px;
-}
-.tickerPageBuyOrderbookTable {
-    height: 400px;
-    table-layout: fixed;
-    margin:0 auto;
-    border-collapse: collapse;
-    margin-top:35px
-}
-.tickerPageBuyOrderbookTable tr th {
-    width:160px;
-} 
-
-.tickerPageBuyOrderbookLeftTableHeader {
+.tickerPageOrderbookTableHeader {
     background:#f7f7f7;
-    /* border-radius: 15px 0 0 15px; */
-    font-size: 24px;
-    color:#5F5F5F
-
-}
-.tickerPageBuyOrderbookRightTableHeader {
-    background:#f7f7f7;
-    /* border-radius:0 15px 15px 0; */
+    height:50px;
     font-size: 24px;
     color:#5F5F5F
 }
 
-.tickerPageBuyOrderbookTable td {
-    color:#15965A;
-}
-.tickerPageBuyRight {
-    background: #E4F0EB;
-}
- /* Sell Orderbook  */
-.tickerPageSellOrderbookCard {
-     margin-top:10px;
-    width:495px;
-    height:500px;
-    background: white;
-    margin-right:5px;
-    border-radius: 25px;
-    text-align: center;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-
-}
-.tickerPageBuyOrderbookCard header, .tickerPageSellOrderbookCard header {
-    font-size:30px;
-    color:black;
-    margin-top:30px;
-    margin-bottom:10px;
-}
+.tickerPageBuyOrderbookTable,
 .tickerPageSellOrderbookTable {
     height: 400px;
     table-layout: fixed;
@@ -278,26 +249,29 @@
     border-collapse: collapse;
     margin-top:35px
 }
+
+.tickerPageBuyOrderbookTableRows, 
+.tickerPageSellOrderbookTableRows {
+    height:32px;
+}
+
+.tickerPageBuyOrderbookTable tr th,
 .tickerPageSellOrderbookTable tr th {
     width:160px;
+    background:#f7f7f7;
+    font-size: 24px;
 } 
-
-.tickerPageBuyOrderbookLeftTableHeader {
-    background:#f7f7f7;
-    font-size: 24px;
-
-}
-.tickerPageBuyOrderbookRightTableHeader {
-    background:#f7f7f7;
-    font-size: 24px;
+.tickerPageBuyOrderbookCard header, .tickerPageSellOrderbookCard header, .tickerPageOrderSubmissionCard header {
+    font-size:30px;
+    color:black;
+    margin-top:30px;
+    margin-bottom:10px;
 }
 
-.tickerPageSellOrderbookTable td {
-    color:#B51F1F;
-}
-.tickerPageSellRight {
-    background: #F5E4E5;
-}
+
+
+
+
 
 /* Order Submission Card  */
 .tickerPageOrderSubmissionCard {
@@ -348,11 +322,15 @@
     border: none;
     height:40px;
     border-radius: 15px;
+}
+.tickerPagePriceInput input {
+    margin-left:20px;
+    width:160px;
+}
+.tickerPagePriceInput input:focus, .tickerPageQuantityInput input:focus  {
+outline: none;
+}
 
-}
-.tickerPagePriceInput::placeholder, .tickerPageQuantityInput::placeholder {
-    padding-left:15px;
-}
 .tickerPageQuantityInput {
         /* padding-left:15px; */
     width:100%;
@@ -360,6 +338,10 @@
     border: none;
     border-radius: 15px;
     background: #f7f7f7;
+}
+.tickerPageQuantityInput input {
+    margin-left:20px;
+    width:160px;
 }
 
 /* User Stats  */
@@ -433,6 +415,7 @@
     color:#00474f;
     font-size:20px;
     background: white;
+    cursor:pointer;
 }
 .tickerPageUserStatisticsButtonMiddle {
     width:100%;
@@ -442,7 +425,7 @@
     font-size:20px;
     border-left: 1px solid #FFF;
     background: white;
-
+    cursor:pointer;
 }
 .tickerPageUserStatisticsButtonRight {
     width:100%;
@@ -453,11 +436,12 @@
     font-size:20px;
     border-left: 1px solid #FFF;
     background: white;
+    cursor:pointer;
 
 }
 .tickerPageUserStatisticsButtonLeft:hover,.tickerPageUserStatisticsButtonMiddle:hover, .tickerPageUserStatisticsButtonRight:hover  {
     color:white;
-    background:linear-gradient(to bottom, #00474f, #000e10);;
+    background:linear-gradient(to bottom, #016D74, #01373A);;
 }
 
 .tickerPageSubmitButton {
@@ -476,63 +460,100 @@
     color:white;
     background: #016D74;
 }
+
+.tickerPageOrderSubmitNonUser {
+    color:#5F5F5F;
+    font-size: 22px;
+    margin-top: 200px;
+}
 </style>
 <div class="grid grid_nav_1x3 page_background">
     <div class="empty"></div>
     <div class="middle_section">
         <!-- Header  -->
-        <div class="header">NBA</div>
+
+        <div class="header">{{ticker_detail.match.league}}</div>
         <div class="tickerPageGameDetails grid grid_1x9">
-            <div class="gamePeriod">Q1</div>
+            {% if ticker_detail.match.status == "SCHEDULED" %}
+                <div class="gamePeriod">Scheduled</div>
+            {% else %}
+                    <div class="tickerPageHomeScore">{{ticker_detail.match.status}}</div>
+            {% endif %}
             <div class="grid grid_2x1">
-                <div class="tickerPageHomeTeam">Toronto</div>
-                <div class="tickerPageAwayTeam">Boston</div>
+                <div class="tickerPageHomeTeam">{{ticker_detail.match.away_team.name}}</div>
+                <div class="tickerPageAwayTeam">{{ticker_detail.match.home_team.name}}</div>
             </div>
             <div class="grid grid_2x1">
-                <div class="tickerPageHomeScore">0</div>
-                <div class="tickerPageAwayScore">0</div>
+                {% if not ticker_detail.match.away_team.away_team_score %}
+                    <div class="tickerPageHomeScore">-</div>
+                {% else %}
+                    <div class="tickerPageHomeScore">{{ticker_detail.match.away_team_score}}</div>
+                {% endif %}
+
+                {% if not ticker_detail.match.away_team.away_team_score %}
+                    <div class="tickerPageHomeScore">-</div>
+                {% else %}
+                    <div class="tickerPageAwayScore">{{ticker_detail.match.home_team_score}}</div>
+                {% endif %}
+
             </div>
             <div class="empty"></div>
             <div>
                 <img class="tickerPageDateIcon" src="../../../static/img/calendar-icon.png" alt="">
             </div>
             <div class="tickerPageGameDate">
-                MM/DD
+                {{ticker_detail.match.date}}
             </div>
             <div>
                 <img class="tickerPageTimeIcon" src="../../../static/img/clock-icon.png" alt="">
             </div>
-            <div class="tickerPageGameTime">0:00 AM</div>
+            <div class="tickerPageGameTime">{{ticker_detail.match.start_time}}</div>
              <div>
                 <img  class="tickerPageLocationIcon" src="../../../static/img/location-icon.png" alt="">
             </div>
-            <div class="tickerPageGameLocation">Stadium, City, State</div>
+            <div class="tickerPageGameLocation">{{ticker_detail.match.location}}</div>
         </div>
 
         <!-- Game + User Info Card  -->
         <div class="tickerPageUserCard grid grid_1x10">
             <img src="../../../static/img/wallet-icon-white.png" alt="">
             <div class="grid grid_2x1">
-                <div class="tickerPageUserCardTop">$0.00</div>
+                {% if user.userprofileinfo.available_balance %}
+                <div class="tickerPageUserCardTop">{{user.userprofileinfo.available_balance}}</div>
+                {% else %}
+                <div class="tickerPageUserCardTop">$-.--</div>
+                {% endif %}
                 <div class="tickerPageUserCardBottom">Balance</div>
 
             </div>
             <img src="../../../static/img/file-icon.png" alt="">
             <div class="grid grid_2x1">
-                <div class="tickerPageUserCardTop">Lorem</div>
-                <div class="tickerPageUserCardBottom">Balance</div>
+                {% if ticker_detail.volume %}
+                    <div class="tickerPageUserCardTop">{{ticker_detail.status}}</div>
+                {% else %}
+                    <div class="tickerPageUserCardTop">Scheduled</div>
+                {% endif %}
+                <div class="tickerPageUserCardBottom">Status</div>
 
             </div>
             <img src="../../../static/img/clipboard-icon.png" alt="">
             <div class="grid grid_2x1">
-                <div class="tickerPageUserCardTop">$0.00</div>
-                <div class="tickerPageUserCardBottom">Balance</div>
+                {% if ticker_detail.volume %}
+                    <div class="tickerPageUserCardTop">{{ticker_detail.volume}}</div>
+                {% else %}
+                    <div class="tickerPageUserCardTop">-</div>
+                {% endif %}
+                <div class="tickerPageUserCardBottom">Volume</div>
 
             </div>
             <img src="../../../static/img/coin-icon.png" alt="">
             <div class="grid grid_2x1">
-                <div class="tickerPageUserCardTop">$0.00</div>
-                <div class="tickerPageUserCardBottom">Balance</div>
+                {% if ticker_detail.last_price %}
+                    <div class="tickerPageUserCardTop">{{ticker_detail.last_price}}</div>
+               {% else %}
+                    <div class="tickerPageUserCardTop">$-.--</div>
+                {% endif %}
+                <div class="tickerPageUserCardBottom">Last Price</div>
             </div>
 
         </div>
@@ -543,11 +564,11 @@
             <!-- Candlestick Graph  -->
             <div class="tickerPageCandlestickCard">
                 
-                <div id="chart-div">
+                <!-- <div id="chart-div">
                     <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
                     <script type="text/javascript" src="../../../static/trading_view.js"></script>
                     <div id="chart-container" value="{{ticker_detail.id}}">{{ticker_detail.id}}</div>
-                </div>
+                </div> -->
                 
             </div>
 
@@ -643,53 +664,23 @@
                 <table class="tickerPageBuyOrderbookTable">
                     
                     <tr>
-                        <th class="tickerPageBuyOrderbookLeftTableHeader">Price</th>
-                        <th class="tickerPageBuyOrderbookRightTableHeader">Quantity</th>
+                        <th class="tickerPageOrderbookTableHeader">Price</th>
+                        <th class="tickerPageOrderbookTableHeader">Quantity</th>
                     </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
-                    </tr>
+                    {% for buy_order in buy_orders|slice:":10" %}
+
+                        <tr class="tickerPageBuyOrderbookTableRows">
+                            <td data-class="Price">{{buy_order.price}}</td>
+                            <td class="tickerPageBuyRight" data-class="Quantity">{{buy_order.total_quantity}}</td>
+                        </tr>
+                    {% endfor %}
+
                     <tr>
                         <td style="color:white">0</td>
-                        <td class="tickerPageBuyRight" style="color:#E4F0EB">0</td>
+                        <td class="tickerPageBuyRight" style="color:#F5E4E5">0</td>
                     </tr>
+
+                    
                 </table>
             </div>
 
@@ -699,49 +690,17 @@
                 <table class="tickerPageSellOrderbookTable">
                     
                     <tr>
-                        <th class="tickerPageBuyOrderbookLeftTableHeader">Price</th>
-                        <th class="tickerPageBuyOrderbookRightTableHeader">Quantity</th>
+                        <th class="tickerPageOrderbookTableHeader">Price</th>
+                        <th class="tickerPageOrderbookTableHeader">Quantity</th>
                     </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
-                    </tr>
-                    <tr>
-                        <td data-class="Price">0.00</td>
-                        <td class="tickerPageSellRight" data-class="Quantity">0</td>
-                    </tr>
+                    {% for sell_order in sell_orders|slice:":10" %}
+                    
+                        <tr class="tickerPageSellOrderbookTableRows">
+                            <td data-class="Price">{{sell_order.price}}</td>
+                            <td class="tickerPageSellRight" data-class="Quantity">{{sell_order.total_quantity}}</td>
+                        </tr>
+                    {% endfor %}
+                    
                     <tr>
                         <td style="color:white">0</td>
                         <td class="tickerPageSellRight" style="color:#F5E4E5">0</td>
@@ -752,26 +711,38 @@
             <!-- Order Submission Card  -->
             <div class="tickerPageOrderSubmissionCard">
                 <header>Place Order</header>
-                <div class="tickerPageOrderSubmissionField grid grid_4x2">
-                    
+                {% if user.is_authenticated %}
+
+                <form id="order-form" method="POST" action="" class="form__order">
+                {% csrf_token %}
+                    <div class="tickerPageOrderSubmissionField grid grid_4x2">
                         <div class="tickerPageOrderSubmissionPlaceOrderLeft">Order Type</div>
-                        <select class="tickerPageOrderSelect">
+                        <select class="tickerPageOrderSelect" name="order_type">
                             <option value="" style="color:#000E10;" disabled selected>Select</option>
-                            <option value="market">Market</option>
-                            <option value="limit">Limit</option>
+                            <option value="MARKET">Market</option>
+                            <option value="LIMIT">Limit</option>
                         </select>
                         <div class="tickerPageOrderSubmissionPlaceOrderLeft">Side</div>
-                        <select class="tickerPageSideSelect">
+                        <select class="tickerPageSideSelect" name="side">
                             <option value="" style="color:#000E10;" disabled selected>Select</option>
-                            <option value="buy">Buy</option>
-                            <option value="sell">Sell</option>
+                            <option value="BUY">Buy</option>
+                            <option value="SELL">Sell</option>
                         </select>
                         <div class="tickerPageOrderSubmissionPlaceOrderLeft">Price</div>
-                        <input class="tickerPagePriceInput" type="text" placeholder="$0.00">
+                        <div class="tickerPagePriceInput">
+                            <input class="tickerPagePriceInput" type="text" placeholder="$0.00" name="price">
+                        </div>
                         <div class="tickerPageOrderSubmissionPlaceOrderLeft">Quantity</div>
-                       <input class="tickerPageQuantityInput" type="text" placeholder="Quantity">
-                </div>
-                <button class="tickerPageSubmitButton">Submit</button>
+                        <div class="tickerPageQuantityInput">
+                            <input class="tickerPageQuantityInput" type="text" placeholder="0" name="quantity">
+                        </div>
+                        </div>
+                        <input type="hidden" name="ticker_id" value="{{ticker_detail.pk}}">
+                        <button class="tickerPageSubmitButton" type="submit">Submit</button>
+                    </form>
+                {% else %}
+                    <div class="tickerPageOrderSubmitNonUser">Please Login to place an Order</div>
+                {% endif %}
             </div>
 
         </div>
@@ -787,12 +758,33 @@
         <div class="tickerPageUserStatistics">
             <div class="tickerPageUserStatisticsHeader">Recent Activity</div>
             <div class="tickerPageUserStatisticsButtonContainer grid grid_1x4">
-                <button class="tickerPageUserStatisticsButtonLeft">Orders</button>
-                <button class="tickerPageUserStatisticsButtonMiddle">Fills</button>
-                <button class="tickerPageUserStatisticsButtonMiddle">Positions</button>
-                <button class="tickerPageUserStatisticsButtonRight">Historic Orders</button>    
+                <a 
+                    id="order-tab"
+                    href="{% url 'index' %}" 
+                    class="tickerPageUserStatisticsButtonLeft">
+                    <button class="tickerPageUserStatisticsButtonLeft">Orders</button>
+                </a>
+                <a 
+                    id="fills-tab"
+                    href="{% url 'index' %}" 
+                    class="tickerPageUserStatisticsButtonMiddle">
+                    <button class="tickerPageUserStatisticsButtonMiddle">Fills</button>
+                </a>
+                <a 
+                    id="positions-tab"
+                    href="{% url 'index' %}" 
+                    class="tickerPageUserStatisticsButtonMiddle">
+                    <button class="tickerPageUserStatisticsButtonMiddle">Positions</button>
+                </a>
+                <a 
+                    id="historic-orders-tab"
+                    href="{% url 'index' %}" 
+                    class="tickerPageUserStatisticsButtonMiddle">
+                    <button class="tickerPageUserStatisticsButtonRight">Historic Orders</button>    
+                </a>    
             </div>
             <div class="tickerPageUserTableCard">
+                {% if user.is_authenticated %}
                 <table>
                     <tr>
                         <th>Match</th>
@@ -808,199 +800,34 @@
                         <th>Paid Fees</th>
                         <th>Cancel</th>
                     </tr>
+                {% for order in user_orders|slice:":20" %}
+
                     <tr>
-                        <td data-class="Match">XXX-XXX</td>
-                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
-                        <td data-class="Order Type">Market</td>
-                        <td data-class="Side">XXX</td>
-                        <td data-class="Price">0.00</td>
-                        <td data-class="Quantity">0</td>
-                        <td data-class="Filled Quantity">0.00</td>
-                        <td data-class="Working Quantity">0.00</td>
-                        <td data-class="Avg. Fill Price">0.00</td>
-                        <td data-class="Status">Open</td>
-                        <td data-class="Paid Fees">0.00</td>
+                        <td data-class="Match">{{ticker_detail.ticker_id}}</td>
+                        <td data-class="Timestamp">{{order.creation_timestamp}}</td>
+                        <td data-class="Order Type">{{order.order_type}}</td>
+                        <td data-class="Side">{{order.side}}</td>
+                        <td data-class="Price">{{order.price}}</td>
+                        <td data-class="Quantity">{{order.quantity}}</td>
+                        <td data-class="Filled Quantity">{{order.filled_quantity}}</td>
+                        <td data-class="Working Quantity">{{order.working_quantity}}</td>                   
+                        <td data-class="Avg. Fill Price">{{order.avg_fill_price}}</td>
+                        <td data-class="Status">{{order.status}}</td>
+                        <td data-class="Paid Fees">{{order.paid_fees}}</td>
                         <td data-class="Cancel"> 
                             <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
                         </td>
                     </tr>
-                    <tr>
-                        <td data-class="Match">XXX-XXX</td>
-                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
-                        <td data-class="Order Type">Market</td>
-                        <td data-class="Side">XXX</td>
-                        <td data-class="Price">0.00</td>
-                        <td data-class="Quantity">0</td>
-                        <td data-class="Filled Quantity">0.00</td>
-                        <td data-class="Working Quantity">0.00</td>
-                        <td data-class="Avg. Fill Price">0.00</td>
-                        <td data-class="Status">Open</td>
-                        <td data-class="Paid Fees">0.00</td>
-                        <td data-class="Cancel"> 
-                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-class="Match">XXX-XXX</td>
-                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
-                        <td data-class="Order Type">Market</td>
-                        <td data-class="Side">XXX</td>
-                        <td data-class="Price">0.00</td>
-                        <td data-class="Quantity">0</td>
-                        <td data-class="Filled Quantity">0.00</td>
-                        <td data-class="Working Quantity">0.00</td>
-                        <td data-class="Avg. Fill Price">0.00</td>
-                        <td data-class="Status">Open</td>
-                        <td data-class="Paid Fees">0.00</td>
-                        <td data-class="Cancel"> 
-                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-class="Match">XXX-XXX</td>
-                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
-                        <td data-class="Order Type">Market</td>
-                        <td data-class="Side">XXX</td>
-                        <td data-class="Price">0.00</td>
-                        <td data-class="Quantity">0</td>
-                        <td data-class="Filled Quantity">0.00</td>
-                        <td data-class="Working Quantity">0.00</td>
-                        <td data-class="Avg. Fill Price">0.00</td>
-                        <td data-class="Status">Open</td>
-                        <td data-class="Paid Fees">0.00</td>
-                        <td data-class="Cancel"> 
-                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-class="Match">XXX-XXX</td>
-                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
-                        <td data-class="Order Type">Market</td>
-                        <td data-class="Side">XXX</td>
-                        <td data-class="Price">0.00</td>
-                        <td data-class="Quantity">0</td>
-                        <td data-class="Filled Quantity">0.00</td>
-                        <td data-class="Working Quantity">0.00</td>
-                        <td data-class="Avg. Fill Price">0.00</td>
-                        <td data-class="Status">Open</td>
-                        <td data-class="Paid Fees">0.00</td>
-                        <td data-class="Cancel"> 
-                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-class="Match">XXX-XXX</td>
-                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
-                        <td data-class="Order Type">Market</td>
-                        <td data-class="Side">XXX</td>
-                        <td data-class="Price">0.00</td>
-                        <td data-class="Quantity">0</td>
-                        <td data-class="Filled Quantity">0.00</td>
-                        <td data-class="Working Quantity">0.00</td>
-                        <td data-class="Avg. Fill Price">0.00</td>
-                        <td data-class="Status">Open</td>
-                        <td data-class="Paid Fees">0.00</td>
-                        <td data-class="Cancel"> 
-                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-class="Match">XXX-XXX</td>
-                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
-                        <td data-class="Order Type">Market</td>
-                        <td data-class="Side">XXX</td>
-                        <td data-class="Price">0.00</td>
-                        <td data-class="Quantity">0</td>
-                        <td data-class="Filled Quantity">0.00</td>
-                        <td data-class="Working Quantity">0.00</td>
-                        <td data-class="Avg. Fill Price">0.00</td>
-                        <td data-class="Status">Open</td>
-                        <td data-class="Paid Fees">0.00</td>
-                        <td data-class="Cancel"> 
-                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-class="Match">XXX-XXX</td>
-                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
-                        <td data-class="Order Type">Market</td>
-                        <td data-class="Side">XXX</td>
-                        <td data-class="Price">0.00</td>
-                        <td data-class="Quantity">0</td>
-                        <td data-class="Filled Quantity">0.00</td>
-                        <td data-class="Working Quantity">0.00</td>
-                        <td data-class="Avg. Fill Price">0.00</td>
-                        <td data-class="Status">Open</td>
-                        <td data-class="Paid Fees">0.00</td>
-                        <td data-class="Cancel"> 
-                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-class="Match">XXX-XXX</td>
-                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
-                        <td data-class="Order Type">Market</td>
-                        <td data-class="Side">XXX</td>
-                        <td data-class="Price">0.00</td>
-                        <td data-class="Quantity">0</td>
-                        <td data-class="Filled Quantity">0.00</td>
-                        <td data-class="Working Quantity">0.00</td>
-                        <td data-class="Avg. Fill Price">0.00</td>
-                        <td data-class="Status">Open</td>
-                        <td data-class="Paid Fees">0.00</td>
-                        <td data-class="Cancel"> 
-                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-class="Match">XXX-XXX</td>
-                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
-                        <td data-class="Order Type">Market</td>
-                        <td data-class="Side">XXX</td>
-                        <td data-class="Price">0.00</td>
-                        <td data-class="Quantity">0</td>
-                        <td data-class="Filled Quantity">0.00</td>
-                        <td data-class="Working Quantity">0.00</td>
-                        <td data-class="Avg. Fill Price">0.00</td>
-                        <td data-class="Status">Open</td>
-                        <td data-class="Paid Fees">0.00</td>
-                        <td data-class="Cancel"> 
-                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-class="Match">XXX-XXX</td>
-                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
-                        <td data-class="Order Type">Market</td>
-                        <td data-class="Side">XXX</td>
-                        <td data-class="Price">0.00</td>
-                        <td data-class="Quantity">0</td>
-                        <td data-class="Filled Quantity">0.00</td>
-                        <td data-class="Working Quantity">0.00</td>
-                        <td data-class="Avg. Fill Price">0.00</td>
-                        <td data-class="Status">Open</td>
-                        <td data-class="Paid Fees">0.00</td>
-                        <td data-class="Cancel"> 
-                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td data-class="Match">XXX-XXX</td>
-                        <td data-class="Timestamp">MM/DD/YY 00:00</td>
-                        <td data-class="Order Type">Market</td>
-                        <td data-class="Side">XXX</td>
-                        <td data-class="Price">0.00</td>
-                        <td data-class="Quantity">0</td>
-                        <td data-class="Filled Quantity">0.00</td>
-                        <td data-class="Working Quantity">0.00</td>
-                        <td data-class="Avg. Fill Price">0.00</td>
-                        <td data-class="Status">Open</td>
-                        <td data-class="Paid Fees">0.00</td>
-                        <td data-class="Cancel"> 
-                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
-                        </td>
-                    </tr>
+
+                {% endfor %}
+
+
+                
+                   
                 </table>
+                {% else %}
+                    <div class="tickerPageOrderSubmitNonUser">Please Login to place an Order</div>
+                {% endif %}
             </div>
         </div>
 
