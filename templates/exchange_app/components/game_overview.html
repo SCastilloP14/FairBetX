@@ -84,8 +84,11 @@
     padding:5px 12px;
     margin-left: 60px;
 }
-.allSportsDropdown span {
-    display: block;
+.allSportsButton option {
+    color:black;
+    background:white;
+    font-size:18px;
+    margin-bottom:10px;
 }
 
 .sportsPage {
@@ -342,6 +345,18 @@ h4 {
     transform: rotate(270deg);
 }
 
+.allSportsArrow {
+    margin-left:19px;
+    width:10px;
+    height:10px;
+    transform: rotate(180deg);
+}
+
+.custom-dropdown.open .allSportsArrow {
+    transform: rotate(270deg);
+}
+
+
 /* Style for the dropdown content */
 .dropdown-content {
     text-align: left;
@@ -352,6 +367,7 @@ h4 {
     font-weight: 400;
     margin-bottom:10px;
 }
+
 
 /* Style for the dropdown options */
 .dropdown-option {
@@ -462,9 +478,23 @@ h4 {
             <div class="rightCardContainer">
                 <div class="rightCardContainerHeader">
                     
-                    <button class="allSportsButton">All Sports</button>
-                    <button class="allEventsButton">All Events</button>
-                    <button class="liveButton">Live</button>
+                    <!-- <button class="allSportsButton">All Sports
+                        <img class=" allSportsArrow" src="../../../static/img/arrow-icon.png"alt="">
+                    </button> -->
+
+                    <select class="allSportsButton" name="cars">
+                        <option value="" >All Sports</option>
+                        <option value="NHL">NHL</option>
+                        <option value="NFL">NFL</option>
+                        <option value="NBA">NBA</option>
+                        <option value="MLB">MLB</option>
+
+                    </select>
+                    
+                    
+                    
+                    <button class="allEventsButton" data-filter="all">All Events</button>
+                    <button class="liveButton" data-filter="live">Live</button>
                     <input type="text" class="searchBar" placeholder="Search">
                 </div>
                 {% for league, games_in_league in grouped_games.items %}
@@ -530,40 +560,7 @@ h4 {
             </a>
                 {% endfor %}
                 {% endfor %}
-                {% endfor %}
-
-                <!-- <div class="rightCardContainerMatches">
-                    <div class="rightCardMatchCard grid grid16">
-                        <div class="rightCardMatchCard1">
-                            <div>Lorem</div>
-                            <div>Lorem</div>
-                        </div>
-                        <div class="rightCardMatchCard2">
-                            <span>0</span>
-                            <span>0</span>
-                        </div>
-                        <div class="rightCardMatchCard3">
-                            <button class="liveButtonSmall">
-                                <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
-                                Live
-                            </button>
-                            <span>Q1 - 0:00</span>
-                        </div>
-                        <div class="rightCardMatchCard4">
-                            <header>Buy</header>
-                            <div class="matchDetailsBuy"> 9.00</div>
-                        </div>
-                        <div class="rightCardMatchCard5">
-                            <header>Sell</header>
-                            <div class="matchDetailsSell"> 9.00</div>
-                        </div>
-                        <div class="rightCardMatchCard6">
-                            <header>Price Change</header>
-                            <div class="matchDetailsChange"> +0.00</div>
-                        </div>
-                    </div>
-                </div> -->
-                
+                {% endfor %}               
                 
             </div>
         </div>

@@ -10,3 +10,32 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  var filterButtons = document.querySelectorAll('.filterButton');
+  var gameCards = document.querySelectorAll('.rightCardContainerMatches');
+
+  filterButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      var filterValue = button.getAttribute('data-filter');
+
+      // Hide all cards
+      gameCards.forEach(function (card) {
+        card.style.display = 'none';
+      });
+
+      // Show only cards that match the selected filter
+      if (filterValue === 'all') {
+        gameCards.forEach(function (card) {
+          card.style.display = 'block';
+        });
+      } else {
+        var filteredCards = document.querySelectorAll('.' + filterValue);
+        filteredCards.forEach(function (card) {
+          card.style.display = 'block';
+        });
+      }
+    });
+  });
+});
