@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticker NBA</title>
+    <script src="../../../static/ticker_detail.js"></script>
 
 </head>
 <style>
@@ -417,6 +419,7 @@ outline: none;
     background: white;
     cursor:pointer;
 }
+
 .tickerPageUserStatisticsButtonMiddle {
     width:100%;
     height:100%;
@@ -439,9 +442,18 @@ outline: none;
     cursor:pointer;
 
 }
-.tickerPageUserStatisticsButtonLeft:hover,.tickerPageUserStatisticsButtonMiddle:hover, .tickerPageUserStatisticsButtonRight:hover  {
+.tickerPageUserStatisticsButtonLeft:hover,
+.tickerPageUserStatisticsButtonMiddle:hover, 
+.tickerPageUserStatisticsButtonRight:hover  {
     color:white;
     background:linear-gradient(to bottom, #016D74, #01373A);;
+}
+
+.tickerPageUserStatisticsButtonLeft:focus,
+.tickerPageUserStatisticsButtonMiddle:focus,
+.tickerPageUserStatisticsButtonRight:focus {
+    background:linear-gradient(to bottom, #016D74, #01373A);
+    color:white
 }
 
 .tickerPageSubmitButton {
@@ -759,76 +771,135 @@ outline: none;
             <div class="tickerPageUserStatisticsHeader">Recent Activity</div>
             <div class="tickerPageUserStatisticsButtonContainer grid grid_1x4">
                 <a 
-                    id="order-tab"
-                    href="{% url 'index' %}" 
+                    id="orders-tab"
+                    href="#" 
                     class="tickerPageUserStatisticsButtonLeft">
                     <button class="tickerPageUserStatisticsButtonLeft">Orders</button>
                 </a>
                 <a 
                     id="fills-tab"
-                    href="{% url 'index' %}" 
+                    href="#" 
                     class="tickerPageUserStatisticsButtonMiddle">
                     <button class="tickerPageUserStatisticsButtonMiddle">Fills</button>
                 </a>
                 <a 
                     id="positions-tab"
-                    href="{% url 'index' %}" 
+                    href="#" 
                     class="tickerPageUserStatisticsButtonMiddle">
                     <button class="tickerPageUserStatisticsButtonMiddle">Positions</button>
                 </a>
                 <a 
                     id="historic-orders-tab"
-                    href="{% url 'index' %}" 
+                    href="#" 
                     class="tickerPageUserStatisticsButtonMiddle">
                     <button class="tickerPageUserStatisticsButtonRight">Historic Orders</button>    
                 </a>    
             </div>
-            <div class="tickerPageUserTableCard">
-                {% if user.is_authenticated %}
-                <table>
-                    <tr>
-                        <th>Match</th>
-                        <th>Timestamp</th>
-                        <th>Order Type</th>
-                        <th>Side</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Filled Quantity</th>
-                        <th>Working Quantity</th>
-                        <th>Avg. Fill Price</th>
-                        <th>Status</th>
-                        <th>Paid Fees</th>
-                        <th>Cancel</th>
-                    </tr>
-                {% for order in user_orders|slice:":20" %}
 
-                    <tr>
-                        <td data-class="Match">{{ticker_detail.ticker_id}}</td>
-                        <td data-class="Timestamp">{{order.creation_timestamp}}</td>
-                        <td data-class="Order Type">{{order.order_type}}</td>
-                        <td data-class="Side">{{order.side}}</td>
-                        <td data-class="Price">{{order.price}}</td>
-                        <td data-class="Quantity">{{order.quantity}}</td>
-                        <td data-class="Filled Quantity">{{order.filled_quantity}}</td>
-                        <td data-class="Working Quantity">{{order.working_quantity}}</td>                   
-                        <td data-class="Avg. Fill Price">{{order.avg_fill_price}}</td>
-                        <td data-class="Status">{{order.status}}</td>
-                        <td data-class="Paid Fees">{{order.paid_fees}}</td>
-                        <td data-class="Cancel"> 
-                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
-                        </td>
-                    </tr>
+            {% if user.is_authenticated %}
 
-                {% endfor %}
+                <div class="tickerPageUserTableCard" id="orders-section">
+                    <table>
+                        <tr>
+                            <th>Match</th>
+                            <th>Timestamp</th>
+                            <th>Order Type</th>
+                            <th>Side</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Filled Quantity</th>
+                            <th>Working Quantity</th>
+                            <th>Avg. Fill Price</th>
+                            <th>Status</th>
+                            <th>Paid Fees</th>
+                            <th>Cancel</th>
+                        </tr>
+                    {% for order in user_orders|slice:":20" %}
+
+                        <tr>
+                            <td data-class="Match">{{ticker_detail.ticker_id}}</td>
+                            <td data-class="Timestamp">{{order.creation_timestamp}}</td>
+                            <td data-class="Order Type">{{order.order_type}}</td>
+                            <td data-class="Side">{{order.side}}</td>
+                            <td data-class="Price">{{order.price}}</td>
+                            <td data-class="Quantity">{{order.quantity}}</td>
+                            <td data-class="Filled Quantity">{{order.filled_quantity}}</td>
+                            <td data-class="Working Quantity">{{order.working_quantity}}</td>                   
+                            <td data-class="Avg. Fill Price">{{order.avg_fill_price}}</td>
+                            <td data-class="Status">{{order.status}}</td>
+                            <td data-class="Paid Fees">{{order.paid_fees}}</td>
+                            <td data-class="Cancel"> 
+                                <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+                    
+                    </table>
+
+                </div>
+
+                <div class="tickerPageUserTableCard" id="fills-section">
+                    <table>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Ticker</th>
+                            <th>Side</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Order ID</th>
+
+                        </tr>
+                    {% for fill in user_fills|slice:":20" %}
+
+                        <tr>
+                            <td data-class="Timestamp">{{fill.timestamp}}</td>
+                            <td data-class="Ticker">{{fill.ticker.ticker_id}}</td>
+                            <td data-class="Side">{{fill.side}}</td>
+                            <td data-class="Price">{{fill.price}}</td>
+                            <td data-class="Quantity">{{fill.quantity}}</td>
+                            <td data-class="Order ID">{{fill.fill_id}}</td>
+
+                        </tr>
+
+                    {% endfor %}
+                    
+                    </table>
+
+                </div>
 
 
-                
-                   
-                </table>
-                {% else %}
-                    <div class="tickerPageOrderSubmitNonUser">Please Login to place an Order</div>
-                {% endif %}
-            </div>
+                <div class="tickerPageUserTableCard" id="positions-section">
+                    <table>
+                        <tr>
+                            <th>Ticker</th>
+                            <th>Position</th>
+                            <th>Average Price</th>
+                            <th>Open PnL</th>
+                            <th>Closed PnL</th>
+
+                        </tr>
+                    {% for position in user_positions|slice:":20" %}
+
+                        <tr>
+                            <td data-class="Ticker">{{position.ticker.ticker_id}}</td>
+                            <td data-class="Position">{{position.quantity}}</td>
+                            <td data-class="Average Price">{{position.avg_price}}</td>
+                            <td data-class="Open PnL">{{position.open_pnl}}</td>
+                            <td data-class="Closed PnL">{{position.closed_pnl}}</td>
+
+                        </tr>
+
+                    {% endfor %}
+                    
+                    </table>
+
+                </div>
+
+            <!-- If not logged in  -->
+            {% else %}
+                <div class="tickerPageOrderSubmitNonUser">Please Login to place an Order</div>
+            {% endif %}
         </div>
 
     </div>

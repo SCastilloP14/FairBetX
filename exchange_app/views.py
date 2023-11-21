@@ -182,8 +182,8 @@ class TickerDetailView(DetailView):
         context["order_form"] = OrderForm()
         context["receive_order_url"] = reverse("exchange_app:ticker_detail", kwargs={"pk": self.kwargs["pk"]})
         if self.request.user.is_authenticated:
-            context["user_orders"] = Order.objects.filter(ticker=ticker, user=self.request.user).reverse()
-            context["user_positions"] = Position.objects.filter(ticker=ticker, user=self.request.user).reverse()
+            context["user_orders"] = Order.objects.filter(ticker=ticker, user=self.request.user)
+            context["user_positions"] = Position.objects.filter(ticker=ticker, user=self.request.user)
             context["user_fills"] = Fill.objects.filter(ticker=ticker, user=self.request.user)
         else:
             context["user_orders"] = Order.objects.none()
