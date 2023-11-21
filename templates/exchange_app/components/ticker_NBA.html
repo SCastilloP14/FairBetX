@@ -478,6 +478,34 @@ outline: none;
     font-size: 22px;
     margin-top: 200px;
 }
+
+.tickerPageUserTableToggle {
+    color:#00474F;
+    font-size: 18px;
+    width:200px;
+    height:30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:0 auto;
+    margin-top:10px;
+    padding-bottom:20px;
+}
+
+.tickerPageUserTableToggle h4 {
+    color:#00474F;
+    margin-left:20px;
+    margin-right:20px;
+}
+.tickerPageArrowLeft img {
+    width:20px;
+    height: 20px;
+    transform: rotate(180deg);
+}
+.tickerPageArrowRight img {
+    width:20px;
+    height: 20px;
+}
 </style>
 <div class="grid grid_nav_1x3 page_background">
     <div class="empty"></div>
@@ -576,11 +604,14 @@ outline: none;
             <!-- Candlestick Graph  -->
             <div class="tickerPageCandlestickCard">
                 
-                <!-- <div id="chart-div">
+                <div id="chart-div">
                     <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
                     <script type="text/javascript" src="../../../static/trading_view.js"></script>
                     <div id="chart-container" value="{{ticker_detail.id}}">{{ticker_detail.id}}</div>
-                </div> -->
+                </div>
+
+               
+
                 
             </div>
 
@@ -758,13 +789,6 @@ outline: none;
             </div>
 
         </div>
-
-        
-
-
-
-
-
     
         <!-- User Statistics  -->
         <div class="tickerPageUserStatistics">
@@ -833,9 +857,23 @@ outline: none;
                             </td>
                         </tr>
 
+                        
+
                     {% endfor %}
+
+                        
                     
                     </table>
+
+                    <div class="tickerPageUserTableToggle">
+                        <a href="" class="tickerPageArrowLeft"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                        <h4>20 of {{user_orders|length}}</h4>
+                        <a href="" class="tickerPageArrowRight"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                    </div>
 
                 </div>
 
@@ -866,6 +904,16 @@ outline: none;
                     
                     </table>
 
+                    <div class="tickerPageUserTableToggle">
+                        <a href="" class="tickerPageArrowLeft"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                        <h4>20 of {{user_fills|length}}</h4>
+                        <a href="" class="tickerPageArrowRight"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                    </div>
+
                 </div>
 
 
@@ -894,6 +942,17 @@ outline: none;
                     
                     </table>
 
+                    <div class="tickerPageUserTableToggle">
+                        <a href="" class="tickerPageArrowLeft"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                        <h4>20 of {{user_positions|length}}</h4>
+                        <a href="" class="tickerPageArrowRight"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                    </div>
+
+
                 </div>
 
             <!-- If not logged in  -->
@@ -901,6 +960,21 @@ outline: none;
                 <div class="tickerPageOrderSubmitNonUser">Please Login to place an Order</div>
             {% endif %}
         </div>
+
+        <!-- <div class="tickerPageUserTableToggle">
+            <a href="" class="tickerPageArrowLeft"> 
+                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+            </a>
+            <h4>20 of {{user_orders|length}}</h4>
+            <a href="" class="tickerPageArrowRight"> 
+                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+            </a>
+
+        </div> -->
+
+
+
+
 
     </div>
 
