@@ -42,7 +42,6 @@
 }
 .grid_1x9 {
     grid-template-columns: 10% 20% 5% 5% 5% 15% 5% 15% 5% 15%;
-
 }
 .middle_section {
     width:100%;   
@@ -60,14 +59,15 @@
     padding-top: 40px;
     width:100%
 }
-.game_details {
+.tickerPageGameDetails {
     width:70%;
     border-radius: 25px;
-    height:120px;
+    height:120px !important;
     margin-top:30px;
     text-align: center;  
+    color:#5F5F5F
 }
-.game_period {
+.gamePeriod {
     border-radius: 25px;
     width:100%;
     height:100%;
@@ -78,52 +78,52 @@
     align-items: center;
     justify-content: center;
 }
-.home_team, .away_team {
+.tickerPageHomeTeam, .tickerPageAwayTeam {
     width:100%;
     text-align: left;
     font-size:22px;
     padding-left:30px;
 }
-.home_team, .home_score {
+.tickerPageHomeTeam, .tickerPageHomeScore {
     padding-top:10px;
 }
-.away_team, .away_score {
+.tickerPageAwayTeam, .tickerPageAwayScore {
     padding-bottom:10px;
 }
-.home_score, .away_score {
+.tickerPageHomeScore, .tickerPageAwayScore {
     width:100%;
     font-size:22px;
 }
-.game_date,.game_time, .game_location {
+.tickerPageGameDate,.tickerPageGameTime, .tickerPageGameLocation {
     font-size: 18x;    
 }
-.date_icon,.time_icon,.location_icon {
+.tickerPageDateIcon,.tickerPageTimeIcon,.tickerPageLocationIcon {
     width: 30px;
     height:30px;
 } 
-.game_date, .game_details, .game_location {
+.tickerPageGameDate, .tickerPageGameDetails, .tickerPageGameLocation {
     font-size:16px;
     font-weight: 400;
 }
-.game_location {
+.tickerPageGameLocation {
     padding-right:10px;
 }
-.user_card {
+.tickerPageUserCard {
     width: 100%;
-    height: 130px;
+    height: 130px !important;
     border-radius: 25px;
     background: linear-gradient(to bottom, #00474f, #000e10);
     margin-top:30px;
     color:white;
     align-content: left;
 }
-.user_card img {
+.tickerPageUserCard img {
     margin-left: auto;
     display: block; 
     width: 70px;
     height:70px;
 }
-.user_card_top {
+.tickerPageUserCardTop {
     color:#15965A;
     font-size:30px;
     margin-top:auto;
@@ -131,7 +131,7 @@
     margin-right:auto;
     margin-left:20px;
 }
-.user_card_bottom {
+.tickerPageUserCardBottom {
     color:white;
     font-size:18px;
     padding-top:10px;
@@ -140,7 +140,7 @@
     margin-right:auto;
     margin-left:20px;
 }
-.candlestick_card {
+.tickerPageCandlestickCard {
     width: 745px;
     height:500px;
     border-radius: 25px;
@@ -151,6 +151,7 @@
     flex-direction:column;
     justify-content: center;
     text-align: center;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #chart-div {
@@ -161,21 +162,24 @@
     margin-top:20px;
     }
 
-.statistics_card {
+.tickerPageStatisticsCard {
+    color:#5F5F5F;
     width: 745px;
     height:500px;
     border-radius: 25px;
     background: white;;
     margin-top:10px;
     margin-left:5px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
 }
-.statistics_card header {
+.tickerPageStatisticsCard header {
     text-align: center;
     font-size:24px;
     margin-top:20px;
     margin-bottom:20px;
 }
-.statistics_card table {
+.tickerPageStatisticsCard table {
     height: 410px;
     width:100%;
     text-align: center;
@@ -183,16 +187,16 @@
 }
 
 
-.statistics_card tr:nth-child(odd) {background-color: #f7f7f7;}
+.tickerPageStatisticsCard tr:nth-child(odd) {background-color: #f7f7f7;}
 
-.statistics_card_button_left {
+.tickerPageStatisticsCardButtonLeft {
     padding: 4px 40px;
     background: #016D74;
     border-radius: 25px;
     color:white;
     border: none;
 }
-.statistics_card_button_right {
+.tickerPageStatisticsCardButtonRight {
     padding: 4px 40px;  
     background: #06979C;
     border-radius: 25px;
@@ -201,7 +205,7 @@
 }
 
 /* Buy Orderbook  */
-.buy_orderbook_card {
+.tickerPageBuyOrderbookCard {
     margin-top:10px;
     width:495px;
     height:500px;
@@ -209,40 +213,44 @@
     margin-right:5px;
     border-radius: 25px;
     text-align: center;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
 }
-.buy_orderbook_card header, .sell_orderbook_card header, .order_submission_card header {
+.tickerPageBuyOrderbookCard header, .sell_orderbook_card header, .order_submission_card header {
     font-size:30px;
     color:black;
     margin-top:30px;
     margin-bottom:10px;
 }
-.buy_orderbook_table {
+.tickerPageBuyOrderbookTable {
     height: 400px;
     table-layout: fixed;
     margin:0 auto;
     border-collapse: collapse;
     margin-top:35px
 }
-.buy_orderbook_table tr th {
+.tickerPageBuyOrderbookTable tr th {
     width:160px;
 } 
 
-.left_table_header {
+.tickerPageBuyOrderbookLeftTableHeader {
     background:#f7f7f7;
     /* border-radius: 15px 0 0 15px; */
     font-size: 24px;
+    color:#5F5F5F
 
 }
-.right_table_header {
+.tickerPageBuyOrderbookRightTableHeader {
     background:#f7f7f7;
     /* border-radius:0 15px 15px 0; */
     font-size: 24px;
+    color:#5F5F5F
 }
 
-.buy_orderbook_table td {
+.tickerPageBuyOrderbookTable td {
     color:#15965A;
 }
-.buy_right {
+.tickerPageBuyRight {
     background: #E4F0EB;
 }
  /* Sell Orderbook  */
@@ -254,8 +262,10 @@
     margin-right:5px;
     border-radius: 25px;
     text-align: center;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
 }
-.buy_orderbook_card header, .sell_orderbook_card header {
+.tickerPageBuyOrderbookCard header, .sell_orderbook_card header {
     font-size:30px;
     color:black;
     margin-top:30px;
@@ -272,7 +282,7 @@
     width:160px;
 } 
 
-.left_table_header {
+.tickerPageBuyOrderbookLeftTableHeader {
     background:#f7f7f7;
     font-size: 24px;
 
@@ -298,6 +308,8 @@
     margin-left:5px;
     border-radius: 25px;
     text-align: center;   
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
 }
 .order_submission_field {
     height:auto;
@@ -351,16 +363,17 @@
 }
 
 /* User Stats  */
-.user_statistics {
+.tickerPageUserStatistics {
     width:100%;
     margin-bottom:50px;
 }
-.user_statistics_header {
+.tickerPageUserStatisticsHeader {
     text-align: center;
     font-size: 24px;
     margin:40px 0;
+    color:#1B1C1E
 }
-.user_table_card {
+.tickerPageUserTableCard {
     width: 100%;
     margin-top:10px;
     background: white;
@@ -368,7 +381,7 @@
     min-height:500px;
     height:auto;
 }
-.user_table_card table {
+.tickerPageUserTableCard table {
     text-align: center;
     align-items: center;
     width: 99%;
@@ -377,21 +390,22 @@
     /* margin-top:10px; */
     border-radius: 25px;
 }
-.user_table_card th {
+.tickerPageUserTableCard th {
     padding:20px 20px 16px 20px;
     font-size: 16px;
+    color:#1B1C1E
 }
-.user_table_card tr {
+.tickerPageUserTableCard tr {
     margin-bottom:10px;
 }
-.user_table_card td {
+.tickerPageUserTableCard td {
     font-size: 14px;
     font-weight:400;
     color:#5F5F5F;
      padding-bottom:20px;
 }
 
-.cancel_button {
+.tickerPageUserStatisticsCancelButton {
     border-radius: 15px;
     color:#016D74;
     font-size: 12px;
@@ -401,17 +415,17 @@
     padding: 5px 20px;
     justify-content: center;
 }
-.cancel_button:hover {
+.tickerPageUserStatisticsCancelButton:hover {
     color:white;
     background: #016D74;
 }
-.button_container {
+.tickerPageUserStatisticsButtonContainer {
     width:100%;
     background:paleturquoise;
-    height:50px;
+    height:50px !important;
     border-radius: 25px;
 }
-.button_orders_left {
+.tickerPageUserStatisticsButtonLeft {
     width:100%;
     border-radius: 25px 0 0 25px;
     height:100%;
@@ -420,7 +434,7 @@
     font-size:20px;
     background: white;
 }
-.button_orders_middle {
+.tickerPageUserStatisticsButtonMiddle {
     width:100%;
     height:100%;
     border:none;
@@ -430,7 +444,7 @@
     background: white;
 
 }
-.button_orders_right {
+.tickerPageUserStatisticsButtonRight {
     width:100%;
     border-radius: 0 25px 25px 0;
     height:100%;
@@ -441,12 +455,12 @@
     background: white;
 
 }
-.button_orders_left:hover,.button_orders_middle:hover, .button_orders_right:hover  {
+.tickerPageUserStatisticsButtonLeft:hover,.tickerPageUserStatisticsButtonMiddle:hover, .tickerPageUserStatisticsButtonRight:hover  {
     color:white;
     background:linear-gradient(to bottom, #00474f, #000e10);;
 }
 
-.submit_button {
+.tickerPageSubmitButton {
     border-radius: 25px;
     color:#016D74;
     font-size: 16px;
@@ -457,7 +471,7 @@
     justify-content: center;
     margin-top:10px;
 }
-.submit_button:hover {
+.tickerPageSubmitButton:hover {
     border:none;
     color:white;
     background: #016D74;
@@ -468,57 +482,57 @@
     <div class="middle_section">
         <!-- Header  -->
         <div class="header">NBA</div>
-        <div class="game_details grid grid_1x9">
-            <div class="game_period">Q1</div>
+        <div class="tickerPageGameDetails grid grid_1x9">
+            <div class="gamePeriod">Q1</div>
             <div class="grid grid_2x1">
-                <div class="home_team">Toronto</div>
-                <div class="away_team">Boston</div>
+                <div class="tickerPageHomeTeam">Toronto</div>
+                <div class="tickerPageAwayTeam">Boston</div>
             </div>
             <div class="grid grid_2x1">
-                <div class="home_score">0</div>
-                <div class="away_score">0</div>
+                <div class="tickerPageHomeScore">0</div>
+                <div class="tickerPageAwayScore">0</div>
             </div>
             <div class="empty"></div>
             <div>
-                <img class="date_icon" src="../../../static/img/calendar-icon.png" alt="">
+                <img class="tickerPageDateIcon" src="../../../static/img/calendar-icon.png" alt="">
             </div>
-            <div class="game_date">
+            <div class="tickerPageGameDate">
                 MM/DD
             </div>
             <div>
-                <img class="time_icon" src="../../../static/img/clock-icon.png" alt="">
+                <img class="tickerPageTimeIcon" src="../../../static/img/clock-icon.png" alt="">
             </div>
-            <div class="game_time">0:00 AM</div>
+            <div class="tickerPageGameTime">0:00 AM</div>
              <div>
-                <img  class="location_icon" src="../../../static/img/location-icon.png" alt="">
+                <img  class="tickerPageLocationIcon" src="../../../static/img/location-icon.png" alt="">
             </div>
-            <div class="game_location">Stadium, City, State</div>
+            <div class="tickerPageGameLocation">Stadium, City, State</div>
         </div>
 
         <!-- Game + User Info Card  -->
-        <div class="user_card grid grid_1x10">
+        <div class="tickerPageUserCard grid grid_1x10">
             <img src="../../../static/img/wallet-icon-white.png" alt="">
             <div class="grid grid_2x1">
-                <div class="user_card_top">$0.00</div>
-                <div class="user_card_bottom">Balance</div>
+                <div class="tickerPageUserCardTop">$0.00</div>
+                <div class="tickerPageUserCardBottom">Balance</div>
 
             </div>
             <img src="../../../static/img/file-icon.png" alt="">
             <div class="grid grid_2x1">
-                <div class="user_card_top">Lorem</div>
-                <div class="user_card_bottom">Balance</div>
+                <div class="tickerPageUserCardTop">Lorem</div>
+                <div class="tickerPageUserCardBottom">Balance</div>
 
             </div>
             <img src="../../../static/img/clipboard-icon.png" alt="">
             <div class="grid grid_2x1">
-                <div class="user_card_top">$0.00</div>
-                <div class="user_card_bottom">Balance</div>
+                <div class="tickerPageUserCardTop">$0.00</div>
+                <div class="tickerPageUserCardBottom">Balance</div>
 
             </div>
             <img src="../../../static/img/coin-icon.png" alt="">
             <div class="grid grid_2x1">
-                <div class="user_card_top">$0.00</div>
-                <div class="user_card_bottom">Balance</div>
+                <div class="tickerPageUserCardTop">$0.00</div>
+                <div class="tickerPageUserCardBottom">Balance</div>
             </div>
 
         </div>
@@ -527,7 +541,7 @@
         <div class="grid grid_1x2">
 
             <!-- Candlestick Graph  -->
-            <div class="candlestick_card">
+            <div class="tickerPageCandlestickCard">
                 
                 <div id="chart-div">
                     <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
@@ -538,80 +552,80 @@
             </div>
 
             <!-- Statistics Graph  -->
-            <div class="statistics_card">
+            <div class="tickerPageStatisticsCard">
                 <header>Statistics</header>
                 
-                <table class="statistics_card_table">
+                <table class="tickerPageStatisticsCardTable">
                     <tr>
                         <td>
-                            <button class="statistics_card_button_left">X</button>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
                         </td>
                         <td>Rebounds</td>
                         <td>
-                            <button class="statistics_card_button_right">X</button>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button class="statistics_card_button_left">X</button>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
                         </td>
                         <td>Assits</td>
                         <td>
-                            <button class="statistics_card_button_right">X</button>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button class="statistics_card_button_left">X</button>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
                         </td>
                         <td>Steals</td>
                         <td>
-                            <button class="statistics_card_button_right">X</button>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button class="statistics_card_button_left">X</button>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
                         </td>
                         <td>Blocks</td>
                         <td>
-                            <button class="statistics_card_button_right">X</button>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button class="statistics_card_button_left">X</button>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
                         </td>
                         <td>Turnovers</td>
                         <td>
-                            <button class="statistics_card_button_right">X</button>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button class="statistics_card_button_left">X</button>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
                         </td>
                         <td>3 Points</td>
                         <td>
-                            <button class="statistics_card_button_right">X</button>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button class="statistics_card_button_left">X</button>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
                         </td>
                         <td>Free Throws</td>
                         <td>
-                            <button class="statistics_card_button_right">X</button>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button class="statistics_card_button_left">X</button>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
                         </td>
                         <td>Fouls Drawn</td>
                         <td>
-                            <button class="statistics_card_button_right">X</button>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
                         </td>
                     </tr>
                 </table>
@@ -624,57 +638,57 @@
         <div class="grid grid_1x3">
 
             <!-- Buy Orderbook  -->
-            <div class="buy_orderbook_card">
+            <div class="tickerPageBuyOrderbookCard">
                 <header>Orderbook Buy</header>
-                <table class="buy_orderbook_table">
+                <table class="tickerPageBuyOrderbookTable">
                     
                     <tr>
-                        <th class="left_table_header">Price</th>
-                        <th class="right_table_header">Quantity</th>
+                        <th class="tickerPageBuyOrderbookLeftTableHeader">Price</th>
+                        <th class="tickerPageBuyOrderbookRightTableHeader">Quantity</th>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="buy_right" data-class="Quantity">0</td>
+                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="buy_right" data-class="Quantity">0</td>
+                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="buy_right" data-class="Quantity">0</td>
+                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="buy_right" data-class="Quantity">0</td>
+                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="buy_right" data-class="Quantity">0</td>
+                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="buy_right" data-class="Quantity">0</td>
+                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="buy_right" data-class="Quantity">0</td>
+                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="buy_right" data-class="Quantity">0</td>
+                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="buy_right" data-class="Quantity">0</td>
+                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
-                        <td class="buy_right" data-class="Quantity">0</td>
+                        <td class="tickerPageBuyRight" data-class="Quantity">0</td>
                     </tr>
                     <tr>
                         <td style="color:white">0</td>
-                        <td class="buy_right" style="color:#E4F0EB">0</td>
+                        <td class="tickerPageBuyRight" style="color:#E4F0EB">0</td>
                     </tr>
                 </table>
             </div>
@@ -685,8 +699,8 @@
                 <table class="sell_orderbook_table">
                     
                     <tr>
-                        <th class="left_table_header">Price</th>
-                        <th class="right_table_header">Quantity</th>
+                        <th class="tickerPageBuyOrderbookLeftTableHeader">Price</th>
+                        <th class="tickerPageBuyOrderbookRightTableHeader">Quantity</th>
                     </tr>
                     <tr>
                         <td data-class="Price">0.00</td>
@@ -755,7 +769,7 @@
                         <div class="place_order_left">Quantity</div>
                        <input class="quantity_input" type="text" placeholder="Quantity">
                 </div>
-                <button class="submit_button">Submit</button>
+                <button class="tickerPageSubmitButton">Submit</button>
             </div>
 
         </div>
@@ -768,15 +782,15 @@
 
     
         <!-- User Statistics  -->
-        <div class="user_statistics">
-            <div class="user_statistics_header">Recent Activity</div>
-            <div class="button_container grid grid_1x4">
-                <button class="button_orders_left">Orders</button>
-                <button class="button_orders_middle">Fills</button>
-                <button class="button_orders_middle">Positions</button>
-                <button class="button_orders_right">Historic Orders</button>    
+        <div class="tickerPageUserStatistics">
+            <div class="tickerPageUserStatisticsHeader">Recent Activity</div>
+            <div class="tickerPageUserStatisticsButtonContainer grid grid_1x4">
+                <button class="tickerPageUserStatisticsButtonLeft">Orders</button>
+                <button class="tickerPageUserStatisticsButtonMiddle">Fills</button>
+                <button class="tickerPageUserStatisticsButtonMiddle">Positions</button>
+                <button class="tickerPageUserStatisticsButtonRight">Historic Orders</button>    
             </div>
-            <div class="user_table_card">
+            <div class="tickerPageUserTableCard">
                 <table>
                     <tr>
                         <th>Match</th>
@@ -805,7 +819,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -821,7 +835,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -837,7 +851,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -853,7 +867,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -869,7 +883,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -885,7 +899,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -901,7 +915,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -917,7 +931,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -933,7 +947,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -949,7 +963,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -965,7 +979,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -981,7 +995,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
                         </td>
                     </tr>
                 </table>
