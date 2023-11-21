@@ -79,12 +79,14 @@
     text-align: left;
     color:white;
     width:150px;
-    background:linear-gradient(to bottom, #016D74, #01373A);;
+    background:linear-gradient(to bottom, #016D74, #01373A);
     border-radius:10px;
     padding:5px 12px;
     margin-left: 60px;
 }
-
+.allSportsDropdown span {
+    display: block;
+}
 
 .sportsPage {
     padding-top: 20px;
@@ -297,6 +299,83 @@ h4 {
     background-color: white;
     border-radius: 15px;
 }
+
+
+/* Style for the custom dropdown container */
+.custom-dropdown {
+    /* position: relative; */
+    /* display: inline-block; */
+    margin-left:50px;
+    margin-top: 30px;
+}
+
+/* Style for the dropdown header */
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Style for the header image */
+.header-image {
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    margin-right: 10px; /* Adjust the spacing between image and text */
+}
+
+/* Style for the header text */
+.header-text {
+    font-size: 28px;
+    color: white;
+}
+
+/* Style for the arrow */
+.arrow {
+    margin-left: 50px;
+    width:25px;
+    height:25px;
+    transform: rotate(180deg);
+}
+
+/* Rotate the arrow when the dropdown is open */
+.custom-dropdown.open .arrow {
+    transform: rotate(270deg);
+}
+
+/* Style for the dropdown content */
+.dropdown-content {
+    text-align: left;
+    display: none;
+    position: relative;
+    background-color: transparent;
+    z-index: 0;
+    font-weight: 400;
+    margin-bottom:10px;
+}
+
+/* Style for the dropdown options */
+.dropdown-option {
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* Change color on hover */
+.dropdown-option:hover {
+  color: #13C2C1;
+}
+
+/* Show the dropdown content when the dropdown is open */
+.custom-dropdown.open .dropdown-content {
+  display: block;
+}
+
+
+
+
+
+    
+
+
 </style>
 
 <div>
@@ -313,20 +392,76 @@ h4 {
             <!-- Left Card  -->
             <div class="leftCardContainer">
                 <input type="text" class="searchBarLeftCard" placeholder="Search">
-                <div class="leftCardNba">
-                    <img class="nbaLogo" src="../../../static/img/basketball-logo.png" alt="">
-                    <h4>NBA</h4>
+                
+                
+
+                <div class="custom-dropdown" id="dropdownNFL">
+                    <div class="dropdown-header">
+                        <img class="nbaLogo" src="../../../static/img/basketball-logo.png" alt="">
+                        <span class="header-text"> NFL</span>
+                        <img class="arrow" style="margin-left:56px;" src="../../../static/img/arrow-icon.png" alt="">
+                    </div>
+                    <div class="dropdown-content">
+                        
+                        <div class="dropdown-option">NHL</div>
+                        <div class="dropdown-option">NBA</div>
+                        <div class="dropdown-option">MLB</div>
+                    </div>
                 </div>
-                <div class="leftCardNba">
-                    <img class="nbaLogo" src="../../../static/img/basketball-logo.png" alt="">
-                    <h4>NFL</h4>
-                    <a href="" style="color:white; text-decoration: none;"> > </a>
+
+                <div class="custom-dropdown" id="dropdownNBA">
+                    <div class="dropdown-header">
+                        <img class="nbaLogo" src="../../../static/img/football-icon.png" alt="">
+                        <span class="header-text">NBA</span>
+                        <img class="arrow" src="../../../static/img/arrow-icon.png"alt="">
+                    </div>
+                    <div class="dropdown-content">
+
+                        <div class="dropdown-option">NFL</div>
+                        <div class="dropdown-option">NBA</div>
+                        <div class="dropdown-option">MLB</div>
+                    </div>
                 </div>
+
+                <div class="custom-dropdown" id="dropdownNHL">
+                    <div class="dropdown-header">
+                        <img class="nbaLogo" src="../../../static/img/puck-icon.png" alt="">
+                        <span class="header-text">NHL</span>
+                        <img class="arrow" src="../../../static/img/arrow-icon.png"alt="">
+                    </div>
+                    <div class="dropdown-content">
+
+                        <div class="dropdown-option">NFL</div>
+                        <div class="dropdown-option">NBA</div>
+                        <div class="dropdown-option">MLB</div>
+                    </div>
+                </div>
+
+                <div class="custom-dropdown" id="dropdownMLB">
+                    <div class="dropdown-header">
+                        <img class="nbaLogo" src="../../../static/img/baseball-icon.png" alt="">
+                        <span class="header-text">MLB</span>
+                        <img class="arrow" src="../../../static/img/arrow-icon.png"alt="">
+                    </div>
+                    <div class="dropdown-content">
+
+                        <div class="dropdown-option">NFL</div>
+                        <div class="dropdown-option">NBA</div>
+                        <div class="dropdown-option">MLB</div>
+                    </div>
+                </div>
+
+                
+
+
+                
+                
             </div>
 
             <!-- Right Card  -->
             <div class="rightCardContainer">
                 <div class="rightCardContainerHeader">
+                    
                     <button class="allSportsButton">All Sports</button>
                     <button class="allEventsButton">All Events</button>
                     <button class="liveButton">Live</button>
