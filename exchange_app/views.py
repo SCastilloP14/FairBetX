@@ -193,23 +193,31 @@ class TickerDetailView(DetailView):
         
     def post(self, request, *args, **kwargs):
         if request.method == "POST":
-            form = OrderForm(request.POST)
-            if form.is_valid():
-                ticker_id = request.POST.get("ticker_id")
-                ticker = Ticker.objects.get(id=ticker_id)
-                order = Order(order_id = ''.join(random.choices(string.ascii_letters + string.digits, k=16)),
-                            user=request.user,
-                            ticker=ticker, 
-                            order_type = form.cleaned_data["order_type"],
-                            side = form.cleaned_data["side"],
-                            price = form.cleaned_data["price"] if form.cleaned_data["order_type"] =='LIMIT' else None,
-                            quantity=form.cleaned_data["quantity"],
-                            working_quantity=form.cleaned_data["quantity"]
-                            )
-                order.save()
-                order.execute_order()
-                order.save()
-                return redirect("exchange_app:ticker_detail", pk=self.kwargs["pk"])             
+            print('HERE')
+            action = request.POST.get("action")
+            print(action)
+            if action == "submit_order":
+                form = OrderForm(request.POST)
+                if form.is_valid():
+                    ticker_id = request.POST.get("ticker_id")
+                    ticker = Ticker.objects.get(id=ticker_id)
+                    order = Order(order_id = ''.join(random.choices(string.ascii_letters + string.digits, k=16)),
+                                user=request.user,
+                                ticker=ticker, 
+                                order_type = form.cleaned_data["order_type"],
+                                side = form.cleaned_data["side"],
+                                price = form.cleaned_data["price"] if form.cleaned_data["order_type"] =='LIMIT' else None,
+                                quantity=form.cleaned_data["quantity"],
+                                working_quantity=form.cleaned_data["quantity"]
+                                )
+                    order.save()
+                    order.execute_order()
+                    order.save()
+            elif action == "cancel_order":
+                order_id = request.POST.get("order_id")
+                order = Order.objects.get(order_id=order_id, user=request.user)
+                order.cancel()
+            return redirect("exchange_app:ticker_detail", pk=self.kwargs["pk"])             
 
 
 class TradeViewSet(viewsets.ReadOnlyModelViewSet):
