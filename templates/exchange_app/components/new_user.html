@@ -155,47 +155,56 @@
             <a id="existingUserButton">Log In</a>
         </div>
 
-        <form method="post" class="form" action="{% url "user_registration" %}">
+        <form method="post" class="form" action="{% url 'user_registration' %}" enctype="multipart/form-data">
             {% csrf_token %}
 
-        <div class="card_input_form card_input_form_small">
+            <div class="card_input_form card_input_form_small">
+                <input 
+                    action="First Name" 
+                    type="first_name"
+                    name="first_name"
+                    required
+                    placeholder="First Name"></input>
+                <input 
+                    action="Last Name" 
+                    type="last_name"
+                    name="last_name"
+                    required
+                    placeholder="Last Name"></input>
+            </div>
+            
+            <div class="card_input_form">
+                <input 
+                    action="Email" 
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="Email Address"></input>
+            </div>
             <input 
-                action="First Name" 
-                type="first_name"
-                name="first_name"
+                action="Username" 
+                type="username"
+                name="username"
                 required
-                placeholder="First Name"></input>
-            <input 
-                action="Last Name" 
-                type="last_name"
-                name="last_name"
+                hidden
+                value="Email"></input>
+            <div class="card_input_form">
+                <input 
+                action="Password" 
+                type="password"
+                name="password"
                 required
-                placeholder="Last Name"></input>
-        </div>
+                placeholder="Password"></input>
+            </div>
+            <div class="card_button">
+                <input 
+                    type="submit"
+                    class="letsBeginButton"
+                    value="Register Now">
+                <!-- <button class="login_button">Let's Begin</button> -->
+            </div>
+        </form>
         
-        <div class="card_input_form">
-            <input 
-                action="Email" 
-                type="email"
-                name="email"
-                required
-                placeholder="Email Address"></input>
-        </div>
-        <div class="card_input_form">
-            <input 
-            action="Password" 
-            type="password"
-            name="password"
-            required
-            placeholder="Password"></input>
-        </div>
-        <div class="card_button">
-            <input 
-                type="submit"
-                class="letsBeginButton"
-                 value="Register Now">
-            <!-- <button class="login_button">Let's Begin</button> -->
-        </div>
         <div class="card_horizontal_line_seperator">
             <div class="horizontal-line"></div>
             <div>Or Sign Up With</div>
