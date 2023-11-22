@@ -29,30 +29,41 @@ body {
     height: 86px;
     width: 100%;
     background-color: green;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     position: absolute;
     margin-bottom: 100px;
+
+    /* display: flex;
+    align-items: center; */
 }
 
 .navBarCenter {
     display: flex;
     width: 100%;
-    justify-content: space-between;
     align-items: center;
+
+    display: flex;
+    flex-direction: row;
+
 }
 
 .navBarLeft {
     text-align: left;
+    margin-left:0;
+    margin-right: auto;
 }
 
 .navBarRight {
     text-align: right;
+    margin-right:0;
+    margin-left: auto;
 }
 
 .navBarCenterCenter {
-    width: 500px;
-    text-align: center;
+    margin-left: auto;
+    margin-right:auto;
+    transform: translateX(120px);
 }
 
 .navBarHeader {
@@ -137,6 +148,9 @@ body {
 
             <!-- Login -->
             <div class="navBarRight">
+                <a href="{% url 'user_logout' %}">
+                <button class="navButton">Log Out</button>
+              </a>
               <a href="{% url 'user_detail' pk=user.id %}">
                 <button class="navButton">My Account</button>
               </a>

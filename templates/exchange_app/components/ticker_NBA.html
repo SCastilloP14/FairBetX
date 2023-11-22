@@ -398,6 +398,7 @@ outline: none;
     border: solid 1px #016D74;
     padding: 5px 20px;
     justify-content: center;
+    cursor: pointer;
 }
 .tickerPageUserStatisticsCancelButton:hover {
     color:white;
@@ -756,7 +757,7 @@ outline: none;
                 <header>Place Order</header>
                 {% if user.is_authenticated %}
 
-                <form id="order-form" method="POST" action="" class="form__order">
+                <form id="order-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="form__order">
                 {% csrf_token %}
                     <div class="tickerPageOrderSubmissionField grid grid_4x2">
                         <div class="tickerPageOrderSubmissionPlaceOrderLeft">Order Type</div>
@@ -781,7 +782,7 @@ outline: none;
                         </div>
                         </div>
                         <input type="hidden" name="ticker_id" value="{{ticker_detail.pk}}">
-                        <button class="tickerPageSubmitButton" type="submit">Submit</button>
+                        <button class="tickerPageSubmitButton" type="submit" name="action" value="submit_order">Submit</button>
                     </form>
                 {% else %}
                     <div class="tickerPageOrderSubmitNonUser">Please Login to place an Order</div>
@@ -822,6 +823,7 @@ outline: none;
 
             {% if user.is_authenticated %}
 
+
                 <div class="tickerPageUserTableCard" id="orders-section">
                     <table>
                         <tr>
@@ -839,7 +841,7 @@ outline: none;
                             <th>Cancel</th>
                         </tr>
                     {% for order in user_orders|slice:":20" %}
-
+                        {% if order.status == "OPEN" %}
                         <tr>
                             <td data-class="Match">{{ticker_detail.ticker_id}}</td>
                             <td data-class="Timestamp">{{order.creation_timestamp}}</td>
@@ -853,24 +855,32 @@ outline: none;
                             <td data-class="Status">{{order.status}}</td>
                             <td data-class="Paid Fees">{{order.paid_fees}}</td>
                             <td data-class="Cancel"> 
-                                <button class="tickerPageUserStatisticsCancelButton">Cancel</button>
+
+                                <!-- Cancel Button  -->
+                                <form id="cancellation-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="cancel__order">
+                                    {% csrf_token %}
+                                    <button class="tickerPageUserStatisticsCancelButton" name="action" type="submit" value="cancel_order">Cancel</button>
+                                    <input type="hidden" name="order_id" value="{{order.order_id}}">
+                                </form>
+
                             </td>
                         </tr>
-
-                        
-
+                        {% endif %}
                     {% endfor %}
 
-                        
-                    
+                            <!-- <tbody id="table-body"></tbody>
+
+                            </tbody> -->
+
+
                     </table>
 
                     <div class="tickerPageUserTableToggle">
-                        <a href="" class="tickerPageArrowLeft"> 
+                        <a href="#" class="tickerPageArrowLeft"> 
                             <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
                         </a>
-                        <h4>20 of {{user_orders|length}}</h4>
-                        <a href="" class="tickerPageArrowRight"> 
+                        <h4>Page 1 of {{user_orders|length}}</h4>
+                        <a href="#" class="tickerPageArrowRight"> 
                             <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
                         </a>
                     </div>
@@ -952,6 +962,64 @@ outline: none;
                         </a>
                     </div>
 
+
+                </div>
+
+                <div class="tickerPageUserTableCard" id="historic-orders-section">
+                    <table>
+                        <tr>
+                            <th>Match</th>
+                            <th>Timestamp</th>
+                            <th>Order Type</th>
+                            <th>Side</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Filled Quantity</th>
+                            <th>Working Quantity</th>
+                            <th>Avg. Fill Price</th>
+                            <th>Status</th>
+                            <th>Paid Fees</th>
+                            <th>Cancel</th>
+                        </tr>
+                    {% for order in user_orders|slice:":20" %}
+
+                        <tr>
+                            <td data-class="Match">{{ticker_detail.ticker_id}}</td>
+                            <td data-class="Timestamp">{{order.creation_timestamp}}</td>
+                            <td data-class="Order Type">{{order.order_type}}</td>
+                            <td data-class="Side">{{order.side}}</td>
+                            <td data-class="Price">{{order.price}}</td>
+                            <td data-class="Quantity">{{order.quantity}}</td>
+                            <td data-class="Filled Quantity">{{order.filled_quantity}}</td>
+                            <td data-class="Working Quantity">{{order.working_quantity}}</td>                   
+                            <td data-class="Avg. Fill Price">{{order.avg_fill_price}}</td>
+                            <td data-class="Status">{{order.status}}</td>
+                            <td data-class="Paid Fees">{{order.paid_fees}}</td>
+                            <td data-class="Cancel"> 
+
+                                <!-- Cancel Button  -->
+                                <form id="cancellation-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="cancel__order">
+                                    {% csrf_token %}
+                                    <button class="tickerPageUserStatisticsCancelButton" name="action" type="submit" value="cancel_order">Cancel</button>
+                                    <input type="hidden" name="order_id" value="{{order.order_id}}">
+                                </form>
+
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </table>
+
+                    <div class="tickerPageUserTableToggle">
+                        <a href="#" class="tickerPageArrowLeft"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                        <h4>Page 1 of {{user_orders|length}}</h4>
+                        <a href="#" class="tickerPageArrowRight"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                    </div>
 
                 </div>
 

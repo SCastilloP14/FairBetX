@@ -198,7 +198,14 @@
             <h4 id="homeSecondSectionDescription">FBX offers a truly new and innovative betting experience. You control the game, place your bet and see exactly what others are doing</h4>
             
             <!-- Button leading to Signin sheet -->
+            {% if user.is_authenticated %}
+                <a href="{% url 'user_detail' pk=user.id %}">
+                    <button id="startBettingButton" class="bettingButton">My Account</button>
+                </a>
+            {% else %}
             <button id="startBettingButton" class="bettingButton">Start Betting</button>
+            {% endif %}
+
             <!-- <div id="startBettingOverlay" class="overlay">
                 <div id="startBettingDropdownContainer" class="cardContainer">
                     {% include './log_in.html' %}
@@ -249,7 +256,13 @@
                     </div>
                 </div>
             
+                {% if user.is_authenticated %}
+                    <a href="{% url 'user_detail' pk=user.id %}">
+                        <button id="beingJourneyButton" class="beginJourneyButton">My Account</button>
+                    </a>
+                {% else %}
                 <button id="beingJourneyButton" class="beginJourneyButton">Begin Journey</button>
+                {% endif %}
                 <!-- <div id="beginJourneyOverlay" class="overlay">
                     <div id="beginJourneyDropdownContainer" class="cardContainer">
                         {% include './log_in.html' %}
