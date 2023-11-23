@@ -6,10 +6,6 @@
     <title>NBA Overview</title>
 
 <style>
-
-.leagueOverview {
-    background-color: #f7f7f7;
-}
 .leagueOverviewHeader {
     margin-top:86px;
     position: relative;
@@ -18,7 +14,6 @@
     width:100%;
     height:50%;
 }
-
 .leagueOverviewHeaderCentered {
     position: absolute;
     top: 50%;
@@ -26,8 +21,8 @@
     transform: translate(-50%, -50%);
     font-size: 2.8rem; /* Adjust font size as needed */
     color: var(--color-font-white);
+    
 }
-
 .grid {
     display: grid;
     align-items: center;
@@ -35,156 +30,116 @@
     height: 100%;
     width: 100%
 }
-
-.leagueOverviewGrid_2x1 {
+.grid_nav_1x3 {
+    grid-template-columns: auto 1500px auto;
+}
+.grid_2x1 {
     grid-template-rows: 80px 220px ;
 }
 
-.leagueOverviewGrid_1x2 {
-    grid-template-columns: 300px 100px ;
-} 
-
-.leagueOverviewGrid_3x1 {
+.grid_1x2 {
+    grid-template-columns: 250px 150px ;
+}
+.grid_3x1 {
     grid-template-rows: 20% 40% 40%;
 }
+.grid_1x2_game_card {
+    grid-template-columns: 20% 80% ;
 
-.leagueOverviewGameOverview {
-    background: white;
-    border-radius: var(--border-radius-low);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    height: 280px !important;
-    margin-top:10px;
-    padding-bottom: 0;
+}
+.game_overview {
     width:1500px;
-}
+    height: 300px;
+    background-color: white;
+    border-radius: 15px;
+    margin-top:10px;
 
-.leagueOverviewGameCardHeader {
-    color: var(--color-font-dark);
-    font-size: var(--font-size-title);
-    padding-left:60px;
-    padding-top:20px;
-    width:100%;
 }
-
-.leagueOverviewGameOverviewCardScroll {
-    align-content: left;
-    border-radius: var(--border-radius-low);
-    display: flex;
-    overflow-x: auto;
-    scroll-padding-bottom:  0;
-    white-space: nowrap;
-    width: 100%;
-}
-
-.leagueOverviewGameOverviewCard {
-    background: var(--color-background-light);
-    border-radius: var(--border-radius-low);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    color:var(--color-font-light);
+.game_overview_card {
+    width:400px;
     height:190px;
-    margin:5px 10px;
-    width:400px !important;
-
+    background: var(--color-background-light);
+    border-radius: 25px;
+   margin:5px 10px;
 }
-
-.leagueOverviewGameOverviewCardHeader {
-    align-items: center;
-    color: var(--color-font-light);
-    display: flex;
-    flex-direction: row;
-    font-size: var(--font-size-small-body);
-    justify-content: space-evenly;
-    margin-top:30px;
+.game_overview_card_scroll {
     width: 100%;
+    display: flex;
+    align-content: left;
+    overflow-x: scroll;
 }
-
-.leagueOverviewGameOverviewCardHeaderScore {
-    color: var(--color-font-light);
-    margin-right:40px;
+.game_overview_card_time {
+    height: 100%;
+    width:100%;
+    background: linear-gradient(to bottom, #00474f, #000e10);
+    border-radius: 25px;    
+    color:white;
+    text-align: center;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-
-.leagueOverviewHomeTeam, .leagueOverviewAwayTeam {
+.home_team, .away_team {
     display: flex;
     font-size: 20px;
     width:100%;
 }
-
-.leagueOveriewGameOverviewCardTime {
-    align-items: center;
-    background: var(--linear-gradient-light);
-    border-radius: var(--border-radius-low);    
-    color:white;
-    display: flex;
-    flex-direction: column;
-    font-size: 30px;
-    height: 100%;
-    justify-content: center;
-    text-align: center;
-    width:100%;
-}
-
-.leagueOverviewAwayTeam {
+.away_team {
     margin-bottom: 20px ;
 }
-.leagueOverviewHomeTeam {
+.home_team {
     margin-top: 20px;
 }
-.leagueOverviewHomeTeamScore,.leagueOverviewAwayTeamScore {
-    color:var(--color-font-turk);
+.home_team_score,.away_team_score {
+    color:#00474f;
     padding-left:25px;
     width:50px;
     margin-left: 0;
-    font-size: var(--font-size-subheader);
 }
-.leagueOverviewHomeTeamName, .leagueOverviewAwayTeamName {
-    color: var(--color-font-light);
-    font-size: var(--font-size-subheader);
-    margin-left:20px;
-    width:70%
-
-}
-
-.leagueOverviewLiveButtonSmall {
+.game_overview_card_header {
+     display: flex;
+     margin-top:30px;
+    color: #00474f;
+    width: 100%;
     border-radius: 25px;
-    color:var(--color-font-red);
-    font-size: var(--font-size-super-small);
-    font-weight:600;
-    background-color: var( --color-background-red);
-    border: solid 3px var(---color-button-border-red);
-    padding: 2px 10px;
-    display: flex;
+    justify-content: space-evenly;
     align-items: center;
+    flex-direction: row;
 }
-.leagueOverviewLiveButtonSmall img {
-    height:15px;
-    width:15px; 
-    margin-right:5px;
+.live_button_small {
+    border-radius: 25px;
+    color:#B51F1F;
+    font-size: 12px;
+    font-weight:600;
+    background-color: #F5E4E5;
+    border: solid 3px #B51F1F;
+    padding: 2px 10px;
+    display: flex
 }
-.leagueOveriewGameOverviewCardHeaderButton {
+.game_overview_card_header_button {
     padding-right:20px;
 }
-
-.leagueOverviewStandingsOverview {
+.leagueOverview {
+    background-color: #f7f7f7;
+}
+.standings_overview {
     width:1500px;
     min-height: 300px;
     height:auto;
     background-color: white;
     border-radius: 15px;
     margin-top:10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    margin-bottom: 60px;
-    color:var(--color-font-light);
-    text-align:left
 }
 .wrapper {
     width: min(900px, 100%-3rem);
     margin-inline: auto;
 }
-.leagueOverviewStandingsOverviewHeader {
+caption {
     text-align: left;
-    font-size: var(--font-size-title);
-    padding:2rem 2rem;
-    color:var(--color-font-black)
+    font-size: 28px;
+    padding:2rem 3rem;
 
 }
 
@@ -207,7 +162,7 @@ th, tr {
 
 td {
     font-size:24px;
-    padding-bottom:30px; 
+    padding-bottom:30px;
 }
 </style>
 </head>
@@ -216,87 +171,124 @@ td {
         <img class="leagueOverviewHeaderImg"src="../../../static/img/NBA_Pg.png" alt="">
         <div class="leagueOverviewHeaderCentered">NBA</div>
     </div>
-    <div class="grid gridNav13">
+    <div class="grid grid_nav_1x3">
         <!-- Left Section  -->
         <div class="empty"></div>
 
         <!-- Middle Section  -->
-        <div class="leagueOverviewMiddleSection">
-            <div class="leagueOverviewGameOverview grid leagueOverviewGrid_2x1">
-                <h2 class="leagueOverviewGameCardHeader">Games</h2>
-                
+        <div class="middle_section">
+            <div class="game_overview grid grid_2x1">
+                <div style="width: 100%;text-align: left; margin-left:40px;">
+                    <h2>Games</h2>
+                </div>
                 <!-- Game Card Scroll Tunnel  -->
-                <div class="leagueOverviewGameOverviewCardScroll">
+                <div class="game_overview_card_scroll">
                     <!-- Game Card  -->
-                    {% for games_in_league in grouped_games.items %}
-                    {% for game in games_in_league %}
-
-                    <div class="leagueOverviewGameOverviewCard grid leagueOverviewGrid_1x2">
+                    <div class="game_overview_card grid grid_1x2">
                         <!-- Left Site Game Card  -->
-                        <div class="grid leagueOverviewGrid_3x1">
-                            <div class="leagueOverviewGameOverviewCardHeader">
-                                <span class="leagueOverviewGameOverviewCardHeaderScore">Score</span>
-                                <button class="leagueOverviewLiveButtonSmall">
-                                    <img src="../../../static/img/live-logo.png" alt=""> Live 
+                        <div class="grid grid_3x1">
+                            <div class="game_overview_card_header">
+                                <span class="game_overview_card_header_score">Score</span>
+                                <button class="live_button_small">
+                                    <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
+                                    Live
                                 </button>
-                                <div class="leagueOveriewGameOverviewCardHeaderButton ">00:00</div>
+                                <div class="game_overview_card_header_button ">00:00</div>
                             </div>
-                            <div class="leagueOverviewHomeTeam">
-                                <div class="leagueOverviewHomeTeamScore">{{game.away_team_score}}</div>
-                                <div class="leagueOverviewHomeTeamName">{{game.away_team.name}}</div>
+                            <div class="home_team">
+                                <div class="home_team_score">00</div>
+                                <div class="home_team_name">Toronto</div>
                             </div>
-                            <div class="leagueOverviewAwayTeam">
-                                <div class="leagueOverviewAwayTeamScore">{{game.away_team_score}}</div>
-                                <div class="leagueOverviewAwayTeamName">{{game.home_team.name}}</div>
+                            <div class="away_team">
+                                <div class="away_team_score">00</div>
+                                <div class="away_team_name">Boston</div>
                             </div>
                         </div>
                         <!-- Right Site Game Card  -->
-                        <div class="leagueOveriewGameOverviewCardTime">{{game.progress}}</div>
+                        <div class="game_overview_card_time">Q1</div>
                     </div>
-                    {% endfor %}
-                    {% endfor %}
-                    
+
+                    <div class="game_overview_card grid grid_1x2">
+                        <!-- Left Site Game Card  -->
+                        <div class="grid grid_3x1">
+                            <div class="game_overview_card_header">
+                                <span class="game_overview_card_header_score">Score</span>
+                                <button class="live_button_small">
+                                    <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
+                                    Live
+                                </button>
+                                <div class="game_overview_card_header_button ">00:00</div>
+                            </div>
+                            <div class="home_team">
+                                <div class="home_team_score">00</div>
+                                <div class="home_team_name">Toronto</div>
+                            </div>
+                            <div class="away_team">
+                                <div class="away_team_score">00</div>
+                                <div class="away_team_name">Boston</div>
+                            </div>
+                        </div>
+                        <!-- Right Site Game Card  -->
+                        <div class="game_overview_card_time">Q1</div>
+                    </div>
+
+                    <div class="game_overview_card grid grid_1x2">
+                        <!-- Left Site Game Card  -->
+                        <div class="grid grid_3x1">
+                            <div class="game_overview_card_header">
+                                <span class="game_overview_card_header_score">Score</span>
+                                <button class="live_button_small">
+                                    <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
+                                    Live
+                                </button>
+                                <div class="game_overview_card_header_button ">00:00</div>
+                            </div>
+                            <div class="home_team">
+                                <div class="home_team_score">00</div>
+                                <div class="home_team_name">Toronto</div>
+                            </div>
+                            <div class="away_team">
+                                <div class="away_team_score">00</div>
+                                <div class="away_team_name">Boston</div>
+                            </div>
+                        </div>
+                        <!-- Right Site Game Card  -->
+                        <div class="game_overview_card_time">Q1</div>
+                    </div>
+
+                    <div class="game_overview_card grid grid_1x2">
+                        <!-- Left Site Game Card  -->
+                        <div class="grid grid_3x1">
+                            <div class="game_overview_card_header">
+                                <span class="game_overview_card_header_score">Score</span>
+                                <button class="live_button_small">
+                                    <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
+                                    Live
+                                </button>
+                                <div class="game_overview_card_header_button ">00:00</div>
+                            </div>
+                            <div class="home_team">
+                                <div class="home_team_score">00</div>
+                                <div class="home_team_name">Toronto</div>
+                            </div>
+                            <div class="away_team">
+                                <div class="away_team_score">00</div>
+                                <div class="away_team_name">Boston</div>
+                            </div>
+                        </div>
+                        <!-- Right Site Game Card  -->
+                        <div class="game_overview_card_time">Q1</div>
+                    </div>
                 </div>
             </div>
-            <div class="leagueOverviewStandingsOverview wrapper">
+            <div class="standings_overview wrapper">
                 <!-- <span>Standings</span> -->
-                <!-- Title of the Table  -->
-                <h2 class="leagueOverviewStandingsOverviewHeader">Standings</h2>
-
-                <!-- If league is NBA -->
-                <select name="" id="NBA-Conferences">
-                    <option value="">Eastern Conference</option>
-                    <option value="">Western Conference</option>
-                </select>
-                <!-- Baseball  -->
-                <select name="" id="MLB-Leagues">
-                    <option value="">American League</option>
-                    <option value="">National League</option>
-                </select>
-                <!-- NHL  -->
-                <select name="" id="NHL-Divisions">
-                    <option value="">Atlantic Division</option>
-                    <option value="">Metropolitan Division</option>
-                    <option value="">Central Division</option>
-                    <option value="">Pacific Division</option>
-                </select>
-                <!-- NFL  -->
-                <select name="" id="NFL-Conferences">
-                    <option value="">AFC East</option>
-                    <option value="">AFC West</option>
-                    <option value="">AFC North</option>
-                    <option value="">AFC South</option>
-                    <option value="">NFC East</option>
-                    <option value="">NFC West</option>
-                    <option value="">NFC North</option>
-                    <option value="">NFC South</option>
-                </select>
-
-
-                
-                
                 <table>
-        
+                    <!-- Title of the Table  -->
+                    <caption>Standings
+
+                    </caption>
+
                     <!-- Conference Button  -->
                     
                     <!-- Table Headers  -->
