@@ -38,8 +38,8 @@ h1 {
     grid-template-columns: 25% 75%;
 }
 
-.grid_user_input_1x2 {
-    grid-template-columns: 70% 30%;
+.gridBalanceUserInput_1x2 {
+    grid-template-columns: 50% 50%;
 }
 
 .balanceMiddleSection {
@@ -67,7 +67,9 @@ h1 {
     margin-left: 25px;
     min-height: 700px;
     width:1100px;
-
+    background-color: var(--color-background-white);
+    border-radius: var(--border-radius-high);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
 }
 
 .balanceCardUserInfo h3 {
@@ -134,7 +136,12 @@ h1 {
     border-bottom: 1px solid grey;
     padding-bottom: 10px;
 }
-
+.cardConfirmUserInput {
+    height:100%;
+    width:100%;
+    margin-left:100px;  
+    /* background:red */
+}
 .balanceUserInputField input {
     border:none;
     text-align: left;
@@ -199,7 +206,60 @@ input:focus {
     /* border: ; */
     background-color: #016D74;
 }
+.balanceCardInformation {
+    color:var(--color-font-black);
+    font-size: var(--font-size-title);
+    margin-top:60px;
+}
 
+.balanceCardHolderName,
+.balanceCardHolderCardNumber,
+.balanceCardHolderExpiryDate,
+.balanceCardHolderCVV {
+    color: var(--color-font-light);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-body);   
+    margin-top:50px;
+}
+.balanceCardHolderName input,
+.balanceCardHolderCardNumber input {
+    border: none;
+    border-bottom: 1px solid var(--color-font-light);
+    font-size: var(--font-size-body);   
+    margin-top:30px;
+    padding-bottom:10px;
+    width:300px;
+}
+.balanceCardHolderExpiryDate input,
+.balanceCardHolderCVV input {
+    border: none;
+    border-bottom: 1px solid var(--color-font-light);
+    margin-top:30px;
+    width:100px;
+    padding-bottom:10px;
+}
+.balanceCardHolderExpiryDateWrapper {
+    width:260px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.balanceCardHolderConfirmButton {
+    background: transparent;
+    color:var(--color-font-turk);
+    margin-top:50px;
+    margin-left:60px;
+    padding:15px 40px;
+    border-radius: var(--border-radius-high);
+    font-weight: 600;
+    border: 1px solid var(--color-font-turk)
+}
+
+.balanceCardHolderConfirmButton:hover {
+    color:var(--color-font-white);
+    background: var(--color-font-turk);
+}
 </style>
     <!-- Account Side  -->
     <div class="balanceAccount grid gridNav13">
@@ -220,42 +280,40 @@ input:focus {
                         </div>
 
                 </div>
-                <div class="balanceCardUserInfo">
 
-                        <!-- My Balance + Acccout Balance  -->
-                    <div class="balanceCardMyBalanceHeader">
-                        <img src="../../../static/img/wallet-icon.png" alt="">
-                        <h2>My Balance</h2>   
-                        <span class="balanceCardUserBalance">$0.00</span>                   
+                <div class="balanceCardUserInfo grid gridBalanceUserInput_1x2">
+                    
+                    <div class="cardConfirmUserInput">
+                        <form action="">
+                            <div class=balanceCardInformation>
+                                Card Information
+                            </div>
+                            <!-- My Balance + Acccout Balance  -->
+                            <div class="balanceCardHolderName">
+                                Card Holder Name
+                                <input type="text" placeholder="John Smith">
+                            </div>
+                            
+                            <div class="balanceCardHolderCardNumber">
+                                Card Number
+                                <input type="text" placeholder="1234  5678  9012  3456">
+                            </div>
+                            <div class="balanceCardHolderExpiryDateWrapper">
+                            <div class="balanceCardHolderExpiryDate">
+                                Expiry Date
+                                <input type="text" placeholder="MM/YY">
+                            </div>
+                            <div class="balanceCardHolderCVV">
+                                CVV
+                                <input type="text" placeholder="123">
+                            </div>
+                            </div>
+                            <button class="balanceCardHolderConfirmButton">Confirm</button>
+                        </form>
                     </div>
                     
-                    <div class="balanceCardAddFunds">
-                            <h4>Add New Funds</h4>
-                            <input class="balanceUserInputField" type="text" placeholder="$0.00">
-                    </div>
 
-                    <h3>Select Payment Method</h3>
-                    
-                    <div class="balanceCardUserInput">
-                        <div class="grid grid_user_input_1x2">
 
-                            <input class="balanceUserInputField" type="text" placeholder="Debit Card">
-                            <button class="balanceSelectedButton">Selected</button>
-
-                        </div>
-                    </div>
-                    <div class="balanceCardUserInput">
-                        <div class="grid grid_user_input_1x2">
-
-                            <input class="balanceUserInputField" type="text" placeholder="Debit Card">
-                            <button class="balanceSelectedButton">Selected</button>
-
-                        </div>
-                    </div>
-                    
-                    <div class="balanceConfirmButtonContainer">
-                        <button class="balanceConfirmButton">Confirm</button>
-                    </div>
                     
                 </div>
 
