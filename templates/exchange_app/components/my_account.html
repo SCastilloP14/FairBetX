@@ -8,7 +8,6 @@
 <style>
 
 
-   
 h1 {
     font-family:'Satoshi', sans-serif;
     font-size: 32px;
@@ -151,16 +150,16 @@ input:focus {
                     <div class="card_user_input">
                         <div class="grid grid_user_input_1x2">
                             
-                            <input class="user_input_field" type="text" placeholder="Profile Name">                       
-                            <button class="edit_button">Edit</button>
-
+                            <input class="user_input_field" type="text" placeholder="{{user.first_name}} {{user.last_name}}">                       
+                            <button class="edit_button">Save</button>
+                            
                         </div>
                         
                     </div>
                     <div class="card_user_input">
                         <div class="grid grid_user_input_1x2">
 
-                            <input class="user_input_field" type="text" placeholder="User Name">
+                            <input class="user_input_field" type="text" placeholder="{{user.username}}">
                             <button class="edit_button">Edit</button>
 
                         </div>
@@ -168,7 +167,7 @@ input:focus {
                     <div class="card_user_input">
                         <div class="grid grid_user_input_1x2">
 
-                            <input class="user_input_field" type="text" placeholder="Email">
+                            <input class="user_input_field" type="text" placeholder="{{user.email}}">
                             <button class="edit_button">Edit</button>
 
                         </div>
@@ -176,7 +175,7 @@ input:focus {
                     <div class="card_user_input">
                         <div class="grid grid_user_input_1x2">
 
-                            <input class="user_input_field" type="text" placeholder="Phone Number">
+                            <input class="user_input_field" type="text" placeholder="{{user.phone}}">
                             <button class="edit_button">Edit</button>
 
                         </div>
