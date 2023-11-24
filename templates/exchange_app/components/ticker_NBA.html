@@ -844,7 +844,7 @@ outline: none;
                             <th>Cancel</th>
                         </tr>
                     {% for order in user_orders|slice:":20" %}
-                        {% if order.status == "OPEN" %}
+                        {% if order.status == "OPEN" or order.status == "PARTIAL" %}
                         <tr>
                             <td data-class="Match">{{ticker_detail.ticker_id}}</td>
                             <td data-class="Timestamp">{{order.creation_timestamp}}</td>

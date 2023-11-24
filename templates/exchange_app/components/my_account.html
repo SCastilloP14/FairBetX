@@ -334,6 +334,27 @@ input:focus {
 }
 
 /* Card Information  */
+.cardInformationEditButton {
+    margin-left:auto;
+    margin-right:100px;
+}
+.cardInformationEditButton button{
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+    margin-right:0;
+    margin-left:auto;
+}
+
+.cardInformationEditButton button:hover {
+    color:white;
+    border: none;
+    background-color: #016D74;
+}
 
 .cardInformationAccount {
     width:100%;
@@ -372,6 +393,14 @@ input:focus {
     min-height: 700px;
     max-width:1100px;
     width:100%;
+}
+
+.cardInformationOverview {
+    background: transparent;
+    width:100%;
+    align-self: start;
+    margin-left:50px;
+
 }
 
 .cardInformationCardUserInfo h3 {
@@ -563,9 +592,6 @@ input:focus {
     background: var(--color-font-turk);
 }
 
-
-
-
 /* Balance  */
 .balanceMiddleSection {
     width:100%;
@@ -646,6 +672,7 @@ input:focus {
     align-items: center;
     display: flex;
     text-align: left;
+    color:var(--color-font-light)
 }
 
 .balanceCardMyBalanceHeader h2 {
@@ -1018,14 +1045,38 @@ input:focus {
                 <!-- Personal Security End  -->
 
                 <!-- Card Information Start  -->
+
+                <div class="cardInformationOverview" id="card-information-overview-section">
+                    <div class="balanceCardMyBalanceHeader">
+                        <img src="../../../static/img/credit-card-icon.png" alt="">
+                        <h2>My Cards</h2>  
+                        <a 
+                            href="#"
+                            id="add-credit-card-tab"
+                            class="cardInformationEditButton">
+                            <button >Add New</button> 
+                        </a>
+                        
+                    </div>
+
+                    <div class="balanceCardUserInput">
+                        <div class="grid balanceGridUserInput_1x2">
+
+                            <input class="balanceUserInputField" type="text" placeholder="****  1234">
+                            <button class="balanceSelectedButton">Selected</button>
+
+                        </div>
+                    </div>
+                </div>
+
                 <div class="cardInformationCardUserInfo grid cardInformationInputGrid_1x2" id="card-information-section">
+
                     
-                    <div class="cardInformationUserInput">
+                    <div class="cardInformationUserInput" id="add-credit-card-section">
                         <form action="">
                             <div class=cardInformationCardInformation>
                                 Card Information
                             </div>
-                            <!-- My Balance + Acccout Balance  -->
                             <div class="cardInformationCardHolderName">
                                 Card Holder Name
                                 <input type="text" placeholder="John Smith">
@@ -1148,7 +1199,7 @@ input:focus {
                                 <th>Cancel</th>
                             </tr>
                     {% for order in user_orders|slice:":20" %}
-                        {% if order.status == "OPEN" %}
+                        {% if order.status == "OPEN" or order.status == "PARTIAL" %}
 
                             <tr>
                                 <td data-class="Match">{{order.ticker_id}}</td>

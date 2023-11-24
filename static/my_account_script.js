@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const personalInformationTab = document.getElementById("personal-information-tab");
   const personalSecurityTab = document.getElementById("personal-security-tab");
   const cardInformationTab = document.getElementById("card-information-tab");
+  const addCreditCardTab = document.getElementById("add-credit-card-tab");
   const balanceTab = document.getElementById("balance-tab");
   const activityTab = document.getElementById("activity-tab");
 
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const personalInformationSection = document.getElementById("personal-information-section");
   const personalSecuritySection = document.getElementById("personal-security-section");
   const cardInformationSection = document.getElementById("card-information-section");
+  const cardInformationOverviewSection = document.getElementById("card-information-overview-section");
   const balanceSection = document.getElementById("balance-section");
   const activitySection = document.getElementById("activity-section");
   const accountOverviewSection = document.getElementById("account-overview-section");
@@ -28,11 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
     cardInformationTab.classList.remove("active");
     balanceTab.classList.remove("active");
     activityTab.classList.remove("active");
+    addCreditCardTab.classList.remove("active");
   }
 
   // Show orders-section by default and hide positions-section
   personalInformationSection.style.display = "block";
   personalSecuritySection.style.display = "none";
+  cardInformationOverviewSection.style.display = "none";
   cardInformationSection.style.display = "none";
   balanceSection.style.display = "none";
   activitySection.style.display = "none";
@@ -47,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Show orders-section and hide positions-section
     personalInformationSection.style.display = "block";
     personalSecuritySection.style.display = "none";
+    cardInformationOverviewSection.style.display = "none";
     cardInformationSection.style.display = "none";
     balanceSection.style.display = "none";
     activitySection.style.display = "none";
@@ -65,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Hide orders-section and show positions-section
     personalInformationSection.style.display = "none";
     personalSecuritySection.style.display = "block";
+    cardInformationOverviewSection.style.display = "none";
     cardInformationSection.style.display = "none";
     balanceSection.style.display = "none";
     activitySection.style.display = "none";
@@ -83,7 +89,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Hide orders-section and positions-section and show fills-section
     personalInformationSection.style.display = "none";
     personalSecuritySection.style.display = "none";
-    cardInformationSection.style.display = "block";
+    cardInformationOverviewSection.style.display = "block";
+    cardInformationSection.style.display = "none";
     balanceSection.style.display = "none";
     activitySection.style.display = "none";
     accountOverviewSection.style.display="block";
@@ -94,12 +101,32 @@ document.addEventListener("DOMContentLoaded", function () {
     cardInformationTab.classList.add("active");
   });
 
+   // Add event listener to Credit card Overview-tab
+  addCreditCardTab.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    // Hide orders-section and positions-section and show fills-section
+    personalInformationSection.style.display = "none";
+    personalSecuritySection.style.display = "none";
+    cardInformationOverviewSection.style.display = "none";
+    cardInformationSection.style.display = "block";
+    balanceSection.style.display = "none";
+    activitySection.style.display = "none";
+    accountOverviewSection.style.display="block";
+
+
+    // Highlight the clicked tab
+    resetTabs();
+    addCreditCardTab.classList.add("active");
+  });
+
   balanceTab.addEventListener("click", function (event) {
     event.preventDefault();
 
     // Hide orders-section and positions-section and show fills-section
     personalInformationSection.style.display = "none";
     personalSecuritySection.style.display = "none";
+    cardInformationOverviewSection.style.display = "none";
     cardInformationSection.style.display = "none";
     balanceSection.style.display = "block";
     activitySection.style.display = "none";
@@ -117,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Hide orders-section and positions-section and show fills-section
     personalInformationSection.style.display = "none";
     personalSecuritySection.style.display = "none";
+    cardInformationOverviewSection.style.display = "none";
     cardInformationSection.style.display = "none";
     balanceSection.style.display = "none";
     activitySection.style.display = "block";
@@ -137,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Hide orders-section and positions-section and show fills-section
     personalInformationSection.style.display = "block";
     personalSecuritySection.style.display = "none";
+    cardInformationOverviewSection.style.display = "none";
     cardInformationSection.style.display = "none";
     balanceSection.style.display = "none";
     activitySection.style.display = "none";
@@ -155,6 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Hide orders-section and positions-section and show fills-section
     personalInformationSection.style.display = "none";
     personalSecuritySection.style.display = "block";
+    cardInformationOverviewSection.style.display = "none";
     cardInformationSection.style.display = "none";
     balanceSection.style.display = "none";
     activitySection.style.display = "none";
@@ -174,7 +204,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Hide orders-section and positions-section and show fills-section
     personalInformationSection.style.display = "none";
     personalSecuritySection.style.display = "none";
-    cardInformationSection.style.display = "block";
+    cardInformationOverviewSection.style.display = "block";
+    cardInformationSection.style.display = "none";
     balanceSection.style.display = "none";
     activitySection.style.display = "none";
 
@@ -193,6 +224,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Hide orders-section and positions-section and show fills-section
     personalInformationSection.style.display = "none";
     personalSecuritySection.style.display = "none";
+    cardInformationOverviewSection.style.display = "none";
     cardInformationSection.style.display = "none";
     balanceSection.style.display = "block";
     activitySection.style.display = "none";
