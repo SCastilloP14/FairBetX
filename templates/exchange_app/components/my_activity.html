@@ -7,9 +7,6 @@
     
 }
 
-.gridHome1x3 {
-    grid-template-columns: auto 1500px auto;
-}
 .grid_1x4 {
     grid-template-columns:repeat(4,calc(100%/4));
 }
@@ -49,16 +46,16 @@
 
 
 /* Uer Stats  */
-.user_statistics {
+.myActivityUserStatistics {
     width:100%;
     margin-bottom:50px;
 }
-.user_statistics_header {
+.myActivityUserStatisticsHeader {
     text-align: center;
     font-size: 24px;
     margin:20px 0;
 }
-.user_table_card {
+.myActivityUserTableCard {
     width: 100%;
     margin-top:10px;
     background: #FFF;
@@ -66,7 +63,7 @@
     min-height:500px;
     height:auto;
 }
-.user_table_card table {
+.myActivityUserTableCard table {
     text-align: center;
     align-items: center;
     width: 99%;
@@ -77,22 +74,22 @@
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);    /* border: 2px solid red; */
 
 }
-.user_table_card th {
+.myActivityUserTableCard th {
     padding:20px 20px 16px 20px;
     font-size: 16px;
     color:#1B1C1E
 }
-.user_table_card tr {
+.myActivityUserTableCard tr {
     margin-bottom:10px;
 }
-.user_table_card td {
+.myActivityUserTableCard td {
     font-size: 14px;
     font-weight:400;
     color:#5F5F5F;
     padding-bottom:20px;
 }
 
-.cancel_button {
+.myActivtyCancelButton {
     border-radius: 15px;
     color:#016D74;
     font-size: 12px;
@@ -102,19 +99,19 @@
     padding: 5px 20px;
     justify-content: center;
 }
-.cancel_button:hover {
+.myActivtyCancelButton:hover {
     color:white;
     background: #016D74;
 }
 
-.button_container {
+.myActivityButtonContainer {
     width:100%;
     height:50px;
     border-radius: 25px;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);    /* border: 2px solid red; */
 }
 
-.button_orders_left {
+.myActivtyButtonOrdersLeft {
     width:100%;
     border-radius: 25px 0 0 25px;
     height:100%;
@@ -123,7 +120,7 @@
     font-size:18px;
     background: white;
 }
-.button_orders_middle {
+.myActivtyButtonOrdersMiddle {
     width:100%;
     height:100%;
     border:none;
@@ -131,9 +128,8 @@
     font-size:18px;
     border-left: 1px solid #FFF;
     background: white;
-
 }
-.button_orders_right {
+.myActivtyButtonOrdersRight {
     width:100%;
     border-radius: 0 25px 25px 0;
     height:100%;
@@ -145,13 +141,19 @@
     padding:10px 0
 
 }
-.button_orders_left:hover,.button_orders_middle:hover, .button_orders_right:hover  {
+.myActivtyButtonOrdersLeft:focus, 
+.myActivtyButtonOrdersMiddle:focus,
+.myActivtyButtonOrdersRight:focus {
+    background:var(--linear-gradient-light);
+    color:white
+}
+.myActivtyButtonOrdersLeft:hover,.myActivtyButtonOrdersMiddle:hover, .myActivtyButtonOrdersRight:hover  {
     color:white;
-    background:linear-gradient(to bottom, #00474f, #000e10);;
+    background:var(--linear-gradient-light);
 }
 </style>
 <div class="myActivityContainer"></div>
-<div class="grid gridHome1x3">
+<div class="grid gridNav13">
     <!-- Left Section  -->
     <div class="empty" ></div>
 
@@ -170,15 +172,15 @@
 
         <!-- User Statistics  -->
 
-        <div class="user_statistics">
-            <div class="user_statistics_header">Recent Activity</div>
-            <div class="button_container grid grid_1x4">
-                <button class="button_orders_left">Orders</button>
-                <button class="button_orders_middle">Fills</button>
-                <button class="button_orders_middle">Positions</button>
-                <button class="button_orders_right">Historic Orders</button>    
+        <div class="myActivityUserStatistics">
+            <div class="myActivityUserStatisticsHeader">Recent Activity</div>
+            <div class="myActivityButtonContainer grid grid_1x4">
+                <button class="myActivtyButtonOrdersLeft">Orders</button>
+                <button class="myActivtyButtonOrdersMiddle">Fills</button>
+                <button class="myActivtyButtonOrdersMiddle">Positions</button>
+                <button class="myActivtyButtonOrdersRight">Historic Orders</button>    
             </div>
-            <div class="user_table_card">
+            <div class="myActivityUserTableCard">
                 <table>
                     <tr>
                         <th>Match</th>
@@ -207,7 +209,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="myActivtyCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -223,7 +225,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="myActivtyCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -239,7 +241,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="myActivtyCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -255,7 +257,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="myActivtyCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -271,7 +273,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="myActivtyCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -287,7 +289,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="myActivtyCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -303,7 +305,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="myActivtyCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -319,7 +321,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="myActivtyCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -335,7 +337,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="myActivtyCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -351,7 +353,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="myActivtyCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -367,7 +369,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="myActivtyCancelButton">Cancel</button>
                         </td>
                     </tr>
                     <tr>
@@ -383,7 +385,7 @@
                         <td data-class="Status">Open</td>
                         <td data-class="Paid Fees">0.00</td>
                         <td data-class="Cancel"> 
-                            <button class="cancel_button">Cancel</button>
+                            <button class="myActivtyCancelButton">Cancel</button>
                         </td>
                     </tr>
                 </table>

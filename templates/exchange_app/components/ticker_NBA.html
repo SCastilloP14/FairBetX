@@ -441,15 +441,15 @@ outline: none;
 .tickerPageUserStatisticsButtonLeft:hover,
 .tickerPageUserStatisticsButtonMiddle:hover, 
 .tickerPageUserStatisticsButtonRight:hover  {
-    color:white;
     background:var(--linear-gradient-light);
+    color:white;
 }
 
 .tickerPageUserStatisticsButtonLeft:focus,
 .tickerPageUserStatisticsButtonMiddle:focus,
 .tickerPageUserStatisticsButtonRight:focus {
     background:var(--linear-gradient-light);
-    color:white
+    color:white;
 }
 
 .tickerPageSubmitButton {
@@ -562,9 +562,9 @@ outline: none;
             <img src="../../../static/img/wallet-icon-white.png" alt="">
             <div class="grid grid_2x1">
                 {% if user.userprofileinfo.available_balance %}
-                <div class="tickerPageUserCardTop">{{user.userprofileinfo.available_balance}}</div>
+                    <div class="tickerPageUserCardTop">{{user.userprofileinfo.available_balance}}</div>
                 {% else %}
-                <div class="tickerPageUserCardTop">$-.--</div>
+                    <div class="tickerPageUserCardTop">$-.--</div>
                 {% endif %}
                 <div class="tickerPageUserCardBottom">Balance</div>
 

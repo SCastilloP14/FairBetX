@@ -148,12 +148,13 @@ body {
 
             <!-- Login -->
             <div class="navBarRight">
+                <a href="{% url 'user_detail' pk=user.id %}">
+                    <button class="navButton">My Account</button>
+                </a>    
                 <a href="{% url 'user_logout' %}">
-                <button class="navButton">Log Out</button>
-              </a>
-              <a href="{% url 'user_detail' pk=user.id %}">
-                <button class="navButton">My Account</button>
-              </a>
+                    <button class="navButton">Log Out</button>
+                </a>
+                
             </div>
 
         </div>
