@@ -39,7 +39,10 @@ def registration(request):
     if request.method == "POST":
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileInfoForm(data=request.POST)
+        print("Inside request")
         if user_form.is_valid() and profile_form.is_valid():
+            print("Form is valid")
+
             user = user_form.save()
             # This hashes de PW
             user.set_password(user.password)
@@ -49,8 +52,10 @@ def registration(request):
             profile.user = user
             profile.save()
             registered = True
+            print("Finished Regristration")
         else:
             print(user_form.errors, profile_form.errors)
+            print("Errors")
     else:
         user_form = UserForm()
         profile_form = UserProfileInfoForm()
@@ -58,7 +63,7 @@ def registration(request):
     context_dict = {"user_form": user_form,
                     "profile_form": profile_form,
                     "registered": registered}
-    return render(request, "exchange_app/registration.html", context_dict)
+    return render(request, "exchange_app/welcome.html", context_dict)
 
 def user_login(request):
     if request.method == "POST":
@@ -177,8 +182,8 @@ class TickerDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         ticker = self.get_object()
-        context["buy_orders"] = Order.objects.filter(ticker=ticker, side="BUY", working_quantity__gt=0).values("price").annotate(total_quantity=Sum("working_quantity")).order_by("-price")
-        context["sell_orders"] = Order.objects.filter(ticker=ticker, side="SELL", working_quantity__gt=0).values("price").annotate(total_quantity=Sum("working_quantity")).order_by("-price")
+        context["buy_orders"] = Order.objects.filter(ticker=ticker, side="BUY", status__in=["OPEN", "PARTIAL"]).values("price").annotate(total_quantity=Sum("working_quantity")).order_by("-price")
+        context["sell_orders"] = Order.objects.filter(ticker=ticker, side="SELL", status__in=["OPEN", "PARTIAL"]).values("price").annotate(total_quantity=Sum("working_quantity")).order_by("-price").reverse()
         context["order_form"] = OrderForm()
         context["receive_order_url"] = reverse("exchange_app:ticker_detail", kwargs={"pk": self.kwargs["pk"]})
         if self.request.user.is_authenticated:
@@ -193,9 +198,13 @@ class TickerDetailView(DetailView):
         
     def post(self, request, *args, **kwargs):
         if request.method == "POST":
+<<<<<<< HEAD
             print('HERE')
             action = request.POST.get("action")
             print(action)
+=======
+            action = request.POST.get("action")
+>>>>>>> 899d849a9eedcdfff0d2733019e81b929543f369
             if action == "submit_order":
                 form = OrderForm(request.POST)
                 if form.is_valid():

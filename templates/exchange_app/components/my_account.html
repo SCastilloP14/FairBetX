@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+</head>
+<style>
+
+
+.personalInformation {
+    width:100%;
+    height: 900px;
+    padding-top:86px;
+    background-color: var(--color-background-light);
+    padding-bottom:200px;
+}
+
+.personalInformationHeader {
+    color:#016D74;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 60px;
+    margin-top: 60px;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+
+
+.personalInformationGridUserInput_1x2 {
+    grid-template-columns: 70% 30%;
+}
+
+.personalInformationMiddleSection {
+    width:100%;
+}
+
+.personalInformationCardContainer {
+    width: 375px;
+    height:700px;
+    background: var(--linear-gradient-light);
+    line-height: 42px;
+    border-radius: 25px;
+    text-align: center;
+    color: var(--color-font-light); 
+}
+
+.personalInformationCardUserInfo {
+    height: 700px;
+    /* display: flex; */
+    /* flex-direction: column;
+    justify-content: space-between; */
+}
+
+.personalInformationCardUserInput {
+    width: 1100px;
+    margin-left:25px;
+    height: 160px;
+    background:var(--color-background-white);
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom:20px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+
+.personalInformationUserInputField {
+    font-size: 20px;
+    width: 300px;
+    border:0;
+    justify-self: left;
+    margin-left: 60px;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+
+.personalInformationUserInputField input {
+    border:none;
+    text-align: left;
+    justify-content: left;
+    width: 2000px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.personalInformationEditButton {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+}
+
+.personalInformationEditButton:hover {
+    color:white;
+    border: none;
+    background-color: #016D74;
+}
+
+.personalInformationFooterBlog a {
+    font-weight: 400;
+    font-size: 22px;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
+    text-decoration: none;
+    padding-left: 50px;
+}
+
+.personalInformationFooterBlog a:hover {
+    color:#13C2C1
+}
+
+.personalInformationFooterBlogHeader {
+    color: var(--color-font-hover);
+    padding-top:30px;
+    padding-left: 50px;
+    text-align: left;
+
+}
+
+.personalInformationFooterBlog a {
+    cursor: pointer;
+}
+
+.personalInformationFooterBlog a:hover {
+    color:var(--color-font-hover)
+}
+
+/* Security  */
+
+
+.securityCardContainer {
+    width: 100%;
+    height:700px;
+    background: var(--linear-gradient-light);
+    line-height: 42px;
+    border-radius: 25px;
+    text-align: center;
+    color: var(--color-font-light);
+}
+
+.securityCardUserInfo {
+    height: 700px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+}
+
+.securityCardUserInput {
+    width: 1100px;
+    margin-left:25px;
+    height: 160px;
+    background:var(--color-background-white);
+    border-radius: 15px;
+    text-align: center;
+    color: var(--color-font-light);
+    font-size: var(--font-size-large-body);
+    display: flex;
+    justify-content: space-evenly; /* Align children horizontally in the center */
+    align-items: center;
+    margin-bottom:20px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+
+.securityUserTwoStepAuthentication {
+    background: transparent;
+    color:var(--color-font-black);
+    font-size: var(--font-size-large-body);
+    margin-left:25px;
+    width: 1100px;
+}
+
+.securityUserTwoStepAuthenticationHeader {
+    width:100%;
+    height:80px;
+    display: flex;
+    color: var(--color-font-light);
+    font-size: var(--font-size-large-body);
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.securityUserTwoStepAuthenticationHeader img {
+    height:50px;
+    width:50px;
+    margin-right: 20px;
+}
+
+.securityUserTwoStepAuthenticationSubHeader {
+    width:600px;
+    height:80px;
+    display: flex;
+    color: var(--color-font-light);
+    margin-left: 40px;
+    padding-top: 10px;
+    font-size: var(--font-size-body);
+    font-weight:400;
+}
+
+.securityCardUserInputName {
+    padding-left:40px; 
+    margin-right: auto; 
+    width:220px;
+    text-align: left;
+}
+
+.securityUserInputField {
+    font-size: 20px;
+    width: 400px;
+    border:0;
+    justify-self: left;
+    margin-left: 60px;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+    margin-left:100px;
+    margin-right: 200px;
+}
+
+.securityUserInputField input {
+    border:none;
+    text-align: left;
+    justify-content: left;
+    width: 2000px;
+}
+
+.securityEditButton {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+    margin-right:60px;
+}
+
+.securityEditButton:hover {
+    color:white;
+    border: none;
+    background-color: #016D74;
+}
+
+.securityFooterBlog a {
+    font-weight: 400;
+    font-size: 22px;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
+    text-decoration: none;
+    padding-left: 50px;
+}
+
+.securityFooterBlog a:hover {
+    color:#13C2C1
+}
+
+.securityFooterBlogHeader {
+    color: var(--color-font-hover);
+    padding-top:30px;
+    padding-left: 50px;
+    text-align: left;
+}
+
+.securityEnableSwitchContainer {
+    align-items: center;
+    display: flex;
+    font-size: var(--font-size-body);
+    justify-content: space-evenly; /* Align children horizontally in the center */
+    margin-right:60px;
+    width:200px;
+}
+
+.securityEnableSwitch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 2em;
+    margin-right:20px;
+}
+
+/* Hide default HTML checkbox */
+.securityEnableSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--color-background-light);
+  border-radius: 50px;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  left: 0.3em;
+  bottom: 0.3em;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0 0px 20px rgba(0,0,0,0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.securityEnableSwitch input:checked + .slider {
+  background: var(--linear-gradient-dark);
+}
+
+.securityEnableSwitch input:checked + .slider:before {
+  transform: translateX(45px);
+  width: 1.4em;
+  height: 1.4em;
+  right:0.3em;
+  bottom: 0.3em;
+}
+
+/* Card Information  */
+.cardInformationEditButton {
+    margin-left:auto;
+    margin-right:100px;
+}
+.cardInformationEditButton button{
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+    margin-right:0;
+    margin-left:auto;
+}
+
+.cardInformationEditButton button:hover {
+    color:white;
+    border: none;
+    background-color: #016D74;
+}
+
+.cardInformationAccount {
+    width:100%;
+    height: 900px;
+    padding-top:86px;
+    background-color: #F7F7F7;
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+
+.cardInformationGrid_1x2 {
+    grid-template-columns: 25% 75%;
+}
+
+.cardInformationInputGrid_1x2 {
+    grid-template-columns: 50% 50%;
+}
+
+.cardInformationCardUserInfo {
+    /* align-self: start; */
+    background-color: var(--color-background-white);
+    border-radius: var(--border-radius-high);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    color:var(--color-font-black);
+    /* display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: space-between;*/
+    margin-left: 25px; 
+    min-height: 700px;
+    max-width:1100px;
+    width:100%;
+}
+
+.cardInformationOverview {
+    background: transparent;
+    width:100%;
+    align-self: start;
+    margin-left:50px;
+
+}
+
+.cardInformationCardUserInfo h3 {
+    margin-left: 20px;
+    font-size: var(--font-size-subheader);
+}
+.cardInformationCardUserInput {
+    background:white;
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    height: 160px;
+    text-align: center;
+    width: 1100px;
+    margin: 5px 0;
+}
+.cardInformationCardAddFunds {
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    height: 160px;
+    width: 1100px;
+    margin: 5px 0;
+    background: var(--color-background-white);
+}
+.cardInformationCardAddFunds h4 {
+    margin-left:50px;  
+    margin-top:40px;
+    font: var(--font-size-subheader);
+    color:var(--color-font-light);
+}
+.cardInformationCardAddFunds input {
+    margin:0 auto;
+    margin-left:50px;   
+    background: transparent;
+    margin-top:10px;
+}
+.cardInformationCardMyBalance {
+    background-color: transparent;
+    width: 1100px;
+    height: 160px;
+    border-radius: 15px;
+    text-align: center;
+}
+.cardInformationCardMyBalanceHeader {
+    align-items: center;
+    display: flex;
+    text-align: left;
+}
+.cardInformationCardMyBalanceHeader h2 {
+    margin-left: 20px;
+    font-size: var(--font-size-title);
+}
+.cardInformationCardUserBalance {
+    color: var(--color-font-turk);
+    font-size: var(--font-size-title);
+    margin-left: auto;
+    margin-right:50px;
+}
+.cardInformationUserInputField {
+    border-bottom: 1px solid grey;
+    border:0;
+    font-size: 20px;
+    justify-self: left;
+    margin-left: 60px;
+    padding-bottom: 10px;
+    width: 300px;
+}
+.cardInformationUserInput {
+    height:100%;
+    width:100%;
+    margin-left:100px;  
+    /* background:red */
+}
+.cardInformationUserInputField input {
+    border:none;
+    text-align: left;
+    justify-content: left;
+    width: 2000px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.cardInformationSelectedButton {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+}
+.cardInformationSelectedButton:hover {
+    color:white;
+    background-color: #016D74;
+}
+.cardInformationFooterBlog a {
+    font-weight: 400;
+    font-size: 22px;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
+    text-decoration: none;
+    padding-left: 50px;
+}
+.cardInformationFooterBlog a:hover {
+    color:#13C2C1
+}
+.cardInformationFooterBlogHeader {
+    color: #13C2C1;
+    padding-top:30px;
+    padding-left: 50px;
+    text-align: left;
+}
+
+.cardInformationConfirmButtonContainer {
+    margin: 0 auto;
+    text-align: center;
+    /* margin-top: 5px; */
+}
+.cardInformationConfirmButton {
+    background-color: transparent;
+    border-radius: 25px;
+    border: solid 3px #016D74;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    margin-top:20px;
+    padding: 10px 50px;
+    width:160px;
+}
+.cardInformationConfirmButton:hover {
+    color:white;
+    /* border: ; */
+    background-color: #016D74;
+}
+.cardInformationCardInformation {
+    color:var(--color-font-black);
+    font-size: var(--font-size-title);
+    margin-top:60px;
+}
+
+.cardInformationCardHolderName,
+.cardInformationCardHolderCardNumber,
+.cardInformationCardHolderExpiryDate,
+.cardInformationCardHolderCVV {
+    color: var(--color-font-light);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-body);   
+    margin-top:50px;
+}
+.cardInformationCardHolderName input,
+.cardInformationCardHolderCardNumber input {
+    border: none;
+    border-bottom: 1px solid var(--color-font-light);
+    font-size: var(--font-size-body);   
+    margin-top:30px;
+    padding-bottom:10px;
+    width:300px;
+}
+.cardInformationCardHolderExpiryDate input,
+.cardInformationCardHolderCVV input {
+    border: none;
+    border-bottom: 1px solid var(--color-font-light);
+    margin-top:30px;
+    width:100px;
+    padding-bottom:10px;
+}
+.cardInformationCardHolderExpiryDateWrapper {
+    width:260px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.cardInformationCardHolderConfirmButton {
+    background: transparent;
+    color:var(--color-font-turk);
+    margin-top:50px;
+    margin-left:60px;
+    padding:15px 40px;
+    border-radius: var(--border-radius-high);
+    font-weight: 600;
+    border: 1px solid var(--color-font-turk)
+}
+
+.cardInformationCardHolderConfirmButton:hover {
+    color:var(--color-font-white);
+    background: var(--color-font-turk);
+}
+
+/* Balance  */
+.balanceMiddleSection {
+    width:100%;
+    margin-bottom:60px;
+}
+
+.balanceCardContainer {
+    align-self: start;
+    background: var(--linear-gradient-light);
+    border-radius: 25px;
+    color: var(--color-font-white);
+    height:700px;
+    line-height: 42px;
+    text-align: center;
+    width: 100%;
+}
+
+.balanceCardUserInfo {
+    align-self: start;
+    color:var(--color-font-black);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: space-between;
+    margin-left: 25px;
+    min-height: 700px;
+    width:1100px;
+}
+
+.balanceCardUserInfo h3 {
+    margin-left: 20px;
+    font-size: var(--font-size-subheader);
+}
+
+.balanceCardUserInput {
+    background:white;
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    height: 160px;
+    text-align: center;
+    width: 1100px;
+    margin: 5px 0;
+}
+
+.balanceCardAddFunds {
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    height: 160px;
+    width: 1100px;
+    margin: 5px 0;
+    background: var(--color-background-white);
+}
+
+.balanceCardAddFunds h4 {
+    margin-left:50px;  
+    margin-top:40px;
+    font: var(--font-size-subheader);
+    color:var(--color-font-light);
+    padding-top:40px;
+}
+
+.balanceCardAddFunds input {
+    margin:0 auto;
+    margin-left:50px;   
+    background: transparent;
+    margin-top:5px;
+}
+
+.balanceCardMyBalance {
+    background-color: transparent;
+    width: 1100px;
+    height: 160px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.balanceCardMyBalanceHeader {
+    align-items: center;
+    display: flex;
+    text-align: left;
+    color:var(--color-font-light)
+}
+
+.balanceCardMyBalanceHeader h2 {
+    margin-left: 20px;
+    font-size: var(--font-size-title);
+}
+
+.balanceCardUserBalance {
+    color: var(--color-font-turk);
+    font-size: var(--font-size-title);
+    margin-left: auto;
+    margin-right:50px;
+}
+
+.balanceUserInputField {
+    font-size: 20px;
+    width: 300px;
+    border:0;
+    justify-self: left;
+    margin-left: 60px;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+
+.balanceUserInputField input {
+    border:none;
+    text-align: left;
+    justify-content: left;
+    width: 2000px;
+}
+
+.balanceSelectedButton {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+}
+
+.balanceSelectedButton:hover {
+    color:white;
+    background-color: #016D74;
+}
+
+.balanceFooterBlog a {
+    font-weight: 400;
+    font-size: 22px;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
+    text-decoration: none;
+    padding-left: 50px;
+}
+
+.balanceFooterBlog a:hover {
+    color:#13C2C1
+}
+
+.balanceFooterBlogHeader {
+    color: #13C2C1;
+    padding-top:30px;
+    padding-left: 50px;
+    text-align: left;
+}
+
+.balanceConfirmButtonContainer {
+    margin: 0 auto;
+    text-align: center;
+    /* margin-top: 5px; */
+}
+
+.balanceConfirmButton {
+    background-color: transparent;
+    border-radius: 25px;
+    border: solid 3px #016D74;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    margin-top:20px;
+    padding: 10px 50px;
+    width:160px;
+}
+
+.balanceConfirmButton:hover {
+    color:white;
+    /* border: ; */
+    background-color: #016D74;
+}
+
+.balanceGridUserInput_1x2 {
+    grid-template-columns: 70% 30%;
+}
+
+/* Activity  */
+
+.grid_1x4 {
+    grid-template-columns:repeat(4,calc(100%/4));
+}
+
+.gridMyActivity1x5 {
+    grid-template-columns: repeat(5,300px);
+
+}
+
+.myActivityContainer {
+    margin-top:86px;
+    text-align: center;
+    width:100%;
+    background: #f7f7f7;
+}
+
+.myActivityMiddle h2 {
+    padding-top:40px;
+    color:#00474F;
+    padding-bottom:30px;
+    font-size:32px;
+    text-align: center;
+}
+
+.myActivityCard {
+    background: linear-gradient(to bottom,#016D74, #01373A);
+    min-height:160px;
+    border-radius: 25px;
+    color:white;
+    /* padding?-bottom:20px; */
+    text-align: center;
+    cursor: pointer;
+}
+
+.myActivityCard a {
+    color:white;
+    font-size: 24px;
+    font-weight:400;
+    text-decoration: none;
+    text-align: center;
+    /* padding-bottom:20px; */
+}
+.myActivityCard a:hover {
+    color:var(--color-font-hover);
+}
+
+/* User Stats  */
+.myActivityUserStatistics {
+    width:100%;
+    margin-bottom:50px;
+}
+
+.myActivityUserStatisticsHeader {
+    text-align: center;
+    font-size: 24px;
+    margin:20px 0;
+    color:var(--color-font-turk);
+}
+
+.myActivityUserTableCard {
+    width: 100%;
+    margin-top:10px;
+    background: #FFF;
+    border-radius: 25px;
+    min-height:500px;
+    height:auto;
+}
+
+.myActivityUserTableCard table {
+    text-align: center;
+    align-items: center;
+    width: 99%;
+    height:100%;
+    margin: 0 auto;
+    /* margin-top:10px; */
+    border-radius: 25px;
+    /* box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);    */
+     /* border: 2px solid red; */
+
+}
+
+.myActivityUserTableCard th {
+    padding:20px 20px 16px 20px;
+    font-size: 16px;
+    color:#1B1C1E
+}
+
+.myActivityUserTableCard tr {
+    margin-bottom:10px;
+}
+
+.myActivityUserTableCard td {
+    font-size: 14px;
+    font-weight:400;
+    color:#5F5F5F;
+    padding-bottom:20px;
+}
+
+.myActivtyCancelButton {
+    border-radius: 15px;
+    color:#016D74;
+    font-size: 12px;
+    font-weight:600;
+    background-color: transparent;
+    border: solid 1px #016D74;
+    padding: 5px 20px;
+    justify-content: center;
+}
+
+.myActivtyCancelButton:hover {
+    color:white;
+    background: #016D74;
+}
+
+.myActivityButtonContainer {
+    width:100%;
+    height:50px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);    /* border: 2px solid red; */
+}
+.myActivityButtonContainer button {
+    padding:10px 0;
+}
+
+.myActivtyButtonOrdersLeft {
+    background: white;
+    border-radius: 25px 0 0 25px;
+    border:none;
+    color:#00474f;
+    font-size:18px;
+    height:100%;
+    width:100%;
+}
+
+.myActivtyButtonOrdersMiddle {
+    background: white;
+    border:none;
+    border-left: 1px solid #FFF;
+    color:#00474f;
+    font-size:18px;
+    height:100%;
+    width:100%;
+}
+
+.myActivtyButtonOrdersRight {
+    background: white;
+    border-radius: 0 25px 25px 0;
+    border:none;
+    border-left: 1px solid #FFF;
+    color:#00474f;
+    font-size:18px;
+    height:100%;
+    /* padding:10px 0; */
+    width:100%;
+}
+
+.myActivtyButtonOrdersLeft:focus, 
+.myActivtyButtonOrdersMiddle:focus,
+.myActivtyButtonOrdersRight:focus {
+    background:var(--linear-gradient-light);
+    color:white
+}
+
+.myActivtyButtonOrdersLeft:hover,.myActivtyButtonOrdersMiddle:hover, .myActivtyButtonOrdersRight:hover  {
+    color:white;
+    background:var(--linear-gradient-light);
+}
+
+</style>
+    <!-- Account Side  -->
+    <div class="personalInformation grid gridNav13">
+        <!-- Empty Left Side  -->
+        <div class="empty"></div>
+
+        <div class="personalInformationMiddleSection">
+            <div class="personalInformationHeader">My Account</div>
+     
+            <div class="grid cardInformationGrid_1x2" id="account-page-section">
+                <div class="personalInformationCardContainer" id="account-overview-section">
+                    <div class="personalInformationFooterBlog">
+                            <a id="personal-information-tab">Personal Information</a>
+                            <a id="personal-security-tab">Personal Security</a>
+                            <a id="card-information-tab">Card Information</a>
+                            <a id="balance-tab">Balance</a>
+                            <a id="activity-tab">My Activity</a>
+                        </div>
+                </div>
+
+                <!-- Personal Information Card  -->
+                <div class="personalInformationCardUserInfo" id="personal-information-section">
+                    <div class="personalInformationCardUserInput">
+                        <div class="grid personalInformationGridUserInput_1x2">
+                            
+                            <input class="personalInformationUserInputField" type="text" placeholder="{{user.first_name}} {{user.last_name}}">                       
+                            <button class="personalInformationEditButton">Save</button>
+                            
+                        </div>
+                        
+                    </div>
+                    <div class="personalInformationCardUserInput">
+                        <div class="grid personalInformationGridUserInput_1x2">
+
+                            <input class="personalInformationUserInputField" type="text" placeholder="{{user.username}}">
+                            <button class="personalInformationEditButton">Edit</button>
+
+                        </div>
+                    </div>
+                    <div class="personalInformationCardUserInput">
+                        <div class="grid personalInformationGridUserInput_1x2">
+
+                            <input class="personalInformationUserInputField" type="text" placeholder="{{user.email}}">
+                            <button class="personalInformationEditButton">Edit</button>
+
+                        </div>
+                    </div>
+                    <div class="personalInformationCardUserInput">
+                        <div class="grid personalInformationGridUserInput_1x2">
+
+                            <input class="personalInformationUserInputField" type="text" placeholder="{{user.phone}}">
+                            <button class="personalInformationEditButton">Edit</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Information End  -->
+
+                <!-- Personal Security Start  -->
+
+                <div class="securityCardUserInfo" id="personal-security-section">
+
+                    <div class="securityCardUserInput">
+                        <div class="securityCardUserInputName">Password</div>
+                        <input class="securityUserInputField" type="text" placeholder="********">                       
+                        <button class="securityEditButton">Edit</button>
+                    </div>
+
+                    <div class="securityUserTwoStepAuthentication">
+                        <div class="securityUserTwoStepAuthenticationHeader">
+                            <img src="../../../static/img/security-lock-icon.png" alt="">
+                            <h2>Two Step Verification</h2>
+                        </div>
+                        <div class="securityUserTwoStepAuthenticationSubHeader">
+                            Consider using Two Step Verification to keep your account, and your data safe. 
+                        </div>
+                    </div>
+
+                    <div class="securityCardUserInput">
+                        <div class="securityCardUserInputName">Email Verification</div>
+                        <input class="securityUserInputField" type="text" placeholder="Lorem Ipsum">
+                        <div class="securityEnableSwitchContainer" id="Email-verification-switch">
+                            <label class="securityEnableSwitch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <span>Enable</span>
+                        </div>
+                    </div>
+
+                    <div class="securityCardUserInput">
+                        <div class="securityCardUserInputName">SMS Verification</div>
+                        <input class="securityUserInputField" type="text" placeholder="+1 (123) 456-7890">
+                        <div class="securityEnableSwitchContainer" id="SMS-verification-switch">
+                            <label class="securityEnableSwitch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <span>Enable</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Security End  -->
+
+                <!-- Card Information Start  -->
+
+                <div class="cardInformationOverview" id="card-information-overview-section">
+                    <div class="balanceCardMyBalanceHeader">
+                        <img src="../../../static/img/credit-card-icon.png" alt="">
+                        <h2>My Cards</h2>  
+                        <a 
+                            href="#"
+                            id="add-credit-card-tab"
+                            class="cardInformationEditButton">
+                            <button >Add New</button> 
+                        </a>
+                        
+                    </div>
+
+                    <div class="balanceCardUserInput">
+                        <div class="grid balanceGridUserInput_1x2">
+
+                            <input class="balanceUserInputField" type="text" placeholder="****  1234">
+                            <button class="balanceSelectedButton">Selected</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cardInformationCardUserInfo grid cardInformationInputGrid_1x2" id="card-information-section">
+
+                    
+                    <div class="cardInformationUserInput" id="add-credit-card-section">
+                        <form action="">
+                            <div class=cardInformationCardInformation>
+                                Card Information
+                            </div>
+                            <div class="cardInformationCardHolderName">
+                                Card Holder Name
+                                <input type="text" placeholder="John Smith">
+                            </div>
+                            
+                            <div class="cardInformationCardHolderCardNumber">
+                                Card Number
+                                <input type="text" placeholder="1234  5678  9012  3456">
+                            </div>
+                            <div class="cardInformationCardHolderExpiryDateWrapper">
+                            <div class="cardInformationCardHolderExpiryDate">
+                                Expiry Date
+                                <input type="text" placeholder="MM/YY">
+                            </div>
+                            <div class="cardInformationCardHolderCVV">
+                                CVV
+                                <input type="text" placeholder="123">
+                            </div>
+                            </div>
+                            <button class="cardInformationCardHolderConfirmButton">Confirm</button>
+                        </form>
+                    </div>
+
+                    <div class="empty"></div>
+                                       
+                </div>
+
+                <!-- Card Information End  -->
+
+
+                <!-- Balance Start  -->
+
+                <div class="balanceCardUserInfo" id="balance-section">
+
+                    <div class="balanceCardMyBalanceHeader">
+                        <img src="../../../static/img/wallet-icon.png" alt="">
+                        <h2>My Balance</h2>   
+                        <span class="balanceCardUserBalance">$0.00</span>                   
+                    </div>
+                    
+                    <div class="balanceCardAddFunds">
+                        <h4>Add New Funds</h4>
+                        <input class="balanceUserInputField" type="text" placeholder="$0.00">
+                    </div>
+
+                    <h3>Select Payment Method</h3>
+                    
+                    <div class="balanceCardUserInput">
+                        <div class="grid balanceGridUserInput_1x2">
+
+                            <input class="balanceUserInputField" type="text" placeholder="****  1234">
+                            <button class="balanceSelectedButton">Selected</button>
+
+                        </div>
+                    </div>
+                    
+                    <div class="balanceConfirmButtonContainer">
+                        <button class="balanceConfirmButton">Confirm</button>
+                    </div>
+
+                </div>
+
+                <!-- Balance End  -->
+
+                <!-- Activity Start  -->
+                <div id="activity-section">
+                <div class="myActivityCard grid gridMyActivity1x5">
+
+                    <a id="activity-personal-information-tab">Personal Information</a>
+                    <a id="activity-personal-security-tab">Security</a>
+                    <a id="activity-card-information-tab">Card Information</a>
+                    <a id="activity-balance-tab">Balance</a>
+                    <a >My Activity</a>
+
+                </div>
+
+                <div class="myActivityUserStatistics">
+                    <div class="myActivityUserStatisticsHeader">Recent Activity</div>
+                    <div class="myActivityButtonContainer grid grid_1x4">
+                        <a 
+                            href="#" 
+                            id="activity-orders-tab"
+                            class="myActivtyButtonOrdersLeft">
+                            <button class="myActivtyButtonOrdersLeft">Orders</button>
+                        </a> 
+                        <a 
+                            href="#"
+                            id="activity-positions-tab"
+                            class="myActivtyButtonOrdersMiddle">   
+                            <button class="myActivtyButtonOrdersMiddle">Fills</button>
+                        </a>
+                        <a 
+                            href="#"
+                            id="activity-fills-tab"
+                            class="myActivtyButtonOrdersMiddle">
+                            <button class="myActivtyButtonOrdersMiddle">Positions</button>
+                        </a>
+                        
+                        <a 
+                            href="#"
+                            id="activity-historic-orders-tab"
+                            class="myActivtyButtonOrdersRight">
+                            <button class="myActivtyButtonOrdersRight">Historic Orders</button>   
+                        </a> 
+                    </div>
+                    <div class="myActivityUserTableCard" id="activity-orders-section">
+                        <table>
+                            <tr>
+                                <th>Match</th>
+                                <th>Timestamp</th>
+                                <th>Order Type</th>
+                                <th>Side</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Filled Quantity</th>
+                                <th>Working Quantity</th>
+                                <th>Avg. Fill Price</th>
+                                <th>Status</th>
+                                <th>Paid Fees</th>
+                                <th>Cancel</th>
+                            </tr>
+                    {% for order in user_orders|slice:":20" %}
+                        {% if order.status == "OPEN" or order.status == "PARTIAL" %}
+
+                            <tr>
+                                <td data-class="Match">{{order.ticker_id}}</td>
+                                <td data-class="Timestamp">{{order.creation_timestamp}}</td>
+                                <td data-class="Order Type">{{order.order_type}}</td>
+                                <td data-class="Side">{{order.side}}</td>
+                                <td data-class="Price">{{order.price}}</td>
+                                <td data-class="Quantity">{{order.quantity}}</td>
+                                <td data-class="Filled Quantity">{{order.filled_quantity}}</td>
+                                <td data-class="Working Quantity">{{order.working_quantity}}</td>                   
+                                <td data-class="Avg. Fill Price">{{order.avg_fill_price}}</td>
+                                <td data-class="Status">{{order.status}}</td>
+                                <td data-class="Paid Fees">{{order.paid_fees}}</td>
+                                <td data-class="Cancel"> 
+                                    <button class="myActivtyCancelButton">Cancel</button>
+                                    
+                                </td>
+                                    
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                                 
+                        </table>
+
+
+                    </div>
+
+                <!-- Fills Table  -->
+                <div class="myActivityUserTableCard" id="activity-fills-section">
+                    <table>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Ticker</th>
+                            <th>Side</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Order ID</th>
+
+                        </tr>
+                    {% for fill in user_fills|slice:":20" %}
+
+                        <tr>
+                            <td data-class="Timestamp">{{fill.timestamp}}</td>
+                            <td data-class="Ticker">{{fill.ticker.ticker_id}}</td>
+                            <td data-class="Side">{{fill.side}}</td>
+                            <td data-class="Price">{{fill.price}}</td>
+                            <td data-class="Quantity">{{fill.quantity}}</td>
+                            <td data-class="Order ID">{{fill.fill_id}}</td>
+
+                        </tr>
+
+                    {% endfor %}
+                    
+                    </table>
+
+                </div>
+
+                <!-- Positions Table  -->
+                <div class="myActivityUserTableCard" id="activity-positions-section">
+                    <table>
+                        <tr>
+                            <th>Ticker</th>
+                            <th>Position</th>
+                            <th>Average Price</th>
+                            <th>Open PnL</th>
+                            <th>Closed PnL</th>
+
+                        </tr>
+                    {% for position in user_positions|slice:":20" %}
+
+                        <tr>
+                            <td data-class="Ticker">{{position.ticker.ticker_id}}</td>
+                            <td data-class="Position">{{position.quantity}}</td>
+                            <td data-class="Average Price">{{position.avg_price}}</td>
+                            <td data-class="Open PnL">{{position.open_pnl}}</td>
+                            <td data-class="Closed PnL">{{position.closed_pnl}}</td>
+
+                        </tr>
+
+                    {% endfor %}
+                    
+                    </table>
+
+                    
+
+                </div>
+
+                <!-- Historic Orders  -->
+
+                <div class="myActivityUserTableCard" id="activity-historic-orders-section">
+                    <table>
+                        <tr>
+                            <th>Match</th>
+                            <th>Timestamp</th>
+                            <th>Order Type</th>
+                            <th>Side</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Filled Quantity</th>
+                            <th>Working Quantity</th>
+                            <th>Avg. Fill Price</th>
+                            <th>Status</th>
+                            <th>Paid Fees</th>
+                            <th>Cancel</th>
+                        </tr>
+                    {% for order in user_orders|slice:":20" %}
+
+                        <tr>
+                            <td data-class="Match">{{order.ticker_id}}</td>
+                            <td data-class="Timestamp">{{order.creation_timestamp}}</td>
+                            <td data-class="Order Type">{{order.order_type}}</td>
+                            <td data-class="Side">{{order.side}}</td>
+                            <td data-class="Price">{{order.price}}</td>
+                            <td data-class="Quantity">{{order.quantity}}</td>
+                            <td data-class="Filled Quantity">{{order.filled_quantity}}</td>
+                            <td data-class="Working Quantity">{{order.working_quantity}}</td>                   
+                            <td data-class="Avg. Fill Price">{{order.avg_fill_price}}</td>
+                            <td data-class="Status">{{order.status}}</td>
+                            <td data-class="Paid Fees">{{order.paid_fees}}</td>
+                            <td data-class="Cancel"> 
+                                <button class="myActivtyCancelButton">Cancel</button>  
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </table>
+
+                    
+
+                </div>
+
+
+            </div>
+            </div>
+                <!-- Activity End  -->
+
+
+
+
+            </div>
+           
+        </div>
+
+        <!-- Empty Right Side  -->
+        <div class="empty"></div>
+
+
+    </div>
+
+</html>

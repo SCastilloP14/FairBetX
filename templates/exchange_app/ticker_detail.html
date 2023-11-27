@@ -2,41 +2,7 @@
 
 {% block body_block %}
 
-
-  <body>
-   
-    <div class="grid grid--1x3">
-      <div class="empty"></div>
-      <div class="ticker-info-middle-column">
-        <div class="ticker-info-game-stat">
-          <h2 class="ticker__team">{{ticker_detail.match.away_team.name}} @ {{ticker_detail.match.home_team.name}}</h2>
-          <!-- Middle Section that includes that ticker, status, score and volume -->
-          <div class="grid grid--1x4">
-            <h3 class="ticker__team">Score: {{ticker_detail.match.away_team_score}} : {{ticker_detail.match.home_team_score}}</h3>
-            <h3 class="ticker__team">Status: {{ticker_detail.status}} </h3>
-            <h3 class="ticker__team">Last Price: {{ticker_detail.last_price}}</h3>
-            <h3 class="ticker__team">Volume: {{ticker_detail.volume}}</h3>
-          </div>
-        </div>
-
-        <!-- Middle Sectiont including Graph,Orderbook and Order Submisson Field  -->
-        <div class="ticker-info-trading">
-          <div class="grid grid--1x3 grid-trading">
-            <div class="ticker-info-ob">
-              <div id="interval-buttons">
-                <button id="btn-1m" class="btn interval-btn" value="1">1M</button>
-                <button id="btn-5m" class="btn interval-btn" value="5">5M</button>
-                <button id="btn-1h" class="btn interval-btn" value="60">1H</button>
-                <button id="btn-6h" class="btn interval-btn" value="300">6H</button>
-                <button id="btn-1d" class="btn interval-btn" value="1440">1D</button>
-              </div>
-              <!-- TradingView Widget BEGIN -->
-
-              <!-- Include TradingView Lightweight Charts library -->
-              <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
-
-              <!-- Create a div to hold the chart -->
-              <div id="chart-container" style="width: 100%; height: 88%;" value="{{ticker_detail.id}}">{{ticker_detail.id}}</div>
+    {% include './components/ticker_NBA.html' %}
 
 
               <!-- <div class="tradingview-widget-container">

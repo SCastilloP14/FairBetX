@@ -1,29 +1,10 @@
 <!DOCTYPE html>
 {% extends "exchange_app/base.html" %}
 
+
 {% block body_block %}
-{% if user.is_authenticated %}
-<h1 class="welcome__header animate__animated animate__fadeInDown">Welcome back {{user.username}} </h1>
-<h3 class="welcome__header animate__animated animate__fadeInDown">FBX is the most exciting Sports Betting site!</h2>
 
-
-{% else %}
-<h1 class="welcome__header animate__animated animate__fadeInDown">Welcome to FBX</h1>
-<h3 class="welcome__header animate__animated animate__fadeInDown">Experience Sports Betting in a new way!</h2>
-
-{% endif %}
-
-<div class="grid grid--1x2">
-    <img class="welcome__img animate__animated animate__fadeInLeft animate__delay-1s" src="/static/exchange_app/exchange.jpeg" alt="Exchange Picture">
-    
-    
-    <div class="coin">
-    </div>
-        
-    
-
-    </div>
-</div>
+    {% include './components/home.html' %}
 
 {% endblock %}
 

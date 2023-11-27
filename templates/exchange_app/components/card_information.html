@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+</head>
+<style>
+
+
+   
+
+.cardInformationAccount {
+    width:100%;
+    height: 900px;
+    padding-top:86px;
+    background-color: #F7F7F7;
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+
+.cardInformationGrid_1x2 {
+    grid-template-columns: 25% 75%;
+}
+
+.gridBalanceUserInput_1x2 {
+    grid-template-columns: 50% 50%;
+}
+
+.cardInformationMiddleSection {
+    width:100%;
+    margin-bottom:60px;
+}
+
+.cardInformationCardContainer {
+    align-self: start;
+    background: var(--linear-gradient-light);
+    border-radius: 25px;
+    color: var(--color-font-white);
+    height:700px;
+    line-height: 42px;
+    text-align: center;
+    width: 100%;
+}
+.cardInformationCardUserInfo {
+    align-self: start;
+    color:var(--color-font-black);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: space-between;
+    margin-left: 25px;
+    min-height: 700px;
+    width:1100px;
+    background-color: var(--color-background-white);
+    border-radius: var(--border-radius-high);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cardInformationCardUserInfo h3 {
+    margin-left: 20px;
+    font-size: var(--font-size-subheader);
+}
+.cardInformationCardUserInput {
+    background:white;
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    height: 160px;
+    text-align: center;
+    width: 1100px;
+    margin: 5px 0;
+}
+.cardInformationCardAddFunds {
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    height: 160px;
+    width: 1100px;
+    margin: 5px 0;
+    background: var(--color-background-white);
+}
+.cardInformationCardAddFunds h4 {
+    margin-left:50px;  
+    margin-top:40px;
+    font: var(--font-size-subheader);
+    color:var(--color-font-light);
+}
+.cardInformationCardAddFunds input {
+    margin:0 auto;
+    margin-left:50px;   
+    background: transparent;
+    margin-top:10px;
+}
+.cardInformationCardMyBalance {
+    background-color: transparent;
+    width: 1100px;
+    height: 160px;
+    border-radius: 15px;
+    text-align: center;
+}
+.cardInformationCardMyBalanceHeader {
+    align-items: center;
+    display: flex;
+    text-align: left;
+}
+.cardInformationCardMyBalanceHeader h2 {
+    margin-left: 20px;
+    font-size: var(--font-size-title);
+}
+.cardInformationCardUserBalance {
+    color: var(--color-font-turk);
+    font-size: var(--font-size-title);
+    margin-left: auto;
+    margin-right:50px;
+}
+.cardInformationUserInputField {
+    font-size: 20px;
+    width: 300px;
+    border:0;
+    justify-self: left;
+    margin-left: 60px;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+.cardConfirmUserInput {
+    height:100%;
+    width:100%;
+    margin-left:100px;  
+    /* background:red */
+}
+.cardInformationUserInputField input {
+    border:none;
+    text-align: left;
+    justify-content: left;
+    width: 2000px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.cardInformationSelectedButton {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+}
+.cardInformationSelectedButton:hover {
+    color:white;
+    background-color: #016D74;
+}
+.cardInformationFooterBlog a {
+    font-weight: 400;
+    font-size: 22px;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
+    text-decoration: none;
+    padding-left: 50px;
+}
+.cardInformationFooterBlog a:hover {
+    color:#13C2C1
+}
+.cardInformationFooterBlogHeader {
+    color: #13C2C1;
+    padding-top:30px;
+    padding-left: 50px;
+    text-align: left;
+}
+
+.cardInformationConfirmButtonContainer {
+    margin: 0 auto;
+    text-align: center;
+    /* margin-top: 5px; */
+}
+.cardInformationConfirmButton {
+    background-color: transparent;
+    border-radius: 25px;
+    border: solid 3px #016D74;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    margin-top:20px;
+    padding: 10px 50px;
+    width:160px;
+}
+.cardInformationConfirmButton:hover {
+    color:white;
+    /* border: ; */
+    background-color: #016D74;
+}
+.cardInformationCardInformation {
+    color:var(--color-font-black);
+    font-size: var(--font-size-title);
+    margin-top:60px;
+}
+
+.cardInformationCardHolderName,
+.cardInformationCardHolderCardNumber,
+.cardInformationCardHolderExpiryDate,
+.cardInformationCardHolderCVV {
+    color: var(--color-font-light);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-body);   
+    margin-top:50px;
+}
+.cardInformationCardHolderName input,
+.cardInformationCardHolderCardNumber input {
+    border: none;
+    border-bottom: 1px solid var(--color-font-light);
+    font-size: var(--font-size-body);   
+    margin-top:30px;
+    padding-bottom:10px;
+    width:300px;
+}
+.cardInformationCardHolderExpiryDate input,
+.cardInformationCardHolderCVV input {
+    border: none;
+    border-bottom: 1px solid var(--color-font-light);
+    margin-top:30px;
+    width:100px;
+    padding-bottom:10px;
+}
+.cardInformationCardHolderExpiryDateWrapper {
+    width:260px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.cardInformationCardHolderConfirmButton {
+    background: transparent;
+    color:var(--color-font-turk);
+    margin-top:50px;
+    margin-left:60px;
+    padding:15px 40px;
+    border-radius: var(--border-radius-high);
+    font-weight: 600;
+    border: 1px solid var(--color-font-turk)
+}
+
+.cardInformationCardHolderConfirmButton:hover {
+    color:var(--color-font-white);
+    background: var(--color-font-turk);
+}
+</style>
+    <!-- Account Side  -->
+    <div class="cardInformationAccount grid gridNav13">
+        <!-- Empty Left Side  -->
+        <div class="empty"></div>
+
+        <div class="cardInformationMiddleSection">
+            <h1>My Account</h1>
+     
+            <div class="grid cardInformationGrid_1x2">
+                <div class="cardInformationCardContainer">
+                    <div class="cardInformationFooterBlog">
+                            <a href="">Personal Information</a>
+                            <a href="">Personal Security</a>
+                            <a href="">Card Information</a>
+                            <h2 class="cardInformationFooterBlogHeader">Balance</h2>
+                            <a href="">My Activity</a>
+                        </div>
+
+                </div>
+
+                <div class="cardInformationCardUserInfo grid gridBalanceUserInput_1x2">
+                    
+                    <div class="cardConfirmUserInput">
+                        <form action="">
+                            <div class=cardInformationCardInformation>
+                                Card Information
+                            </div>
+                            <!-- My Balance + Acccout Balance  -->
+                            <div class="cardInformationCardHolderName">
+                                Card Holder Name
+                                <input type="text" placeholder="John Smith">
+                            </div>
+                            
+                            <div class="cardInformationCardHolderCardNumber">
+                                Card Number
+                                <input type="text" placeholder="1234  5678  9012  3456">
+                            </div>
+                            <div class="cardInformationCardHolderExpiryDateWrapper">
+                            <div class="cardInformationCardHolderExpiryDate">
+                                Expiry Date
+                                <input type="text" placeholder="MM/YY">
+                            </div>
+                            <div class="cardInformationCardHolderCVV">
+                                CVV
+                                <input type="text" placeholder="123">
+                            </div>
+                            </div>
+                            <button class="cardInformationCardHolderConfirmButton">Confirm</button>
+                        </form>
+                    </div>
+                    
+
+
+                    
+                </div>
+
+                
+
+            </div>
+           
+        </div>
+
+        <!-- Empty Right Side  -->
+        <div class="empty"></div>
+
+
+    </div>
+
+</html>

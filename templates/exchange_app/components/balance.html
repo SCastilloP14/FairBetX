@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account</title>
+</head>
+<style>
+
+
+   
+h1 {
+    font-family:'Satoshi', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color:#016D74;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    text-align: center;
+    }
+
+.balanceAccount {
+    width:100%;
+    height: 900px;
+    padding-top:86px;
+    background-color: #F7F7F7;
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+
+.grid_1x2 {
+    grid-template-columns: 25% 75%;
+}
+
+.grid_user_input_1x2 {
+    grid-template-columns: 70% 30%;
+}
+
+.balanceMiddleSection {
+    width:100%;
+    margin-bottom:60px;
+}
+
+.balanceCardContainer {
+    align-self: start;
+    background: var(--linear-gradient-light);
+    border-radius: 25px;
+    color: var(--color-font-white);
+    height:700px;
+    line-height: 42px;
+    text-align: center;
+    width: 100%;
+}
+.balanceCardUserInfo {
+    align-self: start;
+    color:var(--color-font-black);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: space-between;
+    margin-left: 25px;
+    min-height: 700px;
+    width:1100px;
+
+}
+
+.balanceCardUserInfo h3 {
+    margin-left: 20px;
+    font-size: var(--font-size-subheader);
+}
+.balanceCardUserInput {
+    background:white;
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    height: 160px;
+    text-align: center;
+    width: 1100px;
+    margin: 5px 0;
+}
+.balanceCardAddFunds {
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    height: 160px;
+    width: 1100px;
+    margin: 5px 0;
+    background: var(--color-background-white);
+}
+.balanceCardAddFunds h4 {
+    margin-left:50px;  
+    margin-top:40px;
+    font: var(--font-size-subheader);
+    color:var(--color-font-light);
+}
+.balanceCardAddFunds input {
+    margin:0 auto;
+    margin-left:50px;   
+    background: transparent;
+    margin-top:10px;
+}
+.balanceCardMyBalance {
+    background-color: transparent;
+    width: 1100px;
+    height: 160px;
+    border-radius: 15px;
+    text-align: center;
+}
+.balanceCardMyBalanceHeader {
+    align-items: center;
+    display: flex;
+    text-align: left;
+}
+.balanceCardMyBalanceHeader h2 {
+    margin-left: 20px;
+    font-size: var(--font-size-title);
+}
+.balanceCardUserBalance {
+    color: var(--color-font-turk);
+    font-size: var(--font-size-title);
+    margin-left: auto;
+    margin-right:50px;
+}
+.balanceUserInputField {
+    font-size: 20px;
+    width: 300px;
+    border:0;
+    justify-self: left;
+    margin-left: 60px;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+
+.balanceUserInputField input {
+    border:none;
+    text-align: left;
+    justify-content: left;
+    width: 2000px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.balanceSelectedButton {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+}
+.balanceSelectedButton:hover {
+    color:white;
+    background-color: #016D74;
+}
+.footer_blog a {
+    font-weight: 400;
+    font-size: 22px;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
+    text-decoration: none;
+    padding-left: 50px;
+}
+.footer_blog a:hover {
+    color:#13C2C1
+}
+.footer_blog_header {
+    color: #13C2C1;
+    padding-top:30px;
+    padding-left: 50px;
+    text-align: left;
+}
+
+.balanceConfirmButtonContainer {
+    margin: 0 auto;
+    text-align: center;
+    /* margin-top: 5px; */
+}
+.balanceConfirmButton {
+    background-color: transparent;
+    border-radius: 25px;
+    border: solid 3px #016D74;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    margin-top:20px;
+    padding: 10px 50px;
+    width:160px;
+}
+.balanceConfirmButton:hover {
+    color:white;
+    /* border: ; */
+    background-color: #016D74;
+}
+
+</style>
+    <!-- Account Side  -->
+    <div class="balanceAccount grid gridNav13">
+        <!-- Empty Left Side  -->
+        <div class="empty"></div>
+
+        <div class="balanceMiddleSection">
+            <h1>My Account</h1>
+     
+            <div class="grid grid_1x2">
+                <div class="balanceCardContainer">
+                    <div class="footer_blog">
+                        <a href="">Personal Information</a>
+                        <a href="">Personal Security</a>
+                        <a href="">Card Information</a>
+                        <h2 class="footer_blog_header">Balance</h2>
+                        <a href="">My Activity</a>
+                    </div>
+                </div>
+
+                <div class="balanceCardUserInfo" id="balance-section">
+                    <div class="balanceCardMyBalanceHeader">
+                        <img src="../../../static/img/wallet-icon.png" alt="">
+                        <h2>My Balance</h2>   
+                        <span class="balanceCardUserBalance">$0.00</span>                   
+                    </div>
+                    
+                    <div class="balanceCardAddFunds">
+                        <h4>Add New Funds</h4>
+                        <input class="balanceUserInputField" type="text" placeholder="$0.00">
+                    </div>
+
+                    <h3>Select Payment Method</h3>
+                    
+                    <div class="balanceCardUserInput">
+                        <div class="grid grid_user_input_1x2">
+
+                            <input class="balanceUserInputField" type="text" placeholder="Debit Card">
+                            <button class="balanceSelectedButton">Selected</button>
+
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="balanceConfirmButtonContainer">
+                        <button class="balanceConfirmButton">Confirm</button>
+                    </div>
+                    
+                </div>
+
+                
+
+            </div>
+           
+        </div>
+
+        <!-- Empty Right Side  -->
+        <div class="empty"></div>
+
+
+    </div>
+
+</html>

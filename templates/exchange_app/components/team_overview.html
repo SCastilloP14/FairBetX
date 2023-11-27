@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA Overview</title>
+
+<style>
+.leagueOverviewHeader {
+    margin-top:86px;
+    position: relative;
+}    
+.leagueOverviewHeaderImg {
+    width:100%;
+    height:50%;
+}
+.leagueOverviewHeaderCentered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.8rem; /* Adjust font size as needed */
+    color: var(--color-font-white);
+    
+}
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+.grid_nav_1x3 {
+    grid-template-columns: auto 1500px auto;
+}
+.grid_2x1 {
+    grid-template-rows: 80px 220px ;
+}
+
+.grid_1x2 {
+    grid-template-columns: 250px 150px ;
+}
+.grid_3x1 {
+    grid-template-rows: 20% 40% 40%;
+}
+.grid_1x2_game_card {
+    grid-template-columns: 20% 80% ;
+
+}
+.game_overview {
+    width:1500px;
+    height: 300px;
+    background-color: white;
+    border-radius: 15px;
+    margin-top:10px;
+
+}
+.game_overview_card {
+    width:400px;
+    height:190px;
+    background: var(--color-background-light);
+    border-radius: 25px;
+   margin:5px 10px;
+}
+.game_overview_card_scroll {
+    width: 100%;
+    display: flex;
+    align-content: left;
+    overflow-x: scroll;
+}
+.game_overview_card_time {
+    height: 100%;
+    width:100%;
+    background: linear-gradient(to bottom, #00474f, #000e10);
+    border-radius: 25px;    
+    color:white;
+    text-align: center;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.home_team, .away_team {
+    display: flex;
+    font-size: 20px;
+    width:100%;
+}
+.away_team {
+    margin-bottom: 20px ;
+}
+.home_team {
+    margin-top: 20px;
+}
+.home_team_score,.away_team_score {
+    color:#00474f;
+    padding-left:25px;
+    width:50px;
+    margin-left: 0;
+}
+.game_overview_card_header {
+     display: flex;
+     margin-top:30px;
+    color: #00474f;
+    width: 100%;
+    border-radius: 25px;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+}
+.live_button_small {
+    border-radius: 25px;
+    color:#B51F1F;
+    font-size: 12px;
+    font-weight:600;
+    background-color: #F5E4E5;
+    border: solid 3px #B51F1F;
+    padding: 2px 10px;
+    display: flex
+}
+.game_overview_card_header_button {
+    padding-right:20px;
+}
+.leagueOverview {
+    background-color: #f7f7f7;
+}
+.standings_overview {
+    width:1500px;
+    min-height: 300px;
+    height:auto;
+    background-color: white;
+    border-radius: 15px;
+    margin-top:10px;
+}
+.wrapper {
+    width: min(900px, 100%-3rem);
+    margin-inline: auto;
+}
+caption {
+    text-align: left;
+    font-size: 28px;
+    padding:2rem 3rem;
+
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    padding:1rem;
+}
+th, tr {
+    font-size: 22px;
+    padding-bottom: 30px;
+}
+#Team, #Last_5 {
+    text-align: left;
+}
+#Teams {
+    text-align: left;
+    color:#06979C;
+}
+
+td {
+    font-size:24px;
+    padding-bottom:30px;
+}
+</style>
+</head>
+<div class="leagueOverview">    
+    <div class="leagueOverviewHeader">
+        <img class="leagueOverviewHeaderImg"src="../../../static/img/NBA_Pg.png" alt="">
+        <div class="leagueOverviewHeaderCentered">NBA</div>
+    </div>
+    <div class="grid grid_nav_1x3">
+        <!-- Left Section  -->
+        <div class="empty"></div>
+
+        <!-- Middle Section  -->
+        <div class="middle_section">
+            <div class="game_overview grid grid_2x1">
+                <div style="width: 100%;text-align: left; margin-left:40px;">
+                    <h2>Games</h2>
+                </div>
+                <!-- Game Card Scroll Tunnel  -->
+                <div class="game_overview_card_scroll">
+                    <!-- Game Card  -->
+                    <div class="game_overview_card grid grid_1x2">
+                        <!-- Left Site Game Card  -->
+                        <div class="grid grid_3x1">
+                            <div class="game_overview_card_header">
+                                <span class="game_overview_card_header_score">Score</span>
+                                <button class="live_button_small">
+                                    <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
+                                    Live
+                                </button>
+                                <div class="game_overview_card_header_button ">00:00</div>
+                            </div>
+                            <div class="home_team">
+                                <div class="home_team_score">00</div>
+                                <div class="home_team_name">Toronto</div>
+                            </div>
+                            <div class="away_team">
+                                <div class="away_team_score">00</div>
+                                <div class="away_team_name">Boston</div>
+                            </div>
+                        </div>
+                        <!-- Right Site Game Card  -->
+                        <div class="game_overview_card_time">Q1</div>
+                    </div>
+
+                    <div class="game_overview_card grid grid_1x2">
+                        <!-- Left Site Game Card  -->
+                        <div class="grid grid_3x1">
+                            <div class="game_overview_card_header">
+                                <span class="game_overview_card_header_score">Score</span>
+                                <button class="live_button_small">
+                                    <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
+                                    Live
+                                </button>
+                                <div class="game_overview_card_header_button ">00:00</div>
+                            </div>
+                            <div class="home_team">
+                                <div class="home_team_score">00</div>
+                                <div class="home_team_name">Toronto</div>
+                            </div>
+                            <div class="away_team">
+                                <div class="away_team_score">00</div>
+                                <div class="away_team_name">Boston</div>
+                            </div>
+                        </div>
+                        <!-- Right Site Game Card  -->
+                        <div class="game_overview_card_time">Q1</div>
+                    </div>
+
+                    <div class="game_overview_card grid grid_1x2">
+                        <!-- Left Site Game Card  -->
+                        <div class="grid grid_3x1">
+                            <div class="game_overview_card_header">
+                                <span class="game_overview_card_header_score">Score</span>
+                                <button class="live_button_small">
+                                    <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
+                                    Live
+                                </button>
+                                <div class="game_overview_card_header_button ">00:00</div>
+                            </div>
+                            <div class="home_team">
+                                <div class="home_team_score">00</div>
+                                <div class="home_team_name">Toronto</div>
+                            </div>
+                            <div class="away_team">
+                                <div class="away_team_score">00</div>
+                                <div class="away_team_name">Boston</div>
+                            </div>
+                        </div>
+                        <!-- Right Site Game Card  -->
+                        <div class="game_overview_card_time">Q1</div>
+                    </div>
+
+                    <div class="game_overview_card grid grid_1x2">
+                        <!-- Left Site Game Card  -->
+                        <div class="grid grid_3x1">
+                            <div class="game_overview_card_header">
+                                <span class="game_overview_card_header_score">Score</span>
+                                <button class="live_button_small">
+                                    <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
+                                    Live
+                                </button>
+                                <div class="game_overview_card_header_button ">00:00</div>
+                            </div>
+                            <div class="home_team">
+                                <div class="home_team_score">00</div>
+                                <div class="home_team_name">Toronto</div>
+                            </div>
+                            <div class="away_team">
+                                <div class="away_team_score">00</div>
+                                <div class="away_team_name">Boston</div>
+                            </div>
+                        </div>
+                        <!-- Right Site Game Card  -->
+                        <div class="game_overview_card_time">Q1</div>
+                    </div>
+                </div>
+            </div>
+            <div class="standings_overview wrapper">
+                <!-- <span>Standings</span> -->
+                <table>
+                    <!-- Title of the Table  -->
+                    <caption>Standings
+
+                    </caption>
+
+                    <!-- Conference Button  -->
+                    
+                    <!-- Table Headers  -->
+                    <tr>
+                        <th>Pos.</th>
+                        <th id="Team">Team</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>Win %</th>
+                        <th>GB</th>
+                        <th>Conference</th>
+                        <th>Division</th>
+                        <th id="Last_5">Last 5</th>
+                    </tr>
+
+                    <tr>
+                        <td data-cell="Pos.">1</td> 
+                        <td data-cell="Team" id="Teams">Boston Celtics</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">2</td> 
+                        <td data-cell="Team" id="Teams">Brooklyn Nets</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">3</td> 
+                        <td data-cell="Team" id="Teams">New York Knicks</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">4</td> 
+                        <td data-cell="Team" id="Teams">Philadelphia 76ers</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">5</td> 
+                        <td data-cell="Team" id="Teams">Toronto Raptors</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">6</td> 
+                        <td data-cell="Team" id="Teams">Chicago Bulls</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">7</td> 
+                        <td data-cell="Team" id="Teams">Cleveland Cavaliers</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">8</td> 
+                        <td data-cell="Team" id="Teams">Detroit Pistons</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">9</td> 
+                        <td data-cell="Team" id="Teams">Indiana Pacers</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">10</td> 
+                        <td data-cell="Team" id="Teams">Milwaukee Bucks</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">11</td> 
+                        <td data-cell="Team" id="Teams">Atlants Hawks</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">12</td> 
+                        <td data-cell="Team" id="Teams">Charlotte Hornets</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">13</td> 
+                        <td data-cell="Team" id="Teams">Miami Heat</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">14</td> 
+                        <td data-cell="Team" id="Teams">Orlando Magic</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">15</td> 
+                        <td data-cell="Team" id="Teams">Washington Wizards</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+
+                </table>
+            </div>
+
+
+        </div>
+        <!-- Right Section  -->
+        <div class="empty"></div>
+
+    </div>
+
+</div>
+</html>

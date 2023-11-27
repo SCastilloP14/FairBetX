@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    :root {
+        --font-family: 'Satoshi',sans-serif;
+        --font-weight: 600;
+        --font-color-light: white;
+        --font-color-dark: black;
+
+    }
+    body {
+        font-family: var(--font-family);
+        color:var(--font-color-light);
+    }
+    .home_container {
+        background-color: red;
+        width: 100%;
+        height: 100px;
+    }
+    .home_first_section img{
+        width: 100%
+    }
+    .home_second_section {
+        height: 700px;
+        width:100%;
+        background-color: #FBFBFB;
+        color:darkgrey
+    }
+    #Home_Second_Section_Header {
+        padding-top:100px;
+        color:#016D74;
+        font-size: 40px;
+        font-weight: 600
+    }
+    #Home_Second_Section_Description {
+        color: black;
+        font-size: 18px;
+        font-weight: 500
+    }
+    .betting_button {
+        border-radius: 25px;
+        color:#016D74;
+        font-size: 18px;
+        background-color: transparent;
+        border: solid 3px #016D74;
+        padding: 10px 35px
+    }
+    .betting_button:hover {
+        background-color: #13C2C1  ;
+        border: none;
+        color: white;
+    }
+    .home_second_section_images {
+        width: 100%;
+        height: 650px;
+        /* background-color: blue; */
+        display: flex;
+
+        overflow: visible; /* Allow content to overflow the container */
+        position: relative; 
+    }
+    .overflow-image {
+        position: static; 
+        right: 0; 
+        }
+
+    .home_third_section {
+        height: 100vh;
+        width:100%;
+        background-color: #E5FFFB;
+    }
+    .grid {
+      display: grid;
+      align-items: center;
+      place-items: center;
+      height: 100%;
+    }
+    .grid_home_1x3 {
+      grid-template-columns: auto 1500px auto;
+    }
+
+</style>
+
+<div class="home_container">
+     <!-- First Section Below Nav Bar  -->
+    <div class="home_first_section">
+        <img src="../../../static/img/Mask_Group_9.png" alt="">
+        <!-- <img  src="../../../static/img/Mask_Group_10.png"  alt=""> -->
+
+    </div>
+     <!-- Second Section Below Nav Bar  -->
+
+    <div class="home_second_section grid grid_home_1x3">
+        <div class="empty"></div>
+        <div style="text-align: center;">
+            <h2 id="Home_Second_Section_Header">Sports Bet</h2>
+            <H4 id="Home_Second_Section_Description">FBX offers a truly new and innovative betting experience. You control the game, place your bet and see exactly what other are doing</H4>
+            <button class="betting_button"> Start Betting</button>
+            <div class="home_second_section_images">
+                <img src="../../../static/img/n_75shots_so.png" alt="">
+                <img class="overflow-image" src="../../../static/img/n_83shots_so.png" alt="">
+            </div>
+        </div>
+        <div class="empty"></div>
+
+    </div>
+     <!-- <div class="home_third_section">
+        <h2>Sports Bet</h2>
+        <H4>FBX offers a truly new and innovative betting experience. You control the game, place your bet and see exactly what other are doing</H4>
+        <button> Start Betting</button>
+        <img src="../../../static/img/SMac.png" alt="">
+
+    </div> -->
+</div>
+
+</html>
