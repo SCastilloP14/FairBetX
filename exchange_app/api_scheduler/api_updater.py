@@ -1,35 +1,57 @@
 from apscheduler.schedulers.background import BackgroundScheduler
-from exchange_app.models import update_teams, update_season_games, update_live_games, update_upcoming_games
+from .api_updaters.league_api_updater import updated_league_data
+from .api_updaters.team_api_updater import updated_team_data
+from .api_updaters.player_api_updater import update_players_data
+from .api_updaters.season_games_api_updater import update_season_game_data
+from .api_updaters.live_games_api_updater import update_live_game_data
 from datetime import datetime, timedelta
 import time
+from exchange_app.models import League, Team, Player, Game
 
 
-leagues = {
+
+def start():
+    leagues = {
            "MLB": {"league_id": "4424", "season": "2023"}, 
            "NFL": {"league_id": "4391", "season": "2023"},
            "NBA": {"league_id": "4387", "season": "2023-2024"},
            "NHL": {"league_id": "4380", "season": "2023-2024"},
            }
-
-
-def start():
     scheduler = BackgroundScheduler()
+    print(datetime.now())
     for league, info in leagues.items():
-        # break
-        # Fecth Team Info
-        scheduler.add_job(update_teams, "interval", days=1, id=f"update_{league}_teams", args=[league], replace_existing=True, 
-                      next_run_time=datetime.now())
+        updated_league_data(info['league_id'])
 
-        # # Backfill Season Games
-        # scheduler.add_job(update_season_games, "interval", days=30, id=f"update_{league}_season_games", args=[info["league_id"], info["season"]], 
-        #               replace_existing=True, next_run_time=datetime.now() + timedelta(minutes=0))
-        
-        # Fecth upcoming games data
-        scheduler.add_job(update_upcoming_games, "interval", hours=12, id=f"update_{league}_upcoming_games", args=[info["league_id"]], 
-                        replace_existing=True, next_run_time=datetime.now() + timedelta(seconds=20))
+    print(datetime.now())
+    leagues = League.objects.filter()
+    league_names = [league.league_name for league in leagues]
+    for league_name in league_names:
+        updated_team_data(league_name)
 
-        # Fetch live games data
-        scheduler.add_job(update_live_games, "interval", seconds=30, id=f"update_{league}_live_games", args=[info["league_id"]], 
-                      replace_existing=True, next_run_time=datetime.now() + timedelta(seconds=10))
-        
+    print(datetime.now())  
+    teams = Team.objects.filter()
+    team_id_list = [team.team_id for team in teams]
+    for team_id in team_id_list:
+        update_players_data(team_id)
+    
+    print(datetime.now())
+    leagues = League.objects.filter()
+    leagues_details = [{"league_id": league.league_id,
+                        "league_season": league.league_current_season
+                        } for league in leagues]
+    for league in leagues_details:
+        league_id = league["league_id"]
+        league_season = league["league_season"]
+        update_season_game_data(league_id, league_season)
+
+    print(datetime.now())
+    leagues = League.objects.filter()
+    league_ids = [league.league_id for league in leagues]
+    for league_id in league_ids:
+        update_live_game_data(league_id)
+        scheduler.add_job(update_live_game_data, "interval", days=1, id=f"update_{league_id}_live_games", args=[league_id], replace_existing=True, 
+                      next_run_time=datetime.now() + timedelta(seconds=30))
+
+    print(datetime.now())
+
     scheduler.start()

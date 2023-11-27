@@ -24,12 +24,12 @@ class BalanceForm(forms.ModelForm):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ('order_type', 'side', 'price', 'quantity')
+        fields = ('order_type', 'order_side', 'order_price', 'order_quantity')
         widgets = {
             'order_type': forms.Select(attrs={'class': 'form-control'}),
-            'side': forms.Select(attrs={'class': 'form-control'}),
-            'price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
+            'order_side': forms.Select(attrs={'class': 'form-control'}),
+            'order_price': forms.NumberInput(attrs={'class': 'form-control'}),
+            'order_quantity': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
             

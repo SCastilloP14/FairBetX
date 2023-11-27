@@ -129,8 +129,8 @@ class GamesListView(ListView):
         league_filter = self.request.GET.get('league')
         queryset = Game.objects.filter(
             league=league_filter,
-                status__in=[MatchStatus.PLAYING.name, MatchStatus.SCHEDULED.name]) if league_filter else Game.objects.filter(
-                status__in=[MatchStatus.PLAYING.name, MatchStatus.SCHEDULED.name])        
+                status__in=[GameStatus.PLAYING.name, GameStatus.SCHEDULED.name]) if league_filter else Game.objects.filter(
+                status__in=[GameStatus.PLAYING.name, GameStatus.SCHEDULED.name])        
         return queryset
 
 
