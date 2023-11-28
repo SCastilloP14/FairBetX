@@ -1,32 +1,57 @@
 from django.db import models
 from django.contrib.auth.models import User
 from enum import Enum
-from exchange_app.api_scheduler.api_methods import fetch_team_data, fetch_player_data,fetch_season_games, fetch_live_scores_data, fetch_upcoming_games_data
-from datetime import datetime
-import time
 import random, string
 
 # ------------------- ENUMS NEEDED FOR THE MODELS --------------
 
-class MatchStatus(Enum):
+class GameStatus(Enum):
     SCHEDULED = "Scheduled"
     PLAYING = "Playing"
     FINISHED = "Finished"
-    CANCELLED = "Cancelled"
+    CANCELED = "Cancelled"
     POSTPONED = "Postponed"
-    ABD = "Abd"
+    ABDANDONED = "Abandoned"
+    NO_STATUS = "No_Status"
 
     def __str__(self):
         return self.name
 
-match_status_mapping = {
-                        'NS': MatchStatus.SCHEDULED,
-                        'PLAYING': MatchStatus.PLAYING,
-                        'FT': MatchStatus.FINISHED,
-                        'POST': MatchStatus.CANCELLED,
-                        'CANC': MatchStatus.CANCELLED,
-                        'ABD': MatchStatus.CANCELLED
+game_status_mapping = {
+                        'NS': GameStatus.SCHEDULED.name,
+                        'PLAYING': GameStatus.PLAYING.name,
+                        'FT': GameStatus.FINISHED.name,
+                        'HT': GameStatus.PLAYING.name,
+                        'BT': GameStatus.PLAYING.name,
+                        'CANC': GameStatus.CANCELED.name,
+                        'POST': GameStatus.POSTPONED.name,
+                        'ABD': GameStatus.ABDANDONED.name,
+                        '': GameStatus.NO_STATUS.name,
+                        'AOT':GameStatus.FINISHED.name,
+                        'AP':GameStatus.FINISHED.name
                         }
+
+class TickerStatus(Enum):
+    OPEN = "Open"
+    CLOSED = "Closed"
+    CANCELED = "Canceled"
+
+    def __str__(self):
+        return self.name
+    
+ticker_status_mapping = {GameStatus.SCHEDULED.name: TickerStatus.OPEN.name,
+                         GameStatus.PLAYING.name: TickerStatus.OPEN.name,
+                         GameStatus.FINISHED.name: TickerStatus.CLOSED.name,
+                         GameStatus.CANCELED.name: TickerStatus.CANCELED.name,
+                         GameStatus.POSTPONED.name: TickerStatus.CANCELED.name,
+                         GameStatus.ABDANDONED.name: TickerStatus.CANCELED.name,
+                         GameStatus.NO_STATUS.name: TickerStatus.CLOSED.name,
+                         }
+
+class TickerOutcome(Enum):
+    LONGS_WIN = "Longs Win"
+    SHORTS_WIN = "Shorts Win"
+    CANCELED = "Cancelled"
 
 
 class OrderType(Enum):
@@ -49,160 +74,28 @@ class OrderStatus(Enum):
     OPEN = "Open"
     PARTIAL = "Partially Filled"
     FILLED = "Filled"
-    CANCELLED = "Cancelled"
-
-    def __str__(self):
-        return self.name
-
-
-class TickerStatus(Enum):
-    OPEN = "Open"
-    CLOSED = "Closed"
-    CANCELED = "Canceled"
-
-    def __str__(self):
-        return self.name
-
-class TickerOutcome(Enum):
-    LONGS_WIN = "Longs Win"
-    SHORTS_WIN = "Shorts Win"
     CANCELED = "Cancelled"
+
+    def __str__(self):
+        return self.name
 
     def __str__(self):
         return self.value
 
 ticker_stauts_mapping = {
-                        'NS': TickerStatus.OPEN,
-                        'PLAYING': TickerStatus.OPEN,
-                        'FT': TickerStatus.CLOSED,
-                        'POST': TickerStatus.CANCELED,
-                        'CANC': TickerStatus.CANCELED,
-                        'ABD': TickerStatus.CANCELED
+                        'NS': TickerStatus.OPEN.name,
+                        'PLAYING': TickerStatus.OPEN.name,
+                        'FT': TickerStatus.CLOSED.name,
+                        'POST': TickerStatus.CANCELED.name,
+                        'CANC': TickerStatus.CANCELED.name,
+                        'ABD': TickerStatus.CANCELED.name
                         }
-
-# ------------------- METHODS TO UPDATE MODELS ----------------------
-def create_or_update_team(**kwargs):
-    if not kwargs["short_name"]:
-        kwargs["short_name"] = kwargs["name"]
-    try:
-        existing_team = Team.objects.get(team_id=kwargs["team_id"])
-        existing_team.name = kwargs["name"]
-        existing_team.sport = kwargs["sport"]
-        existing_team.short_name = kwargs["short_name"]
-        existing_team.stadium = kwargs["stadium"]
-        existing_team.badge = kwargs["badge"]
-        existing_team.jersey = kwargs["jersey"]
-        existing_team.logo = kwargs["logo"]
-        existing_team.save()
-    except Team.DoesNotExist:
-        # Object does not exist, create a new object
-        new_object = Team(team_id=kwargs["team_id"], name=kwargs["name"], sport=kwargs["sport"], short_name=kwargs["short_name"],
-                          stadium = kwargs["stadium"], badge=kwargs["badge"], jersey=kwargs["jersey"], logo=kwargs["logo"])
-        new_object.save()
-    
-def create_or_update_player(team, **kwargs):
-    player_team = Team.objects.get(team_id=team["team_id"])
-    try:
-        existing_player = Player.objects.get(player_id=kwargs["player_id"])
-    except Player.DoesNotExist:
-        # Object does not exist, create a new object
-        if kwargs["number"] == '':
-            kwargs["number"] = 0
-        new_object = Player(player_id=kwargs["player_id"], name=kwargs["name"], number=kwargs["number"], team=player_team)
-        new_object.save()
-    
-def create_or_update_game(**kwargs):
-    try:
-        existing_game = Game.objects.get(game_id=kwargs["game_id"])
-        existing_game.home_team_score = kwargs["home_team_score"]
-        existing_game.away_team_score = kwargs["away_team_score"]
-        existing_game.start_time = kwargs["start_time"]
-        existing_game.progress = kwargs["progress"]
-        existing_game.status = match_status_mapping.get(kwargs["status"])
-        existing_game.save()
-    except Game.DoesNotExist:
-        try:
-            # Object does not exist, create a new object
-            home_team = Team.objects.get(team_id=kwargs["home_team_id"])
-            away_team=Team.objects.get(team_id=kwargs["away_team_id"])
-            new_game = Game(game_id=kwargs["game_id"], sport=kwargs["sport"], league=kwargs["league"], league_id=kwargs["league_id"], 
-                            home_team=home_team, away_team=away_team, progress = kwargs["progress"],
-                            home_team_score=kwargs["home_team_score"], away_team_score=kwargs["away_team_score"],
-                            start_time=kwargs["start_time"], status=match_status_mapping.get(kwargs["status"])
-                            )
-            new_game.save()
-        except Team.DoesNotExist:
-            print("Missing a team:", kwargs["home_team_id"], kwargs["away_team_id"])
-    except Exception as e:
-        print('ERROR ON GAME!!!', e, kwargs)
-    existing_game = Game.objects.get(game_id=kwargs["game_id"])
-    create_or_update_ticker(existing_game, **kwargs)
-
-
-def create_or_update_ticker(match, **kwargs):
-    try:
-        existing_ticker = Ticker.objects.get(ticker_id=f"{kwargs['game_id']}-T")
-        # if "IN" in kwargs["status"]:
-        #     print(existing_ticker.status, TickerStatus.OPEN.name, existing_ticker.status == TickerStatus.OPEN.name)
-        if existing_ticker.status == TickerStatus.OPEN.name:
-            existing_ticker.status = ticker_stauts_mapping[kwargs["status"]]
-            existing_ticker.save()
-            if existing_ticker.status == TickerStatus.CLOSED.name:
-                if Ticker.match.home_team_score > Ticker.match.away_team_score:
-                    print("Closing Ticker", f"{kwargs['game_id']}-T with longs win")
-                    outcome = TickerOutcome.LONGS_WIN.name
-                elif Ticker.match.home_team_score < Ticker.match.away_team_score:
-                    outcome = TickerOutcome.SHORTS_WIN.name
-                    print("Closing Ticker", f"{kwargs['game_id']}-T with shorts win")
-                existing_ticker.close_ticker(existing_ticker, outcome)
-            elif existing_ticker.status == TickerStatus.CANCELED.name:
-                print("Canceling Ticker", f"{kwargs['game_id']}-T")
-                existing_ticker.cancel_ticker(existing_ticker)
-            existing_ticker.save()
-    except Ticker.DoesNotExist:
-        if ticker_stauts_mapping[kwargs["status"]] == TickerStatus.OPEN:
-            new_ticker = Ticker(ticker_id=f"{kwargs['game_id']}-T", 
-                                match = match, 
-                                status=TickerStatus.OPEN)
-            new_ticker.save()
-            print(f"Created ticker {kwargs['game_id']}-T")
-    # if "IN" in kwargs["status"]:
-    #         existing_ticker = Ticker.objects.get(ticker_id=f"{kwargs['game_id']}-T")
-    #         print(existing_ticker.status, TickerStatus.OPEN.name, existing_ticker.status == TickerStatus.OPEN.name)
-    #         print("---------------------------")
-
-
-def update_teams(league_name):
-    team_list = fetch_team_data(league_name)
-    for team in team_list:
-            create_or_update_team(**team)
-            # team_players_list = fetch_player_data(team["team_id"])
-            # for player in team_players_list:
-            #     create_or_update_player(team, **player)
-
-
-def update_season_games(league_id, season_str):
-    season_games_list = fetch_season_games(league_id, season_str)
-    for game in season_games_list:
-        create_or_update_game(**game)
-
-
-def update_live_games(league_id):
-    live_games_list = fetch_live_scores_data(league_id)
-    for live_game in live_games_list:
-        create_or_update_game(**live_game)
-
-
-def update_upcoming_games(league_id):
-    upcomng_games_list = fetch_upcoming_games_data(league_id)
-    for upcoming_game in upcomng_games_list:
-        create_or_update_game(**upcoming_game)
 
 # ----------------------- MODELS NEEDED -----------------------
 class UserProfileInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)     
-    available_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    locked_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    user_available_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    user_locked_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     @property
     def fees_paid(self):
@@ -231,94 +124,202 @@ class UserProfileInfo(models.Model):
         return f"{self.user.first_name} {self.user.last_name}"
 
 
+class League(models.Model):
+    league_id = models.IntegerField()
+    league_sport = models.CharField(max_length=100)
+    league_name = models.CharField(max_length=100)
+    league_alternative_name = models.CharField(max_length=100)
+    league_current_season = models.CharField(max_length=100)
+    league_formed_year = models.IntegerField()
+    league_first_event = models.CharField(max_length=100)
+    league_gender = models.CharField(max_length=100)
+    league_country = models.CharField(max_length=100)
+    league_description = models.CharField(max_length=5000)
+    league_badge = models.CharField(max_length=100)
+    league_logo = models.CharField(max_length=100)
+    league_trophy = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.league_sport} {self.league_name}"
+
+ 
+
 class Team(models.Model):
     team_id = models.IntegerField()
-    name = models.CharField(max_length=100)
-    sport = models.CharField(max_length=100)
-    short_name = models.CharField(max_length=100)
-    stadium = models.CharField(max_length=100)
-    badge = models.CharField(max_length=100)
-    jersey = models.CharField(max_length=100)
-    logo = models.CharField(max_length=100)
+    team_name = models.CharField(max_length=100)
+    team_short_name = models.CharField(max_length=10, null=True, blank=True)
+    team_year_formed = models.IntegerField(null=True, blank=True)
+    team_sport = models.CharField(max_length=20, null=True, blank=True)
+    team_league_1 = models.ForeignKey(League, on_delete=models.CASCADE, related_name="team_league_1", null=True, blank=True)
+    team_league_2 = models.ForeignKey(League, on_delete=models.CASCADE, related_name="team_league_2", null=True, blank=True)
+    team_league_3 = models.ForeignKey(League, on_delete=models.CASCADE, related_name="team_league_3", null=True, blank=True)
+    team_league_4 = models.ForeignKey(League, on_delete=models.CASCADE, related_name="team_league_4", null=True, blank=True)
+    team_league_5 = models.ForeignKey(League, on_delete=models.CASCADE, related_name="team_league_5", null=True, blank=True)
+    team_league_6 = models.ForeignKey(League, on_delete=models.CASCADE, related_name="team_league_6", null=True, blank=True)
+    team_league_7 = models.ForeignKey(League, on_delete=models.CASCADE, related_name="team_league_7", null=True, blank=True)
+    team_stadium = models.CharField(max_length=100, null=True, blank=True)
+    team_stadium_description = models.CharField(max_length=100, null=True, blank=True)
+    team_stadium_capacity = models.IntegerField(null=True, blank=True)
+    team_location = models.CharField(max_length=100, null=True, blank=True)
+    team_country = models.CharField(max_length=100, null=True, blank=True)
+    team_gender = models.CharField(max_length=100, null=True, blank=True)
+    team_description = models.CharField(max_length=5000, null=True, blank=True)
+    team_badge = models.CharField(max_length=100, null=True, blank=True)
+    team_jersey = models.CharField(max_length=100, null=True, blank=True)
+    team_logo = models.CharField(max_length=100, null=True, blank=True)
+    
+
     def __str__(self):
-        return self.name
+        return f"{self.team_name} {self.team_league_1.league_name}"
 
 
 class Player(models.Model):
     player_id = models.IntegerField()
-    name = models.CharField(max_length=100)
-    number = models.IntegerField(null=True, blank=True)
-    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    player_name = models.CharField(max_length=50)
+    player_sport = models.CharField(max_length=100, null=True, blank=True)
+    player_nationality = models.CharField(max_length=100, null=True, blank=True)
+    player_date_of_birth = models.DateTimeField(null=True, blank=True)
+    player_number = models.IntegerField(null=True, blank=True)
+    player_birth_location = models.CharField(max_length=100, null=True, blank=True)
+    player_status = models.CharField(max_length=100, null=True, blank=True)
+    player_description = models.CharField(max_length=5000, null=True, blank=True)
+    player_gender = models.CharField(max_length=10, null=True, blank=True)
+    player_position = models.CharField(max_length=50, null=True, blank=True)
+    player_height = models.CharField(max_length=50, null=True, blank=True)
+    player_weight = models.CharField(max_length=50, null=True, blank=True)
+    player_photo = models.CharField(max_length=10, null=True, blank=True)
+    player_team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.player_name} {self.player_team.team_name}"
     
 
 class Game(models.Model):
     game_id = models.IntegerField()
-    sport = models.CharField(max_length=100, default="")
-    league = models.CharField(max_length=100, default="")
-    league_id = models.IntegerField(default=0)
-    home_team = models.ForeignKey(Team, related_name="home_games", on_delete=models.CASCADE)
-    away_team = models.ForeignKey(Team, related_name="away_games", on_delete=models.CASCADE)
-    home_team_score = models.IntegerField(null=True)
-    away_team_score = models.IntegerField(null=True) 
-    start_time = models.DateTimeField()
-    progress = models.CharField(max_length=100, default="")
-    status = models.CharField(max_length=20, choices=[(s.name, s) for s in MatchStatus])
+    game_name = models.CharField(max_length=100)
+    game_alternative_name = models.CharField(max_length=100, null=True, blank=True)
+    game_filename = models.CharField(max_length=100, null=True, blank=True)
+    game_season = models.CharField(max_length=100)
+    game_home_team = models.ForeignKey(Team, related_name="home_games", on_delete=models.CASCADE)
+    game_away_team = models.ForeignKey(Team, related_name="away_games", on_delete=models.CASCADE)
+    game_home_team_score = models.IntegerField(null=True, blank=True)
+    game_away_team_score = models.IntegerField(null=True, blank=True) 
+    game_round = models.IntegerField(null=True, blank=True)
+    game_spectators = models.IntegerField(null=True, blank=True)
+    game_official = models.CharField(max_length=100, null=True, blank=True)
+    game_start_datetime = models.DateTimeField(null=True, blank=True)
+    game_results = models.CharField(max_length=100, null=True, blank=True)
+    game_venue = models.CharField(max_length=100, null=True, blank=True)
+    game_country = models.CharField(max_length=100, null=True, blank=True)
+    game_city = models.CharField(max_length=100, null=True, blank=True)
+    game_progress = models.CharField(max_length=100, null=True, blank=True)
+    game_status = models.CharField(max_length=20, choices=[(s.name, s) for s in GameStatus])
+    game_postponed = models.BooleanField(default=False)
+    game_league = models.ForeignKey(League, on_delete=models.CASCADE, related_name="league_games")
 
     def __str__(self):
-        return f"{self.home_team} vs {self.away_team}"
+        return f"{self.game_filename}"
     
 
 class Ticker(models.Model):
     ticker_id = models.CharField(max_length=100)
-    match = models.ForeignKey(Game, on_delete=models.CASCADE, related_name="tickers")
-    status = models.CharField(max_length=20, choices=[(s.name, s) for s in TickerStatus])
-    last_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    volume = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    maker_fee_pct = models.DecimalField(max_digits=10, decimal_places=4, default=0.5)
-    taker_fee_pct = models.DecimalField(max_digits=10, decimal_places=4, default=1.0)
-    payout = models.IntegerField(default=10)
-    
-    def update_ticker(self, trades):
+    ticker_game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name="tickers")
+    ticker_status = models.CharField(max_length=20, choices=[(s.name, s) for s in TickerStatus], default=TickerStatus.OPEN.name)
+    ticker_last_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    ticker_best_bid = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    ticker_best_ask = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    ticker_volume = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    ticker_maker_fee_pct = models.DecimalField(max_digits=10, decimal_places=4, default=0.5)
+    ticker_taker_fee_pct = models.DecimalField(max_digits=10, decimal_places=4, default=1.0)
+    ticker_payout = models.IntegerField(default=10)
+    ticker_outcome = models.CharField(max_length=20, choices=[(s.name, s) for s in TickerOutcome])
+
+    def update_ticker_activity(self, trades):
         for trade in trades:
             self.volume += trade.quantity
             self.last_price = trade.price
             self.save()
 
-    def close_ticker(self, outcome):
-        ticker_positions = Position.objects.get(ticker=self)
-        for position in ticker_positions:
-            position_payout= self.payout * position.quantity
-            if position.quantity > 0 and outcome == TickerOutcome.LONGS_WIN.value:
-                user = position.user
-                user.userprofileinfo.available_balance += position_payout
-                user.userprofileinfo.locked_balance -= position.quantitity * position.average_price 
-            elif position.quantity < 0 and outcome == TickerOutcome.SHORTS_WIN.value:
-                user_info = position.user.userprofileinfo
-                user_info.available_balance += position_payout
-                user.userprofileinfo.locked_balance -= position.quantitity * (self.payout - position.average_price)
+    def check_outcome(self):
+        if self.ticker_game.game_home_team_score > self.ticker_game.game_away_team_score:
+            self.ticker_outcome = TickerOutcome.LONGS_WIN.name
+        else:
+            self.ticker_outcome = TickerOutcome.SHORTS_WIN.name
+        
+    def close_ticker(self):
+        self.ticker_status = TickerStatus.CLOSED.name
+        self.save()
+        self.check_outcome()
+        self.pay_winners()
+
+    def cancel_ticker(self):
+        #   Finish sending back the money
+        self.ticker_status = TickerStatus.CANCELED.name
+        self.save()
+
+    def pay_winners(self):
+        try:
+            ticker_positions = Position.objects.get(position_ticker=self)
+            for position in ticker_positions:
+                position_payout= self.payout * abs(position.quantity)
+                if position.quantity > 0 and self.ticker_outcome == TickerOutcome.LONGS_WIN.name:
+                    position_user = position.user
+                    position_user.userprofileinfo.available_balance += position_payout
+                    position_user.userprofileinfo.locked_balance -= position.quantitity * position.average_price 
+                elif position.quantity < 0 and self.ticker_outcome == TickerOutcome.SHORTS_WIN.name:
+                    position_user = position.user.userprofileinfo
+                    position_user.available_balance += position_payout
+                    position_user.userprofileinfo.locked_balance -= position.quantitity * (self.payout - position.average_price)
+        except Position.DoesNotExist:
+            print(f"{self.ticker_game.game_filename} closed without any positions")
+
+    def update_ticker(game: Game, **kwargs):
+        try:
+            existing_ticker = Ticker.objects.get(ticker_id=f"{kwargs['game_id']}-T")
+            # if "IN" in kwargs["status"]:
+            #     print(existing_ticker.status, TickerStatus.OPEN.name, existing_ticker.status == TickerStatus.OPEN.name)
+            if existing_ticker.status == TickerStatus.OPEN.name:
+                existing_ticker.status = ticker_stauts_mapping[kwargs["status"]]
+                existing_ticker.save()
+                if existing_ticker.status == TickerStatus.CLOSED.name:
+                    if Ticker.game.home_team_score > Ticker.game.away_team_score:
+                        print("Closing Ticker", f"{kwargs['game_id']}-T with longs win")
+                        outcome = TickerOutcome.LONGS_WIN.name
+                    elif Ticker.game.home_team_score < Ticker.game.away_team_score:
+                        outcome = TickerOutcome.SHORTS_WIN.name
+                        print("Closing Ticker", f"{kwargs['game_id']}-T with shorts win")
+                    existing_ticker.close_ticker(existing_ticker, outcome)
+                elif existing_ticker.status == TickerStatus.CANCELED.name:
+                    print("Canceling Ticker", f"{kwargs['game_id']}-T")
+                    existing_ticker.cancel_ticker(existing_ticker)
+                existing_ticker.save()
+        except Ticker.DoesNotExist:
+            if ticker_stauts_mapping[kwargs["status"]] == TickerStatus.OPEN:
+                new_ticker = Ticker(ticker_id=f"{kwargs['game_id']}-T", 
+                                    ticker_game = game, 
+                                    status=TickerStatus.OPEN)
+                new_ticker.save()
+                print(f"Created ticker {kwargs['game_id']}-T")
 
     def __str__(self):
-        return f"{self.ticker_id} {self.match}"
+        return f"{self.ticker_game.game_filename}-T"
 
 
 class Order(models.Model):
     order_id = models.CharField(max_length=100)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    ticker = models.ForeignKey(Ticker, on_delete=models.CASCADE)
+    order_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    order_ticker = models.ForeignKey(Ticker, on_delete=models.CASCADE)
     order_type = models.CharField(max_length=20, choices=[(s.name, s.value) for s in OrderType])
-    side = models.CharField(max_length=20, choices=[(s.name, s.value) for s in OrderSide])
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=None)
-    quantity = models.IntegerField(default=0)
-    filled_quantity = models.IntegerField(default=0)
-    working_quantity = models.IntegerField(default=0)
-    avg_fill_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=None)
-    status = models.CharField(max_length=20, choices=[(s.name, s.value) for s in OrderStatus], default=OrderStatus.OPEN.name)
-    paid_fees = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    creation_timestamp = models.DateTimeField(auto_now_add=True)
-    modification_timestamp = models.DateTimeField(auto_now_add=True)
+    order_side = models.CharField(max_length=20, choices=[(s.name, s.value) for s in OrderSide])
+    order_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=None)
+    order_quantity = models.IntegerField(default=0)
+    order_filled_quantity = models.IntegerField(default=0)
+    order_working_quantity = models.IntegerField(default=0)
+    order_avg_fill_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=None)
+    order_status = models.CharField(max_length=20, choices=[(s.name, s.value) for s in OrderStatus], default=OrderStatus.OPEN.name)
+    order_paid_fees = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    order_creation_timestamp = models.DateTimeField(auto_now_add=True)
+    order_modification_timestamp = models.DateTimeField(auto_now_add=True)
 
     def cancel(self):
         if self.status != OrderStatus.FILLED.value:
@@ -359,16 +360,38 @@ class Order(models.Model):
         self.save()
 
     def execute_order(self):
+        # If statement to check balance and return error message.
+        required_balance = self.price * self.quantity if self.side == OrderSide.BUY.name else (self.payout - self.price) * self.quantity
+        if required_balance > self.user.userprofileinfo.available_balance:
+            return "NOT ENOUGH BALANCE"
+        try:
+            user_position = Position.objects.get(user=self.user, ticker=self.ticker)
+            user_posittion_quantity = user_position.quantity
+            user_position_avg_price = user_position.average_price
+        except Position.DoesNotExist:
+            user_posittion_quantity = 0
+            user_position_avg_price = 0
         if self.side == OrderSide.BUY.name:
             if self.order_type == OrderType.LIMIT.name:
-                balance_to_lock = self.price * self.quantity
-                self.lock_balance(balance_to_lock)
+                if user_posittion_quantity >= 0:
+                    # Case 1 + Case 2
+                    balance_to_lock = self.price * self.quantity
+                    self.lock_balance(balance_to_lock)
+                elif user_posittion_quantity < 0:
+                    if abs(user_posittion_quantity) >= self.quantity:
+                        # Case 3 & Case 4
+                        pass
+                    else:
+                        balance_needed_after_flip = (user_posittion_quantity + self.quantity) * self.price
+                        balance_needed_currently = (self.ticker.payout - user_position_avg_price) * self.price
+                        # Case 5
+                        
                 counterparties = Order.objects.filter(ticker=self.ticker, price__lte=self.price, side=OrderSide.SELL.name, working_quantity__gt=0,
                                                     #   status__ne=OrderStatus.CANCELLED.name
                                                       ).order_by("price", "modification_timestamp")
             else:
                 counterparties = Order.objects.filter(ticker=self.ticker, side=OrderSide.SELL.name, working_quantity__gt=0, 
-                                                    #   status__ne=OrderStatus.CANCELED.name
+                                                    #   status__ne=OrderStatus.CANCELLED.name
                                                       ).order_by("price", "modification_timestamp")
         else:
             if self.order_type == OrderType.LIMIT.name:
@@ -378,7 +401,8 @@ class Order(models.Model):
                                                     #   status__ne=OrderStatus.CANCELLED.name
                                                       ).order_by("-price", "modification_timestamp")
             else:
-                counterparties = Order.objects.filter(ticker=self.ticker, side=OrderSide.BUY.name, working_quantity__gt=0, status__ne=OrderStatus.CANCELED.name
+                counterparties = Order.objects.filter(ticker=self.ticker, side=OrderSide.BUY.name, working_quantity__gt=0, 
+                                                    #   status__ne=OrderStatus.CANCELED.name
                                                       ).order_by("-price", "modification_timestamp")
         remaining_quantity = self.quantity
         trades = []
@@ -412,37 +436,37 @@ class Order(models.Model):
 
 class Fill(models.Model):
     fill_id = models.CharField(max_length=20)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    ticker = models.ForeignKey(Ticker, on_delete=models.CASCADE)
-    side = models.CharField(max_length=20, choices=[(s.name, s.value) for s in OrderSide])
-    quantity = models.PositiveIntegerField(default=0)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    fill_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    fill_ticker = models.ForeignKey(Ticker, on_delete=models.CASCADE)
+    fill_side = models.CharField(max_length=20, choices=[(s.name, s.value) for s in OrderSide])
+    fill_quantity = models.PositiveIntegerField(default=0)
+    fill_price = models.DecimalField(max_digits=10, decimal_places=2)
+    fill_timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.fill_id}"
 
 
 class Trade(models.Model):
-    trade_id = models.CharField(max_length=20)
-    ticker = models.ForeignKey(Ticker, on_delete=models.CASCADE)
-    buy = models.ForeignKey(Order, related_name="buy_trades",on_delete=models.CASCADE)
-    sell = models.ForeignKey(Order, related_name="sell_trades", on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    trade_trade_id = models.CharField(max_length=20)
+    trade_ticker = models.ForeignKey(Ticker, on_delete=models.CASCADE)
+    trade_buy = models.ForeignKey(Order, related_name="buy_trades",on_delete=models.CASCADE)
+    trade_sell = models.ForeignKey(Order, related_name="sell_trades", on_delete=models.CASCADE)
+    trade_quantity = models.PositiveIntegerField()
+    trade_price = models.DecimalField(max_digits=10, decimal_places=2)
+    trade_timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.ticker.ticker_id}-{self.trade_id}"
     
 
 class Position(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    ticker = models.ForeignKey(Ticker, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=0)
-    average_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    open_pnl = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    closed_pnl = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    position_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    position_ticker = models.ForeignKey(Ticker, on_delete=models.CASCADE)
+    position_quantity = models.IntegerField(default=0)
+    position_average_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    position_open_pnl = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    position_closed_pnl = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     @classmethod
     def update_positions(cls, trades):

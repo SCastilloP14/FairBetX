@@ -5,6 +5,289 @@
     {% include './components/ticker_NBA.html' %}
 
 
- {% endblock %}
+              <!-- <div class="tradingview-widget-container">
+                <div
+                  class="tradingview-widget-container"
+                  id="tradingview_8efd8"
+                ></div>
+
+                <script
+                  type="text/javascript"
+                  src="https://s3.tradingview.com/tv.js"
+                ></script>
+                <script type="text/javascript">
+                  new TradingView.widget({
+                    // width: 300,
+                    // height: 300,
+                    autosize: true,
+                    symbol: "NASDAQ:AAPL",
+                    interval: "D",
+                    timezone: "Etc/UTC",
+                    theme: "dark",
+                    style: "1",
+                    locale: "en",
+                    enable_publishing: false,
+                    allow_symbol_change: true,
+                    container_id: "tradingview_8efd8",
+                  });
+                </script>
+              </div> -->
+              <!-- TradingView Widget END -->
+            </div>
+
+            
+            <div class="ticker-info-ob grid grid--3x1">
+              <h3 class="place-order-header">Orderbook</h3>
+
+              <div class="sell-orderbook">
+
+                <table class="orderbook__sell-side">
+                  <thead>
+                    <tr>
+                      <th class="orderbook__sell-side-header-price">Price</th>
+                      <th class="orderbook__sell-side-header-qty">Quantity</th>
+                    </tr>
+                    
+                  </thead>
+                  <tbody class="">
+                    {% for sell_order in sell_orders %}
+                    <tr>
+                      <td class="text-danger">{{ sell_order.price }}</td>
+                      <td>{{ sell_order.total_quantity }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                  
+                </table>
+              </div>
+              <div class="buy-orderbook">
+                <!-- Display Buy Orders -->
+                <table class="orderbook__buy-side">
+                  <thead>
+                    <tr>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                    </tr>
+                  </thead>
+                    <tbody class="">
+                      {% for buy_order in buy_orders %}
+                      <tr>
+                        <td class="orderbook__buy-side-order">{{ buy_order.price }}</td>
+                        <td class="orderbook__buy-side-order">{{ buy_order.total_quantity }}</td>
+                      </tr>
+                     
+                      {% endfor %}
+                     
+                    </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="ticker-info-ob">
+              <h3 class="place-order-header">Place Order</h3>
+              <!-- <div class="grid grid--5x2"> -->
+                <div class="order__form">
+                {% if order_form %}
+                    <form id="order-form" method="POST" action="" class="form__order">
+                        {% csrf_token %}
+                        {{ order_form.as_p }}
+                        <input type="hidden" name="ticker_id" value="{{ ticker_detail.pk }}">
+                        <input type="hidden" name="action" value="submit_order">
+                        <button type="submit" class="btn--copy btn--primary btn--order">Submit Order</button>
+                        
+                    </form>
+                {% else %}
+                    <p>Please log in to place orders.</p>
+                {% endif %}
+                
+                <!-- <p class="place-order-fields PO1">Order Type</p>
+                <p class="place-order-fields PO2">Side</p>
+                <p class="place-order-fields PO3">Price</p>
+                <p class="place-order-fields PO4">Quantity</p> -->
+                
+                 <!-- {% if order_form %}
+                <form class="form__order-type" id="order-form" method="POST">
+                  <select name="" id="form__order-type">
+                    <option value="Market">Market</option>
+                    <option value="Limit">Limit</option>
+                  </select>
+                </form>
+                <form class="form__order-side">
+                  <select name="" id="form__order-side">
+                    <option value="Buy">BUY</option>
+                    <option value="Sell">SELL</option>
+                    <input type="hidden" name="ticker_id" value="{{ ticker_detail.pk }}">
+                  </select>
+                </form>
+                {% else %}
+                  <p>Please log in to place orders.</p>
+                {% endif %} -->
+
+                <!-- <div class="form__input form__order-price">
+                  <input
+                    type="text"
+                    name="price"
+                    id=""
+                    class="input"
+                    placeholder=""
+                  />
+                </div> -->
+
+                <!-- <div class="form__input form__order-qty">
+                  <input
+                    type="text"
+                    name="quantity"
+                    id=""
+                    class="input"
+                    placeholder=""
+                  />
+                </div> -->
+
+                <!-- <button type="submit"
+                  class="btn--copy btn--order btn--primary place-order-fields PO5"
+                >
+                  Submit Order
+                </button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle Sectiont that inlcudes the Orders-,Fills-, Position and Historic Tables -->
+        <!-- <div class="grid grid--1x5">
+          <h4>Orders</h4>
+          <h4>Fills</h4>
+          <h4>Positions</h4>
+          <h4>Historic Orders</h4>
+        </div> -->
+
+
+        <nav class="nav nav--table grid grid--1x4">
+          <a id="orders-tab" class="" aria-current="page" href="#">Orders</a>
+          <a id="fills-tab" class="" href="#">Fills</a>
+          <a id="positions-tab" class="" href="#">Positions</a>
+          <a id="historic-orders-tab" class="" href="#">Historic Orders</a>
+        </nav>
+
+        <!-- Tables  -->
+        {% if user.is_authenticated %}
+        <div id="orders-section" class="user_table orders_table">
+          {% if user_orders %}
+          <!-- Iterate over user_orders and display order information -->
+          <table class="user_table orders_table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Ticker</th>
+                <th>Order Type</th>
+                <th>Side</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Filled Quantity</th>
+                <th>Working Quantity</th>
+                <th>Avg Fill Price</th>
+                <th>Status</th>
+                <th>Paid Fees</th>
+                <th>Cancel</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in user_orders %}
+              <tr>
+                <td>{{ order.creation_timestamp }}</td>
+                <td>{{ order.ticker }}</td>
+                <td>{{ order.order_type }}</td>
+                <td>{{ order.side }}</td>
+                <td>{{ order.price }}</td>
+                <td>{{ order.quantity }}</td>
+                <td>{{ order.filled_quantity }}</td>
+                <td>{{ order.working_quantity }}</td>
+                <td>{{ order.avg_fill_price }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.paid_fees }}</td>
+                <td>
+                  <form id="cancel-form" method="POST" action="" class="user__balance__btn">
+                    {% csrf_token %}
+                    <input type="hidden" name="order_id" value="{{ order.order_id }}">
+                    <input type="hidden" name="action" value="cancel_order">
+                    <button type="submit" class="btn btn--secondary">Cancel</button>
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <p>No orders available.</p>
+          {% endif %}
+        </div>
+        <div id="positions-section">
+          {% if user_positions %}
+          <table class="">
+            <thead>
+              <tr>
+                <th>Ticker</th>
+                <th>Position</th>
+                <th>Avg Price</th>
+                <th>Open Pnl</th>
+                <th>Closed PnL</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for position in user_positions %}
+              <tr>
+                <td>{{ position.ticker.ticker_id }}</td>
+                <td>{{ position.quantity }}</td>
+                <td>{{ position.average_price }}</td>
+                <td>{{ position.open_pnl }}</td>
+                <td>{{ position.closed_pnl }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+            <p>No positions available.</p>
+          {% endif %}
+        </div>
+        <div id="fills-section">
+          {% comment %} DISPLAY POSITIONS OF THE USER {% endcomment %}
+           {% if user_fills %}
+          <table class="">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Ticker</th>
+                <th>Side</th>
+                <th>Quantity</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for fill in user_fills %}
+              <tr>
+                <td>{{ fill.timestamp }}</td>
+                <td>{{ fill.ticker.ticker_id }}</td>
+                <td>{{ fill.side }}</td>
+                <td>{{ fill.quantity }}</td>
+                <td>{{ fill.price }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+            <p>No fills available.</p>
+          {% endif %}
+        </div>
+        {% else %}
+          <p class="user-table__unauthorized">Log in to display data</p>
+        {% endif %}
+
+        <!-- Tables End --> 
+      </div>
+      <div class="empty"></div>
+    </div>
+
+    <div class="footer"></div>
+     {% endblock %}
   <!-- </body> -->
 <!-- </html> -->

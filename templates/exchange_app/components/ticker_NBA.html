@@ -511,33 +511,34 @@ outline: none;
     height: 20px;
 }
 </style>
+
 <div class="grid grid_nav_1x3 page_background">
     <div class="empty"></div>
     <div class="middle_section">
         <!-- Header  -->
 
-        <div class="header">{{ticker_detail.match.league}}</div>
+        <div class="header">{{ticker_detail.ticker_game.game_league_1.league_name}}</div>
         <div class="tickerPageGameDetails grid grid_1x9">
-            {% if ticker_detail.match.status == "SCHEDULED" %}
-                <div class="gamePeriod">Scheduled</div>
+            {% if ticker_detail.ticker_game.game_progress %}
+                <div class="gamePeriod">{{ticker_detail.ticker_game.game_progress}}</div>
             {% else %}
-                    <div class="tickerPageHomeScore">{{ticker_detail.match.status}}</div>
+                <div class="gamePeriod">NS</div>
             {% endif %}
             <div class="grid grid_2x1">
-                <div class="tickerPageHomeTeam">{{ticker_detail.match.away_team.name}}</div>
-                <div class="tickerPageAwayTeam">{{ticker_detail.match.home_team.name}}</div>
+                <div class="tickerPageHomeTeam">{{ticker_detail.ticker_game.game_away_team.team_name}}</div>
+                <div class="tickerPageAwayTeam">{{ticker_detail.ticker_game.game_home_team.team_name}}</div>
             </div>
             <div class="grid grid_2x1">
-                {% if not ticker_detail.match.away_team.away_team_score %}
+                {% if not ticker_detail.ticker_game.game_away_team_score %}
                     <div class="tickerPageHomeScore">-</div>
                 {% else %}
-                    <div class="tickerPageHomeScore">{{ticker_detail.match.away_team_score}}</div>
+                    <div class="tickerPageHomeScore">{{ticker_detail.ticker_game.game_away_team_score}}</div>
                 {% endif %}
 
-                {% if not ticker_detail.match.away_team.away_team_score %}
+                {% if not ticker_detail.ticker_game.game_home_team_score %}
                     <div class="tickerPageHomeScore">-</div>
                 {% else %}
-                    <div class="tickerPageAwayScore">{{ticker_detail.match.home_team_score}}</div>
+                    <div class="tickerPageAwayScore">{{ticker_detail.ticker_game.game_home_team_score}}</div>
                 {% endif %}
 
             </div>
@@ -546,57 +547,41 @@ outline: none;
                 <img class="tickerPageDateIcon" src="../../../static/img/calendar-icon.png" alt="">
             </div>
             <div class="tickerPageGameDate">
-                {{ticker_detail.match.date}}
+                {{ticker_detail.ticker_game.game_start_datetime}}
             </div>
             <div>
                 <img class="tickerPageTimeIcon" src="../../../static/img/clock-icon.png" alt="">
             </div>
-            <div class="tickerPageGameTime">{{ticker_detail.match.start_time}}</div>
+            <div class="tickerPageGameTime">{{ticker_detail.ticker_game.game_start_datetime}}</div>
              <div>
                 <img  class="tickerPageLocationIcon" src="../../../static/img/location-icon.png" alt="">
             </div>
-            <div class="tickerPageGameLocation">{{ticker_detail.match.location}}</div>
+            <div class="tickerPageGameLocation">{{ticker_detail.ticker_game.game_venue}}</div>
         </div>
 
         <!-- Game + User Info Card  -->
         <div class="tickerPageUserCard grid grid_1x10">
             <img src="../../../static/img/wallet-icon-white.png" alt="">
             <div class="grid grid_2x1">
-                {% if user.userprofileinfo.available_balance %}
-                    <div class="tickerPageUserCardTop">{{user.userprofileinfo.available_balance}}</div>
-                {% else %}
-                    <div class="tickerPageUserCardTop">$-.--</div>
-                {% endif %}
+                <div class="tickerPageUserCardTop">{{user.userprofileinfo.available_balance}}</div>
                 <div class="tickerPageUserCardBottom">Balance</div>
 
             </div>
             <img src="../../../static/img/file-icon.png" alt="">
             <div class="grid grid_2x1">
-                {% if ticker_detail.volume %}
-                    <div class="tickerPageUserCardTop">{{ticker_detail.status}}</div>
-                {% else %}
-                    <div class="tickerPageUserCardTop">Scheduled</div>
-                {% endif %}
+                <div class="tickerPageUserCardTop">{{ticker_detail.ticker_status}}</div>
                 <div class="tickerPageUserCardBottom">Status</div>
 
             </div>
             <img src="../../../static/img/clipboard-icon.png" alt="">
             <div class="grid grid_2x1">
-                {% if ticker_detail.volume %}
-                    <div class="tickerPageUserCardTop">{{ticker_detail.volume}}</div>
-                {% else %}
-                    <div class="tickerPageUserCardTop">-</div>
-                {% endif %}
+                <div class="tickerPageUserCardTop">{{ticker_detail.ticker_volume}}</div>
                 <div class="tickerPageUserCardBottom">Volume</div>
 
             </div>
             <img src="../../../static/img/coin-icon.png" alt="">
             <div class="grid grid_2x1">
-                {% if ticker_detail.last_price %}
-                    <div class="tickerPageUserCardTop">{{ticker_detail.last_price}}</div>
-               {% else %}
-                    <div class="tickerPageUserCardTop">$-.--</div>
-                {% endif %}
+                <div class="tickerPageUserCardTop">{{ticker_detail.last_price}}</div>
                 <div class="tickerPageUserCardBottom">Last Price</div>
             </div>
 
@@ -611,7 +596,7 @@ outline: none;
                 <div id="chart-div">
                     <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
                     <script type="text/javascript" src="../../../static/trading_view.js"></script>
-                    <div id="chart-container" value="{{ticker_detail.id}}">{{ticker_detail.id}}</div>
+                    <div id="chart-container" value="{{ticker_detail.ticker_id}}">{{ticker_detail.ticker_id}}</div>
                 </div>
 
                
@@ -717,8 +702,8 @@ outline: none;
                     {% for buy_order in buy_orders|slice:":10" %}
 
                         <tr class="tickerPageBuyOrderbookTableRows">
-                            <td data-class="Price">{{buy_order.price}}</td>
-                            <td class="tickerPageBuyRight" data-class="Quantity">{{buy_order.total_quantity}}</td>
+                            <td data-class="Price">{{buy_order.order_price}}</td>
+                            <td class="tickerPageBuyRight" data-class="Quantity">{{buy_order.order_total_quantity}}</td>
                         </tr>
                     {% endfor %}
 
@@ -743,8 +728,8 @@ outline: none;
                     {% for sell_order in sell_orders|slice:":10" %}
                     
                         <tr class="tickerPageSellOrderbookTableRows">
-                            <td data-class="Price">{{sell_order.price}}</td>
-                            <td class="tickerPageSellRight" data-class="Quantity">{{sell_order.total_quantity}}</td>
+                            <td data-class="Price">{{sell_order.order_price}}</td>
+                            <td class="tickerPageSellRight" data-class="Quantity">{{sell_order.order_total_quantity}}</td>
                         </tr>
                     {% endfor %}
                     
@@ -760,7 +745,7 @@ outline: none;
                 <header>Place Order</header>
                 {% if user.is_authenticated %}
 
-                <form id="order-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="form__order">
+                <form id="order-form" method="POST" action="" class="form__order">
                 {% csrf_token %}
                     <div class="tickerPageOrderSubmissionField grid grid_4x2">
                         <div class="tickerPageOrderSubmissionPlaceOrderLeft">Order Type</div>
@@ -786,7 +771,7 @@ outline: none;
                         </div>
                         <input type="hidden" name="ticker_id" value="{{ticker_detail.pk}}">
                         <button class="tickerPageSubmitButton" type="submit" name="action" value="submit_order">Submit</button>
-                    </form>
+                </form>
                 {% else %}
                     <div class="tickerPageOrderSubmitNonUser">Please Login to place an Order</div>
                 {% endif %}
@@ -825,8 +810,6 @@ outline: none;
             </div>
 
             {% if user.is_authenticated %}
-
-
                 <div class="tickerPageUserTableCard" id="orders-section">
                     <table>
                         <tr>
@@ -844,21 +827,20 @@ outline: none;
                             <th>Cancel</th>
                         </tr>
                     {% for order in user_orders|slice:":20" %}
-                        {% if order.status == "OPEN" or order.status == "PARTIAL" %}
+                        {% if order.order_status == "OPEN" or order.order_status == "PARTIAL" %}
                         <tr>
                             <td data-class="Match">{{ticker_detail.ticker_id}}</td>
-                            <td data-class="Timestamp">{{order.creation_timestamp}}</td>
+                            <td data-class="Timestamp">{{order.order_creation_timestamp}}</td>
                             <td data-class="Order Type">{{order.order_type}}</td>
-                            <td data-class="Side">{{order.side}}</td>
-                            <td data-class="Price">{{order.price}}</td>
-                            <td data-class="Quantity">{{order.quantity}}</td>
-                            <td data-class="Filled Quantity">{{order.filled_quantity}}</td>
-                            <td data-class="Working Quantity">{{order.working_quantity}}</td>                   
-                            <td data-class="Avg. Fill Price">{{order.avg_fill_price}}</td>
-                            <td data-class="Status">{{order.status}}</td>
-                            <td data-class="Paid Fees">{{order.paid_fees}}</td>
+                            <td data-class="Side">{{order.order_side}}</td>
+                            <td data-class="Price">{{order.order_price}}</td>
+                            <td data-class="Quantity">{{order.order_quantity}}</td>
+                            <td data-class="Filled Quantity">{{order.order_filled_quantity}}</td>
+                            <td data-class="Working Quantity">{{order.order_working_quantity}}</td>                   
+                            <td data-class="Avg. Fill Price">{{order.order_avg_fill_price}}</td>
+                            <td data-class="Status">{{order.order_status}}</td>
+                            <td data-class="Paid Fees">{{order.order_paid_fees}}</td>
                             <td data-class="Cancel"> 
-
                                 <!-- Cancel Button  -->
                                 <form id="cancellation-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="cancel__order">
                                     {% csrf_token %}
@@ -870,14 +852,7 @@ outline: none;
                         </tr>
                         {% endif %}
                     {% endfor %}
-
-                            <!-- <tbody id="table-body"></tbody>
-
-                            </tbody> -->
-
-
                     </table>
-
                     <div class="tickerPageUserTableToggle">
                         <a href="#" class="tickerPageArrowLeft"> 
                             <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
@@ -887,7 +862,6 @@ outline: none;
                             <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
                         </a>
                     </div>
-
                 </div>
 
                 <div class="tickerPageUserTableCard" id="fills-section">
@@ -899,22 +873,17 @@ outline: none;
                             <th>Price</th>
                             <th>Quantity</th>
                             <th>Order ID</th>
-
                         </tr>
                     {% for fill in user_fills|slice:":20" %}
-
                         <tr>
-                            <td data-class="Timestamp">{{fill.timestamp}}</td>
-                            <td data-class="Ticker">{{fill.ticker.ticker_id}}</td>
-                            <td data-class="Side">{{fill.side}}</td>
-                            <td data-class="Price">{{fill.price}}</td>
-                            <td data-class="Quantity">{{fill.quantity}}</td>
-                            <td data-class="Order ID">{{fill.fill_id}}</td>
-
+                            <td data-class="Timestamp">{{fill.fill_timestamp}}</td>
+                            <td data-class="Ticker">{{fill.fill_ticker.ticker_id}}</td>
+                            <td data-class="Side">{{fill.fill_side}}</td>
+                            <td data-class="Price">{{fill.fill_price}}</td>
+                            <td data-class="Quantity">{{fill.fill_quantity}}</td>
+                            <td data-class="Fill ID">{{fill.fill_id}}</td>
                         </tr>
-
                     {% endfor %}
-                    
                     </table>
 
                     <div class="tickerPageUserTableToggle">
@@ -926,7 +895,6 @@ outline: none;
                             <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
                         </a>
                     </div>
-
                 </div>
 
 
@@ -938,21 +906,16 @@ outline: none;
                             <th>Average Price</th>
                             <th>Open PnL</th>
                             <th>Closed PnL</th>
-
                         </tr>
                     {% for position in user_positions|slice:":20" %}
-
                         <tr>
-                            <td data-class="Ticker">{{position.ticker.ticker_id}}</td>
-                            <td data-class="Position">{{position.quantity}}</td>
-                            <td data-class="Average Price">{{position.avg_price}}</td>
-                            <td data-class="Open PnL">{{position.open_pnl}}</td>
-                            <td data-class="Closed PnL">{{position.closed_pnl}}</td>
-
+                            <td data-class="Ticker">{{position.position_ticker.ticker_id}}</td>
+                            <td data-class="Position">{{position.position_quantity}}</td>
+                            <td data-class="Average Price">{{position.position_avg_price}}</td>
+                            <td data-class="Open PnL">{{position.position_open_pnl}}</td>
+                            <td data-class="Closed PnL">{{position.position_closed_pnl}}</td>
                         </tr>
-
                     {% endfor %}
-                    
                     </table>
 
                     <div class="tickerPageUserTableToggle">
@@ -964,8 +927,6 @@ outline: none;
                             <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
                         </a>
                     </div>
-
-
                 </div>
 
                 <div class="tickerPageUserTableCard" id="historic-orders-section">
@@ -985,35 +946,30 @@ outline: none;
                             <th>Cancel</th>
                         </tr>
                     {% for order in user_orders|slice:":20" %}
-
                         <tr>
                             <td data-class="Match">{{ticker_detail.ticker_id}}</td>
-                            <td data-class="Timestamp">{{order.creation_timestamp}}</td>
-                            <td data-class="Order Type">{{order.order_type}}</td>
-                            <td data-class="Side">{{order.side}}</td>
-                            <td data-class="Price">{{order.price}}</td>
-                            <td data-class="Quantity">{{order.quantity}}</td>
-                            <td data-class="Filled Quantity">{{order.filled_quantity}}</td>
-                            <td data-class="Working Quantity">{{order.working_quantity}}</td>                   
-                            <td data-class="Avg. Fill Price">{{order.avg_fill_price}}</td>
-                            <td data-class="Status">{{order.status}}</td>
-                            <td data-class="Paid Fees">{{order.paid_fees}}</td>
+                            <td data-class="Timestamp">{{order.order_creation_timestamp}}</td>
+                            <td data-class="Order Type">{{order.order_order_type}}</td>
+                            <td data-class="Side">{{order.order_side}}</td>
+                            <td data-class="Price">{{order.order_price}}</td>
+                            <td data-class="Quantity">{{order.order_quantity}}</td>
+                            <td data-class="Filled Quantity">{{order.order_filled_quantity}}</td>
+                            <td data-class="Working Quantity">{{order.order_working_quantity}}</td>                   
+                            <td data-class="Avg. Fill Price">{{order.order_avg_fill_price}}</td>
+                            <td data-class="Status">{{order.order_status}}</td>
+                            <td data-class="Paid Fees">{{order.order_paid_fees}}</td>
                             <td data-class="Cancel"> 
-
                                 <!-- Cancel Button  -->
                                 <form id="cancellation-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="cancel__order">
                                     {% csrf_token %}
                                     <button class="tickerPageUserStatisticsCancelButton" name="action" type="submit" value="cancel_order">Cancel</button>
                                     <input type="hidden" name="order_id" value="{{order.order_id}}">
                                 </form>
-
                             </td>
                         </tr>
-
                     {% endfor %}
 
                     </table>
-
                     <div class="tickerPageUserTableToggle">
                         <a href="#" class="tickerPageArrowLeft"> 
                             <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
@@ -1023,7 +979,6 @@ outline: none;
                             <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
                         </a>
                     </div>
-
                 </div>
 
             <!-- If not logged in  -->
@@ -1031,21 +986,6 @@ outline: none;
                 <div class="tickerPageTableNonUser">Please Login to place an Order</div>
             {% endif %}
         </div>
-
-        <!-- <div class="tickerPageUserTableToggle">
-            <a href="" class="tickerPageArrowLeft"> 
-                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-            </a>
-            <h4>20 of {{user_orders|length}}</h4>
-            <a href="" class="tickerPageArrowRight"> 
-                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-            </a>
-
-        </div> -->
-
-
-
-
 
     </div>
 

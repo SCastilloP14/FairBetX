@@ -6,6 +6,6 @@ class ExchangeAppConfig(AppConfig):
     name = "exchange_app"
 
     def ready(self):
-        from .api_scheduler import api_updater
+        from .api_scheduler.api_updater import start
         print('STARTING API...')
-        api_updater.start()
+        start()
