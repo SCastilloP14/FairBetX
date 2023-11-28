@@ -148,6 +148,12 @@ h4 {
     background-color: #016D74;
     color: white;
 }
+
+.liveButton:focus {
+    background-color: #016D74;
+    color: white;
+}
+
 .liveButtonSmall {
     border-radius: 25px;
     color: #B51F1F;
@@ -178,6 +184,11 @@ h4 {
     margin-left: 180px;
 }
 .allEventsButton:hover {
+    color: white;
+    border: 1px solid #15965A;
+    background-color: #15965A;
+}
+.allEventsButton:focus {
     color: white;
     border: 1px solid #15965A;
     background-color: #15965A;
@@ -407,7 +418,7 @@ h4 {
         <div class="grid grid12">
             <!-- Left Card  -->
             <div class="leftCardContainer">
-                <input type="text" class="searchBarLeftCard" placeholder="Search">
+                <input type="text" class="searchBarLeftCard" placeholder="Search" id="searchBarTeams">
                 
                 
 
@@ -433,7 +444,7 @@ h4 {
                     </div>
                     <div class="dropdown-content">
 
-                        <div class="dropdown-option">NFL</div>
+                        <div class="dropdown-option team NBA">NFL</div>
                         <div class="dropdown-option">NBA</div>
                         <div class="dropdown-option">MLB</div>
                     </div>
@@ -482,7 +493,7 @@ h4 {
                         <img class=" allSportsArrow" src="../../../static/img/arrow-icon.png"alt="">
                     </button> -->
 
-                    <select class="allSportsButton" name="cars">
+                    <select class="allSportsButton" name="allSportsButton" id="sportsDropdown">
                         <option value="" >All Sports</option>
                         <option value="NHL">NHL</option>
                         <option value="NFL">NFL</option>
@@ -490,18 +501,129 @@ h4 {
                         <option value="MLB">MLB</option>
 
                     </select>
+
+                    <script>
+                        
+                        // document.getElementById('sportsDropdown').addEventListener('change', function() {
+                        //     var selectedSport = this.value;
+                        //     var tickers = document.querySelectorAll('.ticker');
+
+                        //     tickers.forEach(function(ticker) {
+                        //         if (selectedSport === '' || ticker.classList.contains(selectedSport)) {
+                        //             ticker.style.display = 'block';
+                        //         } else {
+                        //             ticker.style.display = 'none';
+                        //         }
+                        //     });
+                        // });
+
+                
+
+                
+                
+                    </script>
+                    <a href="#" id="allEventsButton">
+                        <button class="allEventsButton" data-filter="all">All Events</button>
+                    </a>
+                    <a href="#" id="liveSportsButton">
+                        <button class="liveButton" data-filter="live">Live</button>
+                    </a>
+
+                    <script>
+
+                        // document.getElementById('liveSportsButton').addEventListener('click', function () {
+                        //     var tickers = document.querySelectorAll('.ticker');
+                        //     var liveSportsButton = document.getElementById('liveSportsButton');
+
+                        //     liveSportsButton.addEventListener('click', function (event) {
+                        //         // Prevent the default behavior of the anchor tag.
+                        //         event.preventDefault();
+
+                        //         // Iterate over each ticker and show/hide based on game status.
+                        //         tickers.forEach(function (ticker) {
+                        //             // If the game status is "live," show the ticker; otherwise, hide it.
+                        //             ticker.style.display = ticker.dataset.gameStatus === 'LIVE' ? 'block' : 'none';
+                        //         });
+                        //     });
+                        // });
+
+                        document.addEventListener('DOMContentLoaded', function () {
+                            // Get references to your buttons
+                            var liveSportsButton = document.getElementById('liveSportsButton');
+                            var allEventsButton = document.getElementById('allEventsButton');
+                            var searchBarGames = document.getElementById('searchBarGames');
+                            var searchBarTeams = document.getElementById('searchBarTeams');
+
+
+                            // Add event listener for liveSportsButton
+                            liveSportsButton.addEventListener('click', function (event) {
+                                event.preventDefault();
+                                filterTickers('LIVE');
+                            });
+
+                            // Add event listener for allEventsButton
+                            allEventsButton.addEventListener('click', function (event) {
+                                event.preventDefault();
+                                // Pass null to the filterTickers function to show all tickers regardless of game status
+                                filterTickers(null);
+                            });
+
+                            searchBarGames.addEventListener('input', function (event) {
+                                event.preventDefault();
+                                // Function to search all games based on any team name
+                                searchGames();
+                            });
+
+                            searchBarTeams.addEventListener('input', function (event) {
+                                event.preventDefault();
+                                // Function to search all games based on any team name
+                                searchTeams();
+
+                            });
+
+                            // Function to filter tickers based on game status
+                            function filterTickers(gameStatus) {
+                                var tickers = document.querySelectorAll('.ticker');
+
+                                // Iterate over each ticker and show/hide based on game status.
+                                tickers.forEach(function (ticker) {
+                                    // If gameStatus is null, show all tickers; otherwise, show/hide based on game status.
+                                    ticker.style.display = gameStatus === null || ticker.dataset.gameStatus === gameStatus ? 'block' : 'none';
+                                });
+                            }
+
+                            // Function to filter all tickers by team names
+                            function searchGames() {
+                                var searchInput = searchBarGames.value.toLowerCase();
+                                var tickers = document.querySelectorAll('.ticker');
+                                console.log("IM here", searchInput);
+                                tickers.forEach(function (ticker) {
+                                    var tickerText = ticker.textContent.toLowerCase();
+                                    ticker.style.display = tickerText.includes(searchInput) ? 'block' : 'none';
+                                });
+                            };
+
+                            function searchTeams() {
+                                var searchInput = searchBarTeams.value.toLowerCase();
+                                var tickers = document.querySelectorAll('.ticker');
+
+                                tickers.forEach(function (ticker) {
+                                    var tickerText = ticker.textContent.toLowerCase();
+                                    ticker.style.display = tickerText.includes(searchInput) ? 'block' : 'none';
+                                });
+                            };
+                        });
+
+                            </script>
+
                     
-                    
-                    
-                    <button class="allEventsButton" data-filter="all">All Events</button>
-                    <button class="liveButton" data-filter="live">Live</button>
-                    <input type="text" class="searchBar" placeholder="Search">
+                    <input type="text" class="searchBar" placeholder="Search" id="searchBarGames">
                 </div>
                 {% for league, games_in_league in grouped_games.items %}
                 {% for game in games_in_league %}
                 {% for ticker in game.tickers.all %}
 
-            <a class="cardLink" href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">
+            <a class="cardLink ticker {{game.league}} {{game.status}}" href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}"  data-game-status="{{game.status}}">
                 <div class="rightCardContainerMatches">
                     <div class="rightCardMatchCard grid grid16">
                         <div class="rightCardMatchCard1">

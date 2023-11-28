@@ -39,3 +39,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+
+document.getElementById('sportsDropdown').addEventListener('change', function() {
+  var selectedSport = this.value;
+  var tickers = document.querySelectorAll('.ticker');
+
+  tickers.forEach(function(ticker) {
+      if (selectedSport === '' || ticker.classList.contains(selectedSport)) {
+          ticker.style.display = 'block';
+      } else {
+          ticker.style.display = 'none';
+      }
+  });
+});
