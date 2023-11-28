@@ -148,6 +148,12 @@ h4 {
     background-color: #016D74;
     color: white;
 }
+
+.liveButton:focus {
+    background-color: #016D74;
+    color: white;
+}
+
 .liveButtonSmall {
     border-radius: 25px;
     color: #B51F1F;
@@ -178,6 +184,11 @@ h4 {
     margin-left: 180px;
 }
 .allEventsButton:hover {
+    color: white;
+    border: 1px solid #15965A;
+    background-color: #15965A;
+}
+.allEventsButton:focus {
     color: white;
     border: 1px solid #15965A;
     background-color: #15965A;
@@ -430,7 +441,7 @@ h4 {
                     </div>
                     <div class="dropdown-content">
 
-                        <div class="dropdown-option">NFL</div>
+                        <div class="dropdown-option team NBA">NFL</div>
                         <div class="dropdown-option">NBA</div>
                         <div class="dropdown-option">MLB</div>
                     </div>
@@ -479,7 +490,7 @@ h4 {
                         <img class=" allSportsArrow" src="../../../static/img/arrow-icon.png"alt="">
                     </button> -->
 
-                    <select class="allSportsButton" name="cars">
+                    <select class="allSportsButton" name="allSportsButton" id="sportsDropdown">
                         <option value="" >All Sports</option>
                         <option value="NHL">NHL</option>
                         <option value="NFL">NFL</option>
@@ -487,18 +498,38 @@ h4 {
                         <option value="MLB">MLB</option>
 
                     </select>
+
+                    <script>
+                        // Needs to move to .js file 
+                        document.getElementById('sportsDropdown').addEventListener('change', function() {
+                            var selectedSport = this.value;
+                            var tickers = document.querySelectorAll('.ticker');
+
+                            tickers.forEach(function(ticker) {
+                                if (selectedSport === '' || ticker.classList.contains(selectedSport)) {
+                                    ticker.style.display = 'block';
+                                } else {
+                                    ticker.style.display = 'none';
+                                }
+                            });
+                        });
+               
+                    </script>
+                    <a href="#" id="allEventsButton">
+                        <button class="allEventsButton" data-filter="all">All Events</button>
+                    </a>
+                    <a href="#" id="liveSportsButton">
+                        <button class="liveButton" data-filter="live">Live</button>
+                    </a>
+
                     
-                    
-                    
-                    <button class="allEventsButton" data-filter="all">All Events</button>
-                    <button class="liveButton" data-filter="live">Live</button>
-                    <input type="text" class="searchBar" placeholder="Search">
+                    <input type="text" class="searchBar" placeholder="Search" id="searchBarGames">
                 </div>
                 {% for league, games_in_league in grouped_games.items %}
                 {% for game in games_in_league %}
                 {% for ticker in game.tickers.all %}
 
-            <a class="cardLink" href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">
+            <a class="cardLink ticker {{game.league}} {{game.status}}" href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}"  data-game-status="{{game.status}}">
                 <div class="rightCardContainerMatches">
                     <div class="rightCardMatchCard grid grid16">
                         <div class="rightCardMatchCard1">

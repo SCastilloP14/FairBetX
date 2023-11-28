@@ -282,7 +282,7 @@ class TeamDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         team = self.get_object()
         context["tickers"] = Ticker.objects.filter(ticker_game__game_home_team=team, ticker_status__in=["OPEN", "PARTIAL"]).order_by("-ticker_game__game_start_datetime").reverse()
-        context["players"] = Player.objects.filter(player_team=team)
+        context["teams"] = Team.objects.filter(team_league_1=league)
         return context
 
 
