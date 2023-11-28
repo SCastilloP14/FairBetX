@@ -1,7 +1,7 @@
 import json
 import requests
 from datetime import datetime, timezone, timedelta
-from exchange_app.models import Game, Team, League, Ticker, GameStatus, game_status_mapping, ticker_status_mapping
+from exchange_app.models import Game, Team, League, Ticker, GameStatus, TickerStatus, game_status_mapping, ticker_status_mapping
 
 
 def fetch_season_games(league_id, season_str):
@@ -86,6 +86,18 @@ def update_season_game(existing_game: Game, **kwargs):
     existing_game.game_postponed = kwargs["season_game_postponed"]
     existing_game.save()
 
+    try:
+        if Ticker.objects.filter(ticker_id=f"{existing_game.game_id}-T"):
+            existing_ticker = Ticker.objects.get(ticker_id=f"{existing_game.game_id}-T")
+            if existing_ticker.ticker_status == TickerStatus.OPEN.name and ticker_status_mapping.get(existing_game.game_status) != TickerStatus.OPEN.name:
+                if ticker_status_mapping.get(existing_game.game_status) == TickerStatus.CLOSED.name:
+                    existing_ticker.close_ticker()
+                elif ticker_status_mapping.get(existing_game.game_status) == TickerStatus.CANCELED.name:
+                    existing_ticker.cancel_ticker()
+    except Ticker.DoesNotExist:
+        pass
+    
+
 def create_season_game(**kwargs):
     try:
         game_home_team = Team.objects.get(team_id=kwargs["season_game_home_team_id"])
@@ -132,7 +144,6 @@ def create_or_update_season_game(**kwargs):
 
 
 def create_ticker(game: Game):
-    # print(game.game_status, ticker_status_mapping.get(game.game_status))
     if game.game_status != GameStatus.NO_STATUS.name:
         if game.game_start_datetime:
             if datetime.now().astimezone(timezone.utc) - timedelta(hours=3) < game.game_start_datetime < datetime.now().astimezone(timezone.utc) + timedelta(days=7):

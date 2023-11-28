@@ -21,13 +21,14 @@ game_status_mapping = {
                         'NS': GameStatus.SCHEDULED.name,
                         'PLAYING': GameStatus.PLAYING.name,
                         'FT': GameStatus.FINISHED.name,
-                        'HT': GameStatus.FINISHED.name,
+                        'HT': GameStatus.PLAYING.name,
+                        'BT': GameStatus.PLAYING.name,
                         'CANC': GameStatus.CANCELED.name,
                         'POST': GameStatus.POSTPONED.name,
                         'ABD': GameStatus.ABDANDONED.name,
                         '': GameStatus.NO_STATUS.name,
                         'AOT':GameStatus.FINISHED.name,
-                        'AP':GameStatus.FINISHED.name, 
+                        'AP':GameStatus.FINISHED.name
                         }
 
 class TickerStatus(Enum):
@@ -247,26 +248,30 @@ class Ticker(models.Model):
         
     def close_ticker(self):
         self.ticker_status = TickerStatus.CLOSED.name
+        self.save()
         self.check_outcome()
         self.pay_winners()
 
     def cancel_ticker(self):
         #   Finish sending back the money
         self.ticker_status = TickerStatus.CANCELED.name
+        self.save()
 
     def pay_winners(self):
-        ticker_positions = Position.objects.get(ticker=self)
-        for position in ticker_positions:
-            position_payout= self.payout * abs(position.quantity)
-            if position.quantity > 0 and self.ticker_outcome == TickerOutcome.LONGS_WIN.name:
-                position_user = position.user
-                position_user.userprofileinfo.available_balance += position_payout
-                position_user.userprofileinfo.locked_balance -= position.quantitity * position.average_price 
-            elif position.quantity < 0 and self.ticker_outcome == TickerOutcome.SHORTS_WIN.name:
-                position_user = position.user.userprofileinfo
-                position_user.available_balance += position_payout
-                position_user.userprofileinfo.locked_balance -= position.quantitity * (self.payout - position.average_price)
-
+        try:
+            ticker_positions = Position.objects.get(position_ticker=self)
+            for position in ticker_positions:
+                position_payout= self.payout * abs(position.quantity)
+                if position.quantity > 0 and self.ticker_outcome == TickerOutcome.LONGS_WIN.name:
+                    position_user = position.user
+                    position_user.userprofileinfo.available_balance += position_payout
+                    position_user.userprofileinfo.locked_balance -= position.quantitity * position.average_price 
+                elif position.quantity < 0 and self.ticker_outcome == TickerOutcome.SHORTS_WIN.name:
+                    position_user = position.user.userprofileinfo
+                    position_user.available_balance += position_payout
+                    position_user.userprofileinfo.locked_balance -= position.quantitity * (self.payout - position.average_price)
+        except Position.DoesNotExist:
+            print(f"{self.ticker_game.game_filename} closed without any positions")
 
     def update_ticker(game: Game, **kwargs):
         try:

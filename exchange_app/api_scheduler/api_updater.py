@@ -18,21 +18,21 @@ def start():
            "NHL": {"league_id": "4380", "season": "2023-2024"},
            }
     scheduler = BackgroundScheduler()
-    print(datetime.now())
-    for league, info in leagues.items():
-        updated_league_data(info['league_id'])
+    # print(datetime.now())
+    # for league, info in leagues.items():
+    #     updated_league_data(info['league_id'])
 
-    print(datetime.now())
-    leagues = League.objects.filter()
-    league_names = [league.league_name for league in leagues]
-    for league_name in league_names:
-        updated_team_data(league_name)
+    # print(datetime.now())
+    # leagues = League.objects.filter()
+    # league_names = [league.league_name for league in leagues]
+    # for league_name in league_names:
+    #     updated_team_data(league_name)
 
-    print(datetime.now())  
-    teams = Team.objects.filter()
-    team_id_list = [team.team_id for team in teams]
-    for team_id in team_id_list:
-        update_players_data(team_id)
+    # print(datetime.now())  
+    # teams = Team.objects.filter()
+    # team_id_list = [team.team_id for team in teams]
+    # for team_id in team_id_list:
+    #     update_players_data(team_id)
     
     print(datetime.now())
     leagues = League.objects.filter()
@@ -49,7 +49,7 @@ def start():
     league_ids = [league.league_id for league in leagues]
     for league_id in league_ids:
         update_live_game_data(league_id)
-        scheduler.add_job(update_live_game_data, "interval", days=1, id=f"update_{league_id}_live_games", args=[league_id], replace_existing=True, 
+        scheduler.add_job(update_live_game_data, "interval", seconds=30, id=f"update_{league_id}_live_games", args=[league_id], replace_existing=True, 
                       next_run_time=datetime.now() + timedelta(seconds=30))
 
     print(datetime.now())

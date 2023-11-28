@@ -2,7 +2,7 @@
 import requests
 import json
 from datetime import datetime, timezone, timedelta
-from exchange_app.models import Game, Ticker, League, GameStatus, game_status_mapping, ticker_status_mapping
+from exchange_app.models import Game, Ticker, League, GameStatus, TickerStatus, game_status_mapping, ticker_status_mapping
 
 
 def fetch_live_games_data(league_id):
@@ -44,7 +44,7 @@ def parse_live_game_data(raw_live_game_data):
         "live_game_home_team_score": raw_live_game_data["intHomeScore"],
         "live_game_away_team_score": raw_live_game_data["intAwayScore"],
         "live_game_status": game_status_mapping.get(raw_live_game_data["strStatus"], GameStatus.PLAYING.name) if raw_live_game_data["strStatus"]!="" else game_status_mapping.get(raw_live_game_data["strProgress"], GameStatus.PLAYING.name),       
-        "live_game_progress": raw_live_game_data["strProgress"]
+        "live_game_progress": f"{raw_live_game_data['strStatus']} - {raw_live_game_data['strProgress']}" if raw_live_game_data['strProgress'] else raw_live_game_data['strStatus']
         }
     return parsed_live_game_data
 
@@ -74,14 +74,13 @@ def update_live_game(**kwargs):
         existing_game.game_status = kwargs["live_game_status"]
         existing_game.game_progress = kwargs["live_game_progress"]
         existing_game.save()
+        
         existing_ticker = Ticker.objects.get(ticker_game=existing_game)
-        if existing_game.game_status == GameStatus.PLAYING.name:
-            if kwargs["live_game_status"] == GameStatus.FINISHED.name:
+        print(existing_ticker.ticker_game.game_filename, existing_ticker.ticker_status, kwargs["live_game_status"])
+        if existing_ticker.ticker_status == TickerStatus.OPEN.name and ticker_status_mapping.get(kwargs["live_game_status"]) != TickerStatus.OPEN.name:
+            if ticker_status_mapping.get(existing_game.game_status) == TickerStatus.CLOSED.name:
                 existing_ticker.close_ticker()
-            elif kwargs["live_game_status"] == GameStatus.POSTPONED.name or kwargs["live_game_status"] == GameStatus.CANCELED.name or kwargs["live_game_status"] == GameStatus.ABDANDONED.name:
-                existing_ticker.cancel_ticker()
-        elif existing_game.game_status == GameStatus.SCHEDULED.name:
-            if kwargs["live_game_status"] == GameStatus.POSTPONED.name or kwargs["live_game_status"] == GameStatus.CANCELED.name or kwargs["live_game_status"] == GameStatus.ABDANDONED.name:
+            elif ticker_status_mapping.get(existing_game.game_status) == TickerStatus.CANCELED.name:
                 existing_ticker.cancel_ticker()
     except Ticker.DoesNotExist:
         existing_game = Game.objects.get(game_id=kwargs["live_game_id"])

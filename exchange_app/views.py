@@ -133,28 +133,24 @@ class GamesListView(ListView):
     def get_queryset(self):
         league_filter = self.request.GET.get('league')
         queryset = Game.objects.filter(
-            league=league_filter,
-                status__in=[GameStatus.PLAYING.name, GameStatus.SCHEDULED.name]) if league_filter else Game.objects.filter(
-                status__in=[GameStatus.PLAYING.name, GameStatus.SCHEDULED.name])        
+                game_league__league_neame=league_filter,
+                game_status__in=[GameStatus.PLAYING.name, GameStatus.SCHEDULED.name]) if league_filter else Game.objects.filter(
+                game_status__in=[GameStatus.PLAYING.name, GameStatus.SCHEDULED.name])        
         return queryset
 
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         games = self.get_queryset()
+        # ADD TEAMS TO PASS TO HTML
         grouped_games = {}
-        print(grouped_games.keys())
         for game in games:
-            if game.league not in grouped_games.keys():
-                grouped_games[game.league] = [game]
+            if game.game_league.league_name not in grouped_games.keys():
+                grouped_games[game.game_league.league_name] = [game]
             else:
-                grouped_games[game.league].append(game)
+                grouped_games[game.game_league.league_name].append(game)
         context["grouped_games"] = grouped_games
-        for league, games in context["grouped_games"].items():
-            for game in games:
-                print(league, game, type(game))
         return context
-
 
 
 class GameDetailView(DetailView):
@@ -171,7 +167,42 @@ class TickerListView(ListView):
     # If this line does note exist default would be ticker_list
     context_object_name = "tickers"
     model = Ticker
+    template_name = "exchange_app/ticker_list.html"
 
+    def get_queryset(self):
+        league_filter = self.request.GET.get('league')
+        ticker_queryset = Ticker.objects.filter(
+            ticker_game__game_league__league_neame=league_filter,
+            ticker_status__in=[TickerStatus.OPEN.name]) if league_filter else Ticker.objects.filter(
+                ticker_status__in=[TickerStatus.OPEN.name])
+        ticker_queryset = ticker_queryset.order_by('ticker_game__game_start_datetime')
+        return ticker_queryset
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tickers = self.get_queryset()
+        grouped_tickers = {}
+        for ticker in tickers:
+            if ticker.ticker_game.game_league.league_name not in grouped_tickers.keys():
+                grouped_tickers[ticker.ticker_game.game_league.league_name] = [ticker]
+            else:
+                grouped_tickers[ticker.ticker_game.game_league.league_name].append(ticker)
+        context["grouped_tickers"] = grouped_tickers
+
+        teams = Team.objects.all()
+        print(len(teams))
+        grouped_teams = {}
+        for team in teams:
+            if team.team_league_1 not in grouped_teams.keys():
+                grouped_teams[team.team_league_1] = [team]
+            else:
+                grouped_teams[team.team_league_1].append(team)
+        context["grouped_teams"] = grouped_teams
+        for league, teams in context["grouped_teams"].items():
+            print(league, len(teams))
+
+        return context
 
 class TickerDetailView(DetailView):
     # If this line does note exist default would be ticker
@@ -182,14 +213,14 @@ class TickerDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         ticker = self.get_object()
-        context["buy_orders"] = Order.objects.filter(ticker=ticker, side="BUY", status__in=["OPEN", "PARTIAL"]).values("price").annotate(total_quantity=Sum("working_quantity")).order_by("-price")
-        context["sell_orders"] = Order.objects.filter(ticker=ticker, side="SELL", status__in=["OPEN", "PARTIAL"]).values("price").annotate(total_quantity=Sum("working_quantity")).order_by("-price").reverse()
+        context["buy_orders"] = Order.objects.filter(order_ticker=ticker, order_side="BUY", order_status__in=["OPEN", "PARTIAL"]).values("order_price").annotate(total_quantity=Sum("order_working_quantity")).order_by("-order_price")
+        context["sell_orders"] = Order.objects.filter(order_ticker=ticker, order_side="SELL", order_status__in=["OPEN", "PARTIAL"]).values("order_price").annotate(total_quantity=Sum("order_working_quantity")).order_by("-order_price").reverse()
         context["order_form"] = OrderForm()
         context["receive_order_url"] = reverse("exchange_app:ticker_detail", kwargs={"pk": self.kwargs["pk"]})
         if self.request.user.is_authenticated:
-            context["user_orders"] = Order.objects.filter(ticker=ticker, user=self.request.user)
-            context["user_positions"] = Position.objects.filter(ticker=ticker, user=self.request.user)
-            context["user_fills"] = Fill.objects.filter(ticker=ticker, user=self.request.user)
+            context["user_orders"] = Order.objects.filter(order_ticker=ticker, order_user=self.request.user)
+            context["user_positions"] = Position.objects.filter(position_ticker=ticker, position_user=self.request.user)
+            context["user_fills"] = Fill.objects.filter(fill_ticker=ticker, fill_user=self.request.user)
         else:
             context["user_orders"] = Order.objects.none()
             context["user_positions"] = Position.objects.none()
@@ -198,35 +229,61 @@ class TickerDetailView(DetailView):
         
     def post(self, request, *args, **kwargs):
         if request.method == "POST":
-<<<<<<< HEAD
-            print('HERE')
             action = request.POST.get("action")
-            print(action)
-=======
-            action = request.POST.get("action")
->>>>>>> 899d849a9eedcdfff0d2733019e81b929543f369
+            print("PERFORMING", action)
             if action == "submit_order":
+                print("SUBMITTING ORDER")
                 form = OrderForm(request.POST)
+                print(form)
                 if form.is_valid():
+                    print("FORM VALID", form)
                     ticker_id = request.POST.get("ticker_id")
                     ticker = Ticker.objects.get(id=ticker_id)
+                    print(form)
                     order = Order(order_id = ''.join(random.choices(string.ascii_letters + string.digits, k=16)),
-                                user=request.user,
-                                ticker=ticker, 
+                                order_user=request.user,
+                                order_ticker=ticker, 
                                 order_type = form.cleaned_data["order_type"],
-                                side = form.cleaned_data["side"],
-                                price = form.cleaned_data["price"] if form.cleaned_data["order_type"] =='LIMIT' else None,
-                                quantity=form.cleaned_data["quantity"],
-                                working_quantity=form.cleaned_data["quantity"]
+                                order_side = form.cleaned_data["order_side"],
+                                price = form.cleaned_data["order_price"] if form.cleaned_data["order_type"] =='LIMIT' else None,
+                                order_quantity=form.cleaned_data["order_quantity"],
+                                order_working_quantity=form.cleaned_data["order_quantity"]
                                 )
                     order.save()
+                    print("Order Submitted", order.order_id)
                     order.execute_order()
                     order.save()
             elif action == "cancel_order":
                 order_id = request.POST.get("order_id")
-                order = Order.objects.get(order_id=order_id, user=request.user)
+                order = Order.objects.get(order_id=order_id, order_user=request.user)
                 order.cancel()
             return redirect("exchange_app:ticker_detail", pk=self.kwargs["pk"])             
+
+class LeagueDetailView(DetailView):
+    # If this line does note exist default would be ticker
+    context_object_name = "league_detail"
+    model = League
+    template_name = "exchange_app/league_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        league = self.get_object()
+        context["tickers"] = Ticker.objects.filter(ticker_game__game_league=league, ticker_status__in=["OPEN", "PARTIAL"]).order_by("-ticker_game__game_start_datetime").reverse()
+        context["teams"] = Team.objects.filter(team_league_1=league)
+        return context
+    
+class TeamDetailView(DetailView):
+    # If this line does note exist default would be ticker
+    context_object_name = "team_detail"
+    model = Team
+    template_name = "exchange_app/team_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        team = self.get_object()
+        context["tickers"] = Ticker.objects.filter(ticker_game__game_home_team=team, ticker_status__in=["OPEN", "PARTIAL"]).order_by("-ticker_game__game_start_datetime").reverse()
+        context["players"] = Player.objects.filter(team_league_1=league)
+        return context
 
 
 class TradeViewSet(viewsets.ReadOnlyModelViewSet):
