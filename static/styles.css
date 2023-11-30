@@ -103,87 +103,122 @@ color: var(--unnamed-color-3d3d3d);
 } */
 
 
-
-/* 
-.mediaViewInfo {
-    --web-view-name: Header – Non User;
-    --web-view-id: Header__Non_User;
-    --web-scale-on-resize: true;
-    --web-enable-deep-linking: true;
+/* Small device size  */
+@media screen and (min-width:600px) and (max-width:768px) {
+    
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    border: none;
-} */
+/* Medium screens  */
+@media screen and (min-width:769) and (max-width:992) {
+    
+}
 
+/* Large screens  */
+@media screen and (min-width:993) and (max-width:1200) {
+    
+}
 
+/* Large screens  */
+@media screen and (min-width:1201) {
+    
+}
 /* Navigation Bar  */
-/* .gradient-container {
-      background: linear-gradient(to bottom, #00474f, #000e10);
-      align-items: center;
-      justify-content: center;
+    .gradientContainer {
+        background: var(--linear-gradient-dark);
+        align-items: center;
+        justify-content: center;
     }
-    .nav_bar {
-      height: 86px;
-      width: 100%;
-      background-color: green;
-      top: 0px;
-      left: 0px;
-      position: absolute;
+
+    .navBar {
+        height: 86px;
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        position: absolute;
+        margin-bottom: 100px;
     }
-    .nav_bar_center {
+
+    .navBarCenter {
         display: flex;
         width: 100%;
         justify-content: space-between;
-        align-items: center;   
-     }
-     .nav_bar_left {
-        text-align: left;   
-     }
-     .nav_bar_right {
-        text-align: right;   
-     }
-    .nav_bar_center_center {
-        width:500px;   
-        text-align: center; 
-     }
-    .nav_bar_header {
-        color:white;
+        align-items: center;
+    }
+
+    .navBarLeft {
+        text-align: left;
+    }
+
+    .navBarRight {
+        text-align: right;
+    }
+
+    .navBarCenterCenter {
+        width: 500px;
+        text-align: center;
+    }
+
+    .navBarHeader {
+        color: var(--color-font-white);
         font-size: 1.2rem;
         padding-left: 20px;
         padding-right: 20px;
+        text-decoration: none;
     }
-    .nav_bar_header:hover {
-        color:#13C2C1;
+
+    .navBarHeader:hover {
+        color: var(--color-font-hover);
     }
-    .nav_button {
+
+    .navButton {
         border-radius: 25px;
-        color:white;
+        color: var(--color-font-white);
         font-size: 1rem;
         background-color: transparent;
-        border: solid 1px white;
-        padding: 10px 35px
+        border: solid 1px var(--color-button-border-white);
+        padding: 10px 35px;
     }
-    .nav_button:hover {
-        background-color: #13C2C1  ;
-        border: none;
-    }
-    .grid {
-      display: grid;
-      align-items: center;
-      place-items: center;
-      height: 100%;
-    }
-    .grid_nav_1x3 {
-      grid-template-columns: auto 1200px auto;
-    }
-    .grid_nav_1x3_middle {
-      grid-template-columns: auto;
-    } */
 
+    .navButton:hover {
+        background-color: var(--color-font-hover);
+        border: 1px solid var(--color-button-border-blue);
+    }
+
+    .grid {
+        display: grid;
+        align-items: center;
+        place-items: center;
+        height: 100%;
+    }
+
+    .gridNav13 {
+        grid-template-columns: auto 1500px auto;
+    }
+
+    .gridNav13Middle {
+        grid-template-columns: auto;
+    }
+
+    #FBX-Logo {
+        width: 100px;
+        height:50px;
+    }
+
+    /* Hidden class for initially hiding elements */
+    .hidden {
+        display: none;
+    }
+
+    /* Style for the login dropdown container */
+    .loginDropdown {
+        position: absolute;
+        top: 60px; /* Adjust the value as needed to position the dropdown below the button */
+        right: 0;
+        background-color: var(--color-background-white);
+        border: 1px solid #ccc;
+        padding: 10px;
+        /* Additional styling as needed */
+    }
 /* Footer 
 
 .footer {
