@@ -34,7 +34,7 @@ def start():
     # for team_id in team_id_list:
     #     update_players_data(team_id)
     
-    print(datetime.now())
+    # print(datetime.now())
     leagues = League.objects.filter()
     leagues_details = [{"league_id": league.league_id,
                         "league_season": league.league_current_season

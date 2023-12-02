@@ -101,9 +101,9 @@ class UserDetailView(DeleteView):
         context = super().get_context_data(**kwargs)
         context["balance_form"] = BalanceForm()
         if self.request.user.is_authenticated:
-            context["user_orders"] = Order.objects.filter(user=self.request.user)
-            context["user_positions"] = Position.objects.filter(user=self.request.user)
-            context["user_fills"] = Fill.objects.filter(user=self.request.user)
+            context["user_orders"] = Order.objects.filter(order_user=self.request.user)
+            context["user_positions"] = Position.objects.filter(position_user=self.request.user)
+            context["user_fills"] = Fill.objects.filter(fill_user=self.request.user)
         else:
             context["user_orders"] = Order.objects.none()
             context["user_positions"] = Position.objects.none()
@@ -191,7 +191,6 @@ class TickerListView(ListView):
         context["grouped_tickers"] = grouped_tickers
 
         teams = Team.objects.all()
-        print(len(teams))
         grouped_teams = {}
         for team in teams:
             if team.team_league_1 not in grouped_teams.keys():
@@ -215,12 +214,14 @@ class TickerDetailView(DetailView):
         ticker = self.get_object()
         context["buy_orders"] = Order.objects.filter(order_ticker=ticker, order_side="BUY", order_status__in=["OPEN", "PARTIAL"]).values("order_price").annotate(total_quantity=Sum("order_working_quantity")).order_by("-order_price")
         context["sell_orders"] = Order.objects.filter(order_ticker=ticker, order_side="SELL", order_status__in=["OPEN", "PARTIAL"]).values("order_price").annotate(total_quantity=Sum("order_working_quantity")).order_by("-order_price").reverse()
+        print(context["buy_orders"])
+        print(context["sell_orders"])
         context["order_form"] = OrderForm()
         context["receive_order_url"] = reverse("exchange_app:ticker_detail", kwargs={"pk": self.kwargs["pk"]})
         if self.request.user.is_authenticated:
-            context["user_orders"] = Order.objects.filter(order_ticker=ticker, order_user=self.request.user)
-            context["user_positions"] = Position.objects.filter(position_ticker=ticker, position_user=self.request.user)
-            context["user_fills"] = Fill.objects.filter(fill_ticker=ticker, fill_user=self.request.user)
+            context["user_orders"] = Order.objects.filter(order_user=self.request.user)
+            context["user_positions"] = Position.objects.filter(position_user=self.request.user)
+            context["user_fills"] = Fill.objects.filter(fill_user=self.request.user)
         else:
             context["user_orders"] = Order.objects.none()
             context["user_positions"] = Position.objects.none()
@@ -234,29 +235,31 @@ class TickerDetailView(DetailView):
             if action == "submit_order":
                 print("SUBMITTING ORDER")
                 form = OrderForm(request.POST)
-                print(form)
                 if form.is_valid():
-                    print("FORM VALID", form)
                     ticker_id = request.POST.get("ticker_id")
                     ticker = Ticker.objects.get(id=ticker_id)
-                    print(form)
                     order = Order(order_id = ''.join(random.choices(string.ascii_letters + string.digits, k=16)),
                                 order_user=request.user,
                                 order_ticker=ticker, 
                                 order_type = form.cleaned_data["order_type"],
                                 order_side = form.cleaned_data["order_side"],
-                                price = form.cleaned_data["order_price"] if form.cleaned_data["order_type"] =='LIMIT' else None,
+                                order_price = form.cleaned_data["order_price"] if form.cleaned_data["order_type"] =='LIMIT' else None,
                                 order_quantity=form.cleaned_data["order_quantity"],
                                 order_working_quantity=form.cleaned_data["order_quantity"]
                                 )
-                    order.save()
                     print("Order Submitted", order.order_id)
+                    order.save()
                     order.execute_order()
                     order.save()
             elif action == "cancel_order":
                 order_id = request.POST.get("order_id")
                 order = Order.objects.get(order_id=order_id, order_user=request.user)
                 order.cancel()
+            elif action == "close_ticker":
+                ticker_id = request.POST.get("ticker_id")
+                ticker = Ticker.objects.get(ticker_id=ticker_id)
+                ticker.close_ticker()
+                
             return redirect("exchange_app:ticker_detail", pk=self.kwargs["pk"])             
 
 class LeagueDetailView(DetailView):
