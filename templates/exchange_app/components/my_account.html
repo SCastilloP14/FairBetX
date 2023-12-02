@@ -1200,22 +1200,20 @@ input:focus {
                             </tr>
                     {% for order in user_orders|slice:":20" %}
                         {% if order.status == "OPEN" or order.status == "PARTIAL" %}
-
                             <tr>
-                                <td data-class="Match">{{order.ticker_id}}</td>
-                                <td data-class="Timestamp">{{order.creation_timestamp}}</td>
+                                <td data-class="Match">{{order.order_ticker.ticker_id}}</td>
+                                <td data-class="Timestamp">{{order.order_creation_timestamp}}</td>
                                 <td data-class="Order Type">{{order.order_type}}</td>
-                                <td data-class="Side">{{order.side}}</td>
-                                <td data-class="Price">{{order.price}}</td>
-                                <td data-class="Quantity">{{order.quantity}}</td>
-                                <td data-class="Filled Quantity">{{order.filled_quantity}}</td>
-                                <td data-class="Working Quantity">{{order.working_quantity}}</td>                   
-                                <td data-class="Avg. Fill Price">{{order.avg_fill_price}}</td>
-                                <td data-class="Status">{{order.status}}</td>
-                                <td data-class="Paid Fees">{{order.paid_fees}}</td>
+                                <td data-class="Side">{{order.order_side}}</td>
+                                <td data-class="Price">{{order.order_price}}</td>
+                                <td data-class="Quantity">{{order.order_quantity}}</td>
+                                <td data-class="Filled Quantity">{{order.order_filled_quantity}}</td>
+                                <td data-class="Working Quantity">{{order.order_working_quantity}}</td>                   
+                                <td data-class="Avg. Fill Price">{{order.order_avg_fill_price}}</td>
+                                <td data-class="Status">{{order.order_status}}</td>
+                                <td data-class="Paid Fees">{{order.order_paid_fees}}</td>
                                 <td data-class="Cancel"> 
                                     <button class="myActivtyCancelButton">Cancel</button>
-                                    
                                 </td>
                                     
                             </tr>

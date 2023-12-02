@@ -14,7 +14,6 @@ def fetch_live_games_data(league_id):
         live_games_list = live_games_dict["events"]
         if live_games_list:
             unique_statuses = {d["strStatus"] for d in live_games_list}
-            print(unique_statuses)
             parsed_live_games = [parse_live_game_data(live_game_data) for live_game_data in live_games_list]
             return parsed_live_games
         else:
@@ -38,13 +37,34 @@ def parse_game_datetime(datetime_str):
             print("Failed parsing live game date", datetime_str, e)
             return None
     
+
+def parse_status_and_progress(strStatus, StrProgress, strLeague):
+    if strLeague == "NFL":
+        status = game_status_mapping.get(StrProgress, GameStatus.PLAYING.name)
+        progress = StrProgress
+    else:
+        status = game_status_mapping[strStatus] if strStatus!="" else game_status_mapping[StrProgress]
+        if status == GameStatus.PLAYING.name:
+            if StrProgress:
+                progress = f"{StrProgress} - {strStatus}"
+            else:
+                progress = strStatus
+        else:
+            progress = strStatus
+    return status, progress
+
+
 def parse_live_game_data(raw_live_game_data):
+    raw_live_game_status = raw_live_game_data["strStatus"]
+    raw_live_game_progress = raw_live_game_data["strProgress"]
+    raw_live_game_league = raw_live_game_data["strLeague"]
+    live_game_status, live_game_progress = parse_status_and_progress(raw_live_game_status, raw_live_game_progress, raw_live_game_league)
     parsed_live_game_data = {
         "live_game_id": raw_live_game_data["idEvent"],
         "live_game_home_team_score": raw_live_game_data["intHomeScore"],
         "live_game_away_team_score": raw_live_game_data["intAwayScore"],
-        "live_game_status": game_status_mapping.get(raw_live_game_data["strStatus"], GameStatus.PLAYING.name) if raw_live_game_data["strStatus"]!="" else game_status_mapping.get(raw_live_game_data["strProgress"], GameStatus.PLAYING.name),       
-        "live_game_progress": f"{raw_live_game_data['strStatus']} - {raw_live_game_data['strProgress']}" if raw_live_game_data['strProgress'] else raw_live_game_data['strStatus']
+        "live_game_status": live_game_status,       
+        "live_game_progress": live_game_progress
         }
     return parsed_live_game_data
 
@@ -58,7 +78,6 @@ def create_ticker(game: Game):
     if game.game_start_datetime and game.game_start_datetime > datetime.now().astimezone(timezone.utc) - timedelta(hours=3) and game.game_start_datetime < datetime.now().astimezone(timezone.utc) + timedelta(days=7):
             try:
                 Ticker.objects.get(ticker_id=f"{game.game_id}-T")
-                print("Tciker already created")
             except Ticker.DoesNotExist:
                 new_ticker = Ticker(ticker_id=f"{game.game_id}-T",
                                     ticker_game=game,
@@ -76,7 +95,6 @@ def update_live_game(**kwargs):
         existing_game.save()
         
         existing_ticker = Ticker.objects.get(ticker_game=existing_game)
-        print(existing_ticker.ticker_game.game_filename, existing_ticker.ticker_status, kwargs["live_game_status"])
         if existing_ticker.ticker_status == TickerStatus.OPEN.name and ticker_status_mapping.get(kwargs["live_game_status"]) != TickerStatus.OPEN.name:
             if ticker_status_mapping.get(existing_game.game_status) == TickerStatus.CLOSED.name:
                 existing_ticker.close_ticker()
@@ -86,7 +104,7 @@ def update_live_game(**kwargs):
         existing_game = Game.objects.get(game_id=kwargs["live_game_id"])
         create_ticker(existing_game)
     except Game.DoesNotExist:
-        print(f"Missing a team for game {kwargs['live_game_id']}:", kwargs["season_game_home_team_id"], kwargs["season_game_away_team_id"])
+        print(f"Missing a team for game {kwargs['live_game_id']}:", kwargs["live_game_home_team_id"], kwargs["live_game_away_team_id"])
 
 if "__main__" == __name__: 
     leagues = League.objects.filter()
