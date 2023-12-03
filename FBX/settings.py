@@ -29,7 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["scastillo14.pythonanywhere.com",
                  "www.fairbetx.com", 
-                 "127.0.0.1"]
+                 "127.0.0.1",
+                 '18.224.29.152']
 
 
 # Application definition
