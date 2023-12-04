@@ -1,127 +1,106 @@
-/* :root { */
+:root { 
 
-/* Colors:
---unnamed-color-f0fffd: #F0FFFD;
---unnamed-color-f5e4e5: #F5E4E5;
---unnamed-color-e4f0eb: #E4F0EB;
---unnamed-color-b51f1f: #B51F1F;
---unnamed-color-15965a: #15965A;
---unnamed-color-f7f7f7: #F7F7F7;
---unnamed-color-fbfbfb: #FBFBFB;
---unnamed-color-5f5f5f: #5F5F5F;
---unnamed-color-1b1c1e: #1B1C1E;
---unnamed-color-002329: #002329;
---unnamed-color-01373a: #01373A;
---unnamed-color-00474f: #00474F;
---unnamed-color-016d74: #016D74;
---unnamed-color-06979c: #06979C;
---unnamed-color-13c2c1: #13C2C1;
---unnamed-color-b5f5ec: #B5F5EC;
---unnamed-color-e5fffb: #E5FFFB;
---unnamed-color-3d3d3d: #3D3D3D; */
+/* Font Colors */
+--color-font-white:white;
+--color-font-black:black;
+--color-font-light:#5F5F5F;
+--color-font-dark:#1B1C1E;
+--color-font-turk:#016D74;
+--color-font-red:#B51F1F;
+--color-font-green:#15965A;
+--color-font-hover:#13C2C1;
 
-/* Font/text values
---unnamed-font-family-satoshi: 'Satoshi';
---unnamed-font-style-normal: normal;
---unnamed-font-weight-900: 900px;
---unnamed-font-weight-bold: bold;
---unnamed-font-weight-medium: medium;
---unnamed-font-size-16: 16px;
---unnamed-font-size-18: 18px;
---unnamed-font-size-22: 22px;
---unnamed-font-size-24: 24px;
---unnamed-font-size-30: 30px;
---unnamed-font-size-40: 40px;
---unnamed-character-spacing-0: 0px;
---unnamed-line-spacing-42: 42px;
---font-family: 'Satoshi',sans-serif;
---font-weight: 600;
---font-color: white; */
-/* } */
+/* Background Colors */
+--color-background-light:#F7F7F7;
+--color-background-blue:#F0FFFD;
+--color-background-red:#F5E4E5;
+--color-background-green:#E4F0EB;
+--color-background-white:white;
+--color-background-transparent: transparent;
+
+/* Gradient Colors  */
+--linear-gradient-light: linear-gradient(to bottom, #016D74, #01373A);
+--linear-gradient-dark: linear-gradient(to bottom, #00474F, #000E10);
+
+/* Font Sizes */
+--font-size-header:40px;
+--font-size-title:30px;
+--font-size-subheader:24px;
+--font-size-large-body:22px;
+--font-size-body:18px;
+--font-size-small-body:16px;
+--font-size-super-small:12px;
+
+/* Border Radius  */
+--border-radius-low:15px;
+--border-radius-high:25px;
+
+/* Padding Top/Bottom  */
+--padding-top:10px;
+--padding-down:10px;
+
+/* Padding Left/Right */
+
+/* Border  */
+--border-thickness-1: 1px;
+--border-thickness-2: 3px;
+--border-type: solid;
 
 
-/* body, html {
-    margin:0;
-    padding: 0;
-    width: 100%
-} */
+ }
 
-/* Character Styles */
-/* .small-body {
-font-family: var(--unnamed-font-family-satoshi);
-font-style: var(--unnamed-font-style-normal);
-font-weight: var(--unnamed-font-weight-medium);
-font-size: var(--unnamed-font-size-16);
-line-height: var(--unnamed-line-spacing-42);
-letter-spacing: var(--unnamed-character-spacing-0);
-color: var(--unnamed-color-3d3d3d);
-} */
-/* .body {
-font-family: var(--unnamed-font-family-satoshi);
-font-style: var(--unnamed-font-style-normal);
-font-weight: var(--unnamed-font-weight-medium);
-font-size: var(--unnamed-font-size-18);
-line-height: var(--unnamed-line-spacing-42);
-letter-spacing: var(--unnamed-character-spacing-0);
-color: var(--unnamed-color-3d3d3d);
-} */
-/* .large-body {
-font-family: var(--unnamed-font-family-satoshi);
-font-style: var(--unnamed-font-style-normal);
-font-weight: var(--unnamed-font-weight-medium);
-font-size: var(--unnamed-font-size-22);
-line-height: var(--unnamed-line-spacing-42);
-letter-spacing: var(--unnamed-character-spacing-0);
-color: var(--unnamed-color-3d3d3d);
-}
-.subheader {
-font-family: var(--unnamed-font-family-satoshi);
-font-style: var(--unnamed-font-style-normal);
-font-weight: var(--unnamed-font-weight-medium);
-font-size: var(--unnamed-font-size-24);
-line-height: var(--unnamed-line-spacing-42);
-letter-spacing: var(--unnamed-character-spacing-0);
-color: var(--unnamed-color-3d3d3d);
-} */
-/* .title {
-font-family: var(--unnamed-font-family-satoshi);
-font-style: var(--unnamed-font-style-normal);
-font-weight: var(--unnamed-font-weight-bold);
-font-size: var(--unnamed-font-size-30);
-line-height: var(--unnamed-line-spacing-42);
-letter-spacing: var(--unnamed-character-spacing-0);
-color: var(--unnamed-color-3d3d3d);
-}
-.headline {
-font-family: var(--unnamed-font-family-satoshi);
-font-style: var(--unnamed-font-style-normal);
-font-weight: var(--unnamed-font-weight-900);
-font-size: var(--unnamed-font-size-40);
-line-height: var(--unnamed-line-spacing-42);
-letter-spacing: var(--unnamed-character-spacing-0);
-color: var(--unnamed-color-3d3d3d);
-} */
+
+body, html {
+margin:0;
+padding: 0;
+width: 100%;
+min-height:100vh;
+} 
+
+
 
 
 /* Small device size  */
-@media screen and (min-width:600px) and (max-width:768px) {
+@media (600px <= width <= 767px) {
     
 }
 
 /* Medium screens  */
-@media screen and (min-width:769) and (max-width:992) {
+@media (768px <= width <= 991px) {
     
 }
 
 /* Large screens  */
-@media screen and (min-width:993) and (max-width:1200) {
+@media (992px <= width <= 1199px) {
     
-}
+} 
 
 /* Large screens  */
-@media screen and (min-width:1201) {
+@media (1200px <= width) {
     
+} 
+/*    ==========================    */
+/*            COMPONENTS            */
+/*    ==========================    */
+
+/* Buttons */
+.button {
+    border-radius: var(--border-radius-high);
+    color: var(--color-font-white);
+    font-size: 1rem;
+    background-color: var(--color-background-transparent);
+    border: solid 1px var(--color-button-border-white);
+    padding: var(--padding-top) 35px;
+    }
+
+.button:hover {
+    background-color: var(--color-font-hover);
+    border: 1px solid var(--color-button-border-blue);
 }
+
+
+
+
 /* Navigation Bar  */
     .gradientContainer {
         background: var(--linear-gradient-dark);
@@ -219,103 +198,1981 @@ color: var(--unnamed-color-3d3d3d);
         padding: 10px;
         /* Additional styling as needed */
     }
-/* Footer 
 
-.footer {
+/* Home  */
+
+.homeContainer {
+    background-color: var(--color-background-light);
     width: 100%;
+    height: auto;
+    margin-bottom:20px;
+    text-align: center;
+}
+.homeFirstSection {
+    background:linear-gradient(to bottom, #016970, #01373A);
+    width:100%
+}
+.homeFirstSection img {
+    width: 1840px;
+}
+
+.homeSecondSection {
     height: 700px;
-    background: linear-gradient(to bottom, #00474f, #000e10);
-    margin:0;
-    left: 0;
-    bottom:0;
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 100%;
+    background-color: #FBFBFB;
+    color: darkgrey;
 }
-.footer_end {
-    background-color: #1B1C1E;
-    height: 100px;
-    bottom:0;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-}
-.footer_center {
-    width: 100%;
-    margin-top:50px;
-    vertical-align: text-top;
-    display: flex;
-    align-items: flex-start;   
-}
-.footer_follow_us {
-    place-items: left;
-    margin-top:90px;  
-    margin-right:50px;
-}
-#Follow_Us {
-    font-size: 2.3rem;
+
+#homeSecondSectionHeader {
+    padding-top: 100px;
+    color: var(--color-font-turk);
+    font-size: 40px;
     font-weight: 600;
 }
-#Follow_Us_Desc {
+
+#homeSecondSectionDescription {
+    color: var(--color-font-black);
+    font-size: 18px;
     font-weight: 500;
-    font-size: 1.2rem;
-    line-height: 3rem;
-    padding-top: 20px;;
 }
+
+.homeThirdSection {
+    background: #F0FFFD;
+    color:var(--color-font-black);
+    text-align: left;
+    vertical-align: top;
+}
+
+.homeThirdSectionButton {
+    width: 55px;
+    height:55px;
+    border-radius: 100%;
+    background:var(--linear-gradient-dark);
+    color:white;
+    font-size: 30px;
+}
+
+/* Third Section Rigth Side  */
+.homeThirdSectionRightSide {
+    width:100%;
+    height:900px;
+}
+
+.homeThirdSectionRightSide img {
+    position: relative;
+    right:140px;
+}
+
+/* Third Section Left Side  */
+.homeThirdSectionLeftSide {
+    width: 100%;
+    height: 900px;
+    align-self: flex-start;
+}
+
+#homeThirdSectionHeader {
+    padding-top:80px;
+    font-size:34px;
+    font-weight:600;
+    color: #00474F;
+}
+
+#homeThirdSectionDescription {
+    padding-top:20px;
+    font-size:22px;
+    font-weight:500;
+    color: #5F5F5F;
+    padding-bottom:0
+}
+
+.homeThirdSectionText h2 {
+    font-size: 24px;
+    color: #00474F;
+    padding-bottom:0
+}
+
+.homeThirdSectionText span {
+    font-size: 18px;
+    color: #5F5F5F;
+    line-height: 20px;
+}
+
+.beginJourneyButton {
+    border-radius: 25px;
+    color: #016D74;
+    font-size: 18px;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    margin-top:80px;
+    padding: 10px 35px;
+}
+
+.beginJourneyButton:hover {
+    color:white;
+    background:#016D74
+}
+
+.bettingButton {
+    border-radius: 25px;
+    color: #016D74;
+    font-size: 18px;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 35px;
+}
+
+.bettingButton:hover {
+    background-color: #13C2C1;
+    border: 3px solid #13C2C1;
+    color: white;
+}
+
+.homeSecondSectionImages {
+    width: 100%;
+    height: 650px;
+    display: flex;
+    overflow: visible; /* Allow content to overflow the container */
+    position: relative;
+}
+
+.overflowImage {
+    position: static;
+    right: 0;
+}
+
+/* Grid  */
+
 .grid {
     display: grid;
     align-items: center;
     place-items: center;
     height: 100%;
-    width: 100%;
 }
-.grid_footer_1x3 {
+
+.gridHome1x2 {
+    grid-template-columns: 35% 65%;
+}
+
+.gridHome1x3 {
     grid-template-columns: auto 1500px auto;
 }
-.grid_footer_1x4 {
-    grid-template-columns: 40% 20% 20% 20%;
+
+.gridHome3x2 {
+    grid-template-columns: 20% 80%;
+    grid-template-rows: repeat(3, 150px);
+}
+
+
+
+/* Footer */
+
+    .footer {
+        height: 700px;
+        background: linear-gradient(to bottom, #00474f, #000e10);
+        margin: 0;
+        padding: 0;
+        left: 0px;
+        width: 100%;
+    }
+
+    .footerStart {
+        width: 100%;
+        height: 600px;
+    }
+
+    .footerEnd {
+        background-color: #1B1C1E;
+        height: 100px;
+        left: 0;
+        width: 100%;
+    }
+
+    .footerStartCenter {
+        height: 100%;
+        width: 100%;
+        vertical-align: text-top;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .footerStartCenterFollowUs {
+        color: var(--font-color-light);
+        place-items: left;
+        margin-right: 50px;
+        margin-top: 150px;
+        align-self: flex-start;
+    }
+
+    .footerBlog {
+        align-self: flex-start;
+        margin-top: 150px;
+    }
+
+    #followUs {
+        font-size: 2.3rem;
+        font-weight: 600;
+    }
+
+    #followUsDesc {
+        font-weight: 500;
+        font-size: 1.2rem;
+        line-height: 3rem;
+        padding-top: 20px;
+    }
+
+    .grid {
+        display: grid;
+        align-items: center;
+        place-items: center;
+        height: 100%;
+        width: 100%;
+    }
+
+    .gridFooter13 {
+        grid-template-columns: auto 1500px auto;
+    }
+
+    .gridFooter14 {
+        grid-template-columns: 40% 20% 20% 20%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .gridFooter14 a {
+        color: var(--font-color-light);
+        text-decoration: none;
+    }
+
+    .footerButton {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: transparent;
+        border: 2px solid white;
+        margin-right: 20px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .footerButton img {
+        display: block;
+        max-width: 60%;
+        max-height: 60%;
+    }
+
+    .footerButtonContainer {
+        display: flex;
+        margin-top: 50px;
+    }
+
+    .footerBlog a {
+        font-weight: 400;
+        margin-top: 50px;
+        display: flex;
+        color: var(--font-color-light);
+        text-decoration: none;
+    }
+
+    .footerBlogHeader {
+        color: #13C2C1;
+        margin-bottom: 50px;
+    }
+
+/* Login */
+
+.overlayDropdown {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgb(0,0,0, 0.5); /* Semi-transparent overlay */
+        z-index: 1;
+        display: none;
+    }
+
+    .loginCardContainer {
+        width: 510px;
+        height: 635px;
+        background: linear-gradient(to bottom, #00474f, #000e10);
+        line-height: 42px;
+        border-radius: 25px;
+        text-align: center;
+        color: white;
+        z-index: 20;
+        position: relative; /* Needed for the absolute positioning of the close button */
+        display: none;
+    }
+    .closingButton {
+        height:50px;
+        margin-bottom:0;
+        text-align: right;
+        padding-top: 20px;
+        padding-right: 20px;
+    }
+    #newUserButton {
+        text-decoration:underline ;
+        cursor: pointer;
+     }
+
+    .closingButton img {
+        width:40px;
+        height:40px;
+    }
+    .cancelButton {
+        border-radius: 100%;
+        width:40px;
+        height:40px;
+        color:white;
+        background: transparent;
+        border: 1px solid white;
+    }
+    .cardHeader {
+        width: 100%;
+        font-size: 34px;
+        font-weight: 700;
+        letter-spacing: 0;
+        padding-top: 30px;
+        margin-bottom: 10px;
+    }
+
+    .cardNewUser {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .cardNewUser a {
+        color: #13C2C1;
+        padding-left:5px;
+    }
+
+    .cardInputForm input {
+        height: 53px;
+        width: 300px;
+        border-radius: 15px;
+        padding-left: 17px;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    .cardKeepLoggedIn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+    }
+
+    .cardButtonCheck {
+        width: 25px;
+        height: 25px;
+        color: white;
+        border-radius: 25px;
+        margin-right: 10px;
+        font-size: 18px;
+    }
+
+    .loginButton {
+        border-radius: 25px;
+        color: white;
+        font-size: 1rem;
+        background-color: transparent;
+        border: solid 1px white;
+        padding: 10px 40px;
+    }
+
+    .loginButton:hover {
+        background-color: #13C2C1;
+        border: 1px solid #13C2C1;
+    }
+
+    .cardHorizontalLineSeparator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    .horizontalLine {
+        width: 100px;
+        height: 1px;
+        background-color: white;
+        margin: 0 10px;
+    }
+
+    .cardLogos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .cardButton {
+        margin: 20px 0;
+    }
+
+
+/* Registration */
+
+    #existingUserButton {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .closingButton {
+        height:50px;
+        margin-bottom:0;
+        text-align: right;
+        padding-top: 20px;
+        padding-right: 20px;
+        }
+
+    .cancelButton {
+        border-radius: 100%;
+        width:40px;
+        height:40px;
+        color:white;
+        background: transparent;
+        border: 1px solid white;
+    }
+    .signUpOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgb(0, 0, 0,0.5); /* Semi-transparent overlay */
+        z-index: 10;
+        display: none;
+    }
+
+    .signUpCardContainer {
+        width: 510px;
+        height:635px;
+        background: linear-gradient(to bottom, #00474f, #000e10);
+        line-height: 42px;
+        border-radius: 25px;
+        text-align: center;
+        color: white;
+        z-index: 200;
+        position: relative;
+        display: none;
+    }
+    .card_header {
+        width: 100%;
+        font-size: 34px;
+        font-weight: 700;
+        letter-spacing: 0;
+        padding-top: 0;
+        margin-bottom: 10px;
+    }
+    .card_new_user {
+        font-size: 16px;
+        margin-bottom:10px;
+    }
+    .card_new_user a {
+        color: #13C2C1
+    }
+    .card_input_form input {
+        height: 53px;
+        width: 400px;
+        border-radius: 15px;
+        padding-left: 17px;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+    .card_input_form_small input {
+        height: 53px;
+        width: 185px;
+        border-radius: 15px;
+        /* padding-left: 17px; */
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 20px;    
+    } 
+    .card_keep_logged_in {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+    }
+    .card_button_check {
+        width: 25px;
+        height: 25px;
+        color:white;
+        border-radius: 25px;
+        margin-right: 10px;
+        font-size: 18px;
+    }
+    .letsBeginButton {
+        border-radius: 25px;
+        color:white;
+        font-size: 1rem;
+        background-color: transparent;
+        border: solid 1px white;
+        padding: 10px 35px
+        }
+    .letsBeginButton:hover {
+        background-color: #13C2C1  ;
+        border: none;
+    }
+    .card_horizontal_line_seperator {
+        display: flex;
+        align-items: center ;
+        justify-content: center;
+        margin:10px 0;
+    }
+    .horizontal-line {
+        /* flex: 1; */
+        width: 100px;
+        height: 1px;
+        background-color: white;
+        margin: 0 10px;
+    }
+    .card_logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top:20px;
+    }
+    .card_button {
+        margin: 20px 0;
+    }
+
+/* Ticker  */
+.page_background{
+        background: #f7f7f7;
+    }
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+.grid_1x2 {
+    grid-template-columns: repeat(2,50%);
+}
+.grid_nav_1x3 {
+    grid-template-columns: auto 1500px auto;
+}
+.grid_1x3 {
+    grid-template-columns:repeat(3,calc(100%/3));
+}
+.grid_1x4 {
+    grid-template-columns:repeat(4,calc(100%/4));
+}
+.grid_4x2 {
+    grid-template-rows:repeat(4,calc(340px/4));
+    grid-template-columns: repeat(2,calc(360px/2));
+
+}
+.grid_1x10 {
+    grid-template-columns: 10% 15% 10% 15% 10% 15% 10% 15% 10% 15%;
+}
+.grid_2x1 {
+    grid-template-rows: 50% 50%;
+}
+.grid_1x9 {
+    grid-template-columns: 10% 20% 5% 5% 5% 15% 5% 15% 5% 15%;
+}
+.middle_section {
+    width:100%;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   }
+.header {
+    margin-top:86px;
+    text-align: center;
+    font-size:34px;
+    font-weight: 700;
+    color: #00474f;
+    padding-top: 40px;
+    width:100%
+}
+.tickerPageGameDetails {
+    width:70%;
+    border-radius: 25px;
+    height:120px !important;
+    margin-top:30px;
+    text-align: center;  
+    color:#5F5F5F
+}
+.gamePeriod {
+    border-radius: 25px;
+    width:100%;
+    height:100%;
+    font-size:26px;
+    color:white;
+    background:linear-gradient(to bottom, #016D74, #01373A);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tickerPageHomeTeam, .tickerPageAwayTeam {
+    width:100%;
+    text-align: left;
+    font-size:22px;
+    padding-left:30px;
+}
+.tickerPageHomeTeam, .tickerPageHomeScore {
+    padding-top:10px;
+}
+.tickerPageAwayTeam, .tickerPageAwayScore {
+    padding-bottom:10px;
+}
+.tickerPageHomeScore, .tickerPageAwayScore {
+    width:100%;
+    font-size:22px;
+}
+.tickerPageGameDate,.tickerPageGameTime, .tickerPageGameLocation {
+    font-size: 18x;    
+}
+.tickerPageDateIcon,.tickerPageTimeIcon,.tickerPageLocationIcon {
+    width: 30px;
+    height:30px;
+} 
+.tickerPageGameDate, .tickerPageGameDetails, .tickerPageGameLocation {
+    font-size:16px;
+    font-weight: 400;
+}
+.tickerPageGameLocation {
+    padding-right:10px;
+}
+.tickerPageUserCard {
+    width: 100%;
+    height: 130px !important;
+    border-radius: 25px;
+    background: linear-gradient(to bottom, #016D74, #01373A);
+    margin-top:30px;
+    color:white;
+    align-content: left;
+}
+.tickerPageUserCard img {
+    margin-left: auto;
+    display: block; 
+    width: 70px;
+    height:70px;
+}
+.tickerPageUserCardTop {
+    color:#15965A;
+    font-size:30px;
+    margin-top:auto;
+    display: block;
+    margin-right:auto;
+    margin-left:20px;
+}
+.tickerPageUserCardBottom {
+    color:white;
+    font-size:18px;
+    padding-top:10px;
+    margin-bottom:auto;
+    display: block;
+    margin-right:auto;
+    margin-left:20px;
+}
+.tickerPageCandlestickCard {
+    width: 745px;
+    height:500px;
+    border-radius: 25px;
+    background: white;    
+    margin-top:10px;
+    margin-right:5px;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#chart-div {
+    width:96%;
+    height:98%;
+    border-radius: 25px;
+    margin:0 auto;
+    margin-top:20px;
+    z-index: 0;
+    }
+
+.tickerPageStatisticsCard {
+    color:#5F5F5F;
+    width: 745px;
+    height:500px;
+    border-radius: 25px;
+    background: white;;
+    margin-top:10px;
+    margin-left:5px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+.tickerPageStatisticsCard header {
+    text-align: center;
+    font-size:24px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.tickerPageStatisticsCard table {
+    height: 410px;
+    width:100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+
+.tickerPageStatisticsCard tr:nth-child(odd) {background-color: #f7f7f7;}
+
+.tickerPageStatisticsCardButtonLeft {
+    padding: 4px 40px;
+    background: #016D74;
+    border-radius: 25px;
+    color:white;
+    border: none;
+}
+.tickerPageStatisticsCardButtonRight {
+    padding: 4px 40px;  
+    background: #06979C;
+    border-radius: 25px;
+    color:white;
+    border: none;
+}
+
+
+/* Buy Orders  */
+.tickerPageBuyOrderbookTable td {
+    color:#15965A;
+}
+.tickerPageBuyRight {
+    background: #E4F0EB;
+}
+
+ /* Sell Orderbook  */
+.tickerPageSellOrderbookTable td {
+    color:#B51F1F;
+}
+.tickerPageSellRight {
+    background: #F5E4E5;
+}
+
+ /* Buy and Sell Orderbook  */
+.tickerPageBuyOrderbookCard ,
+.tickerPageSellOrderbookCard {
+    margin-top:10px;
+    width:495px;
+    height:500px;
+    background: white;
+    margin-right:5px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tickerPageOrderbookTableHeader {
+    background:#f7f7f7;
+    height:50px;
+    font-size: 24px;
+    color:#5F5F5F
+}
+
+.tickerPageBuyOrderbookTable,
+.tickerPageSellOrderbookTable {
+    height: 400px;
+    table-layout: fixed;
+    margin:0 auto;
+    border-collapse: collapse;
+    margin-top:35px
+}
+
+.tickerPageBuyOrderbookTableRows, 
+.tickerPageSellOrderbookTableRows {
+    height:32px;
+}
+
+.tickerPageBuyOrderbookTable tr th,
+.tickerPageSellOrderbookTable tr th {
+    width:160px;
+    background:#f7f7f7;
+    font-size: 24px;
+} 
+.tickerPageBuyOrderbookCard header, .tickerPageSellOrderbookCard header, .tickerPageOrderSubmissionCard header {
+    font-size:30px;
+    color:black;
+    margin-top:30px;
+    margin-bottom:10px;
+}
+
+/* Order Submission Card  */
+.tickerPageOrderSubmissionCard {
+    margin-top:10px;
+    width:495px;
+    height:500px;
+    background:white;
+    margin-left:5px;
+    border-radius: 25px;
+    text-align: center;   
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+.tickerPageOrderSubmissionField {
+    height: auto !important;;
+    margin: 0 auto;
+    justify-content: center;
+}
+.tickerPageOrderSubmissionPlaceOrderLeft {
+    width:100%;
+    text-align: left;
+    font-size:24px;
+    color: #5F5F5F
+}
+
+.tickerPageOrderSelect {
+    padding-left:15px;
+    width: 100%;
+    background: var(--color-background-light);
+    border-radius: 15px;
+    height: 40px;
+    border:none
+}
+
+.tickerPageSideSelect {
+    padding-left:15px;
+    width: 100%;
+    background: var(--color-background-light);
+    border-radius: 15px;
+    height: 40px;
+    border:none;
+    color:#000E10
+
+}
+.tickerPagePriceInput {
+    width:100%;
+    background: var(--color-background-light);
+    border: none;
+    height:40px;
+    border-radius: 15px;
+}
+.tickerPagePriceInput input {
+    margin-left:20px;
+    width:160px;
+}
+.tickerPagePriceInput input:focus, .tickerPageQuantityInput input:focus  {
+outline: none;
+}
+
+.tickerPageQuantityInput {
+        /* padding-left:15px; */
+    width:100%;
+    height:40px;
+    border: none;
+    border-radius: 15px;
+    background: var(--color-background-light);
+}
+.tickerPageQuantityInput input {
+    margin-left:20px;
+    width:160px;
+}
+
+/* User Stats  */
+.tickerPageUserStatistics {
+    width:100%;
+    margin-bottom:50px;
+}
+.tickerPageUserStatisticsHeader {
+    text-align: center;
+    font-size: 24px;
+    margin:40px 0;
+    color:#1B1C1E
+}
+.tickerPageUserTableCard {
+    width: 100%;
+    margin-top:10px;
+    background: white;
+    border-radius: 25px;
+    min-height:500px;
+    height:auto;
+}
+.tickerPageUserTableCard table {
+    text-align: center;
+    align-items: center;
+    width: 99%;
+    height:100%;
+    margin: 0 auto;
+    /* margin-top:10px; */
+    border-radius: 25px;
+}
+.tickerPageUserTableCard th {
+    padding:20px 20px 16px 20px;
+    font-size: 16px;
+    color:#1B1C1E
+}
+.tickerPageUserTableCard tr {
+    margin-bottom:10px;
+}
+.tickerPageUserTableCard td {
+    font-size: 14px;
+    font-weight:400;
+    color:#5F5F5F;
+     padding-bottom:20px;
+}
+
+.tickerPageUserStatisticsCancelButton {
+    border-radius: 15px;
+    color:#016D74;
+    font-size: 12px;
+    font-weight:600;
+    background-color: transparent;
+    border: solid 1px #016D74;
+    padding: 5px 20px;
+    justify-content: center;
+    cursor: pointer;
+}
+.tickerPageUserStatisticsCancelButton:hover {
+    color:white;
+    background: #016D74;
+}
+.tickerPageUserStatisticsButtonContainer {
+    width:100%;
+    background:paleturquoise;
+    height:50px !important;
+    border-radius: 25px;
+}
+.tickerPageUserStatisticsButtonLeft {
+    width:100%;
+    border-radius: 25px 0 0 25px;
+    height:100%;
+    border:none;
+    color:#00474f;
+    font-size:20px;
+    background: white;
+    cursor:pointer;
+}
+
+.tickerPageUserStatisticsButtonMiddle {
+    width:100%;
+    height:100%;
+    border:none;
+    color:#00474f;
+    font-size:20px;
+    border-left: 1px solid #FFF;
+    background: white;
+    cursor:pointer;
+}
+.tickerPageUserStatisticsButtonRight {
+    width:100%;
+    border-radius: 0 25px 25px 0;
+    height:100%;
+    border:none;
+    color:#00474f;
+    font-size:20px;
+    border-left: 1px solid #FFF;
+    background: white;
+    cursor:pointer;
+
+}
+.tickerPageUserStatisticsButtonLeft:hover,
+.tickerPageUserStatisticsButtonMiddle:hover, 
+.tickerPageUserStatisticsButtonRight:hover  {
+    background:var(--linear-gradient-light);
+    color:white;
+}
+
+.tickerPageUserStatisticsButtonLeft:focus,
+.tickerPageUserStatisticsButtonMiddle:focus,
+.tickerPageUserStatisticsButtonRight:focus {
+    background:var(--linear-gradient-light);
+    color:white;
+}
+
+.tickerPageSubmitButton {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:600;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 12px 50px;
+    justify-content: center;
+    margin-top:10px;
+}
+.tickerPageSubmitButton:hover {
+    border:none;
+    color:white;
+    background: #016D74;
+}
+
+.tickerPageOrderSubmitNonUser {
+    color:#5F5F5F;
+    font-size: 22px;
+    margin-top: 200px;
+}
+.tickerPageTableNonUser {
+    text-align: center; 
+    font-size:28px;
+    color:#5F5F5F;
+    margin-top:80px;
+    margin-bottom:80px
+}
+
+.tickerPageUserTableToggle {
+    color:#00474F;
+    font-size: 18px;
+    width:200px;
+    height:30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:0 auto;
+    margin-top:10px;
+    padding-bottom:20px;
+}
+
+.tickerPageUserTableToggle h4 {
+    color:#00474F;
+    margin-left:20px;
+    margin-right:20px;
+}
+.tickerPageArrowLeft img {
+    width:20px;
+    height: 20px;
+    transform: rotate(180deg);
+}
+.tickerPageArrowRight img {
+    width:20px;
+    height: 20px;
+}
+
+
+/* Account  */
+
+.personalInformation {
+    width:100%;
+    height: 900px;
+    padding-top:86px;
+    background-color: var(--color-background-light);
+    padding-bottom:200px;
+}
+
+.personalInformationHeader {
+    color:#016D74;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 60px;
+    margin-top: 60px;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+
+
+.personalInformationGridUserInput_1x2 {
+    grid-template-columns: 70% 30%;
+}
+
+.personalInformationMiddleSection {
+    width:100%;
+}
+
+.personalInformationCardContainer {
+    width: 375px;
+    height:700px;
+    background: var(--linear-gradient-light);
+    line-height: 42px;
+    border-radius: 25px;
+    text-align: center;
+    color: var(--color-font-light); 
+}
+
+.personalInformationCardUserInfo {
+    height: 700px;
+    /* display: flex; */
+    /* flex-direction: column;
+    justify-content: space-between; */
+}
+
+.personalInformationCardUserInput {
+    width: 1100px;
+    margin-left:25px;
+    height: 160px;
+    background:var(--color-background-white);
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom:20px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+
+.personalInformationUserInputField {
+    font-size: 20px;
+    width: 300px;
+    border:0;
+    justify-self: left;
+    margin-left: 60px;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+
+.personalInformationUserInputField input {
+    border:none;
+    text-align: left;
+    justify-content: left;
+    width: 2000px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.personalInformationEditButton {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+}
+
+.personalInformationEditButton:hover {
+    color:white;
+    border: none;
+    background-color: #016D74;
+}
+
+.personalInformationFooterBlog a {
+    font-weight: 400;
+    font-size: 22px;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
+    text-decoration: none;
+    padding-left: 50px;
+}
+
+.personalInformationFooterBlog a:hover {
+    color:#13C2C1
+}
+
+.personalInformationFooterBlogHeader {
+    color: var(--color-font-hover);
+    padding-top:30px;
+    padding-left: 50px;
+    text-align: left;
+
+}
+
+.personalInformationFooterBlog a {
+    cursor: pointer;
+}
+
+.personalInformationFooterBlog a:hover {
+    color:var(--color-font-hover)
+}
+
+/* Security  */
+
+
+.securityCardContainer {
+    width: 100%;
+    height:700px;
+    background: var(--linear-gradient-light);
+    line-height: 42px;
+    border-radius: 25px;
+    text-align: center;
+    color: var(--color-font-light);
+}
+
+.securityCardUserInfo {
+    height: 700px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+}
+
+.securityCardUserInput {
+    width: 1100px;
+    margin-left:25px;
+    height: 160px;
+    background:var(--color-background-white);
+    border-radius: 15px;
+    text-align: center;
+    color: var(--color-font-light);
+    font-size: var(--font-size-large-body);
+    display: flex;
+    justify-content: space-evenly; /* Align children horizontally in the center */
+    align-items: center;
+    margin-bottom:20px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+
+.securityUserTwoStepAuthentication {
+    background: transparent;
+    color:var(--color-font-black);
+    font-size: var(--font-size-large-body);
+    margin-left:25px;
+    width: 1100px;
+}
+
+.securityUserTwoStepAuthenticationHeader {
+    width:100%;
+    height:80px;
+    display: flex;
+    color: var(--color-font-light);
+    font-size: var(--font-size-large-body);
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.securityUserTwoStepAuthenticationHeader img {
+    height:50px;
+    width:50px;
+    margin-right: 20px;
+}
+
+.securityUserTwoStepAuthenticationSubHeader {
+    width:600px;
+    height:80px;
+    display: flex;
+    color: var(--color-font-light);
+    margin-left: 40px;
+    padding-top: 10px;
+    font-size: var(--font-size-body);
+    font-weight:400;
+}
+
+.securityCardUserInputName {
+    padding-left:40px; 
+    margin-right: auto; 
+    width:220px;
+    text-align: left;
+}
+
+.securityUserInputField {
+    font-size: 20px;
+    width: 400px;
+    border:0;
+    justify-self: left;
+    margin-left: 60px;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+    margin-left:100px;
+    margin-right: 200px;
+}
+
+.securityUserInputField input {
+    border:none;
+    text-align: left;
+    justify-content: left;
+    width: 2000px;
+}
+
+.securityEditButton {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+    margin-right:60px;
+}
+
+.securityEditButton:hover {
+    color:white;
+    border: none;
+    background-color: #016D74;
+}
+
+.securityFooterBlog a {
+    font-weight: 400;
+    font-size: 22px;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
+    text-decoration: none;
+    padding-left: 50px;
+}
+
+.securityFooterBlog a:hover {
+    color:#13C2C1
+}
+
+.securityFooterBlogHeader {
+    color: var(--color-font-hover);
+    padding-top:30px;
+    padding-left: 50px;
+    text-align: left;
+}
+
+.securityEnableSwitchContainer {
+    align-items: center;
+    display: flex;
+    font-size: var(--font-size-body);
+    justify-content: space-evenly; /* Align children horizontally in the center */
+    margin-right:60px;
+    width:200px;
+}
+
+.securityEnableSwitch {
+    font-size: 17px;
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 2em;
+    margin-right:20px;
+}
+
+/* Hide default HTML checkbox */
+.securityEnableSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: var(--color-background-light);
+  border-radius: 50px;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  left: 0.3em;
+  bottom: 0.3em;
+  background-color: white;
+  border-radius: 50px;
+  box-shadow: 0 0px 20px rgba(0,0,0,0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.securityEnableSwitch input:checked + .slider {
+  background: var(--linear-gradient-dark);
+}
+
+.securityEnableSwitch input:checked + .slider:before {
+  transform: translateX(45px);
+  width: 1.4em;
+  height: 1.4em;
+  right:0.3em;
+  bottom: 0.3em;
+}
+
+/* Card Information  */
+.cardInformationEditButton {
+    margin-left:auto;
+    margin-right:100px;
+}
+.cardInformationEditButton button{
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+    margin-right:0;
+    margin-left:auto;
+}
+
+.cardInformationEditButton button:hover {
+    color:white;
+    border: none;
+    background-color: #016D74;
+}
+
+.cardInformationAccount {
+    width:100%;
+    height: 900px;
+    padding-top:86px;
+    background-color: #F7F7F7;
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+
+.cardInformationGrid_1x2 {
+    grid-template-columns: 25% 75%;
+}
+
+.cardInformationInputGrid_1x2 {
+    grid-template-columns: 50% 50%;
+}
+
+.cardInformationCardUserInfo {
+    /* align-self: start; */
+    background-color: var(--color-background-white);
+    border-radius: var(--border-radius-high);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    color:var(--color-font-black);
+    /* display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: space-between;*/
+    margin-left: 25px; 
+    min-height: 700px;
+    max-width:1100px;
+    width:100%;
+}
+
+.cardInformationOverview {
+    background: transparent;
+    width:100%;
+    align-self: start;
+    margin-left:50px;
+
+}
+
+.cardInformationCardUserInfo h3 {
+    margin-left: 20px;
+    font-size: var(--font-size-subheader);
+}
+.cardInformationCardUserInput {
+    background:white;
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    height: 160px;
+    text-align: center;
+    width: 1100px;
+    margin: 5px 0;
+}
+.cardInformationCardAddFunds {
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    height: 160px;
+    width: 1100px;
+    margin: 5px 0;
+    background: var(--color-background-white);
+}
+.cardInformationCardAddFunds h4 {
+    margin-left:50px;  
+    margin-top:40px;
+    font: var(--font-size-subheader);
+    color:var(--color-font-light);
+}
+.cardInformationCardAddFunds input {
+    margin:0 auto;
+    margin-left:50px;   
+    background: transparent;
+    margin-top:10px;
+}
+.cardInformationCardMyBalance {
+    background-color: transparent;
+    width: 1100px;
+    height: 160px;
+    border-radius: 15px;
+    text-align: center;
+}
+.cardInformationCardMyBalanceHeader {
+    align-items: center;
+    display: flex;
+    text-align: left;
+}
+.cardInformationCardMyBalanceHeader h2 {
+    margin-left: 20px;
+    font-size: var(--font-size-title);
+}
+.cardInformationCardUserBalance {
+    color: var(--color-font-turk);
+    font-size: var(--font-size-title);
+    margin-left: auto;
+    margin-right:50px;
+}
+.cardInformationUserInputField {
+    border-bottom: 1px solid grey;
+    border:0;
+    font-size: 20px;
+    justify-self: left;
+    margin-left: 60px;
+    padding-bottom: 10px;
+    width: 300px;
+}
+.cardInformationUserInput {
+    height:100%;
+    width:100%;
+    margin-left:100px;  
+    /* background:red */
+}
+.cardInformationUserInputField input {
+    border:none;
+    text-align: left;
+    justify-content: left;
+    width: 2000px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.cardInformationSelectedButton {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+}
+.cardInformationSelectedButton:hover {
+    color:white;
+    background-color: #016D74;
+}
+.cardInformationFooterBlog a {
+    font-weight: 400;
+    font-size: 22px;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
+    text-decoration: none;
+    padding-left: 50px;
+}
+.cardInformationFooterBlog a:hover {
+    color:#13C2C1
+}
+.cardInformationFooterBlogHeader {
+    color: #13C2C1;
+    padding-top:30px;
+    padding-left: 50px;
+    text-align: left;
+}
+
+.cardInformationConfirmButtonContainer {
+    margin: 0 auto;
+    text-align: center;
+    /* margin-top: 5px; */
+}
+.cardInformationConfirmButton {
+    background-color: transparent;
+    border-radius: 25px;
+    border: solid 3px #016D74;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    margin-top:20px;
+    padding: 10px 50px;
+    width:160px;
+}
+.cardInformationConfirmButton:hover {
+    color:white;
+    /* border: ; */
+    background-color: #016D74;
+}
+.cardInformationCardInformation {
+    color:var(--color-font-black);
+    font-size: var(--font-size-title);
+    margin-top:60px;
+}
+
+.cardInformationCardHolderName,
+.cardInformationCardHolderCardNumber,
+.cardInformationCardHolderExpiryDate,
+.cardInformationCardHolderCVV {
+    color: var(--color-font-light);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-body);   
+    margin-top:50px;
+}
+.cardInformationCardHolderName input,
+.cardInformationCardHolderCardNumber input {
+    border: none;
+    border-bottom: 1px solid var(--color-font-light);
+    font-size: var(--font-size-body);   
+    margin-top:30px;
+    padding-bottom:10px;
+    width:300px;
+}
+.cardInformationCardHolderExpiryDate input,
+.cardInformationCardHolderCVV input {
+    border: none;
+    border-bottom: 1px solid var(--color-font-light);
+    margin-top:30px;
+    width:100px;
+    padding-bottom:10px;
+}
+.cardInformationCardHolderExpiryDateWrapper {
+    width:260px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
-.footer_button {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color:transparent; 
-    border: 2px solid white;
-    margin-right:20px;
-    padding: 0;
+.cardInformationCardHolderConfirmButton {
+    background: transparent;
+    color:var(--color-font-turk);
+    margin-top:50px;
+    margin-left:60px;
+    padding:15px 40px;
+    border-radius: var(--border-radius-high);
+    font-weight: 600;
+    border: 1px solid var(--color-font-turk)
+}
+
+.cardInformationCardHolderConfirmButton:hover {
+    color:var(--color-font-white);
+    background: var(--color-font-turk);
+}
+
+/* Balance  */
+.balanceMiddleSection {
+    width:100%;
+    margin-bottom:60px;
+}
+
+.balanceCardContainer {
+    align-self: start;
+    background: var(--linear-gradient-light);
+    border-radius: 25px;
+    color: var(--color-font-white);
+    height:700px;
+    line-height: 42px;
+    text-align: center;
+    width: 100%;
+}
+
+.balanceCardUserInfo {
+    align-self: start;
+    color:var(--color-font-black);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    height: auto;
+    justify-content: space-between;
+    margin-left: 25px;
+    min-height: 700px;
+    width:1100px;
+}
+
+.balanceCardUserInfo h3 {
+    margin-left: 20px;
+    font-size: var(--font-size-subheader);
+}
+
+.balanceCardUserInput {
+    background:white;
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    height: 160px;
+    text-align: center;
+    width: 1100px;
+    margin: 5px 0;
+}
+
+.balanceCardAddFunds {
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    height: 160px;
+    width: 1100px;
+    margin: 5px 0;
+    background: var(--color-background-white);
+}
+
+.balanceCardAddFunds h4 {
+    margin-left:50px;  
+    margin-top:40px;
+    font: var(--font-size-subheader);
+    color:var(--color-font-light);
+    padding-top:40px;
+}
+
+.balanceCardAddFunds input {
+    margin:0 auto;
+    margin-left:50px;   
+    background: transparent;
+    margin-top:5px;
+}
+
+.balanceCardMyBalance {
+    background-color: transparent;
+    width: 1100px;
+    height: 160px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.balanceCardMyBalanceHeader {
     align-items: center;
+    display: flex;
+    text-align: left;
+    color:var(--color-font-light)
+}
+
+.balanceCardMyBalanceHeader h2 {
+    margin-left: 20px;
+    font-size: var(--font-size-title);
+}
+
+.balanceCardUserBalance {
+    color: var(--color-font-turk);
+    font-size: var(--font-size-title);
+    margin-left: auto;
+    margin-right:50px;
+}
+
+.balanceUserInputField {
+    font-size: 20px;
+    width: 300px;
+    border:0;
+    justify-self: left;
+    margin-left: 60px;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+
+.balanceUserInputField input {
+    border:none;
+    text-align: left;
+    justify-content: left;
+    width: 2000px;
+}
+
+.balanceSelectedButton {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+}
+
+.balanceSelectedButton:hover {
+    color:white;
+    background-color: #016D74;
+}
+
+.balanceFooterBlog a {
+    font-weight: 400;
+    font-size: 22px;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
+    text-decoration: none;
+    padding-left: 50px;
+}
+
+.balanceFooterBlog a:hover {
+    color:#13C2C1
+}
+
+.balanceFooterBlogHeader {
+    color: #13C2C1;
+    padding-top:30px;
+    padding-left: 50px;
+    text-align: left;
+}
+
+.balanceConfirmButtonContainer {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.balanceConfirmButton {
+    background-color: transparent;
+    border-radius: 25px;
+    border: solid 3px #016D74;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    margin-top:20px;
+    padding: 10px 50px;
+    width:160px;
+}
+
+.balanceConfirmButton:hover {
+    color:white;
+    background-color: #016D74;
+}
+
+.balanceGridUserInput_1x2 {
+    grid-template-columns: 70% 30%;
+}
+
+/* Activity  */
+
+.grid_1x4 {
+    grid-template-columns:repeat(4,calc(100%/4));
+}
+
+.gridMyActivity1x5 {
+    grid-template-columns: repeat(5,300px);
+
+}
+
+.myActivityContainer {
+    margin-top:86px;
+    text-align: center;
+    width:100%;
+    background: #f7f7f7;
+}
+
+.myActivityMiddle h2 {
+    padding-top:40px;
+    color:#00474F;
+    padding-bottom:30px;
+    font-size:32px;
+    text-align: center;
+}
+
+.myActivityCard {
+    background: linear-gradient(to bottom,#016D74, #01373A);
+    min-height:160px;
+    border-radius: 25px;
+    color:white;
+    text-align: center;
     cursor: pointer;
 }
-.footer_button img {
-    display: block;
-    max-width: 60%;
-    max-height: 60%;
-}
-.footer_button_container {    
-    display: flex;
-    margin-top:50px;
-}
-.footer_blog a {
-    font-weight: 400;
-    margin-top:50px;
-    display: flex;
-    color:var(--font-color);
+
+.myActivityCard a {
+    color:white;
+    font-size: 24px;
+    font-weight:400;
     text-decoration: none;
+    text-align: center;
 }
-.footer_blog_header {
-    color: #13C2C1;
+.myActivityCard a:hover {
+    color:var(--color-font-hover);
+}
+
+/* User Stats  */
+.myActivityUserStatistics {
+    width:100%;
     margin-bottom:50px;
 }
 
-.footer_blog {
-    align-self: flex-start;
-    margin-top: 100px;
-} */
+.myActivityUserStatisticsHeader {
+    text-align: center;
+    font-size: 24px;
+    margin:20px 0;
+    color:var(--color-font-turk);
+}
+
+.myActivityUserTableCard {
+    width: 100%;
+    margin-top:10px;
+    background: #FFF;
+    border-radius: 25px;
+    min-height:500px;
+    height:auto;
+}
+
+.myActivityUserTableCard table {
+    text-align: center;
+    align-items: center;
+    width: 99%;
+    height:100%;
+    margin: 0 auto;
+    border-radius: 25px;
+}
+
+.myActivityUserTableCard th {
+    padding:20px 20px 16px 20px;
+    font-size: 16px;
+    color:#1B1C1E
+}
+
+.myActivityUserTableCard tr {
+    margin-bottom:10px;
+}
+
+.myActivityUserTableCard td {
+    font-size: 14px;
+    font-weight:400;
+    color:#5F5F5F;
+    padding-bottom:20px;
+}
+
+.myActivtyCancelButton {
+    border-radius: 15px;
+    color:#016D74;
+    font-size: 12px;
+    font-weight:600;
+    background-color: transparent;
+    border: solid 1px #016D74;
+    padding: 5px 20px;
+    justify-content: center;
+}
+
+.myActivtyCancelButton:hover {
+    color:white;
+    background: #016D74;
+}
+
+.myActivityButtonContainer {
+    width:100%;
+    height:50px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);    /* border: 2px solid red; */
+}
+.myActivityButtonContainer button {
+    padding:10px 0;
+}
+
+.myActivtyButtonOrdersLeft {
+    background: white;
+    border-radius: 25px 0 0 25px;
+    border:none;
+    color:#00474f;
+    font-size:18px;
+    height:100%;
+    width:100%;
+}
+
+.myActivtyButtonOrdersMiddle {
+    background: white;
+    border:none;
+    border-left: 1px solid #FFF;
+    color:#00474f;
+    font-size:18px;
+    height:100%;
+    width:100%;
+}
+
+.myActivtyButtonOrdersRight {
+    background: white;
+    border-radius: 0 25px 25px 0;
+    border:none;
+    border-left: 1px solid #FFF;
+    color:#00474f;
+    font-size:18px;
+    height:100%;
+    width:100%;
+}
+
+.myActivtyButtonOrdersLeft:focus, 
+.myActivtyButtonOrdersMiddle:focus,
+.myActivtyButtonOrdersRight:focus {
+    background:var(--linear-gradient-light);
+    color:white
+}
+
+.myActivtyButtonOrdersLeft:hover,.myActivtyButtonOrdersMiddle:hover, .myActivtyButtonOrdersRight:hover  {
+    color:white;
+    background:var(--linear-gradient-light);
+}

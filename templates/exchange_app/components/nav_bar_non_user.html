@@ -9,10 +9,9 @@
 </head>
 
 <style>
-:root {
+/* :root {
     --font-family: 'Satoshi', sans-serif;
     --font-weight: 600;
-    /* --font-color: white; */
 }
 
 body {
@@ -101,21 +100,18 @@ body {
     height:50px;
 }
 
-/* Hidden class for initially hiding elements */
 .hidden {
     display: none;
 }
 
-/* Style for the login dropdown container */
 .loginDropdown {
     position: absolute;
-    top: 60px; /* Adjust the value as needed to position the dropdown below the button */
+    top: 60px; 
     right: 0;
     background-color: var(--color-background-white);
     border: 1px solid #ccc;
     padding: 10px;
-    /* Additional styling as needed */
-}
+} */
 </style>
 
 <body>
@@ -148,7 +144,7 @@ body {
             <!-- Buttons -->
             <div class="navBarRight">
                 <button id="loginDropdownButton" class="navButton">Log In</button>
-                
+
                     {% include './log_In.html' %}
                     {% include './new_user.html' %}
             </div>           
