@@ -65,11 +65,24 @@ document.addEventListener('DOMContentLoaded', function () {
   // All tickers 
   var tickers = document.querySelectorAll('.ticker');
 
-  // Add event listener for liveSportsButton
-  liveSportsButton.addEventListener('click', function (event) {
-      event.preventDefault();
-      filterTickers('LIVE');
-  });
+
+  //Add event listener for sportsDropdown
+  sportsDropdown.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    var selectedSport = sportsDropdown.value;
+    var tickers = document.querySelectorAll('.ticker');
+    console.log("ticker ", tickers);
+
+    tickers.forEach(function(ticker) {
+        if (selectedSport === '' || ticker.classList.contains(selectedSport)) {
+            ticker.style.display = 'block';
+        } else {
+            ticker.style.display = 'none';
+        }
+    });
+  })
+
 
   // Add event listener for allEventsButton
   allEventsButton.addEventListener('click', function (event) {
@@ -77,6 +90,14 @@ document.addEventListener('DOMContentLoaded', function () {
       // Pass null to the filterTickers function to show all tickers regardless of game status
       filterTickers(null);
   });
+
+  // Add event listener for liveSportsButton
+  liveSportsButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      filterTickers('LIVE');
+  });
+
+  
 
   searchBarGames.addEventListener('input', function (event) {
       event.preventDefault();

@@ -1,9 +1,8 @@
  {% extends "exchange_app/base.html" %} {% block body_block %}
 
-    <div>
-    <div class="header">
-        <img class="headerImg" src="../../../static/img/SB_pg.png" alt="">
-        <div class="headerCentered">Sports Bet</div>
+    <div class="gameListHeader">
+        <img class="gameListHeaderImg" src="../../../static/img/SB_pg.png" alt="">
+        <div class="gameListHeaderCentered">Sports Bet</div>
     </div>
     <div class="grid gridNav13 sportsPage">
         <!-- Left Section  -->
@@ -94,22 +93,7 @@
 
                     </select>
 
-                    <script>
-                        // Needs to move to .js file 
-                        document.getElementById('sportsDropdown').addEventListener('change', function() {
-                            var selectedSport = this.value;
-                            var tickers = document.querySelectorAll('.ticker');
-
-                            tickers.forEach(function(ticker) {
-                                if (selectedSport === '' || ticker.classList.contains(selectedSport)) {
-                                    ticker.style.display = 'block';
-                                } else {
-                                    ticker.style.display = 'none';
-                                }
-                            });
-                        });
-               
-                    </script>
+                    
                     <a href="#" id="allEventsButton">
                         <button class="allEventsButton" data-filter="all">All Events</button>
                     </a>
@@ -124,39 +108,39 @@
                 {% for game in games_in_league %}
                 {% for ticker in game.tickers.all %}
 
-            <a class="cardLink ticker {{game.league}} {{game.status}}" href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}"  data-game-status="{{game.status}}">
+            <a class="cardLink ticker {{game.game_league}} {{game.game_status}}" href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}"  data-game-status="{{game.status}}">
                 <div class="rightCardContainerMatches">
                     <div class="rightCardMatchCard grid grid16">
                         <div class="rightCardMatchCard1">
-                            <div>{{game.away_team.name}}</div>
-                            <div>{{game.home_team.name}}</div>
+                            <div>{{game.game_away_team.team_name}}</div>
+                            <div>{{game.game_home_team.team_name}}</div>
                         </div>
                         <div class="rightCardMatchCard2">
-                            {% if not game.away_team_score %}
+                            {% if not game.game_away_team_score %}
                                 <span>-</span>
                                 <span>-</span>
                             {% else %}
-                                <span>{{game.away_team_score}}</span>
-                                <span>{{game.home_team_score}}</span>
+                                <span>{{game.game_away_team_score}}</span>
+                                <span>{{game.game_home_team_score}}</span>
                             {% endif %}
 
                         </div>
                         <div class="rightCardMatchCard3">
-                            {% if game.status == "live" %}
+                            {% if game.game_status == "live" %}
                                 <button class="liveButtonSmall">
                                     <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
                                     Live
                                 </button>
-                                <span>{{game.progress}}</span>
+                                <span>{{game.game_progress}}</span>
                             {% else %} 
-                                <button class="scheduledButtonSmall">{{game.status}}</button>
+                                <button class="scheduledButtonSmall">{{game.game_status}}</button>
                             {% endif %}
 
                         </div>
                         <div class="rightCardMatchCard4">
                             <header>Buy</header>
-                            {% if game.buy_price  %}
-                                <div class="matchDetailsBuy">{{game.buy_price}}</div>
+                            {% if game.game_buy_price  %}
+                                <div class="matchDetailsBuy">{{ticker.ticker_buy_price}}</div>
                             {% else %}
                                 <div class="matchDetailsBuy">-</div>
                             {% endif %}
@@ -191,7 +175,6 @@
         <!-- Right Section  -->
         <div class="empty"></div>
     </div>
-   </div>
 
  {% endblock %}
 
