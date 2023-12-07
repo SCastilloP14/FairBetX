@@ -21,6 +21,8 @@
     <script src="../../static/sports_overview.js"></script>
     <script src="../../static/my_account_script.js"></script>
     <script src="../../static/my_activity.js"></script>
+    <script src="../../static/login_script.js"></script>
+
 
     <link rel="stylesheet" href="../../static/normalize.css" />
     <link rel="stylesheet" href="../../static/styles.css" />
@@ -92,6 +94,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: var(--font-family);
 }
 
 footer {
@@ -107,17 +110,204 @@ main {
     </style>
 
   <body class="Site">
+
     <!-- Header + Navigation Bar -->
     <header>
-        {% if user.is_authenticated %}
-        
-          {% include './components/nav_bar_user.html' %}
+  
+        <div class="navBar gradientContainer">
+        <!-- Grid 1x3  -->
+        <div class="grid gridNav13">
 
-        {% else %}
+            <!-- Left Section  -->
+            <div class="navBarLeftEdge">
+                <!-- Empty  -->
+            </div>
 
-          {% include './components/nav_bar_non_user.html' %}
+            <!-- Middle Section  -->
+            <div class="navBarCenter">
+                <!-- Logo -->
+                <div class="navBarLeft">
+                    <a href="{% url 'index' %}">
+                        <img id="FBX-Logo" src="../../../static/img/FBX_Logo.png">
+                    </a>
+                </div>
 
-        {% endif %}
+                <!-- Buttons -->
+                <div class="navBarCenterCenter">
+                    <a class="navBarHeader" href="{% url 'index' %}">Home</a>
+                    <a class="navBarHeader" href="{% url 'exchange_app:game_list' %}">Sports Bet</a>
+                    <a class="navBarHeader">About Us</a>
+                </div>
+
+                <!-- Buttons -->
+
+                {% if user.is_authenticated %}
+
+                  <!-- Login -->
+                  <div class="navBarRight">
+                      <a href="{% url 'user_detail' pk=user.id %}">
+                          <button class="navButton">My Account</button>
+                      </a>    
+                      <a href="{% url 'user_logout' %}">
+                          <button class="navButton">Log Out</button>
+                      </a>
+                      
+                  </div>
+
+                {% else %}
+
+                <div class="navBarRight">
+                    <button id="loginDropdownButton" class="navButton">Log In</button>
+                    
+
+                  <!-- Login Overlay  -->
+                  <div id="overlayDropdown" class="overlayDropdown">
+                      <div  id="loginCardContainer" class="loginCardContainer">
+                          <div class="closingButton">
+                              <button id="loginCancelButton" class="cancelButton">X
+                              </button>
+                          </div>
+                          <div class="cardHeader">
+                              <span>Log In</span>
+                          </div>
+                          <div class="cardNewUser">
+                              <span>New user?</span>
+                              <a id="newUserButton">Create an account</a>
+                          </div>
+                          <form method="post" class="form" action="{% url "user_login" %}">
+                              {% csrf_token %}
+
+                              <div class="cardInputForm">
+                                  <input 
+                                      action="username"
+                                      name="username"
+                                      type="text"
+                                      autocomplete="on"
+                                      placeholder="Username or Email"></input>
+                              </div>
+                              <div class="cardInputForm">
+                                  <input 
+                                      action="password" 
+                                      name="password"
+                                      type="password"
+                                      placeholder="Password"></input>
+                              </div>
+                              <input 
+                                  class="loginButton"
+                                  type="submit"
+                                  value="Log In">
+                              </form>
+                          <div class="cardHorizontalLineSeparator">
+                              <div class="horizontalLine"></div>
+                              <div>Or log in with</div>
+                              <div class="horizontalLine"></div>
+                          </div>
+                          <div class="cardLogos">
+                              <a href="https://www.google.ca/" target="_blank">
+                                  <img style="height: 48px; width: 48px; margin-right: 10px;" src="../../../static/img/Group_484.png" alt="">
+                              </a>
+                              <a href="https://www.facebook.com/" target="_blank">
+                                  <img style="height: 64px; width: 64px; margin-left: 10px;" src="../../../static/img/icons-facebook.png" alt="">
+                              </a>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div id="signUpOverlay" class="signUpOverlay">
+                    <div id="signUpCardContainer" class="signUpCardContainer">
+                        <div class="closingButton">
+                            <button id="registrationCancelButton" class="cancelButton">X
+                            </button>
+                        </div>
+                        <div class="card_header">
+                            <span>Create an Account</span>
+                        </div>
+                        <div class="card_new_user">
+                            <span>Already a User?</span>
+                            <a id="existingUserButton">Log In</a>
+                        </div>
+
+                        <form method="post" class="form" action="{% url 'user_registration' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="card_input_form card_input_form_small">
+                                <input 
+                                    action="First Name" 
+                                    type="first_name"
+                                    name="first_name"
+                                    required
+                                    placeholder="First Name"></input>
+                                <input 
+                                    action="Last Name" 
+                                    type="last_name"
+                                    name="last_name"
+                                    required
+                                    placeholder="Last Name"></input>
+                            </div>
+                            
+                            <div class="card_input_form">
+                                <input 
+                                    action="Email" 
+                                    type="email"
+                                    name="email"
+                                    required
+                                    placeholder="Email Address"></input>
+                            </div>
+                            <input 
+                                action="Username" 
+                                type="username"
+                                name="username"
+                                required
+                                hidden
+                                value="Email"></input>
+                            <div class="card_input_form">
+                                <input 
+                                action="Password" 
+                                type="password"
+                                name="password"
+                                required
+                                placeholder="Password"></input>
+                            </div>
+                            <div class="card_button">
+                                <input 
+                                    type="submit"
+                                    class="letsBeginButton"
+                                    value="Register Now">
+                                <!-- <button class="login_button">Let's Begin</button> -->
+                            </div>
+                        </form>
+                        
+                        <div class="card_horizontal_line_seperator">
+                            <div class="horizontal-line"></div>
+                            <div>Or Sign Up With</div>
+                            <div class="horizontal-line"></div>
+                        </div>
+                        <div class="card_logos">
+                            <a href="https://www.google.ca/" target="_blank">
+                                <img style="height: 48px; width: 48px; margin-right:10px;" src="../../../static/img/Group_484.png" alt="">
+                            </a>
+                            <a href="https://www.facebook.com/" target="_blank">
+                                <img style="height: 64px; width: 64px; margin-left:10px;" src="../../../static/img/icons-facebook.png" alt="">
+                            </a> 
+                        </div>
+                      </div>
+                  </div>
+
+
+                </div>     
+                
+                {% endif %}
+            </div>
+
+            <!-- Right Section  -->
+            <div class="navBarRightEdge">
+                <!-- Empty  -->
+            </div>
+
+    </div>
+</div>
+
+
     </header>
 
     <!-- Main Page  -->
@@ -128,7 +318,93 @@ main {
     </main>
 
     <!-- Footer -->
-    {% include './components/footer.html' %}
+    <div class="footer">
+      <div class="footerStart">
+        <div class="grid gridFooter13">
+            <!-- Left Section  -->
+            <div class="empty"></div>
+
+            <!-- Middle Section  -->
+            <div class="footerStartCenter">
+
+                <div class="grid gridFooter14">
+                    <div class="footerStartCenterFollowUs">
+                        <h2 id="followUs">Follow Us!</h2>
+                        <h4 id="followUsDesc">Follow us on Facebook, Instagram, or Reddit to stay up to date with updates,
+                            <br>new features, and exciting betting opportunities that are only available on FBX</h4>
+                        <div class="footerButtonContainer">
+                            <a href="">
+                                <button class="footerButton">
+                                    <img src="../../../static/img/facebook.png" alt="Facebook Logo">
+                                </button>
+                            </a>
+                            <a href="">
+                                <button class="footerButton ">
+                                    <img src="../../../static/img/instagram.png" alt="Instagram Logo">
+                                </button>
+                            </a>
+                            <a href="https://www.reddit.com/?rdt=56748">
+                                <button class="footerButton ">
+                                    <img src="../../../static/img/reddit.png" alt="Reddit Logo">
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footerBlog">
+                        <h2 class="footerBlogHeader">Blog</h2>
+                        <a href="">News</a>
+                        <a href="">Sports Updates</a>
+                        <a href="">Betting Tips</a>
+                    </div>
+                    <div class="footerBlog">
+                        <h2 class="footerBlogHeader">Help</h2>
+                        <a href="">FAQs</a>
+                        <a href="">Contact Us</a>
+                    </div>
+                    <div class="footerBlog">
+                        <h2 class="footerBlogHeader">About Us</h2>
+                        <a href="">Information</a>
+                        <a href="">Mission</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Section  -->
+            <div class="empty"></div>
+          </div>
+        </div>
+
+        <!-- End Section  -->
+        <div class="footerEnd">
+            <div class="grid gridNav13">
+                <!-- Left Section  -->
+                <div class="empty"></div>
+
+                <!-- Middle Section  -->
+                <div class="grid gridFooterEnd14">
+                    <div>
+                        <a>© 2023 All Rights Reserved</a>
+                    </div>
+                    <div>
+                        <a href="https://www.google.ca/" target="_blank">Privacy Policy</a>
+                    </div>
+                    <div>
+                        <a href="https://www.google.ca/" target="_blank">Terms & Conditions</a>
+                    </div>
+                    <div>
+                        <a href="https://www.igamingontario.ca/en" target="_blank">iGaming Regulation</a>
+                    </div>
+                </div>
+
+                <!-- Right Section  -->
+                <div class="empty"></div>
+
+            </div>
+        </div>
+      </div>
+
 
     
   </body>

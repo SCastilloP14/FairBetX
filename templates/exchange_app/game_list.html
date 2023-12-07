@@ -1,6 +1,197 @@
  {% extends "exchange_app/base.html" %} {% block body_block %}
 
-    {% include './components/game_overview.html' %}
+    <div>
+    <div class="header">
+        <img class="headerImg" src="../../../static/img/SB_pg.png" alt="">
+        <div class="headerCentered">Sports Bet</div>
+    </div>
+    <div class="grid gridNav13 sportsPage">
+        <!-- Left Section  -->
+        <div class="empty"></div>
+
+        <!-- Middle Section  -->
+        <div class="grid grid12">
+            <!-- Left Card  -->
+            <div class="leftCardContainer">
+                <input type="text" class="searchBarLeftCard" placeholder="Search">
+                <div class="custom-dropdown" id="dropdownNFL">
+                    <div class="dropdown-header">
+                        <img class="nbaLogo" src="../../../static/img/football-icon.png" alt="">
+                        <span class="header-text"> NFL</span>
+                        <img class="arrow" style="margin-left:56px;" src="../../../static/img/arrow-icon.png" alt="">
+                    </div>
+                    <div class="dropdown-content">
+                        
+                        <div class="dropdown-option">NHL</div>
+                        <div class="dropdown-option">NBA</div>
+                        <div class="dropdown-option">MLB</div>
+                    </div>
+                </div>
+
+                <div class="custom-dropdown" id="dropdownNBA">
+                    <div class="dropdown-header">
+                        <img class="nbaLogo" src="../../../static/img/basketball-logo.png" alt="">
+                        <span class="header-text">NBA</span>
+                        <img class="arrow" src="../../../static/img/arrow-icon.png"alt="">
+                    </div>
+                    <div class="dropdown-content">
+
+                        <div class="dropdown-option team NBA">NFL</div>
+                        <div class="dropdown-option">NBA</div>
+                        <div class="dropdown-option">MLB</div>
+                    </div>
+                </div>
+
+                <div class="custom-dropdown" id="dropdownNHL">
+                    <div class="dropdown-header">
+                        <img class="nbaLogo" src="../../../static/img/puck-icon.png" alt="">
+                        <span class="header-text">NHL</span>
+                        <img class="arrow" src="../../../static/img/arrow-icon.png"alt="">
+                    </div>
+                    <div class="dropdown-content">
+
+                        <div class="dropdown-option">NFL</div>
+                        <div class="dropdown-option">NBA</div>
+                        <div class="dropdown-option">MLB</div>
+                    </div>
+                </div>
+
+                <div class="custom-dropdown" id="dropdownMLB">
+                    <div class="dropdown-header">
+                        <img class="nbaLogo" src="../../../static/img/baseball-icon.png" alt="">
+                        <span class="header-text">MLB</span>
+                        <img class="arrow" src="../../../static/img/arrow-icon.png"alt="">
+                    </div>
+                    <div class="dropdown-content">
+
+                        <div class="dropdown-option">NFL</div>
+                        <div class="dropdown-option">NBA</div>
+                        <div class="dropdown-option">MLB</div>
+                    </div>
+                </div>
+
+                
+
+
+                
+                
+            </div>
+
+            <!-- Right Card  -->
+            <div class="rightCardContainer">
+                <div class="rightCardContainerHeader">
+                    
+                    <!-- <button class="allSportsButton">All Sports
+                        <img class=" allSportsArrow" src="../../../static/img/arrow-icon.png"alt="">
+                    </button> -->
+
+                    <select class="allSportsButton" name="allSportsButton" id="sportsDropdown">
+                        <option value="" >All Sports</option>
+                        <option value="NHL">NHL</option>
+                        <option value="NFL">NFL</option>
+                        <option value="NBA">NBA</option>
+                        <option value="MLB">MLB</option>
+
+                    </select>
+
+                    <script>
+                        // Needs to move to .js file 
+                        document.getElementById('sportsDropdown').addEventListener('change', function() {
+                            var selectedSport = this.value;
+                            var tickers = document.querySelectorAll('.ticker');
+
+                            tickers.forEach(function(ticker) {
+                                if (selectedSport === '' || ticker.classList.contains(selectedSport)) {
+                                    ticker.style.display = 'block';
+                                } else {
+                                    ticker.style.display = 'none';
+                                }
+                            });
+                        });
+               
+                    </script>
+                    <a href="#" id="allEventsButton">
+                        <button class="allEventsButton" data-filter="all">All Events</button>
+                    </a>
+                    <a href="#" id="liveSportsButton">
+                        <button class="liveButton" data-filter="live">Live</button>
+                    </a>
+
+                    
+                    <input type="text" class="searchBar" placeholder="Search" id="searchBarGames">
+                </div>
+                {% for league, games_in_league in grouped_games.items %}
+                {% for game in games_in_league %}
+                {% for ticker in game.tickers.all %}
+
+            <a class="cardLink ticker {{game.league}} {{game.status}}" href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}"  data-game-status="{{game.status}}">
+                <div class="rightCardContainerMatches">
+                    <div class="rightCardMatchCard grid grid16">
+                        <div class="rightCardMatchCard1">
+                            <div>{{game.away_team.name}}</div>
+                            <div>{{game.home_team.name}}</div>
+                        </div>
+                        <div class="rightCardMatchCard2">
+                            {% if not game.away_team_score %}
+                                <span>-</span>
+                                <span>-</span>
+                            {% else %}
+                                <span>{{game.away_team_score}}</span>
+                                <span>{{game.home_team_score}}</span>
+                            {% endif %}
+
+                        </div>
+                        <div class="rightCardMatchCard3">
+                            {% if game.status == "live" %}
+                                <button class="liveButtonSmall">
+                                    <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
+                                    Live
+                                </button>
+                                <span>{{game.progress}}</span>
+                            {% else %} 
+                                <button class="scheduledButtonSmall">{{game.status}}</button>
+                            {% endif %}
+
+                        </div>
+                        <div class="rightCardMatchCard4">
+                            <header>Buy</header>
+                            {% if game.buy_price  %}
+                                <div class="matchDetailsBuy">{{game.buy_price}}</div>
+                            {% else %}
+                                <div class="matchDetailsBuy">-</div>
+                            {% endif %}
+                        </div>
+                        <div class="rightCardMatchCard5">
+                            <header>Sell</header>
+                            {% if game.sell_price  %}
+                                <div class="matchDetailsBuy">{{game.buy_price}}</div>
+                            {% else %}
+                                <div class="matchDetailsSell">-</div>
+                            {% endif %}
+
+                        </div>
+                        <div class="rightCardMatchCard6">
+                            <header>Price Change</header>
+                            {% if game.last_price  %}
+                                <div class="matchDetailsChange">{{game.last_price}}</div>
+                            {% else %}
+                                <div class="matchDetailsChange">-</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </a>
+                {% endfor %}
+                {% endfor %}
+                {% endfor %}               
+                
+            </div>
+        </div>
+
+        <!-- Right Section  -->
+        <div class="empty"></div>
+    </div>
+   </div>
 
  {% endblock %}
 
