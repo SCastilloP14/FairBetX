@@ -52,7 +52,7 @@
         <div class="tickerPageUserCard grid grid_1x10">
             <img src="../../../static/img/wallet-icon-white.png" alt="">
             <div class="grid grid_2x1">
-                <div class="tickerPageUserCardTop">{{user.userprofileinfo.available_balance}}</div>
+                <div class="tickerPageUserCardTop">{{user_detail.userprofileinfo.user_available_balance}}</div>
                 <div class="tickerPageUserCardBottom">Balance</div>
 
             </div>
@@ -70,7 +70,7 @@
             </div>
             <img src="../../../static/img/coin-icon.png" alt="">
             <div class="grid grid_2x1">
-                <div class="tickerPageUserCardTop">{{ticker_detail.last_price}}</div>
+                <div class="tickerPageUserCardTop">{{ticker_detail.ticker_last_price}}</div>
                 <div class="tickerPageUserCardBottom">Last Price</div>
             </div>
 
@@ -85,11 +85,8 @@
                 <div id="chart-div">
                     <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
                     <script type="text/javascript" src="../../../static/trading_view.js"></script>
-                    <div id="chart-container" value="{{ticker_detail.ticker_id}}">{{ticker_detail.ticker_id}}</div>
+                    <div id="chart-container" value="{{ticker_detail.ticker_id}}"></div>
                 </div>
-
-               
-
                 
             </div>
 
@@ -189,10 +186,10 @@
                         <th class="tickerPageOrderbookTableHeader">Quantity</th>
                     </tr>
                     {% for buy_order in buy_orders|slice:":10" %}
-
+                    <span>{{buy_order}}</span>
                         <tr class="tickerPageBuyOrderbookTableRows">
                             <td data-class="Price">{{buy_order.order_price}}</td>
-                            <td class="tickerPageBuyRight" data-class="Quantity">{{buy_order.order_total_quantity}}</td>
+                            <td class="tickerPageBuyRight" data-class="Quantity">{{buy_order.total_quantity}}</td>
                         </tr>
                     {% endfor %}
 
@@ -218,7 +215,7 @@
                     
                         <tr class="tickerPageSellOrderbookTableRows">
                             <td data-class="Price">{{sell_order.order_price}}</td>
-                            <td class="tickerPageSellRight" data-class="Quantity">{{sell_order.order_total_quantity}}</td>
+                            <td class="tickerPageSellRight" data-class="Quantity">{{sell_order.total_quantity}}</td>
                         </tr>
                     {% endfor %}
                     
@@ -233,7 +230,6 @@
             <div class="tickerPageOrderSubmissionCard">
                 <header>Place Order</header>
                 {% if user.is_authenticated %}
-
                 <form id="order-form" method="POST" action="" class="form__order">
                 {% csrf_token %}
                     <div class="tickerPageOrderSubmissionField grid grid_4x2">
@@ -244,18 +240,18 @@
                             <option value="LIMIT">Limit</option>
                         </select>
                         <div class="tickerPageOrderSubmissionPlaceOrderLeft">Side</div>
-                        <select class="tickerPageSideSelect" name="side">
+                        <select class="tickerPageSideSelect" name="order_side">
                             <option value="" style="color:#000E10;" disabled selected>Select</option>
                             <option value="BUY">Buy</option>
                             <option value="SELL">Sell</option>
                         </select>
                         <div class="tickerPageOrderSubmissionPlaceOrderLeft">Price</div>
                         <div class="tickerPagePriceInput">
-                            <input class="tickerPagePriceInput" type="text" placeholder="$0.00" name="price">
+                            <input class="tickerPagePriceInput" type="text" placeholder="$0.00" name="order_price">
                         </div>
                         <div class="tickerPageOrderSubmissionPlaceOrderLeft">Quantity</div>
                         <div class="tickerPageQuantityInput">
-                            <input class="tickerPageQuantityInput" type="text" placeholder="0" name="quantity">
+                            <input class="tickerPageQuantityInput" type="text" placeholder="0" name="order_quantity">
                         </div>
                         </div>
                         <input type="hidden" name="ticker_id" value="{{ticker_detail.pk}}">
@@ -363,7 +359,7 @@
                             <th>Quantity</th>
                             <th>Order ID</th>
                         </tr>
-                    {% for fill in user_fills|slice:":20" %}
+                    {% for fill in user_fill|slice:":20" %}
                         <tr>
                             <td data-class="Timestamp">{{fill.fill_timestamp}}</td>
                             <td data-class="Ticker">{{fill.fill_ticker.ticker_id}}</td>
@@ -379,7 +375,7 @@
                         <a href="" class="tickerPageArrowLeft"> 
                             <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
                         </a>
-                        <h4>20 of {{user_fills|length}}</h4>
+                        <h4>20 of {{user_fill|length}}</h4>
                         <a href="" class="tickerPageArrowRight"> 
                             <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
                         </a>
@@ -396,7 +392,7 @@
                             <th>Open PnL</th>
                             <th>Closed PnL</th>
                         </tr>
-                    {% for position in user_positions|slice:":20" %}
+                    {% for position in position_user|slice:":20" %}
                         <tr>
                             <td data-class="Ticker">{{position.position_ticker.ticker_id}}</td>
                             <td data-class="Position">{{position.position_quantity}}</td>
@@ -411,7 +407,7 @@
                         <a href="" class="tickerPageArrowLeft"> 
                             <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
                         </a>
-                        <h4>20 of {{user_positions|length}}</h4>
+                        <h4>20 of {{position_user|length}}</h4>
                         <a href="" class="tickerPageArrowRight"> 
                             <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
                         </a>

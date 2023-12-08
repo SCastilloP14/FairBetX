@@ -87,4 +87,3 @@ if "__main__" == __name__:
     leagues =["MLB", "NBA", "NFL", "NHL"]
     for league in leagues:
         updated_league_data(league)
-
