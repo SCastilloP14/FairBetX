@@ -1,5 +1,7 @@
 :root { 
-
+/* Font Family  */
+  --font-family: 'Satoshi', sans-serif;
+  --font-weight: 600;
 /* Font Colors */
 --color-font-white:white;
 --color-font-black:black;
@@ -46,18 +48,15 @@
 --border-thickness-2: 3px;
 --border-type: solid;
 
-
  }
 
-
 body, html {
-margin:0;
-padding: 0;
-width: 100%;
-min-height:100vh;
+    margin:0;
+    padding: 0;
+    width: 100%;
+    min-height:100vh;
+    font-family: var(--font-family);
 } 
-
-
 
 
 /* Small device size  */
