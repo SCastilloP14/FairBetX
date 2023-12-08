@@ -18,7 +18,7 @@ def start():
            "NHL": {"league_id": "4380", "season": "2023-2024"},
            }
     scheduler = BackgroundScheduler()
-    # print(datetime.now())
+    print(datetime.now())
     # for league, info in leagues.items():
     #     updated_league_data(info['league_id'])
 
