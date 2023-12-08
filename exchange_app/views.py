@@ -114,11 +114,10 @@ class UserDetailView(DeleteView):
         if request.method == "POST":
             form = BalanceForm(request.POST)
             if form.is_valid():
-                print(request.POST)
                 username = request.POST.get("username")
                 user = User.objects.get(username=username)
                 user_info = UserProfileInfo.objects.get(user=user)
-                user_info.available_balance = request.POST.get("new_balance")
+                user_info.user_available_balance += int(request.POST.get("new_balance"))
                 user_info.save()
                 return redirect("user_detail", pk=self.kwargs["pk"])
 

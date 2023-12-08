@@ -1,293 +1,483 @@
-{% extends "exchange_app/base.html" %}
-
-{% block body_block %}
-
-    {% include './components/ticker_NBA.html' %}
+{% extends "exchange_app/base.html" %} {% block body_block %}
 
 
-              <!-- <div class="tradingview-widget-container">
-                <div
-                  class="tradingview-widget-container"
-                  id="tradingview_8efd8"
-                ></div>
+<div class="grid gridNav13 page_background">
+    <div class="empty"></div>
+    <div class="middle_section">
+        <!-- Header  -->
 
-                <script
-                  type="text/javascript"
-                  src="https://s3.tradingview.com/tv.js"
-                ></script>
-                <script type="text/javascript">
-                  new TradingView.widget({
-                    // width: 300,
-                    // height: 300,
-                    autosize: true,
-                    symbol: "NASDAQ:AAPL",
-                    interval: "D",
-                    timezone: "Etc/UTC",
-                    theme: "dark",
-                    style: "1",
-                    locale: "en",
-                    enable_publishing: false,
-                    allow_symbol_change: true,
-                    container_id: "tradingview_8efd8",
-                  });
-                </script>
-              </div> -->
-              <!-- TradingView Widget END -->
+        <div class="tickerDetailHeader">{{ticker_detail.ticker_game.game_league_1.league_name}}</div>
+        <div class="tickerPageGameDetails grid grid_1x9">
+            {% if ticker_detail.ticker_game.game_progress %}
+                <div class="gamePeriod">{{ticker_detail.ticker_game.game_progress}}</div>
+            {% else %}
+                <div class="gamePeriod">NS</div>
+            {% endif %}
+            <div class="grid grid_2x1">
+                <div class="tickerPageHomeTeam">{{ticker_detail.ticker_game.game_away_team.team_name}}</div>
+                <div class="tickerPageAwayTeam">{{ticker_detail.ticker_game.game_home_team.team_name}}</div>
             </div>
-
-            
-            <div class="ticker-info-ob grid grid--3x1">
-              <h3 class="place-order-header">Orderbook</h3>
-
-              <div class="sell-orderbook">
-
-                <table class="orderbook__sell-side">
-                  <thead>
-                    <tr>
-                      <th class="orderbook__sell-side-header-price">Price</th>
-                      <th class="orderbook__sell-side-header-qty">Quantity</th>
-                    </tr>
-                    
-                  </thead>
-                  <tbody class="">
-                    {% for sell_order in sell_orders %}
-                    <tr>
-                      <td class="text-danger">{{ sell_order.price }}</td>
-                      <td>{{ sell_order.total_quantity }}</td>
-                    </tr>
-                    {% endfor %}
-                  </tbody>
-                  
-                </table>
-              </div>
-              <div class="buy-orderbook">
-                <!-- Display Buy Orders -->
-                <table class="orderbook__buy-side">
-                  <thead>
-                    <tr>
-                      <th>Price</th>
-                      <th>Quantity</th>
-                    </tr>
-                  </thead>
-                    <tbody class="">
-                      {% for buy_order in buy_orders %}
-                      <tr>
-                        <td class="orderbook__buy-side-order">{{ buy_order.price }}</td>
-                        <td class="orderbook__buy-side-order">{{ buy_order.total_quantity }}</td>
-                      </tr>
-                     
-                      {% endfor %}
-                     
-                    </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="ticker-info-ob">
-              <h3 class="place-order-header">Place Order</h3>
-              <!-- <div class="grid grid--5x2"> -->
-                <div class="order__form">
-                {% if order_form %}
-                    <form id="order-form" method="POST" action="" class="form__order">
-                        {% csrf_token %}
-                        {{ order_form.as_p }}
-                        <input type="hidden" name="ticker_id" value="{{ ticker_detail.pk }}">
-                        <input type="hidden" name="action" value="submit_order">
-                        <button type="submit" class="btn--copy btn--primary btn--order">Submit Order</button>
-                        
-                    </form>
+            <div class="grid grid_2x1">
+                {% if not ticker_detail.ticker_game.game_away_team_score %}
+                    <div class="tickerPageHomeScore">-</div>
                 {% else %}
-                    <p>Please log in to place orders.</p>
+                    <div class="tickerPageHomeScore">{{ticker_detail.ticker_game.game_away_team_score}}</div>
                 {% endif %}
+
+                {% if not ticker_detail.ticker_game.game_home_team_score %}
+                    <div class="tickerPageHomeScore">-</div>
+                {% else %}
+                    <div class="tickerPageAwayScore">{{ticker_detail.ticker_game.game_home_team_score}}</div>
+                {% endif %}
+
+            </div>
+            <div class="empty"></div>
+            <div>
+                <img class="tickerPageDateIcon" src="../../../static/img/calendar-icon.png" alt="">
+            </div>
+            <div class="tickerPageGameDate">
+                {{ticker_detail.ticker_game.game_start_datetime}}
+            </div>
+            <div>
+                <img class="tickerPageTimeIcon" src="../../../static/img/clock-icon.png" alt="">
+            </div>
+            <div class="tickerPageGameTime">{{ticker_detail.ticker_game.game_start_datetime}}</div>
+             <div>
+                <img  class="tickerPageLocationIcon" src="../../../static/img/location-icon.png" alt="">
+            </div>
+            <div class="tickerPageGameLocation">{{ticker_detail.ticker_game.game_venue}}</div>
+        </div>
+
+        <!-- Game + User Info Card  -->
+        <div class="tickerPageUserCard grid grid_1x10">
+            <img src="../../../static/img/wallet-icon-white.png" alt="">
+            <div class="grid grid_2x1">
+                <div class="tickerPageUserCardTop">{{user_detail.userprofileinfo.user_available_balance}}</div>
+                <div class="tickerPageUserCardBottom">Balance</div>
+
+            </div>
+            <img src="../../../static/img/file-icon.png" alt="">
+            <div class="grid grid_2x1">
+                <div class="tickerPageUserCardTop">{{ticker_detail.ticker_status}}</div>
+                <div class="tickerPageUserCardBottom">Status</div>
+
+            </div>
+            <img src="../../../static/img/clipboard-icon.png" alt="">
+            <div class="grid grid_2x1">
+                <div class="tickerPageUserCardTop">{{ticker_detail.ticker_volume}}</div>
+                <div class="tickerPageUserCardBottom">Volume</div>
+
+            </div>
+            <img src="../../../static/img/coin-icon.png" alt="">
+            <div class="grid grid_2x1">
+                <div class="tickerPageUserCardTop">{{ticker_detail.ticker_last_price}}</div>
+                <div class="tickerPageUserCardBottom">Last Price</div>
+            </div>
+
+        </div>
+
+        <!-- Chart + Statistics Card  -->
+        <div class="grid grid_1x2">
+
+            <!-- Candlestick Graph  -->
+            <div class="tickerPageCandlestickCard">
                 
-                <!-- <p class="place-order-fields PO1">Order Type</p>
-                <p class="place-order-fields PO2">Side</p>
-                <p class="place-order-fields PO3">Price</p>
-                <p class="place-order-fields PO4">Quantity</p> -->
+                <div id="chart-div">
+                    <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+                    <script type="text/javascript" src="../../../static/trading_view.js"></script>
+                    <div id="chart-container" value="{{ticker_detail.ticker_id}}"></div>
+                </div>
                 
-                 <!-- {% if order_form %}
-                <form class="form__order-type" id="order-form" method="POST">
-                  <select name="" id="form__order-type">
-                    <option value="Market">Market</option>
-                    <option value="Limit">Limit</option>
-                  </select>
-                </form>
-                <form class="form__order-side">
-                  <select name="" id="form__order-side">
-                    <option value="Buy">BUY</option>
-                    <option value="Sell">SELL</option>
-                    <input type="hidden" name="ticker_id" value="{{ ticker_detail.pk }}">
-                  </select>
+            </div>
+
+            <!-- Statistics Graph  -->
+            <div class="tickerPageStatisticsCard">
+                <header>Statistics</header>
+                
+                <table class="tickerPageStatisticsCardTable">
+                    <tr>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
+                        </td>
+                        <td> </td>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
+                        </td>
+                        <td> </td>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
+                        </td>
+                        <td> </td>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
+                        </td>
+                        <td> </td>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
+                        </td>
+                        <td> </td>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
+                        </td>
+                        <td> </td>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
+                        </td>
+                        <td> </td>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonLeft">X</button>
+                        </td>
+                        <td> </td>
+                        <td>
+                            <button class="tickerPageStatisticsCardButtonRight">X</button>
+                        </td>
+                    </tr>
+                </table>
+
+                    
+            </div>
+        </div>
+
+        <!-- Orderbook + Order Submission Field  -->
+        <div class="grid grid_1x3">
+
+            <!-- Buy Orderbook  -->
+            <div class="tickerPageBuyOrderbookCard">
+                <header>Orderbook Buy</header>
+                <table class="tickerPageBuyOrderbookTable">
+                    
+                    <tr>
+                        <th class="tickerPageOrderbookTableHeader">Price</th>
+                        <th class="tickerPageOrderbookTableHeader">Quantity</th>
+                    </tr>
+                    {% for buy_order in buy_orders|slice:":10" %}
+                    <span>{{buy_order}}</span>
+                        <tr class="tickerPageBuyOrderbookTableRows">
+                            <td data-class="Price">{{buy_order.order_price}}</td>
+                            <td class="tickerPageBuyRight" data-class="Quantity">{{buy_order.total_quantity}}</td>
+                        </tr>
+                    {% endfor %}
+
+                    <tr>
+                        <td style="color:white">0</td>
+                        <td class="tickerPageBuyRight" style="color:#F5E4E5">0</td>
+                    </tr>
+
+                    
+                </table>
+            </div>
+
+            <!-- Sell Side  -->
+            <div class="tickerPageSellOrderbookCard">
+                <header>Orderbook Sell</header>
+                <table class="tickerPageSellOrderbookTable">
+                    
+                    <tr>
+                        <th class="tickerPageOrderbookTableHeader">Price</th>
+                        <th class="tickerPageOrderbookTableHeader">Quantity</th>
+                    </tr>
+                    {% for sell_order in sell_orders|slice:":10" %}
+                    
+                        <tr class="tickerPageSellOrderbookTableRows">
+                            <td data-class="Price">{{sell_order.order_price}}</td>
+                            <td class="tickerPageSellRight" data-class="Quantity">{{sell_order.total_quantity}}</td>
+                        </tr>
+                    {% endfor %}
+                    
+                    <tr>
+                        <td style="color:white">0</td>
+                        <td class="tickerPageSellRight" style="color:#F5E4E5">0</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Order Submission Card  -->
+            <div class="tickerPageOrderSubmissionCard">
+                <header>Place Order</header>
+                {% if user.is_authenticated %}
+                <form id="order-form" method="POST" action="" class="form__order">
+                {% csrf_token %}
+                    <div class="tickerPageOrderSubmissionField grid grid_4x2">
+                        <div class="tickerPageOrderSubmissionPlaceOrderLeft">Order Type</div>
+                        <select class="tickerPageOrderSelect" name="order_type">
+                            <option value="" style="color:#000E10;" disabled selected>Select</option>
+                            <option value="MARKET">Market</option>
+                            <option value="LIMIT">Limit</option>
+                        </select>
+                        <div class="tickerPageOrderSubmissionPlaceOrderLeft">Side</div>
+                        <select class="tickerPageSideSelect" name="order_side">
+                            <option value="" style="color:#000E10;" disabled selected>Select</option>
+                            <option value="BUY">Buy</option>
+                            <option value="SELL">Sell</option>
+                        </select>
+                        <div class="tickerPageOrderSubmissionPlaceOrderLeft">Price</div>
+                        <div class="tickerPagePriceInput">
+                            <input class="tickerPagePriceInput" type="text" placeholder="$0.00" name="order_price">
+                        </div>
+                        <div class="tickerPageOrderSubmissionPlaceOrderLeft">Quantity</div>
+                        <div class="tickerPageQuantityInput">
+                            <input class="tickerPageQuantityInput" type="text" placeholder="0" name="order_quantity">
+                        </div>
+                        </div>
+                        <input type="hidden" name="ticker_id" value="{{ticker_detail.pk}}">
+                        <button class="tickerPageSubmitButton" type="submit" name="action" value="submit_order">Submit</button>
                 </form>
                 {% else %}
-                  <p>Please log in to place orders.</p>
-                {% endif %} -->
-
-                <!-- <div class="form__input form__order-price">
-                  <input
-                    type="text"
-                    name="price"
-                    id=""
-                    class="input"
-                    placeholder=""
-                  />
-                </div> -->
-
-                <!-- <div class="form__input form__order-qty">
-                  <input
-                    type="text"
-                    name="quantity"
-                    id=""
-                    class="input"
-                    placeholder=""
-                  />
-                </div> -->
-
-                <!-- <button type="submit"
-                  class="btn--copy btn--order btn--primary place-order-fields PO5"
-                >
-                  Submit Order
-                </button> -->
-              </div>
+                    <div class="tickerPageOrderSubmitNonUser">Please Login to place an Order</div>
+                {% endif %}
             </div>
-          </div>
+
+        </div>
+    
+        <!-- User Statistics  -->
+        <div class="tickerPageUserStatistics">
+            <div class="tickerPageUserStatisticsHeader">Recent Activity</div>
+            <div class="tickerPageUserStatisticsButtonContainer grid grid_1x4">
+                <a 
+                    id="orders-tab"
+                    href="#" 
+                    class="tickerPageUserStatisticsButtonLeft">
+                    <button class="tickerPageUserStatisticsButtonLeft">Orders</button>
+                </a>
+                <a 
+                    id="fills-tab"
+                    href="#" 
+                    class="tickerPageUserStatisticsButtonMiddle">
+                    <button class="tickerPageUserStatisticsButtonMiddle">Fills</button>
+                </a>
+                <a 
+                    id="positions-tab"
+                    href="#" 
+                    class="tickerPageUserStatisticsButtonMiddle">
+                    <button class="tickerPageUserStatisticsButtonMiddle">Positions</button>
+                </a>
+                <a 
+                    id="historic-orders-tab"
+                    href="#" 
+                    class="tickerPageUserStatisticsButtonRight">
+                    <button class="tickerPageUserStatisticsButtonRight">Historic Orders</button>    
+                </a>    
+            </div>
+
+            {% if user.is_authenticated %}
+                <div class="tickerPageUserTableCard" id="orders-section">
+                    <table>
+                        <tr>
+                            <th>Match</th>
+                            <th>Timestamp</th>
+                            <th>Order Type</th>
+                            <th>Side</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Filled Quantity</th>
+                            <th>Working Quantity</th>
+                            <th>Avg. Fill Price</th>
+                            <th>Status</th>
+                            <th>Paid Fees</th>
+                            <th>Cancel</th>
+                        </tr>
+                    {% for order in user_orders|slice:":20" %}
+                        {% if order.order_status == "OPEN" or order.order_status == "PARTIAL" %}
+                        <tr>
+                            <td data-class="Match">{{ticker_detail.ticker_id}}</td>
+                            <td data-class="Timestamp">{{order.order_creation_timestamp}}</td>
+                            <td data-class="Order Type">{{order.order_type}}</td>
+                            <td data-class="Side">{{order.order_side}}</td>
+                            <td data-class="Price">{{order.order_price}}</td>
+                            <td data-class="Quantity">{{order.order_quantity}}</td>
+                            <td data-class="Filled Quantity">{{order.order_filled_quantity}}</td>
+                            <td data-class="Working Quantity">{{order.order_working_quantity}}</td>                   
+                            <td data-class="Avg. Fill Price">{{order.order_avg_fill_price}}</td>
+                            <td data-class="Status">{{order.order_status}}</td>
+                            <td data-class="Paid Fees">{{order.order_paid_fees}}</td>
+                            <td data-class="Cancel"> 
+                                <!-- Cancel Button  -->
+                                <form id="cancellation-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="cancel__order">
+                                    {% csrf_token %}
+                                    <button class="tickerPageUserStatisticsCancelButton" name="action" type="submit" value="cancel_order">Cancel</button>
+                                    <input type="hidden" name="order_id" value="{{order.order_id}}">
+                                </form>
+
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    </table>
+                    <div class="tickerPageUserTableToggle">
+                        <a href="#" class="tickerPageArrowLeft"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                        <h4>Page 1 of {{user_orders|length}}</h4>
+                        <a href="#" class="tickerPageArrowRight"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tickerPageUserTableCard" id="fills-section">
+                    <table>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Ticker</th>
+                            <th>Side</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Order ID</th>
+                        </tr>
+                    {% for fill in user_fill|slice:":20" %}
+                        <tr>
+                            <td data-class="Timestamp">{{fill.fill_timestamp}}</td>
+                            <td data-class="Ticker">{{fill.fill_ticker.ticker_id}}</td>
+                            <td data-class="Side">{{fill.fill_side}}</td>
+                            <td data-class="Price">{{fill.fill_price}}</td>
+                            <td data-class="Quantity">{{fill.fill_quantity}}</td>
+                            <td data-class="Fill ID">{{fill.fill_id}}</td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+
+                    <div class="tickerPageUserTableToggle">
+                        <a href="" class="tickerPageArrowLeft"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                        <h4>20 of {{user_fill|length}}</h4>
+                        <a href="" class="tickerPageArrowRight"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="tickerPageUserTableCard" id="positions-section">
+                    <table>
+                        <tr>
+                            <th>Ticker</th>
+                            <th>Position</th>
+                            <th>Average Price</th>
+                            <th>Open PnL</th>
+                            <th>Closed PnL</th>
+                        </tr>
+                    {% for position in position_user|slice:":20" %}
+                        <tr>
+                            <td data-class="Ticker">{{position.position_ticker.ticker_id}}</td>
+                            <td data-class="Position">{{position.position_quantity}}</td>
+                            <td data-class="Average Price">{{position.position_avg_price}}</td>
+                            <td data-class="Open PnL">{{position.position_open_pnl}}</td>
+                            <td data-class="Closed PnL">{{position.position_closed_pnl}}</td>
+                        </tr>
+                    {% endfor %}
+                    </table>
+
+                    <div class="tickerPageUserTableToggle">
+                        <a href="" class="tickerPageArrowLeft"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                        <h4>20 of {{position_user|length}}</h4>
+                        <a href="" class="tickerPageArrowRight"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tickerPageUserTableCard" id="historic-orders-section">
+                    <table>
+                        <tr>
+                            <th>Match</th>
+                            <th>Timestamp</th>
+                            <th>Order Type</th>
+                            <th>Side</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Filled Quantity</th>
+                            <th>Working Quantity</th>
+                            <th>Avg. Fill Price</th>
+                            <th>Status</th>
+                            <th>Paid Fees</th>
+                            <th>Cancel</th>
+                        </tr>
+                    {% for order in user_orders|slice:":20" %}
+                        <tr>
+                            <td data-class="Match">{{ticker_detail.ticker_id}}</td>
+                            <td data-class="Timestamp">{{order.order_creation_timestamp}}</td>
+                            <td data-class="Order Type">{{order.order_order_type}}</td>
+                            <td data-class="Side">{{order.order_side}}</td>
+                            <td data-class="Price">{{order.order_price}}</td>
+                            <td data-class="Quantity">{{order.order_quantity}}</td>
+                            <td data-class="Filled Quantity">{{order.order_filled_quantity}}</td>
+                            <td data-class="Working Quantity">{{order.order_working_quantity}}</td>                   
+                            <td data-class="Avg. Fill Price">{{order.order_avg_fill_price}}</td>
+                            <td data-class="Status">{{order.order_status}}</td>
+                            <td data-class="Paid Fees">{{order.order_paid_fees}}</td>
+                            <td data-class="Cancel"> 
+                                <!-- Cancel Button  -->
+                                <form id="cancellation-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="cancel__order">
+                                    {% csrf_token %}
+                                    <button class="tickerPageUserStatisticsCancelButton" name="action" type="submit" value="cancel_order">Cancel</button>
+                                    <input type="hidden" name="order_id" value="{{order.order_id}}">
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </table>
+                    <div class="tickerPageUserTableToggle">
+                        <a href="#" class="tickerPageArrowLeft"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                        <h4>Page 1 of {{user_orders|length}}</h4>
+                        <a href="#" class="tickerPageArrowRight"> 
+                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                        </a>
+                    </div>
+                </div>
+
+            <!-- If not logged in  -->
+            {% else %}
+                <div class="tickerPageTableNonUser">Please Login to place an Order</div>
+            {% endif %}
         </div>
 
-        <!-- Middle Sectiont that inlcudes the Orders-,Fills-, Position and Historic Tables -->
-        <!-- <div class="grid grid--1x5">
-          <h4>Orders</h4>
-          <h4>Fills</h4>
-          <h4>Positions</h4>
-          <h4>Historic Orders</h4>
-        </div> -->
-
-
-        <nav class="nav nav--table grid grid--1x4">
-          <a id="orders-tab" class="" aria-current="page" href="#">Orders</a>
-          <a id="fills-tab" class="" href="#">Fills</a>
-          <a id="positions-tab" class="" href="#">Positions</a>
-          <a id="historic-orders-tab" class="" href="#">Historic Orders</a>
-        </nav>
-
-        <!-- Tables  -->
-        {% if user.is_authenticated %}
-        <div id="orders-section" class="user_table orders_table">
-          {% if user_orders %}
-          <!-- Iterate over user_orders and display order information -->
-          <table class="user_table orders_table">
-            <thead>
-              <tr>
-                <th>Timestamp</th>
-                <th>Ticker</th>
-                <th>Order Type</th>
-                <th>Side</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Filled Quantity</th>
-                <th>Working Quantity</th>
-                <th>Avg Fill Price</th>
-                <th>Status</th>
-                <th>Paid Fees</th>
-                <th>Cancel</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for order in user_orders %}
-              <tr>
-                <td>{{ order.creation_timestamp }}</td>
-                <td>{{ order.ticker }}</td>
-                <td>{{ order.order_type }}</td>
-                <td>{{ order.side }}</td>
-                <td>{{ order.price }}</td>
-                <td>{{ order.quantity }}</td>
-                <td>{{ order.filled_quantity }}</td>
-                <td>{{ order.working_quantity }}</td>
-                <td>{{ order.avg_fill_price }}</td>
-                <td>{{ order.status }}</td>
-                <td>{{ order.paid_fees }}</td>
-                <td>
-                  <form id="cancel-form" method="POST" action="" class="user__balance__btn">
-                    {% csrf_token %}
-                    <input type="hidden" name="order_id" value="{{ order.order_id }}">
-                    <input type="hidden" name="action" value="cancel_order">
-                    <button type="submit" class="btn btn--secondary">Cancel</button>
-                  </form>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-          {% else %}
-          <p>No orders available.</p>
-          {% endif %}
-        </div>
-        <div id="positions-section">
-          {% if user_positions %}
-          <table class="">
-            <thead>
-              <tr>
-                <th>Ticker</th>
-                <th>Position</th>
-                <th>Avg Price</th>
-                <th>Open Pnl</th>
-                <th>Closed PnL</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for position in user_positions %}
-              <tr>
-                <td>{{ position.ticker.ticker_id }}</td>
-                <td>{{ position.quantity }}</td>
-                <td>{{ position.average_price }}</td>
-                <td>{{ position.open_pnl }}</td>
-                <td>{{ position.closed_pnl }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-          {% else %}
-            <p>No positions available.</p>
-          {% endif %}
-        </div>
-        <div id="fills-section">
-          {% comment %} DISPLAY POSITIONS OF THE USER {% endcomment %}
-           {% if user_fills %}
-          <table class="">
-            <thead>
-              <tr>
-                <th>Timestamp</th>
-                <th>Ticker</th>
-                <th>Side</th>
-                <th>Quantity</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for fill in user_fills %}
-              <tr>
-                <td>{{ fill.timestamp }}</td>
-                <td>{{ fill.ticker.ticker_id }}</td>
-                <td>{{ fill.side }}</td>
-                <td>{{ fill.quantity }}</td>
-                <td>{{ fill.price }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-          {% else %}
-            <p>No fills available.</p>
-          {% endif %}
-        </div>
-        {% else %}
-          <p class="user-table__unauthorized">Log in to display data</p>
-        {% endif %}
-
-        <!-- Tables End --> 
-      </div>
-      <div class="empty"></div>
     </div>
 
-    <div class="footer"></div>
-     {% endblock %}
-  <!-- </body> -->
-<!-- </html> -->
+    <div class="empty"></div>
+
+  </div>  
+
+  
+
+{% endblock %}

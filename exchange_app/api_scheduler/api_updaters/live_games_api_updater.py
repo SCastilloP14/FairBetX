@@ -104,7 +104,8 @@ def update_live_game(**kwargs):
         existing_game = Game.objects.get(game_id=kwargs["live_game_id"])
         create_ticker(existing_game)
     except Game.DoesNotExist:
-        print(f"Missing a team for game {kwargs['live_game_id']}:", kwargs["live_game_home_team_id"], kwargs["live_game_away_team_id"])
+        # print(f"Missing a team for game {kwargs['live_game_id']}:", kwargs["live_game_home_team_id"], kwargs["live_game_away_team_id"])
+        pass
 
 if "__main__" == __name__: 
     leagues = League.objects.filter()

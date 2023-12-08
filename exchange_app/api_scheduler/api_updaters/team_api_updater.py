@@ -130,4 +130,3 @@ if "__main__" == __name__:
     league_names = [league.league_name for league in leagues]
     for league_name in league_names:
         updated_team_data(league_name)
-    

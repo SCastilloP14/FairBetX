@@ -1,6 +1,424 @@
-<!DOCTYPE html>
 {% extends "exchange_app/base.html" %} {% block body_block %}
 
-    {% include './components/my_account.html' %}
+    <div class="personalInformation grid gridNav13">
+        <!-- Empty Left Side  -->
+        <div class="empty"></div>
+
+        <div class="personalInformationMiddleSection">
+            <div class="personalInformationHeader">My Account</div>
+     
+            <div class="grid cardInformationGrid_1x2" id="account-page-section">
+                <div class="personalInformationCardContainer" id="account-overview-section">
+                    <div class="personalInformationFooterBlog">
+                            <a id="personal-information-tab">Personal Information</a>
+                            <a id="personal-security-tab">Personal Security</a>
+                            <a id="card-information-tab">Card Information</a>
+                            <a id="balance-tab">Balance</a>
+                            <a id="activity-tab">My Activity</a>
+                        </div>
+                </div>
+
+                <!-- Personal Information Card  -->
+                <div class="personalInformationCardUserInfo" id="personal-information-section">
+                    <div class="personalInformationCardUserInput">
+                        <div class="grid personalInformationGridUserInput_1x2">
+                            
+                            <input class="personalInformationUserInputField" type="text" placeholder="{{user.first_name}} {{user.last_name}}">                       
+                            <button class="personalInformationEditButton">Save</button>
+                            
+                        </div>
+                        
+                    </div>
+                    <div class="personalInformationCardUserInput">
+                        <div class="grid personalInformationGridUserInput_1x2">
+
+                            <input class="personalInformationUserInputField" type="text" placeholder="{{user.username}}">
+                            <button class="personalInformationEditButton">Edit</button>
+
+                        </div>
+                    </div>
+                    <div class="personalInformationCardUserInput">
+                        <div class="grid personalInformationGridUserInput_1x2">
+
+                            <input class="personalInformationUserInputField" type="text" placeholder="{{user.email}}">
+                            <button class="personalInformationEditButton">Edit</button>
+
+                        </div>
+                    </div>
+                    <div class="personalInformationCardUserInput">
+                        <div class="grid personalInformationGridUserInput_1x2">
+
+                            <input class="personalInformationUserInputField" type="text" placeholder="{{user.phone}}">
+                            <button class="personalInformationEditButton">Edit</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Information End  -->
+
+                <!-- Personal Security Start  -->
+
+                <div class="securityCardUserInfo" id="personal-security-section">
+
+                    <div class="securityCardUserInput">
+                        <div class="securityCardUserInputName">Password</div>
+                        <input class="securityUserInputField" type="text" placeholder="********">                       
+                        <button class="securityEditButton">Edit</button>
+                    </div>
+
+                    <div class="securityUserTwoStepAuthentication">
+                        <div class="securityUserTwoStepAuthenticationHeader">
+                            <img src="../../../static/img/security-lock-icon.png" alt="">
+                            <h2>Two Step Verification</h2>
+                        </div>
+                        <div class="securityUserTwoStepAuthenticationSubHeader">
+                            Consider using Two Step Verification to keep your account, and your data safe. 
+                        </div>
+                    </div>
+
+                    <div class="securityCardUserInput">
+                        <div class="securityCardUserInputName">Email Verification</div>
+                        <input class="securityUserInputField" type="text" placeholder="Lorem Ipsum">
+                        <div class="securityEnableSwitchContainer" id="Email-verification-switch">
+                            <label class="securityEnableSwitch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <span>Enable</span>
+                        </div>
+                    </div>
+
+                    <div class="securityCardUserInput">
+                        <div class="securityCardUserInputName">SMS Verification</div>
+                        <input class="securityUserInputField" type="text" placeholder="+1 (123) 456-7890">
+                        <div class="securityEnableSwitchContainer" id="SMS-verification-switch">
+                            <label class="securityEnableSwitch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <span>Enable</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Security End  -->
+
+                <!-- Card Information Start  -->
+
+                <div class="cardInformationOverview" id="card-information-overview-section">
+                    <div class="balanceCardMyBalanceHeader">
+                        <img src="../../../static/img/credit-card-icon.png" alt="">
+                        <h2>My Cards</h2>  
+                        <a 
+                            href="#"
+                            id="add-credit-card-tab"
+                            class="cardInformationEditButton">
+                            <button >Add New</button> 
+                        </a>
+                        
+                    </div>
+
+                    <div class="balanceCardUserInput">
+                        <div class="grid balanceGridUserInput_1x2">
+
+                            <input class="balanceUserInputField" type="text" placeholder="****  1234">
+                            <button class="balanceSelectedButton">Selected</button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cardInformationCardUserInfo grid cardInformationInputGrid_1x2" id="card-information-section">
+
+                    
+                    <div class="cardInformationUserInput" id="add-credit-card-section">
+                        <form action="">
+                            <div class=cardInformationCardInformation>
+                                Card Information
+                            </div>
+                            <div class="cardInformationCardHolderName">
+                                Card Holder Name
+                                <input type="text" placeholder="John Smith">
+                            </div>
+                            
+                            <div class="cardInformationCardHolderCardNumber">
+                                Card Number
+                                <input type="text" placeholder="1234  5678  9012  3456">
+                            </div>
+                            <div class="cardInformationCardHolderExpiryDateWrapper">
+                            <div class="cardInformationCardHolderExpiryDate">
+                                Expiry Date
+                                <input type="text" placeholder="MM/YY">
+                            </div>
+                            <div class="cardInformationCardHolderCVV">
+                                CVV
+                                <input type="text" placeholder="123">
+                            </div>
+                            </div>
+                            <button class="cardInformationCardHolderConfirmButton">Confirm</button>
+                        </form>
+                    </div>
+
+                    <div class="empty"></div>
+                                       
+                </div>
+
+                <!-- Card Information End  -->
+
+
+                <!-- Balance Start  -->
+
+                <div class="balanceCardUserInfo" id="balance-section">
+
+                    <div class="balanceCardMyBalanceHeader">
+                        <img src="../../../static/img/wallet-icon.png" alt="">
+                        <h2>My Balance</h2>  
+                        <!-- <div class="balanceCardUserBalance"> -->
+                            <form method="POST" class="balanceCardUserBalance">
+                                {% csrf_token %}
+                                <input type="hidden" name="username" value="{{user.username}}">
+                                <input type="hidden" name="new_balance" value="100">
+                                <button class="button addFunds" type="submit">Add Funds</button>
+
+                            </form>
+                            
+                            <span class="">{{user_detail.userprofileinfo.user_available_balance}}</span>  
+                        <!-- </div>  -->
+                                         
+                    </div>
+                    
+                    <div class="balanceCardAddFunds">
+                        <h4>Add New Funds</h4>
+                        <input class="balanceUserInputField" type="text" placeholder="$0.00">
+                    </div>
+
+                    <h3>Select Payment Method</h3>
+                    
+                    <div class="balanceCardUserInput">
+                        <div class="grid balanceGridUserInput_1x2">
+
+                            <input class="balanceUserInputField" type="text" placeholder="****  1234">
+                            <button class="balanceSelectedButton">Selected</button>
+
+                        </div>
+                    </div>
+                    
+                    <div class="balanceConfirmButtonContainer">
+                        <button class="balanceConfirmButton">Confirm</button>
+                    </div>
+
+                </div>
+
+                <!-- Balance End  -->
+
+                <!-- Activity Start  -->
+                <div id="activity-section">
+                <div class="myActivityCard grid gridMyActivity1x5">
+
+                    <a id="activity-personal-information-tab">Personal Information</a>
+                    <a id="activity-personal-security-tab">Security</a>
+                    <a id="activity-card-information-tab">Card Information</a>
+                    <a id="activity-balance-tab">Balance</a>
+                    <a >My Activity</a>
+
+                </div>
+
+                <div class="myActivityUserStatistics">
+                    <div class="myActivityUserStatisticsHeader">Recent Activity</div>
+                    <div class="myActivityButtonContainer grid grid_1x4">
+                        <a 
+                            href="#" 
+                            id="activity-orders-tab"
+                            class="myActivtyButtonOrdersLeft">
+                            <button class="myActivtyButtonOrdersLeft">Orders</button>
+                        </a> 
+                        <a 
+                            href="#"
+                            id="activity-positions-tab"
+                            class="myActivtyButtonOrdersMiddle">   
+                            <button class="myActivtyButtonOrdersMiddle">Fills</button>
+                        </a>
+                        <a 
+                            href="#"
+                            id="activity-fills-tab"
+                            class="myActivtyButtonOrdersMiddle">
+                            <button class="myActivtyButtonOrdersMiddle">Positions</button>
+                        </a>
+                        
+                        <a 
+                            href="#"
+                            id="activity-historic-orders-tab"
+                            class="myActivtyButtonOrdersRight">
+                            <button class="myActivtyButtonOrdersRight">Historic Orders</button>   
+                        </a> 
+                    </div>
+                    <div class="myActivityUserTableCard" id="activity-orders-section">
+                        <table>
+                            <tr>
+                                <th>Match</th>
+                                <th>Timestamp</th>
+                                <th>Order Type</th>
+                                <th>Side</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Filled Quantity</th>
+                                <th>Working Quantity</th>
+                                <th>Avg. Fill Price</th>
+                                <th>Status</th>
+                                <th>Paid Fees</th>
+                                <th>Cancel</th>
+                            </tr>
+                    {% for order in user_orders|slice:":20" %}
+                        {% if order.status == "OPEN" or order.status == "PARTIAL" %}
+
+                            <tr>
+                                <td data-class="Match">{{order.ticker_id}}</td>
+                                <td data-class="Timestamp">{{order.creation_timestamp}}</td>
+                                <td data-class="Order Type">{{order.order_type}}</td>
+                                <td data-class="Side">{{order.side}}</td>
+                                <td data-class="Price">{{order.price}}</td>
+                                <td data-class="Quantity">{{order.quantity}}</td>
+                                <td data-class="Filled Quantity">{{order.filled_quantity}}</td>
+                                <td data-class="Working Quantity">{{order.working_quantity}}</td>                   
+                                <td data-class="Avg. Fill Price">{{order.avg_fill_price}}</td>
+                                <td data-class="Status">{{order.status}}</td>
+                                <td data-class="Paid Fees">{{order.paid_fees}}</td>
+                                <td data-class="Cancel"> 
+                                    <button class="myActivtyCancelButton">Cancel</button>
+                                    
+                                </td>
+                                    
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                                 
+                        </table>
+
+
+                    </div>
+
+                <!-- Fills Table  -->
+                <div class="myActivityUserTableCard" id="activity-fills-section">
+                    <table>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Ticker</th>
+                            <th>Side</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Order ID</th>
+
+                        </tr>
+                    {% for fill in user_fill|slice:":20" %}
+
+                        <tr>
+                            <td data-class="Timestamp">{{fill.timestamp}}</td>
+                            <td data-class="Ticker">{{fill.ticker.ticker_id}}</td>
+                            <td data-class="Side">{{fill.side}}</td>
+                            <td data-class="Price">{{fill.price}}</td>
+                            <td data-class="Quantity">{{fill.quantity}}</td>
+                            <td data-class="Order ID">{{fill.fill_id}}</td>
+
+                        </tr>
+
+                    {% endfor %}
+                    
+                    </table>
+
+                </div>
+
+                <!-- Positions Table  -->
+                <div class="myActivityUserTableCard" id="activity-positions-section">
+                    <table>
+                        <tr>
+                            <th>Ticker</th>
+                            <th>Position</th>
+                            <th>Average Price</th>
+                            <th>Open PnL</th>
+                            <th>Closed PnL</th>
+
+                        </tr>
+                    {% for position in user_position|slice:":20" %}
+
+                        <tr>
+                            <td data-class="Ticker">{{position.ticker.ticker_id}}</td>
+                            <td data-class="Position">{{position.quantity}}</td>
+                            <td data-class="Average Price">{{position.avg_price}}</td>
+                            <td data-class="Open PnL">{{position.open_pnl}}</td>
+                            <td data-class="Closed PnL">{{position.closed_pnl}}</td>
+
+                        </tr>
+
+                    {% endfor %}
+                    
+                    </table>
+
+                    
+
+                </div>
+
+                <!-- Historic Orders  -->
+
+                <div class="myActivityUserTableCard" id="activity-historic-orders-section">
+                    <table>
+                        <tr>
+                            <th>Match</th>
+                            <th>Timestamp</th>
+                            <th>Order Type</th>
+                            <th>Side</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Filled Quantity</th>
+                            <th>Working Quantity</th>
+                            <th>Avg. Fill Price</th>
+                            <th>Status</th>
+                            <th>Paid Fees</th>
+                            <th>Cancel</th>
+                        </tr>
+                    {% for order in user_orders|slice:":20" %}
+
+                        <tr>
+                            <td data-class="Match">{{order.ticker_id}}</td>
+                            <td data-class="Timestamp">{{order.creation_timestamp}}</td>
+                            <td data-class="Order Type">{{order.order_type}}</td>
+                            <td data-class="Side">{{order.side}}</td>
+                            <td data-class="Price">{{order.price}}</td>
+                            <td data-class="Quantity">{{order.quantity}}</td>
+                            <td data-class="Filled Quantity">{{order.filled_quantity}}</td>
+                            <td data-class="Working Quantity">{{order.working_quantity}}</td>                   
+                            <td data-class="Avg. Fill Price">{{order.avg_fill_price}}</td>
+                            <td data-class="Status">{{order.status}}</td>
+                            <td data-class="Paid Fees">{{order.paid_fees}}</td>
+                            <td data-class="Cancel"> 
+                                <button class="myActivtyCancelButton">Cancel</button>  
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                    </table>
+
+                    
+
+                </div>
+
+
+            </div>
+            </div>
+                <!-- Activity End  -->
+
+
+
+
+            </div>
+           
+        </div>
+
+        <!-- Empty Right Side  -->
+        <div class="empty"></div>
+
+
+    </div>
 
 {% endblock %}

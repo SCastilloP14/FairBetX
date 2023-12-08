@@ -401,23 +401,7 @@ h4 {
         <!-- Middle Section  -->
         <div class="grid grid12">
             <!-- Left Card  -->
-            <div class="leftCardContainer">
-                <input type="text" class="searchBarLeftCard" placeholder="Search">
-                {% for league, league_teams in grouped_teams.items %}
-                <div class="custom-dropdown" id={{ league.league_name|slugify }}>
-                    <div class="dropdown-header">
-                        <img class="SportLogo" src={{league.league_badge}} alt="">
-                        <span class="header-text"> {{league.league_name}}</span>
-                        <img class="arrow" style="margin-left:56px;" src="../../../static/img/arrow-icon.png" alt="">
-                    </div>
-                    <div class="dropdown-content">
-                        {% for team in league_teams %}
-                        <div class="dropdown-option">{{team.team_name}}</div>
-                        {% endfor %}
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
+            
 
             <!-- Right Card  -->
             <div class="rightCardContainer">

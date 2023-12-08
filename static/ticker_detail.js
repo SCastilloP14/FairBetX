@@ -73,6 +73,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Add event listener to orders-tab
   ordersTab.addEventListener("click", function (event) {
+    console.log("We are inside");
+
     event.preventDefault();
 
     // Show orders-section and hide positions-section
