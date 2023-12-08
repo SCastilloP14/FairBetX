@@ -765,7 +765,7 @@ min-height:100vh;
 
 /* Ticker  */
 .page_background{
-        background: #f7f7f7;
+    background: #f7f7f7;
     }
 .grid {
     display: grid;
@@ -807,14 +807,14 @@ min-height:100vh;
     justify-content: center;
     align-items: center;
    }
-.header {
+.tickerDetailHeader {
     margin-top:86px;
     text-align: center;
     font-size:34px;
     font-weight: 700;
     color: #00474f;
     padding-top: 40px;
-    width:100%
+    width:100%;
 }
 
 .tickerPageGameDetails {

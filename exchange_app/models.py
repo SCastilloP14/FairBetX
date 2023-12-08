@@ -9,7 +9,7 @@ class GameStatus(Enum):
     SCHEDULED = "Scheduled"
     PLAYING = "Playing"
     FINISHED = "Finished"
-    CANCELED = "Cancelled"
+    CANCELED = "Canceled"
     POSTPONED = "Postponed"
     ABDANDONED = "Abandoned"
     NO_STATUS = "No_Status"
@@ -19,16 +19,35 @@ class GameStatus(Enum):
 
 game_status_mapping = {
                         'NS': GameStatus.SCHEDULED.name,
+                        'pre': GameStatus.SCHEDULED.name,
                         'PLAYING': GameStatus.PLAYING.name,
                         'FT': GameStatus.FINISHED.name,
+                        'Final': GameStatus.FINISHED.name,
                         'HT': GameStatus.PLAYING.name,
                         'BT': GameStatus.PLAYING.name,
                         'CANC': GameStatus.CANCELED.name,
                         'POST': GameStatus.POSTPONED.name,
                         'ABD': GameStatus.ABDANDONED.name,
-                        '': GameStatus.NO_STATUS.name,
-                        'AOT':GameStatus.FINISHED.name,
-                        'AP':GameStatus.FINISHED.name
+                        'AOT': GameStatus.FINISHED.name,
+                        'AP': GameStatus.FINISHED.name,
+                        'Q1': GameStatus.PLAYING.name,
+                        'Q2': GameStatus.PLAYING.name,
+                        'Q3': GameStatus.PLAYING.name,
+                        'Q4': GameStatus.PLAYING.name,
+                        'P1': GameStatus.PLAYING.name,
+                        'P2': GameStatus.PLAYING.name,
+                        'P3': GameStatus.PLAYING.name,
+                        'IN1': GameStatus.PLAYING.name,
+                        'IN2': GameStatus.PLAYING.name,
+                        'IN3': GameStatus.PLAYING.name,
+                        'IN4': GameStatus.PLAYING.name,
+                        'IN5': GameStatus.PLAYING.name,
+                        'IN6': GameStatus.PLAYING.name,
+                        'IN7': GameStatus.PLAYING.name,
+                        'IN8': GameStatus.PLAYING.name,
+                        'IN9': GameStatus.PLAYING.name,
+                        'OT': GameStatus.PLAYING.name,
+                        'P': GameStatus.PLAYING.name,
                         }
 
 class TickerStatus(Enum):
@@ -45,13 +64,13 @@ ticker_status_mapping = {GameStatus.SCHEDULED.name: TickerStatus.OPEN.name,
                          GameStatus.CANCELED.name: TickerStatus.CANCELED.name,
                          GameStatus.POSTPONED.name: TickerStatus.CANCELED.name,
                          GameStatus.ABDANDONED.name: TickerStatus.CANCELED.name,
-                         GameStatus.NO_STATUS.name: TickerStatus.CLOSED.name,
+                         GameStatus.NO_STATUS.name: TickerStatus.OPEN.name,
                          }
 
 class TickerOutcome(Enum):
     LONGS_WIN = "Longs Win"
     SHORTS_WIN = "Shorts Win"
-    CANCELED = "Cancelled"
+    CANCELED = "Canceled"
 
 
 class OrderType(Enum):
@@ -74,13 +93,12 @@ class OrderStatus(Enum):
     OPEN = "Open"
     PARTIAL = "Partially Filled"
     FILLED = "Filled"
-    CANCELED = "Cancelled"
+    CANCELED = "Canceled"
+    SETTLED = "Settled"
 
     def __str__(self):
         return self.name
 
-    def __str__(self):
-        return self.value
 
 ticker_stauts_mapping = {
                         'NS': TickerStatus.OPEN.name,
@@ -108,16 +126,16 @@ class UserProfileInfo(models.Model):
         
     @property
     def total_balance(self):
-        return self.available_balance + self.locked_balance
+        return self.user_available_balance + self.user_locked_balance
     
     def lock_balance(self, balance_to_lock):
-        self.locked_balance += balance_to_lock
-        self.available_balance -= balance_to_lock
+        self.user_locked_balance += balance_to_lock
+        self.user_available_balance -= balance_to_lock
         self.save()
 
     def unlock_balance(self, balance_to_unlock):
-        self.locked_balance -= balance_to_unlock
-        self.available_balance += balance_to_unlock
+        self.user_locked_balance -= balance_to_unlock
+        self.user_available_balance += balance_to_unlock
         self.save()
 
     def __str__(self):
@@ -236,11 +254,12 @@ class Ticker(models.Model):
 
     def update_ticker_activity(self, trades):
         for trade in trades:
-            self.volume += trade.quantity
-            self.last_price = trade.price
-            self.save()
+            self.ticker_volume += trade.trade_quantity
+            self.ticker_last_price = trade.trade_price
+        self.save()
 
     def check_outcome(self):
+        print(self.ticker_game.game_filename)
         if self.ticker_game.game_home_team_score > self.ticker_game.game_away_team_score:
             self.ticker_outcome = TickerOutcome.LONGS_WIN.name
         else:
@@ -248,8 +267,9 @@ class Ticker(models.Model):
         
     def close_ticker(self):
         self.ticker_status = TickerStatus.CLOSED.name
-        self.save()
+        # Close all open orders on the ticker.
         self.check_outcome()
+        self.save()
         self.pay_winners()
 
     def cancel_ticker(self):
@@ -257,49 +277,47 @@ class Ticker(models.Model):
         self.ticker_status = TickerStatus.CANCELED.name
         self.save()
 
+    def close_remaining_orders(self):
+        ticker_orders_to_cancel = Order.objects.filter(order_ticker=self)
+        ticker_orders_to_cancel.update(order_status=OrderStatus.SETTLED.name)
+
     def pay_winners(self):
         try:
-            ticker_positions = Position.objects.get(position_ticker=self)
+            ticker_positions = Position.objects.filter(position_ticker=self)
+            print("Paying winners for", self.ticker_game.game_filename, len(ticker_positions))
             for position in ticker_positions:
-                position_payout= self.payout * abs(position.quantity)
-                if position.quantity > 0 and self.ticker_outcome == TickerOutcome.LONGS_WIN.name:
-                    position_user = position.user
-                    position_user.userprofileinfo.available_balance += position_payout
-                    position_user.userprofileinfo.locked_balance -= position.quantitity * position.average_price 
-                elif position.quantity < 0 and self.ticker_outcome == TickerOutcome.SHORTS_WIN.name:
-                    position_user = position.user.userprofileinfo
-                    position_user.available_balance += position_payout
-                    position_user.userprofileinfo.locked_balance -= position.quantitity * (self.payout - position.average_price)
+                print("Pos info:", position.position_user.username, position.position_quantity)
+                position_payout= self.ticker_payout * abs(position.position_quantity)
+                position_user = position.position_user
+
+                if position.position_quantity > 0 and self.ticker_outcome == TickerOutcome.LONGS_WIN.name:
+                    print("LONG WINNER!")
+                    position.position_settled_pnl = (self.ticker_payout - position.position_average_price) * position.position_quantity
+                    position_user.userprofileinfo.user_available_balance += position_payout
+                    position_user.userprofileinfo.user_locked_balance -= position.position_quantity * position.position_average_price
+
+                elif position.position_quantity > 0 and self.ticker_outcome == TickerOutcome.SHORTS_WIN.name:
+                    print("LONG LOSER!")
+                    position.position_settled_pnl = -position.position_average_price * position.position_quantity
+                    position_user.userprofileinfo.user_locked_balance -= position.position_quantity * position.position_average_price
+
+                elif position.position_quantity < 0 and self.ticker_outcome == TickerOutcome.SHORTS_WIN.name:
+                    print("SHORT WINNER!")
+                    position.position_settled_pnl += position.position_average_price * position.position_quantity
+                    position_user.userprofileinfo.user_available_balance += position_payout
+                    position_user.userprofileinfo.user_locked_balance -= position.position_quantity * (self.ticker_payout - position.position_average_price)
+
+                elif position.position_quantity < 0 and self.ticker_outcome == TickerOutcome.LONGS_WIN.name:
+                    print("SHORT LOSER!")
+                    position.position_settled_pnl = -(self.ticker_payout - position.position_average_price) * position.position_quantity
+                    position_user.userprofileinfo.user_locked_balance -= position.position_quantity * (self.ticker_payout - position.position_average_price)
+                
+                position.position_settled = True
+                position.save()
+                position_user.userprofileinfo.save()
+
         except Position.DoesNotExist:
             print(f"{self.ticker_game.game_filename} closed without any positions")
-
-    def update_ticker(game: Game, **kwargs):
-        try:
-            existing_ticker = Ticker.objects.get(ticker_id=f"{kwargs['game_id']}-T")
-            # if "IN" in kwargs["status"]:
-            #     print(existing_ticker.status, TickerStatus.OPEN.name, existing_ticker.status == TickerStatus.OPEN.name)
-            if existing_ticker.status == TickerStatus.OPEN.name:
-                existing_ticker.status = ticker_stauts_mapping[kwargs["status"]]
-                existing_ticker.save()
-                if existing_ticker.status == TickerStatus.CLOSED.name:
-                    if Ticker.game.home_team_score > Ticker.game.away_team_score:
-                        print("Closing Ticker", f"{kwargs['game_id']}-T with longs win")
-                        outcome = TickerOutcome.LONGS_WIN.name
-                    elif Ticker.game.home_team_score < Ticker.game.away_team_score:
-                        outcome = TickerOutcome.SHORTS_WIN.name
-                        print("Closing Ticker", f"{kwargs['game_id']}-T with shorts win")
-                    existing_ticker.close_ticker(existing_ticker, outcome)
-                elif existing_ticker.status == TickerStatus.CANCELED.name:
-                    print("Canceling Ticker", f"{kwargs['game_id']}-T")
-                    existing_ticker.cancel_ticker(existing_ticker)
-                existing_ticker.save()
-        except Ticker.DoesNotExist:
-            if ticker_stauts_mapping[kwargs["status"]] == TickerStatus.OPEN:
-                new_ticker = Ticker(ticker_id=f"{kwargs['game_id']}-T", 
-                                    ticker_game = game, 
-                                    status=TickerStatus.OPEN)
-                new_ticker.save()
-                print(f"Created ticker {kwargs['game_id']}-T")
 
     def __str__(self):
         return f"{self.ticker_game.game_filename}-T"
@@ -322,116 +340,103 @@ class Order(models.Model):
     order_modification_timestamp = models.DateTimeField(auto_now_add=True)
 
     def cancel(self):
-        if self.status != OrderStatus.FILLED.value:
-            self.status = OrderStatus.CANCELLED.value
-            if self.side == OrderSide.BUY.name:
-                balance_to_unlock = self.price * self.quantity
+        if self.order_status != OrderStatus.FILLED.name:
+            self.order_status = OrderStatus.CANCELED.name
+            if self.order_side == OrderSide.BUY.name:
+                balance_to_unlock = self.order_price * self.order_working_quantity
             else:
-                balance_to_unlock = (self.ticker.payout - self.price) * self.quantity 
+                balance_to_unlock = (self.order_ticker.ticker_payout - self.order_price) * self.order_working_quantity 
             self.unlock_balance(balance_to_unlock)
             self.save()
 
     def lock_balance(self, balance_to_lock):
-        self.user.userprofileinfo.lock_balance(balance_to_lock)
+        self.order_user.userprofileinfo.lock_balance(balance_to_lock)
 
     def unlock_balance(self, balance_to_unlock):
-        self.user.userprofileinfo.unlock_balance(balance_to_unlock)
+        self.order_user.userprofileinfo.unlock_balance(balance_to_unlock)
 
     def update_order(self, fill):
-        if self.avg_fill_price:
-            self.avg_fill_price = ((self.filled_quantity * self.avg_fill_price) + (fill.quantity * fill.price)) / (self.filled_quantity + fill.quantity)
+        if self.order_avg_fill_price:
+            self.order_avg_fill_price = ((self.order_filled_quantity * self.order_avg_fill_price) + (fill.fill_quantity * fill.fill_price)) / (self.order_filled_quantity + fill.fill_quantity)
         else:
-            self.avg_fill_price = fill.price
-        self.working_quantity -= fill.quantity
-        self.filled_quantity += fill.quantity
-        self.paid_fees += fill.price * fill.quantity * (self.ticker.maker_fee_pct / 100)
-        
+            self.order_avg_fill_price = fill.fill_price
+        self.order_working_quantity -= fill.fill_quantity
+        self.order_filled_quantity += fill.fill_quantity
+        self.order_paid_fees += fill.fill_price * fill.fill_quantity * (self.order_ticker.ticker_maker_fee_pct / 100)
+
         if self.order_type == OrderType.MARKET.name:
-            if self.side == OrderSide.BUY.name:
-                balance_to_lock = fill.price * self.quantity
+            if self.order_side == OrderSide.BUY.name:
+                balance_to_lock = fill.fill_price * self.order_quantity
             else:
-                balance_to_lock = (self.ticker.payout - fill.price) * self.quantity 
+                balance_to_lock = (self.order_ticker.ticker_payout - fill.fill_price) * self.order_quantity 
             self.lock_balance(balance_to_lock)
-        
-        if self.working_quantity == 0:
-            self.status = OrderStatus.FILLED.name
+
+        if self.order_working_quantity == 0:
+            self.order_status = OrderStatus.FILLED.name
         else:
-            self.status = OrderStatus.PARTIAL.name
+            self.order_status = OrderStatus.PARTIAL.name
         self.save()
 
     def execute_order(self):
-        # If statement to check balance and return error message.
-        required_balance = self.price * self.quantity if self.side == OrderSide.BUY.name else (self.payout - self.price) * self.quantity
-        if required_balance > self.user.userprofileinfo.available_balance:
-            return "NOT ENOUGH BALANCE"
-        try:
-            user_position = Position.objects.get(user=self.user, ticker=self.ticker)
-            user_posittion_quantity = user_position.quantity
-            user_position_avg_price = user_position.average_price
-        except Position.DoesNotExist:
-            user_posittion_quantity = 0
-            user_position_avg_price = 0
-        if self.side == OrderSide.BUY.name:
+        if self.order_side == OrderSide.BUY.name:
             if self.order_type == OrderType.LIMIT.name:
-                if user_posittion_quantity >= 0:
-                    # Case 1 + Case 2
-                    balance_to_lock = self.price * self.quantity
-                    self.lock_balance(balance_to_lock)
-                elif user_posittion_quantity < 0:
-                    if abs(user_posittion_quantity) >= self.quantity:
-                        # Case 3 & Case 4
-                        pass
-                    else:
-                        balance_needed_after_flip = (user_posittion_quantity + self.quantity) * self.price
-                        balance_needed_currently = (self.ticker.payout - user_position_avg_price) * self.price
-                        # Case 5
-                        
-                counterparties = Order.objects.filter(ticker=self.ticker, price__lte=self.price, side=OrderSide.SELL.name, working_quantity__gt=0,
-                                                    #   status__ne=OrderStatus.CANCELLED.name
-                                                      ).order_by("price", "modification_timestamp")
+                balance_to_lock = self.order_quantity * self.order_price
+                self.lock_balance(balance_to_lock)
+                counterparties = Order.objects.filter(order_ticker=self.order_ticker, order_price__lte=self.order_price, order_side=OrderSide.SELL.name, order_working_quantity__gt=0,
+                                                      order_status__in=["OPEN", "PARTIAL"]
+                                                      ).order_by("order_price", "order_modification_timestamp")
+                print("counterparties found: ", len(counterparties))
             else:
-                counterparties = Order.objects.filter(ticker=self.ticker, side=OrderSide.SELL.name, working_quantity__gt=0, 
-                                                    #   status__ne=OrderStatus.CANCELLED.name
-                                                      ).order_by("price", "modification_timestamp")
+                counterparties = Order.objects.filter(order_ticker=self.order_ticker, order_side=OrderSide.SELL.name, order_working_quantity__gt=0, 
+                                                      order_status__in=["OPEN", "PARTIAL"]
+                                                      ).order_by("order_price", "order_modification_timestamp")
+                if len(counterparties) == 0:
+                    exit
         else:
             if self.order_type == OrderType.LIMIT.name:
-                balance_to_lock = (self.ticker.payout - self.price) * self.quantity 
+                balance_to_lock = self.order_quantity * (self.order_ticker.ticker_payout - self.order_price)
                 self.lock_balance(balance_to_lock)
-                counterparties = Order.objects.filter(ticker=self.ticker, price__gte=self.price, side=OrderSide.BUY.name, working_quantity__gt=0,
-                                                    #   status__ne=OrderStatus.CANCELLED.name
-                                                      ).order_by("-price", "modification_timestamp")
+                counterparties = Order.objects.filter(order_ticker=self.order_ticker, order_price__gte=self.order_price, order_side=OrderSide.BUY.name, order_working_quantity__gt=0,
+                                                      order_status__in=["OPEN", "PARTIAL"]
+                                                      ).order_by("-order_price", "order_modification_timestamp")
             else:
-                counterparties = Order.objects.filter(ticker=self.ticker, side=OrderSide.BUY.name, working_quantity__gt=0, 
-                                                    #   status__ne=OrderStatus.CANCELED.name
-                                                      ).order_by("-price", "modification_timestamp")
-        remaining_quantity = self.quantity
+                counterparties = Order.objects.filter(order_ticker=self.order_ticker, order_side=OrderSide.BUY.name, order_working_quantity__gt=0,
+                                                      order_status__in=["OPEN", "PARTIAL"]
+                                                      ).order_by("-order_price", "order_modification_timestamp")
+                if len(counterparties) == 0:
+                    exit
+
+        remaining_quantity = self.order_quantity
         trades = []
         for counterparty in counterparties:
             if remaining_quantity <= 0:
                 break
-            trade_quantity = min(remaining_quantity, counterparty.working_quantity)
-            trade_price = counterparty.price
-            trade = Trade.objects.create(buy=counterparty if self.side == OrderSide.SELL.name else self, 
-                                         sell=self if self.side == OrderSide.SELL.name else counterparty, 
-                                         quantity=trade_quantity,price=trade_price, ticker=self.ticker)
+            trade_quantity = min(remaining_quantity, counterparty.order_working_quantity)
+            trade_price = counterparty.order_price
+            trade = Trade.objects.create(trade_buy=counterparty if self.order_side == OrderSide.SELL.name else self, 
+                                         trade_sell=self if self.order_side == OrderSide.SELL.name else counterparty, 
+                                         trade_quantity=trade_quantity, trade_price=trade_price, trade_ticker=self.order_ticker,
+                                         trade_id=f"TRADE-{''.join(random.choices(string.ascii_letters + string.digits, k=16))}")
+            trade.save()
             trades.append(trade)
             remaining_quantity -= trade_quantity
 
-            user_fill = Fill.objects.create(user=self.user, ticker=self.ticker, quantity=trade_quantity, side=self.side, 
-                                            price=trade_price, timestamp=models.DateTimeField(auto_now_add=True),
-                                            fill_id = ''.join(random.choices(string.ascii_letters + string.digits, k=16)))
+            user_fill = Fill.objects.create(fill_id = f"FILL-{''.join(random.choices(string.ascii_letters + string.digits, k=16))}",
+                                            fill_user = self.order_user, fill_ticker=self.order_ticker,
+                                            fill_quantity=trade_quantity, fill_side=self.order_side, 
+                                            fill_price=trade_price, fill_timestamp=models.DateTimeField(auto_now_add=True), fill_order=self)
             user_fill.save()
             self.update_order(user_fill)
-            counterparty_fill = Fill.objects.create(user=counterparty.user, ticker=self.ticker, quantity=trade_quantity, side=counterparty.side, 
-                                                    price=trade_price, timestamp=models.DateTimeField(auto_now_add=True),
-                                                    fill_id = ''.join(random.choices(string.ascii_letters + string.digits, k=16)))
-            counterparty_fill.save()
+            counterparty_fill = Fill.objects.create(fill_id = f"FILL-{''.join(random.choices(string.ascii_letters + string.digits, k=16))}",
+                                                    fill_user=counterparty.order_user, fill_ticker=counterparty.order_ticker,
+                                                    fill_quantity=trade_quantity, fill_side=counterparty.order_side, 
+                                                    fill_price=trade_price, fill_timestamp=models.DateTimeField(auto_now_add=True), fill_order=counterparty)
             counterparty.update_order(counterparty_fill)
-        self.ticker.update_ticker(trades)
+        self.order_ticker.update_ticker_activity(trades)
         Position.update_positions(trades)
 
     def __str__(self):
-        return f"{self.user}: {self.side} - {self.quantity} @ {self.price}"
+        return f"{self.order_user}: {self.order_side} - {self.order_quantity} @ {self.order_price}"
 
 
 class Fill(models.Model):
@@ -442,13 +447,14 @@ class Fill(models.Model):
     fill_quantity = models.PositiveIntegerField(default=0)
     fill_price = models.DecimalField(max_digits=10, decimal_places=2)
     fill_timestamp = models.DateTimeField(auto_now_add=True)
+    fill_order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.fill_id}"
+        return f"{self.fill_id}-{self.fill_ticker.ticker_game}"
 
 
 class Trade(models.Model):
-    trade_trade_id = models.CharField(max_length=20)
+    trade_id = models.CharField(max_length=20)
     trade_ticker = models.ForeignKey(Ticker, on_delete=models.CASCADE)
     trade_buy = models.ForeignKey(Order, related_name="buy_trades",on_delete=models.CASCADE)
     trade_sell = models.ForeignKey(Order, related_name="sell_trades", on_delete=models.CASCADE)
@@ -457,7 +463,7 @@ class Trade(models.Model):
     trade_timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.ticker.ticker_id}-{self.trade_id}"
+        return f"{self.trade_ticker.ticker_id}-{self.trade_id}"
     
 
 class Position(models.Model):
@@ -467,40 +473,46 @@ class Position(models.Model):
     position_average_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     position_open_pnl = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     position_closed_pnl = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    position_settled_pnl = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    position_settled = models.BooleanField(default=False)
+
 
     @classmethod
-    def update_positions(cls, trades):
+    def update_positions(cls, trades: [Trade]):
         for trade in trades:
-            buy = trade.buy
-            sell = trade.sell
+            buy = trade.trade_buy
+            sell = trade.trade_sell
+
+            print("buy", type(buy))
+            print("sell", type(sell))
 
             # Update the positions for the buy user
-            buy_position, _ = cls.objects.get_or_create(user=buy.user, ticker=buy.ticker)
-            if buy_position.quantity == 0:
-                buy_position.average_price = trade.price
-            elif buy_position.quantity < 0:
-                buy_position.closed_pnl = (buy_position.average_price - trade.price) * trade.quantity
-                if buy_position.quantity + trade.quantity == 0:
-                    buy_position.average_price = 0
+            buy_position, buy_position_created = Position.objects.get_or_create(position_user=buy.order_user, position_ticker=buy.order_ticker)
+            if buy_position_created or buy_position.position_quantity == 0:
+                buy_position.position_average_price = trade.trade_price
+            elif buy_position.position_quantity < 0:
+                buy_position.position_closed_pnl += (buy_position.position_average_price - trade.trade_price) * trade.trade_quantity
+                if buy_position.position_quantity + trade.trade_quantity == 0:
+                    buy_position.position_average_price = 0
             else:
-                buy_position.average_price = ((buy_position.average_price * buy_position.quantity) + (trade.price * trade.quantity)) / (buy_position.quantity + trade.quantity)
-            buy_position.quantity += trade.quantity
-            buy_position.open_pnl = (buy_position.average_price - trade.ticker.last_price) * buy_position.quantity
+                buy_position.position_average_price = ((buy_position.position_average_price * buy_position.position_quantity) + (trade.trade_price * trade.trade_quantity)) / (buy_position.position_quantity + trade.trade_quantity)
+            buy_position.position_quantity += trade.trade_quantity
+            buy_position.position_open_pnl = (buy_position.position_average_price - trade.trade_ticker.ticker_last_price) * buy_position.position_quantity
             buy_position.save()
 
             # Update the positions for the sell user
-            sell_position, _ = cls.objects.get_or_create(user=sell.user, ticker=sell.ticker)
-            if sell_position.quantity == 0:
-                sell_position.average_price = trade.price
-            elif sell_position.quantity > 0:
-                sell_position.closed_pnl = (trade.price - sell_position.average_price) * trade.quantity
-                if sell_position.quantity - trade.quantity == 0:
-                    sell_position.average_price = 0
+            sell_position, sell_position_created = Position.objects.get_or_create(position_user=sell.order_user, position_ticker=sell.order_ticker)
+            if sell_position_created or sell_position.position_quantity == 0:
+                sell_position.position_average_price = trade.trade_price
+            elif sell_position.position_quantity > 0:
+                sell_position.position_closed_pnl += (trade.trade_price - sell_position.position_average_price) * trade.trade_quantity
+                if sell_position.position_quantity - trade.trade_quantity == 0:
+                    sell_position.position_average_price = 0
             else:
-                sell_position.average_price = ((sell_position.average_price * sell_position.quantity) - (trade.price * trade.quantity)) / (sell_position.quantity - trade.quantity)
-            sell_position.quantity -= trade.quantity
-            sell_position.open_pnl = (trade.ticker.last_price - sell_position.average_price) * sell_position.quantity
+                sell_position.position_average_price = ((sell_position.position_average_price * sell_position.position_quantity) - (trade.trade_price * trade.trade_quantity)) / (sell_position.position_quantity - trade.trade_quantity)
+            sell_position.position_quantity -= trade.trade_quantity
+            sell_position.position_open_pnl = (trade.trade_ticker.ticker_last_price - sell_position.position_average_price) * sell_position.position_quantity
             sell_position.save()
 
         def __str__(self):
-            return f"{self.user.username} {self.ticker.ticker_id}"
+            return f"{self.position_user} {self.position_ticker.ticker_id}"

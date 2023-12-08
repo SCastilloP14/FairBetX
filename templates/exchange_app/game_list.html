@@ -13,33 +13,25 @@
             <!-- Left Card  -->
             <div class="leftCardContainer">
                 <input type="text" class="searchBarLeftCard" placeholder="Search">
-                <div class="custom-dropdown" id="dropdownNFL">
+               
+               {% for league, teams in grouped_teams.items %}
+                  <div>1</div>
+               {% endfor %}
+
+                {% for league, league_teams in grouped_teams.items %}
+                  <div class="custom-dropdown" id="dropdown{{league.league_name}}" style="color:white">
                     <div class="dropdown-header">
-                        <img class="nbaLogo" src="../../../static/img/football-icon.png" alt="">
-                        <span class="header-text"> NFL</span>
+                        <img class="SportLogo" src={{league.league_badge}} alt="">
+                        <span class="header-text"> {{league.league_name}}</span>
                         <img class="arrow" style="margin-left:56px;" src="../../../static/img/arrow-icon.png" alt="">
                     </div>
                     <div class="dropdown-content">
-                        
-                        <div class="dropdown-option">NHL</div>
-                        <div class="dropdown-option">NBA</div>
-                        <div class="dropdown-option">MLB</div>
+                        {% for team in league_teams %}
+                        <div class="dropdown-option">{{team}}</div>
+                        {% endfor %}
                     </div>
                 </div>
-
-                <div class="custom-dropdown" id="dropdownNBA">
-                    <div class="dropdown-header">
-                        <img class="nbaLogo" src="../../../static/img/basketball-logo.png" alt="">
-                        <span class="header-text">NBA</span>
-                        <img class="arrow" src="../../../static/img/arrow-icon.png"alt="">
-                    </div>
-                    <div class="dropdown-content">
-
-                        <div class="dropdown-option team NBA">NFL</div>
-                        <div class="dropdown-option">NBA</div>
-                        <div class="dropdown-option">MLB</div>
-                    </div>
-                </div>
+                {% endfor %}
 
                 <div class="custom-dropdown" id="dropdownNHL">
                     <div class="dropdown-header">
@@ -56,6 +48,20 @@
                 </div>
 
                 <div class="custom-dropdown" id="dropdownMLB">
+                    <div class="dropdown-header">
+                        <img class="nbaLogo" src="../../../static/img/baseball-icon.png" alt="">
+                        <span class="header-text">MLB</span>
+                        <img class="arrow" src="../../../static/img/arrow-icon.png"alt="">
+                    </div>
+                    <div class="dropdown-content">
+
+                        <div class="dropdown-option">NFL</div>
+                        <div class="dropdown-option">NBA</div>
+                        <div class="dropdown-option">MLB</div>
+                    </div>
+                </div>
+
+                <div class="custom-dropdown" id="dropdownNFL">
                     <div class="dropdown-header">
                         <img class="nbaLogo" src="../../../static/img/baseball-icon.png" alt="">
                         <span class="header-text">MLB</span>
@@ -100,7 +106,6 @@
                     <a href="#" id="liveSportsButton">
                         <button class="liveButton" data-filter="live">Live</button>
                     </a>
-
                     
                     <input type="text" class="searchBar" placeholder="Search" id="searchBarGames">
                 </div>
