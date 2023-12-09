@@ -52,7 +52,7 @@ def registration(request):
             profile.user = user
             profile.save()
             registered = True
-            print("Finished Regristration")
+            print("Finished Registration")
         else:
             print(user_form.errors, profile_form.errors)
             print("Errors")

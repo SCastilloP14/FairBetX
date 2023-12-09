@@ -2289,6 +2289,11 @@ input:focus {
     padding-top: 20px;
     background: #F7F7F7;
 }
+.sportsLogo {
+    height:50px;
+    width:50px;
+    margin-right:15px;
+}
 
 
 .searchBar {
