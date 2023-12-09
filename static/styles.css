@@ -138,6 +138,8 @@ body, html {
     .navBarCenterCenter {
         width: 500px;
         text-align: center;
+        margin-left:400px;
+        margin-right: auto;
     }
 
     .navBarHeader {
