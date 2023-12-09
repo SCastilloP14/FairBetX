@@ -42,13 +42,11 @@
                         <img class=" allSportsArrow" src="../../../static/img/arrow-icon.png"alt="">
                     </button> -->
 
-                    <select class="allSportsButton" name="allSportsButton" id="sportsDropdown">
+                    <select class="allSportsButton" name="cars">
                         <option value="" >All Sports</option>
-                        <option value="NHL">NHL</option>
-                        <option value="NFL">NFL</option>
-                        <option value="NBA">NBA</option>
-                        <option value="MLB">MLB</option>
-
+                        {% for league in grouped_teams.keys %}
+                            <option value={{league.league_name}}>{{league.league_name}}</option>
+                        {% endfor %}
                     </select>
 
                     
@@ -62,60 +60,57 @@
                     <input type="text" class="searchBar" placeholder="Search" id="searchBarGames">
                 </div>
 
-                {% for league, games_in_league in grouped_games.items %}
-                {% for game in games_in_league %}
-                {% for ticker in game.tickers.all %}
+                {% for league, league_tickers in grouped_tickers.items %}
+            {% for ticker in league_tickers %}
 
-            <a class="cardLink ticker {{game.game_league}} {{game.game_status}}" href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}"  data-game-status="{{game.status}}">
+            <a class="cardLink" href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">
                 <div class="rightCardContainerMatches">
                     <div class="rightCardMatchCard grid grid16">
                         <div class="rightCardMatchCard1">
-                            <div>{{game.game_away_team.team_name}}</div>
-                            <div>{{game.game_home_team.team_name}}</div>
+                            <div>{{ticker.ticker_game.game_away_team.team_name}}</div>
+                            <div>{{ticker.ticker_game.game_home_team.team_name}}</div>
                         </div>
                         <div class="rightCardMatchCard2">
-                            {% if not game.game_away_team_score %}
-                                <span>-</span>
-                                <span>-</span>
+                            {% if ticker.ticker_game.game_status == "PLAYING" %}
+                                <span>{{ticker.ticker_game.game_away_team_score}}</span>
+                                <span>{{ticker.ticker_game.game_home_team_score}}</span>
                             {% else %}
-                                <span>{{game.game_away_team_score}}</span>
-                                <span>{{game.game_home_team_score}}</span>
+                                <span>-</span>
+                                <span>-</span>
                             {% endif %}
-
                         </div>
                         <div class="rightCardMatchCard3">
-                            {% if game.game_status == "live" %}
+                            {% if ticker.ticker_game.game_status == "PLAYING" %}
                                 <button class="liveButtonSmall">
                                     <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
                                     Live
                                 </button>
-                                <span>{{game.game_progress}}</span>
+                                <span>{{ticker.ticker_game.game_progress}}</span>
                             {% else %} 
-                                <button class="scheduledButtonSmall">{{game.game_status}}</button>
+                                <button class="scheduledButtonSmall">{{ticker.ticker_game.game_start_datetime}}</button>
                             {% endif %}
 
                         </div>
                         <div class="rightCardMatchCard4">
                             <header>Buy</header>
-                            {% if game.game_buy_price  %}
-                                <div class="matchDetailsBuy">{{ticker.ticker_buy_price}}</div>
-                            {% else %}
+                            {% if ticker.ticker_best_ask %}
+                                <div class="matchDetailsBuy">{{ticker.ticker_best_ask}}</div>
+                            {% else %} 
                                 <div class="matchDetailsBuy">-</div>
                             {% endif %}
                         </div>
                         <div class="rightCardMatchCard5">
                             <header>Sell</header>
-                            {% if game.sell_price  %}
-                                <div class="matchDetailsBuy">{{game.buy_price}}</div>
-                            {% else %}
+                            {% if ticker.ticker_best_ask %}
+                                <div class="matchDetailsSell">{{ticker.ticker_best_bid}}</div>
+                            {% else %} 
                                 <div class="matchDetailsSell">-</div>
                             {% endif %}
-
                         </div>
                         <div class="rightCardMatchCard6">
                             <header>Price Change</header>
-                            {% if game.last_price  %}
-                                <div class="matchDetailsChange">{{game.last_price}}</div>
+                            {% if ticker.ticker_last_price %}
+                                <div class="matchDetailsChange">{{ticker.ticker_last_price}}</div>
                             {% else %}
                                 <div class="matchDetailsChange">-</div>
                             {% endif %}
@@ -123,9 +118,8 @@
                     </div>
                 </div>
             </a>
-                {% endfor %}
-                {% endfor %}
-                {% endfor %}               
+            {% endfor %}
+            {% endfor %}           
                 
             </div>
         </div>
