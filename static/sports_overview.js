@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
     event.preventDefault();
 
     var selectedSport = sportsDropdown.value;
-    var tickers = document.querySelectorAll('.ticker');
+    console.log("sports", selectedSport);
     console.log("ticker ", tickers);
 
     tickers.forEach(function(ticker) {

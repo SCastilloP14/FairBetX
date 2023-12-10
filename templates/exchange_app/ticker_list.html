@@ -12,7 +12,7 @@
         <div class="grid grid12">
             <!-- Left Card  -->
             <div class="leftCardContainer">
-                <input type="text" class="searchBarLeftCard" placeholder="Search">
+                <input type="text" class="searchBarLeftCard" placeholder="Search" id="searchBarTeams">
                
               
 
@@ -25,7 +25,9 @@
                     </div>
                     <div class="dropdown-content">
                         {% for team in league_teams %}
-                        <div class="dropdown-option">{{team.team_name}}</div>
+                        <a href="#" style="text-decoration: none; color:white;">
+                            <div class="dropdown-option">{{team.team_name}}</div>
+                        </a>
                         {% endfor %}
                     </div>
                 </div>
@@ -42,7 +44,7 @@
                         <img class=" allSportsArrow" src="../../../static/img/arrow-icon.png"alt="">
                     </button> -->
 
-                    <select class="allSportsButton" name="cars">
+                    <select class="allSportsButton" name="cars" id="sportsDropdown">
                         <option value="" >All Sports</option>
                         {% for league in grouped_teams.keys %}
                             <option value={{league.league_name}}>{{league.league_name}}</option>
@@ -60,11 +62,11 @@
                     <input type="text" class="searchBar" placeholder="Search" id="searchBarGames">
                 </div>
 
-                {% for league, league_tickers in grouped_tickers.items %}
+            {% for league, league_tickers in grouped_tickers.items %}
             {% for ticker in league_tickers %}
 
             <a class="cardLink" href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">
-                <div class="rightCardContainerMatches">
+                <div class="rightCardContainerMatches ticker {{league}}">
                     <div class="rightCardMatchCard grid grid16">
                         <div class="rightCardMatchCard1">
                             <div>{{ticker.ticker_game.game_away_team.team_name}}</div>
