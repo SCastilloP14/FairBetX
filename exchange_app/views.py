@@ -114,11 +114,18 @@ class UserDetailView(DeleteView):
         if request.method == "POST":
             form = BalanceForm(request.POST)
             if form.is_valid():
+                print(form.cleaned_data)
                 username = request.POST.get("username")
                 user = User.objects.get(username=username)
                 user_info = UserProfileInfo.objects.get(user=user)
+                transaction = Transaction(transaction_user = user,
+                                          transaction_type = TransactionType.DEPOSIT.name if request.POST.get("transaction_type") == "deposit" else TransactionType.WITHDRAWAL.name,
+                                          transaction_id = ''.join(random.choices(string.ascii_letters + string.digits, k=24)),
+                                          transaction_amount = 100
+                                          )
                 user_info.user_available_balance += int(request.POST.get("new_balance"))
                 user_info.save()
+                transaction.save()
                 return redirect("user_detail", pk=self.kwargs["pk"])
 
 
@@ -213,8 +220,6 @@ class TickerDetailView(DetailView):
         ticker = self.get_object()
         context["buy_orders"] = Order.objects.filter(order_ticker=ticker, order_side="BUY", order_status__in=["OPEN", "PARTIAL"]).values("order_price").annotate(total_quantity=Sum("order_working_quantity")).order_by("-order_price")
         context["sell_orders"] = Order.objects.filter(order_ticker=ticker, order_side="SELL", order_status__in=["OPEN", "PARTIAL"]).values("order_price").annotate(total_quantity=Sum("order_working_quantity")).order_by("-order_price").reverse()
-        print(context["buy_orders"])
-        print(context["sell_orders"])
         context["order_form"] = OrderForm()
         context["receive_order_url"] = reverse("exchange_app:ticker_detail", kwargs={"pk": self.kwargs["pk"]})
         if self.request.user.is_authenticated:
@@ -246,7 +251,6 @@ class TickerDetailView(DetailView):
                                 order_quantity=form.cleaned_data["order_quantity"],
                                 order_working_quantity=form.cleaned_data["order_quantity"]
                                 )
-                    print("Order Submitted", order.order_id)
                     order.save()
                     order.execute_order()
                     order.save()

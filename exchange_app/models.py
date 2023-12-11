@@ -5,6 +5,11 @@ import random, string
 
 # ------------------- ENUMS NEEDED FOR THE MODELS --------------
 
+class TransactionType(Enum):
+    DEPOSIT = "Deposit"
+    WITHDRAWAL = "Withdrawal"
+
+
 class GameStatus(Enum):
     SCHEDULED = "Scheduled"
     PLAYING = "Playing"
@@ -23,6 +28,7 @@ game_status_mapping = {
                         'PLAYING': GameStatus.PLAYING.name,
                         'FT': GameStatus.FINISHED.name,
                         'Final': GameStatus.FINISHED.name,
+                        'Final/OT': GameStatus.FINISHED.name,
                         'HT': GameStatus.PLAYING.name,
                         'BT': GameStatus.PLAYING.name,
                         'CANC': GameStatus.CANCELED.name,
@@ -48,6 +54,7 @@ game_status_mapping = {
                         'IN9': GameStatus.PLAYING.name,
                         'OT': GameStatus.PLAYING.name,
                         'P': GameStatus.PLAYING.name,
+
                         }
 
 class TickerStatus(Enum):
@@ -140,6 +147,13 @@ class UserProfileInfo(models.Model):
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
+        
+class Transaction(models.Model):
+    transaction_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    transaction_type = models.CharField(max_length=20, choices=[(s.name, s) for s in TransactionType])
+    transaction_id = models.CharField(max_length=100)
+    transaction_time = models.DateTimeField(auto_now_add=True)
+    transaction_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=None)
 
 
 class League(models.Model):
