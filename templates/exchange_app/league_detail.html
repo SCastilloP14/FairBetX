@@ -1,0 +1,297 @@
+{% extends "exchange_app/base.html" %} {% block body_block %}
+
+<div class="leagueOverview">    
+    <div class="leagueOverviewHeader">
+        <img class="leagueOverviewHeaderImg"src="../../../static/img/NBA_Pg.png" alt="">
+        <div class="leagueOverviewHeaderCentered">NBA</div>
+    </div>
+    <div class="grid gridNav13">
+        <!-- Left Section  -->
+        <div class="empty"></div>
+
+        <!-- Middle Section  -->
+        <div class="leagueOverviewMiddleSection">
+            <div class="leagueOverviewGameOverview grid leagueOverviewGrid_2x1">
+                <h2 class="leagueOverviewGameCardHeader">Games</h2>
+                
+                <!-- Game Card Scroll Tunnel  -->
+                <div class="leagueOverviewGameOverviewCardScroll">
+                    <!-- Game Card  -->
+                    {% for league, games_in_league in grouped_games.items %}
+                    {% for game in games_in_league %}
+                    {% for ticker in game.tickers.all %}
+
+                    <div class="leagueOverviewGameOverviewCard grid leagueOverviewGrid_1x2">
+                        <!-- Left Site Game Card  -->
+                        <div class="grid leagueOverviewGrid_3x1">
+                            <div class="leagueOverviewGameOverviewCardHeader">
+                                <span class="leagueOverviewGameOverviewCardHeaderScore">Score</span>
+                                <button class="leagueOverviewLiveButtonSmall">
+                                    <img src="../../../static/img/live-logo.png" alt=""> Live 
+                                </button>
+                                <div class="leagueOveriewGameOverviewCardHeaderButton ">00:00</div>
+                            </div>
+                            <div class="leagueOverviewHomeTeam">
+                                {% if not game.away_team_score %}
+                                    <div class="leagueOverviewAwayTeamScore">0</div>
+                                {% else %}
+                                    <div class="leagueOverviewAwayTeamScore">{{game.away_team_score}}</div>
+                                {% endif %}
+                                <div class="leagueOverviewAwayTeamName">{{game.away_team.name}}</div>
+                            </div>
+                            <div class="leagueOverviewAwayTeam">
+                                {% if not game.home_team_score %}
+                                    <div class="leagueOverviewHomeTeamScore">0</div>
+                                {% else %}
+                                    <div class="leagueOverviewHomeTeamScore">{{game.home_team_score}}</div>
+                                {% endif %}
+                                <div class="leagueOverviewHomeTeamName">{{game.home_team.name}}</div>
+                            </div>
+                        </div>
+                        <!-- Right Site Game Card  -->
+                        <div class="leagueOveriewGameOverviewCardTime">{{game.progress}}</div>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                    {% endfor %}
+                    
+                </div>
+            </div>
+            <div class="leagueOverviewStandingsOverview wrapper">
+                <!-- <span>Standings</span> -->
+                <!-- Title of the Table  -->
+                <h2 class="leagueOverviewStandingsOverviewHeader">Standings</h2>
+
+                <!-- If league is NBA -->
+                <select name="" id="NBA-Conferences">
+                    <option value="">Eastern Conference</option>
+                    <option value="">Western Conference</option>
+                </select>
+                <!-- Baseball  -->
+                <select name="" id="MLB-Leagues">
+                    <option value="">American League</option>
+                    <option value="">National League</option>
+                </select>
+                <!-- NHL  -->
+                <select name="" id="NHL-Divisions">
+                    <option value="">Atlantic Division</option>
+                    <option value="">Metropolitan Division</option>
+                    <option value="">Central Division</option>
+                    <option value="">Pacific Division</option>
+                </select>
+                <!-- NFL  -->
+                <select name="" id="NFL-Conferences">
+                    <option value="">AFC East</option>
+                    <option value="">AFC West</option>
+                    <option value="">AFC North</option>
+                    <option value="">AFC South</option>
+                    <option value="">NFC East</option>
+                    <option value="">NFC West</option>
+                    <option value="">NFC North</option>
+                    <option value="">NFC South</option>
+                </select>
+
+
+                
+                
+                <table>
+        
+                    <!-- Conference Button  -->
+                    
+                    <!-- Table Headers  -->
+                    <tr>
+                        <th>Pos.</th>
+                        <th id="Team">Team</th>
+                        <th>W</th>
+                        <th>L</th>
+                        <th>Win %</th>
+                        <th>GB</th>
+                        <th>Conference</th>
+                        <th>Division</th>
+                        <th id="Last_5">Last 5</th>
+                    </tr>
+
+                    <tr>
+                        <td data-cell="Pos.">1</td> 
+                        <td data-cell="Team" id="Teams">Boston Celtics</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">2</td> 
+                        <td data-cell="Team" id="Teams">Brooklyn Nets</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">3</td> 
+                        <td data-cell="Team" id="Teams">New York Knicks</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">4</td> 
+                        <td data-cell="Team" id="Teams">Philadelphia 76ers</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">5</td> 
+                        <td data-cell="Team" id="Teams">Toronto Raptors</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">6</td> 
+                        <td data-cell="Team" id="Teams">Chicago Bulls</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">7</td> 
+                        <td data-cell="Team" id="Teams">Cleveland Cavaliers</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">8</td> 
+                        <td data-cell="Team" id="Teams">Detroit Pistons</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">9</td> 
+                        <td data-cell="Team" id="Teams">Indiana Pacers</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">10</td> 
+                        <td data-cell="Team" id="Teams">Milwaukee Bucks</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">11</td> 
+                        <td data-cell="Team" id="Teams">Atlants Hawks</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">12</td> 
+                        <td data-cell="Team" id="Teams">Charlotte Hornets</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">13</td> 
+                        <td data-cell="Team" id="Teams">Miami Heat</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">14</td> 
+                        <td data-cell="Team" id="Teams">Orlando Magic</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr>
+                        <td data-cell="Pos.">15</td> 
+                        <td data-cell="Team" id="Teams">Washington Wizards</td>
+                        <td data-cell="W">0</td>
+                        <td data-cell="L">0</td>
+                        <td data-cell="Win %">.000</td>
+                        <td data-cell="GB">0</td>
+                        <td data-cell="Conference">0</td>
+                        <td data-cell="Division">0-0</td>
+                        <td data-cell="Last 5" id="Last_5">WWLLL</td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+
+                </table>
+            </div>
+
+
+        </div>
+        <!-- Right Section  -->
+        <div class="empty"></div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
