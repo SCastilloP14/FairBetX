@@ -24,7 +24,7 @@
                         <img class="arrow" style="margin-left:56px;" src="../../../static/img/arrow-icon.png" alt="">
                     </div>
                     <div class="dropdown-content">
-                        {% for team in league_teams %}
+                        {% for team in league_teams|dictsort:"team_name" %}
                         <a href="{% url 'exchange_app:team_detail' pk=team.pk %}" style="text-decoration: none; color:white;" class="teams {{team.team_name}}">
                             <div class="dropdown-option">{{team.team_name}}</div>
                         </a>

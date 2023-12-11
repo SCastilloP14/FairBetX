@@ -40,8 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-
-
 document.addEventListener('DOMContentLoaded', function () {
   // Get references to your buttons
   var liveSportsButton = document.getElementById('liveSportsButton');
