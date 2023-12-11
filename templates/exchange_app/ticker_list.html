@@ -25,7 +25,7 @@
                     </div>
                     <div class="dropdown-content">
                         {% for team in league_teams %}
-                        <a href="{% url 'exchange_app:team_detail' pk=team.pk %}" style="text-decoration: none; color:white;">
+                        <a href="{% url 'exchange_app:team_detail' pk=team.pk %}" style="text-decoration: none; color:white;" class="teams {{team.team_name}}">
                             <div class="dropdown-option">{{team.team_name}}</div>
                         </a>
                         {% endfor %}
