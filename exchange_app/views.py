@@ -213,8 +213,6 @@ class TickerDetailView(DetailView):
         ticker = self.get_object()
         context["buy_orders"] = Order.objects.filter(order_ticker=ticker, order_side="BUY", order_status__in=["OPEN", "PARTIAL"]).values("order_price").annotate(total_quantity=Sum("order_working_quantity")).order_by("-order_price")
         context["sell_orders"] = Order.objects.filter(order_ticker=ticker, order_side="SELL", order_status__in=["OPEN", "PARTIAL"]).values("order_price").annotate(total_quantity=Sum("order_working_quantity")).order_by("-order_price").reverse()
-        print(context["buy_orders"])
-        print(context["sell_orders"])
         context["order_form"] = OrderForm()
         context["receive_order_url"] = reverse("exchange_app:ticker_detail", kwargs={"pk": self.kwargs["pk"]})
         if self.request.user.is_authenticated:
@@ -285,9 +283,7 @@ class TeamDetailView(DetailView):
         team = self.get_object()
         context["tickers"] = Ticker.objects.filter(ticker_game__game_home_team=team, ticker_status__in=["OPEN", "PARTIAL"]).order_by("-ticker_game__game_start_datetime").reverse()
         context["players"] = Player.objects.filter(player_team=team).order_by('-player_number').reverse()
-        context["games"] = Game.objects.filter(game_home_team = team)
         return context
-
 
 class TradeViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = TradeSerializer

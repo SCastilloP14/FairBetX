@@ -145,7 +145,24 @@
     margin-bottom:60px;
     text-align: center;
 }
+.teamDetailGameOVerviewLeague {
+    width:100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+}
+.teamDetailGameOVerviewLeague h2 {
+    padding-left:40px;
+}
+.teamDetailGameOVerviewLeague button {
+    margin-left:30px;
+    justify-content: center;
+    vertical-align: middle;
+    margin-right:40px;
+
+}
 caption {
     text-align: left;
     font-size: 28px;

@@ -3,7 +3,7 @@
 
 <div class="leagueOverview">    
     <div class="teamDetailleagueOverviewHeader">
-        <img class="teamDetailLeagueOverviewHeaderImg"src="../../../static/img/NBA_Pg.png" alt="">
+        <img class="teamDetailLeagueOverviewHeaderImg"src="../../../static/img/{{team_detail.team_league_1.league_name}}_Pg.png" alt="">
         <div class="teamDetailLeagueOverviewHeaderCentered">{{team_detail.team_name}}</div>
 
     </div>
@@ -15,14 +15,20 @@
         <div class="middle_section">
             <div class="teamDetailGameOverview grid grid_2x1">
                 
-                <div style="width: 100%;text-align: left; margin-left:40px;">
-                    <h2>Games</h2>
+                <div class="teamDetailGameOVerviewLeague">
+                    <h2 style="flex:1">Games</h2>
+                    <a href="{% url 'exchange_app:league_detail' pk=team_detail.team_league_1.pk %}">
+                        <button class="button leagueButton">
+                            {{team_detail.team_league_1.league_name}}
+                        </button>
+                    </a>
                 </div>
                 <!-- Game Card Scroll Tunnel  -->
                 <div class="teamDetailGameOverviewCardScroll">
 
                     <!-- Game Card  -->        
-                    {% for player in players %}         
+                    {% for ticker in tickers %}
+                    <a href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">    
                         <div class="teamDetailGameOverviewCard grid grid_1x2">
                             <!-- Left Site Game Card  -->
                             <div class="grid grid_3x1">
@@ -46,7 +52,9 @@
                             <!-- Right Site Game Card  -->
                             <div class="teamDetailGameOverviewCardTime">Q1</div>
                         </div> 
+                    </a>  
                     {% endfor %}                
+               
                     
                 </div>
             </div>
@@ -97,15 +105,11 @@
             </div>
             <div class="grid grid_1x2_even">
                 <div class="teamDetailTeamInfoCard">
-                    <span>Team Info</span>
-
-                    <span>Team News</span>
+                    
 
                 </div>
                 <div class="teamDetailTeamInfoBulletCard">
-                    <span>Team Info</span>
-                    <h2>Coaching Staff</h2>
-                    <h2>Background</h2>
+                    
                 </div>
 
             </div>
