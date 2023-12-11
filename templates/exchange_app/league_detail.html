@@ -19,37 +19,46 @@
                     <!-- Game Card  -->
                     
                     {% for ticker in tickers %}
-
+                    <a href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}" style="text-decoration: none;">
                     <div class="leagueOverviewGameOverviewCard grid leagueOverviewGrid_1x2">
                         <!-- Left Site Game Card  -->
                         <div class="grid leagueOverviewGrid_3x1">
-                            <div class="leagueOverviewGameOverviewCardHeader">
-                                <span class="leagueOverviewGameOverviewCardHeaderScore">Score</span>
-                                <button class="leagueOverviewLiveButtonSmall">
-                                    <img src="../../../static/img/live-logo.png" alt=""> Live 
-                                </button>
-                                <div class="leagueOveriewGameOverviewCardHeaderButton ">00:00</div>
-                            </div>
+                                <div class="leagueOverviewGameOverviewCardHeader">
+                                    <span class="leagueOverviewGameOverviewCardHeaderScore">Score</span>
+                                    {% if ticker.ticker_game.game_status == "PLAYING" %}
+                                        <button class="leagueOverviewLiveButtonSmall">
+                                            <img src="../../../static/img/live-logo.png" alt=""> Live 
+                                        </button>
+                                        <div class="leagueOveriewGameOverviewCardHeaderButton ">{{ticker.ticker_game.game_progress}}</div>
+                                    {% else %}
+                                        <div class="leagueOveriewGameOverviewCardHeaderButton ">{{ticker.ticker_game.game_status}}</div>
+                                    {% endif %}
+                                </div>
                             <div class="leagueOverviewHomeTeam">
-                                {% if not game.away_team_score %}
+                                {% if not ticker.ticker_game.game_away_team_score %}
                                     <div class="leagueOverviewAwayTeamScore">0</div>
                                 {% else %}
-                                    <div class="leagueOverviewAwayTeamScore">{{game.away_team_score}}</div>
+                                    <div class="leagueOverviewAwayTeamScore">{{ticker.ticker_game.game_away_team_score}}</div>
                                 {% endif %}
-                                <div class="leagueOverviewAwayTeamName">{{game.away_team.name}}</div>
+                                <div class="leagueOverviewAwayTeamName">{{ticker.ticker_game.game_away_team.team_name}}</div>
                             </div>
                             <div class="leagueOverviewAwayTeam">
-                                {% if not game.home_team_score %}
+                                {% if not ticker.ticker_game.game_home_team_score %}
                                     <div class="leagueOverviewHomeTeamScore">0</div>
                                 {% else %}
-                                    <div class="leagueOverviewHomeTeamScore">{{game.home_team_score}}</div>
+                                    <div class="leagueOverviewHomeTeamScore">{{ticker.ticker_game.game_home_team_score}}</div>
                                 {% endif %}
-                                <div class="leagueOverviewHomeTeamName">{{game.home_team.name}}</div>
+                                <div class="leagueOverviewHomeTeamName">{{ticker.ticker_game.game_home_team.team_name}}</div>
                             </div>
                         </div>
                         <!-- Right Site Game Card  -->
-                        <div class="leagueOveriewGameOverviewCardTime">{{game.progress}}</div>
-                    </div>
+                        {% if ticker.ticker_game.game_away_team_score %}
+                            <div class="leagueOveriewGameOverviewCardTime">{{ticker.ticker_game.game_progress}}</div>
+                        {% else %}
+                            <div class="leagueOveriewGameOverviewCardTime">-</div>
+                        {% endif %}
+                        </div>
+                    </a>
                     {% endfor %}
                     
                     
@@ -60,29 +69,6 @@
                 <!-- Title of the Table  -->
                 <h2 class="leagueOverviewStandingsOverviewHeader">Standings</h2>
                 <div id="league-name" style="display:none">{{league_detail.league_name}}</div>
-
-<!-- <script>
-    // Function to show/hide select elements based on the league
-    function updateSelectVisibility() {
-        // Get the selected league name
-        var selectedLeague = "{{ league_detail.league_name }}";
-
-        // Hide all select elements
-        var allSelects = document.querySelectorAll('.leagueOverviewConferenceSelection');
-        allSelects.forEach(function (select) {
-            select.style.display = 'none';
-        });
-
-        // Show the select element corresponding to the selected league
-        var selectedSelect = document.getElementById(selectedLeague + '-Conferences');
-        if (selectedSelect) {
-            selectedSelect.style.display = 'block';
-        }
-    }
-
-    // Call the function initially and whenever the league changes
-    document.addEventListener("DOMContentLoaded", updateSelectVisibility);
-</script> -->
 
                 <!-- If league is NBA -->
                 <select name="" id="NBA-Conferences" class="leagueOverviewConferenceSelection">
@@ -135,7 +121,12 @@
                     {% for team in teams %}
                     <tr>
                         <td data-cell="Pos.">-</td> 
-                        <td data-cell="Team" id="Teams">{{team.team_name}}</td>
+                        <td data-cell="Team" id="Teams">
+                            <a style="text-decoration: none; color:#016D74" href="{% url 'exchange_app:team_detail' pk=team.pk %}">
+                                {{team.team_name}}
+                            </a>
+                        </td>
+                        
                         <td data-cell="W">0</td>
                         <td data-cell="L">0</td>
                         <td data-cell="Win %">.000</td>

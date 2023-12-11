@@ -28,32 +28,47 @@
 
                     <!-- Game Card  -->        
                     {% for ticker in tickers %}
-                    <a href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">    
-                        <div class="teamDetailGameOverviewCard grid grid_1x2">
-                            <!-- Left Site Game Card  -->
-                            <div class="grid grid_3x1">
-                                <div class="teamDetailGameOverviewCardHeader">
-                                    <span class="game_overview_card_header_score">Score</span>
-                                    <button class="teamDetailLiveButtonSmall">
-                                        <img style="height:12px; width:16px;" src="../../../static/img/live-logo.png" alt="">
-                                        Live
-                                    </button>
-                                    <div class="teamDetailGameOverviewCardHeaderButton ">00:00</div>
+                    <a href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}" style="text-decoration: none;">
+                    <div class="leagueOverviewGameOverviewCard grid leagueOverviewGrid_1x2">
+                        <!-- Left Site Game Card  -->
+                        <div class="grid leagueOverviewGrid_3x1">
+                                <div class="leagueOverviewGameOverviewCardHeader">
+                                    <span class="leagueOverviewGameOverviewCardHeaderScore">Score</span>
+                                    {% if ticker.ticker_game.game_status == "PLAYING" %}
+                                        <button class="leagueOverviewLiveButtonSmall">
+                                            <img src="../../../static/img/live-logo.png" alt=""> Live 
+                                        </button>
+                                        <div class="leagueOveriewGameOverviewCardHeaderButton ">{{ticker.ticker_game.game_progress}}</div>
+                                    {% else %}
+                                        <div class="leagueOveriewGameOverviewCardHeaderButton ">{{ticker.ticker_game.game_status}}</div>
+                                    {% endif %}
                                 </div>
-                                <div class="teamDetailHomeTeam">
-                                    <div class="teamDetailHomeTeam">00</div>
-                                    <div class="home_team_name">Toronto</div>
-                                </div>
-                                <div class="teamDetailAwayTeam">
-                                    <div class="teamDetailAwayTeamScore">00</div>
-                                    <div class="teamDetailAwayTeamName">Boston</div>
-                                </div>
+                            <div class="leagueOverviewHomeTeam">
+                                {% if not ticker.ticker_game.game_away_team_score %}
+                                    <div class="leagueOverviewAwayTeamScore">0</div>
+                                {% else %}
+                                    <div class="leagueOverviewAwayTeamScore">{{ticker.ticker_game.game_away_team_score}}</div>
+                                {% endif %}
+                                <div class="leagueOverviewAwayTeamName">{{ticker.ticker_game.game_away_team.team_name}}</div>
                             </div>
-                            <!-- Right Site Game Card  -->
-                            <div class="teamDetailGameOverviewCardTime">Q1</div>
-                        </div> 
-                    </a>  
-                    {% endfor %}                
+                            <div class="leagueOverviewAwayTeam">
+                                {% if not ticker.ticker_game.game_home_team_score %}
+                                    <div class="leagueOverviewHomeTeamScore">0</div>
+                                {% else %}
+                                    <div class="leagueOverviewHomeTeamScore">{{ticker.ticker_game.game_home_team_score}}</div>
+                                {% endif %}
+                                <div class="leagueOverviewHomeTeamName">{{ticker.ticker_game.game_home_team.team_name}}</div>
+                            </div>
+                        </div>
+                        <!-- Right Site Game Card  -->
+                        {% if ticker.ticker_game.game_away_team_score %}
+                            <div class="leagueOveriewGameOverviewCardTime">{{ticker.ticker_game.game_progress}}</div>
+                        {% else %}
+                            <div class="leagueOveriewGameOverviewCardTime">-</div>
+                        {% endif %}
+                        </div>
+                    </a>
+                    {% endfor %}              
                
                     
                 </div>
