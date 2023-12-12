@@ -114,11 +114,18 @@ class UserDetailView(DeleteView):
         if request.method == "POST":
             form = BalanceForm(request.POST)
             if form.is_valid():
+                print(form.cleaned_data)
                 username = request.POST.get("username")
                 user = User.objects.get(username=username)
                 user_info = UserProfileInfo.objects.get(user=user)
+                transaction = Transaction(transaction_user = user,
+                                          transaction_type = TransactionType.DEPOSIT.name if request.POST.get("transaction_type") == "deposit" else TransactionType.WITHDRAWAL.name,
+                                          transaction_id = ''.join(random.choices(string.ascii_letters + string.digits, k=24)),
+                                          transaction_amount = 100
+                                          )
                 user_info.user_available_balance += int(request.POST.get("new_balance"))
                 user_info.save()
+                transaction.save()
                 return redirect("user_detail", pk=self.kwargs["pk"])
 
 
@@ -245,7 +252,6 @@ class TickerDetailView(DetailView):
                                 order_quantity=form.cleaned_data["order_quantity"],
                                 order_working_quantity=form.cleaned_data["order_quantity"]
                                 )
-                    print("Order Submitted", order.order_id)
                     order.save()
                     order.execute_order()
                     order.save()
