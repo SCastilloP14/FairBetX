@@ -1,6 +1,5 @@
 {% extends "exchange_app/base.html" %} {% block body_block %}
-
-
+{% load static %}
 <div class="grid gridNav13 page_background">
     <div class="empty"></div>
     <div class="middle_section">
@@ -85,9 +84,15 @@
             <!-- Candlestick Graph  -->
             <div class="tickerDetailCandlestickCard">
                 
-                <div id="chart-div">
+                <div id="chart-div" class="tickerDetailTradingViewChart">
+                    <div class="tickerDetailTradingViewButtons">
+                        <button id="btn-1m" class="tickerDetailTradingViewButton">1m</button>
+                        <button id="btn-5m" class="tickerDetailTradingViewButton">5m</button>
+                        <button id="btn-1h" class="tickerDetailTradingViewButton">1H</button>
+                        <button id="btn-6h" class="tickerDetailTradingViewButton">6H</button>
+                        <button id="btn-1d" class="tickerDetailTradingViewButton">1D</button>
+                    </div>
                     <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
-                    <script type="text/javascript" src="../../../static/trading_view.js"></script>
                     <div id="chart-container" value="{{ticker_detail.ticker_id}}"></div>
                 </div>
                 
@@ -165,7 +170,6 @@
                         <th class="tickerDetailOrderbookTableHeader">Quantity</th>
                     </tr>
                     {% for buy_order in buy_orders|slice:":10" %}
-                    <span>{{buy_order}}</span>
                         <tr class="tickerDetailBuyOrderbookTableRows">
                             <td data-class="Price">{{buy_order.order_price}}</td>
                             <td class="tickerDetailBuyRight" data-class="Quantity">{{buy_order.total_quantity}}</td>

@@ -935,6 +935,21 @@ a {
     margin-top:20px;
     z-index: 0;
     }
+.tickerDetailTradingViewChart {
+    text-align: left;
+}
+.tickerDetailTradingViewButton {
+    color: var(--color-font-white);
+    background: var(--color-font-turk);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    margin-bottom:0;
+}
+.tickerDetailTradingViewButtons {
+    padding-left:20px;
+}
 
 .tickerDetailStatisticsCard {
     color:#5F5F5F;
@@ -1028,8 +1043,15 @@ a {
 
 .tickerDetailBuyOrderbookTableRows, 
 .tickerDetailSellOrderbookTableRows {
-    height:32px;
+    height:28px;
 }
+.tickerDetailBuyOrderbookTableRows td, 
+.tickerDetailSellOrderbookTableRows td {
+    font-size:18px;
+    padding:0
+}
+
+
 .tickerDetailBuyOrderbookTable th,
 .tickerDetailSellOrderbookTable th {
     padding-top:15px;
