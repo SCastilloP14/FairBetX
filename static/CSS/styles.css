@@ -78,6 +78,10 @@ body, html {
 @media (1200px <= width) {
     
 } 
+
+a {
+    text-decoration: none;
+}
 /*    ==========================    */
 /*            COMPONENTS            */
 /*    ==========================    */
@@ -88,20 +92,25 @@ body, html {
     color: var(--color-font-white);
     font-size: 1rem;
     background-color: var(--color-background-transparent);
-    border: solid 1px var(--color-button-border-white);
+    border: solid 3px var(--color-button-border-white);
     padding: var(--padding-top) 35px;
     }
 
 .button:hover {
     background-color: var(--color-font-hover);
-    border: 1px solid var(--color-button-border-blue);
+    border: 3px solid var(--color-font-hover);
+    color:var(--color-font-white);
 }
 .addFunds {
     color: var(--color-font-black);
     background:var(--color-background-transparent);
     border: 3px solid var(--color-font-hover)
 }
-
+.leagueButton {
+    color:var(--color-font-black);
+    padding: 10px 40px;
+    border: 3px solid var(--color-font-hover);
+}
 
 
 /* Navigation Bar  */
@@ -165,7 +174,7 @@ body, html {
 
     .navButton:hover {
         background-color: var(--color-font-hover);
-        border: 1px solid var(--color-button-border-blue);
+        border: 1px solid var(--color-font-hover);
     }
 
     .grid {
@@ -410,6 +419,7 @@ body, html {
         vertical-align: text-top;
         display: flex;
         align-items: flex-start;
+        margin-bottom:120px;
     }
 
     .footerStartCenterFollowUs {
@@ -779,7 +789,7 @@ body, html {
     height: 100%;
     width: 100%
 }
-.grid_1x2 {
+.grid_1x2_tickerDetail {
     grid-template-columns: repeat(2,50%);
 }
 .grid_nav_1x3 {
@@ -796,10 +806,10 @@ body, html {
     grid-template-columns: repeat(2,calc(360px/2));
 
 }
-.grid_1x10 {
+.grid_1x10_tickerDetail {
     grid-template-columns: 10% 15% 10% 15% 10% 15% 10% 15% 10% 15%;
 }
-.grid_2x1 {
+.grid_2x1_tickerDetail {
     grid-template-rows: 50% 50%;
 }
 .grid_1x9 {
@@ -822,7 +832,7 @@ body, html {
     width:100%;
 }
 
-.tickerPageGameDetails {
+.tickerDetailGameDetails {
     width:70%;
     border-radius: 25px;
     height:120px !important;
@@ -830,7 +840,7 @@ body, html {
     text-align: center;  
     color:#5F5F5F
 }
-.gamePeriod {
+.tickerDetailGamePeriod {
     border-radius: 25px;
     width:100%;
     height:100%;
@@ -841,37 +851,38 @@ body, html {
     align-items: center;
     justify-content: center;
 }
-.tickerPageHomeTeam, .tickerPageAwayTeam {
+.tickerDetailHomeTeam, .tickerDetailAwayTeam {
     width:100%;
     text-align: left;
     font-size:22px;
     padding-left:30px;
+    color:var(--color-font-turk);
 }
-.tickerPageHomeTeam, .tickerPageHomeScore {
+.tickerDetailHomeTeam, .tickerDetailHomeScore {
     padding-top:10px;
 }
-.tickerPageAwayTeam, .tickerPageAwayScore {
+.tickerDetailAwayTeam, .tickerDetailAwayScore {
     padding-bottom:10px;
 }
-.tickerPageHomeScore, .tickerPageAwayScore {
+.tickerDetailHomeScore, .tickerDetailAwayScore {
     width:100%;
     font-size:22px;
 }
-.tickerPageGameDate,.tickerPageGameTime, .tickerPageGameLocation {
+.tickerDetailGameDate,.tickerDetailGameTime, .tickerDetailGameLocation {
     font-size: 18x;    
 }
-.tickerPageDateIcon,.tickerPageTimeIcon,.tickerPageLocationIcon {
+.tickerDetailDateIcon,.tickerDetailTimeIcon,.tickerDetailLocationIcon {
     width: 30px;
     height:30px;
 } 
-.tickerPageGameDate, .tickerPageGameDetails, .tickerPageGameLocation {
+.tickerDetailGameDate, .tickerDetailGameDetails, .tickerDetailGameLocation {
     font-size:16px;
     font-weight: 400;
 }
-.tickerPageGameLocation {
+.tickerDetailGameLocation {
     padding-right:10px;
 }
-.tickerPageUserCard {
+.tickerDetailUserCard {
     width: 100%;
     height: 130px !important;
     border-radius: 25px;
@@ -880,13 +891,13 @@ body, html {
     color:white;
     align-content: left;
 }
-.tickerPageUserCard img {
+.tickerDetailUserCard img {
     margin-left: auto;
     display: block; 
     width: 70px;
     height:70px;
 }
-.tickerPageUserCardTop {
+.tickerDetailUserCardTop {
     color:#15965A;
     font-size:30px;
     margin-top:auto;
@@ -894,7 +905,7 @@ body, html {
     margin-right:auto;
     margin-left:20px;
 }
-.tickerPageUserCardBottom {
+.tickerDetailUserCardBottom {
     color:white;
     font-size:18px;
     padding-top:10px;
@@ -903,7 +914,7 @@ body, html {
     margin-right:auto;
     margin-left:20px;
 }
-.tickerPageCandlestickCard {
+.tickerDetailCandlestickCard {
     width: 745px;
     height:500px;
     border-radius: 25px;
@@ -914,7 +925,7 @@ body, html {
     flex-direction:column;
     justify-content: center;
     text-align: center;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
 }
 
 #chart-div {
@@ -925,8 +936,23 @@ body, html {
     margin-top:20px;
     z-index: 0;
     }
+.tickerDetailTradingViewChart {
+    text-align: left;
+}
+.tickerDetailTradingViewButton {
+    color: var(--color-font-white);
+    background: var(--color-font-turk);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    margin-bottom:0;
+}
+.tickerDetailTradingViewButtons {
+    padding-left:20px;
+}
 
-.tickerPageStatisticsCard {
+.tickerDetailStatisticsCard {
     color:#5F5F5F;
     width: 745px;
     height:500px;
@@ -934,34 +960,36 @@ body, html {
     background: white;;
     margin-top:10px;
     margin-left:5px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
 }
-.tickerPageStatisticsCard header {
+.tickerDetailStatisticsCard header {
     text-align: center;
     font-size:24px;
     margin-top:20px;
     margin-bottom:20px;
 }
-.tickerPageStatisticsCard table {
+.tickerDetailStatisticsCard table {
     height: 410px;
     width:100%;
     text-align: center;
     border-collapse: collapse;
+    justify-content: center;
+}
+.tickerDetailStatisticsCard td {
+    padding-top:20px;
 }
 
+.tickerDetailStatisticsCard tr:nth-child(odd) {background-color: #f7f7f7;}
 
-.tickerPageStatisticsCard tr:nth-child(odd) {background-color: #f7f7f7;}
-
-.tickerPageStatisticsCardButtonLeft {
-    padding: 4px 40px;
+.tickerDetailStatisticsCardButtonLeft {
+    padding: 2px 40px;
     background: #016D74;
     border-radius: 25px;
     color:white;
     border: none;
 }
-.tickerPageStatisticsCardButtonRight {
-    padding: 4px 40px;  
+.tickerDetailStatisticsCardButtonRight {
+    padding: 2px 40px;  
     background: #06979C;
     border-radius: 25px;
     color:white;
@@ -970,24 +998,24 @@ body, html {
 
 
 /* Buy Orders  */
-.tickerPageBuyOrderbookTable td {
+.tickerDetailBuyOrderbookTable td {
     color:#15965A;
 }
-.tickerPageBuyRight {
+.tickerDetailBuyRight {
     background: #E4F0EB;
 }
 
  /* Sell Orderbook  */
-.tickerPageSellOrderbookTable td {
+.tickerDetailSellOrderbookTable td {
     color:#B51F1F;
 }
-.tickerPageSellRight {
+.tickerDetailSellRight {
     background: #F5E4E5;
 }
 
  /* Buy and Sell Orderbook  */
-.tickerPageBuyOrderbookCard ,
-.tickerPageSellOrderbookCard {
+.tickerDetailBuyOrderbookCard ,
+.tickerDetailSellOrderbookCard {
     margin-top:10px;
     width:495px;
     height:500px;
@@ -995,18 +1023,18 @@ body, html {
     margin-right:5px;
     border-radius: 25px;
     text-align: center;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
 }
 
-.tickerPageOrderbookTableHeader {
+.tickerDetailOrderbookTableHeader {
     background:#f7f7f7;
-    height:50px;
+    height:30px;
     font-size: 24px;
-    color:#5F5F5F
+    color:#5F5F5F;
 }
 
-.tickerPageBuyOrderbookTable,
-.tickerPageSellOrderbookTable {
+.tickerDetailBuyOrderbookTable,
+.tickerDetailSellOrderbookTable {
     height: 400px;
     table-layout: fixed;
     margin:0 auto;
@@ -1014,18 +1042,30 @@ body, html {
     margin-top:35px
 }
 
-.tickerPageBuyOrderbookTableRows, 
-.tickerPageSellOrderbookTableRows {
-    height:32px;
+.tickerDetailBuyOrderbookTableRows, 
+.tickerDetailSellOrderbookTableRows {
+    height:28px;
+}
+.tickerDetailBuyOrderbookTableRows td, 
+.tickerDetailSellOrderbookTableRows td {
+    font-size:18px;
+    padding:0
 }
 
-.tickerPageBuyOrderbookTable tr th,
-.tickerPageSellOrderbookTable tr th {
+
+.tickerDetailBuyOrderbookTable th,
+.tickerDetailSellOrderbookTable th {
+    padding-top:15px;
+    padding-bottom:15px
+}
+.tickerDetailBuyOrderbookTable tr th,
+.tickerDetailSellOrderbookTable tr th {
     width:160px;
     background:#f7f7f7;
     font-size: 24px;
+    justify-content: center;
 } 
-.tickerPageBuyOrderbookCard header, .tickerPageSellOrderbookCard header, .tickerPageOrderSubmissionCard header {
+.tickerDetailBuyOrderbookCard header, .tickerDetailSellOrderbookCard header, .tickerDetailOrderSubmissionCard header {
     font-size:30px;
     color:black;
     margin-top:30px;
@@ -1033,7 +1073,7 @@ body, html {
 }
 
 /* Order Submission Card  */
-.tickerPageOrderSubmissionCard {
+.tickerDetailOrderSubmissionCard {
     margin-top:10px;
     width:495px;
     height:500px;
@@ -1041,22 +1081,22 @@ body, html {
     margin-left:5px;
     border-radius: 25px;
     text-align: center;   
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
 
 }
-.tickerPageOrderSubmissionField {
+.tickerDetailOrderSubmissionField {
     height: auto !important;;
     margin: 0 auto;
     justify-content: center;
 }
-.tickerPageOrderSubmissionPlaceOrderLeft {
+.tickerDetailOrderSubmissionPlaceOrderLeft {
     width:100%;
     text-align: left;
     font-size:24px;
     color: #5F5F5F
 }
 
-.tickerPageOrderSelect {
+.tickerDetailOrderSelect {
     padding-left:15px;
     width: 100%;
     background: var(--color-background-light);
@@ -1065,7 +1105,7 @@ body, html {
     border:none
 }
 
-.tickerPageSideSelect {
+.tickerDetailSideSelect {
     padding-left:15px;
     width: 100%;
     background: var(--color-background-light);
@@ -1075,22 +1115,22 @@ body, html {
     color:#000E10
 
 }
-.tickerPagePriceInput {
+.tickerDetailPriceInput {
     width:100%;
     background: var(--color-background-light);
     border: none;
     height:40px;
     border-radius: 15px;
 }
-.tickerPagePriceInput input {
+.tickerDetailPriceInput input {
     margin-left:20px;
     width:160px;
 }
-.tickerPagePriceInput input:focus, .tickerPageQuantityInput input:focus  {
+.tickerDetailPriceInput input:focus, .tickerDetailQuantityInput input:focus  {
 outline: none;
 }
 
-.tickerPageQuantityInput {
+.tickerDetailQuantityInput {
         /* padding-left:15px; */
     width:100%;
     height:40px;
@@ -1098,23 +1138,23 @@ outline: none;
     border-radius: 15px;
     background: var(--color-background-light);
 }
-.tickerPageQuantityInput input {
+.tickerDetailQuantityInput input {
     margin-left:20px;
     width:160px;
 }
 
 /* User Stats  */
-.tickerPageUserStatistics {
+.tickerDetailUserStatistics {
     width:100%;
     margin-bottom:50px;
 }
-.tickerPageUserStatisticsHeader {
+.tickerDetailUserStatisticsHeader {
     text-align: center;
     font-size: 24px;
     margin:40px 0;
     color:#1B1C1E
 }
-.tickerPageUserTableCard {
+.tickerDetailUserTableCard {
     width: 100%;
     margin-top:10px;
     background: white;
@@ -1122,7 +1162,7 @@ outline: none;
     min-height:500px;
     height:auto;
 }
-.tickerPageUserTableCard table {
+.tickerDetailUserTableCard table {
     text-align: center;
     align-items: center;
     width: 99%;
@@ -1131,22 +1171,22 @@ outline: none;
     /* margin-top:10px; */
     border-radius: 25px;
 }
-.tickerPageUserTableCard th {
+.tickerDetailUserTableCard th {
     padding:20px 20px 16px 20px;
     font-size: 16px;
     color:#1B1C1E
 }
-.tickerPageUserTableCard tr {
+.tickerDetailUserTableCard tr {
     margin-bottom:10px;
 }
-.tickerPageUserTableCard td {
+.tickerDetailUserTableCard td {
     font-size: 14px;
     font-weight:400;
     color:#5F5F5F;
      padding-bottom:20px;
 }
 
-.tickerPageUserStatisticsCancelButton {
+.tickerDetailUserStatisticsCancelButton {
     border-radius: 15px;
     color:#016D74;
     font-size: 12px;
@@ -1157,17 +1197,17 @@ outline: none;
     justify-content: center;
     cursor: pointer;
 }
-.tickerPageUserStatisticsCancelButton:hover {
+.tickerDetailUserStatisticsCancelButton:hover {
     color:white;
     background: #016D74;
 }
-.tickerPageUserStatisticsButtonContainer {
+.tickerDetailUserStatisticsButtonContainer {
     width:100%;
     background:paleturquoise;
     height:50px !important;
     border-radius: 25px;
 }
-.tickerPageUserStatisticsButtonLeft {
+.tickerDetailUserStatisticsButtonLeft {
     width:100%;
     border-radius: 25px 0 0 25px;
     height:100%;
@@ -1178,7 +1218,7 @@ outline: none;
     cursor:pointer;
 }
 
-.tickerPageUserStatisticsButtonMiddle {
+.tickerDetailUserStatisticsButtonMiddle {
     width:100%;
     height:100%;
     border:none;
@@ -1188,7 +1228,7 @@ outline: none;
     background: white;
     cursor:pointer;
 }
-.tickerPageUserStatisticsButtonRight {
+.tickerDetailUserStatisticsButtonRight {
     width:100%;
     border-radius: 0 25px 25px 0;
     height:100%;
@@ -1200,21 +1240,21 @@ outline: none;
     cursor:pointer;
 
 }
-.tickerPageUserStatisticsButtonLeft:hover,
-.tickerPageUserStatisticsButtonMiddle:hover, 
-.tickerPageUserStatisticsButtonRight:hover  {
+.tickerDetailUserStatisticsButtonLeft:hover,
+.tickerDetailUserStatisticsButtonMiddle:hover, 
+.tickerDetailUserStatisticsButtonRight:hover  {
     background:var(--linear-gradient-light);
     color:white;
 }
 
-.tickerPageUserStatisticsButtonLeft:focus,
-.tickerPageUserStatisticsButtonMiddle:focus,
-.tickerPageUserStatisticsButtonRight:focus {
+.tickerDetailUserStatisticsButtonLeft:focus,
+.tickerDetailUserStatisticsButtonMiddle:focus,
+.tickerDetailUserStatisticsButtonRight:focus {
     background:var(--linear-gradient-light);
     color:white;
 }
 
-.tickerPageSubmitButton {
+.tickerDetailSubmitButton {
     border-radius: 25px;
     color:#016D74;
     font-size: 16px;
@@ -1225,18 +1265,18 @@ outline: none;
     justify-content: center;
     margin-top:10px;
 }
-.tickerPageSubmitButton:hover {
+.tickerDetailSubmitButton:hover {
     border:none;
     color:white;
     background: #016D74;
 }
 
-.tickerPageOrderSubmitNonUser {
+.tickerDetailOrderSubmitNonUser {
     color:#5F5F5F;
     font-size: 22px;
     margin-top: 200px;
 }
-.tickerPageTableNonUser {
+.tickerDetailTableNonUser {
     text-align: center; 
     font-size:28px;
     color:#5F5F5F;
@@ -1244,7 +1284,7 @@ outline: none;
     margin-bottom:80px
 }
 
-.tickerPageUserTableToggle {
+.tickerDetailUserTableToggle {
     color:#00474F;
     font-size: 18px;
     width:200px;
@@ -1257,17 +1297,17 @@ outline: none;
     padding-bottom:20px;
 }
 
-.tickerPageUserTableToggle h4 {
+.tickerDetailUserTableToggle h4 {
     color:#00474F;
     margin-left:20px;
     margin-right:20px;
 }
-.tickerPageArrowLeft img {
+.tickerDetailArrowLeft img {
     width:20px;
     height: 20px;
     transform: rotate(180deg);
 }
-.tickerPageArrowRight img {
+.tickerDetailArrowRight img {
     width:20px;
     height: 20px;
 }
@@ -2234,28 +2274,30 @@ input:focus {
     grid-template-columns: 30% 10% 15% 15% 15% 15%;
 }
 .leftCardContainer {
-    width: 100%;
-    min-height: 700px;
-    height: auto;
-    background: linear-gradient(to bottom, #016D74, #01373A);
-    line-height: 42px;
-    border-radius: 25px;
-    text-align: center;
-    color: white;
     align-self: start;
+    background: linear-gradient(to bottom, #016D74, #01373A);
+    border-radius: 25px;
+    color: white;
+    height: auto;
+    line-height: 42px;
     margin-top:25px;
+    min-height: 700px;
+    text-align: center;
+    width: 100%;
 }
 .rightCardContainer {
-    width: 100%;
-    min-height: 700px;
-    height: auto;
+    align-self: start;
     background: white;    
-    line-height: 42px;
     border-radius: 25px;
-    margin-left: 25px;
-    text-align: center;
-    color: black;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    color: black;
+    height: auto;
+    line-height: 42px;
+    margin-left: 25px;
+    margin-top:25px;
+    min-height: 700px;
+    text-align: center;
+    width: 100%;
 }
 
 .rightCardContainerHeader {
@@ -2290,11 +2332,10 @@ input:focus {
     background: #F7F7F7;
 }
 .sportsLogo {
-    height:50px;
-    width:50px;
+    height:40px;
+    width:40px;
     margin-right:15px;
 }
-
 
 .searchBar {
     width: 300px;
@@ -2396,7 +2437,7 @@ h4 {
     width:98%;
     margin:0 auto;
     border-radius: 15px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
 }
 
 .cardLink {

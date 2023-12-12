@@ -198,8 +198,7 @@ class Team(models.Model):
     team_description = models.CharField(max_length=5000, null=True, blank=True)
     team_badge = models.CharField(max_length=100, null=True, blank=True)
     team_jersey = models.CharField(max_length=100, null=True, blank=True)
-    team_logo = models.CharField(max_length=100, null=True, blank=True)
-    
+    team_logo = models.CharField(max_length=100, null=True, blank=True)  
 
     def __str__(self):
         return f"{self.team_name} {self.team_league_1.league_name}"
@@ -221,7 +220,7 @@ class Player(models.Model):
     player_weight = models.CharField(max_length=50, null=True, blank=True)
     player_photo = models.CharField(max_length=100, null=True, blank=True)
     player_team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, blank=True)
-
+    
     def __str__(self):
         return f"{self.player_name} {self.player_team.team_name}"
     

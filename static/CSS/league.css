@@ -1,0 +1,218 @@
+.leagueOverview {
+    background-color: #f7f7f7;
+}
+.leagueOverviewHeader {
+    margin-top:86px;
+    position: relative;
+}    
+.leagueOverviewHeaderImg {
+    width:100%;
+    height:50%;
+}
+
+.leagueOverviewHeaderCentered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.8rem; /* Adjust font size as needed */
+    color: var(--color-font-white);
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+
+.leagueOverviewGrid_2x1 {
+    grid-template-rows: 80px 220px ;
+}
+
+.leagueOverviewGrid_1x2 {
+    grid-template-columns: 300px 100px ;
+} 
+
+.leagueOverviewGrid_3x1 {
+    grid-template-rows: 20% 40% 40%;
+}
+
+.leagueOverviewGameOverview {
+    background: white;
+    border-radius: var(--border-radius-low);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    height: 280px !important;
+    margin-top:10px;
+    padding-bottom: 0;
+    width:1500px;
+}
+
+.leagueOverviewGameCardHeader {
+    color: var(--color-font-dark);
+    font-size: var(--font-size-title);
+    padding-left:60px;
+    padding-top:20px;
+    width:100%;
+}
+
+.leagueOverviewGameOverviewCardScroll {
+    align-content: left;
+    border-radius: var(--border-radius-low);
+    display: flex;
+    overflow-x: auto;
+    /* scroll-padding-bottom: 5px; */
+    white-space: nowrap;
+    width: 100%;
+}
+
+.leagueOverviewGameOverviewCard {
+    background: var(--color-background-light);
+    border-radius: var(--border-radius-low);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    color:var(--color-font-light);
+    height:190px;
+    margin:10px 10px;
+    width:400px !important;
+}
+::-webkit-scrollbar {
+    height: 8px;              /* height of horizontal scrollbar ← You're missing this */
+    width: 4px;               /* width of vertical scrollbar */
+    border: 1px solid #f7f7f7;
+}
+ ::-webkit-scrollbar-thumb:horizontal{
+    background: #06979C;
+    border-radius: 10px;
+    }
+
+
+.leagueOverviewGameOverviewCardHeader {
+    align-items: center;
+    color: var(--color-font-light);
+    display: flex;
+    flex-direction: row;
+    font-size: var(--font-size-small-body);
+    justify-content: space-evenly;
+    margin-top:30px;
+    width: 100%;
+}
+
+.leagueOverviewGameOverviewCardHeaderScore {
+    color: var(--color-font-light);
+    margin-right:40px;
+}
+
+.leagueOverviewHomeTeam, .leagueOverviewAwayTeam {
+    display: flex;
+    font-size: 20px;
+    width:100%;
+}
+
+.leagueOveriewGameOverviewCardTime {
+    align-items: center;
+    background: var(--linear-gradient-light);
+    border-radius: var(--border-radius-low);    
+    color:white;
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    width:100%;
+}
+
+.leagueOverviewAwayTeam {
+    margin-bottom: 20px ;
+}
+.leagueOverviewHomeTeam {
+    margin-top: 20px;
+}
+.leagueOverviewHomeTeamScore,.leagueOverviewAwayTeamScore {
+    color:var(--color-font-turk);
+    padding-left:35px;
+    width:50px;
+    margin-left: 0;
+    font-size: var(--font-size-subheader);
+}
+.leagueOverviewHomeTeamName, .leagueOverviewAwayTeamName {
+    color: var(--color-font-light);
+    font-size: var(--font-size-body);
+    width:70%;
+}
+
+.leagueOverviewLiveButtonSmall {
+    align-items: center;
+    background-color: var( --color-background-red);
+    border-radius: 25px;
+    border: solid 3px var(---color-button-border-red);
+    color:var(--color-font-red);
+    display: flex;
+    font-size: var(--font-size-super-small);
+    font-weight:600;
+    padding: 2px 10px;
+}
+.leagueOverviewLiveButtonSmall img {
+    height:15px;
+    width:15px; 
+    margin-right:5px;
+}
+.leagueOveriewGameOverviewCardHeaderButton {
+    padding-right:20px;
+}
+
+.leagueOverviewStandingsOverview {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    color:var(--color-font-light);
+    height:auto;
+    margin-bottom: 30px;
+    margin-top:10px;
+    min-height: 300px;
+    text-align:left;
+    width:1500px;
+}
+.wrapper {
+    width: min(900px, 100%-3rem);
+    margin-inline: auto;
+}
+.leagueOverviewStandingsOverviewHeader {
+    color:var(--color-font-black);
+    font-size: var(--font-size-title);
+    padding:2rem 2rem 0.5rem 2.5rem;
+    text-align: left;
+}
+
+table {
+    padding:1rem;
+    text-align: center;
+    width: 100%;
+}
+th, tr {
+    font-size: 22px;
+    padding-bottom: 30px;
+}
+#Team, #Last_5 {
+    text-align: left;
+}
+#Teams {
+    color:#06979C;
+    text-align: left;
+}
+
+td {
+    font-size:24px;
+    padding-bottom:30px; 
+}
+
+.leagueOverviewConferenceSelection {
+    border-radius: 8px;
+    color: black;
+    border: 1px solid black;
+    background: white;
+    padding: 5px 20px;
+    margin-left:40px;
+    margin-bottom:30px;
+}

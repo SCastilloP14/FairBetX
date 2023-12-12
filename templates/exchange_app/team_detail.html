@@ -1,0 +1,156 @@
+{% extends "exchange_app/base.html" %} {% block body_block %}
+
+
+<div class="leagueOverview">    
+    <div class="teamDetailleagueOverviewHeader">
+        <img class="teamDetailLeagueOverviewHeaderImg"src="../../../static/img/{{team_detail.team_league_1.league_name}}_Pg.png" alt="">
+        <div class="teamDetailLeagueOverviewHeaderCentered">{{team_detail.team_name}}</div>
+
+    </div>
+    <div class="grid gridNav13">
+        <!-- Left Section  -->
+        <div class="empty"></div>
+
+        <!-- Middle Section  -->
+        <div class="middle_section">
+            <div class="teamDetailGameOverview grid grid_2x1">
+                
+                <div class="teamDetailGameOVerviewLeague">
+                    <h2 style="flex:1">Games</h2>
+                    <a href="{% url 'exchange_app:league_detail' pk=team_detail.team_league_1.pk %}">
+                        <button class="button leagueButton">
+                            {{team_detail.team_league_1.league_name}}
+                        </button>
+                    </a>
+                </div>
+                <!-- Game Card Scroll Tunnel  -->
+                <div class="teamDetailGameOverviewCardScroll">
+
+                    <!-- Game Card  -->        
+                    {% for ticker in tickers %}
+                    <a href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}" style="text-decoration: none;">
+                    <div class="leagueOverviewGameOverviewCard grid leagueOverviewGrid_1x2">
+                        <!-- Left Site Game Card  -->
+                        <div class="grid leagueOverviewGrid_3x1">
+                                <div class="leagueOverviewGameOverviewCardHeader">
+                                    <span class="leagueOverviewGameOverviewCardHeaderScore">Score</span>
+                                    {% if ticker.ticker_game.game_status == "PLAYING" %}
+                                        <button class="leagueOverviewLiveButtonSmall">
+                                            <img src="../../../static/img/live-logo.png" alt=""> Live 
+                                        </button>
+                                        <div class="leagueOveriewGameOverviewCardHeaderButton ">{{ticker.ticker_game.game_progress}}</div>
+                                    {% else %}
+                                        <div class="leagueOveriewGameOverviewCardHeaderButton ">{{ticker.ticker_game.game_status}}</div>
+                                    {% endif %}
+                                </div>
+                            <div class="leagueOverviewHomeTeam">
+                                {% if not ticker.ticker_game.game_away_team_score %}
+                                    <div class="leagueOverviewAwayTeamScore">0</div>
+                                {% else %}
+                                    <div class="leagueOverviewAwayTeamScore">{{ticker.ticker_game.game_away_team_score}}</div>
+                                {% endif %}
+                                <div class="leagueOverviewAwayTeamName">{{ticker.ticker_game.game_away_team.team_name}}</div>
+                            </div>
+                            <div class="leagueOverviewAwayTeam">
+                                {% if not ticker.ticker_game.game_home_team_score %}
+                                    <div class="leagueOverviewHomeTeamScore">0</div>
+                                {% else %}
+                                    <div class="leagueOverviewHomeTeamScore">{{ticker.ticker_game.game_home_team_score}}</div>
+                                {% endif %}
+                                <div class="leagueOverviewHomeTeamName">{{ticker.ticker_game.game_home_team.team_name}}</div>
+                            </div>
+                        </div>
+                        <!-- Right Site Game Card  -->
+                        {% if ticker.ticker_game.game_away_team_score %}
+                            <div class="leagueOveriewGameOverviewCardTime">{{ticker.ticker_game.game_progress}}</div>
+                        {% else %}
+                            <div class="leagueOveriewGameOverviewCardTime">-</div>
+                        {% endif %}
+                        </div>
+                    </a>
+                    {% endfor %}              
+               
+                    
+                </div>
+            </div>
+            <div class="teamDetailStandingsOverview teamDetailWrapper">
+                <!-- <span>Standings</span> -->
+                <table>
+                    <!-- Title of the Table  -->
+                    <caption>Roster
+
+                    </caption>
+
+                    <!-- Conference Button  -->
+                    
+                    <!-- Table Headers  -->
+                    <tr>
+                        <th>#</th>
+                        <th id="Player">Player</th>
+                        <th>Pos</th>
+                        <th>Height</th>
+                        <th>Weight</th>
+                        <th>D.o.B.</th>
+                        <th>Nationality</th>
+                        <th>Status</th>
+                    </tr>
+                    {% for player in players %}
+                        <tr>
+                            {% if player.player_number %}
+                                <td data-cell="#">{{player.player_number}}</td> 
+                            {% else %}
+                                    <td data-cell="#">  --   </td> 
+                            {% endif %}
+                            <td data-cell="Player" id="Teams">{{player.player_name}}</td>
+                            <td data-cell="Pos" class="playerPosition">{{player.player_position}}</td>
+                            <td data-cell="Height">{{player.player_height}}</td>
+                            <td data-cell="Weight">{{player.player_weight}}</td>
+                            <td data-cell="D.o.B">{{player.player_date_of_birth}}</td>
+                            <td data-cell="Nationality">{{player.player_nationality}}</td>
+                            <td data-cell="Status">{{player.player_status}}</td>
+                        </tr>
+                    {% endfor %}
+                    
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+
+                </table>
+            </div>
+            <div class="grid grid_1x2_even">
+                <div class="teamDetailTeamInfoCard">
+                    <h2>Team Info</h2>
+                    <div>{{team_detail.team_description}}</div>
+
+                </div>
+                <div class="teamDetailTeamInfoBulletCard">
+                    <h2>Coaching Staff</h2>
+                    <h3>Head Coach</h3>
+                    <h3>Assistant Coach</h3>
+
+                    <h2>Background</h2>
+                    
+                        <h3>Founded</h3>
+                        <h3>City</h3>
+                        <h3>Arena</h3>
+                        <h3>General Manager</h3>
+                        <h3>Championship Wins</h3>
+                        <h3>Conference Titles</h3>
+                        <h3>Division Titles</h3>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Right Section  -->
+        <div class="empty"></div>
+
+    </div>
+
+</div> 
+
+{% endblock %}

@@ -40,21 +40,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-
-// document.getElementById('sportsDropdown').addEventListener('change', function() {
-//   var selectedSport = this.value;
-//   var tickers = document.querySelectorAll('.ticker');
-
-//   tickers.forEach(function(ticker) {
-//       if (selectedSport === '' || ticker.classList.contains(selectedSport)) {
-//           ticker.style.display = 'block';
-//       } else {
-//           ticker.style.display = 'none';
-//       }
-//   });
-// });
-
-
 document.addEventListener('DOMContentLoaded', function () {
   // Get references to your buttons
   var liveSportsButton = document.getElementById('liveSportsButton');
@@ -64,15 +49,16 @@ document.addEventListener('DOMContentLoaded', function () {
   var sportsDropdown =  document.getElementById('sportsDropdown');
   // All tickers 
   var tickers = document.querySelectorAll('.ticker');
+  var dropdowns = document.querySelectorAll('.custom-dropdown');
 
 
   //Add event listener for sportsDropdown
-  sportsDropdown.addEventListener('click', function (event) {
+  sportsDropdown.addEventListener('change', function (event) {
     event.preventDefault();
 
+
+
     var selectedSport = sportsDropdown.value;
-    var tickers = document.querySelectorAll('.ticker');
-    console.log("ticker ", tickers);
 
     tickers.forEach(function(ticker) {
         if (selectedSport === '' || ticker.classList.contains(selectedSport)) {
@@ -110,6 +96,17 @@ document.addEventListener('DOMContentLoaded', function () {
       // Function to search all games based on any team name
       searchTeams();
 
+      if (searchBarTeams.value.trim() !== '') {
+      dropdowns.forEach(function (dropdown) {
+        dropdown.classList.add('open');
+      });
+    } else {
+      dropdowns.forEach(function (dropdown) {
+        dropdown.classList.remove('open');
+      });
+    }
+ 
+
   });
 
   // Function to filter tickers based on game status
@@ -127,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function searchGames() {
       var searchInput = searchBarGames.value.toLowerCase();
       var tickers = document.querySelectorAll('.ticker');
-      console.log("IM here", searchInput);
+
       tickers.forEach(function (ticker) {
           var tickerText = ticker.textContent.toLowerCase();
           ticker.style.display = tickerText.includes(searchInput) ? 'block' : 'none';
@@ -136,9 +133,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function searchTeams() {
       var searchInput = searchBarTeams.value.toLowerCase();
-      var tickers = document.querySelectorAll('.ticker');
+      var teams = document.querySelectorAll('.teams');
 
-      tickers.forEach(function (ticker) {
+      teams.forEach(function (ticker) {
           var tickerText = ticker.textContent.toLowerCase();
           ticker.style.display = tickerText.includes(searchInput) ? 'block' : 'none';
       });

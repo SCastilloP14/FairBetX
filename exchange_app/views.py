@@ -230,6 +230,7 @@ class TickerDetailView(DetailView):
             context["user_orders"] = Order.objects.none()
             context["user_positions"] = Position.objects.none()
             context["user_fills"] = Fill.objects.none()
+        print("USer Context", context)
         return context
         
     def post(self, request, *args, **kwargs):
@@ -288,9 +289,9 @@ class TeamDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         team = self.get_object()
         context["tickers"] = Ticker.objects.filter(ticker_game__game_home_team=team, ticker_status__in=["OPEN", "PARTIAL"]).order_by("-ticker_game__game_start_datetime").reverse()
-        context["teams"] = Team.objects.filter(team_league_1=league)
+        context["players"] = Player.objects.filter(player_team=team).order_by('-player_number').reverse()
+        print("Tickers", context['tickers'])
         return context
-
 
 class TradeViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = TradeSerializer

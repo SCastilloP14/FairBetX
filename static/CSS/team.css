@@ -1,0 +1,233 @@
+.teamDetailleagueOverviewHeader {
+    margin-top:86px;
+    position: relative;
+}    
+.teamDetailLeagueOverviewHeaderImg {
+    width:100%;
+    height:50%;
+}
+.teamDetailLeagueOverviewHeaderCentered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.8rem; /* Adjust font size as needed */
+    color: var(--color-font-white);
+    
+}
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+
+.grid_2x1 {
+    grid-template-rows: 80px 220px ;
+}
+.grid_1x2_even {
+    grid-template-columns: 50% 50%;
+
+}
+
+.grid_1x2 {
+    grid-template-columns: 250px 150px ;
+}
+.grid_3x1 {
+    grid-template-rows: 20% 40% 40%;
+}
+.grid_1x2_game_card {
+    grid-template-columns: 20% 80% ;
+
+}
+.teamDetailGameOverview {
+    width:1500px;
+    height: 300px;
+    background-color: white;
+    border-radius: 15px;
+    margin-top:10px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+.teamDetailGameOverviewCard {
+    width:400px;
+    height:190px;
+    background: var(--color-background-light);
+    border-radius: 25px;
+   margin:5px 10px;
+}
+.teamDetailGameOverviewCardScroll {
+    width: 100%;
+    display: flex;
+    align-content: left;
+    overflow-x: scroll;
+}
+
+::-webkit-scrollbar {
+    height: 8px;              /* height of horizontal scrollbar ← You're missing this */
+    width: 4px;               /* width of vertical scrollbar */
+    border: 1px solid #f7f7f7;
+}
+ ::-webkit-scrollbar-thumb:horizontal{
+    background: #06979C;
+    border-radius: 10px;
+    }
+.teamDetailGameOverviewCardTime {
+    height: 100%;
+    width:100%;
+    background: linear-gradient(to bottom, #016D74, #01373A);
+    border-radius: 25px;    
+    color:white;
+    text-align: center;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.teamDetailHomeTeam, .teamDetailAwayTeam {
+    display: flex;
+    font-size: 20px;
+    width:100%;
+}
+.teamDetailAwayTeam {
+    margin-bottom: 20px ;
+}
+.teamDetailHomeTeam {
+    margin-top: 20px;
+}
+.teamDetailHomeTeamScore,.teamDetailAwayTeamScore {
+    color:#00474f;
+    padding-left:25px;
+    width:50px;
+    margin-left: 0;
+}
+.teamDetailGameOverviewCardHeader {
+     display: flex;
+     margin-top:30px;
+    color: #00474f;
+    width: 100%;
+    border-radius: 25px;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+
+}
+.teamDetailLiveButtonSmall {
+    border-radius: 25px;
+    color:#B51F1F;
+    font-size: 12px;
+    font-weight:600;
+    background-color: #F5E4E5;
+    border: solid 3px #B51F1F;
+    padding: 2px 10px;
+    display: flex
+}
+.teamDetailGameOverviewCardHeaderButton {
+    padding-right:20px;
+}
+.teamDetailLeagueOverview {
+    background-color: #f7f7f7;
+}
+.teamDetailStandingsOverview {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    height:auto;
+    margin-bottom:5px;
+    margin-top:10px;
+    min-height: 300px;
+    width:1500px;
+}
+.teamDetailrapper {
+    width: min(900px, 100%-3rem);
+    margin-inline: auto;
+}
+
+.teamDetailTeamInfoCard,
+.teamDetailTeamInfoBulletCard {
+    align-self:start;
+    min-height: 850px;
+    background:white;
+    border-radius: 25px;
+    width:745px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom:60px;
+    text-align: left;
+    font-size: 20px;
+}
+.teamDetailTeamInfoCard h2,
+.teamDetailTeamInfoBulletCard h2 {
+    font-size: 28px;
+    font-weight:700;
+    color: #016D74;
+    margin: 40px 0 60px 40px;
+}
+.teamDetailTeamInfoBulletCard h3{
+    font-size: 20px;
+    font-weight:700;
+    color: black;
+    margin: 40px 0 40px 40px;
+}
+.teamDetailTeamInfoBulletCard div{
+    margin:0;
+    padding:0;
+    text-align: left;
+    
+}
+.teamDetailTeamInfoCard div {
+    margin-left:40px;
+    margin-right:30px;
+    line-height:2rem; 
+    margin-bottom:40px;  
+    font-size:18px;
+}
+.teamDetailGameOVerviewLeague {
+    width:100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.teamDetailGameOVerviewLeague h2 {
+    padding-left:40px;
+}
+.teamDetailGameOVerviewLeague button {
+    margin-left:30px;
+    justify-content: center;
+    vertical-align: middle;
+    margin-right:40px;
+
+}
+caption {
+    text-align: left;
+    font-size: 28px;
+    padding:2rem 3rem;
+
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    padding:1rem;
+}
+th, tr {
+    font-size: 22px;
+    padding-bottom: 30px;
+}
+#Team, #Last_5 {
+    text-align: left;
+}
+#Teams {
+    text-align: left;
+    color:#06979C;
+}
+
+td {
+    font-size:24px;
+    padding-bottom:30px;
+}
+.playerPosition {
+    text-align: left;
+}
