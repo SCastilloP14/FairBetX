@@ -1030,12 +1030,17 @@ a {
 .tickerDetailSellOrderbookTableRows {
     height:32px;
 }
-
+.tickerDetailBuyOrderbookTable th,
+.tickerDetailSellOrderbookTable th {
+    padding-top:15px;
+    padding-bottom:15px
+}
 .tickerDetailBuyOrderbookTable tr th,
 .tickerDetailSellOrderbookTable tr th {
     width:160px;
     background:#f7f7f7;
     font-size: 24px;
+    justify-content: center;
 } 
 .tickerDetailBuyOrderbookCard header, .tickerDetailSellOrderbookCard header, .tickerDetailOrderSubmissionCard header {
     font-size:30px;
