@@ -419,6 +419,7 @@ a {
         vertical-align: text-top;
         display: flex;
         align-items: flex-start;
+        margin-bottom:120px;
     }
 
     .footerStartCenterFollowUs {
