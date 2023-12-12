@@ -155,6 +155,9 @@ class Transaction(models.Model):
     transaction_time = models.DateTimeField(auto_now_add=True)
     transaction_amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=None)
 
+    def __str__(self):
+        return f"{self.transaction_user.username}-{self.transaction_time}-{self.transaction_type}"
+
 
 class League(models.Model):
     league_id = models.IntegerField()
