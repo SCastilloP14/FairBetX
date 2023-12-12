@@ -62,6 +62,16 @@
     align-content: left;
     overflow-x: scroll;
 }
+
+::-webkit-scrollbar {
+    height: 8px;              /* height of horizontal scrollbar ← You're missing this */
+    width: 4px;               /* width of vertical scrollbar */
+    border: 1px solid #f7f7f7;
+}
+ ::-webkit-scrollbar-thumb:horizontal{
+    background: #06979C;
+    border-radius: 10px;
+    }
 .teamDetailGameOverviewCardTime {
     height: 100%;
     width:100%;
@@ -136,13 +146,41 @@
 
 .teamDetailTeamInfoCard,
 .teamDetailTeamInfoBulletCard {
+    align-self:start;
     min-height: 850px;
     background:white;
     border-radius: 25px;
     width:745px;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
     margin-bottom:60px;
-    text-align: center;
+    text-align: left;
+    font-size: 20px;
+}
+.teamDetailTeamInfoCard h2,
+.teamDetailTeamInfoBulletCard h2 {
+    font-size: 28px;
+    font-weight:700;
+    color: #016D74;
+    margin: 40px 0 60px 40px;
+}
+.teamDetailTeamInfoBulletCard h3{
+    font-size: 20px;
+    font-weight:700;
+    color: black;
+    margin: 40px 0 40px 40px;
+}
+.teamDetailTeamInfoBulletCard div{
+    margin:0;
+    padding:0;
+    text-align: left;
+    
+}
+.teamDetailTeamInfoCard div {
+    margin-left:40px;
+    margin-right:30px;
+    line-height:2rem; 
+    margin-bottom:40px;  
+    font-size:18px;
 }
 .teamDetailGameOVerviewLeague {
     width:100%;

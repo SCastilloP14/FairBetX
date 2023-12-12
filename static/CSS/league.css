@@ -73,10 +73,19 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     color:var(--color-font-light);
     height:190px;
-    margin:5px 10px;
+    margin:10px 10px;
     width:400px !important;
-
 }
+::-webkit-scrollbar {
+    height: 8px;              /* height of horizontal scrollbar ← You're missing this */
+    width: 4px;               /* width of vertical scrollbar */
+    border: 1px solid #f7f7f7;
+}
+ ::-webkit-scrollbar-thumb:horizontal{
+    background: #06979C;
+    border-radius: 10px;
+    }
+
 
 .leagueOverviewGameOverviewCardHeader {
     align-items: center;
@@ -159,7 +168,7 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     color:var(--color-font-light);
     height:auto;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     margin-top:10px;
     min-height: 300px;
     text-align:left;
@@ -172,7 +181,7 @@
 .leagueOverviewStandingsOverviewHeader {
     color:var(--color-font-black);
     font-size: var(--font-size-title);
-    padding:2rem 2rem;
+    padding:2rem 2rem 0.5rem 2.5rem;
     text-align: left;
 }
 
@@ -205,4 +214,5 @@ td {
     background: white;
     padding: 5px 20px;
     margin-left:40px;
+    margin-bottom:30px;
 }

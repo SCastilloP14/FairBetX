@@ -5,7 +5,6 @@
     <div class="empty"></div>
     <div class="middle_section">
         <!-- Header  -->
-
         <div class="tickerDetailHeader">{{ticker_detail.ticker_game.game_league_1.league_name}}</div>
         <div class="tickerDetailGameDetails grid grid_1x9">
             {% if ticker_detail.ticker_game.game_progress %}
@@ -14,9 +13,13 @@
                 <div class="tickerDetailGamePeriod">NS</div>
             {% endif %}
             <div class="grid grid_2x1_tickerDetail">
-                <div class="tickerDetailHomeTeam">{{ticker_detail.ticker_game.game_away_team.team_name}}</div>
-                <div class="tickerDetailAwayTeam">{{ticker_detail.ticker_game.game_home_team.team_name}}</div>
-            </div>
+                <a class="tickerDetailHomeTeam" href="{% url 'exchange_app:team_detail' pk=ticker_detail.ticker_game.game_away_team.pk %}">
+                    <div>{{ticker_detail.ticker_game.game_away_team.team_name}}</div>
+                </a>
+                <a class="tickerDetailAwayTeam" href="{% url 'exchange_app:team_detail' pk=ticker_detail.ticker_game.game_home_team.pk %}">
+                    <div>{{ticker_detail.ticker_game.game_home_team.team_name}}</div>
+                </a>
+                </div>
             <div class="grid grid_2x1_tickerDetail">
                 {% if not ticker_detail.ticker_game.game_away_team_score %}
                     <div class="tickerDetailHomeScore">-</div>
@@ -36,16 +39,16 @@
                 <img class="tickerDetailDateIcon" src="../../../static/img/calendar-icon.png" alt="">
             </div>
             <div class="tickerDetailGameDate">
-                {{ticker_detail.ticker_game.game_start_datetime}}
+                {{ticker_detail.ticker_game.game_start_datetime|date:"M. d, Y"}}
             </div>
             <div>
                 <img class="tickerDetailTimeIcon" src="../../../static/img/clock-icon.png" alt="">
             </div>
-            <div class="tickerDetailGameTime">{{ticker_detail.ticker_game.game_start_datetime}}</div>
+            <div class="tickerDetailGameTime">{{ticker_detail.ticker_game.game_start_datetime|date:"g:i A" }}</div>
              <div>
                 <img  class="tickerDetailLocationIcon" src="../../../static/img/location-icon.png" alt="">
             </div>
-            <div class="tickerDetailGameLocation">{{ticker_detail.ticker_game.game_venue}}</div>
+            <div class="tickerDetailGameLocation">{{ticker_detail.ticker_game.game_city}} / {{ticker_detail.ticker_game.game_country}}</div>
         </div>
 
         <!-- Game + User Info Card  -->

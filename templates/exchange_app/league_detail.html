@@ -17,7 +17,6 @@
                 <!-- Game Card Scroll Tunnel  -->
                 <div class="leagueOverviewGameOverviewCardScroll">
                     <!-- Game Card  -->
-                    
                     {% for ticker in tickers %}
                     <a href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}" style="text-decoration: none;">
                     <div class="leagueOverviewGameOverviewCard grid leagueOverviewGrid_1x2">
@@ -59,10 +58,9 @@
                         {% endif %}
                         </div>
                     </a>
-                    {% endfor %}
-                    
-                    
+                    {% endfor %} 
                 </div>
+                
             </div>
             <div class="leagueOverviewStandingsOverview wrapper">
                 <!-- <span>Standings</span> -->

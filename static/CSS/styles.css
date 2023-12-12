@@ -78,6 +78,10 @@ body, html {
 @media (1200px <= width) {
     
 } 
+
+a {
+    text-decoration: none;
+}
 /*    ==========================    */
 /*            COMPONENTS            */
 /*    ==========================    */
@@ -851,6 +855,7 @@ body, html {
     text-align: left;
     font-size:22px;
     padding-left:30px;
+    color:var(--color-font-turk);
 }
 .tickerDetailHomeTeam, .tickerDetailHomeScore {
     padding-top:10px;
@@ -2241,28 +2246,30 @@ input:focus {
     grid-template-columns: 30% 10% 15% 15% 15% 15%;
 }
 .leftCardContainer {
-    width: 100%;
-    min-height: 700px;
-    height: auto;
-    background: linear-gradient(to bottom, #016D74, #01373A);
-    line-height: 42px;
-    border-radius: 25px;
-    text-align: center;
-    color: white;
     align-self: start;
+    background: linear-gradient(to bottom, #016D74, #01373A);
+    border-radius: 25px;
+    color: white;
+    height: auto;
+    line-height: 42px;
     margin-top:25px;
+    min-height: 700px;
+    text-align: center;
+    width: 100%;
 }
 .rightCardContainer {
-    width: 100%;
-    min-height: 700px;
-    height: auto;
+    align-self: start;
     background: white;    
-    line-height: 42px;
     border-radius: 25px;
-    margin-left: 25px;
-    text-align: center;
-    color: black;
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    color: black;
+    height: auto;
+    line-height: 42px;
+    margin-left: 25px;
+    margin-top:25px;
+    min-height: 700px;
+    text-align: center;
+    width: 100%;
 }
 
 .rightCardContainerHeader {

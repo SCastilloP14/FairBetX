@@ -53,12 +53,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   //Add event listener for sportsDropdown
-  sportsDropdown.addEventListener('click', function (event) {
+  sportsDropdown.addEventListener('change', function (event) {
     event.preventDefault();
 
+
+
     var selectedSport = sportsDropdown.value;
-    console.log("sports", selectedSport);
-    console.log("ticker ", tickers);
 
     tickers.forEach(function(ticker) {
         if (selectedSport === '' || ticker.classList.contains(selectedSport)) {
