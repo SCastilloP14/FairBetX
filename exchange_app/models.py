@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from enum import Enum
 import random, string
+from collections import defaultdict
 
 # ------------------- ENUMS NEEDED FOR THE MODELS --------------
 
@@ -102,6 +103,7 @@ class OrderStatus(Enum):
     FILLED = "Filled"
     CANCELED = "Canceled"
     SETTLED = "Settled"
+    TICKER_CANCELED = "Ticker Canceled"
 
     def __str__(self):
         return self.name
@@ -119,31 +121,65 @@ ticker_stauts_mapping = {
 # ----------------------- MODELS NEEDED -----------------------
 class UserProfileInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)     
-    user_available_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    user_locked_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    user_total_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     @property
     def fees_paid(self):
-        user_orders = Order.objects.get(user=self.user)
-        fees_paid = 0
-        for order in user_orders:
-            order_fees_paid = order.fees_paid
-            fees_paid += order_fees_paid
+        user_orders = Order.objects.filter(order_user=self.user).values('order_paid_fees')
+        fees_paid = sum(order['order_paid_fees'] for order in user_orders)
         return fees_paid
-        
-    @property
-    def total_balance(self):
-        return self.user_available_balance + self.user_locked_balance
-    
-    def lock_balance(self, balance_to_lock):
-        self.user_locked_balance += balance_to_lock
-        self.user_available_balance -= balance_to_lock
-        self.save()
 
-    def unlock_balance(self, balance_to_unlock):
-        self.user_locked_balance -= balance_to_unlock
-        self.user_available_balance += balance_to_unlock
-        self.save()
+    @property
+    def user_locked_balance(self):
+        user_orders = Order.objects.filter(order_user=self.user)
+        orders_by_ticker = defaultdict(list)
+
+        for order in user_orders:
+            orders_by_ticker[order.order_ticker_id].append(order)
+
+        total_locked_balance = 0
+        for ticker_id, orders in orders_by_ticker.items():
+            buy_locked_balance = sum(order.order_locked_balance for order in orders if order.order_side == OrderSide.BUY.name)
+            sell_locked_balance = sum(order.order_locked_balance for order in orders if order.order_side == OrderSide.SELL.name)
+            ticker_locked_balance = max(buy_locked_balance, sell_locked_balance)
+            total_locked_balance += ticker_locked_balance
+        return total_locked_balance
+    
+    @property
+    def user_available_balance(self):
+        return self.user_total_balance - self.fees_paid - self.user_locked_balance
+
+    
+    def check_enough_balance(self, order_type, order_side, order_price, order_quantity, ticker):
+        if order_type == OrderType.LIMIT.name:
+            if order_side == OrderSide.BUY.name:
+                required_balance = order_price * order_quantity
+            else:
+                required_balance = (ticker.ticker_payout - order_price) * order_quantity
+        
+        elif order_type == OrderType.MARKET.name:
+            counterparties = Order.objects.filter(
+            order_ticker=ticker,
+            order_side=OrderSide.BUY.name if order_side == OrderSide.SELL.name else OrderSide.SELL.name,
+            order_working_quantity__gt=0,
+            order_status__in=["OPEN", "PARTIAL"]
+            ).order_by("order_price", "order_modification_timestamp")[:order_quantity]
+
+            total_quantity = 0
+            total_value = 0
+            for counterparty_order in counterparties:
+                if total_quantity + counterparty_order.order_working_quantity <= order_quantity:
+                    total_quantity += counterparty_order.order_working_quantity
+                    total_value += counterparty_order.order_working_quantity * counterparty_order.order_price
+                else:
+                    remaining_quantity = order_quantity - total_quantity
+                    total_value += remaining_quantity * counterparty_order.order_price
+                    break
+
+            average_price = total_value / order_quantity if order_quantity > 0 else 0
+            required_balance = average_price * order_quantity
+
+        return True if required_balance <= self.user_available_balance else False
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
@@ -283,19 +319,36 @@ class Ticker(models.Model):
         
     def close_ticker(self):
         self.ticker_status = TickerStatus.CLOSED.name
-        # Close all open orders on the ticker.
         self.check_outcome()
         self.save()
         self.pay_winners()
+        self.close_remaining_orders()
 
     def cancel_ticker(self):
-        #   Finish sending back the money
         self.ticker_status = TickerStatus.CANCELED.name
+        ticker_orders_to_cancel = Order.objects.filter(order_ticker=self)
+        ticker_orders_to_cancel.update(order_status=OrderStatus.TICKER_CANCELED.name)
         self.save()
 
     def close_remaining_orders(self):
-        ticker_orders_to_cancel = Order.objects.filter(order_ticker=self)
-        ticker_orders_to_cancel.update(order_status=OrderStatus.SETTLED.name)
+        ticker_orders_to_close = Order.objects.filter(order_ticker=self)
+        ticker_orders_to_close.update(order_status=OrderStatus.SETTLED.name)
+
+    def check_enough_liquidity(self, order_side, order_quantity):
+        if order_side == OrderSide.BUY.name:
+            counterparties = Order.objects.filter(order_ticker=self, order_side=OrderSide.SELL.name, order_working_quantity__gt=0, 
+                                                      order_status__in=["OPEN", "PARTIAL"]
+                                                      ).order_by("order_price", "order_modification_timestamp")
+            total_working_quantity = counterparties.aggregate(total_quantity=models.Sum('order_working_quantity'))['total_quantity'] or 0
+
+        elif order_side == OrderSide.SELL.name:
+            counterparties = Order.objects.filter(order_ticker=self, order_side=OrderSide.BUY.name, order_working_quantity__gt=0,
+                                                      order_status__in=["OPEN", "PARTIAL"]
+                                                      ).order_by("-order_price", "order_modification_timestamp")
+            total_working_quantity = counterparties.aggregate(total_quantity=models.Sum('order_working_quantity'))['total_quantity'] or 0
+            
+        return True if total_working_quantity >= order_quantity else False
+
 
     def pay_winners(self):
         try:
@@ -309,24 +362,22 @@ class Ticker(models.Model):
                 if position.position_quantity > 0 and self.ticker_outcome == TickerOutcome.LONGS_WIN.name:
                     print("LONG WINNER!")
                     position.position_settled_pnl = (self.ticker_payout - position.position_average_price) * position.position_quantity
-                    position_user.userprofileinfo.user_available_balance += position_payout
-                    position_user.userprofileinfo.user_locked_balance -= position.position_quantity * position.position_average_price
+                    position_user.userprofileinfo.user_total_balance += position_payout
 
                 elif position.position_quantity > 0 and self.ticker_outcome == TickerOutcome.SHORTS_WIN.name:
                     print("LONG LOSER!")
                     position.position_settled_pnl = -position.position_average_price * position.position_quantity
-                    position_user.userprofileinfo.user_locked_balance -= position.position_quantity * position.position_average_price
+                    position_user.userprofileinfo.user_total_balance -= position.position_quantity * position.position_average_price
 
                 elif position.position_quantity < 0 and self.ticker_outcome == TickerOutcome.SHORTS_WIN.name:
                     print("SHORT WINNER!")
                     position.position_settled_pnl += position.position_average_price * position.position_quantity
-                    position_user.userprofileinfo.user_available_balance += position_payout
-                    position_user.userprofileinfo.user_locked_balance -= position.position_quantity * (self.ticker_payout - position.position_average_price)
+                    position_user.userprofileinfo.user_total_balance += position_payout
 
                 elif position.position_quantity < 0 and self.ticker_outcome == TickerOutcome.LONGS_WIN.name:
                     print("SHORT LOSER!")
                     position.position_settled_pnl = -(self.ticker_payout - position.position_average_price) * position.position_quantity
-                    position_user.userprofileinfo.user_locked_balance -= position.position_quantity * (self.ticker_payout - position.position_average_price)
+                    position_user.userprofileinfo.user_total_balance -= position.position_quantity * (self.ticker_payout - position.position_average_price)
                 
                 position.position_settled = True
                 position.save()
@@ -355,21 +406,40 @@ class Order(models.Model):
     order_creation_timestamp = models.DateTimeField(auto_now_add=True)
     order_modification_timestamp = models.DateTimeField(auto_now_add=True)
 
-    def cancel(self):
+    @property
+    def order_locked_balance(self):
+        if self.order_status == OrderStatus.OPEN.name or self.order_status == OrderStatus.PARTIAL.name or self.order_status == OrderStatus.FILLED.name:
+            if self.order_side == OrderSide.BUY.name:
+                if self.order_type == OrderType.LIMIT.name:
+                    return self.order_quantity * self.order_price
+                elif self.order_type == OrderType.MARKET.name:
+                    return self.order_quantity * self.order_avg_fill_price
+            elif self.order_side == OrderSide.SELL.name:
+                if self.order_type == OrderType.LIMIT.name:
+                    return self.order_quantity * (self.order_ticker.ticker_payout - self.order_price)
+                elif self.order_type == OrderType.MARKET.name:
+                    return self.order_quantity * (self.order_ticker.ticker_payout - self.order_avg_fill_price)
+                
+        elif self.order_status == OrderStatus.CANCELED.name:
+            if self.order_side == OrderSide.BUY.name:
+                if self.order_type == OrderType.LIMIT.name:
+                    return self.order_filled_quantity * self.order_price
+                elif self.order_type == OrderType.MARKET.name:
+                    return self.order_filled_quantity * self.order_avg_fill_price
+            elif self.order_side == OrderSide.SELL.name:
+                if self.order_type == OrderType.LIMIT.name:
+                    return self.order_filled_quantity * (self.order_ticker.ticker_payout - self.order_price)
+                elif self.order_type == OrderType.MARKET.name:
+                    return self.order_filled_quantity * (self.order_ticker.ticker_payout - self.order_avg_fill_price)
+        else:
+            return 0
+
+
+
+    def cancel_order(self):
         if self.order_status != OrderStatus.FILLED.name:
             self.order_status = OrderStatus.CANCELED.name
-            if self.order_side == OrderSide.BUY.name:
-                balance_to_unlock = self.order_price * self.order_working_quantity
-            else:
-                balance_to_unlock = (self.order_ticker.ticker_payout - self.order_price) * self.order_working_quantity 
-            self.unlock_balance(balance_to_unlock)
             self.save()
-
-    def lock_balance(self, balance_to_lock):
-        self.order_user.userprofileinfo.lock_balance(balance_to_lock)
-
-    def unlock_balance(self, balance_to_unlock):
-        self.order_user.userprofileinfo.unlock_balance(balance_to_unlock)
 
     def update_order(self, fill):
         if self.order_avg_fill_price:
@@ -380,13 +450,6 @@ class Order(models.Model):
         self.order_filled_quantity += fill.fill_quantity
         self.order_paid_fees += fill.fill_price * fill.fill_quantity * (self.order_ticker.ticker_maker_fee_pct / 100)
 
-        if self.order_type == OrderType.MARKET.name:
-            if self.order_side == OrderSide.BUY.name:
-                balance_to_lock = fill.fill_price * self.order_quantity
-            else:
-                balance_to_lock = (self.order_ticker.ticker_payout - fill.fill_price) * self.order_quantity 
-            self.lock_balance(balance_to_lock)
-
         if self.order_working_quantity == 0:
             self.order_status = OrderStatus.FILLED.name
         else:
@@ -396,8 +459,6 @@ class Order(models.Model):
     def execute_order(self):
         if self.order_side == OrderSide.BUY.name:
             if self.order_type == OrderType.LIMIT.name:
-                balance_to_lock = self.order_quantity * self.order_price
-                self.lock_balance(balance_to_lock)
                 counterparties = Order.objects.filter(order_ticker=self.order_ticker, order_price__lte=self.order_price, order_side=OrderSide.SELL.name, order_working_quantity__gt=0,
                                                       order_status__in=["OPEN", "PARTIAL"]
                                                       ).order_by("order_price", "order_modification_timestamp")
@@ -410,8 +471,6 @@ class Order(models.Model):
                     exit
         else:
             if self.order_type == OrderType.LIMIT.name:
-                balance_to_lock = self.order_quantity * (self.order_ticker.ticker_payout - self.order_price)
-                self.lock_balance(balance_to_lock)
                 counterparties = Order.objects.filter(order_ticker=self.order_ticker, order_price__gte=self.order_price, order_side=OrderSide.BUY.name, order_working_quantity__gt=0,
                                                       order_status__in=["OPEN", "PARTIAL"]
                                                       ).order_by("-order_price", "order_modification_timestamp")
@@ -498,9 +557,6 @@ class Position(models.Model):
         for trade in trades:
             buy = trade.trade_buy
             sell = trade.trade_sell
-
-            print("buy", type(buy))
-            print("sell", type(sell))
 
             # Update the positions for the buy user
             buy_position, buy_position_created = Position.objects.get_or_create(position_user=buy.order_user, position_ticker=buy.order_ticker)

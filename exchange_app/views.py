@@ -114,18 +114,19 @@ class UserDetailView(DeleteView):
         if request.method == "POST":
             form = BalanceForm(request.POST)
             if form.is_valid():
-                print(form.cleaned_data)
                 username = request.POST.get("username")
                 user = User.objects.get(username=username)
                 user_info = UserProfileInfo.objects.get(user=user)
-                transaction = Transaction(transaction_user = user,
-                                          transaction_type = TransactionType.DEPOSIT.name if request.POST.get("transaction_type") == "deposit" else TransactionType.WITHDRAWAL.name,
-                                          transaction_id = ''.join(random.choices(string.ascii_letters + string.digits, k=24)),
-                                          transaction_amount = 100
-                                          )
-                user_info.user_available_balance += int(request.POST.get("new_balance"))
-                user_info.save()
-                transaction.save()
+                user_total_balance = user_info.user_total_balance
+                if user_total_balance > 100:
+                    transaction = Transaction(transaction_user = user,
+                                            transaction_type = TransactionType.DEPOSIT.name if request.POST.get("transaction_type") == "deposit" else TransactionType.WITHDRAWAL.name,
+                                            transaction_id = ''.join(random.choices(string.ascii_letters + string.digits, k=24)),
+                                            transaction_amount = 100
+                                            )
+                    user_info.user_total_balance += int(request.POST.get("new_balance"))
+                    user_info.save()
+                    transaction.save()
                 return redirect("user_detail", pk=self.kwargs["pk"])
 
 
@@ -236,21 +237,36 @@ class TickerDetailView(DetailView):
     def post(self, request, *args, **kwargs):
         if request.method == "POST":
             action = request.POST.get("action")
-            print("PERFORMING", action)
             if action == "submit_order":
-                print("SUBMITTING ORDER")
                 form = OrderForm(request.POST)
                 if form.is_valid():
                     ticker_id = request.POST.get("ticker_id")
                     ticker = Ticker.objects.get(id=ticker_id)
+                    user = request.user
+                    order_type = form.cleaned_data["order_type"]
+                    order_side = form.cleaned_data["order_side"]
+                    order_price = form.cleaned_data["order_price"] if form.cleaned_data["order_type"] =='LIMIT' else None
+                    order_quantity=form.cleaned_data["order_quantity"]
+                    order_working_quantity=form.cleaned_data["order_quantity"]
+
+                    if form.cleaned_data["order_type"] == OrderType.MARKET.name:
+                        enough_liquidity = ticker.check_enough_liquidity(order_side, order_quantity)
+                        if not enough_liquidity:
+                            print("Not enough Liq")
+                            return redirect("exchange_app:ticker_detail", pk=self.kwargs["pk"])
+                    enough_balance = user.userprofileinfo.check_enough_balance(order_type, order_side, order_price, order_quantity, ticker)
+                    if not enough_balance:
+                        print("Not enough Bal")
+                        return redirect("exchange_app:ticker_detail", pk=self.kwargs["pk"])
+                    
                     order = Order(order_id = ''.join(random.choices(string.ascii_letters + string.digits, k=16)),
-                                order_user=request.user,
+                                order_user=user,
                                 order_ticker=ticker, 
-                                order_type = form.cleaned_data["order_type"],
-                                order_side = form.cleaned_data["order_side"],
-                                order_price = form.cleaned_data["order_price"] if form.cleaned_data["order_type"] =='LIMIT' else None,
-                                order_quantity=form.cleaned_data["order_quantity"],
-                                order_working_quantity=form.cleaned_data["order_quantity"]
+                                order_type = order_type,
+                                order_side = order_side,
+                                order_price = order_price,
+                                order_quantity = order_quantity,
+                                order_working_quantity = order_working_quantity
                                 )
                     order.save()
                     order.execute_order()
@@ -258,7 +274,7 @@ class TickerDetailView(DetailView):
             elif action == "cancel_order":
                 order_id = request.POST.get("order_id")
                 order = Order.objects.get(order_id=order_id, order_user=request.user)
-                order.cancel()
+                order.cancel_order()
             elif action == "close_ticker":
                 ticker_id = request.POST.get("ticker_id")
                 ticker = Ticker.objects.get(ticker_id=ticker_id)
