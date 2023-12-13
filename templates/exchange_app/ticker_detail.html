@@ -92,7 +92,7 @@
                         <button id="btn-6h" class="tickerDetailTradingViewButton">6H</button>
                         <button id="btn-1d" class="tickerDetailTradingViewButton">1D</button>
                     </div>
-                    <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+                    {% comment %} <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script> {% endcomment %}
                     <div id="chart-container" value="{{ticker_detail.ticker_id}}"></div>
                 </div>
                 
@@ -426,13 +426,17 @@
                             <td data-class="Avg. Fill Price">{{order.order_avg_fill_price}}</td>
                             <td data-class="Status">{{order.order_status}}</td>
                             <td data-class="Paid Fees">{{order.order_paid_fees}}</td>
-                            <td data-class="Cancel"> 
+                            <td data-class="Cancel">
+                                {% if order.order_status == "CANCELED" %}
+                                    <p>CANCELED</p>
+                                {% else %}
                                 <!-- Cancel Button  -->
                                 <form id="cancellation-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="cancel__order">
                                     {% csrf_token %}
                                     <button class="tickerDetailUserStatisticsCancelButton" name="action" type="submit" value="cancel_order">Cancel</button>
                                     <input type="hidden" name="order_id" value="{{order.order_id}}">
                                 </form>
+                                {% endif %}
                             </td>
                         </tr>
                     {% endfor %}
