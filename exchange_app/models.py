@@ -491,18 +491,18 @@ class Order(models.Model):
             trade = Trade.objects.create(trade_buy=counterparty if self.order_side == OrderSide.SELL.name else self, 
                                          trade_sell=self if self.order_side == OrderSide.SELL.name else counterparty, 
                                          trade_quantity=trade_quantity, trade_price=trade_price, trade_ticker=self.order_ticker,
-                                         trade_id=f"TRADE-{''.join(random.choices(string.ascii_letters + string.digits, k=16))}")
+                                         trade_id=f"T-{''.join(random.choices(string.ascii_letters + string.digits, k=16))}")
             trade.save()
             trades.append(trade)
             remaining_quantity -= trade_quantity
 
-            user_fill = Fill.objects.create(fill_id = f"FILL-{''.join(random.choices(string.ascii_letters + string.digits, k=16))}",
+            user_fill = Fill.objects.create(fill_id = f"F-{''.join(random.choices(string.ascii_letters + string.digits, k=16))}",
                                             fill_user = self.order_user, fill_ticker=self.order_ticker,
                                             fill_quantity=trade_quantity, fill_side=self.order_side, 
                                             fill_price=trade_price, fill_timestamp=models.DateTimeField(auto_now_add=True), fill_order=self)
             user_fill.save()
             self.update_order(user_fill)
-            counterparty_fill = Fill.objects.create(fill_id = f"FILL-{''.join(random.choices(string.ascii_letters + string.digits, k=16))}",
+            counterparty_fill = Fill.objects.create(fill_id = f"F-{''.join(random.choices(string.ascii_letters + string.digits, k=16))}",
                                                     fill_user=counterparty.order_user, fill_ticker=counterparty.order_ticker,
                                                     fill_quantity=trade_quantity, fill_side=counterparty.order_side, 
                                                     fill_price=trade_price, fill_timestamp=models.DateTimeField(auto_now_add=True), fill_order=counterparty)
@@ -526,7 +526,6 @@ class Fill(models.Model):
 
     def __str__(self):
         return f"{self.fill_id}-{self.fill_ticker.ticker_game}"
-
 
 class Trade(models.Model):
     trade_id = models.CharField(max_length=20)

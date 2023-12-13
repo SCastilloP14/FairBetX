@@ -118,7 +118,7 @@ class UserDetailView(DeleteView):
                 user = User.objects.get(username=username)
                 user_info = UserProfileInfo.objects.get(user=user)
                 user_total_balance = user_info.user_total_balance
-                if user_total_balance > 100:
+                if user_total_balance < 100:
                     transaction = Transaction(transaction_user = user,
                                             transaction_type = TransactionType.DEPOSIT.name if request.POST.get("transaction_type") == "deposit" else TransactionType.WITHDRAWAL.name,
                                             transaction_id = ''.join(random.choices(string.ascii_letters + string.digits, k=24)),
