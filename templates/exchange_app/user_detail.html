@@ -179,6 +179,7 @@
                                 {% csrf_token %}
                                 <input type="hidden" name="username" value="{{user.username}}">
                                 <input type="hidden" name="new_balance" value="100">
+                                <input type="hidden" name="transaction_type" value="deposit">
                                 <button class="button addFunds" type="submit">Add Funds</button>
 
                             </form>
