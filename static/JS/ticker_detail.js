@@ -49,11 +49,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const fillsTab = document.getElementById("fills-tab");
   const historicordersTab = document.getElementById("historic-orders-tab");
 
-
   const ordersSection = document.getElementById("orders-section");
   const positionsSection = document.getElementById("positions-section");
   const fillsSection = document.getElementById("fills-section");
   const historicordersSection = document.getElementById("historic-orders-section");
+
+  // Order Submission Field 
+  const orderType = document.getElementById("order-type");
+  const orderPrice = document.getElementById("order-price");
 
 
   // Function to remove "active" class from all tabs
@@ -133,5 +136,23 @@ document.addEventListener("DOMContentLoaded", function () {
     resetTabs();
     historicordersTab.classList.add("active");
   });
+
+orderType.addEventListener("change", function (event) {
+  
+  console.log("Im in here");
+  if (orderType.value=="MARKET") {
+    orderPrice.disabled = true;
+    orderPrice.placeholder = "MARKET";
+  };
+  
+  if (orderType.value=="LIMIT") {
+    orderPrice.disabled = false;
+    orderPrice.placeholder = "$0.00";
+
+  };
+ 
+ 
+})
+
 });
 
