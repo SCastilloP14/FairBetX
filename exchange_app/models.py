@@ -367,7 +367,7 @@ class Ticker(models.Model):
                 if position.position_quantity > 0 and self.ticker_outcome == TickerOutcome.LONGS_WIN.name:
                     print("LONG WINNER!", position_user.username)
                     position.position_settled_pnl = (self.ticker_payout - position.position_average_price) * position.position_quantity
-                    position_user.userprofileinfo.user_total_balance += position_payout
+                    position_user.userprofileinfo.user_total_balance += position_payout - (position.position_average_price * position.position_quantity)
 
                 elif position.position_quantity > 0 and self.ticker_outcome == TickerOutcome.SHORTS_WIN.name:
                     print("LONG LOSER!", position_user.username)
@@ -377,7 +377,7 @@ class Ticker(models.Model):
                 elif position.position_quantity < 0 and self.ticker_outcome == TickerOutcome.SHORTS_WIN.name:
                     print("SHORT WINNER!", position_user.username)
                     position.position_settled_pnl += position.position_average_price * position.position_quantity
-                    position_user.userprofileinfo.user_total_balance += position_payout
+                    position_user.userprofileinfo.user_total_balance += position_payout - ((self.ticker_payout - position.position_average_price) * position.position_quantity)
 
                 elif position.position_quantity < 0 and self.ticker_outcome == TickerOutcome.LONGS_WIN.name:
                     print("SHORT LOSER!", position_user.username)
