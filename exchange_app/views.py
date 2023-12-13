@@ -294,8 +294,9 @@ class TradeViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         ticker_id_filter = self.request.query_params.get("ticker_id", None)
+        if ticker_id_filter == "":
+            ticker_id_filter = None
         timeframe_filter = self.request.query_params.get("timeframe", None)
-      
         if ticker_id_filter is not None:
             selected_ticker = Ticker.objects.get(id=ticker_id_filter)
             trades = Trade.objects.filter(ticker=selected_ticker).order_by('timestamp')
