@@ -39,10 +39,7 @@ def registration(request):
     if request.method == "POST":
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileInfoForm(data=request.POST)
-        print("Inside request")
         if user_form.is_valid() and profile_form.is_valid():
-            print("Form is valid")
-
             user = user_form.save()
             # This hashes de PW
             user.set_password(user.password)
@@ -52,7 +49,6 @@ def registration(request):
             profile.user = user
             profile.save()
             registered = True
-            print("Finished Registration")
         else:
             print(user_form.errors, profile_form.errors)
             print("Errors")
@@ -205,9 +201,6 @@ class TickerListView(ListView):
             else:
                 grouped_teams[team.team_league_1].append(team)
         context["grouped_teams"] = grouped_teams
-        for league, teams in context["grouped_teams"].items():
-            print(league, len(teams))
-
         return context
 
 class TickerDetailView(DetailView):
@@ -231,7 +224,6 @@ class TickerDetailView(DetailView):
             context["user_orders"] = Order.objects.none()
             context["user_positions"] = Position.objects.none()
             context["user_fills"] = Fill.objects.none()
-        print("USer Context", context)
         return context
         
     def post(self, request, *args, **kwargs):
@@ -306,7 +298,6 @@ class TeamDetailView(DetailView):
         team = self.get_object()
         context["tickers"] = Ticker.objects.filter(ticker_game__game_home_team=team, ticker_status__in=["OPEN", "PARTIAL"]).order_by("-ticker_game__game_start_datetime").reverse()
         context["players"] = Player.objects.filter(player_team=team).order_by('-player_number').reverse()
-        print("Tickers", context['tickers'])
         return context
 
 class TradeViewSet(viewsets.ReadOnlyModelViewSet):
