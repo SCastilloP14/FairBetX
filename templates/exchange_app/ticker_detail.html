@@ -429,6 +429,10 @@
                             <td data-class="Cancel">
                                 {% if order.order_status == "CANCELED" %}
                                     <p>CANCELED</p>
+                                {% elif order.order_status == "TICKER_CANCELED" %}
+                                    <p>TICKER CANCELED</p>
+                                {% elif order.order_status == "SETTLED" %}
+                                    <p>SETTLED</p>
                                 {% elif order.order_status == "FILLED" %}
                                     <p>FILLED</p>
                                 {% else %}
