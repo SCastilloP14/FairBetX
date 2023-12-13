@@ -429,6 +429,8 @@
                             <td data-class="Cancel">
                                 {% if order.order_status == "CANCELED" %}
                                     <p>CANCELED</p>
+                                {% elif order.order_status == "FILLED" %}
+                                    <p>FILLED</p>
                                 {% else %}
                                 <!-- Cancel Button  -->
                                 <form id="cancellation-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="cancel__order">
