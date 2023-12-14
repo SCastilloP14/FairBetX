@@ -532,7 +532,7 @@ class Order(models.Model):
 
 
 class Fill(models.Model):
-    fill_id = models.CharField(max_length=20)
+    fill_id = models.CharField(max_length=30)
     fill_user = models.ForeignKey(User, on_delete=models.CASCADE)
     fill_ticker = models.ForeignKey(Ticker, on_delete=models.CASCADE)
     fill_side = models.CharField(max_length=20, choices=[(s.name, s.value) for s in OrderSide])
@@ -545,7 +545,7 @@ class Fill(models.Model):
         return f"{self.fill_id}-{self.fill_ticker.ticker_game}"
 
 class Trade(models.Model):
-    trade_id = models.CharField(max_length=20)
+    trade_id = models.CharField(max_length=50)
     trade_ticker = models.ForeignKey(Ticker, on_delete=models.CASCADE)
     trade_buy = models.ForeignKey(Order, related_name="buy_trades",on_delete=models.CASCADE)
     trade_sell = models.ForeignKey(Order, related_name="sell_trades", on_delete=models.CASCADE)
