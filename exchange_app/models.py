@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from enum import Enum
 import random, string
 from collections import defaultdict
+from datetime import datetime, timedelta
 
 # ------------------- ENUMS NEEDED FOR THE MODELS --------------
 
@@ -131,7 +132,7 @@ class UserProfileInfo(models.Model):
 
     @property
     def user_locked_balance(self):
-        user_orders = Order.objects.filter(order_user=self.user)
+        user_orders = Order.objects.filter(order_user=self.user, order_ticker__ticker_status = TickerStatus.OPEN.name)
         orders_by_ticker = defaultdict(list)
 
         for order in user_orders:
@@ -141,7 +142,16 @@ class UserProfileInfo(models.Model):
         for ticker_id, orders in orders_by_ticker.items():
             buy_locked_balance = sum(order.order_locked_balance for order in orders if order.order_side == OrderSide.BUY.name)
             sell_locked_balance = sum(order.order_locked_balance for order in orders if order.order_side == OrderSide.SELL.name)
-            ticker_locked_balance = max(buy_locked_balance, sell_locked_balance)
+            try:
+                ticker_position = Position.objects.get(position_ticker__ticker_id = ticker_id)
+                if ticker_position.position_quantity > 0:
+                    ticker_locked_balance = max(buy_locked_balance + ticker_position.position_locked_balance, abs(ticker_position.position_locked_balance - sell_locked_balance))
+                elif ticker_position.position_quantity < 0:
+                    ticker_locked_balance = max(sell_locked_balance + ticker_position.position_locked_balance, abs(ticker_position.position_locked_balance - buy_locked_balance))
+                else:
+                    ticker_locked_balance = max(buy_locked_balance, sell_locked_balance)
+            except Position.DoesNotExist as e:
+                ticker_locked_balance = max(buy_locked_balance, sell_locked_balance)
             total_locked_balance += ticker_locked_balance
         return total_locked_balance
     
@@ -214,7 +224,6 @@ class League(models.Model):
         return f"{self.league_sport} {self.league_name}"
 
  
-
 class Team(models.Model):
     team_id = models.IntegerField()
     team_name = models.CharField(max_length=100)
@@ -287,6 +296,10 @@ class Game(models.Model):
     game_postponed = models.BooleanField(default=False)
     game_league = models.ForeignKey(League, on_delete=models.CASCADE, related_name="league_games")
 
+    @property
+    def game_short_name(self):
+        return f"{self.game_league.league_name}-{self.game_away_team.team_short_name}@{self.game_home_team.team_short_name}"
+
     def __str__(self):
         return f"{self.game_filename}"
     
@@ -295,20 +308,39 @@ class Ticker(models.Model):
     ticker_id = models.CharField(max_length=100)
     ticker_game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name="tickers")
     ticker_status = models.CharField(max_length=20, choices=[(s.name, s) for s in TickerStatus], default=TickerStatus.OPEN.name)
-    ticker_last_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     ticker_best_bid = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     ticker_best_ask = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    ticker_volume = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     ticker_maker_fee_pct = models.DecimalField(max_digits=10, decimal_places=4, default=0.5)
     ticker_taker_fee_pct = models.DecimalField(max_digits=10, decimal_places=4, default=1.0)
     ticker_payout = models.IntegerField(default=10)
     ticker_outcome = models.CharField(max_length=20, choices=[(s.name, s) for s in TickerOutcome])
 
-    def update_ticker_activity(self, trades):
-        for trade in trades:
-            self.ticker_volume += trade.trade_quantity
-            self.ticker_last_price = trade.trade_price
-        self.save()
+    @property
+    def ticker_volume(self):
+        trades = Trade.objects.filter(trade_ticker=self)
+        total = trades.aggregate(total_volume=models.Sum('trade_quantity'))['total_volume']
+        return total if total is not None else 0
+    
+    @property
+    def ticker_last_price(self):
+        latest_trade = Trade.objects.filter(trade_ticker=self).order_by('-trade_timestamp').first()
+        if latest_trade:
+            return latest_trade.trade_price
+        return None
+    
+    @property
+    def ticker_price_change_last_hour(self):
+        # Calculate the timestamps for the last hour
+        one_hour_ago = datetime.now() - timedelta(hours=1)
+        oldest_trade_last_hour = Trade.objects.filter(
+            trade_ticker=self, trade_timestamp__gte=one_hour_ago).order_by('trade_timestamp').first()
+
+        # Calculate price change
+        if self.ticker_last_price and oldest_trade_last_hour:
+            price_change = (self.ticker_last_price - oldest_trade_last_hour.trade_price)/oldest_trade_last_hour.trade_price
+            return price_change
+        else:
+            return None
 
     def check_outcome(self):
         print(self.ticker_game.game_filename)
@@ -392,7 +424,7 @@ class Ticker(models.Model):
             print(f"{self.ticker_game.game_filename} closed without any positions")
 
     def __str__(self):
-        return f"{self.ticker_game.game_filename}-T"
+        return f"{self.ticker_game.game_filename}-TICKER"
 
 
 class Order(models.Model):
@@ -413,33 +445,14 @@ class Order(models.Model):
 
     @property
     def order_locked_balance(self):
-        if self.order_status == OrderStatus.OPEN.name or self.order_status == OrderStatus.PARTIAL.name or self.order_status == OrderStatus.FILLED.name:
+        price_to_use = self.order_price if self.order_type == OrderType.LIMIT.name else self.order_avg_fill_price
+        if self.order_status == OrderStatus.OPEN.name or self.order_status == OrderStatus.PARTIAL.name:
             if self.order_side == OrderSide.BUY.name:
-                if self.order_type == OrderType.LIMIT.name:
-                    return self.order_quantity * self.order_price
-                elif self.order_type == OrderType.MARKET.name:
-                    return self.order_quantity * self.order_avg_fill_price
+                return self.order_working_quantity * price_to_use
             elif self.order_side == OrderSide.SELL.name:
-                if self.order_type == OrderType.LIMIT.name:
-                    return self.order_quantity * (self.order_ticker.ticker_payout - self.order_price)
-                elif self.order_type == OrderType.MARKET.name:
-                    return self.order_quantity * (self.order_ticker.ticker_payout - self.order_avg_fill_price)
-                
-        elif self.order_status == OrderStatus.CANCELED.name:
-            if self.order_side == OrderSide.BUY.name:
-                if self.order_type == OrderType.LIMIT.name:
-                    return self.order_filled_quantity * self.order_price
-                elif self.order_type == OrderType.MARKET.name:
-                    return self.order_filled_quantity * self.order_avg_fill_price
-            elif self.order_side == OrderSide.SELL.name:
-                if self.order_type == OrderType.LIMIT.name:
-                    return self.order_filled_quantity * (self.order_ticker.ticker_payout - self.order_price)
-                elif self.order_type == OrderType.MARKET.name:
-                    return self.order_filled_quantity * (self.order_ticker.ticker_payout - self.order_avg_fill_price)
+                return self.order_working_quantity * (self.order_ticker.ticker_payout - price_to_use)
         else:
             return 0
-
-
 
     def cancel_order(self):
         if self.order_status != OrderStatus.FILLED.name:
@@ -496,23 +509,22 @@ class Order(models.Model):
             trade = Trade.objects.create(trade_buy=counterparty if self.order_side == OrderSide.SELL.name else self, 
                                          trade_sell=self if self.order_side == OrderSide.SELL.name else counterparty, 
                                          trade_quantity=trade_quantity, trade_price=trade_price, trade_ticker=self.order_ticker,
-                                         trade_id=f"T-{''.join(random.choices(string.ascii_letters + string.digits, k=16))}")
+                                         trade_id=f"TRA-{''.join(random.choices(string.ascii_letters + string.digits, k=20))}")
             trade.save()
             trades.append(trade)
             remaining_quantity -= trade_quantity
 
-            user_fill = Fill.objects.create(fill_id = f"F-{''.join(random.choices(string.ascii_letters + string.digits, k=16))}",
+            user_fill = Fill.objects.create(fill_id = f"FILL-{''.join(random.choices(string.ascii_letters + string.digits, k=25))}",
                                             fill_user = self.order_user, fill_ticker=self.order_ticker,
                                             fill_quantity=trade_quantity, fill_side=self.order_side, 
                                             fill_price=trade_price, fill_timestamp=models.DateTimeField(auto_now_add=True), fill_order=self)
             user_fill.save()
             self.update_order(user_fill)
-            counterparty_fill = Fill.objects.create(fill_id = f"F-{''.join(random.choices(string.ascii_letters + string.digits, k=16))}",
+            counterparty_fill = Fill.objects.create(fill_id = f"FILL-{''.join(random.choices(string.ascii_letters + string.digits, k=25))}",
                                                     fill_user=counterparty.order_user, fill_ticker=counterparty.order_ticker,
                                                     fill_quantity=trade_quantity, fill_side=counterparty.order_side, 
                                                     fill_price=trade_price, fill_timestamp=models.DateTimeField(auto_now_add=True), fill_order=counterparty)
             counterparty.update_order(counterparty_fill)
-        self.order_ticker.update_ticker_activity(trades)
         Position.update_positions(trades)
 
     def __str__(self):
@@ -555,6 +567,14 @@ class Position(models.Model):
     position_settled_pnl = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     position_settled = models.BooleanField(default=False)
 
+    @property
+    def position_locked_balance(self):
+        if self.position_quantity > 0:
+            return self.position_quantity * self.position_average_price
+        elif self.position_quantity < 0:
+            return abs(self.position_quantity) * (self.position_ticker.ticker_payout - self.position_average_price)
+        else:
+            return 0
 
     @classmethod
     def update_positions(cls, trades: [Trade]):
@@ -564,10 +584,13 @@ class Position(models.Model):
 
             # Update the positions for the buy user
             buy_position, buy_position_created = Position.objects.get_or_create(position_user=buy.order_user, position_ticker=buy.order_ticker)
+            buy_user = buy_position.position_user
+            sell_user = sell_position.position_user
             if buy_position_created or buy_position.position_quantity == 0:
                 buy_position.position_average_price = trade.trade_price
             elif buy_position.position_quantity < 0:
                 buy_position.position_closed_pnl += (buy_position.position_average_price - trade.trade_price) * trade.trade_quantity
+                buy_user.userprofileinfo.user_total_balance += (buy_position.position_average_price - trade.trade_price) * trade.trade_quantity
                 if buy_position.position_quantity + trade.trade_quantity == 0:
                     buy_position.position_average_price = 0
             else:
@@ -575,6 +598,7 @@ class Position(models.Model):
             buy_position.position_quantity += trade.trade_quantity
             buy_position.position_open_pnl = (buy_position.position_average_price - trade.trade_ticker.ticker_last_price) * buy_position.position_quantity
             buy_position.save()
+            buy_user.save()
 
             # Update the positions for the sell user
             sell_position, sell_position_created = Position.objects.get_or_create(position_user=sell.order_user, position_ticker=sell.order_ticker)
@@ -582,6 +606,7 @@ class Position(models.Model):
                 sell_position.position_average_price = trade.trade_price
             elif sell_position.position_quantity > 0:
                 sell_position.position_closed_pnl += (trade.trade_price - sell_position.position_average_price) * trade.trade_quantity
+                sell_user.userprofileinfo.user_total_balance += (trade.trade_price - sell_position.position_average_price) * trade.trade_quantity
                 if sell_position.position_quantity - trade.trade_quantity == 0:
                     sell_position.position_average_price = 0
             else:
@@ -589,6 +614,7 @@ class Position(models.Model):
             sell_position.position_quantity -= trade.trade_quantity
             sell_position.position_open_pnl = (trade.trade_ticker.ticker_last_price - sell_position.position_average_price) * sell_position.position_quantity
             sell_position.save()
+            sell_user.save()
 
-        def __str__(self):
-            return f"{self.position_user} {self.position_ticker.ticker_id}"
+    def __str__(self):
+        return f"{self.position_user.username} {self.position_ticker.ticker_game.game_short_name}"

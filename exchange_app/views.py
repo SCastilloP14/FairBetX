@@ -117,7 +117,7 @@ class UserDetailView(DeleteView):
                 if user_total_balance < 100:
                     transaction = Transaction(transaction_user = user,
                                             transaction_type = TransactionType.DEPOSIT.name if request.POST.get("transaction_type") == "deposit" else TransactionType.WITHDRAWAL.name,
-                                            transaction_id = ''.join(random.choices(string.ascii_letters + string.digits, k=24)),
+                                            transaction_id = f"TRANSACTION-{''.join(random.choices(string.ascii_letters + string.digits, k=28))}",
                                             transaction_amount = 100
                                             )
                     user_info.user_total_balance += int(request.POST.get("new_balance"))
@@ -251,7 +251,7 @@ class TickerDetailView(DetailView):
                         print("Not enough Bal")
                         return redirect("exchange_app:ticker_detail", pk=self.kwargs["pk"])
                     
-                    order = Order(order_id = ''.join(random.choices(string.ascii_letters + string.digits, k=16)),
+                    order = Order(order_id = f"ORD-{''.join(random.choices(string.ascii_letters + string.digits, k=30))}",
                                 order_user=user,
                                 order_ticker=ticker, 
                                 order_type = order_type,

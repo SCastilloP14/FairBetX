@@ -77,9 +77,9 @@ def update_live_game_data(league_id,):
 def create_ticker(game: Game):
     if game.game_start_datetime and game.game_start_datetime > datetime.now().astimezone(timezone.utc) - timedelta(hours=3) and game.game_start_datetime < datetime.now().astimezone(timezone.utc) + timedelta(days=7):
             try:
-                Ticker.objects.get(ticker_id=f"{game.game_id}-T")
+                Ticker.objects.get(ticker_id=f"TICK-{game.game_id}")
             except Ticker.DoesNotExist:
-                new_ticker = Ticker(ticker_id=f"{game.game_id}-T",
+                new_ticker = Ticker(ticker_id=f"TICK-{game.game_id}",
                                     ticker_game=game,
                                     ticker_status=ticker_status_mapping.get(game.game_status)
                                     )
