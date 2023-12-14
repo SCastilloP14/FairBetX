@@ -585,7 +585,6 @@ class Position(models.Model):
             # Update the positions for the buy user
             buy_position, buy_position_created = Position.objects.get_or_create(position_user=buy.order_user, position_ticker=buy.order_ticker)
             buy_user = buy_position.position_user
-            sell_user = sell_position.position_user
             if buy_position_created or buy_position.position_quantity == 0:
                 buy_position.position_average_price = trade.trade_price
             elif buy_position.position_quantity < 0:
@@ -602,6 +601,7 @@ class Position(models.Model):
 
             # Update the positions for the sell user
             sell_position, sell_position_created = Position.objects.get_or_create(position_user=sell.order_user, position_ticker=sell.order_ticker)
+            sell_user = sell_position.position_user
             if sell_position_created or sell_position.position_quantity == 0:
                 sell_position.position_average_price = trade.trade_price
             elif sell_position.position_quantity > 0:
