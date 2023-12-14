@@ -143,7 +143,7 @@ class UserProfileInfo(models.Model):
             buy_locked_balance = sum(order.order_locked_balance for order in orders if order.order_side == OrderSide.BUY.name)
             sell_locked_balance = sum(order.order_locked_balance for order in orders if order.order_side == OrderSide.SELL.name)
             try:
-                ticker_position = Position.objects.get(position_ticker__ticker_id = ticker_id)
+                ticker_position = Position.objects.get(position_ticker__ticker_id = ticker_id, position_user=self.user)
                 if ticker_position.position_quantity > 0:
                     ticker_locked_balance = max(buy_locked_balance + ticker_position.position_locked_balance, abs(ticker_position.position_locked_balance - sell_locked_balance))
                 elif ticker_position.position_quantity < 0:
