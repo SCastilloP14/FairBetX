@@ -132,7 +132,7 @@ class UserProfileInfo(models.Model):
     
     @property
     def total_closed_pnl(self):
-        user_positions = Position.objects.filter(position_user=self)
+        user_positions = Position.objects.filter(position_user=self.user)
         return user_positions.aggregate(total_closed_pnl=models.Sum('position_closed_pnl'))['total_closed_pnl'] or 0
 
     @property
