@@ -136,14 +136,16 @@ class UserProfileInfo(models.Model):
         orders_by_ticker = defaultdict(list)
 
         for order in user_orders:
-            orders_by_ticker[order.order_ticker_id].append(order)
+            orders_by_ticker[order.order_ticker.ticker_id].append(order)
 
         total_locked_balance = 0
         for ticker_id, orders in orders_by_ticker.items():
             buy_locked_balance = sum(order.order_locked_balance for order in orders if order.order_side == OrderSide.BUY.name)
             sell_locked_balance = sum(order.order_locked_balance for order in orders if order.order_side == OrderSide.SELL.name)
             try:
-                ticker_position = Position.objects.get(position_ticker__ticker_id = ticker_id, position_user=self.user)
+                print(ticker_id)
+                ticker_position = Position.objects.get(position_user=self.user, position_ticker__ticker_id=ticker_id)
+                print(ticker_position.position_ticker.ticker_id)
                 if ticker_position.position_quantity > 0:
                     ticker_locked_balance = max(buy_locked_balance + ticker_position.position_locked_balance, abs(ticker_position.position_locked_balance - sell_locked_balance))
                 elif ticker_position.position_quantity < 0:
@@ -151,6 +153,7 @@ class UserProfileInfo(models.Model):
                 else:
                     ticker_locked_balance = max(buy_locked_balance, sell_locked_balance)
             except Position.DoesNotExist as e:
+                print("No position Found!")
                 ticker_locked_balance = max(buy_locked_balance, sell_locked_balance)
             total_locked_balance += ticker_locked_balance
         return total_locked_balance
