@@ -263,6 +263,8 @@ class TickerDetailView(DetailView):
                     order.save()
                     order.execute_order()
                     order.save()
+                else:
+                    print("INVALID FORM")
             elif action == "cancel_order":
                 order_id = request.POST.get("order_id")
                 order = Order.objects.get(order_id=order_id, order_user=request.user)

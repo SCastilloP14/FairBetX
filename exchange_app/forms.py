@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from exchange_app.models import UserProfileInfo, Order
+from exchange_app.models import UserProfileInfo, Order, OrderType
 
 
 class UserForm(forms.ModelForm):
@@ -32,5 +32,12 @@ class OrderForm(forms.ModelForm):
             'order_quantity': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
-            
+    def clean(self):
+        cleaned_data = super().clean()
+        order_type = cleaned_data.get('order_type')
+        if order_type == OrderType.MARKET.name:
+            # For market orders, set the price field to None
+            cleaned_data['order_price'] = None
+
+        return cleaned_data
         

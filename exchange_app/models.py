@@ -565,7 +565,6 @@ class Position(models.Model):
     position_ticker = models.ForeignKey(Ticker, on_delete=models.CASCADE)
     position_quantity = models.IntegerField(default=0)
     position_average_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    position_open_pnl = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     position_closed_pnl = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     position_settled_pnl = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     position_settled = models.BooleanField(default=False)
@@ -578,6 +577,11 @@ class Position(models.Model):
             return abs(self.position_quantity) * (self.position_ticker.ticker_payout - self.position_average_price)
         else:
             return 0
+        
+    @property
+    def position_open_pnl(self):
+        return (self.position_ticker.ticker_last_price - self.position_average_price) * (self.position_quantity)
+
 
     @classmethod
     def update_positions(cls, trades: [Trade]):
@@ -598,7 +602,6 @@ class Position(models.Model):
             else:
                 buy_position.position_average_price = ((buy_position.position_average_price * buy_position.position_quantity) + (trade.trade_price * trade.trade_quantity)) / (buy_position.position_quantity + trade.trade_quantity)
             buy_position.position_quantity += trade.trade_quantity
-            buy_position.position_open_pnl = (buy_position.position_average_price - trade.trade_ticker.ticker_last_price) * buy_position.position_quantity
             buy_position.save()
             buy_user.save()
 
@@ -615,7 +618,6 @@ class Position(models.Model):
             else:
                 sell_position.position_average_price = ((sell_position.position_average_price * sell_position.position_quantity) - (trade.trade_price * trade.trade_quantity)) / (sell_position.position_quantity - trade.trade_quantity)
             sell_position.position_quantity -= trade.trade_quantity
-            sell_position.position_open_pnl = (trade.trade_ticker.ticker_last_price - sell_position.position_average_price) * sell_position.position_quantity
             sell_position.save()
             sell_user.save()
 
