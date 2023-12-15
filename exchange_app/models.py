@@ -129,6 +129,11 @@ class UserProfileInfo(models.Model):
         user_orders = Order.objects.filter(order_user=self.user).values('order_paid_fees')
         fees_paid = sum(order['order_paid_fees'] for order in user_orders)
         return fees_paid
+    
+    @property
+    def total_closed_pnl(self):
+        user_positions = Position.objects.filter(position_user=self)
+        return user_positions.aggregate(total_closed_pnl=models.Sum('position_closed_pnl'))['total_closed_pnl'] or 0
 
     @property
     def user_locked_balance(self):
@@ -160,7 +165,7 @@ class UserProfileInfo(models.Model):
     
     @property
     def user_available_balance(self):
-        return self.user_total_balance - self.fees_paid - self.user_locked_balance
+        return self.user_total_balance - self.fees_paid - self.user_locked_balance + self.total_closed_pnl
 
     
     def check_enough_balance(self, order_type, order_side, order_price, order_quantity, ticker):
