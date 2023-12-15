@@ -1174,6 +1174,9 @@ outline: none;
     border-radius: 25px;
     min-height:500px;
     height:auto;
+    color:var(--color-font-green);
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+
 }
 .tickerDetailUserTableCard table {
     text-align: center;
@@ -1219,7 +1222,7 @@ outline: none;
     background:paleturquoise;
     height:50px !important;
     border-radius: 25px;
-        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
 
 }
 .tickerDetailUserStatisticsButtonLeft {
