@@ -103,7 +103,7 @@
                         </div>
                         <div class="rightCardMatchCard5">
                             <header>Sell</header>
-                            {% if ticker.ticker_best_ask %}
+                            {% if ticker.ticker_best_bid %}
                                 <div class="matchDetailsSell">{{ticker.ticker_best_bid}}</div>
                             {% else %} 
                                 <div class="matchDetailsSell">-</div>
@@ -112,7 +112,7 @@
                         <div class="rightCardMatchCard6">
                             <header>Price Change</header>
                             {% if ticker.ticker_last_price %}
-                                <div class="matchDetailsChange">{{ticker.ticker_last_price}}</div>
+                                <div class="matchDetailsChange">{{ticker.ticker_price_change_last_hour}}</div>
                             {% else %}
                                 <div class="matchDetailsChange">-</div>
                             {% endif %}

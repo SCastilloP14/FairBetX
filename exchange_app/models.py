@@ -324,6 +324,16 @@ class Ticker(models.Model):
     ticker_outcome = models.CharField(max_length=20, choices=[(s.name, s) for s in TickerOutcome])
 
     @property
+    def ticker_best_bid(self):
+        buy_orders = Order.objects.filter(order_ticker=self, order_side='BUY', order_status__in=['OPEN', 'PARTIAL'])
+        return buy_orders.aggregate(best_bid=models.Max('order_price'))['best_bid'] or None
+
+    @property
+    def ticker_best_ask(self):
+            sell_orders = Order.objects.filter(order_ticker=self, order_side='SELL', order_status__in=['OPEN', 'PARTIAL'])
+            return sell_orders.aggregate(best_ask=models.Min('order_price'))['best_ask'] or None
+
+    @property
     def ticker_volume(self):
         trades = Trade.objects.filter(trade_ticker=self)
         total = trades.aggregate(total_volume=models.Sum('trade_quantity'))['total_volume']
@@ -345,7 +355,7 @@ class Ticker(models.Model):
 
         # Calculate price change
         if self.ticker_last_price and oldest_trade_last_hour:
-            price_change = (self.ticker_last_price - oldest_trade_last_hour.trade_price)/oldest_trade_last_hour.trade_price
+            price_change = (self.ticker_last_price - oldest_trade_last_hour.trade_price)
             return price_change
         else:
             return None
