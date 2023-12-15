@@ -60,7 +60,7 @@ chart.priceScale('right').applyOptions({
     var timeframe ="5"; //Default Value
 
     function updateChartData() {
-    var ticker_id =document.getElementById("chart-container").textContent ;
+    var ticker_id =document.getElementById("chart-container").getAttribute('value') ;
 
     console.log("ticker", ticker_id);
     console.log("Time", timeframe);
@@ -91,7 +91,6 @@ chart.priceScale('right').applyOptions({
   // Event listeners for interval buttons
   document.getElementById("btn-1m").addEventListener("click", function () {
     timeframe = '1';
-    console.log("Inside 1");
     updateChartData(timeframe);
   });
 
