@@ -40,7 +40,8 @@ def registration(request):
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileInfoForm(data=request.POST)
         if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
+            user = user_form.save(commit=False)
+            user.username = user.email
             # This hashes de PW
             user.set_password(user.password)
             user.save()
