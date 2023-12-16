@@ -316,8 +316,6 @@ class Ticker(models.Model):
     ticker_id = models.CharField(max_length=100)
     ticker_game = models.ForeignKey(Game, on_delete=models.CASCADE, related_name="tickers")
     ticker_status = models.CharField(max_length=20, choices=[(s.name, s) for s in TickerStatus], default=TickerStatus.OPEN.name)
-    ticker_best_bid = models.DecimalField(max_digits=10, decimal_places=2, default=0)
-    ticker_best_ask = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     ticker_maker_fee_pct = models.DecimalField(max_digits=10, decimal_places=4, default=0.5)
     ticker_taker_fee_pct = models.DecimalField(max_digits=10, decimal_places=4, default=1.0)
     ticker_payout = models.IntegerField(default=10)
