@@ -231,7 +231,15 @@ class TickerDetailView(DetailView):
             action = request.POST.get("action")
             if action == "submit_order":
                 form = OrderForm(request.POST)
+                # if form.data['order_type'] == OrderType.MARKET.name:
+                #     mutable_data = request.POST.copy()  # Create a mutable copy of the POST data
+                #     mutable_data['order_price'] = None
+                #     del mutable_data['order_price']
+                #     form = OrderForm(data=mutable_data)
+                #     print("NEW FORM DATA", form.data)
+                print(form.data)
                 if form.is_valid():
+                    print("FORM IS VALID!!!")
                     ticker_id = request.POST.get("ticker_id")
                     ticker = Ticker.objects.get(id=ticker_id)
                     user = request.user
@@ -264,7 +272,7 @@ class TickerDetailView(DetailView):
                     order.execute_order()
                     order.save()
                 else:
-                    print("INVALID FORM")
+                    print("INVALID FORM", form.errors)  # Check for any validation errors
             elif action == "cancel_order":
                 order_id = request.POST.get("order_id")
                 order = Order.objects.get(order_id=order_id, order_user=request.user)
