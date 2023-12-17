@@ -309,7 +309,7 @@
                     {% for order in user_orders|slice:":20" %}
                         {% if order.order_status == "OPEN" or order.order_status == "PARTIAL" %}
                         <tr>
-                            <td data-class="Match">{{ticker_detail.ticker_game.game_short_name}}</td>
+                            <td data-class="Match">{{order.order_ticker.ticker_game.game_short_name}}</td>
                             <td data-class="Timestamp">{{order.order_creation_timestamp}}</td>
                             <td data-class="Order Type">{{order.order_type}}</td>
                             <td data-class="Side">{{order.order_side}}</td>
@@ -431,7 +431,7 @@
                         </tr>
                     {% for order in user_orders|slice:":20" %}
                         <tr>
-                            <td data-class="Match">{{ticker_detail.ticker_game.game_short_name}}</td>
+                            <td data-class="Match">{{order.order_ticker.ticker_game.game_short_name}}</td>
                             <td data-class="Timestamp">{{order.order_creation_timestamp}}</td>
                             <td data-class="Order Type">{{order.order_type}}</td>
                             <td data-class="Side">{{order.order_side}}</td>
