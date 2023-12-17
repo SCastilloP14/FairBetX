@@ -148,9 +148,7 @@ class UserProfileInfo(models.Model):
             buy_locked_balance = sum(order.order_locked_balance for order in orders if order.order_side == OrderSide.BUY.name)
             sell_locked_balance = sum(order.order_locked_balance for order in orders if order.order_side == OrderSide.SELL.name)
             try:
-                print(ticker_id)
                 ticker_position = Position.objects.get(position_user=self.user, position_ticker__ticker_id=ticker_id)
-                print(ticker_position.position_ticker.ticker_id)
                 if ticker_position.position_quantity > 0:
                     ticker_locked_balance = max(buy_locked_balance + ticker_position.position_locked_balance, abs(ticker_position.position_locked_balance - sell_locked_balance))
                 elif ticker_position.position_quantity < 0:
@@ -158,14 +156,13 @@ class UserProfileInfo(models.Model):
                 else:
                     ticker_locked_balance = max(buy_locked_balance, sell_locked_balance)
             except Position.DoesNotExist as e:
-                print("No position Found!")
                 ticker_locked_balance = max(buy_locked_balance, sell_locked_balance)
             total_locked_balance += ticker_locked_balance
         return total_locked_balance
     
     @property
     def user_available_balance(self):
-        return self.user_total_balance - self.fees_paid - self.user_locked_balance + self.total_closed_pnl
+        return self.user_total_balance - self.fees_paid - self.user_locked_balance + self.total_closed_pnl 
 
     
     def check_enough_balance(self, order_type, order_side, order_price, order_quantity, ticker):
@@ -544,7 +541,7 @@ class Order(models.Model):
         Position.update_positions(trades)
 
     def __str__(self):
-        return f"{self.order_user}: {self.order_side} - {self.order_quantity} @ {self.order_price}"
+        return f"{self.order_user}: {self.order_side} - {self.order_quantity} @ {self.order_price} {self.order_ticker.ticker_game.game_short_name}"
 
 
 class Fill(models.Model):
