@@ -852,12 +852,19 @@ a {
     align-items: center;
     justify-content: center;
 }
-.tickerDetailHomeTeam, .tickerDetailAwayTeam {
+.tickerDetailHomeTeam,
+.tickerDetailAwayTeam {
     width:100%;
     text-align: left;
     font-size:22px;
     padding-left:30px;
-    color:var(--color-font-turk);
+    
+}
+.tickerDetailHomeTeam {
+    color:var(--color-font-green);
+}
+.tickerDetailAwayTeam {
+    color: var(--color-font-red);
 }
 .tickerDetailHomeTeam, .tickerDetailHomeScore {
     padding-top:10px;
@@ -916,7 +923,8 @@ a {
     margin-left:20px;
 }
 .tickerDetailCandlestickCard {
-    width: 745px;
+    /* width: 745px; */
+    width:1500px;
     height:500px;
     border-radius: 25px;
     background: white;    
@@ -1066,7 +1074,9 @@ a {
     font-size: 24px;
     justify-content: center;
 } 
-.tickerDetailBuyOrderbookCard header, .tickerDetailSellOrderbookCard header, .tickerDetailOrderSubmissionCard header {
+.tickerDetailBuyOrderbookCard header, 
+.tickerDetailSellOrderbookCard header, 
+.tickerDetailOrderSubmissionCard header {
     font-size:30px;
     color:black;
     margin-top:30px;
@@ -1079,7 +1089,9 @@ a {
     width:495px;
     height:500px;
     background:white;
-    margin-left:5px;
+    margin-left:0;
+    margin-right:0;
+    padding-left:0;
     border-radius: 25px;
     text-align: center;   
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
@@ -1162,6 +1174,9 @@ outline: none;
     border-radius: 25px;
     min-height:500px;
     height:auto;
+    color:var(--color-font-green);
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+
 }
 .tickerDetailUserTableCard table {
     text-align: center;
@@ -1207,6 +1222,8 @@ outline: none;
     background:paleturquoise;
     height:50px !important;
     border-radius: 25px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+
 }
 .tickerDetailUserStatisticsButtonLeft {
     width:100%;
@@ -2137,6 +2154,8 @@ input:focus {
     border-radius: 25px;
     min-height:500px;
     height:auto;
+        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+
 }
 
 .myActivityUserTableCard table {

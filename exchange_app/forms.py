@@ -24,20 +24,25 @@ class BalanceForm(forms.ModelForm):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ('order_type', 'order_side', 'order_price', 'order_quantity')
-        widgets = {
-            'order_type': forms.Select(attrs={'class': 'form-control'}),
-            'order_side': forms.Select(attrs={'class': 'form-control'}),
-            'order_price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'order_quantity': forms.NumberInput(attrs={'class': 'form-control'}),
-        }
+        fields = ['order_type', 'order_side', 'order_price', 'order_quantity']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['order_price'].required = False
 
     def clean(self):
         cleaned_data = super().clean()
         order_type = cleaned_data.get('order_type')
-        if order_type == OrderType.MARKET.name:
-            # For market orders, set the price field to None
-            cleaned_data['order_price'] = None
+        order_price = cleaned_data.get('order_price')
+        order_quantity = cleaned_data.get('order_quantity')
+
+        if not order_type or not order_quantity:
+            raise forms.ValidationError("Order type and quantity are required.")
+
+        if order_type == OrderType.LIMIT.name:
+            if not order_price:
+                raise forms.ValidationError("Order price is required for LIMIT orders.")
+            if order_price < 0.01 or order_price > 10.00:
+                raise forms.ValidationError("Order price must be between 0.01 and 10.00.")
 
         return cleaned_data
-        
