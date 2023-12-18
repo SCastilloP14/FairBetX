@@ -93,9 +93,12 @@ def update_season_game(existing_game: Game, **kwargs):
                 if ticker_status_mapping.get(existing_game.game_status) == TickerStatus.CLOSED.name:
                     existing_ticker.close_ticker()
                 elif ticker_status_mapping.get(existing_game.game_status) == TickerStatus.CANCELED.name:
-                    existing_ticker.cancel_ticker()
+                    existing_ticker.cancel_ticker
+        else:
+            print(f"Creating ticker for existing game {kwargs['season_game_filename']}")
+            create_ticker(existing_game)
     except Ticker.DoesNotExist:
-        pass
+        create_ticker(existing_game)
     
 
 def create_season_game(**kwargs):
