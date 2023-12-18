@@ -8,7 +8,7 @@ from exchange_app.models import *
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from exchange_app.forms import UserForm, UserProfileInfoForm, OrderForm, BalanceForm
+from exchange_app.forms import UserForm, OrderForm, BalanceForm, UserProfileInfoForm
 import random, string
 from django.http import JsonResponse
 from rest_framework import viewsets
@@ -40,22 +40,24 @@ def registration(request):
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileInfoForm(data=request.POST)
         if user_form.is_valid() and profile_form.is_valid():
+            # User Creation
             user = user_form.save(commit=False)
             user.username = user.email
-            # This hashes de PW
             user.set_password(user.password)
             user.save()
-
+            # User Profile Info creation
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
-            registered = True
+            # User authentication
+            user = authenticate(username=user.username, password=request.POST['password'])
+            login(request, user)
+            return redirect('exchange_app:tickers')  # Redirect to a success page or dashboard
         else:
             print(user_form.errors, profile_form.errors)
-            print("Errors")
     else:
         user_form = UserForm()
-        profile_form = UserProfileInfoForm()
+        # profile_form = UserProfileInfoForm()
 
     context_dict = {"user_form": user_form,
                     "profile_form": profile_form,
@@ -70,7 +72,8 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse("index"))
+                return redirect('exchange_app:ticker_list')
+                # return HttpResponseRedirect(reverse("exchange_app:tickers"))
             else:
                 return HttpResponse("Account not active!")
         else:
@@ -232,15 +235,7 @@ class TickerDetailView(DetailView):
             action = request.POST.get("action")
             if action == "submit_order":
                 form = OrderForm(request.POST)
-                # if form.data['order_type'] == OrderType.MARKET.name:
-                #     mutable_data = request.POST.copy()  # Create a mutable copy of the POST data
-                #     mutable_data['order_price'] = None
-                #     del mutable_data['order_price']
-                #     form = OrderForm(data=mutable_data)
-                #     print("NEW FORM DATA", form.data)
-                print(form.data)
                 if form.is_valid():
-                    print("FORM IS VALID!!!")
                     ticker_id = request.POST.get("ticker_id")
                     ticker = Ticker.objects.get(id=ticker_id)
                     user = request.user

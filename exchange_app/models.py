@@ -122,7 +122,7 @@ ticker_stauts_mapping = {
 # ----------------------- MODELS NEEDED -----------------------
 class UserProfileInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)     
-    user_total_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    user_total_balance = models.DecimalField(max_digits=10, decimal_places=2, default=100)
 
     @property
     def fees_paid(self):
