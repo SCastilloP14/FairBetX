@@ -67,6 +67,7 @@
 
             <a class="cardLink" href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">
                 <div class="rightCardContainerMatches ticker {{league}}">
+                    <div class="gameStatus" style="display:none" value="{{ticker.ticker_game.game_status}}"></div>
                     <div class="rightCardMatchCard grid grid16">
                         <div class="rightCardMatchCard1">
                             <div>{{ticker.ticker_game.game_away_team.team_name}}</div>
