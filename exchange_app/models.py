@@ -133,7 +133,9 @@ class UserProfileInfo(models.Model):
     @property
     def total_closed_pnl(self):
         user_positions = Position.objects.filter(position_user=self.user)
-        return user_positions.aggregate(total_closed_pnl=models.Sum('position_closed_pnl'))['total_closed_pnl'] or 0
+        user_closed_pnl =  user_positions.aggregate(total_closed_pnl=models.Sum('position_closed_pnl'))['total_closed_pnl'] or 0
+        user_settled_pnl =  user_positions.aggregate(total_settled_pnl=models.Sum('position_settled_pnl'))['total_settled_pnl'] or 0
+        return user_closed_pnl + user_settled_pnl
 
     @property
     def user_locked_balance(self):
@@ -366,12 +368,8 @@ class Ticker(models.Model):
         print("Closing Ticker", self.__str__)
         self.ticker_status = TickerStatus.CLOSED.name
         self.check_outcome()
-        print(self.ticker_outcome)
-        print("Paying winners")
         self.pay_winners()
-        print("Settling Orders")
         self.close_remaining_orders()
-        print("Finished closing", self.__str__)
         self.save()
 
     def cancel_ticker(self):
@@ -412,21 +410,18 @@ class Ticker(models.Model):
                 if position.position_quantity > 0 and self.ticker_outcome == TickerOutcome.LONGS_WIN.name:
                     print("LONG WINNER!", position_user.username)
                     position.position_settled_pnl = (self.ticker_payout - position.position_average_price) * position.position_quantity
-                    position_user.userprofileinfo.user_total_balance += position_payout - (position.position_average_price * position.position_quantity)
 
                 elif position.position_quantity > 0 and self.ticker_outcome == TickerOutcome.SHORTS_WIN.name:
                     print("LONG LOSER!", position_user.username)
                     position.position_settled_pnl = -position.position_average_price * position.position_quantity
-                    position_user.userprofileinfo.user_total_balance -= position.position_quantity * position.position_average_price
 
                 elif position.position_quantity < 0 and self.ticker_outcome == TickerOutcome.SHORTS_WIN.name:
                     print("SHORT WINNER!", position_user.username)
-                    position.position_settled_pnl += position.position_average_price * position.position_quantity
-                    position_user.userprofileinfo.user_total_balance += position_payout - ((self.ticker_payout - position.position_average_price) * position.position_quantity)
+                    position.position_settled_pnl += position.position_average_price * abs(position.position_quantity)
 
                 elif position.position_quantity < 0 and self.ticker_outcome == TickerOutcome.LONGS_WIN.name:
                     print("SHORT LOSER!", position_user.username)
-                    position.position_settled_pnl = -(self.ticker_payout - position.position_average_price) * position.position_quantity
+                    position.position_settled_pnl = (self.ticker_payout - position.position_average_price) * position.position_quantity
                     position_user.userprofileinfo.user_total_balance -= position.position_quantity * (self.ticker_payout - position.position_average_price)
                 
                 position.position_settled = True
