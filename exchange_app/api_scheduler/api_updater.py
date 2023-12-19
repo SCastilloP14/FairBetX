@@ -19,8 +19,8 @@ def start():
            }
     scheduler = BackgroundScheduler()
     print(datetime.now())
-    # for league, info in leagues.items():
-    #     updated_league_data(info['league_id'])
+    for league, info in leagues.items():
+        updated_league_data(info['league_id'])
 
     # print(datetime.now())
     # leagues = League.objects.filter()

@@ -122,8 +122,13 @@ ticker_stauts_mapping = {
 # ----------------------- MODELS NEEDED -----------------------
 class UserProfileInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)     
-    user_total_balance = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
+    @property
+    def user_deposited_balance(self):
+        deposits = Transaction.objects.filter(transaction_user=self.user, transaction_type='DEPOSIT').aggregate(deposits_sum=models.Sum('transaction_amount'))['deposits_sum'] or 0
+        withdrawals = Transaction.objects.filter(transaction_user=self.user, transaction_type='WITHDRAWAL').aggregate(withdrawals_sum=models.Sum('transaction_amount'))['withdrawals_sum'] or 0
+        return deposits - withdrawals
+    
     @property
     def fees_paid(self):
         user_orders = Order.objects.filter(order_user=self.user).values('order_paid_fees')
@@ -164,7 +169,7 @@ class UserProfileInfo(models.Model):
     
     @property
     def user_available_balance(self):
-        return self.user_total_balance - self.fees_paid - self.user_locked_balance + self.total_closed_pnl 
+        return self.user_deposited_balance - self.fees_paid - self.user_locked_balance + self.total_closed_pnl 
 
     
     def check_enough_balance(self, order_type, order_side, order_price, order_quantity, ticker):
@@ -422,7 +427,6 @@ class Ticker(models.Model):
                 elif position.position_quantity < 0 and self.ticker_outcome == TickerOutcome.LONGS_WIN.name:
                     print("SHORT LOSER!", position_user.username)
                     position.position_settled_pnl = (self.ticker_payout - position.position_average_price) * position.position_quantity
-                    position_user.userprofileinfo.user_total_balance -= position.position_quantity * (self.ticker_payout - position.position_average_price)
                 
                 position.position_settled = True
                 position.save()
@@ -601,7 +605,6 @@ class Position(models.Model):
                 buy_position.position_average_price = trade.trade_price
             elif buy_position.position_quantity < 0:
                 buy_position.position_closed_pnl += (buy_position.position_average_price - trade.trade_price) * trade.trade_quantity
-                buy_user.userprofileinfo.user_total_balance += (buy_position.position_average_price - trade.trade_price) * trade.trade_quantity
                 if buy_position.position_quantity + trade.trade_quantity == 0:
                     buy_position.position_average_price = 0
             else:
@@ -617,7 +620,6 @@ class Position(models.Model):
                 sell_position.position_average_price = trade.trade_price
             elif sell_position.position_quantity > 0:
                 sell_position.position_closed_pnl += (trade.trade_price - sell_position.position_average_price) * trade.trade_quantity
-                sell_user.userprofileinfo.user_total_balance += (trade.trade_price - sell_position.position_average_price) * trade.trade_quantity
                 if sell_position.position_quantity - trade.trade_quantity == 0:
                     sell_position.position_average_price = 0
             else:
