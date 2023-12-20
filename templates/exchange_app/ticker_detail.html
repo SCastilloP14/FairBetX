@@ -3,6 +3,20 @@
 {% load tz %}
 {% get_current_timezone as TIME_ZONE %}
 
+ <!-- 
+
+    Ticker Detail
+    Connections:
+        Previous: Ticker List, Team Detail, League Detail  
+        After: Team Detail
+
+    Ticker Detail is a html to show the ticker specific trading page with Game Information, User Stats,
+    Graph, Orderbooks, Order Submission and User Activity Tables.
+    Users can place/cancel orders and see all trades on the candlestick graph. The User activity table allows 
+    them to see all active orders, fills, current position and all orders ever placed. 
+
+ -->
+
 <div class="grid gridNav13 page_background">
     <div class="empty"></div>
     <div class="middle_section">
@@ -55,24 +69,29 @@
 
         <!-- Game + User Info Card  -->
         <div class="tickerDetailUserCard grid grid_1x10_tickerDetail">
+            
+            <!-- User Balance  -->
             <img src="../../../static/img/wallet-icon-white.png" alt="">
             <div class="grid grid_2x1_tickerDetail">
                 <div class="tickerDetailUserCardTop">{{user.userprofileinfo.user_available_balance}}</div>               
                 <div class="tickerDetailUserCardBottom">Balance</div>
-
             </div>
+
+            <!-- Ticker Status  -->
             <img src="../../../static/img/file-icon.png" alt="">
             <div class="grid grid_2x1_tickerDetail">
                 <div class="tickerDetailUserCardTop">{{ticker_detail.ticker_status}}</div>
                 <div class="tickerDetailUserCardBottom">Status</div>
-
             </div>
+
+            <!-- Total Ticker Volume  -->
             <img src="../../../static/img/clipboard-icon.png" alt="">
             <div class="grid grid_2x1_tickerDetail">
                 <div class="tickerDetailUserCardTop">{{ticker_detail.ticker_volume|floatformat:0}}</div>
                 <div class="tickerDetailUserCardBottom">Volume</div>
-
             </div>
+
+            <!-- Last Traded Price  -->
             <img src="../../../static/img/coin-icon.png" alt="">
             <div class="grid grid_2x1_tickerDetail">
                 {% if ticker_detail.ticker_last_price%}
@@ -82,20 +101,12 @@
                 {% endif %}
                 <div class="tickerDetailUserCardBottom">Last Price</div>
             </div>
-
-            {% comment %} <img src="../../../static/img/coin-icon.png" alt="">
-            <div class="grid grid_2x1_tickerDetail">
-                <div class="tickerDetailUserCardTop">{{ticker_detail.ticker_price_change_last_hour}}</div>
-                <div class="tickerDetailUserCardBottom">Price Change</div>
-            </div> {% endcomment %}
-
         </div>
 
         <!-- Chart + Statistics Card  -->
         <div>
         <!-- class="grid grid_1x2_tickerDetail" -->
         
-
             <!-- Candlestick Graph  -->
             <div class="tickerDetailCandlestickCard">
                 
@@ -107,7 +118,9 @@
                         <button id="btn-6h" class="tickerDetailTradingViewButton">6H</button>
                         <button id="btn-1d" class="tickerDetailTradingViewButton">1D</button>
                     </div>
-                    {% comment %} <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script> {% endcomment %}
+                    {% comment %} 
+                        <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script> 
+                    {% endcomment %}
                     <div id="chart-container" value="{{ticker_detail.ticker_id}}"></div>
                 </div>
                 
@@ -175,11 +188,14 @@
             <div class="tickerDetailBuyOrderbookCard">
                 <header>Orderbook Buy</header>
                 <table class="tickerDetailBuyOrderbookTable">
-                    
+
+                    <!-- Orderbook Header  -->
                     <tr>
                         <th class="tickerDetailOrderbookTableHeader">Price</th>
                         <th class="tickerDetailOrderbookTableHeader">Quantity</th>
                     </tr>
+
+                    <!-- Limit Orderbook to 10 per side  -->
                     {% for buy_order in buy_orders|slice:":10" %}
                         <tr class="tickerDetailBuyOrderbookTableRows">
                             <td data-class="Price">{{buy_order.order_price}}</td>
@@ -187,12 +203,11 @@
                         </tr>
                     {% endfor %}
 
+                    <!-- Last Row of Orderbook, needed for clean formatting  -->
                     <tr>
                         <td style="color:white">0</td>
                         <td class="tickerDetailBuyRight" style="color:#F5E4E5; border-radius: 0 0 25px 0;">0</td>
                     </tr>
-
-                    
                 </table>
             </div>
 
@@ -200,19 +215,22 @@
             <div class="tickerDetailSellOrderbookCard">
                 <header>Orderbook Sell</header>
                 <table class="tickerDetailSellOrderbookTable">
-                    
+
+                    <!-- Orderbook Header  -->
                     <tr>
                         <th class="tickerDetailOrderbookTableHeader">Price</th>
                         <th class="tickerDetailOrderbookTableHeader">Quantity</th>
                     </tr>
+
+                    <!-- Limit Orderbook to 10 per side  -->
                     {% for sell_order in sell_orders|slice:":10" %}
-                    
                         <tr class="tickerDetailSellOrderbookTableRows">
                             <td data-class="Price">{{sell_order.order_price}}</td>
                             <td class="tickerDetailSellRight" data-class="Quantity">{{sell_order.total_quantity}}</td>
                         </tr>
                     {% endfor %}
-                    
+
+                    <!-- Last Row of Orderbook, needed for clean formatting  -->
                     <tr>
                         <td style="color:white">0</td>
                         <td class="tickerDetailSellRight" style="color:#F5E4E5; border-radius: 0 0 25px 0;">0</td>
@@ -221,7 +239,6 @@
             </div>
 
             <!-- Order Submission Card  -->
-           
             <div class="tickerDetailOrderSubmissionCard">
                 <header>Place Order</header>
                 {% if user.is_authenticated %}
@@ -248,15 +265,16 @@
                         <div class="tickerDetailQuantityInput">
                             <input class="tickerDetailQuantityInput" type="text" placeholder="0" name="order_quantity">
                         </div>
-                        </div>
-                        <input type="hidden" name="ticker_id" value="{{ticker_detail.pk}}">
-                        <button class="tickerDetailSubmitButton" type="submit" name="action" value="submit_order">Submit</button>
+                    </div>
+                    <input type="hidden" name="ticker_id" value="{{ticker_detail.pk}}">
+                    <button class="tickerDetailSubmitButton" type="submit" name="action" value="submit_order">Submit</button>
                 </form>
+
+                <!-- If User is not Authenticated prevent them from trading  -->
                 {% else %}
                     <div class="tickerDetailOrderSubmitNonUser">Please Login to place an Order</div>
                 {% endif %}
             </div>
-
         </div>
     
         <!-- User Statistics  -->
@@ -290,6 +308,8 @@
             </div>
 
             {% if user.is_authenticated %}
+
+                <!-- Active Orders Table -->
                 <div class="tickerDetailUserTableCard" id="orders-section">
                     <table>
                         <tr>
@@ -344,6 +364,7 @@
                     </div>
                 </div>
 
+                <!-- Fills Table -->
                 <div class="tickerDetailUserTableCard" id="fills-section">
                     <table>
                         <tr>
@@ -377,7 +398,7 @@
                     </div>
                 </div>
 
-
+                <!-- Positions Table  -->
                 <div class="tickerDetailUserTableCard" id="positions-section">
                     <table>
                         <tr>
@@ -413,6 +434,7 @@
                     </div>
                 </div>
 
+                <!-- All Orders Table  -->
                 <div class="tickerDetailUserTableCard" id="historic-orders-section">
                     <table>
                         <tr>
@@ -466,8 +488,9 @@
                             </td>
                         </tr>
                     {% endfor %}
-
                     </table>
+
+                    <!-- User Pagingation -->
                     <div class="tickerDetailUserTableToggle">
                         <a href="#" class="tickerDetailArrowLeft"> 
                             <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
@@ -484,13 +507,9 @@
                 <div class="tickerDetailTableNonUser">Please Login to place an Order</div>
             {% endif %}
         </div>
-
     </div>
 
+    <!-- Right Side  -->
     <div class="empty"></div>
-
   </div>  
-
-  
-
 {% endblock %}
