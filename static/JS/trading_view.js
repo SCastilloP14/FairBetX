@@ -65,7 +65,7 @@ chart.priceScale('right').applyOptions({
     console.log("ticker", ticker_id);
     console.log("Time", timeframe);
 
-    var url = '/api/trades/?ticker_id=' + ticker_id + '&timeframe=' + timeframe;
+      var url = '/api/trades/?ticker_id=' + ticker_id + '&timeframe=' + timeframe;
     console.log(url);
     // Make an AJAX request to get the JSON data
     fetch(url)  // Update with the correct URL

@@ -2655,3 +2655,71 @@ h4 {
 .custom-dropdown.open .dropdown-content {
   display: block;
 }
+
+/* About us */
+
+.aboutUs {
+    width:100%;
+    height:auto;
+    text-align: center;
+}
+
+/* First Section  */
+.aboutUsFirstSection img{
+    width:100%;
+    height:100%;
+}
+
+.aboutUsFirstSectionOverlay{
+    width:1500px;
+    padding-top:120px;
+    color:#F7F7F7;
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    text-align: center;
+}
+.aboutUsFirstSectionOverlay h2 {
+    font-size:46px;
+}
+.aboutUsFirstSectionOverlay h4 {
+    font-size:28px;
+    font-weight:400
+}
+
+.aboutUsFirstSectionOverlay h2 {
+    font-size:46px;
+}
+
+/* Second Section  */
+.aboutUsSecondSection img{
+    width:100%;
+    height:100%;
+}
+
+.aboutUsSecondSectionOverlay{
+    width:1500px;
+    color:#F7F7F7;
+    position:absolute;
+    left:450px;
+    top:1700px;
+    width:700px;
+    text-align: center;
+    text-align:left;
+    padding-left:30px;
+}
+.aboutUsSecondSectionOverlay h2 {
+    font-size: 50px;
+}
+.aboutUsSecondSectionOverlay h4 {
+    font-size: 32px;
+    font-weight: 400;;
+    margin-bottom:0;
+}
+
+.aboutUsSecondSectionOverlay img {
+    margin-top:100px;
+    width:800px;
+    height:auto;
+}

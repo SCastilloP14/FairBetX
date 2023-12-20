@@ -50,13 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
   // All tickers 
   var tickers = document.querySelectorAll('.ticker');
   var dropdowns = document.querySelectorAll('.custom-dropdown');
-
+  var gameStatus = document.querySelectorAll('.gameStatus');
 
   //Add event listener for sportsDropdown
   sportsDropdown.addEventListener('change', function (event) {
     event.preventDefault();
-
-
 
     var selectedSport = sportsDropdown.value;
 
@@ -80,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Add event listener for liveSportsButton
   liveSportsButton.addEventListener('click', function (event) {
       event.preventDefault();
-      filterTickers('LIVE');
+      filterTickers(gameStatus);
   });
 
   
@@ -112,11 +110,12 @@ document.addEventListener('DOMContentLoaded', function () {
   // Function to filter tickers based on game status
   function filterTickers(gameStatus) {
       var tickers = document.querySelectorAll('.ticker');
-
       // Iterate over each ticker and show/hide based on game status.
       tickers.forEach(function (ticker) {
+            var status = ticker.querySelector('.gameStatus').getAttribute('value');
+
           // If gameStatus is null, show all tickers; otherwise, show/hide based on game status.
-          ticker.style.display = gameStatus === null || ticker.dataset.gameStatus === gameStatus ? 'block' : 'none';
+          ticker.style.display = gameStatus === null || status === "PLAYING" ? 'block' : 'none';
       });
   }
 
