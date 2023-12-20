@@ -200,6 +200,15 @@ class TickerListView(ListView):
             else:
                 grouped_teams[team.team_league_1].append(team)
         context["grouped_teams"] = grouped_teams
+
+
+        unique_dates = set()
+
+        for league, league_tickers in grouped_tickers.items():
+            for ticker in league_tickers:
+                unique_dates.add(ticker.ticker_game.game_start_datetime.date())
+
+        context['unique_dates'] = sorted(unique_dates)
         return context
 
 class TickerDetailView(DetailView):
