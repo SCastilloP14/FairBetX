@@ -41,10 +41,7 @@
             <div class="rightCardContainer">
                 <div class="rightCardContainerHeader">
                     
-                    <!-- <button class="allSportsButton">All Sports
-                        <img class=" allSportsArrow" src="../../../static/img/arrow-icon.png"alt="">
-                    </button> -->
-
+                    <!-- Dropdown to filter Tickers by League -->
                     <select class="allLeaguesButton" name="cars" id="sportsDropdown">
                         <option value="" >All   Leagues</option>
                         {% for league in grouped_teams.keys %}
@@ -52,7 +49,7 @@
                         {% endfor %}
                     </select>
 
-                    
+                    <!-- Format Script to create custom dropdown  -->
                     <script>
                         document.addEventListener("DOMContentLoaded", function () {
                             var dropdownToggle = document.querySelector('.dateRangeDropdown-toggle');
@@ -71,6 +68,7 @@
                         });
                     </script>
 
+                    <!-- Custom Dropdown to filter Tickers for Date -->
                     <div class="dateRangeDropdown">
                         <div class="dateRangeDropdown-toggle">Select Date</div>
                         <div class="dateRangeDropdown-content" id="dateDropdownContent">
@@ -81,17 +79,12 @@
                                 </label>
                             {% endfor %}
                         </div>
-                    </div>
-
+                    </div>                  
                     
+                    <!-- Button to filter Tickers for Status == Live -->
+                    <button id="liveSportsButton" class="liveButton" data-filter="live">Live</button>
                     
-                    <!-- <a href="#" id="allEventsButton" style="text-decoration:none;">
-                        <button class="allEventsButton" data-filter="all">All Events</button>
-                    </a> -->
-                    <!-- <a href="#" id="liveSportsButton" style="text-decoration:none; width:150px;"> -->
-                        <button id="liveSportsButton" class="liveButton" data-filter="live">Live</button>
-                    <!-- </a> -->
-                    
+                    <!-- Search Bar to filter Tickers by Team Name -->
                     <input type="text" class="searchBar" placeholder="Search" id="searchBarGames">
                 </div>
 
