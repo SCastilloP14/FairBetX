@@ -356,7 +356,7 @@
                         </tr>
                     {% for fill in user_fills|slice:":20" %}
                         <tr>
-                            <td data-class="Ticker">{{fill.fill_ticker.ticker_game.game_short_name}}</td>
+                            <td data-class="Match">{{fill.fill_ticker.ticker_game.game_short_name}}</td>
                             <td data-class="Timestamp">{{fill.fill_timestamp}}</td>
                             <td data-class="Side">{{fill.fill_side}}</td>
                             <td data-class="Price">{{fill.fill_price}}</td>
