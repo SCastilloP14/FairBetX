@@ -23,7 +23,11 @@
           timeFormat: ['%Y-%m-%d %H:%M'],
           },
         priceScale: {
+          mode: 0,  // Use '0' for "normal" scale (not logarithmic)
+          autoScale: false,  // Disable auto scaling
+          invertScale: false,  // Set to 'true' if you want the y-axis inverted
           minValue: 0,
+          maxValue: 10,
         },
         rightOffset: 0,
           // Ensure the right-most candlestick stays on scroll
@@ -38,20 +42,45 @@ chart.applyOptions({
       borderColor: 'red',
       visible: true,
       timeVisible: true,
-      secondsVisible: true,   
+      secondsVisible: true, 
+    },
+  priceScale: {
+      scaleMargins: {
+        top: 0.6,
+        bottom: 0,
+      },
+      borderColor: 'black',  // Set color for y-axis
+      borderWidth: 2,  // Set thickness for y-axis
     },
   }
 );
 
-chart.timeScale().fitContent();
+// chart.timeScale().fitContent();
+chart.timeScale().applyOptions({
+  borderColor:'red',
+  barSpacing:10,
+})
 
+
+
+chart.priceScale('left').applyOptions({
+  mode: 0,  // Use '0' for "normal" scale (not logarithmic)
+  autoScale: false,  // Disable auto scaling
+  invertScale: false,  // Set to 'true' if you want the y-axis inverted
+  minValue: 0,
+  maxValue: 10,
+});
 
 var candlestickSeries = chart.addCandlestickSeries();
+
 chart.priceScale('right').applyOptions({
-    scaleMargins: {
-        top: 0.6,
-        bottom: 0,
-    },
+    
+    mode: 0,
+    // autoScale: 0,  
+  // invertScale: false,  // Set to 'true' if you want the y-axis inverted
+  minValue: 0,
+  maxValue: 10,
+    
 });
 
     var timeframe ="5"; //Default Value

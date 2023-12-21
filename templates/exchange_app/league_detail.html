@@ -1,7 +1,25 @@
 {% extends "exchange_app/base.html" %} {% block body_block %}
+ <!-- 
 
+    League Detail
+    Connections:
+        Previous: Team Detail  
+        After: Team Detail, Ticker Detail
+
+    League Detail is a html to show the league specific teams within their respective conferences or divisions.
+    All upcoming games are listed in a horizontal box with overflox-x:hidden that lead straight to the ticker detail page.
+    The Teams are linked so that user can easily go to the respective team detail pages.
+
+    JS Files:
+        league_detail.js    Format League Conferences or Divisions
+    
+    CSS Files:
+        league.css          League Detail specific styles
+
+ -->
 <head>
     <script src="../../static/JS/league_detail.js"></script>
+    <link rel="stylesheet" href="../../static/CSS/league.css" />
 </head>
 
 <div class="leagueOverview">    
