@@ -32,24 +32,21 @@
 
 
 chart.applyOptions({
-    timeScale: {
-        barSpacing: 5,
-
-        borderVisible: false,
-        borderColor: 'red',
-        visible: true,
-        timeVisible: true,
-        secondsVisible: true,
-           
-      },
-
-    }
+  timeScale: {
+      barSpacing: 5,
+      borderVisible: false,
+      borderColor: 'red',
+      visible: true,
+      timeVisible: true,
+      secondsVisible: true,   
+    },
+  }
 );
 
 chart.timeScale().fitContent();
 
 
-  var candlestickSeries = chart.addCandlestickSeries();
+var candlestickSeries = chart.addCandlestickSeries();
 chart.priceScale('right').applyOptions({
     scaleMargins: {
         top: 0.6,
@@ -60,12 +57,12 @@ chart.priceScale('right').applyOptions({
     var timeframe ="5"; //Default Value
 
     function updateChartData() {
-    var ticker_id =document.getElementById("chart-container").getAttribute('value') ;
+    var ticker_id = document.getElementById("chart-container").getAttribute('value') ;
 
     console.log("ticker", ticker_id);
     console.log("Time", timeframe);
 
-      var url = '/api/trades/?ticker_id=' + ticker_id + '&timeframe=' + timeframe;
+    var url = '/api/trades/?ticker_id=' + ticker_id + '&timeframe=' + timeframe;
     console.log(url);
     // Make an AJAX request to get the JSON data
     fetch(url)  // Update with the correct URL

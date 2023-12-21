@@ -12,7 +12,14 @@
     They can also filter ticker by league, date, if they are live or not and utilize the id=searchBarGames 
     to search for individual games based of teams.
 
+    JS Files:
+        ticker_list.js    Filter Tickers and Teams
+        select2@4.js      External File to style custom dropdown
  -->
+<head>
+    <script src="../../static/JS/ticker_list.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+</head>
 
     <!-- Sports Header -->
     <div class="gameListHeader">
@@ -55,7 +62,7 @@
             <div class="rightCardContainer">
                 <div class="rightCardContainerHeader">
                     
-                =   <!-- Dropdown to filter Tickers by League -->
+                    <!-- Dropdown to filter Tickers by League -->
                     <select class="allLeaguesButton" name="cars" id="sportsDropdown">
                         <option value="" >All   Leagues</option>
                         {% for league in grouped_teams.keys %}
