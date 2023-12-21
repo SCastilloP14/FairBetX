@@ -2378,19 +2378,22 @@ input:focus {
 }
 
 
-
 .dateRangeDropdown,
 .leagueDropdown {
-    font-size: 16px;
-    text-transform: uppercase;
-    text-align: left;
-    color: white;
-    width: 150px;
     background: linear-gradient(to bottom, #016D74, #01373A);
     border-radius: var(--border-radius-low);
+    color: white;
+    font-size: 16px;
+    margin-left: 30px;
     padding: 0px 12px;
-    margin-left: 40px;
     position: relative;
+    text-align: left;
+    text-transform: uppercase;
+    width: 150px;
+}
+.dateRangeDropdown {
+    margin-left:60px;
+    margin-right: auto;
 }
 
 .dateRangeDropdown-toggle,
@@ -2488,8 +2491,8 @@ h4 {
     background-color: transparent;
     border: solid 3px #016D74;
     padding: 10px 50px;
-    /* margin-left: 100px; */
-    /* margin-right: 100; */
+    margin-left: auto;
+    margin-right: 80px;
 }
 
 .liveButton:hover {

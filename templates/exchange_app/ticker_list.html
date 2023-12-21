@@ -23,7 +23,7 @@
 <head>
     <script src="../../static/JS/ticker_list.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    
+
     <link rel="stylesheet" href="../../static/CSS/ticker_list.css" />
 </head>
 
@@ -102,7 +102,6 @@
                         });
                     </script>
 
-                    
 
 
                     <!-- Format Script to create custom dropdown  -->
@@ -151,6 +150,7 @@
             <a class="cardLink" href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">
                 <div class="rightCardContainerMatches ticker {{league}}" value="{{ticker.ticker_game.game_start_datetime}}">
                     <div class="gameStatus" style="display:none" value="{{ticker.ticker_game.game_status}}"></div>
+                    <div class="gameLeague" style="display:none" value="{{ticker.ticker_game.game_league.league_name}}"></div>
                     <div class="rightCardMatchCard grid grid16">
                         <div class="rightCardMatchCard1">
                             <div>{{ticker.ticker_game.game_away_team.team_name}}</div>
