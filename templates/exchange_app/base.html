@@ -2,15 +2,14 @@
 {% load static %}
  <!-- 
 
-    Ticker Detail
+    base.html
+    
     Connections:
-        Previous: Ticker List, Team Detail, League Detail  
-        After: Team Detail
+        Previous: Welcome, Ticker List, About Us, User Detail
 
-    Ticker Detail is a html to show the ticker specific trading page with Game Information, User Stats,
-    Graph, Orderbooks, Order Submission and User Activity Tables.
-    Users can place/cancel orders and see all trades on the candlestick graph. The User activity table allows 
-    them to see all active orders, fills, current position and all orders ever placed. 
+    Base is a html that is the base of all following html files. This file includes the nav bar in two styles, 
+    Users being logged in and logged out. The file also includes a footer that never changes across pages as well as 
+    the sign up-card, registration-card and an overlay to prevent users from not registering/loggin in. 
 
     JS Files:
         login_script.js         Login script to hide/show overlay and login card
