@@ -2379,7 +2379,8 @@ input:focus {
 
 
 
-.dateRangeDropdown {
+.dateRangeDropdown,
+.leagueDropdown {
     font-size: 16px;
     text-transform: uppercase;
     text-align: left;
@@ -2388,11 +2389,12 @@ input:focus {
     background: linear-gradient(to bottom, #016D74, #01373A);
     border-radius: var(--border-radius-low);
     padding: 0px 12px;
-    margin-left: 60px;
+    margin-left: 40px;
     position: relative;
 }
 
-.dateRangeDropdown-toggle {
+.dateRangeDropdown-toggle,
+.leagueDropdown-toggle {
     cursor: pointer;
 }
 
@@ -2404,21 +2406,37 @@ input:focus {
     z-index: 1;
     max-height: 300px; /* Adjust as needed */
     overflow-y: auto; /* Enable vertical scroll if needed */
+    width:180px;
+}
+.leagueDropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto; /* Enable vertical scroll if needed */
+    width:120px;
+    overflow-x: hidden;
+
 }
 
-.dateRangeDropdown-content label {
+.dateRangeDropdown-content label,
+.leagueDropdown-content label {
     display: block;
-    padding: 8px;
+    padding: 4px;
 }
 
-.dateRangeDropdown-checkbox {
+.dateRangeDropdown-checkbox,
+.leagueDropdown-checkbox {
     margin-right: 8px;
 }
 
 .show {
     display: block;
 }
-.dateRangeDropdown-container {
+.dateRangeDropdown-container,
+.leagueDropdown-container {
     color:black
 }
 

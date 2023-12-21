@@ -2,7 +2,7 @@
  <!-- 
 
     ticker_list.html
-    
+
     Connections:
         Previous: Nav bar, Successfully loggin in,  
         After: Ticker Detail, Team Detail
@@ -64,12 +64,41 @@
                 <div class="rightCardContainerHeader">
                     
                     <!-- Dropdown to filter Tickers by League -->
-                    <select class="allLeaguesButton" name="cars" id="sportsDropdown">
-                        <option value="" >All   Leagues</option>
-                        {% for league in grouped_teams.keys %}
-                            <option value={{league.league_name}}>{{league.league_name}}</option>
-                        {% endfor %}
-                    </select>
+                    
+                    <!-- Format Script to create custom dropdown -->
+                    <div class="leagueDropdown">
+                        <div class="leagueDropdown-toggle">Select League</div>
+                        <div class="leagueDropdown-content" id="leagueDropdownContent">
+                            {% for league in grouped_teams.keys %}
+                                <label class="leagueDropdown-container">
+                                    <input type="checkbox" value="{{league.league_name}}" class="leagueDropdown-checkbox">
+                                    {{ league.league_name }}
+                                </label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Format Script to create custom dropdown -->
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function () {
+                            var leagueDropdownToggle = document.querySelector('.leagueDropdown-toggle');
+                            var leagueDropdownContent = document.getElementById('leagueDropdownContent');
+
+                            leagueDropdownToggle.addEventListener('click', function () {
+                                leagueDropdownContent.classList.toggle('show');
+                            });
+
+                            // Close the dropdown if the user clicks outside of it
+                            window.onclick = function (event) {
+                                if (!event.target.matches('.leagueDropdown-toggle') && !event.target.closest('.leagueDropdown')) {
+                                    leagueDropdownContent.classList.remove('show');
+                                }
+                            }
+                        });
+                    </script>
+
+                    
+
 
                     <!-- Format Script to create custom dropdown  -->
                     <script>
