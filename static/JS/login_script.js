@@ -79,7 +79,6 @@ function closingDropdown() {
 
     loginCardContainer.style.display = "none";
     overlayDropdown.style.display = "none";
-
 }
 
 function toggleRegistrationDropdown() {

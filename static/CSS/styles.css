@@ -16,6 +16,7 @@
 --color-background-light:#F7F7F7;
 --color-background-blue:#F0FFFD;
 --color-background-red:#F5E4E5;
+--color-background-dark-red:#B51F1F;
 --color-background-green:#E4F0EB;
 --color-background-white:white;
 --color-background-transparent: transparent;
@@ -839,7 +840,7 @@ a {
     height:120px !important;
     margin-top:30px;
     text-align: center;  
-    color:#5F5F5F
+    color:#5F5F5F;
 }
 .tickerDetailGamePeriod {
     border-radius: 25px;
@@ -1168,15 +1169,15 @@ outline: none;
     color:#1B1C1E
 }
 .tickerDetailUserTableCard {
-    width: 100%;
-    margin-top:10px;
     background: white;
     border-radius: 25px;
-    min-height:500px;
-    height:auto;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
     color:var(--color-font-green);
-        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
-
+    height:auto;
+    margin-top:10px;
+    min-height:500px;
+    width: 100%;
+    position: relative;
 }
 .tickerDetailUserTableCard table {
     text-align: center;
@@ -1184,7 +1185,7 @@ outline: none;
     width: 99%;
     height:100%;
     margin: 0 auto;
-    /* margin-top:10px; */
+    padding-bottom:40px;
     border-radius: 25px;
 }
 .tickerDetailUserTableCard th {
@@ -1200,6 +1201,10 @@ outline: none;
     font-weight:400;
     color:#5F5F5F;
      padding-bottom:20px;
+}
+.historic-row td {
+    line-height:10px ;
+    padding:0;
 }
 
 .tickerDetailUserStatisticsCancelButton {
@@ -1284,7 +1289,6 @@ outline: none;
     margin-top:10px;
 }
 .tickerDetailSubmitButton:hover {
-    border:none;
     color:white;
     background: #016D74;
 }
@@ -1305,14 +1309,17 @@ outline: none;
 .tickerDetailUserTableToggle {
     color:#00474F;
     font-size: 18px;
-    width:200px;
+    width:260px;
     height:30px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin:0 auto;
-    margin-top:10px;
-    padding-bottom:20px;
+}
+.tickerDetailUserTableToggleContainer {
+    position: absolute;
+    bottom: 10px; 
+    width:100%;
 }
 
 .tickerDetailUserTableToggle h4 {
@@ -2379,21 +2386,26 @@ input:focus {
 }
 
 
-
-.dateRangeDropdown {
-    font-size: 16px;
-    text-transform: uppercase;
-    text-align: left;
-    color: white;
-    width: 150px;
+.dateRangeDropdown,
+.leagueDropdown {
     background: linear-gradient(to bottom, #016D74, #01373A);
     border-radius: var(--border-radius-low);
+    color: white;
+    font-size: 16px;
+    margin-left: 30px;
     padding: 0px 12px;
-    margin-left: 60px;
     position: relative;
+    text-align: left;
+    text-transform: uppercase;
+    width: 150px;
+}
+.dateRangeDropdown {
+    margin-left:60px;
+    margin-right: auto;
 }
 
-.dateRangeDropdown-toggle {
+.dateRangeDropdown-toggle,
+.leagueDropdown-toggle {
     cursor: pointer;
 }
 
@@ -2405,21 +2417,37 @@ input:focus {
     z-index: 1;
     max-height: 300px; /* Adjust as needed */
     overflow-y: auto; /* Enable vertical scroll if needed */
+    width:180px;
+}
+.leagueDropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto; /* Enable vertical scroll if needed */
+    width:120px;
+    overflow-x: hidden;
+
 }
 
-.dateRangeDropdown-content label {
+.dateRangeDropdown-content label,
+.leagueDropdown-content label {
     display: block;
-    padding: 8px;
+    padding: 4px;
 }
 
-.dateRangeDropdown-checkbox {
+.dateRangeDropdown-checkbox,
+.leagueDropdown-checkbox {
     margin-right: 8px;
 }
 
 .show {
     display: block;
 }
-.dateRangeDropdown-container {
+.dateRangeDropdown-container,
+.leagueDropdown-container {
     color:black
 }
 
@@ -2464,33 +2492,31 @@ h4 {
 }
 
 .liveButton {
+    background-color: transparent;
     border-radius: 25px;
-    color: #016D74;
+    border: solid 3px var(--color-background-dark-red);
+    color: var(--color-font-red);
     font-size: 16px;
     font-weight: 600;
-    background-color: transparent;
-    border: solid 3px #016D74;
+    margin-left: auto;
+    margin-right: 80px;
     padding: 10px 50px;
-    /* margin-left: 100px; */
-    /* margin-right: 100; */
 }
 
 .liveButton:hover {
     color: white;
-    /* border: none; */
-    background-color: #016D74;
+    background-color: var(--color-background-dark-red);
 }
 .liveButton:active {
-    background-color: #016D74;
+    background-color: var(--color-background-dark-red);
     color: white;
 }
-
 .liveButton:focus {
-    background-color: #016D74;
+    background-color: var(--color-background-dark-red);
     color: white;
 }
 .liveButton:not(.active) {
-    color: #016D74;
+    color: var(--color-font-dark-red);
     background-color: transparent;
 }
 

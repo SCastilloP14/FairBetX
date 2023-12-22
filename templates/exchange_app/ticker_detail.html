@@ -3,11 +3,42 @@
 {% load tz %}
 {% get_current_timezone as TIME_ZONE %}
 
+ <!-- 
+
+    ticker_detail.html
+
+    Connections:
+        Previous: Ticker List, Team Detail, League Detail  
+        After: Team Detail
+
+    Ticker Detail is a html to show the ticker specific trading page with Game Information, User Stats,
+    Graph, Orderbooks, Order Submission and User Activity Tables.
+    Users can place/cancel orders and see all trades on the candlestick graph. The User activity table allows 
+    them to see all active orders, fills, current position and all orders ever placed. 
+
+    JS Files:
+        trading_view.js                 Candlestick Graph
+        ticker_detail.js                User Tables
+        ticker_detail_pagination.js     User Tables Pagination
+
+    CSS Files:
+        ticker_detail.css
+
+ -->
+ <head>
+    <script src="../../static/JS/ticker_detail.js"></script>
+    <script src="../../static/JS/ticker_detail_pagination.js"></script>
+    <script src="../../static/JS/trading_view.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <link rel="stylesheet" href="../../static/CSS/ticker_detail.css" />
+ </head>
+
 <div class="grid gridNav13 page_background">
     <div class="empty"></div>
     <div class="middle_section">
         <!-- Header  -->
-        <div class="tickerDetailHeader">{{ticker_detail.ticker_game.game_league_1.league_name}}</div>
+        <div class="tickerDetailHeader">{{ticker_detail.ticker_game.game_league.league_name}}</div>
         <div class="tickerDetailGameDetails grid grid_1x9">
             {% if ticker_detail.ticker_game.game_progress %}
                 <div class="tickerDetailGamePeriod">{{ticker_detail.ticker_game.game_progress}}</div>
@@ -46,7 +77,7 @@
             <div>
                 <img class="tickerDetailTimeIcon" src="../../../static/img/clock-icon.png" alt="">
             </div>
-            <div class="tickerDetailGameTime">{{ticker_detail.ticker_game.game_start_datetime|timezone:"local"|date:"g:i A"}}</div>
+            <div class="tickerDetailGameTime">{{ticker_detail.ticker_game.game_start_datetime|date:"g:i A"}}</div>
              <div>
                 <img  class="tickerDetailLocationIcon" src="../../../static/img/location-icon.png" alt="">
             </div>
@@ -55,24 +86,29 @@
 
         <!-- Game + User Info Card  -->
         <div class="tickerDetailUserCard grid grid_1x10_tickerDetail">
+            
+            <!-- User Balance  -->
             <img src="../../../static/img/wallet-icon-white.png" alt="">
             <div class="grid grid_2x1_tickerDetail">
                 <div class="tickerDetailUserCardTop">{{user.userprofileinfo.user_available_balance}}</div>               
                 <div class="tickerDetailUserCardBottom">Balance</div>
-
             </div>
+
+            <!-- Ticker Status  -->
             <img src="../../../static/img/file-icon.png" alt="">
             <div class="grid grid_2x1_tickerDetail">
                 <div class="tickerDetailUserCardTop">{{ticker_detail.ticker_status}}</div>
                 <div class="tickerDetailUserCardBottom">Status</div>
-
             </div>
+
+            <!-- Total Ticker Volume  -->
             <img src="../../../static/img/clipboard-icon.png" alt="">
             <div class="grid grid_2x1_tickerDetail">
                 <div class="tickerDetailUserCardTop">{{ticker_detail.ticker_volume|floatformat:0}}</div>
                 <div class="tickerDetailUserCardBottom">Volume</div>
-
             </div>
+
+            <!-- Last Traded Price  -->
             <img src="../../../static/img/coin-icon.png" alt="">
             <div class="grid grid_2x1_tickerDetail">
                 {% if ticker_detail.ticker_last_price%}
@@ -82,20 +118,12 @@
                 {% endif %}
                 <div class="tickerDetailUserCardBottom">Last Price</div>
             </div>
-
-            {% comment %} <img src="../../../static/img/coin-icon.png" alt="">
-            <div class="grid grid_2x1_tickerDetail">
-                <div class="tickerDetailUserCardTop">{{ticker_detail.ticker_price_change_last_hour}}</div>
-                <div class="tickerDetailUserCardBottom">Price Change</div>
-            </div> {% endcomment %}
-
         </div>
 
         <!-- Chart + Statistics Card  -->
         <div>
         <!-- class="grid grid_1x2_tickerDetail" -->
         
-
             <!-- Candlestick Graph  -->
             <div class="tickerDetailCandlestickCard">
                 
@@ -107,7 +135,9 @@
                         <button id="btn-6h" class="tickerDetailTradingViewButton">6H</button>
                         <button id="btn-1d" class="tickerDetailTradingViewButton">1D</button>
                     </div>
-                    {% comment %} <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script> {% endcomment %}
+
+                    <!-- Actual File needed to run TradingView  -->
+                    <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script> 
                     <div id="chart-container" value="{{ticker_detail.ticker_id}}"></div>
                 </div>
                 
@@ -175,11 +205,14 @@
             <div class="tickerDetailBuyOrderbookCard">
                 <header>Orderbook Buy</header>
                 <table class="tickerDetailBuyOrderbookTable">
-                    
+
+                    <!-- Orderbook Header  -->
                     <tr>
                         <th class="tickerDetailOrderbookTableHeader">Price</th>
                         <th class="tickerDetailOrderbookTableHeader">Quantity</th>
                     </tr>
+
+                    <!-- Limit Orderbook to 10 per side  -->
                     {% for buy_order in buy_orders|slice:":10" %}
                         <tr class="tickerDetailBuyOrderbookTableRows">
                             <td data-class="Price">{{buy_order.order_price}}</td>
@@ -187,12 +220,11 @@
                         </tr>
                     {% endfor %}
 
+                    <!-- Last Row of Orderbook, needed for clean formatting  -->
                     <tr>
                         <td style="color:white">0</td>
-                        <td class="tickerDetailBuyRight" style="color:#F5E4E5; border-radius: 0 0 25px 0;">0</td>
+                        <td class="tickerDetailBuyRight" style="color:#F5E4E5">0</td>
                     </tr>
-
-                    
                 </table>
             </div>
 
@@ -200,28 +232,30 @@
             <div class="tickerDetailSellOrderbookCard">
                 <header>Orderbook Sell</header>
                 <table class="tickerDetailSellOrderbookTable">
-                    
+
+                    <!-- Orderbook Header  -->
                     <tr>
                         <th class="tickerDetailOrderbookTableHeader">Price</th>
                         <th class="tickerDetailOrderbookTableHeader">Quantity</th>
                     </tr>
+
+                    <!-- Limit Orderbook to 10 per side  -->
                     {% for sell_order in sell_orders|slice:":10" %}
-                    
                         <tr class="tickerDetailSellOrderbookTableRows">
                             <td data-class="Price">{{sell_order.order_price}}</td>
                             <td class="tickerDetailSellRight" data-class="Quantity">{{sell_order.total_quantity}}</td>
                         </tr>
                     {% endfor %}
-                    
+
+                    <!-- Last Row of Orderbook, needed for clean formatting  -->
                     <tr>
                         <td style="color:white">0</td>
-                        <td class="tickerDetailSellRight" style="color:#F5E4E5; border-radius: 0 0 25px 0;">0</td>
+                        <td class="tickerDetailSellRight" style="color:#F5E4E5">0</td>
                     </tr>
                 </table>
             </div>
 
             <!-- Order Submission Card  -->
-           
             <div class="tickerDetailOrderSubmissionCard">
                 <header>Place Order</header>
                 {% if user.is_authenticated %}
@@ -248,15 +282,16 @@
                         <div class="tickerDetailQuantityInput">
                             <input class="tickerDetailQuantityInput" type="text" placeholder="0" name="order_quantity">
                         </div>
-                        </div>
-                        <input type="hidden" name="ticker_id" value="{{ticker_detail.pk}}">
-                        <button class="tickerDetailSubmitButton" type="submit" name="action" value="submit_order">Submit</button>
+                    </div>
+                    <input type="hidden" name="ticker_id" value="{{ticker_detail.pk}}">
+                    <button class="tickerDetailSubmitButton" type="submit" name="action" value="submit_order">Submit</button>
                 </form>
+
+                <!-- If User is not Authenticated prevent them from trading  -->
                 {% else %}
                     <div class="tickerDetailOrderSubmitNonUser">Please Login to place an Order</div>
                 {% endif %}
             </div>
-
         </div>
     
         <!-- User Statistics  -->
@@ -290,8 +325,10 @@
             </div>
 
             {% if user.is_authenticated %}
+
+                <!-- Active Orders Table -->
                 <div class="tickerDetailUserTableCard" id="orders-section">
-                    <table>
+                    <table id="orders-table">
                         <tr>
                             <th>Match</th>
                             <th>Timestamp</th>
@@ -306,9 +343,8 @@
                             <th>Paid Fees</th>
                             <th>Cancel</th>
                         </tr>
-                    {% for order in user_orders|slice:":20" %}
-                        {% if order.order_status == "OPEN" or order.order_status == "PARTIAL" %}
-                        <tr>
+                    {% for order in user_orders %}
+                        <tr class="order-row">
                             <td data-class="Match">{{order.order_ticker.ticker_game.game_short_name}}</td>
                             <td data-class="Timestamp">{{order.order_creation_timestamp}}</td>
                             <td data-class="Order Type">{{order.order_type}}</td>
@@ -330,22 +366,26 @@
 
                             </td>
                         </tr>
-                        {% endif %}
                     {% endfor %}
                     </table>
-                    <div class="tickerDetailUserTableToggle">
-                        <a href="#" class="tickerDetailArrowLeft"> 
-                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                        </a>
-                        <h4>Page 1 of {{user_orders|length}}</h4>
-                        <a href="#" class="tickerDetailArrowRight"> 
-                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                        </a>
+                    
+                    <div class="tickerDetailUserTableToggleContainer">
+                        <div class="tickerDetailUserTableToggle">
+                            <a href="#" class="tickerDetailArrowLeft" id="prevButtonOrders"> 
+                                <img class="" src="../../../static/img/small-arrow-icon.png" alt="">
+                            </a>
+                            <h4 id="currentPageOrders">Page 1</h4>
+                            <a href="#" class="tickerDetailArrowRight" id="nextButtonOrders"> 
+                                <img class="" src="../../../static/img/small-arrow-icon.png" alt="">
+                            </a>
+                        </div>
                     </div>
                 </div>
+                
 
+                <!-- Fills Table -->
                 <div class="tickerDetailUserTableCard" id="fills-section">
-                    <table>
+                    <table id="fills-table">
                         <tr>
                             <th>Match</th>
                             <th>Timestamp</th>
@@ -354,8 +394,8 @@
                             <th>Quantity</th>
                             <th>Order ID</th>
                         </tr>
-                    {% for fill in user_fills|slice:":20" %}
-                        <tr>
+                    {% for fill in user_fills %}
+                        <tr class="fills-row">
                             <td data-class="Match">{{fill.fill_ticker.ticker_game.game_short_name}}</td>
                             <td data-class="Timestamp">{{fill.fill_timestamp}}</td>
                             <td data-class="Side">{{fill.fill_side}}</td>
@@ -365,21 +405,23 @@
                         </tr>
                     {% endfor %}
                     </table>
-
-                    <div class="tickerDetailUserTableToggle">
-                        <a href="" class="tickerDetailArrowLeft"> 
-                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                        </a>
-                        <h4>20 of {{user_fill|length}}</h4>
-                        <a href="" class="tickerDetailArrowRight"> 
-                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                        </a>
+                    <div class="tickerDetailUserTableToggleContainer">
+                        <div class="tickerDetailUserTableToggle">
+                            <a href="" class="tickerDetailArrowLeft" id="prevButtonFills"> 
+                                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                            </a>
+                            <h4 id="currentPageFills">Page 1</h4>
+                            <a href="" class="tickerDetailArrowRight" id="nextButtonFills"> 
+                                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                            </a>
+                        </div>
                     </div>
+
                 </div>
 
-
+                <!-- Positions Table  -->
                 <div class="tickerDetailUserTableCard" id="positions-section">
-                    <table>
+                    <table id="positions-table">
                         <tr>
                             <th>Match</th>
                             <th>Position</th>
@@ -389,8 +431,8 @@
                             <th>Settled PnL</th>
                             <th>Position Settled</th>
                         </tr>
-                    {% for position in user_positions|slice:":20" %}
-                        <tr>
+                    {% for position in user_positions %}
+                        <tr class="positions-row">
                             <td data-class="Ticker">{{position.position_ticker.ticker_game.game_short_name}}</td>
                             <td data-class="Position">{{position.position_quantity}}</td>
                             <td data-class="Average Price">{{position.position_average_price}}</td>
@@ -401,20 +443,22 @@
                         </tr>
                     {% endfor %}
                     </table>
-
-                    <div class="tickerDetailUserTableToggle">
-                        <a href="" class="tickerDetailArrowLeft"> 
-                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                        </a>
-                        <h4>20 of {{position_user|length}}</h4>
-                        <a href="" class="tickerDetailArrowRight"> 
-                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                        </a>
+                    <div class="tickerDetailUserTableToggleContainer">
+                        <div class="tickerDetailUserTableToggle">
+                            <a href="" class="tickerDetailArrowLeft" id="prevButtonPositions"> 
+                                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                            </a>
+                            <h4 id="currentPagePositions">Page 1</h4>
+                            <a href="" class="tickerDetailArrowRight"id="nextButtonPositions">  
+                                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                            </a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- All Orders Table  -->
                 <div class="tickerDetailUserTableCard" id="historic-orders-section">
-                    <table>
+                    <table id="historic-table">
                         <tr>
                             <th>Match</th>
                             <th>Timestamp</th>
@@ -429,8 +473,8 @@
                             <th>Paid Fees</th>
                             <th>Cancel</th>
                         </tr>
-                    {% for order in user_orders|slice:":20" %}
-                        <tr>
+                    {% for order in user_orders %}
+                        <tr class="historic-row" >
                             <td data-class="Match">{{order.order_ticker.ticker_game.game_short_name}}</td>
                             <td data-class="Timestamp">{{order.order_creation_timestamp}}</td>
                             <td data-class="Order Type">{{order.order_type}}</td>
@@ -466,16 +510,19 @@
                             </td>
                         </tr>
                     {% endfor %}
-
                     </table>
-                    <div class="tickerDetailUserTableToggle">
-                        <a href="#" class="tickerDetailArrowLeft"> 
-                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                        </a>
-                        <h4>Page 1 of {{user_orders|length}}</h4>
-                        <a href="#" class="tickerDetailArrowRight"> 
-                            <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                        </a>
+
+                    <!-- User Pagingation -->
+                    <div class="tickerDetailUserTableToggleContainer">
+                        <div class="tickerDetailUserTableToggle">
+                            <a href="#" class="tickerDetailArrowLeft" id="prevButtonHistoric"> 
+                                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                            </a>
+                            <h4 id="currentPageHistoric">Page 1</h4>
+                            <a href="#" class="tickerDetailArrowRight" id="nextButtonHistoric"> 
+                                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -484,13 +531,9 @@
                 <div class="tickerDetailTableNonUser">Please Login to place an Order</div>
             {% endif %}
         </div>
-
     </div>
 
+    <!-- Right Side  -->
     <div class="empty"></div>
-
   </div>  
-
-  
-
 {% endblock %}

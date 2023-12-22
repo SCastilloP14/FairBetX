@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var tickers = document.querySelectorAll('.ticker');
   var dropdowns = document.querySelectorAll('.custom-dropdown');
   var gameStatus = document.querySelectorAll('.gameStatus');
-  var sportsDropdown = document.getElementById('sportsDropdown');
+  // var sportsDropdown = document.getElementById('sportsDropdown');
   var searchBarGames = document.getElementById('searchBarGames');
   var searchBarTeams = document.getElementById('searchBarTeams');
 
@@ -23,6 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
     checkboxes.forEach(function (checkbox) {
         checkbox.addEventListener('change', function () {
           filterTickers();
+        });
+    });
+
+  var leagueCheckboxes = document.querySelectorAll('.leagueDropdown-checkbox');
+    leagueCheckboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            filterTickersByLeague();
         });
     });
 
@@ -60,19 +67,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  sportsDropdown.addEventListener('change', function (event) {
-    event.preventDefault();
+  // sportsDropdown.addEventListener('change', function (event) {
+  //   event.preventDefault();
 
-    var selectedSport = sportsDropdown.value;
+  //   var selectedSport = sportsDropdown.value;
 
-    tickers.forEach(function (ticker) {
-      if (selectedSport === '' || ticker.classList.contains(selectedSport)) {
-        ticker.style.display = 'block';
-      } else {
-        ticker.style.display = 'none';
-      }
-    });
-  });
+  //   tickers.forEach(function (ticker) {
+  //     if (selectedSport === '' || ticker.classList.contains(selectedSport)) {
+  //       ticker.style.display = 'block';
+  //     } else {
+  //       ticker.style.display = 'none';
+  //     }
+  //   });
+  // });
 
   searchBarGames.addEventListener('input', function (event) {
     event.preventDefault();
@@ -161,6 +168,37 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
         return selectedDates;
+    }
+
+
+  function filterTickersByLeague() {
+    var selectedLeagues = getSelectedLeagues();
+    tickers.forEach(function (ticker) {
+        var tickerLeague = ticker.querySelector('.gameLeague').getAttribute('value');
+        console.log("Ticker league", tickerLeague);
+
+        if (selectedLeagues.length === 0) {
+            // If no leagues are selected, show the ticker
+            ticker.style.display = 'block';
+        } else if (selectedLeagues.some(league => league === tickerLeague)) {
+            // If the ticker's league matches any selected league, show the ticker
+            ticker.style.display = 'block';
+        } else {
+            // Otherwise, hide the ticker
+            ticker.style.display = 'none';
+        }
+    });
+}
+
+    function getSelectedLeagues() {
+        var selectedLeagues = [];
+        leagueCheckboxes.forEach(function (checkbox) {
+            if (checkbox.checked) {
+                selectedLeagues.push(checkbox.value);
+            }
+
+        });
+        return selectedLeagues;
     }
 
 });

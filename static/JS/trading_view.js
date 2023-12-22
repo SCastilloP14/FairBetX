@@ -23,7 +23,11 @@
           timeFormat: ['%Y-%m-%d %H:%M'],
           },
         priceScale: {
+          mode: 0,  // Use '0' for "normal" scale (not logarithmic)
+          autoScale: false,  // Disable auto scaling
+          invertScale: false,  // Set to 'true' if you want the y-axis inverted
           minValue: 0,
+          maxValue: 10,
         },
         rightOffset: 0,
           // Ensure the right-most candlestick stays on scroll
@@ -32,46 +36,65 @@
 
 
 chart.applyOptions({
-    timeScale: {
-        barSpacing: 5,
-
-        borderVisible: false,
-        borderColor: 'red',
-        visible: true,
-        timeVisible: true,
-        secondsVisible: true,
-           
-      },
-
-    }
-);
-
-chart.timeScale().fitContent();
-
-
-  var candlestickSeries = chart.addCandlestickSeries();
-chart.priceScale('right').applyOptions({
-    scaleMargins: {
+  timeScale: {
+      barSpacing: 5,
+      borderVisible: false,
+      borderColor: 'red',
+      visible: true,
+      timeVisible: true,
+      secondsVisible: true, 
+    },
+  priceScale: {
+      scaleMargins: {
         top: 0.6,
         bottom: 0,
+      },
+      borderColor: 'black',  // Set color for y-axis
+      borderWidth: 2,  // Set thickness for y-axis
     },
+  }
+);
+
+// chart.timeScale().fitContent();
+chart.timeScale().applyOptions({
+  borderColor:'red',
+  barSpacing:10,
+})
+
+
+
+chart.priceScale('left').applyOptions({
+  mode: 0,  // Use '0' for "normal" scale (not logarithmic)
+  autoScale: false,  // Disable auto scaling
+  invertScale: false,  // Set to 'true' if you want the y-axis inverted
+  minValue: 0,
+  maxValue: 10,
+});
+
+var candlestickSeries = chart.addCandlestickSeries();
+
+chart.priceScale('right').applyOptions({
+    
+    mode: 0,
+    // autoScale: 0,  
+  // invertScale: false,  // Set to 'true' if you want the y-axis inverted
+  minValue: 0,
+  maxValue: 10,
+    
 });
 
     var timeframe ="5"; //Default Value
 
     function updateChartData() {
-    var ticker_id =document.getElementById("chart-container").getAttribute('value') ;
+    var ticker_id = document.getElementById("chart-container").getAttribute('value') ;
 
-    console.log("ticker", ticker_id);
-    console.log("Time", timeframe);
+    var url = '/api/trades/?ticker_id=' + ticker_id + '&timeframe=' + timeframe;
 
-      var url = '/api/trades/?ticker_id=' + ticker_id + '&timeframe=' + timeframe;
-    console.log(url);
     // Make an AJAX request to get the JSON data
     fetch(url)  // Update with the correct URL
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+
         // Map the fetched JSON data to the required format (open, high, low, close)
         var formattedData = data.map(item => ({
           time: new Date(item.timestamp).getTime()/1000 , 
@@ -101,7 +124,6 @@ chart.priceScale('right').applyOptions({
 
   document.getElementById("btn-1h").addEventListener("click", function () {
     timeframe = '60';
-    console.log("60 Minutes");
     updateChartData(timeframe);
   });
 
