@@ -332,12 +332,10 @@ class TradeViewSet(viewsets.ReadOnlyModelViewSet):
        
         if ticker_id_filter is not None:
             selected_ticker = Ticker.objects.get(ticker_id=ticker_id_filter)
-            print("is this the selected ticker?", selected_ticker)
             # trades = Trade.objects.filter(trade_ticker=selected_ticker).order_by('timestamp')
             trades = Trade.objects.filter(trade_ticker=selected_ticker)
 
             if timeframe_filter:
-                print("inside timeframe")
                 # Your OHLC candle calculation logic here
                 ohlc_candles = []  # Store OHLC candle data here
 
