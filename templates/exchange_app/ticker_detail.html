@@ -332,12 +332,13 @@
                         <tr>
                             <th>Match</th>
                             <th>Timestamp</th>
+                            <th>Betting on Team</th>
                             <th>Order Type</th>
                             <th>Side</th>
                             <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Filled Quantity</th>
-                            <th>Working Quantity</th>
+                            <th>Qty</th>
+                            <th>Filled Qty</th>
+                            <th>Working Qty</th>
                             <th>Avg. Fill Price</th>
                             <th>Status</th>
                             <th>Paid Fees</th>
@@ -347,12 +348,17 @@
                         <tr class="order-row">
                             <td data-class="Match">{{order.order_ticker.ticker_game.game_short_name}}</td>
                             <td data-class="Timestamp">{{order.order_creation_timestamp}}</td>
+                            {% if order.order_side == "SELL" %}
+                                <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_away_team.team_name}}</td>
+                            {% else %}
+                                <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_home_team.team_name}}</td>
+                            {% endif %}
                             <td data-class="Order Type">{{order.order_type}}</td>
                             <td data-class="Side">{{order.order_side}}</td>
                             <td data-class="Price">{{order.order_price}}</td>
-                            <td data-class="Quantity">{{order.order_quantity}}</td>
-                            <td data-class="Filled Quantity">{{order.order_filled_quantity}}</td>
-                            <td data-class="Working Quantity">{{order.order_working_quantity}}</td>                   
+                            <td data-class="Qty">{{order.order_quantity}}</td>
+                            <td data-class="Filled Qty">{{order.order_filled_quantity}}</td>
+                            <td data-class="Working Qty">{{order.order_working_quantity}}</td>                   
                             <td data-class="Avg. Fill Price">{{order.order_avg_fill_price}}</td>
                             <td data-class="Status">{{order.order_status}}</td>
                             <td data-class="Paid Fees">{{order.order_paid_fees}}</td>
@@ -425,6 +431,7 @@
                         <tr>
                             <th>Match</th>
                             <th>Position</th>
+                            <th>Game Score</th>
                             <th>Average Price</th>
                             <th>Open PnL</th>
                             <th>Closed PnL</th>
@@ -435,6 +442,15 @@
                         <tr class="positions-row">
                             <td data-class="Ticker">{{position.position_ticker.ticker_game.game_short_name}}</td>
                             <td data-class="Position">{{position.position_quantity}}</td>
+                            {% if position.position_ticker.ticker_game.game_status == "SCHEDULED" %}
+                                <td data-class="Game Score">SCHEDULED</td>
+                            {% elif position.position_ticker.ticker_game.game_status == "PLAYING"%}
+                                <td data-class="Game Score">{{position.position_ticker.ticker_game.game_away_team_score}}-{{position.position_ticker.ticker_game.game_home_team_score}}</td>
+                            {% elif position.position_ticker.ticker_game.game_status == "FINISHED"%}
+                                <td data-class="Game Score">F {{position.position_ticker.ticker_game.game_away_team_score}}-{{position.position_ticker.ticker_game.game_home_team_score}}</td>
+                            {% else %}
+                                <td data-class="Game Score">{{position.position_ticker.ticker_game.game_status}}</td>
+                            {% endif %}
                             <td data-class="Average Price">{{position.position_average_price}}</td>
                             <td data-class="Open PnL">{{position.position_open_pnl}}</td>
                             <td data-class="Closed PnL">{{position.position_closed_pnl}}</td>
@@ -462,12 +478,13 @@
                         <tr>
                             <th>Match</th>
                             <th>Timestamp</th>
+                            <th>Betting on Team</th>
                             <th>Order Type</th>
                             <th>Side</th>
                             <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Filled Quantity</th>
-                            <th>Working Quantity</th>
+                            <th>Qty</th>
+                            <th>Filled Qty</th>
+                            <th>Working Qty</th>
                             <th>Avg. Fill Price</th>
                             <th>Status</th>
                             <th>Paid Fees</th>
@@ -477,12 +494,17 @@
                         <tr class="historic-row" >
                             <td data-class="Match">{{order.order_ticker.ticker_game.game_short_name}}</td>
                             <td data-class="Timestamp">{{order.order_creation_timestamp}}</td>
+                            {% if order.order_side == "SELL" %}
+                                <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_away_team.team_name}}</td>
+                            {% else %}
+                                <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_home_team.team_name}}</td>
+                            {% endif %}
                             <td data-class="Order Type">{{order.order_type}}</td>
                             <td data-class="Side">{{order.order_side}}</td>
                             <td data-class="Price">{{order.order_price}}</td>
-                            <td data-class="Quantity">{{order.order_quantity}}</td>
-                            <td data-class="Filled Quantity">{{order.order_filled_quantity}}</td>
-                            <td data-class="Working Quantity">{{order.order_working_quantity}}</td>
+                            <td data-class="Qty">{{order.order_quantity}}</td>
+                            <td data-class="Filled Qty">{{order.order_filled_quantity}}</td>
+                            <td data-class="Working Qty">{{order.order_working_quantity}}</td>
                             {% if order.order_avg_fill_price%}                   
                                 <td data-class="Avg. Fill Price">{{order.order_avg_fill_price}}</td>
                             {% else %}
