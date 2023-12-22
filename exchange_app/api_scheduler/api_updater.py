@@ -35,15 +35,15 @@ def start():
     #     update_players_data(team_id)
     
     # print(datetime.now())
-    leagues = League.objects.filter()
-    leagues_details = [{"league_id": league.league_id,
-                        "league_season": league.league_current_season
-                        } for league in leagues]
-    for league in leagues_details:
-        league_id = league["league_id"]
-        league_season = league["league_season"]
-        scheduler.add_job(update_season_game_data, "interval", hours=2, id=f"update_{league_id}_season_games", args=[league_id, league_season], replace_existing=True, 
-                      next_run_time=datetime.now() + timedelta(minutes=10))
+    # leagues = League.objects.filter()
+    # leagues_details = [{"league_id": league.league_id,
+    #                     "league_season": league.league_current_season
+    #                     } for league in leagues]
+    # for league in leagues_details:
+    #     league_id = league["league_id"]
+    #     league_season = league["league_season"]
+    #     scheduler.add_job(update_season_game_data, "interval", hours=2, id=f"update_{league_id}_season_games", args=[league_id, league_season], replace_existing=True, 
+    #                   next_run_time=datetime.now() + timedelta(minutes=10))
 
 
     leagues = League.objects.filter()

@@ -35,6 +35,7 @@ class WelcomeView(TemplateView):
 # ----------------- LOGIN/LOGOUT/SIGN UP -----------------
 
 def registration(request):
+    next_url = request.GET.get('next')
     registered = False
     if request.method == "POST":
         user_form = UserForm(data=request.POST)
@@ -52,7 +53,7 @@ def registration(request):
             # User authentication
             user = authenticate(username=user.username, password=request.POST['password'])
             login(request, user)
-            return redirect('exchange_app:tickers')  # Redirect to a success page or dashboard
+            return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
         else:
             print(user_form.errors, profile_form.errors)
     else:
@@ -65,6 +66,7 @@ def registration(request):
     return render(request, "exchange_app/welcome.html", context_dict)
 
 def user_login(request):
+    next_url = request.GET.get('next')
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
@@ -72,8 +74,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return redirect('exchange_app:ticker_list')
-                # return HttpResponseRedirect(reverse("exchange_app:tickers"))
+                return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
             else:
                 return HttpResponse("Account not active!")
         else:
@@ -85,9 +86,9 @@ def user_login(request):
 
 @login_required
 def user_logout(request):
+    next_url = request.GET.get('next')
     logout(request)
-    return HttpResponseRedirect(reverse("index"))
-
+    return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
 
 
 # ---------------------- USER PAGES -------------------------

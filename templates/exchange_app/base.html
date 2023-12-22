@@ -76,7 +76,7 @@
                       <a href="{% url 'user_detail' pk=user.id %}">
                           <button class="navButton">My Account</button>
                       </a>    
-                      <a href="{% url 'user_logout' %}">
+                      <a href="{% url 'user_logout' %}?next={{ request.path }}">
                           <button class="navButton">Log Out</button>
                       </a>
                       
@@ -102,7 +102,7 @@
                               <span>New user?</span>
                               <a id="newUserButton">Create an account</a>
                           </div>
-                          <form method="post" class="form" action="{% url "user_login" %}">
+                          <form method="post" class="form" action="{% url "user_login" %}?next={{ request.path }}">
                               {% csrf_token %}
 
                               <div class="cardInputForm">
@@ -155,7 +155,7 @@
                             <a id="existingUserButton">Log In</a>
                         </div>
 
-                        <form method="post" class="form" action="{% url 'user_registration' %}" enctype="multipart/form-data">
+                        <form method="post" class="form" action="{% url 'user_registration' %}?next={{ request.path }}" enctype="multipart/form-data">
                             {% csrf_token %}
 
                             <div class="card_input_form card_input_form_small">
