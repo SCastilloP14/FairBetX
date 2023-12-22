@@ -1202,6 +1202,10 @@ outline: none;
     color:#5F5F5F;
      padding-bottom:20px;
 }
+.historic-row td {
+    line-height:10px ;
+    padding:0;
+}
 
 .tickerDetailUserStatisticsCancelButton {
     border-radius: 15px;
