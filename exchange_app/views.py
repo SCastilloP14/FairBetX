@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-from django.db.models import Sum
+from django.db.models import Sum, Q
 from django.db.models.query import QuerySet
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
@@ -18,10 +18,17 @@ import pandas as pd
 from datetime import timedelta
 from django.db.models import Min
 from rest_framework.response import Response
-from django.db.models import Q
+from django.contrib import messages
+from geopy.geocoders import Nominatim
 
 
 # Create your views here.
+
+def get_location_from_ip(ip_address):
+    geolocator = Nominatim(user_agent="your_app_name")
+    location = geolocator.geocode(ip_address)
+    print(location)
+    return location.address if location else None
 
 # --------=======-------- INDEX/WELCOME --------------------
 
@@ -40,22 +47,27 @@ def registration(request):
     if request.method == "POST":
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileInfoForm(data=request.POST)
-        if user_form.is_valid() and profile_form.is_valid():
-            # User Creation
-            user = user_form.save(commit=False)
-            user.username = user.email
-            user.set_password(user.password)
-            user.save()
-            # User Profile Info creation
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
-            # User authentication
-            user = authenticate(username=user.username, password=request.POST['password'])
-            login(request, user)
-            return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
+        if user_form.is_valid():
+            if profile_form.is_valid():
+                # User Creation
+                user = user_form.save(commit=False)
+                user.username = user.email
+                user.set_password(user.password)
+                user.save()
+                # User Profile Info creation
+                profile = profile_form.save(commit=False)
+                profile.user = user
+                profile.save()
+                # User authentication
+                user = authenticate(username=user.username, password=request.POST['password'])
+                login(request, user)
+                return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
+            else:
+                messages.error(request, profile_form.errors)
+                redirect(next_url)
         else:
-            print(user_form.errors, profile_form.errors)
+            messages.error(request, user_form.errors)
+            redirect(next_url)
     else:
         user_form = UserForm()
         # profile_form = UserProfileInfoForm()
@@ -66,6 +78,9 @@ def registration(request):
     return render(request, "exchange_app/welcome.html", context_dict)
 
 def user_login(request):
+    user_ip = request.META.get('REMOTE_ADDR')
+    print(user_ip)
+    location = get_location_from_ip(user_ip)
     next_url = request.GET.get('next')
     if request.method == "POST":
         username = request.POST.get("username")
@@ -74,12 +89,15 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
+                # LoginRecord.objects.create(login_user=user, login_ip=user_ip)
                 return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
             else:
-                return HttpResponse("Account not active!")
+                messages.error(request, "User is inactive")
+                return redirect(next_url)
         else:
-            print("Failed login")
-            return HttpResponse("Invalid Login Details")
+            print(next_url)
+            messages.error(request, "Auth Error")
+            return redirect(next_url)
     else:
         return render(request, "exchange_app/login.html", {})
 

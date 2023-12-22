@@ -196,12 +196,25 @@
                                 required
                                 placeholder="Password"></input>
                             </div>
+                            <div class="card_input_form">
+                                <input 
+                                action="PasswordConfirmation" 
+                                type="password"
+                                name="password_confirmation"
+                                required
+                                placeholder="Confirm Password"></input>
+                            </div>
+                            {% if messages %}
+                                {% for msg in messages %}
+                                    {{msg}}
+                                {% endfor %}
+                            {%endif%}
                             <div class="card_button">
                                 <input 
                                     type="submit"
                                     class="letsBeginButton"
                                     value="Register Now">
-                                <!-- <button class="login_button">Let's Begin</button> -->
+                                <!-- <button class="logi n_button">Let's Begin</button> -->
                             </div>
                         </form>
                         
