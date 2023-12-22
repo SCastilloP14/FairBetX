@@ -38,7 +38,7 @@
     <div class="empty"></div>
     <div class="middle_section">
         <!-- Header  -->
-        <div class="tickerDetailHeader">{{ticker_detail.ticker_game.game_league_1.league_name}}</div>
+        <div class="tickerDetailHeader">{{ticker_detail.ticker_game.game_league.league_name}}</div>
         <div class="tickerDetailGameDetails grid grid_1x9">
             {% if ticker_detail.ticker_game.game_progress %}
                 <div class="tickerDetailGamePeriod">{{ticker_detail.ticker_game.game_progress}}</div>
@@ -77,7 +77,7 @@
             <div>
                 <img class="tickerDetailTimeIcon" src="../../../static/img/clock-icon.png" alt="">
             </div>
-            <div class="tickerDetailGameTime">{{ticker_detail.ticker_game.game_start_datetime|timezone:"local"|date:"g:i A"}}</div>
+            <div class="tickerDetailGameTime">{{ticker_detail.ticker_game.game_start_datetime|date:"g:i A"}}</div>
              <div>
                 <img  class="tickerDetailLocationIcon" src="../../../static/img/location-icon.png" alt="">
             </div>
