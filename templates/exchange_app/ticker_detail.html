@@ -344,10 +344,10 @@
                             <th>Paid Fees</th>
                             <th>Cancel</th>
                         </tr>
-                    {% for order in user_orders %}
+                    {% for order in user_orders|dictsort:"order_creation_timestamp" reversed %}
                         <tr class="order-row">
                             <td data-class="Match">{{order.order_ticker.ticker_game.game_short_name}}</td>
-                            <td data-class="Timestamp">{{order.order_creation_timestamp}}</td>
+                            <td data-class="Timestamp">{{order.order_creation_timestamp|date:"d/m/y H:i:s"}}</td>
                             {% if order.order_side == "SELL" %}
                                 <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_away_team.team_name}}</td>
                             {% else %}
@@ -400,10 +400,10 @@
                             <th>Quantity</th>
                             <th>Order ID</th>
                         </tr>
-                    {% for fill in user_fills %}
+                    {% for fill in user_fills|dictsort:"fill_timestamp" reversed %}
                         <tr class="fills-row">
                             <td data-class="Match">{{fill.fill_ticker.ticker_game.game_short_name}}</td>
-                            <td data-class="Timestamp">{{fill.fill_timestamp}}</td>
+                            <td data-class="Timestamp">{{fill.fill_timestamp|date:"d/m/y H:i:s"}}</td>
                             <td data-class="Side">{{fill.fill_side}}</td>
                             <td data-class="Price">{{fill.fill_price}}</td>
                             <td data-class="Quantity">{{fill.fill_quantity}}</td>
@@ -490,10 +490,10 @@
                             <th>Paid Fees</th>
                             <th>Cancel</th>
                         </tr>
-                    {% for order in user_orders %}
+                    {% for order in user_orders|dictsort:"order_creation_timestamp" reversed %}
                         <tr class="historic-row" >
                             <td data-class="Match">{{order.order_ticker.ticker_game.game_short_name}}</td>
-                            <td data-class="Timestamp">{{order.order_creation_timestamp}}</td>
+                            <td data-class="Timestamp">{{order.order_creation_timestamp|date:"d/m/y H:i:s"}}</td>
                             {% if order.order_side == "SELL" %}
                                 <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_away_team.team_name}}</td>
                             {% else %}
