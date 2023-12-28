@@ -103,6 +103,7 @@ def user_login(request):
     user_ip = request.META.get('REMOTE_ADDR')
     # user_ip = "64.137.146.109"
     login_geolocation = get_location_from_ip(user_ip)
+    print(login_geolocation)
     if login_geolocation["country"] == "Canada" and login_geolocation["region"] == "ON":
         if request.method == "POST":
             username = request.POST.get("username")
