@@ -6,7 +6,6 @@ from exchange_app.models import UserProfileInfo, Order, OrderType
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     password_confirmation = forms.CharField(widget=forms.PasswordInput())
-
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name')

@@ -14,21 +14,24 @@ from django.http import JsonResponse
 from rest_framework import viewsets
 from exchange_app.serializer import TradeSerializer, CustomTradeSerializer
 import json
+import requests
 import pandas as pd
 from datetime import timedelta
 from django.db.models import Min
 from rest_framework.response import Response
 from django.contrib import messages
 from geopy.geocoders import Nominatim
+import geoip2.database
 
-
-# Create your views here.
 
 def get_location_from_ip(ip_address):
-    geolocator = Nominatim(user_agent="your_app_name")
-    location = geolocator.geocode(ip_address)
-    print(location)
-    return location.address if location else None
+    print("searchinf gor ip", ip_address)
+    location_url = f"http://ip-api.com/json/{ip_address}"
+    location_data = requests.get(location_url)
+    location_dict = json.loads(location_data.text)
+    print(location_dict)
+
+    return location_dict
 
 # --------=======-------- INDEX/WELCOME --------------------
 
@@ -47,27 +50,45 @@ def registration(request):
     if request.method == "POST":
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileInfoForm(data=request.POST)
-        if user_form.is_valid():
-            if profile_form.is_valid():
-                # User Creation
-                user = user_form.save(commit=False)
-                user.username = user.email
-                user.set_password(user.password)
-                user.save()
-                # User Profile Info creation
-                profile = profile_form.save(commit=False)
-                profile.user = user
-                profile.save()
-                # User authentication
-                user = authenticate(username=user.username, password=request.POST['password'])
-                login(request, user)
-                return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
+        age_acnkowledgment = request.POST.get("age_acnkowledgment")
+        terms_agreement = request.POST.get("terms_agreement")
+        user_ip = request.META.get('REMOTE_ADDR')
+        user_ip = "64.137.146.109"
+        sign_up_geolocation = get_location_from_ip(user_ip)
+        print(sign_up_geolocation)
+        if sign_up_geolocation["country"] == "Canada" and sign_up_geolocation["region"] == "ON":
+            if age_acnkowledgment == 'on':
+                if terms_agreement == 'on':
+                    if user_form.is_valid():
+                        if profile_form.is_valid():
+                            # User Creation
+                            user = user_form.save(commit=False)
+                            user.username = user.email
+                            user.set_password(user.password)
+                            user.save()
+                            # User Profile Info creation
+                            profile = profile_form.save(commit=False)
+                            profile.user = user
+                            profile.save()
+                            # User authentication
+                            user = authenticate(username=user.username, password=request.POST['password'])
+                            login(request, user)
+                            return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
+                        else:
+                            messages.error(request, profile_form.errors)
+                            return redirect(next_url)
+                    else:
+                        messages.error(request, user_form.errors)
+                        return redirect(next_url)
+                else:
+                    messages.error(request, 'PLEASE AGREE TO TERMS AND CONDITIONS')
+                    return redirect(next_url)
             else:
-                messages.error(request, profile_form.errors)
-                redirect(next_url)
+                messages.error(request, 'YOU MUST BE +19 TO PLAY')
+                return redirect(next_url)
         else:
-            messages.error(request, user_form.errors)
-            redirect(next_url)
+            messages.error(request, "User not in ONTARIO!")
+            return redirect(next_url)
     else:
         user_form = UserForm()
         # profile_form = UserProfileInfoForm()
@@ -78,35 +99,44 @@ def registration(request):
     return render(request, "exchange_app/welcome.html", context_dict)
 
 def user_login(request):
-    user_ip = request.META.get('REMOTE_ADDR')
-    print(user_ip)
-    location = get_location_from_ip(user_ip)
     next_url = request.GET.get('next')
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        user = authenticate(username=username, password=password)
-        if user:
-            if user.is_active:
-                login(request, user)
-                # LoginRecord.objects.create(login_user=user, login_ip=user_ip)
-                return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
+    user_ip = request.META.get('REMOTE_ADDR')
+    user_ip = "64.137.146.109"
+    login_geolocation = get_location_from_ip(user_ip)
+    if login_geolocation["country"] == "Canada" and login_geolocation["region"] == "ON":
+        if request.method == "POST":
+            username = request.POST.get("username")
+            password = request.POST.get("password")
+            acknowledge_fit_to_play = request.POST.get("acknowledge_fit_to_play")
+            if acknowledge_fit_to_play == 'on':
+                user = authenticate(username=username, password=password)
+                if user:
+                    if user.is_active:
+                        login(request, user)
+                        # LoginRecord.objects.create(login_user=user, login_ip=user_ip)
+                        return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
+                    else:
+                        messages.error(request, "User is inactive")
+                        return redirect(next_url)
+                else:
+                    print(next_url)
+                    messages.error(request, "Auth Error")
+                    return redirect(next_url)
             else:
-                messages.error(request, "User is inactive")
-                return redirect(next_url)
+                messages.error(request, "User not in fit to play!")
         else:
-            print(next_url)
-            messages.error(request, "Auth Error")
-            return redirect(next_url)
+            return render(request, "exchange_app/login.html", {})
     else:
-        return render(request, "exchange_app/login.html", {})
+        messages.error(request, "User not in ONTARIO!")
+        return redirect(next_url)
+
 
 
 @login_required
 def user_logout(request):
     next_url = request.GET.get('next')
     logout(request)
-    return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
+    return redirect(next_url)
 
 
 # ---------------------- USER PAGES -------------------------

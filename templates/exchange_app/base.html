@@ -120,11 +120,19 @@
                                       type="password"
                                       placeholder="Password"></input>
                               </div>
+                              <div>
+                                <input 
+                                    name="acknowledge_fit_to_play"
+                                    type="checkbox"
+                                    id="acknowledge_fit_to_play">
+                                <label for="acknowledge_fit_to_play">I acknowledge that I am eligible to to play and not under the influence
+                                    of alcohol or any other substance that may affect your ability to play</label>
+                            </div>
                               <input 
                                   class="loginButton"
                                   type="submit"
                                   value="Log In">
-                              </form>
+                            </form>
                           <div class="cardHorizontalLineSeparator">
                               <div class="horizontalLine"></div>
                               <div>Or log in with</div>
@@ -157,7 +165,7 @@
 
                         <form method="post" class="form" action="{% url 'user_registration' %}?next={{ request.path }}" enctype="multipart/form-data">
                             {% csrf_token %}
-
+                        
                             <div class="card_input_form card_input_form_small">
                                 <input 
                                     action="First Name" 
@@ -172,7 +180,7 @@
                                     required
                                     placeholder="Last Name"></input>
                             </div>
-                            
+                        
                             <div class="card_input_form">
                                 <input 
                                     action="Email" 
@@ -181,6 +189,7 @@
                                     required
                                     placeholder="Email Address"></input>
                             </div>
+                        
                             <input 
                                 action="Username" 
                                 type="username"
@@ -188,33 +197,50 @@
                                 required
                                 hidden
                                 value="Email"></input>
+                        
                             <div class="card_input_form">
                                 <input 
-                                action="Password" 
-                                type="password"
-                                name="password"
-                                required
-                                placeholder="Password"></input>
+                                    action="Password" 
+                                    type="password"
+                                    name="password"
+                                    required
+                                    placeholder="Password"></input>
                             </div>
+                        
                             <div class="card_input_form">
                                 <input 
-                                action="PasswordConfirmation" 
-                                type="password"
-                                name="password_confirmation"
-                                required
-                                placeholder="Confirm Password"></input>
+                                    action="PasswordConfirmation" 
+                                    type="password"
+                                    name="password_confirmation"
+                                    required
+                                    placeholder="Confirm Password"></input>
                             </div>
-                            {% if messages %}
-                                {% for msg in messages %}
-                                    {{msg}}
-                                {% endfor %}
-                            {%endif%}
+                        
+                            <div>
+                                <input 
+                                    action="AgeAcknowledgement" 
+                                    type="checkbox"
+                                    name="age_acknowledgement"
+                                    id="age_acknowledgement"
+                                    required>
+                                <label for="age_acknowledgement">I confirm that I am +19</label>
+                            </div>
+                        
+                            <div>
+                                <input 
+                                    action="TermsAgreement" 
+                                    type="checkbox"
+                                    name="terms_agreement"
+                                    id="terms_agreement"
+                                    required>
+                                <label for="terms_agreement">I agree to the terms and conditions</label>
+                            </div>
+                        
                             <div class="card_button">
                                 <input 
                                     type="submit"
                                     class="letsBeginButton"
                                     value="Register Now">
-                                <!-- <button class="logi n_button">Let's Begin</button> -->
                             </div>
                         </form>
                         
