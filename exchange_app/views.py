@@ -53,7 +53,7 @@ def registration(request):
         age_acnkowledgment = request.POST.get("age_acnkowledgment")
         terms_agreement = request.POST.get("terms_agreement")
         user_ip = request.META.get('REMOTE_ADDR')
-        user_ip = "64.137.146.109"
+        # user_ip = "64.137.146.109"
         sign_up_geolocation = get_location_from_ip(user_ip)
         print(sign_up_geolocation)
         if sign_up_geolocation["country"] == "Canada" and sign_up_geolocation["region"] == "ON":
@@ -85,10 +85,10 @@ def registration(request):
                     return redirect(next_url)
             else:
                 messages.error(request, 'YOU MUST BE +19 TO PLAY')
-                return redirect(next_url)
+                return HttpResponse("You must be over 19 to play")
         else:
             messages.error(request, "User not in ONTARIO!")
-            return redirect(next_url)
+            return HttpResponse("You must be in Ontario to play")
     else:
         user_form = UserForm()
         # profile_form = UserProfileInfoForm()
@@ -101,7 +101,7 @@ def registration(request):
 def user_login(request):
     next_url = request.GET.get('next')
     user_ip = request.META.get('REMOTE_ADDR')
-    user_ip = "64.137.146.109"
+    # user_ip = "64.137.146.109"
     login_geolocation = get_location_from_ip(user_ip)
     if login_geolocation["country"] == "Canada" and login_geolocation["region"] == "ON":
         if request.method == "POST":
@@ -124,11 +124,12 @@ def user_login(request):
                     return redirect(next_url)
             else:
                 messages.error(request, "User not in fit to play!")
+                return HttpResponse("You must say your are fit to play")
         else:
             return render(request, "exchange_app/login.html", {})
     else:
         messages.error(request, "User not in ONTARIO!")
-        return redirect(next_url)
+        return HttpResponse("You must be in Ontario to play")
 
 
 
