@@ -1,105 +1,125 @@
 <!DOCTYPE html>
-{% extends "exchange_app/base.html" %}
+{% extends "exchange_app/base.html" %} {% block body_block %}
+ <!-- 
 
-{% block body_block %}
+    welcome.html
 
-    <!-- Home Container -->
-    <div class="homeContainer">
-        <!-- First Section Below Nav Bar -->
-        <div class="homeFirstSection">
-            <img src="../../../static/img/Mask_Group_9.png" alt="">
-            <!-- <img  src="../../../static/img/Mask_Group_10.png"  alt=""> -->
+    Connections:
+        Previous: Nav bar 
+        After: User Detail
+
+    Welcome is the home page that shows an overview of what FBX offers. When the user is not logged in there are multiple
+    call to actions, to incentivize the user to register/login. If the user is logged then the buttons switch to lead 
+    them to the User Detail Page.
+
+    JS Files:
+        -
+    
+    CSS Files:
+        welcome.css
+        
+ -->
+<head>
+    <link rel="stylesheet" href="../../static/CSS/welcome.css" />
+</head>
+
+<!-- Home Container -->
+<div class="homeContainer">
+    <!-- First Section Below Nav Bar -->
+    <div class="homeFirstSection">
+        <img src="../../../static/img/Mask_Group_9.png" alt="">
+        <!-- <img  src="../../../static/img/Mask_Group_10.png"  alt=""> -->
+    </div>
+    <!-- Second Section Below Nav Bar -->
+    <div class="homeSecondSection grid gridHome1x3">
+
+        <!-- Left Section  -->
+        <div class="empty"></div>
+
+        <!-- Middle Section  -->
+        <div style="text-align: center;">
+            <h2 id="homeSecondSectionHeader">Sports Bet</h2>
+            <h4 id="homeSecondSectionDescription">FBX offers a truly new and innovative betting experience. You control the game, place your bet and see exactly what others are doing</h4>
+            
+            <!-- Button leading to Signin sheet -->
+            {% if user.is_authenticated %}
+                <a href="{% url 'user_detail' pk=user.id %}">
+                    <button id="startBettingButton" class="bettingButton">My Account</button>
+                </a>
+            {% else %}
+            <button id="startBettingButton" class="bettingButton">Start Betting</button>
+            {% endif %}
+
+            
+
+            <!-- <button class="bettingButton"> Start Betting</button> -->
+
+            <!-- Second Image  -->
+            <div class="homeSecondSectionImages">
+                <img src="../../../static/img/n_75shots_so.png" alt="">
+                <img class="overflowImage" src="../../../static/img/n_83shots_so.png" alt="">
+            </div>
+
+            
         </div>
-        <!-- Second Section Below Nav Bar -->
-        <div class="homeSecondSection grid gridHome1x3">
 
-            <!-- Left Section  -->
-            <div class="empty"></div>
+        <!-- Right Section  -->
+        <div class="empty"></div>
+    </div>
 
-            <!-- Middle Section  -->
-            <div style="text-align: center;">
-                <h2 id="homeSecondSectionHeader">Sports Bet</h2>
-                <h4 id="homeSecondSectionDescription">FBX offers a truly new and innovative betting experience. You control the game, place your bet and see exactly what others are doing</h4>
-                
-                <!-- Button leading to Signin sheet -->
+    <!-- Third Section  -->
+    <div class="homeThirdSection grid gridHome1x3">
+        <!-- Left Section  -->
+        <div class="empty"></div>
+
+        <!-- Middle Section -->
+        <div class="grid gridHome1x2">
+            <!-- Left Side with Text  -->
+            <div class="homeThirdSectionLeftSide">
+                <h2 id="homeThirdSectionHeader">Trading Guide</h2>
+                <h4 id="homeThirdSectionDescription">Trade your favourite sport in a completely new and excitign way! FBX offers a unique betting experience you will not find anywhere else.</h4>
+                <div class="grid gridHome3x2" style="height:auto">
+                    <button class="homeThirdSectionButton">1</button>
+                    <div class="homeThirdSectionText">
+                        <h2>Low Cost</h2>
+                        <span>Betting on FBX is significantly cheaper compared to other betting sites as you only pay for bets that get filled</span>
+                    </div>
+                    <button class="homeThirdSectionButton">2</button>
+                    <div class="homeThirdSectionText">
+                        <h2>Full Transparency</h2>
+                        <span>FBX offers full transparency where you can see all bets being placed on your favourite games!</span>
+                    </div>
+                    <button class="homeThirdSectionButton">3</button>
+                    <div class="homeThirdSectionText">
+                        <h2>Unique Betting Experience</h2>
+                        <span>Take advantage of the open market and trade whenever you want. Take advantage of the happening in real time to place new and exciting bets!</span>
+                    </div>
+                </div>
+            
                 {% if user.is_authenticated %}
                     <a href="{% url 'user_detail' pk=user.id %}">
-                        <button id="startBettingButton" class="bettingButton">My Account</button>
+                        <button id="beingJourneyButton" class="beginJourneyButton">My Account</button>
                     </a>
                 {% else %}
-                <button id="startBettingButton" class="bettingButton">Start Betting</button>
+                <button id="beingJourneyButton" class="beginJourneyButton">Begin Journey</button>
                 {% endif %}
-
                 
+                <!-- <button class="beginJourneyButton">Begin Journey</button> -->
 
-                <!-- <button class="bettingButton"> Start Betting</button> -->
-
-                <!-- Second Image  -->
-                <div class="homeSecondSectionImages">
-                    <img src="../../../static/img/n_75shots_so.png" alt="">
-                    <img class="overflowImage" src="../../../static/img/n_83shots_so.png" alt="">
-                </div>
-
-                
             </div>
 
-            <!-- Right Section  -->
-            <div class="empty"></div>
-        </div>
-
-        <!-- Third Section  -->
-        <div class="homeThirdSection grid gridHome1x3">
-            <!-- Left Section  -->
-            <div class="empty"></div>
-
-            <!-- Middle Section -->
-            <div class="grid gridHome1x2">
-                <!-- Left Side with Text  -->
-                <div class="homeThirdSectionLeftSide">
-                    <h2 id="homeThirdSectionHeader">Trading Guide</h2>
-                    <h4 id="homeThirdSectionDescription">Trade your favourite sport in a completely new and excitign way! FBX offers a unique betting experience you will not find anywhere else.</h4>
-                    <div class="grid gridHome3x2" style="height:auto">
-                        <button class="homeThirdSectionButton">1</button>
-                        <div class="homeThirdSectionText">
-                            <h2>Low Cost</h2>
-                            <span>Betting on FBX is significantly cheaper compared to other betting sites as you only pay for bets that get filled</span>
-                        </div>
-                        <button class="homeThirdSectionButton">2</button>
-                        <div class="homeThirdSectionText">
-                            <h2>Full Transparency</h2>
-                            <span>FBX offers full transparency where you can see all bets being placed on your favourite games!</span>
-                        </div>
-                        <button class="homeThirdSectionButton">3</button>
-                        <div class="homeThirdSectionText">
-                            <h2>Unique Betting Experience</h2>
-                            <span>Take advantage of the open market and trade whenever you want. Take advantage of the happening in real time to place new and exciting bets!</span>
-                        </div>
-                    </div>
-                
-                    {% if user.is_authenticated %}
-                        <a href="{% url 'user_detail' pk=user.id %}">
-                            <button id="beingJourneyButton" class="beginJourneyButton">My Account</button>
-                        </a>
-                    {% else %}
-                    <button id="beingJourneyButton" class="beginJourneyButton">Begin Journey</button>
-                    {% endif %}
-                    
-                    <!-- <button class="beginJourneyButton">Begin Journey</button> -->
-
-                </div>
-
-                <!-- Right Side with Image  -->
-                <div class="homeThirdSectionRightSide">
-                    <img src="../../../static/img/SMac.png" alt="">
-                </div>
+            <!-- Right Side with Image  -->
+            <div class="homeThirdSectionRightSide">
+                <img src="../../../static/img/SMac.png" alt="">
             </div>
-
-            <!-- Right Section  -->
-            <div class="empty"></div>
-
         </div>
-        
+
+        <!-- Right Section  -->
+        <div class="empty"></div>
+
     </div>
+    
+</div>
 
 {% endblock %}
 

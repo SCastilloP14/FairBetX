@@ -1,5 +1,23 @@
 {% extends "exchange_app/base.html" %} {% block body_block %}
+ <!-- 
 
+    team_detail.html
+
+    Connections:
+        Previous: League Detail, Ticker List, Ticker Detail  
+        After: Ticker Detail, League Detail
+
+    Team Detail is a html to show the team specific team information such as players, staff, history and their respective
+    position within their division/conference. Players will eventually be linked to lead to player detail pages, but
+    that is not completed yet. All upcoming games for the team are shown as well as a button that leads to the League Detail page.
+
+    CSS Files:
+        team_detail.css            Team Detail specific styles
+
+ -->
+<head>
+    <link rel="stylesheet" href="../../static/CSS/team_detail.css" />
+</head>
 
 <div class="leagueOverview">    
     <div class="teamDetailleagueOverviewHeader">

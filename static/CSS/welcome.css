@@ -1,0 +1,21 @@
+@import './styles.css';
+/* Small device size  */
+
+@media (600px <= width <= 767px) {
+    
+}
+
+/* Medium screens  */
+@media (768px <= width <= 991px) {
+    
+}
+
+/* Large screens  */
+@media (992px <= width <= 1199px) {
+    
+} 
+
+/* Large screens  */
+@media (1200px <= width) {
+    
+} 
