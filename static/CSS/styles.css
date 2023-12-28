@@ -531,7 +531,7 @@ a {
 
     .loginCardContainer {
         width: 510px;
-        height: 635px;
+        height: 650px;
         background: linear-gradient(to bottom, #00474f, #000e10);
         line-height: 42px;
         border-radius: 25px;
@@ -688,7 +688,7 @@ a {
 
     .signUpCardContainer {
         width: 510px;
-        height:635px;
+        height:800px;
         background: linear-gradient(to bottom, #00474f, #000e10);
         line-height: 42px;
         border-radius: 25px;
