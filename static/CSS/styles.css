@@ -782,6 +782,7 @@ a {
     } */
 
 /* Ticker  */
+/* 
 .page_background{
     background: #f7f7f7;
     }
@@ -925,7 +926,6 @@ a {
     margin-left:20px;
 }
 .tickerDetailCandlestickCard {
-    /* width: 745px; */
     width:1500px;
     height:500px;
     border-radius: 25px;
@@ -1008,7 +1008,6 @@ a {
 }
 
 
-/* Buy Orders  */
 .tickerDetailBuyOrderbookTable td {
     color:#15965A;
 }
@@ -1016,7 +1015,6 @@ a {
     background: #E4F0EB;
 }
 
- /* Sell Orderbook  */
 .tickerDetailSellOrderbookTable td {
     color:#B51F1F;
 }
@@ -1024,7 +1022,6 @@ a {
     background: #F5E4E5;
 }
 
- /* Buy and Sell Orderbook  */
 .tickerDetailBuyOrderbookCard ,
 .tickerDetailSellOrderbookCard {
     margin-top:10px;
@@ -1085,7 +1082,6 @@ a {
     margin-bottom:10px;
 }
 
-/* Order Submission Card  */
 .tickerDetailOrderSubmissionCard {
     margin-top:10px;
     width:495px;
@@ -1146,7 +1142,6 @@ outline: none;
 }
 
 .tickerDetailQuantityInput {
-        /* padding-left:15px; */
     width:100%;
     height:40px;
     border: none;
@@ -1158,7 +1153,6 @@ outline: none;
     width:160px;
 }
 
-/* User Stats  */
 .tickerDetailUserStatistics {
     width:100%;
     margin-bottom:50px;
@@ -1336,7 +1330,7 @@ outline: none;
 .tickerDetailArrowRight img {
     width:20px;
     height: 20px;
-}
+} */
 
 
 /* Account  */
