@@ -1,53 +1,54 @@
 :root { 
-/* Font Family  */
-  --font-family: 'Satoshi', sans-serif;
-  --font-weight: 600;
-/* Font Colors */
---color-font-white:white;
---color-font-black:black;
---color-font-light:#5F5F5F;
---color-font-dark:#1B1C1E;
---color-font-turk:#016D74;
---color-font-red:#B51F1F;
---color-font-green:#15965A;
---color-font-hover:#13C2C1;
+    /* Font Family  */
+    --font-family: 'Satoshi', sans-serif;
+    --font-weight: 600;
 
-/* Background Colors */
---color-background-light:#F7F7F7;
---color-background-blue:#F0FFFD;
---color-background-red:#F5E4E5;
---color-background-dark-red:#B51F1F;
---color-background-green:#E4F0EB;
---color-background-white:white;
---color-background-transparent: transparent;
+    /* Font Colors */
+    --color-font-white:white;
+    --color-font-black:black;
+    --color-font-light:#5F5F5F;
+    --color-font-dark:#1B1C1E;
+    --color-font-turk:#016D74;
+    --color-font-red:#B51F1F;
+    --color-font-green:#15965A;
+    --color-font-hover:#13C2C1;
 
-/* Gradient Colors  */
---linear-gradient-light: linear-gradient(to bottom, #016D74, #01373A);
---linear-gradient-dark: linear-gradient(to bottom, #00474F, #000E10);
+    /* Background Colors */
+    --color-background-light:#F7F7F7;
+    --color-background-blue:#F0FFFD;
+    --color-background-red:#F5E4E5;
+    --color-background-dark-red:#B51F1F;
+    --color-background-green:#E4F0EB;
+    --color-background-white:white;
+    --color-background-transparent: transparent;
 
-/* Font Sizes */
---font-size-header:40px;
---font-size-title:30px;
---font-size-subheader:24px;
---font-size-large-body:22px;
---font-size-body:18px;
---font-size-small-body:16px;
---font-size-super-small:12px;
+    /* Gradient Colors  */
+    --linear-gradient-light: linear-gradient(to bottom, #016D74, #01373A);
+    --linear-gradient-dark: linear-gradient(to bottom, #00474F, #000E10);
 
-/* Border Radius  */
---border-radius-low:15px;
---border-radius-high:25px;
+    /* Font Sizes */
+    --font-size-header:40px;
+    --font-size-title:30px;
+    --font-size-subheader:24px;
+    --font-size-large-body:22px;
+    --font-size-body:18px;
+    --font-size-small-body:16px;
+    --font-size-super-small:12px;
 
-/* Padding Top/Bottom  */
---padding-top:10px;
---padding-down:10px;
+    /* Border Radius  */
+    --border-radius-low:15px;
+    --border-radius-high:25px;
 
-/* Padding Left/Right */
+    /* Padding Top/Bottom  */
+    --padding-top:10px;
+    --padding-down:10px;
 
-/* Border  */
---border-thickness-1: 1px;
---border-thickness-2: 3px;
---border-type: solid;
+    /* Padding Left/Right */
+
+    /* Border  */
+    --border-thickness-1: 1px;
+    --border-thickness-2: 3px;
+    --border-type: solid;
 
  }
 
@@ -62,23 +63,38 @@ body, html {
 
 
 /* Small device size  */
-@media (600px <= width <= 767px) {
-    
+@media (min-width: 600px) and (max-width: 767px) {
+    .gridNav13 {
+       grid-template-columns: auto 600px auto;
+    }
 }
 
 /* Medium screens  */
-@media (768px <= width <= 991px) {
-    
+@media (min-width: 768px) and (max-width: 991px) {
+    .gridNav13 {
+       grid-template-columns: auto 768px auto;
+    }
 }
 
 /* Large screens  */
-@media (992px <= width <= 1199px) {
-    
+@media (min-width: 992px) and (max-width: 1199px) {
+   .gridNav13 {
+       grid-template-columns: auto 992px auto;
+    } 
 } 
 
 /* Large screens  */
-@media (1200px <= width) {
-    
+@media (min-width: 1200px) and (max-width: 1499px) {
+    .gridNav13 {
+       grid-template-columns: auto 1200px auto;
+    }
+} 
+
+/* X-Large screens  */
+@media (min-width: 1500px) {
+    .gridNav13 {
+        grid-template-columns: auto 1500px auto;
+    }
 } 
 
 a {
@@ -88,7 +104,7 @@ a {
 /*            COMPONENTS            */
 /*    ==========================    */
 
-/* Buttons */
+/* 
 .button {
     border-radius: var(--border-radius-high);
     color: var(--color-font-white);
@@ -115,7 +131,6 @@ a {
 }
 
 
-/* Navigation Bar  */
     .gradientContainer {
         background: var(--linear-gradient-dark);
         align-items: center;
@@ -186,9 +201,6 @@ a {
         height: 100%;
     }
 
-    .gridNav13 {
-        grid-template-columns: auto 1500px auto;
-    }
 
     .gridNav13Middle {
         grid-template-columns: auto;
@@ -199,25 +211,22 @@ a {
         height:50px;
     }
 
-    /* Hidden class for initially hiding elements */
     .hidden {
         display: none;
     }
 
-    /* Style for the login dropdown container */
     .loginDropdown {
         position: absolute;
-        top: 60px; /* Adjust the value as needed to position the dropdown below the button */
+        top: 60px; 
         right: 0;
         background-color: var(--color-background-white);
         border: 1px solid #ccc;
         padding: 10px;
-        /* Additional styling as needed */
-    }
+    } */
 
 /* Home  */
 
-.homeContainer {
+/* .homeContainer {
     background-color: var(--color-background-light);
     width: 100%;
     height: auto;
@@ -268,7 +277,6 @@ a {
     font-size: 30px;
 }
 
-/* Third Section Rigth Side  */
 .homeThirdSectionRightSide {
     width:100%;
     height:900px;
@@ -279,7 +287,6 @@ a {
     right:140px;
 }
 
-/* Third Section Left Side  */
 .homeThirdSectionLeftSide {
     width: 100%;
     height: 900px;
@@ -347,14 +354,14 @@ a {
     width: 100%;
     height: 650px;
     display: flex;
-    overflow: visible; /* Allow content to overflow the container */
+    overflow: visible; 
     position: relative;
 }
 
 .overflowImage {
     position: static;
     right: 0;
-}
+} */
 
 /* Grid  */
 
@@ -381,7 +388,7 @@ a {
 
 
 /* Footer */
-
+/* 
     .footer {
         height: 700px;
         background: linear-gradient(to bottom, #00474f, #000e10);
@@ -402,7 +409,6 @@ a {
         height: 100px;
         left: 0;
         width: 100%;
-        /* background: red; */
     }
     .gridFooterEnd14 {
         grid-template-columns: repeat(4, 25%);
@@ -511,10 +517,10 @@ a {
     .footerBlogHeader {
         color: #13C2C1;
         margin-bottom: 50px;
-    }
+    } */
 
 /* Login */
-
+/* 
 .overlayDropdown {
         position: fixed;
         top: 0;
@@ -524,7 +530,7 @@ a {
         display: flex;
         justify-content: center;
         align-items: center;
-        background: rgb(0,0,0, 0.5); /* Semi-transparent overlay */
+        background: rgb(0,0,0, 0.5); 
         z-index: 1;
         display: none;
     }
@@ -538,7 +544,7 @@ a {
         text-align: center;
         color: white;
         z-index: 20;
-        position: relative; /* Needed for the absolute positioning of the close button */
+        position: relative; 
         display: none;
     }
     .closingButton {
@@ -649,9 +655,6 @@ a {
         margin: 20px 0;
     }
 
-
-/* Registration */
-
     #existingUserButton {
         text-decoration: underline;
         cursor: pointer;
@@ -681,7 +684,7 @@ a {
         display: flex;
         justify-content: center;
         align-items: center;
-        background: rgb(0, 0, 0,0.5); /* Semi-transparent overlay */
+        background: rgb(0, 0, 0,0.5); 
         z-index: 10;
         display: none;
     }
@@ -726,7 +729,6 @@ a {
         height: 53px;
         width: 185px;
         border-radius: 15px;
-        /* padding-left: 17px; */
         font-size: 18px;
         font-weight: 500;
         margin-bottom: 20px;    
@@ -764,7 +766,6 @@ a {
         margin:10px 0;
     }
     .horizontal-line {
-        /* flex: 1; */
         width: 100px;
         height: 1px;
         background-color: white;
@@ -778,7 +779,7 @@ a {
     }
     .card_button {
         margin: 20px 0;
-    }
+    } */
 
 /* Ticker  */
 .page_background{
@@ -2289,9 +2290,6 @@ input:focus {
     place-items: center;
     height: 100%;
     width: 100%;
-}
-.gridNav13 {
-    grid-template-columns: auto 1500px auto;
 }
 .grid12 {
     grid-template-columns: 25% 75%;
