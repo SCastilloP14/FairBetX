@@ -15,6 +15,516 @@
 } 
 
 /* Large screens  */
-@media (1200px <= width) {
+@media (1200px <= width <= 1499px) {
     
 } 
+
+/* X-Large screens  */
+@media (1500px <= width) {
+    
+}
+
+
+.gameListHeader {
+    margin-top: 86px;
+    position: relative;
+}    
+
+.gameListHeaderImg {
+    width: 100%;
+    height: 200px;  
+
+}
+.gameListHeaderCentered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.8rem;
+    color: white;
+    font-weight: 700;
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%;
+}
+.gridNav13 {
+    grid-template-columns: auto 1500px auto;
+}
+.grid12 {
+    grid-template-columns: 25% 75%;
+    margin-bottom:50px;
+}
+.grid16 {
+    grid-template-columns: 30% 10% 15% 15% 15% 15%;
+}
+.leftCardContainer {
+    align-self: start;
+    background: linear-gradient(to bottom, #016D74, #01373A);
+    border-radius: 25px;
+    color: white;
+    height: auto;
+    line-height: 42px;
+    margin-top:25px;
+    min-height: 700px;
+    text-align: center;
+    width: 100%;
+}
+.rightCardContainer {
+    align-self: start;
+    background: white;    
+    border-radius: 25px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    color: black;
+    height: auto;
+    line-height: 42px;
+    margin-left: 25px;
+    margin-top:25px;
+    min-height: 700px;
+    text-align: center;
+    width: 100%;
+}
+
+.rightCardContainerHeader {
+    /* display: flex; */
+    margin-top:30px;
+    height:60px;
+    width:100%;
+    border-radius: 25px;
+    text-align: left;
+    display: flex;
+    align-items: center; /* Align items vertically at the center */
+    justify-content: space-between; 
+}
+
+.allLeaguesButton {
+    font-size:16px;
+    text-transform: uppercase;
+    text-align: left;
+    color:white;
+    width:200px;
+    background:linear-gradient(to bottom, #016D74, #01373A);
+    border-radius:10px;
+    padding:10px 12px;
+    margin-left: 60px;
+
+}
+.allLeaguesButton option {
+    color:black;
+    background:white;
+    font-size:18px;
+    margin-bottom:10px;
+}
+.dateRange {
+    font-size:16px;
+    text-transform: uppercase;
+    text-align: left;
+    color:white;
+    width:200px;
+    background:linear-gradient(to bottom, #016D74, #01373A);
+    border-radius:10px;
+    padding:8px 12px;
+    margin-left: 60px;
+}
+.dateRange option {
+    color:black;
+    background:white;
+    font-size:18px;
+    margin-bottom:10px;
+}
+
+.sportsPage {
+    padding-top: 20px;
+    background: #F7F7F7;
+}
+.sportsLogo {
+    height:40px;
+    width:40px;
+    margin-right:15px;
+}
+
+
+.dateRangeDropdown,
+.leagueDropdown {
+    background: linear-gradient(to bottom, #016D74, #01373A);
+    border-radius: var(--border-radius-low);
+    color: white;
+    font-size: 16px;
+    margin-left: 30px;
+    padding: 0px 12px;
+    position: relative;
+    text-align: left;
+    text-transform: uppercase;
+    width: 150px;
+}
+.dateRangeDropdown {
+    margin-left:60px;
+    margin-right: auto;
+}
+
+.dateRangeDropdown-toggle,
+.leagueDropdown-toggle {
+    cursor: pointer;
+}
+
+.dateRangeDropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto; /* Enable vertical scroll if needed */
+    width:180px;
+}
+.leagueDropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto; /* Enable vertical scroll if needed */
+    width:120px;
+    overflow-x: hidden;
+
+}
+
+.dateRangeDropdown-content label,
+.leagueDropdown-content label {
+    display: block;
+    padding: 4px;
+}
+
+.dateRangeDropdown-checkbox,
+.leagueDropdown-checkbox {
+    margin-right: 8px;
+}
+
+.show {
+    display: block;
+}
+.dateRangeDropdown-container,
+.leagueDropdown-container {
+    color:black
+}
+
+
+
+
+
+
+
+.searchBar {
+    width: 300px;
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: 2px solid #5F5F5F;
+    /* display: flex; */
+    align-items: center;
+    margin-left: 10px; /* This will push the search bar to the right */
+    margin-right: 30px;
+}
+.searchBarLeftCard {
+    width: 220px;
+    padding: 12px 20px;
+    border-radius: 25px;
+    margin-top:40px;
+    border: 2px solid #5F5F5F;
+}
+
+.nbaLogo {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.leftCardNba {
+    display: flex;
+    margin-left: 50px;
+    align-items: center;
+}
+
+h4 {
+    font-size: 26px;
+}
+
+.liveButton {
+    background-color: transparent;
+    border-radius: 25px;
+    border: solid 3px var(--color-background-dark-red);
+    color: var(--color-font-red);
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: auto;
+    margin-right: 80px;
+    padding: 10px 50px;
+}
+
+.liveButton:hover {
+    color: white;
+    background-color: var(--color-background-dark-red);
+}
+.liveButton:active {
+    background-color: var(--color-background-dark-red);
+    color: white;
+}
+.liveButton:focus {
+    background-color: var(--color-background-dark-red);
+    color: white;
+}
+.liveButton:not(.active) {
+    color: var(--color-font-dark-red);
+    background-color: transparent;
+}
+
+.liveButtonSmall {
+    border-radius: 25px;
+    color: #B51F1F;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: #F5E4E5;
+    border: solid 3px #B51F1F;
+    padding: 2px 10px;
+    display: flex;
+}
+.date-dropdown {
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.scheduledButtonSmall {
+    border-radius: 25px;
+    padding: 4px 10px;
+    display: flex;
+    color: #5F5F5F;
+    font-size:14px;
+    border:none;
+    background:white;
+}
+.allEventsButton {
+    border-radius: 25px;
+    color: #016D74;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #E4F0EB;
+    border: 1px solid #E4F0EB;
+    padding: 12px 40px;
+    margin-left: 180px;
+}
+.allEventsButton:hover {
+    color: white;
+    border: 1px solid #15965A;
+    background-color: #15965A;
+}
+.allEventsButton:focus {
+    color: white;
+    border: 1px solid #15965A;
+    background-color: #15965A;
+}
+.rightCardContainerMatches {
+    width:98%;
+    margin:0 auto;
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cardLink {
+    text-decoration: none;
+}
+
+.rightCardMatchCard {
+    width: 100%;
+    height: 160px;
+    border-radius: 15px;    
+    background: #f7f7f7;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.rightCardMatchCard1 {
+    height: 100%;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding-left:30px;
+    font-size: 18px;
+    font-weight: 600;
+    justify-content: space-evenly;
+    color:#5F5F5F
+}
+.rightCardMatchCard2 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    justify-content: space-evenly;
+    color:#016D74
+}
+.rightCardMatchCard3 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom:10px;
+    color:#5F5F5F
+}
+.rightCardMatchCard4 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom:10px;
+    color:#5F5F5F
+
+}
+.rightCardMatchCard5 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom:10px;
+    color:#5F5F5F;
+}
+.rightCardMatchCard6 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom:10px;
+    color:#5F5F5F
+}
+.matchDetailsBuy {
+    width:100px;
+    height:75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    background-color: #E4F0EB;
+    color: #15965A;
+    border-radius: 15px;
+}
+.matchDetailsSell {
+    width:100px;
+    height:75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    /* padding: 15px 30px; */
+    background-color: #F5E4E5;
+    color: #B51F1F;
+    border-radius: 15px;
+}
+.matchDetailsChange {
+    width:100px;
+    height:75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    /* padding: 15px 30px; */
+    background-color: white;
+    border-radius: 15px;
+}
+
+
+/* Style for the custom dropdown container */
+.custom-dropdown {
+    /* position: relative; */
+    /* display: inline-block; */
+    margin-left:50px;
+    margin-top: 30px;
+}
+
+/* Style for the dropdown header */
+.dropdown-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Style for the header image */
+.header-image {
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    margin-right: 10px; /* Adjust the spacing between image and text */
+}
+
+/* Style for the header text */
+.header-text {
+    font-size: 28px;
+    color: white;
+}
+
+/* Style for the arrow */
+.arrow {
+    margin-left: 50px;
+    width:25px;
+    height:25px;
+    transform: rotate(180deg);
+}
+
+/* Rotate the arrow when the dropdown is open */
+.custom-dropdown.open .arrow {
+    transform: rotate(270deg);
+}
+
+.allSportsArrow {
+    margin-left:19px;
+    width:10px;
+    height:10px;
+    transform: rotate(180deg);
+}
+
+.custom-dropdown.open .allSportsArrow {
+    transform: rotate(270deg);
+}
+
+
+/* Style for the dropdown content */
+.dropdown-content {
+    text-align: left;
+    display: none;
+    position: relative;
+    background-color: transparent;
+    z-index: 0;
+    font-weight: 400;
+    margin-bottom:10px;
+}
+
+
+/* Style for the dropdown options */
+.dropdown-option {
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* Change color on hover */
+.dropdown-option:hover {
+  color: #13C2C1;
+}
+
+/* Show the dropdown content when the dropdown is open */
+.custom-dropdown.open .dropdown-content {
+  display: block;
+}
