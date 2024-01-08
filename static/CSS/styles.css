@@ -11,6 +11,7 @@
 --color-font-light:#5F5F5F;
 --color-font-red:#B51F1F;
 --color-font-turk:#016D74;
+--color-font-dark-turk:#00474f;
 --color-font-white:white;
 
 /* Background Colors */
@@ -24,6 +25,7 @@
 --color-background-light:#F7F7F7;
 --color-background-red:#F5E4E5;
 --color-background-transparent: transparent;
+--color-background-turk: #016D74;
 --color-background-white:white;
 
 /* Gradient Colors  */
@@ -58,6 +60,8 @@
 --border-color-red: #B51F1F;
 --border-color-green: #E4F0EB;
 --border-color-grey: #5F5F5F;
+--border-color-light-grey: #F7F7F7;
+
 
 
 --border-type: solid;
