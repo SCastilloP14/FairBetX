@@ -19,6 +19,8 @@
 --color-background-red:#F5E4E5;
 --color-background-dark-red:#B51F1F;
 --color-background-green:#E4F0EB;
+--color-background-dark: #1B1C1E;
+--color-background-hover: #13C2C1;
 --color-background-white:white;
 --color-background-transparent: transparent;
 
@@ -47,8 +49,15 @@
 
 /* Border  */
 --border-thickness-1: 1px;
---border-thickness-2: 3px;
+--border-thickness-2: 2px;
+--border-thickness-3: 3px;
+--border-color-white: white;
+--border-color-hover: #13C2C1;
+
 --border-type: solid;
+
+/* Center Column */
+--center-column-width: 1500px;
 
  }
 
@@ -64,7 +73,10 @@ body, html {
 
 /* Small device size  */
 @media (600px <= width <= 767px) {
-    
+    :root {
+    /* Center Column */
+    --center-column-width: 600px;
+    }
 }
 
 /* Medium screens  */
@@ -73,23 +85,33 @@ body, html {
 }
 
 /* Large screens  */
-@media (992px <= width <= 1199px) {
-    
+@media screen and (min-width:992px) and (max-width:1199px) {
+
+    :root{
+
+    /* Font Sizes */
+    --font-size-header:40px;
+    --font-size-title:30px;
+    --font-size-subheader:24px;
+    --font-size-large-body:22px;
+    --font-size-body:18px;
+    --font-size-small-body:16px;
+    --font-size-super-small:12px;
+
+    }
 } 
 
 /* Large screens  */
-@media (1200px <= width <= 1499px) {
-    
-} 
-
-/* X-Large screens  */
-@media (1500px <= width) {
+@media screen and (min-width:1200px) {
     
 } 
 
 a {
     text-decoration: none;
 }
+
+
+
 /*    ==========================    */
 /*            COMPONENTS            */
 /*    ==========================    */
