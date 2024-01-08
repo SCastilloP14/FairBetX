@@ -159,17 +159,21 @@
     left: 0;
     width: 100%;
 }
+
 .gridFooterEnd14 {
     color: var(--color-font-white);
     display: flex;
     flex-direction: row;
+    font-size: var(--font-size-body) ;
     grid-template-columns: repeat(4, 25%);
-    justify-content: space-around;
+    /* justify-content: stretch; */
 }
+
 .gridFooterEnd14 a {
     color: var(--color-font-white);
     text-decoration: none;
 }
+
 .footerStartCenter {
     align-items: flex-start;
     display: flex;
@@ -226,9 +230,9 @@
 
 .footerButton {
     align-items: center;
-    background-color: transparent;
+    background-color: var(--color-background-transparent);
     border-radius: 50%;
-    border: var(--border-thickness-2) solid white;
+    border: var(--border-thickness-2) var(--border-type) var(--border-color-white);
     cursor: pointer;
     display: flex;
     height: 60px;
@@ -254,6 +258,7 @@
     color: var(--font-color-light);
     display: flex;
     font-weight: 400;
+    font-size: var(--font-size-body);
     margin-top: 50px;
     text-decoration: none;
 }
@@ -285,7 +290,7 @@
 .loginCardContainer {
     background: var(--linear-gradient-dark);
     border-radius: var(--border-radius-high);
-    color: white;
+    color: var(--color-font-white);
     display: none;
     height: 635px;
     line-height: 42px;
@@ -294,22 +299,25 @@
     width: 510px;
     z-index: 20;
 }
+
 .closingButton {
     height:50px;
     margin-bottom:0;
-    text-align: right;
-    padding-top: 20px;
     padding-right: 20px;
+    padding-top: 20px;
+    text-align: right;
 }
+
 #newUserButton {
-    text-decoration:underline ;
     cursor: pointer;
+    text-decoration:underline ;
 }
 
 .closingButton img {
     width:40px;
     height:40px;
 }
+
 .cancelButton {
     border-radius: 100%;
     width:40px;
@@ -318,13 +326,14 @@
     background: var(--color-background-transparent);
     border: 1px solid white;
 }
+
 .cardHeader {
-    width: 100%;
     font-size: var(--font-size-title);
     font-weight: 700;
     letter-spacing: 0;
-    padding-top: 30px;
     margin-bottom: 10px;
+    padding-top: 30px;
+    width: 100%;
 }
 
 .cardNewUser {
@@ -366,7 +375,7 @@
 .loginButton {
     border-radius: var(--border-radius-high);
     color: var(--color-font-white);
-    font-size: 1rem;
+    font-size: var(--font-size-small-body);
     background-color: var(--color-background-transparent);
     border: solid var(--border-thickness-1) var(--border-color-white);
     padding: 10px 40px;
@@ -411,22 +420,24 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
 .closingButton {
     height:50px;
     margin-bottom:0;
-    text-align: right;
-    padding-top: 20px;
     padding-right: 20px;
-    }
+    padding-top: 20px;
+    text-align: right;
+}
 
 .cancelButton {
-    border-radius: 100%;
-    width:40px;
-    height:40px;
-    color:var(--color-font-white);
     background: var(--color-background-transparent);
+    border-radius: 100%;
     border: 1px solid var(--border-color-white);
+    color:var(--color-font-white);
+    height:40px;
+    width:40px;
 }
+
 .signUpOverlay {
     position: fixed;
     top: 0;
@@ -442,39 +453,39 @@
 }
 
 .signUpCardContainer {
-    width: 510px;
-    height:635px;
     background: linear-gradient(to bottom, #00474f, #000e10);
-    line-height: 42px;
-    border-radius: 25px;
-    text-align: center;
-    color: white;
-    z-index: 200;
-    position: relative;
+    border-radius: var(--border-radius-high);
+    color: var(--color-font-white);
     display: none;
+    height:635px;
+    line-height: 42px;
+    position: relative;
+    text-align: center;
+    width: 510px;
+    z-index: 200;
 }
 
 .card_header {
-    width: 100%;
-    font-size: 34px;
+    font-size: var(--font-size-title);
     font-weight: 700;
     letter-spacing: 0;
-    padding-top: 0;
     margin-bottom: 10px;
+    padding-top: 0;
+    width: 100%;
 }
 
 .card_new_user {
-    font-size: 16px;
-    margin-bottom:10px;
+    font-size: var(--font-size-small-body);
+    margin-bottom: 10px;
 }
 
 .card_new_user a {
-    color: #13C2C1
+    color: var(--color-font-hover);
 }
 
 .card_input_form input {
-    border-radius: 15px;
-    font-size: 18px;
+    border-radius: var(--border-radius-low);
+    font-size: var(--font-size-body);
     font-weight: 500;
     height: 53px;
     margin-bottom: 20px;
@@ -482,8 +493,8 @@
     width: 400px;
 }
 .card_input_form_small input {
-    border-radius: 15px;
-    font-size: 18px;
+    border-radius: var(--border-radius-low);
+    font-size: var(--font-size-body);
     font-weight: 500;
     height: 53px;
     margin-bottom: 20px;    
@@ -493,30 +504,30 @@
 .card_keep_logged_in {
     align-items: center;
     display: flex;
-    font-size: 18px;
+    font-size: var(--font-size-body);
     justify-content: center;
 }
 
 .card_button_check {
-    width: 25px;
-    height: 25px;
-    color:white;
     border-radius: 25px;
+    color:var(--color-font-white);
+    font-size: var(--font-size-body);
+    height: 25px;
     margin-right: 10px;
-    font-size: 18px;
+    width: 25px;
 }
 
 .letsBeginButton {
     border-radius: 25px;
-    color:white;
-    font-size: 1rem;
-    background-color: transparent;
+    color:var(--color-font-white);
+    font-size:var(--font-size-small-body);
+    background-color: var(--color-background-transparent);
     border: solid 1px white;
     padding: 10px 35px
 }
 
 .letsBeginButton:hover {
-    background-color: #13C2C1  ;
+    background-color: var(--color-background-hover);
     border: none;
 }
 
@@ -528,7 +539,7 @@
 }
 
 .horizontal-line {
-    background-color: white;
+    background-color: var(--color-background-white);
     height: 1px;
     margin: 0 10px;
     width: 100px;

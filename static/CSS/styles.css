@@ -4,25 +4,27 @@
 --font-weight: 600;
 
 /* Font Colors */
---color-font-white:white;
 --color-font-black:black;
---color-font-light:#5F5F5F;
 --color-font-dark:#1B1C1E;
---color-font-turk:#016D74;
---color-font-red:#B51F1F;
 --color-font-green:#15965A;
 --color-font-hover:#13C2C1;
+--color-font-light:#5F5F5F;
+--color-font-red:#B51F1F;
+--color-font-turk:#016D74;
+--color-font-white:white;
 
 /* Background Colors */
---color-background-light:#F7F7F7;
 --color-background-blue:#F0FFFD;
---color-background-red:#F5E4E5;
 --color-background-dark-red:#B51F1F;
---color-background-green:#E4F0EB;
 --color-background-dark: #1B1C1E;
+--color-background-green:#E4F0EB;
 --color-background-hover: #13C2C1;
---color-background-white:white;
+--color-background-light-green: #15965A;
+--color-background-light-grey:#fff;
+--color-background-light:#F7F7F7;
+--color-background-red:#F5E4E5;
 --color-background-transparent: transparent;
+--color-background-white:white;
 
 /* Gradient Colors  */
 --linear-gradient-light: linear-gradient(to bottom, #016D74, #01373A);
@@ -53,6 +55,9 @@
 --border-thickness-3: 3px;
 --border-color-white: white;
 --border-color-hover: #13C2C1;
+--border-color-red: #B51F1F;
+--border-color-green: #E4F0EB;
+
 
 --border-type: solid;
 
