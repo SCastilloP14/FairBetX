@@ -28,7 +28,10 @@
 
 
 
-/* Navigation Bar  */
+/*    ==========================    */
+/*             NAV BAR              */
+/*    ==========================    */
+
 .gradientContainer {
     background: var(--linear-gradient-dark);
     align-items: center;
@@ -131,7 +134,9 @@
     top: 60px; /* Adjust the value as needed to position the dropdown below the button */
 }
 
-/* Footer */
+/*    ==========================    */
+/*            FOOTER                */
+/*    ==========================    */
 
 .footer {
     background: var(--linear-gradient-dark);
@@ -258,7 +263,10 @@
     margin-bottom: 50px;
 }
 
-/* Login */
+/*    ==========================    */
+/*            LOGIN                 */
+/*    ==========================    */
+
 
 .overlayDropdown {
     align-items: center;
@@ -395,7 +403,9 @@
 }
 
 
-/* Registration */
+/*    ==========================    */
+/*          REGISTRATION            */
+/*    ==========================    */
 
 #existingUserButton {
     text-decoration: underline;
@@ -443,6 +453,7 @@
     position: relative;
     display: none;
 }
+
 .card_header {
     width: 100%;
     font-size: 34px;
@@ -451,37 +462,41 @@
     padding-top: 0;
     margin-bottom: 10px;
 }
+
 .card_new_user {
     font-size: 16px;
     margin-bottom:10px;
 }
+
 .card_new_user a {
     color: #13C2C1
 }
+
 .card_input_form input {
-    height: 53px;
-    width: 400px;
     border-radius: 15px;
-    padding-left: 17px;
     font-size: 18px;
     font-weight: 500;
+    height: 53px;
     margin-bottom: 20px;
+    padding-left: 17px;
+    width: 400px;
 }
 .card_input_form_small input {
-    height: 53px;
-    width: 185px;
     border-radius: 15px;
-    /* padding-left: 17px; */
     font-size: 18px;
     font-weight: 500;
+    height: 53px;
     margin-bottom: 20px;    
+    width: 185px;
 } 
+
 .card_keep_logged_in {
-    display: flex;
-    justify-content: center;
     align-items: center;
+    display: flex;
     font-size: 18px;
+    justify-content: center;
 }
+
 .card_button_check {
     width: 25px;
     height: 25px;
@@ -490,6 +505,7 @@
     margin-right: 10px;
     font-size: 18px;
 }
+
 .letsBeginButton {
     border-radius: 25px;
     color:white;
@@ -497,30 +513,34 @@
     background-color: transparent;
     border: solid 1px white;
     padding: 10px 35px
-    }
+}
+
 .letsBeginButton:hover {
     background-color: #13C2C1  ;
     border: none;
 }
+
 .card_horizontal_line_seperator {
-    display: flex;
     align-items: center ;
+    display: flex;
     justify-content: center;
     margin:10px 0;
 }
+
 .horizontal-line {
-    /* flex: 1; */
-    width: 100px;
-    height: 1px;
     background-color: white;
+    height: 1px;
     margin: 0 10px;
+    width: 100px;
 }
+
 .card_logos {
-    display: flex;
     align-items: center;
+    display: flex;
     justify-content: center;
     margin-top:20px;
 }
+
 .card_button {
     margin: 20px 0;
 }
