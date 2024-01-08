@@ -65,12 +65,12 @@
 
 .leftCardContainer {
     align-self: start;
-    background: linear-gradient(to bottom, #016D74, #01373A);
-    border-radius: 25px;
+    background: var(--linear-gradient-light);
+    border-radius: var(--border-radius-high);
     color: var(--color-font-white);
     height: auto;
     line-height: 42px;
-    margin-top:25px;
+    margin-top: 25px;
     min-height: 700px;
     text-align: center;
     width: 100%;
@@ -108,10 +108,10 @@
     color:var(--color-font-white);
     font-size:var(--font-size-small-body);
     margin-left: 60px;
-    padding:10px 12px;
+    padding: 10px 12px;
     text-align: left;
     text-transform: uppercase;
-    width:200px;
+    width: 200px;
 }
 
 .allLeaguesButton option {
@@ -127,35 +127,35 @@
     color:var(--color-font-white);
     font-size:var(--font-size-small-body);
     margin-left: 60px;
-    padding:8px 12px;
+    padding: 8px 12px;
     text-align: left;
     text-transform: uppercase;
-    width:200px;
+    width: 200px;
 }
 .dateRange option {
-    color:var(--color-font-black);
     background:var(--color-background-white);
+    color:var(--color-font-black);
     font-size:var(--font-size-body);
-    margin-bottom:10px;
+    margin-bottom: 10px;
 }
 
 .sportsPage {
+    background: var(--color-background-light);
     padding-top: 20px;
-    background: #F7F7F7;
 }
 .sportsLogo {
-    height:40px;
-    width:40px;
-    margin-right:15px;
+    height: 40px;
+    margin-right: 15px;
+    width: 40px;
 }
 
 
 .dateRangeDropdown,
 .leagueDropdown {
-    background: linear-gradient(to bottom, #016D74, #01373A);
+    background: var(--linear-gradient-light);
     border-radius: var(--border-radius-low);
     color: var(--color-font-white);
-    font-size: 16px;
+    font-size: var(--font-size-small-body);
     margin-left: 30px;
     padding: 0px 12px;
     position: relative;
@@ -163,8 +163,9 @@
     text-transform: uppercase;
     width: 150px;
 }
+
 .dateRangeDropdown {
-    margin-left:60px;
+    margin-left: 60px;
     margin-right: auto;
 }
 
@@ -183,6 +184,7 @@
     overflow-y: auto; /* Enable vertical scroll if needed */
     width:180px;
 }
+
 .leagueDropdown-content {
     display: none;
     position: absolute;
@@ -215,28 +217,22 @@
     color:var(--color-font-black)
 }
 
-
-
-
-
-
-
 .searchBar {
-    width: 300px;
-    padding: 12px 20px;
-    border-radius: 25px;
-    border: 2px solid #5F5F5F;
-    /* display: flex; */
     align-items: center;
+    border-radius: var(--border-radius-high);
+    border: var(--border-thickness-2) var(--border-type) var(--border-color-grey);
     margin-left: 10px; /* This will push the search bar to the right */
     margin-right: 30px;
+    padding: 12px 20px;
+    width: 300px;
 }
+
 .searchBarLeftCard {
     width: 220px;
     padding: 12px 20px;
-    border-radius: 25px;
+    border-radius: var(--border-radius-high);
     margin-top:40px;
-    border: 2px solid #5F5F5F;
+    border: var(--border-thickness-2) var(--border-type) var(--border-color-grey);
 }
 
 .nbaLogo {
@@ -252,15 +248,15 @@
 }
 
 h4 {
-    font-size: 26px;
+    font-size: var(--font-size-subheader);
 }
 
 .liveButton {
     background-color: var(--color-background-transparent);
-    border-radius: 25px;
-    border: solid 3px var(--color-background-dark-red);
+    border-radius: var(--border-radius-high);
+    border:  var(--border-thickness-3) var(--border-type) var(--color-background-dark-red);
     color: var(--color-font-red);
-    font-size: 16px;
+    font-size: var(--font-size-small-body);
     font-weight: 600;
     margin-left: auto;
     margin-right: 80px;
@@ -271,14 +267,17 @@ h4 {
     background-color: var(--color-background-dark-red);
     color: var(--color-font-white);
 }
+
 .liveButton:active {
     background-color: var(--color-background-dark-red);
     color: var(--color-font-white);
 }
+
 .liveButton:focus {
     background-color: var(--color-background-dark-red);
     color: var(--color-font-white);
 }
+
 .liveButton:not(.active) {
     background-color: var(--color-background-transparent);
     color: var(--color-font-dark-red);
@@ -286,53 +285,58 @@ h4 {
 
 .liveButtonSmall {
     background-color: var(--color-background-red);
-    border-radius: 25px;
+    border-radius: var(--border-radius-high);
     border: var(--border-thickness-3) var(--border-type) var(--border-color-red);
     color: var(--color-font-red);
     display: flex;
-    font-size: 12px;
+    font-size: var(--font-size-super-small);
     font-weight: 600;
     padding: 2px 10px;
 }
+
 .date-dropdown {
     margin-left:10px;
     margin-right:10px;
 }
 
 .scheduledButtonSmall {
-    background:white;
-    border-radius: 25px;
+    background:var(--color-background-white);
+    border-radius: var(--border-radius-high);
     border:none;
     color: var(--color-font-light);
     display: flex;
-    font-size:14px;
+    font-size:var(--font-size-small-body);
     padding: 4px 10px;
 }
+
 .allEventsButton {
     background-color: var(--color-background-green);
     border-radius: var(--border-radius-high);
     border: var(--border-thickness-1) var(--border-type) var(--border-color-green);
     color: var(--color-font-turk);
-    font-size: 16px;
+    font-size: var(--font-size-small-body);
     font-weight: 600;
     margin-left: 180px;
     padding: 12px 40px;
 }
+
 .allEventsButton:hover {
     background-color: var(--color-background-light-green);
     border: var(--border-thickness-1) var(--border-type) #15965A;
     color: var(--color-font-white);
 }
+
 .allEventsButton:focus {
     background-color: var(--color-background-light-green);
     border: var(--border-thickness-1) var(--border-type) #15965A;
     color: var(--color-font-white);
 }
+
 .rightCardContainerMatches {
-    width:98%;
-    margin:0 auto;
-    border-radius: 15px;
+    border-radius: var(--border-radius-low);
     box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    margin:0 auto;
+    width:98%;
 }
 
 .cardLink {
@@ -340,19 +344,19 @@ h4 {
 }
 
 .rightCardMatchCard {
-    width: 100%;
-    height: 160px;
-    border-radius: 15px;    
-    background: #f7f7f7;
     align-items: center;
+    background: var(--color-background-light);
+    border-radius: var(--border-radius-low);    
+    height: 160px;
     margin: 10px 0;
+    width: 100%;
 }
 
 .rightCardMatchCard1 {
     color: var(--color-font-light);
     display: flex;
     flex-direction: column;
-    font-size: 18px;
+    font-size: var(--font-size-body);
     font-weight: 600;
     height: 100%;
     justify-content: space-evenly;
@@ -360,60 +364,65 @@ h4 {
     text-align: left;
     width:100%;
 }
+
 .rightCardMatchCard2 {
     align-items: center;
     color:var(--color-font-turk);
     display: flex;
     flex-direction: column;
-    font-size: 22px;
+    font-size: var(--font-size-large-body);
     height: 100%;
     justify-content: center;
     justify-content: space-evenly;
 }
+
 .rightCardMatchCard3 {
-    height: 100%;
+    align-items: center;
+    color:var(--color-font-light);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    font-size: var(--font-size-body);
+    height: 100%;
     justify-content: center;
-    font-size: 18px;
     margin-bottom:10px;
-    color:var(--color-font-light)
 }
+
 .rightCardMatchCard4 {
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: var(--font-size-body);
     margin-bottom:10px;
     color:var(--color-font-light)
-
 }
+
 .rightCardMatchCard5 {
     align-items: center;
     color:var(--color-font-light);
     display: flex;
     flex-direction: column;
-    font-size: 18px;
+    font-size: var(--font-size-body);
     height: 100%;
     justify-content: center;
     margin-bottom:10px;
 }
+
 .rightCardMatchCard6 {
     align-items: center;
     color:var(--color-font-light);
     display: flex;
     flex-direction: column;
-    font-size: 18px;
+    font-size: var(--font-size-body);
     height: 100%;
     justify-content: center;
     margin-bottom:10px;
 }
+
 .matchDetailsBuy {
     background-color: var(--color-background-green);
-    border-radius: 15px;
+    border-radius: var(--border-radius-low);
     color: var(--color-font-green);
     display: flex;
     flex-direction: column;
@@ -422,6 +431,7 @@ h4 {
     text-align: center;
     width:100px;
 }
+
 .matchDetailsSell {
     /* padding: 15px 30px; */
     background-color: var(--color-background-red);
@@ -434,6 +444,7 @@ h4 {
     text-align: center;
     width:100px;
 }
+
 .matchDetailsChange {
     width:100px;
     height:75px;
@@ -447,7 +458,6 @@ h4 {
     border-radius: var(--border-radius-low);
 }
 
-
 /* Style for the custom dropdown container */
 .custom-dropdown {
     /* position: relative; */
@@ -458,30 +468,30 @@ h4 {
 
 /* Style for the dropdown header */
 .dropdown-header {
-    display: flex;
     align-items: center;
     cursor: pointer;
+    display: flex;
 }
 
 /* Style for the header image */
 .header-image {
-    width: 30px; /* Adjust the width as needed */
     height: 30px; /* Adjust the height as needed */
     margin-right: 10px; /* Adjust the spacing between image and text */
+    width: 30px; /* Adjust the width as needed */
 }
 
 /* Style for the header text */
 .header-text {
-    font-size: 28px;
     color: var(--color-font-white);
+    font-size: var(--font-size-title);
 }
 
 /* Style for the arrow */
 .arrow {
-    margin-left: 50px;
-    width:25px;
     height:25px;
+    margin-left: 50px;
     transform: rotate(180deg);
+    width:25px;
 }
 
 /* Rotate the arrow when the dropdown is open */
@@ -490,10 +500,10 @@ h4 {
 }
 
 .allSportsArrow {
-    margin-left:19px;
-    width:10px;
     height:10px;
+    margin-left:19px;
     transform: rotate(180deg);
+    width:10px;
 }
 
 .custom-dropdown.open .allSportsArrow {
