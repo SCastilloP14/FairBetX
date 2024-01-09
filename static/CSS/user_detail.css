@@ -1,45 +1,26 @@
 @import './styles.css';
 
-/* Small device size  */
-@media (600px <= width <= 767px) {
-    
-}
 
-/* Medium screens  */
-@media (768px <= width <= 991px) {
-    
-}
-
-/* Large screens  */
-@media (992px <= width <= 1199px) {
-    
-} 
-
-/* Large screens  */
-@media (1200px <= width <=1499px) {
-    
-} 
 
 /* X-Large screens  */
 @media (1500px <= width) {
     
-} 
 
-
-/* Account  */
-
+/*    ==========================    */
+/*             ACCOUNT              */
+/*    ==========================    */
 .personalInformation {
-    width:100%;
+    background: var(--color-background-light);
     height: 900px;
-    padding-top:86px;
-    background-color: var(--color-background-light);
-    padding-bottom:200px;
+    padding-bottom: 200px;
+    padding-top: 86px;
+    width: 100%;
 }
 
 .personalInformationHeader {
-    color:#016D74;
-    font-size: 32px;
-    font-weight: 800;
+    color:var(--color-font-turk);
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-heavy);
     margin-bottom: 60px;
     margin-top: 60px;
     text-align: center;
@@ -63,13 +44,13 @@
 }
 
 .personalInformationCardContainer {
-    width: 375px;
-    height:700px;
     background: var(--linear-gradient-light);
-    line-height: 42px;
-    border-radius: 25px;
-    text-align: center;
+    border-radius: var(--border-radius-high);
     color: var(--color-font-white); 
+    height:700px;
+    line-height: 42px;
+    text-align: center;
+    width: 375px;
 }
 
 .personalInformationCardUserInfo {
@@ -77,30 +58,30 @@
 }
 
 .personalInformationCardUserInput {
-    width: 1100px;
-    margin-left:25px;
-    height: 160px;
     background:var(--color-background-white);
-    border-radius: 15px;
-    text-align: center;
+    border-radius: var(--border-radius-low);
+    box-shadow: var(--box-shadow);
+    height: 160px;
     margin-bottom:20px;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    margin-left:25px;
+    text-align: center;
+    width: 1100px;
 }
 
 .personalInformationUserInputField {
-    font-size: 20px;
-    width: 300px;
-    border:0;
+    border: none;
+    border-bottom: var(--border-thickness-1) var(--border-type) var(--border-color-grey);
+    font-size: var(--font-size-body);
     justify-self: left;
     margin-left: 60px;
-    border-bottom: 1px solid grey;
     padding-bottom: 10px;
+    width: 300px;
 }
 
 .personalInformationUserInputField input {
-    border:none;
-    text-align: left;
+    border: none;
     justify-content: left;
+    text-align: left;
     width: 2000px;
 }
 
@@ -109,33 +90,33 @@ input:focus {
 }
 
 .personalInformationEditButton {
-    border-radius: 25px;
-    color:#016D74;
-    font-size: 16px;
-    font-weight:500;
-    background-color: transparent;
-    border: solid 3px #016D74;
+    background: var(--color-background-transparent);
+    border-radius: var(--border-radius-high);
+    border: var(--border-thickness-3) var(--border-type) var(--border-color-turk);
+    color:var(--color-font-turk);
+    font-size: var(--font-size-small-body);
+    font-weight:var(--font-weight-light);
     padding: 10px 50px;
 }
 
 .personalInformationEditButton:hover {
-    color:white;
+    color:var(--color-font-white);
     border: none;
-    background-color: #016D74;
+    background: var(--color-background-turk);
 }
 
 .personalInformationFooterBlog a {
-    font-weight: 400;
-    font-size: 22px;
-    margin-top:50px;
+    color: var(--font-color-light);
     display: flex;
-    color:var(--font-color-light);
-    text-decoration: none;
+    font-size: var(--font-size-large-body);
+    font-weight: 400;
+    margin-top: 50px;
     padding-left: 50px;
+    text-decoration: none;
 }
 
 .personalInformationFooterBlog a:hover {
-    color:#13C2C1
+    color:var(--color-font-hover);
 }
 
 .personalInformationFooterBlogHeader {
@@ -154,24 +135,23 @@ input:focus {
     color:var(--color-font-hover)
 }
 
-/* Security  */
 
+/*    ==========================    */
+/*            SECURITY              */
+/*    ==========================    */
 
 .securityCardContainer {
-    width: 100%;
-    height:700px;
     background: var(--linear-gradient-light);
-    line-height: 42px;
-    border-radius: 25px;
-    text-align: center;
+    border-radius: var(--border-radius-high);
     color: var(--color-font-light);
+    height:700px;
+    line-height: 42px;
+    text-align: center;
+    width: 100%;
 }
 
 .securityCardUserInfo {
     height: 700px;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between; */
 }
 
 .securityCardUserInput {
@@ -179,7 +159,7 @@ input:focus {
     margin-left:25px;
     height: 160px;
     background:var(--color-background-white);
-    border-radius: 15px;
+    border-radius: var(--border-radius-low);
     text-align: center;
     color: var(--color-font-light);
     font-size: var(--font-size-large-body);
@@ -191,58 +171,58 @@ input:focus {
 }
 
 .securityUserTwoStepAuthentication {
-    background: transparent;
-    color:var(--color-font-black);
+    background: var(--color-background-transparent);
+    color: var(--color-font-black);
     font-size: var(--font-size-large-body);
-    margin-left:25px;
+    margin-left: 25px;
     width: 1100px;
 }
 
 .securityUserTwoStepAuthenticationHeader {
-    width:100%;
-    height:80px;
-    display: flex;
-    color: var(--color-font-light);
-    font-size: var(--font-size-large-body);
-    margin-left: 40px;
-    display: flex;
     align-items: center;
+    color: var(--color-font-light);
+    display: flex;
+    display: flex;
+    font-size: var(--font-size-large-body);
+    height: 80px;
+    margin-left: 40px;
+    width:100%;
 }
 
 .securityUserTwoStepAuthenticationHeader img {
     height:50px;
-    width:50px;
     margin-right: 20px;
+    width:50px;
 }
 
 .securityUserTwoStepAuthenticationSubHeader {
-    width:600px;
-    height:80px;
-    display: flex;
     color: var(--color-font-light);
+    display: flex;
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-lighter);
+    height: 80px;
     margin-left: 40px;
     padding-top: 10px;
-    font-size: var(--font-size-body);
-    font-weight:400;
+    width: 600px;
 }
 
 .securityCardUserInputName {
-    padding-left:40px; 
     margin-right: auto; 
-    width:220px;
+    padding-left:40px; 
     text-align: left;
+    width:220px;
 }
 
 .securityUserInputField {
-    font-size: 20px;
-    width: 400px;
-    border:0;
+    border-bottom: var(--border-thickness-1) var(--border-type) var(--border-color-grey);
+    border: none;
+    font-size: var(--font-size-body);
     justify-self: left;
     margin-left: 60px;
-    border-bottom: 1px solid grey;
-    padding-bottom: 10px;
     margin-left:100px;
     margin-right: 200px;
+    padding-bottom: 10px;
+    width: 400px;
 }
 
 .securityUserInputField input {
@@ -253,39 +233,39 @@ input:focus {
 }
 
 .securityEditButton {
-    border-radius: 25px;
-    color:#016D74;
-    font-size: 16px;
+    border-radius: var(--border-radius-high);
+    color:var(--color-font-turk);
+    font-size: var(--font-size-small-body);
     font-weight:500;
-    background-color: transparent;
-    border: solid 3px #016D74;
+    background: var(--color-background-transparent);
+    border: var(--border-thickness-3) var(--border-type) var(--border-color-turk);
     padding: 10px 50px;
-    margin-right:60px;
+    margin-right: 60px;
 }
 
 .securityEditButton:hover {
-    color:white;
+    color:var(--color-font-white);
     border: none;
-    background-color: #016D74;
+    background: var(--color-background-turk);
 }
 
 .securityFooterBlog a {
-    font-weight: 400;
-    font-size: 22px;
-    margin-top:50px;
-    display: flex;
     color:var(--font-color-light);
-    text-decoration: none;
+    display: flex;
+    font-size: var(--font-size-large-body);
+    font-weight: var(--font-weight-lighter);
+    margin-top: 50px;
     padding-left: 50px;
+    text-decoration: none;
 }
 
 .securityFooterBlog a:hover {
-    color:#13C2C1
+    color:var(--color-font-hover)
 }
 
 .securityFooterBlogHeader {
     color: var(--color-font-hover);
-    padding-top:30px;
+    padding-top: 30px;
     padding-left: 50px;
     text-align: left;
 }
@@ -295,12 +275,12 @@ input:focus {
     display: flex;
     font-size: var(--font-size-body);
     justify-content: space-evenly; /* Align children horizontally in the center */
-    margin-right:60px;
+    margin-right: 60px;
     width:200px;
 }
 
 .securityEnableSwitch {
-    font-size: 17px;
+    font-size: var(--font-size-body);
     position: relative;
     display: inline-block;
     width: 80px;
@@ -321,7 +301,7 @@ input:focus {
   cursor: pointer;
   inset: 0;
   background: var(--color-background-light);
-  border-radius: 50px;
+  border-radius: var(--border-radius-slider);
   transition: all 0.2s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
@@ -332,8 +312,8 @@ input:focus {
   width: 1.4em;
   left: 0.3em;
   bottom: 0.3em;
-  background-color: white;
-  border-radius: 50px;
+  background: var(--color-background-white);
+  border-radius: var(--border-radius-slider);
   box-shadow: 0 0px 20px rgba(0,0,0,0.4);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -352,32 +332,32 @@ input:focus {
 
 /* Card Information  */
 .cardInformationEditButton {
-    margin-left:auto;
-    margin-right:100px;
+    margin-left: auto;
+    margin-right: 100px;
 }
 .cardInformationEditButton button{
-    border-radius: 25px;
-    color:#016D74;
-    font-size: 16px;
-    font-weight:500;
-    background-color: transparent;
-    border: solid 3px #016D74;
+    background: var(--color-background-transparent);
+    border-radius: var(--border-radius-high);
+    border: var(--border-thickness-3) var(--border-type) var(--border-color-turk);
+    color:var(--color-font-turk);
+    font-size: var(--font-size-small-body);
+    font-weight: var(--font-weight-light);
+    margin-left: auto;
+    margin-right: 0;
     padding: 10px 50px;
-    margin-right:0;
-    margin-left:auto;
 }
 
 .cardInformationEditButton button:hover {
-    color:white;
+    background: var(--color-background-turk);
     border: none;
-    background-color: #016D74;
+    color:var(--color-font-white);
 }
 
 .cardInformationAccount {
-    width:100%;
+    background: var(--color-background-light);
     height: 900px;
     padding-top:86px;
-    background-color: #F7F7F7;
+    width:100%;
 }
 
 .grid {
@@ -397,15 +377,10 @@ input:focus {
 }
 
 .cardInformationCardUserInfo {
-    /* align-self: start; */
-    background-color: var(--color-background-white);
+    background: var(--color-background-white);
     border-radius: var(--border-radius-high);
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
     color:var(--color-font-black);
-    /* display: flex;
-    flex-direction: column;
-    height: auto;
-    justify-content: space-between;*/
     margin-left: 25px; 
     min-height: 700px;
     max-width:1100px;
@@ -413,51 +388,50 @@ input:focus {
 }
 
 .cardInformationOverview {
-    background: transparent;
-    width:100%;
     align-self: start;
-    margin-left:50px;
-
+    background: var(--color-background-transparent);
+    margin-left: 50px;
+    width: 100%;
 }
 
 .cardInformationCardUserInfo h3 {
-    margin-left: 20px;
     font-size: var(--font-size-subheader);
+    margin-left: 20px;
 }
 .cardInformationCardUserInput {
-    background:white;
-    border-radius: 15px;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    background:var(--color-background-white);
+    border-radius: var(--border-radius-low);
+    box-shadow: var(--box-shadow);
     height: 160px;
     text-align: center;
     width: 1100px;
     margin: 5px 0;
 }
 .cardInformationCardAddFunds {
-    border-radius: 15px;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
-    height: 160px;
-    width: 1100px;
-    margin: 5px 0;
     background: var(--color-background-white);
+    border-radius: var(--border-radius-low);
+    box-shadow: var(--box-shadow);
+    height: 160px;
+    margin: 5px 0;
+    width: 1100px;
 }
 .cardInformationCardAddFunds h4 {
-    margin-left:50px;  
-    margin-top:40px;
-    font: var(--font-size-subheader);
     color:var(--color-font-light);
+    font: var(--font-size-subheader);
+    margin-left:50px;  
+    margin-top: 40px;
 }
 .cardInformationCardAddFunds input {
-    margin:0 auto;
-    margin-left:50px;   
-    background: transparent;
-    margin-top:10px;
+    margin: 0 auto;
+    margin-left: 50px;   
+    background: var(--color-background-transparent);
+    margin-top: 10px;
 }
 .cardInformationCardMyBalance {
-    background-color: transparent;
+    background: var(--color-background-transparent);
     width: 1100px;
     height: 160px;
-    border-radius: 15px;
+    border-radius: var(--border-radius-low);
     text-align: center;
 }
 .cardInformationCardMyBalanceHeader {
@@ -476,9 +450,9 @@ input:focus {
     margin-right:50px;
 }
 .cardInformationUserInputField {
-    border-bottom: 1px solid grey;
-    border:0;
-    font-size: 20px;
+    border-bottom: var(--border-thickness-1) var(--border-type) var(--border-color-grey);
+    border: none;
+    font-size: var(--font-size-body);
     justify-self: left;
     margin-left: 60px;
     padding-bottom: 10px;
@@ -491,9 +465,9 @@ input:focus {
     /* background:red */
 }
 .cardInformationUserInputField input {
-    border:none;
-    text-align: left;
+    border: none;
     justify-content: left;
+    text-align: left;
     width: 2000px;
 }
 
@@ -502,33 +476,33 @@ input:focus {
 }
 
 .cardInformationSelectedButton {
-    border-radius: 25px;
-    color:#016D74;
-    font-size: 16px;
-    font-weight:500;
-    background-color: transparent;
-    border: solid 3px #016D74;
+    background: var(--color-background-transparent);
+    border-radius: var(--border-radius-high);
+    border: var(--border-thickness-3) var(--border-type) var(--border-color-turk);
+    color:var(--color-font-turk);
+    font-size: var(--font-size-small-body);
+    font-weight: var(--font-weight-light);
     padding: 10px 50px;
 }
 .cardInformationSelectedButton:hover {
-    color:white;
-    background-color: #016D74;
+    background: var(--color-background-turk);
+    color:var(--color-font-white);
 }
 .cardInformationFooterBlog a {
-    font-weight: 400;
-    font-size: 22px;
-    margin-top:50px;
-    display: flex;
     color:var(--font-color-light);
-    text-decoration: none;
+    display: flex;
+    font-size: var(--font-size-large-body);
+    font-weight: var(--font-weight-lighter);
+    margin-top: 50px;
     padding-left: 50px;
+    text-decoration: none;
 }
 .cardInformationFooterBlog a:hover {
-    color:#13C2C1
+    color:var(--color-font-hover)
 }
 .cardInformationFooterBlogHeader {
-    color: #13C2C1;
-    padding-top:30px;
+    color: var(--color-font-hover);
+    padding-top: 30px;
     padding-left: 50px;
     text-align: left;
 }
@@ -539,25 +513,24 @@ input:focus {
     /* margin-top: 5px; */
 }
 .cardInformationConfirmButton {
-    background-color: transparent;
-    border-radius: 25px;
-    border: solid 3px #016D74;
-    color:#016D74;
-    font-size: 16px;
-    font-weight:500;
-    margin-top:20px;
+    background: var(--color-background-transparent);
+    border-radius: var(--border-radius-high);
+    border: var(--border-thickness-3) var(--border-type) var(--border-color-turk);
+    color: var(--color-font-turk);
+    font-size: var(--font-size-small-body);
+    font-weight: var(--font-weight-light);
+    margin-top: 20px;
     padding: 10px 50px;
-    width:160px;
+    width: 160px;
 }
 .cardInformationConfirmButton:hover {
-    color:white;
-    /* border: ; */
-    background-color: #016D74;
+    background: var(--color-background-turk);
+    color:var(--color-font-white);
 }
 .cardInformationCardInformation {
-    color:var(--color-font-black);
+    color: var(--color-font-black);
     font-size: var(--font-size-title);
-    margin-top:60px;
+    margin-top: 60px;
 }
 
 .cardInformationCardHolderName,
@@ -568,57 +541,56 @@ input:focus {
     display: flex;
     flex-direction: column;
     font-size: var(--font-size-body);   
-    margin-top:50px;
+    margin-top: 50px;
 }
 .cardInformationCardHolderName input,
 .cardInformationCardHolderCardNumber input {
     border: none;
-    border-bottom: 1px solid var(--color-font-light);
+    border-bottom: var(--border-thickness-1) var(--border-type) var(--color-font-light);
     font-size: var(--font-size-body);   
-    margin-top:30px;
-    padding-bottom:10px;
-    width:300px;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    width: 300px;
 }
 .cardInformationCardHolderExpiryDate input,
 .cardInformationCardHolderCVV input {
     border: none;
-    border-bottom: 1px solid var(--color-font-light);
-    margin-top:30px;
-    width:100px;
-    padding-bottom:10px;
+    border-bottom: var(--border-thickness-1) var(--border-type) var(--color-font-light);
+    margin-top: 30px;
+    width: 100px;
+    padding-bottom: 10px;
 }
 .cardInformationCardHolderExpiryDateWrapper {
-    width:260px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 260px;
 }
 .cardInformationCardHolderConfirmButton {
-    background: transparent;
-    color:var(--color-font-turk);
-    margin-top:50px;
-    margin-left:60px;
-    padding:15px 40px;
+    background: var(--color-background-transparent);
     border-radius: var(--border-radius-high);
-    font-weight: 600;
-    border: 1px solid var(--color-font-turk)
+    border: var(--border-thickness-1) var(--border-type) var(--color-font-turk);
+    color:var(--color-font-turk);
+    margin-left:60px;
+    margin-top:50px;
+    padding: 15px 40px;
 }
 
 .cardInformationCardHolderConfirmButton:hover {
-    color:var(--color-font-white);
     background: var(--color-font-turk);
+    color:var(--color-font-white);
 }
 
 /* Balance  */
 .balanceMiddleSection {
-    width:100%;
-    margin-bottom:60px;
+    margin-bottom: 60px;
+    width: 100%;
 }
 
 .balanceCardContainer {
     align-self: start;
     background: var(--linear-gradient-light);
-    border-radius: 25px;
+    border-radius: var(--border-radius-high);
     color: var(--color-font-white);
     height:700px;
     line-height: 42px;
@@ -635,7 +607,7 @@ input:focus {
     justify-content: space-between;
     margin-left: 25px;
     min-height: 700px;
-    width:1100px;
+    width: 1100px;
 }
 
 .balanceCardUserInfo h3 {
@@ -644,45 +616,45 @@ input:focus {
 }
 
 .balanceCardUserInput {
-    background:white;
-    border-radius: 15px;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    background:var(--color-background-white);
+    border-radius: var(--border-radius-low);
+    box-shadow: var(--box-shadow);
     height: 160px;
+    margin: 5px 0;
     text-align: center;
     width: 1100px;
-    margin: 5px 0;
 }
 
 .balanceCardAddFunds {
-    border-radius: 15px;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
-    height: 160px;
-    width: 1100px;
-    margin: 5px 0;
     background: var(--color-background-white);
+    border-radius: var(--border-radius-low);
+    box-shadow: var(--box-shadow);
+    height: 160px;
+    margin: 5px 0;
+    width: 1100px;
 }
 
 .balanceCardAddFunds h4 {
-    margin-left:50px;  
-    margin-top:40px;
-    font: var(--font-size-subheader);
     color:var(--color-font-light);
-    padding-top:40px;
+    font: var(--font-size-subheader);
+    margin-left: 50px;  
+    margin-top: 40px;
+    padding-top: 40px;
 }
 
 .balanceCardAddFunds input {
-    margin:0 auto;
-    margin-left:50px;   
-    background: transparent;
-    margin-top:5px;
+    background: var(--color-background-transparent);
+    margin-left: 50px;   
+    margin-top: 5px;
+    margin :0 auto;
 }
 
 .balanceCardMyBalance {
-    background-color: transparent;
-    width: 1100px;
+    background: var(--color-background-transparent);
+    border-radius: var(--border-radius-low);
     height: 160px;
-    border-radius: 15px;
     text-align: center;
+    width: 1100px;
 }
 
 .balanceCardMyBalanceHeader {
@@ -693,8 +665,8 @@ input:focus {
 }
 
 .balanceCardMyBalanceHeader h2 {
-    margin-left: 20px;
     font-size: var(--font-size-title);
+    margin-left: 20px;
 }
 
 .balanceCardUserBalance {
@@ -705,54 +677,54 @@ input:focus {
 }
 
 .balanceUserInputField {
-    font-size: 20px;
-    width: 300px;
-    border:0;
+    border-bottom: var(--border-thickness-1) var(--border-type) var(--border-color-grey);
+    border: none;
+    font-size: var(--font-size-body);
     justify-self: left;
     margin-left: 60px;
-    border-bottom: 1px solid grey;
     padding-bottom: 10px;
+    width: 300px;
 }
 
 .balanceUserInputField input {
-    border:none;
-    text-align: left;
+    border: none;
     justify-content: left;
+    text-align: left;
     width: 2000px;
 }
 
 .balanceSelectedButton {
-    border-radius: 25px;
-    color:#016D74;
-    font-size: 16px;
-    font-weight:500;
-    background-color: transparent;
-    border: solid 3px #016D74;
+    background: var(--color-background-transparent);
+    border-radius: var(--border-radius-high);
+    border: var(--border-thickness-3) var(--border-type) var(--border-color-turk);
+    color:var(--color-font-turk);
+    font-size: var(--font-size-small-body);
+    font-weight: var(--font-weight-light);
     padding: 10px 50px;
 }
 
 .balanceSelectedButton:hover {
-    color:white;
-    background-color: #016D74;
+    background: var(--color-background-turk);
+    color:var(--color-font-white);
 }
 
 .balanceFooterBlog a {
-    font-weight: 400;
-    font-size: 22px;
-    margin-top:50px;
+    color: var(--font-color-light);
     display: flex;
-    color:var(--font-color-light);
-    text-decoration: none;
+    font-size: var(--font-size-large-body);
+    font-weight: var(--font-weight-lighter);
+    margin-top: 50px;
     padding-left: 50px;
+    text-decoration: none;
 }
 
 .balanceFooterBlog a:hover {
-    color:#13C2C1
+    color:var(--color-font-hover)
 }
 
 .balanceFooterBlogHeader {
-    color: #13C2C1;
-    padding-top:30px;
+    color: var(--color-font-hover);
+    padding-top: 30px;
     padding-left: 50px;
     text-align: left;
 }
@@ -763,27 +735,30 @@ input:focus {
 }
 
 .balanceConfirmButton {
-    background-color: transparent;
-    border-radius: 25px;
-    border: solid 3px #016D74;
-    color:#016D74;
-    font-size: 16px;
-    font-weight:500;
-    margin-top:20px;
+    background: var(--color-background-transparent);
+    border-radius: var(--border-radius-high);
+    border: var(--border-thickness-3) var(--border-type) var(--border-color-turk);
+    color:var(--color-font-turk);
+    font-size: var(--font-size-small-body);
+    font-weight: var(--font-weight-light);
+    margin-top: 20px;
     padding: 10px 50px;
-    width:160px;
+    width: 160px;
 }
 
 .balanceConfirmButton:hover {
-    color:white;
-    background-color: #016D74;
+    background: var(--color-background-turk);
+    color:var(--color-font-white);
 }
 
 .balanceGridUserInput_1x2 {
     grid-template-columns: 70% 30%;
 }
 
-/* Activity  */
+
+/*    ==========================    */
+/*             ACTIVITY             */
+/*    ==========================    */
 
 .grid_1x4 {
     grid-template-columns:repeat(4,calc(100%/4));
@@ -795,33 +770,33 @@ input:focus {
 }
 
 .myActivityContainer {
-    margin-top:86px;
+    background: var(--color-background-light);
+    margin-top: 86px;
     text-align: center;
-    width:100%;
-    background: #f7f7f7;
+    width: 100%;
 }
 
 .myActivityMiddle h2 {
-    padding-top:40px;
-    color:#00474F;
-    padding-bottom:30px;
-    font-size:32px;
+    color: var(--color-font-dark-turk);
+    font-size: var(--font-size-title);
+    padding-bottom: 30px;
+    padding-top: 40px;
     text-align: center;
 }
 
 .myActivityCard {
-    background: linear-gradient(to bottom,#016D74, #01373A);
-    min-height:160px;
-    border-radius: 25px;
-    color:white;
-    text-align: center;
+    background: var(--linear-gradient-light);
+    border-radius: var(--border-radius-high);
+    color:var(--color-font-white);
     cursor: pointer;
+    min-height:160px;
+    text-align: center;
 }
 
 .myActivityCard a {
-    color:white;
-    font-size: 24px;
-    font-weight:400;
+    color:var(--color-font-white);
+    font-size: var(--font-size-subheader);
+    font-weight: var(--font-weight-lighter);
     text-decoration: none;
     text-align: center;
 }
@@ -829,43 +804,45 @@ input:focus {
     color:var(--color-font-hover);
 }
 
-/* User Stats  */
+/*    ==========================    */
+/*            USER STATS            */
+/*    ==========================    */
+
 .myActivityUserStatistics {
-    width:100%;
-    margin-bottom:50px;
+    width: 100%;
+    margin-bottom: 50px;
 }
 
 .myActivityUserStatisticsHeader {
-    text-align: center;
-    font-size: 24px;
-    margin:20px 0;
     color:var(--color-font-turk);
+    font-size: var(--font-size-subheader);
+    margin: 20px 0;
+    text-align: center;
 }
 
 .myActivityUserTableCard {
-    width: 100%;
-    margin-top:10px;
-    background: #FFF;
-    border-radius: 25px;
-    min-height:500px;
+    background: var(--color-background-light-grey);
+    border-radius: var(--border-radius-high);
+    box-shadow: var(--box-shadow);
     height:auto;
-        box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
-
+    margin-top: 10px;
+    min-height: 500px;
+    width: 100%;
 }
 
 .myActivityUserTableCard table {
-    text-align: center;
     align-items: center;
-    width: 99%;
-    height:100%;
+    border-radius: var(--border-radius-high);
+    height: 100%;
     margin: 0 auto;
-    border-radius: 25px;
+    text-align: center;
+    width: 99%;
 }
 
 .myActivityUserTableCard th {
-    padding:20px 20px 16px 20px;
-    font-size: 16px;
-    color:#1B1C1E
+    color:var(--color-font-dark);
+    font-size: var(--font-size-small-body);
+    padding: 20px 20px 16px 20px;
 }
 
 .myActivityUserTableCard tr {
@@ -873,78 +850,103 @@ input:focus {
 }
 
 .myActivityUserTableCard td {
-    font-size: 14px;
-    font-weight:400;
-    color:#5F5F5F;
-    padding-bottom:20px;
+    color: var(--color-font-light);
+    font-size: var(--font-size-small-body);
+    font-weight: var(--font-weight-lighter);
+    padding-bottom: 20px;
 }
 
 .myActivtyCancelButton {
-    border-radius: 15px;
-    color:#016D74;
-    font-size: 12px;
-    font-weight:600;
-    background-color: transparent;
-    border: solid 1px #016D74;
-    padding: 5px 20px;
+    background: var(--color-background-transparent);
+    border-radius: var(--border-radius-low);
+    border: var(--border-thickness-1) var(--border-type) var(--border-color-turk);
+    color:var(--color-font-turk);
+    font-size: var(--font-size-super-small);
+    font-weight: var(--font-weight);
     justify-content: center;
+    padding: 5px 20px;
 }
 
 .myActivtyCancelButton:hover {
-    color:white;
-    background: #016D74;
+    background: var(--color-background-turk);
+    color:var(--color-font-white);
 }
 
 .myActivityButtonContainer {
-    width:100%;
-    height:50px;
-    border-radius: 25px;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);    /* border: 2px solid red; */
+    border-radius: var(--border-radius-high);
+    box-shadow: var(--box-shadow);    /* border: 2px solid red; */
+    height: 50px;
+    width: 100%;
 }
 .myActivityButtonContainer button {
     padding:10px 0;
 }
 
 .myActivtyButtonOrdersLeft {
-    background: white;
-    border-radius: 25px 0 0 25px;
-    border:none;
-    color:#00474f;
-    font-size:18px;
-    height:100%;
-    width:100%;
+    background: var(--color-background-white);
+    border-radius: var(--border-radius-high) 0 0 var(--border-radius-high);
+    border: none;
+    color: var(--color-font-dark-turk);
+    font-size: var(--font-size-body);
+    height: 100%;
+    width: 100%;
 }
 
 .myActivtyButtonOrdersMiddle {
-    background: white;
-    border:none;
-    border-left: 1px solid #FFF;
-    color:#00474f;
-    font-size:18px;
-    height:100%;
-    width:100%;
+    background: var(--color-background-white);
+    border: none;
+    border-left: var(--border-thickness-1) var(--border-type) var(--border-color-grey);
+    color: var(--color-font-dark-turk);
+    font-size: var(--font-size-body);
+    height: 100%;
+    width: 100%;
 }
 
 .myActivtyButtonOrdersRight {
-    background: white;
-    border-radius: 0 25px 25px 0;
-    border:none;
-    border-left: 1px solid #FFF;
-    color:#00474f;
-    font-size:18px;
-    height:100%;
-    width:100%;
+    background: var(--color-background-white);
+    border-radius: 0 var(--border-radius-high) var(--border-radius-high) 0;
+    border: none;
+    border-left: var(--border-thickness-1) var(--border-type) var(--border-color-grey);
+    color: var(--color-font-dark-turk);
+    font-size: var(--font-size-body);
+    height: 100%;
+    width: 100%;
 }
 
 .myActivtyButtonOrdersLeft:focus, 
 .myActivtyButtonOrdersMiddle:focus,
 .myActivtyButtonOrdersRight:focus {
     background:var(--linear-gradient-light);
-    color:white
+    color:var(--color-font-white);
 }
 
 .myActivtyButtonOrdersLeft:hover,.myActivtyButtonOrdersMiddle:hover, .myActivtyButtonOrdersRight:hover  {
-    color:white;
     background:var(--linear-gradient-light);
+    color:var(--color-font-white);
 }
+
+} 
+
+/* Small device size  */
+@media (600px <= width <= 767px) {
+    
+}
+
+/* Medium screens  */
+@media (768px <= width <= 991px) {
+    
+}
+
+/* Large screens  */
+@media (992px <= width <= 1199px) {
+    
+} 
+
+/* Large screens  */
+@media (1200px <= width <=1499px) {
+    
+} 
+
+
+
 

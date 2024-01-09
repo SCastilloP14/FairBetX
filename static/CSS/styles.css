@@ -1,7 +1,10 @@
 :root { 
 /* Font Family  */
 --font-family: 'Satoshi', sans-serif;
+--font-weight-lighter: 400;
+--font-weight-light: 500;
 --font-weight: 600;
+--font-weight-heavy: 800;
 
 /* Font Colors */
 --color-font-black:black;
@@ -44,6 +47,7 @@
 /* Border Radius  */
 --border-radius-low:15px;
 --border-radius-high:25px;
+--border-radius-slider:50px;
 
 /* Padding Top/Bottom  */
 --padding-top:10px;
@@ -55,16 +59,20 @@
 --border-thickness-1: 1px;
 --border-thickness-2: 2px;
 --border-thickness-3: 3px;
+
 --border-color-white: white;
 --border-color-hover: #13C2C1;
 --border-color-red: #B51F1F;
 --border-color-green: #E4F0EB;
 --border-color-grey: #5F5F5F;
 --border-color-light-grey: #F7F7F7;
-
+--border-color-turk: #016D74;
 
 
 --border-type: solid;
+
+/* Box Shadow  */
+--box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
 
 /* Center Column */
 --center-column-width: 1500px;
@@ -84,20 +92,50 @@ body, html {
 /* Small device size  */
 @media (600px <= width <= 767px) {
     :root {
+
     /* Center Column */
     --center-column-width: 600px;
+
+    /* Font Sizes */
+    --font-size-header:40px;
+    --font-size-title:30px;
+    --font-size-subheader:24px;
+    --font-size-large-body:16px;
+    --font-size-body:18px;
+    --font-size-small-body:16px;
+    --font-size-super-small:12px;
+
+
     }
 }
 
 /* Medium screens  */
 @media (768px <= width <= 991px) {
-    
+    :root {
+
+    /* Center Column */
+    --center-column-width: 768;
+
+    /* Font Sizes */
+    --font-size-header:40px;
+    --font-size-title:30px;
+    --font-size-subheader:24px;
+    --font-size-large-body:18px;
+    --font-size-body:18px;
+    --font-size-small-body:16px;
+    --font-size-super-small:12px;
+
+    }
 }
 
 /* Large screens  */
 @media screen and (min-width:992px) and (max-width:1199px) {
 
-    :root{
+    :root {
+
+     /* Center Column */
+    --center-column-width: 992px;
+
 
     /* Font Sizes */
     --font-size-header:40px;
@@ -112,8 +150,35 @@ body, html {
 } 
 
 /* Large screens  */
-@media screen and (min-width:1200px) {
-    
+@media screen and (min-width:1200px) and (max-width:1499px) {
+
+    :root {
+
+    /* Font Sizes */
+    --font-size-header:40px;
+    --font-size-title:30px;
+    --font-size-subheader:24px;
+    --font-size-large-body:22px;
+    --font-size-body:18px;
+    --font-size-small-body:16px;
+    --font-size-super-small:12px;
+
+    /* Center Column */
+    --center-column-width: 1200px;
+
+
+    }
+} 
+
+/* Large screens  */
+@media screen and (min-width:1500px) {
+
+    :root {
+
+    /* Center Column */
+    --center-column-width: 1500px;
+
+    }
 } 
 
 a {

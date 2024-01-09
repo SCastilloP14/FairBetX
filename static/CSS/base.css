@@ -63,10 +63,9 @@
 }
 
 .navBarCenterCenter {
-    width: 500px;
     text-align: center;
-    margin-left:400px;
-    margin-right: auto;
+    display: flex;
+    gap:20px;
 }
 
 .navBarHeader {
