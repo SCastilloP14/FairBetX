@@ -8,7 +8,9 @@
 
 /* Medium screens  */
 @media (768px <= width <= 991px) {
-    
+    .gridNav13 { 
+        grid-template-columns: 0 var(--center-column-width) 0;
+    }
 }
 
 /* Large screens  */

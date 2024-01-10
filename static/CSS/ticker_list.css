@@ -1,28 +1,4 @@
 @import './styles.css';
-/* Small device size  */
-@media (600px <= width <= 767px) {
-    
-}
-
-/* Medium screens  */
-@media (768px <= width <= 991px) {
-    
-}
-
-/* Large screens  */
-@media (992px <= width <= 1199px) {
-    
-} 
-
-/* Large screens  */
-@media (1200px <= width <= 1499px) {
-    
-} 
-
-/* X-Large screens  */
-@media (1500px <= width) {
-    
-}
 
 
 .gameListHeader {
@@ -33,7 +9,6 @@
 .gameListHeaderImg {
     width: 100%;
     height: 200px;  
-
 }
 
 .gameListHeaderCentered {
@@ -56,7 +31,7 @@
 
 .grid12 {
     grid-template-columns: 25% 75%;
-    margin-bottom:50px;
+    margin-bottom: 50px;
 }
 
 .grid16 {
@@ -178,7 +153,7 @@
     display: none;
     position: absolute;
     background-color: var(--color-background-light-grey);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--box-shadow);
     z-index: 1;
     max-height: 300px; /* Adjust as needed */
     overflow-y: auto; /* Enable vertical scroll if needed */
@@ -189,7 +164,7 @@
     display: none;
     position: absolute;
     background-color: var(--color-background-light-grey);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--box-shadow);
     z-index: 1;
     max-height: 300px; /* Adjust as needed */
     overflow-y: auto; /* Enable vertical scroll if needed */
@@ -257,7 +232,7 @@ h4 {
     border:  var(--border-thickness-3) var(--border-type) var(--color-background-dark-red);
     color: var(--color-font-red);
     font-size: var(--font-size-small-body);
-    font-weight: 600;
+    font-weight: var(--font-weight);
     margin-left: auto;
     margin-right: 80px;
     padding: 10px 50px;
@@ -334,9 +309,9 @@ h4 {
 
 .rightCardContainerMatches {
     border-radius: var(--border-radius-low);
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
     margin:0 auto;
-    width:98%;
+    width: 98%;
 }
 
 .cardLink {
@@ -360,7 +335,7 @@ h4 {
     font-weight: 600;
     height: 100%;
     justify-content: space-evenly;
-    padding-left:30px;
+    padding-left:3rem;
     text-align: left;
     width:100%;
 }
@@ -384,7 +359,7 @@ h4 {
     font-size: var(--font-size-body);
     height: 100%;
     justify-content: center;
-    margin-bottom:10px;
+    margin-bottom:0.2rem;
 }
 
 .rightCardMatchCard4 {
@@ -537,3 +512,109 @@ h4 {
 .custom-dropdown.open .dropdown-content {
   display: block;
 }
+
+
+/* X-Small device size  */
+@media (600px <= width <= 767px) {
+    .gameListHeaderImg {
+        height:auto;
+        max-height:100px;
+    }
+}
+
+/* Small screens  */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .custom-dropdown {
+            margin-left:30px;
+            margin-top: 20px;
+        }
+  
+    .searchBarLeftCard {
+        width:60%
+        }
+
+    .gameListHeaderImg {
+        height:auto;
+        max-height:100px;
+    }
+  
+    .rightCardContainer {
+        width:738.25px;
+        margin-left:5px;
+    }
+
+    .rightCardMatchCard {
+        width:100%;
+        max-width: 744.25px;
+        height:140px;
+    }
+
+    .leftCardContainer {
+        min-height: 500px;
+    }
+  
+    .dateRangeDropdown,
+    .leagueDropdown {
+        margin-left: 10px;
+        padding: 0px 4px;
+    }
+    .liveButton {
+        margin-left: 10px;
+        margin-right: auto;
+    }
+
+    .sportsLogo {
+        height: 20px;
+        margin-right: 10px;
+        width: 20px;
+    }
+  .grid12 {
+    max-width: 992px;
+    width: 100%;
+  }
+  .grid16 {
+    width :100%
+  }
+}
+
+/* Large screens  */
+@media (992px <= width <= 1199px) {
+    .gameListHeaderImg {
+        height:auto;
+        max-height:140px;
+        }
+    .searchBarLeftCard {
+        width: 140px;
+    } 
+
+    .dateRangeDropdown,
+    .leagueDropdown {
+        margin-left: 10px;
+        padding: 0px 4px;
+    }
+    .liveButton {
+        margin-left: 10px;
+        margin-right: auto;
+    }
+
+    .sportsLogo {
+        height: 20px;
+        margin-right: 10px;
+        width: 20px;
+    }
+    .leftCardContainer {
+        min-height: 500px;
+        width:100%;
+    }
+} 
+
+/* Large screens  */
+@media (1200px <= width <= 1499px) {
+    
+} 
+
+/* X-Large screens  */
+@media (1500px <= width) {
+    
+}
+

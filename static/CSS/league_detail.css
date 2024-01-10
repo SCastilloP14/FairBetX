@@ -71,7 +71,7 @@
     height: 280px !important;
     margin-top:10px;
     padding-bottom: 0;
-    width:1500px;
+    width:var(--center-column-width);
 }
 
 .leagueOverviewGameCardHeader {
@@ -204,7 +204,7 @@
     margin-top:10px;
     min-height: 300px;
     text-align:left;
-    width:1500px;
+    width: var(--center-column-width);
 }
 
 .wrapper {

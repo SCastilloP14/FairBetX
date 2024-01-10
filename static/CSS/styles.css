@@ -71,7 +71,7 @@
 --border-color-light-grey: #F7F7F7;
 --border-color-turk: #016D74;
 
-
+/* Box Type  */
 --border-type: solid;
 
 /* Box Shadow  */
@@ -140,7 +140,7 @@ body, html {
 
     body, html {
 
-        font-size: 80%; 
+        font-size: 70%; 
 
     }
 } 
