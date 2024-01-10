@@ -255,6 +255,110 @@
                 </table>
             </div>
 
+            <table class="hidden" id="buy-orders" data-orders="{{ buy_orders|safe }}"></table>
+            <table class="hidden" id="sell-orders" data-orders="{{ sell_orders|safe }}"></table>
+
+
+
+            <script>
+                function showConfirmationPopup() {
+                    // Get form data
+                    var orderType = document.getElementById("order-type").value;
+                    var orderSide = document.querySelector(".tickerDetailSideSelect").value;
+                    var orderPrice = document.getElementById("order-price").value;
+                    var orderQuantity = document.getElementById("order-quantity").value;
+
+                    var maxProfit;
+                    var maxLoss;
+
+                    var buyOrdersTable = document.getElementById('buy-orders');
+                    // var buyOrdersData = JSON.parse(buyOrdersTable.dataset.orders);
+                    console.log("BUY TABLE",buyOrdersTable);
+
+                    // Read sell orders data attribute
+                    var sellOrdersTable = document.getElementById('sell-orders');
+                    // var sellOrdersData = JSON.parse(sellOrdersTable.dataset.orders);
+                    console.log("SELL TABLE",sellOrdersTable);
+
+
+                    if (orderType === "MARKET") {
+                        if (orderSide === "BUY") {
+                            // Calculate maximum loss and profit based on the highest sell order
+                            var highestSellOrder = getHighestSellOrder(sell_orders, orderQuantity);
+                            var maxProfit = highestSellOrder ? (highestSellOrder.order_price - orderPrice) * orderQuantity : 0;
+                            var maxLoss = 0; // Assuming the user buys at the lowest sell price
+                        } else if (orderSide === "SELL") {
+                            // Calculate maximum loss and profit based on the highest buy order
+                            var highestBuyOrder = getHighestBuyOrder(buy_orders, orderQuantity);
+                            var maxProfit = highestBuyOrder ? (orderPrice - highestBuyOrder.order_price) * orderQuantity : 0;
+                            var maxLoss = 0; // Assuming the user sells at the highest buy price
+                        }
+                        
+                        confirmationMessage =
+                            "You are submitting a MARKET ORDER to " + orderSide + " " + 
+                            orderQuantity + " Contracts at the best available price for a TOTAL Price of $" + 
+                            (orderPrice * orderQuantity) + "<br>" +
+                            "Maximum Profit: $" + maxProfit + "<br>" +
+                            "Maximum Loss:  $" + maxLoss;
+                    } else {
+                        // Logic for other order types
+                        // ...
+                        confirmationMessage = 
+                            "You are submitting a "+ "LIMIT ORDER to " + orderSide + " " + 
+                            orderQuantity + " Contracts at $" + orderPrice + " for a TOTAL Price of $" + 
+                            (orderPrice * orderQuantity) + "<br>" + "<br>" +
+                            "Maximum Profit: $" + (orderSide === 'BUY' ? (10 - orderPrice) * orderQuantity : orderPrice * orderQuantity) + "<br>" +
+                            "Maximum Loss:   $" + (orderSide === 'BUY' ? orderPrice * orderQuantity : (10 - orderPrice) * orderQuantity);
+                        ;
+                    }
+                    // Display the confirmation pop-up
+                    document.getElementById("confirmation-message").innerHTML = confirmationMessage;
+                    document.getElementById("confirmation-overlay").style.display = "flex";
+                }
+
+                function hideConfirmationPopup() {
+                    // Hide the confirmation pop-up
+                    document.getElementById("confirmation-overlay").style.display = "none";
+                }
+
+                function submitOrder() {
+                    console.log("Inside");
+                    // Submit the form
+                    document.getElementById("order-form").submit();
+                    console.log("Submitted");
+
+                }
+
+
+                function getHighestSellOrder(sellOrders, quantity) {
+                    // Sort sellOrders by order price in ascending order
+                    sellOrders.sort((a, b) => a.order_price - b.order_price);
+
+                    // Find the highest sell order with enough quantity
+                    for (let i = sellOrders.length - 1; i >= 0; i--) {
+                        if (sellOrders[i].total_quantity >= quantity) {
+                            return sellOrders[i];
+                        }
+                    }
+
+                    return null; // No suitable sell order found
+                }
+
+                function getHighestBuyOrder(buyOrders, quantity) {
+                    // Sort buyOrders by order price in descending order
+                    buyOrders.sort((a, b) => b.order_price - a.order_price);
+
+                    // Find the highest buy order with enough quantity
+                    for (let i = 0; i < buyOrders.length; i++) {
+                        if (buyOrders[i].total_quantity >= quantity) {
+                            return buyOrders[i];
+                        }
+                    }
+
+                    return null; // No suitable buy order found
+                }
+
+            </script>
             <!-- Order Submission Card  -->
             <div class="tickerDetailOrderSubmissionCard">
                 <header>Place Order</header>
@@ -280,11 +384,24 @@
                         </div>
                         <div class="tickerDetailOrderSubmissionPlaceOrderLeft">Quantity</div>
                         <div class="tickerDetailQuantityInput">
-                            <input class="tickerDetailQuantityInput" type="text" placeholder="0" name="order_quantity">
+                            <input id="order-quantity" class="tickerDetailQuantityInput" type="text" placeholder="0" name="order_quantity">
                         </div>
                     </div>
                     <input type="hidden" name="ticker_id" value="{{ticker_detail.pk}}">
-                    <button class="tickerDetailSubmitButton" type="submit" name="action" value="submit_order">Submit</button>
+                    
+                    
+                    <!-- Add the overlay container -->
+                    <div id="confirmation-overlay" class="confirmation-overlay">
+                        <div class="confirmation-popup">
+                            <span id="confirmation-message"></span>
+                            <div class="confirmation-buttons">
+                                <button onclick="submitOrder()" class="tickerDetailConfirmButton button">Confirm</button>
+                                <button onclick="hideConfirmationPopup()" class="tickerDetailCancelButton button">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="tickerDetailSubmitButton" type="button" onclick="showConfirmationPopup()" name="action" value="submit_order">Submit</button>
                 </form>
 
                 <!-- If User is not Authenticated prevent them from trading  -->

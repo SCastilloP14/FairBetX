@@ -1,42 +1,55 @@
 :root { 
 /* Font Family  */
   --font-family: 'Satoshi', sans-serif;
-  --font-weight: 600;
+--font-weight-lighter: 400;
+--font-weight-light: 500;
+--font-weight: 600;
+--font-weight-heavy: 800;
+
 /* Font Colors */
---color-font-white:white;
 --color-font-black:black;
---color-font-light:#5F5F5F;
 --color-font-dark:#1B1C1E;
---color-font-turk:#016D74;
---color-font-red:#B51F1F;
 --color-font-green:#15965A;
 --color-font-hover:#13C2C1;
+--color-font-light:#5F5F5F;
+--color-font-red:#B51F1F;
+--color-font-turk:#016D74;
+--color-font-dark-turk:#00474f;
+--color-font-white:white;
 
 /* Background Colors */
---color-background-light:#F7F7F7;
 --color-background-blue:#F0FFFD;
---color-background-red:#F5E4E5;
 --color-background-dark-red:#B51F1F;
+--color-background-dark: #1B1C1E;
 --color-background-green:#E4F0EB;
---color-background-white:white;
+--color-background-hover: #13C2C1;
+--color-background-light-hover: #F0FFFD;
+--color-background-light-green: #15965A;
+--color-background-light-grey:#fff;
+--color-background-light:#F7F7F7;
+--color-background-red:#F5E4E5;
 --color-background-transparent: transparent;
+--color-background-turk: #016D74;
+--color-background-white:white;
 
 /* Gradient Colors  */
 --linear-gradient-light: linear-gradient(to bottom, #016D74, #01373A);
 --linear-gradient-dark: linear-gradient(to bottom, #00474F, #000E10);
 
 /* Font Sizes */
---font-size-header:40px;
---font-size-title:30px;
---font-size-subheader:24px;
---font-size-large-body:22px;
---font-size-body:18px;
---font-size-small-body:16px;
---font-size-super-small:12px;
+--font-size-header:2rem;            /* 40px */
+--font-size-title:1.8rem;           /* 30px */
+--font-size-subheader:1.6rem;       /* 24px */
+--font-size-large-body:1.4rem;      /* 22px */
+--font-size-body:1.2rem;            /* 18px */
+--font-size-small-body:1rem;        /* 16px */
+--font-size-super-small:0.6rem;     /* 12px */
 
 /* Border Radius  */
 --border-radius-low:15px;
 --border-radius-high:25px;
+--border-radius-slider:50px;
+--border-radius-circle: 100%;
 
 /* Padding Top/Bottom  */
 --padding-top:10px;
@@ -44,10 +57,28 @@
 
 /* Padding Left/Right */
 
-/* Border  */
+/* Border Thickness */
 --border-thickness-1: 1px;
---border-thickness-2: 3px;
+--border-thickness-2: 2px;
+--border-thickness-3: 3px;
+
+/* Border Color  */
+--border-color-white: white;
+--border-color-hover: #13C2C1;
+--border-color-red: #B51F1F;
+--border-color-green: #E4F0EB;
+--border-color-grey: #5F5F5F;
+--border-color-light-grey: #F7F7F7;
+--border-color-turk: #016D74;
+
+
 --border-type: solid;
+
+/* Box Shadow  */
+--box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+
+/* Center Column */
+--center-column-width: 1500px;
 
  }
 
@@ -96,18 +127,20 @@ a {
     background-color: var(--color-background-transparent);
     border: solid 3px var(--color-button-border-white);
     padding: var(--padding-top) 35px;
-    }
+}
 
 .button:hover {
     background-color: var(--color-font-hover);
     border: 3px solid var(--color-font-hover);
     color:var(--color-font-white);
 }
+
 .addFunds {
     color: var(--color-font-black);
     background:var(--color-background-transparent);
     border: 3px solid var(--color-font-hover)
 }
+
 .leagueButton {
     color:var(--color-font-black);
     padding: 10px 40px;
