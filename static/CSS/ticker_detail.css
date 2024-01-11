@@ -29,20 +29,23 @@
 .grid_1x4 {
     grid-template-columns:repeat(4,calc(100%/4));
 }
+
 .grid_4x2 {
     grid-template-rows:repeat(4,calc(340px/4));
     grid-template-columns: repeat(2,calc(360px/2));
-
 }
+
 .grid_1x10_tickerDetail {
     grid-template-columns: 10% 15% 10% 15% 10% 15% 10% 15% 10% 15%;
 }
 .grid_2x1_tickerDetail {
     grid-template-rows: 50% 50%;
 }
+
 .grid_1x9 {
     grid-template-columns: 10% 20% 5% 5% 5% 15% 5% 15% 5% 15%;
 }
+
 .middle_section {
     align-items: center;
     display: flex;
@@ -254,18 +257,18 @@
 
 /* Buy Orders  */
 .tickerDetailBuyOrderbookTable td {
-    color:var(--color-font-green);
+    color: var(--color-font-light-green);
 }
 .tickerDetailBuyRight {
-    background: var(--color-background-light-green);
+    background: var(--color-background-green);
 }
 
  /* Sell Orderbook  */
 .tickerDetailSellOrderbookTable td {
-    color:var(--color-font-red);
+    color: var(--color-font-red);
 }
 .tickerDetailSellRight {
-    background: var(--color-background-light-red);
+    background: var(--color-background-red);
 }
 
  /* Buy and Sell Orderbook  */
@@ -352,15 +355,15 @@
 
 .tickerDetailOrderSubmissionField {
     height: auto !important;;
-    margin: 0 auto;
     justify-content: center;
+    margin: 0 auto;
 }
 
 .tickerDetailOrderSubmissionPlaceOrderLeft {
     color: var(--color-font-light);
     font-size:var(--font-size-subheader);
     text-align: left;
-    width:100%;
+    width: 100%;
 }
 
 .tickerDetailOrderSelect {
@@ -391,8 +394,9 @@
 }
 
 .tickerDetailPriceInput input {
-    margin-left:20px;
-    width:160px;
+    height:38px;
+    margin-left: 20px;
+    width: 130px;
 }
 
 .tickerDetailPriceInput input:focus, .tickerDetailQuantityInput input:focus  {
@@ -409,8 +413,9 @@
 }
 
 .tickerDetailQuantityInput input {
+    height:38px;
     margin-left:20px;
-    width:160px;
+    width:130px;
 }
 
 /* User Stats  */
@@ -623,8 +628,12 @@
     }
 
     .tickerDetailOrderSubmissionCard {
-        width:330px;
+        width: 330px;
         margin-left:0
+    }
+    .grid_4x2 {
+        grid-template-rows:repeat(4,calc(340px/4));
+        grid-template-columns: repeat(2,calc(300px/2));
     }
 } 
 
@@ -641,6 +650,7 @@
         width:399px;
         margin-left:0
     }
+    
 } 
 
 /* X-Large screens  */
