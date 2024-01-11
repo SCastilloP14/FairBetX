@@ -104,6 +104,10 @@ body, html {
     /* Center Column */
     --center-column-width: 600px;
 
+    /* Border Radius  */
+    --border-radius-low:8px;
+    --border-radius-high:15px;
+
     }
 
     body, html {
