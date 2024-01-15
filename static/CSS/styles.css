@@ -1,23 +1,13 @@
 :root { 
 /* Font Family  */
---font-family: 'Satoshi', sans-serif;
---font-weight-lighter: 400;
---font-weight-light: 500;
---font-weight: 600;
---font-weight-heavy: 800;
-
+  --font-family: 'Satoshi', sans-serif;
+  --font-weight: 600;
 /* Font Colors */
 --color-font-black:black;
 --color-font-dark:#1B1C1E;
 --color-font-green:#15965A;
 --color-font-light-green: #E4F0EB;
 --color-font-hover:#13C2C1;
---color-font-light:#5F5F5F;
---color-font-red:#B51F1F;
---color-font-light-red:#F5E4E5;
---color-font-turk:#016D74;
---color-font-dark-turk:#00474f;
---color-font-white:white;
 
 /* Background Colors */
 --color-background-blue:#F0FFFD;
@@ -50,8 +40,6 @@
 /* Border Radius  */
 --border-radius-low:15px;
 --border-radius-high:25px;
---border-radius-slider:50px;
---border-radius-circle: 100%; 
 
 /* Padding Top/Bottom  */
 --padding-top:10px;
@@ -61,19 +49,7 @@
 
 /* Border Thickness */
 --border-thickness-1: 1px;
---border-thickness-2: 2px;
---border-thickness-3: 3px;
-
-/* Border Color  */
---border-color-white: white;
---border-color-hover: #13C2C1;
---border-color-red: #B51F1F;
---border-color-green: #E4F0EB;
---border-color-grey: #5F5F5F;
---border-color-light-grey: #F7F7F7;
---border-color-turk: #016D74;
-
-/* Box Type  */
+--border-thickness-2: 3px;
 --border-type: solid;
 
 /* Box Shadow  */
@@ -91,92 +67,1390 @@ body, html {
     margin:0;
     min-height:100vh;
     overflow-x: hidden;
-    padding: 0;
-    width: 100%;
 } 
-
 
 
 /* Small device size  */
 @media (600px <= width <= 767px) {
-    :root {
-
-    /* Center Column */
-    --center-column-width: 600px;
-
-    /* Border Radius  */
-    --border-radius-low:8px;
-    --border-radius-high:15px;
-
-    }
-
-    body, html {
-
-        font-size: 40%; 
-
-    }
+    
 }
 
 /* Medium screens  */
 @media (768px <= width <= 991px) {
-    :root {
-
-    /* Center Column */
-    --center-column-width: 768;
-
-    }
-
-     body, html {
-
-        font-size: 60%; 
-
-    }
-
+    
 }
 
 /* Large screens  */
-@media screen and (min-width:992px) and (max-width:1199px) {
-
-    :root {
-
-        /* Center Column */
-        --center-column-width: 992px;
-
-    }
-
-    body, html {
-
-        font-size: 70%; 
-
-    }
+@media (992px <= width <= 1199px) {
+    
 } 
 
 /* Large screens  */
-@media screen and (min-width:1200px) and (max-width:1499px) {
-
-    :root {
-
-        /* Center Column */
-        --center-column-width: 1200px;
-
-    }
-
-     body, html {
-
-        font-size: 80%; 
-
-    }
-} 
-
-/* Large screens  */
-@media screen and (min-width:1500px) {
-
-    /* :root {
-
-    } */
+@media (1200px <= width) {
+    
 } 
 
 a {
+    text-decoration: none;
+}
+/*    ==========================    */
+/*            COMPONENTS            */
+/*    ==========================    */
+
+/* Buttons */
+.button {
+    border-radius: var(--border-radius-high);
+    color: var(--color-font-white);
+    font-size: 1rem;
+    background-color: var(--color-background-transparent);
+    border: solid 3px var(--color-button-border-white);
+    padding: var(--padding-top) 35px;
+    }
+
+.button:hover {
+    background-color: var(--color-font-hover);
+    border: 3px solid var(--color-font-hover);
+    color:var(--color-font-white);
+}
+.addFunds {
+    color: var(--color-font-black);
+    background:var(--color-background-transparent);
+    border: 3px solid var(--color-font-hover)
+}
+.leagueButton {
+    color:var(--color-font-black);
+    padding: 10px 40px;
+    border: 3px solid var(--color-font-hover);
+}
+
+
+/* Navigation Bar  */
+    .gradientContainer {
+        background: var(--linear-gradient-dark);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navBar {
+        height: 86px;
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        position: absolute;
+        margin-bottom: 100px;
+    }
+
+    .navBarCenter {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navBarLeft {
+        text-align: left;
+    }
+
+    .navBarRight {
+        text-align: right;
+    }
+
+    .navBarCenterCenter {
+        width: 500px;
+        text-align: center;
+        margin-left:400px;
+        margin-right: auto;
+    }
+
+    .navBarHeader {
+        color: var(--color-font-white);
+        font-size: 1.2rem;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-decoration: none;
+    }
+
+    .navBarHeader:hover {
+        color: var(--color-font-hover);
+    }
+
+    .navButton {
+        border-radius: 25px;
+        color: var(--color-font-white);
+        font-size: 1rem;
+        background-color: transparent;
+        border: solid 1px var(--color-font-white);
+        padding: 10px 35px;
+    }
+
+    .navButton:hover {
+        background-color: var(--color-font-hover);
+        border: 1px solid var(--color-font-hover);
+    }
+
+    .grid {
+        display: grid;
+        align-items: center;
+        place-items: center;
+        height: 100%;
+    }
+
+    .gridNav13 {
+        grid-template-columns: auto 1500px auto;
+    }
+
+    .gridNav13Middle {
+        grid-template-columns: auto;
+    }
+
+    #FBX-Logo {
+        width: 100px;
+        height:50px;
+    }
+
+    /* Hidden class for initially hiding elements */
+    .hidden {
+        display: none;
+    }
+
+    /* Style for the login dropdown container */
+    .loginDropdown {
+        position: absolute;
+        top: 60px; /* Adjust the value as needed to position the dropdown below the button */
+        right: 0;
+        background-color: var(--color-background-white);
+        border: 1px solid #ccc;
+        padding: 10px;
+        /* Additional styling as needed */
+    }
+
+/* Home  */
+
+.homeContainer {
+    background-color: var(--color-background-light);
+    width: 100%;
+    height: auto;
+    margin-bottom:20px;
+    text-align: center;
+}
+.homeFirstSection {
+    background:linear-gradient(to bottom, #016970, #01373A);
+    width:100%
+}
+.homeFirstSection img {
+    width: 1840px;
+}
+
+.homeSecondSection {
+    height: 700px;
+    width: 100%;
+    background-color: #FBFBFB;
+    color: darkgrey;
+}
+
+#homeSecondSectionHeader {
+    padding-top: 100px;
+    color: var(--color-font-turk);
+    font-size: 40px;
+    font-weight: 600;
+}
+
+#homeSecondSectionDescription {
+    color: var(--color-font-black);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.homeThirdSection {
+    background: #F0FFFD;
+    color:var(--color-font-black);
+    text-align: left;
+    vertical-align: top;
+}
+
+.homeThirdSectionButton {
+    width: 55px;
+    height:55px;
+    border-radius: 100%;
+    background:var(--linear-gradient-dark);
+    color:white;
+    font-size: 30px;
+}
+
+/* Third Section Rigth Side  */
+.homeThirdSectionRightSide {
+    width:100%;
+    height:900px;
+}
+
+.homeThirdSectionRightSide img {
+    position: relative;
+    right:140px;
+}
+
+/* Third Section Left Side  */
+.homeThirdSectionLeftSide {
+    width: 100%;
+    height: 900px;
+    align-self: flex-start;
+}
+
+#homeThirdSectionHeader {
+    padding-top:80px;
+    font-size:34px;
+    font-weight:600;
+    color: #00474F;
+}
+
+#homeThirdSectionDescription {
+    padding-top:20px;
+    font-size:22px;
+    font-weight:500;
+    color: #5F5F5F;
+    padding-bottom:0
+}
+
+.homeThirdSectionText h2 {
+    font-size: 24px;
+    color: #00474F;
+    padding-bottom:0
+}
+
+.homeThirdSectionText span {
+    font-size: 18px;
+    color: #5F5F5F;
+    line-height: 20px;
+}
+
+.beginJourneyButton {
+    border-radius: 25px;
+    color: #016D74;
+    font-size: 18px;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    margin-top:80px;
+    padding: 10px 35px;
+}
+
+.beginJourneyButton:hover {
+    color:white;
+    background:#016D74
+}
+
+.bettingButton {
+    border-radius: 25px;
+    color: #016D74;
+    font-size: 18px;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 35px;
+}
+
+.bettingButton:hover {
+    background-color: #13C2C1;
+    border: 3px solid #13C2C1;
+    color: white;
+}
+
+.homeSecondSectionImages {
+    width: 100%;
+    height: 650px;
+    display: flex;
+    overflow: visible; /* Allow content to overflow the container */
+    position: relative;
+}
+
+.overflowImage {
+    position: static;
+    right: 0;
+}
+
+/* Grid  */
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+}
+
+.gridHome1x2 {
+    grid-template-columns: 35% 65%;
+}
+
+.gridHome1x3 {
+    grid-template-columns: auto 1500px auto;
+}
+
+.gridHome3x2 {
+    grid-template-columns: 20% 80%;
+    grid-template-rows: repeat(3, 150px);
+}
+
+
+
+/* Footer */
+
+    .footer {
+        height: 700px;
+        background: linear-gradient(to bottom, #00474f, #000e10);
+        margin: 0;
+        padding: 0;
+        left: 0px;
+        width: 100%;
+        color:var(--color-font-white)
+    }
+
+    .footerStart {
+        width: 100%;
+        height: 600px;
+    }
+
+    .footerEnd {
+        background-color: #1B1C1E;
+        height: 100px;
+        left: 0;
+        width: 100%;
+        /* background: red; */
+    }
+    .gridFooterEnd14 {
+        grid-template-columns: repeat(4, 25%);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        color: var(--color-font-white)
+    }
+    .gridFooterEnd14 a {
+        color: var(--color-font-white);
+        text-decoration: none;
+    }
+    .footerStartCenter {
+        height: 100%;
+        width: 100%;
+        vertical-align: text-top;
+        display: flex;
+        align-items: flex-start;
+        margin-bottom:120px;
+    }
+
+    .footerStartCenterFollowUs {
+        color: var(--font-color-light);
+        place-items: left;
+        margin-right: 50px;
+        margin-top: 150px;
+        align-self: flex-start;
+    }
+
+    .footerBlog {
+        align-self: flex-start;
+        margin-top: 150px;
+    }
+
+    #followUs {
+        font-size: 2.3rem;
+        font-weight: 600;
+    }
+
+    #followUsDesc {
+        font-weight: 500;
+        font-size: 1.2rem;
+        line-height: 3rem;
+        padding-top: 20px;
+    }
+
+    .grid {
+        display: grid;
+        align-items: center;
+        place-items: center;
+        height: 100%;
+        width: 100%;
+    }
+
+    .gridFooter13 {
+        grid-template-columns: auto 1500px auto;
+    }
+
+    .gridFooter14 {
+        grid-template-columns: 40% 20% 20% 20%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    
+    }
+
+    .gridFooter14 a {
+        color: var(--font-color-light);
+        text-decoration: none;
+    }
+
+    .footerButton {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: transparent;
+        border: 2px solid white;
+        margin-right: 20px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .footerButton img {
+        display: block;
+        max-width: 60%;
+        max-height: 60%;
+    }
+
+    .footerButtonContainer {
+        display: flex;
+        margin-top: 50px;
+    }
+
+    .footerBlog a {
+        font-weight: 400;
+        margin-top: 50px;
+        display: flex;
+        color: var(--font-color-light);
+        text-decoration: none;
+    }
+
+    .footerBlogHeader {
+        color: #13C2C1;
+        margin-bottom: 50px;
+    }
+
+/* Login */
+
+.overlayDropdown {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgb(0,0,0, 0.5); /* Semi-transparent overlay */
+        z-index: 1;
+        display: none;
+    }
+
+    .loginCardContainer {
+        width: 510px;
+        height: 635px;
+        background: linear-gradient(to bottom, #00474f, #000e10);
+        line-height: 42px;
+        border-radius: 25px;
+        text-align: center;
+        color: white;
+        z-index: 20;
+        position: relative; /* Needed for the absolute positioning of the close button */
+        display: none;
+    }
+    .closingButton {
+        height:50px;
+        margin-bottom:0;
+        text-align: right;
+        padding-top: 20px;
+        padding-right: 20px;
+    }
+    #newUserButton {
+        text-decoration:underline ;
+        cursor: pointer;
+     }
+
+    .closingButton img {
+        width:40px;
+        height:40px;
+    }
+    .cancelButton {
+        border-radius: 100%;
+        width:40px;
+        height:40px;
+        color:white;
+        background: transparent;
+        border: 1px solid white;
+    }
+    .cardHeader {
+        width: 100%;
+        font-size: 34px;
+        font-weight: 700;
+        letter-spacing: 0;
+        padding-top: 30px;
+        margin-bottom: 10px;
+    }
+
+    .cardNewUser {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .cardNewUser a {
+        color: #13C2C1;
+        padding-left:5px;
+    }
+
+    .cardInputForm input {
+        height: 53px;
+        width: 300px;
+        border-radius: 15px;
+        padding-left: 17px;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+
+    .cardKeepLoggedIn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+    }
+
+    .cardButtonCheck {
+        width: 25px;
+        height: 25px;
+        color: white;
+        border-radius: 25px;
+        margin-right: 10px;
+        font-size: 18px;
+    }
+
+    .loginButton {
+        border-radius: 25px;
+        color: white;
+        font-size: 1rem;
+        background-color: transparent;
+        border: solid 1px white;
+        padding: 10px 40px;
+    }
+
+    .loginButton:hover {
+        background-color: #13C2C1;
+        border: 1px solid #13C2C1;
+    }
+
+    .cardHorizontalLineSeparator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0;
+    }
+
+    .horizontalLine {
+        width: 100px;
+        height: 1px;
+        background-color: white;
+        margin: 0 10px;
+    }
+
+    .cardLogos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .cardButton {
+        margin: 20px 0;
+    }
+
+
+/* Registration */
+
+    #existingUserButton {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .closingButton {
+        height:50px;
+        margin-bottom:0;
+        text-align: right;
+        padding-top: 20px;
+        padding-right: 20px;
+        }
+
+    .cancelButton {
+        border-radius: 100%;
+        width:40px;
+        height:40px;
+        color:white;
+        background: transparent;
+        border: 1px solid white;
+    }
+    .signUpOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgb(0, 0, 0,0.5); /* Semi-transparent overlay */
+        z-index: 10;
+        display: none;
+    }
+
+    .signUpCardContainer {
+        width: 510px;
+        height:635px;
+        background: linear-gradient(to bottom, #00474f, #000e10);
+        line-height: 42px;
+        border-radius: 25px;
+        text-align: center;
+        color: white;
+        z-index: 200;
+        position: relative;
+        display: none;
+    }
+    .card_header {
+        width: 100%;
+        font-size: 34px;
+        font-weight: 700;
+        letter-spacing: 0;
+        padding-top: 0;
+        margin-bottom: 10px;
+    }
+    .card_new_user {
+        font-size: 16px;
+        margin-bottom:10px;
+    }
+    .card_new_user a {
+        color: #13C2C1
+    }
+    .card_input_form input {
+        height: 53px;
+        width: 400px;
+        border-radius: 15px;
+        padding-left: 17px;
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+    .card_input_form_small input {
+        height: 53px;
+        width: 185px;
+        border-radius: 15px;
+        /* padding-left: 17px; */
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 20px;    
+    } 
+    .card_keep_logged_in {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+    }
+    .card_button_check {
+        width: 25px;
+        height: 25px;
+        color:white;
+        border-radius: 25px;
+        margin-right: 10px;
+        font-size: 18px;
+    }
+    .letsBeginButton {
+        border-radius: 25px;
+        color:white;
+        font-size: 1rem;
+        background-color: transparent;
+        border: solid 1px white;
+        padding: 10px 35px
+        }
+    .letsBeginButton:hover {
+        background-color: #13C2C1  ;
+        border: none;
+    }
+    .card_horizontal_line_seperator {
+        display: flex;
+        align-items: center ;
+        justify-content: center;
+        margin:10px 0;
+    }
+    .horizontal-line {
+        /* flex: 1; */
+        width: 100px;
+        height: 1px;
+        background-color: white;
+        margin: 0 10px;
+    }
+    .card_logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top:20px;
+    }
+    .card_button {
+        margin: 20px 0;
+    }
+
+/* Ticker  */
+.page_background{
+    background: #f7f7f7;
+    }
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+.grid_1x2_tickerDetail {
+    grid-template-columns: repeat(2,50%);
+}
+.grid_nav_1x3 {
+    grid-template-columns: auto 1500px auto;
+}
+.grid_1x3 {
+    grid-template-columns:repeat(3,calc(100%/3));
+}
+.grid_1x4 {
+    grid-template-columns:repeat(4,calc(100%/4));
+}
+.grid_4x2 {
+    grid-template-rows:repeat(4,calc(340px/4));
+    grid-template-columns: repeat(2,calc(360px/2));
+
+}
+.grid_1x10_tickerDetail {
+    grid-template-columns: 10% 15% 10% 15% 10% 15% 10% 15% 10% 15%;
+}
+.grid_2x1_tickerDetail {
+    grid-template-rows: 50% 50%;
+}
+.grid_1x9 {
+    grid-template-columns: 10% 20% 5% 5% 5% 15% 5% 15% 5% 15%;
+}
+.middle_section {
+    width:100%;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   }
+.tickerDetailHeader {
+    margin-top:86px;
+    text-align: center;
+    font-size:34px;
+    font-weight: 700;
+    color: #00474f;
+    padding-top: 40px;
+    width:100%;
+}
+
+.tickerDetailGameDetails {
+    width:70%;
+    border-radius: 25px;
+    height:120px !important;
+    margin-top:30px;
+    text-align: center;  
+    color:#5F5F5F;
+}
+.tickerDetailGamePeriod {
+    border-radius: 25px;
+    width:100%;
+    height:100%;
+    font-size:26px;
+    color:white;
+    background:linear-gradient(to bottom, #016D74, #01373A);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tickerDetailHomeTeam,
+.tickerDetailAwayTeam {
+    width:100%;
+    text-align: left;
+    font-size:22px;
+    padding-left:30px;
+    
+}
+.tickerDetailHomeTeam {
+    color:var(--color-font-red);
+}
+.tickerDetailAwayTeam {
+    color: var(--color-font-green);
+}
+.tickerDetailHomeTeam, .tickerDetailHomeScore {
+    padding-top:10px;
+}
+.tickerDetailAwayTeam, .tickerDetailAwayScore {
+    padding-bottom:10px;
+}
+.tickerDetailHomeScore, .tickerDetailAwayScore {
+    width:100%;
+    font-size:22px;
+}
+.tickerDetailGameDate,.tickerDetailGameTime, .tickerDetailGameLocation {
+    font-size: 18x;    
+}
+.tickerDetailDateIcon,.tickerDetailTimeIcon,.tickerDetailLocationIcon {
+    width: 30px;
+    height:30px;
+} 
+.tickerDetailGameDate, .tickerDetailGameDetails, .tickerDetailGameLocation {
+    font-size:16px;
+    font-weight: 400;
+}
+.tickerDetailGameLocation {
+    padding-right:10px;
+}
+.tickerDetailUserCard {
+    width: 100%;
+    height: 130px !important;
+    border-radius: 25px;
+    background: linear-gradient(to bottom, #016D74, #01373A);
+    margin-top:30px;
+    color:white;
+    align-content: left;
+}
+.tickerDetailUserCard img {
+    margin-left: auto;
+    display: block; 
+    width: 70px;
+    height:70px;
+}
+.tickerDetailUserCardTop {
+    color:#15965A;
+    font-size:30px;
+    margin-top:auto;
+    display: block;
+    margin-right:auto;
+    margin-left:20px;
+}
+.tickerDetailUserCardBottom {
+    color:white;
+    font-size:18px;
+    padding-top:10px;
+    margin-bottom:auto;
+    display: block;
+    margin-right:auto;
+    margin-left:20px;
+}
+.tickerDetailCandlestickCard {
+    /* width: 745px; */
+    width:1500px;
+    height:500px;
+    border-radius: 25px;
+    background: white;    
+    margin-top:10px;
+    margin-right:5px;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+
+#chart-div {
+    width:96%;
+    height:98%;
+    border-radius: 25px;
+    margin:0 auto;
+    margin-top:20px;
+    z-index: 0;
+    }
+.tickerDetailTradingViewChart {
+    text-align: left;
+}
+.tickerDetailTradingViewButton {
+    color: var(--color-font-white);
+    background: var(--color-font-turk);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    margin-bottom:0;
+}
+.tickerDetailTradingViewButtons {
+    padding-left:20px;
+}
+
+.tickerDetailStatisticsCard {
+    color:#5F5F5F;
+    width: 745px;
+    height:500px;
+    border-radius: 25px;
+    background: white;;
+    margin-top:10px;
+    margin-left:5px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+.tickerDetailStatisticsCard header {
+    text-align: center;
+    font-size:24px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.tickerDetailStatisticsCard table {
+    height: 410px;
+    width:100%;
+    text-align: center;
+    border-collapse: collapse;
+    justify-content: center;
+}
+.tickerDetailStatisticsCard td {
+    padding-top:20px;
+}
+
+.tickerDetailStatisticsCard tr:nth-child(odd) {background-color: #f7f7f7;}
+
+.tickerDetailStatisticsCardButtonLeft {
+    padding: 2px 40px;
+    background: #016D74;
+    border-radius: 25px;
+    color:white;
+    border: none;
+}
+.tickerDetailStatisticsCardButtonRight {
+    padding: 2px 40px;  
+    background: #06979C;
+    border-radius: 25px;
+    color:white;
+    border: none;
+}
+
+
+/* Buy Orders  */
+.tickerDetailBuyOrderbookTable td {
+    color:#15965A;
+}
+.tickerDetailBuyRight {
+    background: #E4F0EB;
+}
+
+ /* Sell Orderbook  */
+.tickerDetailSellOrderbookTable td {
+    color:#B51F1F;
+}
+.tickerDetailSellRight {
+    background: #F5E4E5;
+}
+
+ /* Buy and Sell Orderbook  */
+.tickerDetailBuyOrderbookCard ,
+.tickerDetailSellOrderbookCard {
+    margin-top:10px;
+    width:495px;
+    height:500px;
+    background: white;
+    margin-right:5px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tickerDetailOrderbookTableHeader {
+    background:#f7f7f7;
+    height:30px;
+    font-size: 24px;
+    color:#5F5F5F;
+}
+
+.tickerDetailBuyOrderbookTable,
+.tickerDetailSellOrderbookTable {
+    height: 400px;
+    table-layout: fixed;
+    margin:0 auto;
+    border-collapse: collapse;
+    margin-top:35px
+}
+
+.tickerDetailBuyOrderbookTableRows, 
+.tickerDetailSellOrderbookTableRows {
+    height:28px;
+}
+.tickerDetailBuyOrderbookTableRows td, 
+.tickerDetailSellOrderbookTableRows td {
+    font-size:18px;
+    padding:0
+}
+
+
+.tickerDetailBuyOrderbookTable th,
+.tickerDetailSellOrderbookTable th {
+    padding-top:15px;
+    padding-bottom:15px
+}
+.tickerDetailBuyOrderbookTable tr th,
+.tickerDetailSellOrderbookTable tr th {
+    width:160px;
+    background:#f7f7f7;
+    font-size: 24px;
+    justify-content: center;
+} 
+.tickerDetailBuyOrderbookCard header, 
+.tickerDetailSellOrderbookCard header, 
+.tickerDetailOrderSubmissionCard header {
+    font-size:30px;
+    color:black;
+    margin-top:30px;
+    margin-bottom:10px;
+}
+
+/* Order Submission Card  */
+.tickerDetailOrderSubmissionCard {
+    margin-top:10px;
+    width:495px;
+    height:500px;
+    background:white;
+    margin-left:0;
+    margin-right:0;
+    padding-left:0;
+    border-radius: 25px;
+    text-align: center;   
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+
+}
+.tickerDetailOrderSubmissionField {
+    height: auto !important;;
+    margin: 0 auto;
+    justify-content: center;
+}
+.tickerDetailOrderSubmissionPlaceOrderLeft {
+    width:100%;
+    text-align: left;
+    font-size:24px;
+    color: #5F5F5F
+}
+
+.tickerDetailOrderSelect {
+    padding-left:15px;
+    width: 100%;
+    background: var(--color-background-light);
+    border-radius: 15px;
+    height: 40px;
+    border:none
+}
+
+.tickerDetailSideSelect {
+    padding-left:15px;
+    width: 100%;
+    background: var(--color-background-light);
+    border-radius: 15px;
+    height: 40px;
+    border:none;
+    color:#000E10
+
+}
+.tickerDetailPriceInput {
+    width:100%;
+    background: var(--color-background-light);
+    border: none;
+    height:40px;
+    border-radius: 15px;
+}
+.tickerDetailPriceInput input {
+    margin-left:20px;
+    width:160px;
+}
+.tickerDetailPriceInput input:focus, .tickerDetailQuantityInput input:focus  {
+outline: none;
+}
+
+.tickerDetailQuantityInput {
+        /* padding-left:15px; */
+    width:100%;
+    height:40px;
+    border: none;
+    border-radius: 15px;
+    background: var(--color-background-light);
+}
+.tickerDetailQuantityInput input {
+    margin-left:20px;
+    width:160px;
+}
+
+/* User Stats  */
+.tickerDetailUserStatistics {
+    width:100%;
+    margin-bottom:50px;
+}
+.tickerDetailUserStatisticsHeader {
+    text-align: center;
+    font-size: 24px;
+    margin:40px 0;
+    color:#1B1C1E
+}
+.tickerDetailUserTableCard {
+    background: white;
+    border-radius: 25px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    color:var(--color-font-green);
+    height:auto;
+    margin-top:10px;
+    min-height:500px;
+    width: 100%;
+    position: relative;
+}
+.tickerDetailUserTableCard table {
+    text-align: center;
+    align-items: center;
+    width: 99%;
+    height:100%;
+    margin: 0 auto;
+    padding-bottom:40px;
+    border-radius: 25px;
+}
+.tickerDetailUserTableCard th {
+    padding:20px 20px 16px 20px;
+    font-size: 16px;
+    color:#1B1C1E
+}
+.tickerDetailUserTableCard tr {
+    margin-bottom:10px;
+}
+.tickerDetailUserTableCard td {
+    font-size: 14px;
+    font-weight:400;
+    color:#5F5F5F;
+     padding-bottom:20px;
+}
+.historic-row td {
+    line-height:10px ;
+    padding:0;
+}
+
+.tickerDetailUserStatisticsCancelButton {
+    border-radius: 15px;
+    color:#016D74;
+    font-size: 12px;
+    font-weight:600;
+    background-color: transparent;
+    border: solid 1px #016D74;
+    padding: 5px 20px;
+    justify-content: center;
+    cursor: pointer;
+}
+.tickerDetailUserStatisticsCancelButton:hover {
+    color:white;
+    background: #016D74;
+}
+.tickerDetailUserStatisticsButtonContainer {
+    width:100%;
+    background:paleturquoise;
+    height:50px !important;
+    border-radius: 25px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+
+}
+.tickerDetailUserStatisticsButtonLeft {
+    width:100%;
+    border-radius: 25px 0 0 25px;
+    height:100%;
+    border:none;
+    color:#00474f;
+    font-size:20px;
+    background: white;
+    cursor:pointer;
+}
+
+.tickerDetailUserStatisticsButtonMiddle {
+    width:100%;
+    height:100%;
+    border:none;
+    color:#00474f;
+    font-size:20px;
+    border-left: 1px solid #FFF;
+    background: white;
+    cursor:pointer;
+}
+.tickerDetailUserStatisticsButtonRight {
+    width:100%;
+    border-radius: 0 25px 25px 0;
+    height:100%;
+    border:none;
+    color:#00474f;
+    font-size:20px;
+    border-left: 1px solid #FFF;
+    background: white;
+    cursor:pointer;
+
+}
+.tickerDetailUserStatisticsButtonLeft:hover,
+.tickerDetailUserStatisticsButtonMiddle:hover, 
+.tickerDetailUserStatisticsButtonRight:hover  {
+    background:var(--linear-gradient-light);
+    color:white;
+}
+
+.tickerDetailUserStatisticsButtonLeft:focus,
+.tickerDetailUserStatisticsButtonMiddle:focus,
+.tickerDetailUserStatisticsButtonRight:focus {
+    background:var(--linear-gradient-light);
+    color:white;
+}
+
+.tickerDetailSubmitButton {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:600;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 12px 50px;
+    justify-content: center;
+    margin-top:10px;
+}
+.tickerDetailSubmitButton:hover {
+    color:white;
+    background: #016D74;
+}
+
+.tickerDetailOrderSubmitNonUser {
+    color:#5F5F5F;
+    font-size: 22px;
+    margin-top: 200px;
+}
+.tickerDetailTableNonUser {
+    text-align: center; 
+    font-size:28px;
+    color:#5F5F5F;
+    margin-top:80px;
+    margin-bottom:80px
+}
+
+.tickerDetailUserTableToggle {
+    color:#00474F;
+    font-size: 18px;
+    width:260px;
+    height:30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:0 auto;
+}
+.tickerDetailUserTableToggleContainer {
+    position: absolute;
+    bottom: 10px; 
+    width:100%;
+}
+
+.tickerDetailUserTableToggle h4 {
+    color:#00474F;
+    margin-left:20px;
+    margin-right:20px;
+}
+.tickerDetailArrowLeft img {
+    width:20px;
+    height: 20px;
+    transform: rotate(180deg);
+}
+.tickerDetailArrowRight img {
+    width:20px;
+    height: 20px;
+}
+
+
+/* Account  */
+
+.personalInformation {
+    width:100%;
+    height: 900px;
+    padding-top:86px;
+    background-color: var(--color-background-light);
+    padding-bottom:200px;
+}
+
+.personalInformationHeader {
+    color:#016D74;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 60px;
+    margin-top: 60px;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+
+
+.personalInformationGridUserInput_1x2 {
+    grid-template-columns: 70% 30%;
+}
+
+.personalInformationMiddleSection {
+    width:100%;
+}
+
+.personalInformationCardContainer {
+    width: 375px;
+    height:700px;
+    background: var(--linear-gradient-light);
+    line-height: 42px;
+    border-radius: 25px;
+    text-align: center;
+    color: var(--color-font-white); 
+}
+
+.personalInformationCardUserInfo {
+    height: 700px;
+}
+
+.personalInformationCardUserInput {
+    width: 1100px;
+    margin-left:25px;
+    height: 160px;
+    background:var(--color-background-white);
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom:20px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+}
+
+.personalInformationUserInputField {
+    font-size: 20px;
+    width: 300px;
+    border:0;
+    justify-self: left;
+    margin-left: 60px;
+    border-bottom: 1px solid grey;
+    padding-bottom: 10px;
+}
+
+.personalInformationUserInputField input {
+    border:none;
+    text-align: left;
+    justify-content: left;
+    width: 2000px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.personalInformationEditButton {
+    border-radius: 25px;
+    color:#016D74;
+    font-size: 16px;
+    font-weight:500;
+    background-color: transparent;
+    border: solid 3px #016D74;
+    padding: 10px 50px;
+}
+
+.personalInformationEditButton:hover {
+    color:white;
+    border: none;
+    background-color: #016D74;
+}
+
+.personalInformationFooterBlog a {
+    font-weight: 400;
+    font-size: 22px;
+    margin-top:50px;
+    display: flex;
+    color:var(--font-color-light);
     text-decoration: none;
 }
 
