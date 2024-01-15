@@ -8,7 +8,9 @@
 
 /* Medium screens  */
 @media (768px <= width <= 991px) {
-    
+    .gridNav13 { 
+        grid-template-columns: 0 var(--center-column-width) 0;
+    }
 }
 
 /* Large screens  */
@@ -17,6 +19,546 @@
 } 
 
 /* Large screens  */
-@media (1200px <= width) {
+@media (1200px <= width <= 1499px) {
     
 } 
+
+/* X-Large screens  */
+@media (1500px <= width) {
+    
+} 
+
+
+/*    ==========================    */
+/*             NAV BAR              */
+/*    ==========================    */
+
+.gradientContainer {
+    background: var(--linear-gradient-dark);
+    align-items: center;
+    justify-content: center;
+}
+
+.navBar {
+    height: 86px;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    margin-bottom: 100px;
+}
+
+.navBarCenter {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navBarLeft {
+    text-align: left;
+}
+
+.navBarRight {
+    text-align: right;
+}
+
+.navBarCenterCenter {
+    flex-grow: 1;
+    text-align: center;
+    /* display: flex;
+    gap:20px; */
+}
+
+.navBarHeader {
+    color: var(--color-font-white);
+    font-size: var(--font-size-large-body);
+    padding-left: 20px;
+    padding-right: 20px;
+    text-decoration: none;
+}
+
+.navBarHeader:hover {
+    color: var(--color-font-hover);
+}
+
+.navButton {
+    background-color: var(--color-background-transparent);
+    border-radius: var(--border-radius-high);
+    border: solid var(--border-thickness-1) var(--color-font-white);
+    color: var(--color-font-white);
+    font-size: var(--font-size-large-body);
+    padding: 10px 35px;
+}
+
+.navButton:hover {
+    background-color: var(--color-font-hover);
+    border: var(--border-thickness-1) solid var(--color-font-hover);
+}
+
+.grid {
+    align-items: center;
+    display: grid;
+    height: 100%;
+    place-items: center;
+}
+
+.gridNav13 {
+    grid-template-columns: auto var(--center-column-width) auto;
+}
+
+.gridNav13Middle {
+    grid-template-columns: auto;
+}
+
+#FBX-Logo {
+    height:50px;
+    width: 100px;
+}
+
+#FBX-Logo:hover {
+    content: url(../../../static/img/FBX_Logo_hover.png);
+}
+
+/* Hidden class for initially hiding elements */
+.hidden {
+    display: none;
+}
+
+/* Style for the login dropdown container */
+.loginDropdown {
+    background-color: var(--color-background-white);
+    border: var(--border-thickness-1) solid #ccc;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    top: 60px; /* Adjust the value as needed to position the dropdown below the button */
+}
+
+/*    ==========================    */
+/*            FOOTER                */
+/*    ==========================    */
+
+.footer {
+    background: var(--linear-gradient-dark);
+    color:var(--color-font-white);
+    max-height: 700px;
+    height: auto;
+    left: 0px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.footerStart {
+    height: 600px;
+    width: 100%;
+}
+
+.footerEnd {
+    background-color: var(--color-background-dark);
+    height: 100px;
+    left: 0;
+    width: 100%;
+}
+
+.gridFooterEnd14 {
+    color: var(--color-font-white);
+    display: flex;
+    flex-direction: row;
+    font-size: var(--font-size-body) ;
+    grid-template-columns: repeat(4, 25%);
+    /* justify-content: stretch; */
+}
+
+.gridFooterEnd14 a {
+    color: var(--color-font-white);
+    text-decoration: none;
+}
+
+.footerStartCenter {
+    align-items: flex-start;
+    display: flex;
+    height: 100%;
+    margin-bottom:120px;
+    vertical-align: text-top;
+    width: 100%;
+}
+
+.footerStartCenterFollowUs {
+    align-self: flex-start;
+    color: var(--font-color-light);
+    margin-right: 50px;
+    margin-top: 150px;
+    place-items: left;
+}
+
+.footerBlog {
+    align-self: flex-start;
+    margin-top: 150px;
+}
+
+#followUs {
+    font-size: var(--font-size-header);
+    font-weight: 600;
+}
+
+#followUsDesc {
+    font-weight: 500;
+    font-size: var(--font-size-subheader);
+    line-height: 3rem;
+    padding-top: 20px;
+}
+
+.grid {
+    align-items: center;
+    display: grid;
+    height: 100%;
+    place-items: center;
+    width: 100%;
+}
+
+.gridFooter14 {
+    display: flex;
+    flex-direction: row;
+    grid-template-columns: 40% 20% 20% 20%;
+    justify-content: space-between;
+}
+
+.gridFooter14 a {
+    color: var(--font-color-light);
+    text-decoration: none;
+}
+
+.footerButton {
+    align-items: center;
+    background-color: var(--color-background-transparent);
+    border-radius: 50%;
+    border: var(--border-thickness-2) var(--border-type) var(--border-color-white);
+    cursor: pointer;
+    display: flex;
+    height: 60px;
+    justify-content: center;
+    margin-right: 20px;
+    overflow: hidden;
+    padding: 0;
+    width: 60px;
+}
+
+.footerButton img {
+    display: block;
+    max-width: 60%;
+    max-height: 60%;
+}
+
+.footerButtonContainer {
+    display: flex;
+    margin-top: 50px;
+}
+
+.footerBlog a {
+    color: var(--font-color-light);
+    display: flex;
+    font-weight: 400;
+    font-size: var(--font-size-body);
+    margin-top: 50px;
+    text-decoration: none;
+}
+
+.footerBlogHeader {
+    color:var(--color-font-hover);
+    margin-bottom: 50px;
+}
+
+/*    ==========================    */
+/*            LOGIN                 */
+/*    ==========================    */
+
+
+.overlayDropdown {
+    align-items: center;
+    background: rgb(0,0,0, 0.5); /* Semi-transparent overlay */
+    display: flex;
+    display: none;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.loginCardContainer {
+    background: var(--linear-gradient-dark);
+    border-radius: var(--border-radius-high);
+    color: var(--color-font-white);
+    display: none;
+    height: 635px;
+    line-height: 42px;
+    position: relative; /* Needed for the absolute positioning of the close button */
+    text-align: center;
+    width: 510px;
+    z-index: 20;
+}
+
+.closingButton {
+    height:50px;
+    margin-bottom:0;
+    padding-right: 20px;
+    padding-top: 20px;
+    text-align: right;
+}
+
+#newUserButton {
+    cursor: pointer;
+    text-decoration:underline ;
+}
+
+.closingButton img {
+    width:40px;
+    height:40px;
+}
+
+.cancelButton {
+    border-radius: 100%;
+    width:40px;
+    height:40px;
+    color:var(--color-font-white);
+    background: var(--color-background-transparent);
+    border: 1px solid white;
+}
+
+.cardHeader {
+    font-size: var(--font-size-title);
+    font-weight: 700;
+    letter-spacing: 0;
+    margin-bottom: 10px;
+    padding-top: 30px;
+    width: 100%;
+}
+
+.cardNewUser {
+    font-size: var(--font-size-small-body);
+    margin-bottom: 10px;
+}
+
+.cardNewUser a {
+    color: var(--color-font-hover);
+    padding-left:5px;
+}
+
+.cardInputForm input {
+    border-radius: var(--border-radius-low);
+    font-size: var(--font-size-body);
+    font-weight: 500;
+    height: 53px;
+    margin-bottom: 20px;
+    padding-left: 17px;
+    width: 300px;
+}
+
+.cardKeepLoggedIn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size-body);
+}
+
+.cardButtonCheck {
+    width: 25px;
+    height: 25px;
+    color: var(--color-font-white);
+    border-radius: var(--border-radius-high);
+    margin-right: 10px;
+    font-size: var(--font-size-body);
+}
+
+.loginButton {
+    border-radius: var(--border-radius-high);
+    color: var(--color-font-white);
+    font-size: var(--font-size-small-body);
+    background-color: var(--color-background-transparent);
+    border: solid var(--border-thickness-1) var(--border-color-white);
+    padding: 10px 40px;
+}
+
+.loginButton:hover {
+    background-color: var(--color-background-hover);
+    border: var(--border-thickness-1) solid var(--border-color-hover);
+}
+
+.cardHorizontalLineSeparator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.horizontalLine {
+    width: 100px;
+    height: 1px;
+    background-color: var(--color-background-white);
+    margin: 0 10px;
+}
+
+.cardLogos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.cardButton {
+    margin: 20px 0;
+}
+
+
+/*    ==========================    */
+/*          REGISTRATION            */
+/*    ==========================    */
+
+#existingUserButton {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.closingButton {
+    height:50px;
+    margin-bottom:0;
+    padding-right: 20px;
+    padding-top: 20px;
+    text-align: right;
+}
+
+.cancelButton {
+    background: var(--color-background-transparent);
+    border-radius: 100%;
+    border: 1px solid var(--border-color-white);
+    color:var(--color-font-white);
+    height:40px;
+    width:40px;
+}
+
+.signUpOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(0, 0, 0,0.5); /* Semi-transparent overlay */
+    z-index: 10;
+    display: none;
+}
+
+.signUpCardContainer {
+    background: linear-gradient(to bottom, #00474f, #000e10);
+    border-radius: var(--border-radius-high);
+    color: var(--color-font-white);
+    display: none;
+    height:635px;
+    line-height: 42px;
+    position: relative;
+    text-align: center;
+    width: 510px;
+    z-index: 200;
+}
+
+.card_header {
+    font-size: var(--font-size-title);
+    font-weight: 700;
+    letter-spacing: 0;
+    margin-bottom: 10px;
+    padding-top: 0;
+    width: 100%;
+}
+
+.card_new_user {
+    font-size: var(--font-size-small-body);
+    margin-bottom: 10px;
+}
+
+.card_new_user a {
+    color: var(--color-font-hover);
+}
+
+.card_input_form input {
+    border-radius: var(--border-radius-low);
+    font-size: var(--font-size-body);
+    font-weight: 500;
+    height: 53px;
+    margin-bottom: 20px;
+    padding-left: 17px;
+    width: 400px;
+}
+.card_input_form_small input {
+    border-radius: var(--border-radius-low);
+    font-size: var(--font-size-body);
+    font-weight: 500;
+    height: 53px;
+    margin-bottom: 20px;    
+    width: 185px;
+} 
+
+.card_keep_logged_in {
+    align-items: center;
+    display: flex;
+    font-size: var(--font-size-body);
+    justify-content: center;
+}
+
+.card_button_check {
+    border-radius: 25px;
+    color:var(--color-font-white);
+    font-size: var(--font-size-body);
+    height: 25px;
+    margin-right: 10px;
+    width: 25px;
+}
+
+.letsBeginButton {
+    border-radius: 25px;
+    color:var(--color-font-white);
+    font-size:var(--font-size-small-body);
+    background-color: var(--color-background-transparent);
+    border: solid 1px white;
+    padding: 10px 35px
+}
+
+.letsBeginButton:hover {
+    background-color: var(--color-background-hover);
+    border: none;
+}
+
+.card_horizontal_line_seperator {
+    align-items: center ;
+    display: flex;
+    justify-content: center;
+    margin:10px 0;
+}
+
+.horizontal-line {
+    background-color: var(--color-background-white);
+    height: 1px;
+    margin: 0 10px;
+    width: 100px;
+}
+
+.card_logos {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top:20px;
+}
+
+.card_button {
+    margin: 20px 0;
+}
+
+
+
+
+

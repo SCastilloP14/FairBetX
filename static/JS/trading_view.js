@@ -1,6 +1,6 @@
   document.addEventListener("DOMContentLoaded", function () {
   var container = document.getElementById("chart-container");
-  container.style.height = "440px"; // Set the desired height
+  container.style.height = container.offsetHeight; // Set the desired height
 
   var chart = LightweightCharts.createChart(container, {
     width: document.getElementById("chart-container").offsetWidth,
@@ -34,6 +34,12 @@
         rightBarStaysOnScroll: true,
   });
 
+// Function to update the chart height
+function updateChartHeight() {
+  chart.applyOptions({
+    height: container.offsetHeight,
+  });
+}
 
 chart.applyOptions({
   timeScale: {
@@ -141,6 +147,8 @@ chart.priceScale('right').applyOptions({
 
   // Call the updateChartData function to initially load data
   updateChartData();
+  window.addEventListener('resize', updateChartHeight);
+
 
   // Set up an interval to update data periodically (adjust the interval time as needed)
   setInterval(updateChartData, 60000); // Update every 60 seconds (1 minute)
