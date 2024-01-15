@@ -1,88 +1,826 @@
 @import './styles.css';
 
+
+/* Ticker  */
+.page_background{
+    background: var(--color-background-light);
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%
+}
+
+.grid_1x2_tickerDetail {
+    grid-template-columns: repeat(2,50%);
+}
+
+.grid_nav_1x3 {
+    grid-template-columns: auto var(--center-column-width) auto;
+}
+
+.grid_1x3 {
+    grid-template-columns:repeat(3,calc(100%/3));
+}
+
+.grid_1x4 {
+    grid-template-columns:repeat(4,calc(100%/4));
+}
+
+.grid_4x2 {
+    grid-template-rows:repeat(4,calc(340px/4));
+    grid-template-columns: repeat(2,calc(360px/2));
+}
+
+.grid_1x10_tickerDetail {
+    grid-template-columns: 10% 15% 10% 15% 10% 15% 10% 15% 10% 15%;
+}
+.grid_2x1_tickerDetail {
+    grid-template-rows: 50% 50%;
+}
+
+.grid_1x9 {
+    grid-template-columns: 10% 20% 5% 5% 5% 15% 5% 15% 5% 15%;
+}
+
+.middle_section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100% ;
+    overflow: hidden;   
+}
+
+.tickerDetailHeader {
+    color: var(--color-font-dark-turk);
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-heavy);
+    margin-top: 86px;
+    padding-top: 40px;
+    text-align: center;
+    width: 100%;
+}
+
+.tickerDetailGameDetails {
+    border-radius: var(--border-radius-high);
+    color: var(--color-font-light);
+    height:120px !important;
+    margin-top:30px;
+    text-align: center;  
+    width:100%;
+}
+
+.tickerDetailGamePeriod {
+    align-items: center;
+    background: var(--linear-gradient-light);
+    border-radius: var(--border-radius-high);
+    color: var(--color-font-white);
+    display: flex;
+    font-size: var(--font-size-subheader);
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+}
+
+.tickerDetailHomeTeam,
+.tickerDetailAwayTeam {
+    font-size: var(--font-size-large-body);
+    padding-left: 30px;
+    text-align: left;
+    width: 100%;
+}
+
+
+.tickerDetailHomeTeam {
+    color:var(--color-font-red);
+}
+
+.tickerDetailAwayTeam {
+    color: var(--color-font-green);
+}
+
+.tickerDetailHomeTeam, .tickerDetailHomeScore {
+    padding-top: 10px;
+}
+
+.tickerDetailAwayTeam, .tickerDetailAwayScore {
+    padding-bottom: 10px;
+}
+
+.tickerDetailHomeScore, .tickerDetailAwayScore {
+    font-size: var(--font-size-large-body);
+    width: 100%;
+}
+
+.tickerDetailGameDate,.tickerDetailGameTime, .tickerDetailGameLocation {
+   
+    font-size: var(--font-size-body);    
+}
+.tickerDetailDateIcon,.tickerDetailTimeIcon,.tickerDetailLocationIcon {
+    height: 30px;
+    width: 30px;
+} 
+
+.tickerDetailGameDate, .tickerDetailGameDetails, .tickerDetailGameLocation {
+    font-size:var(--font-size-small-body);
+    font-weight: var(--font-weight-lighter);
+}
+
+.tickerDetailGameLocation {
+    padding-right: 10px;
+}
+
+.tickerDetailUserCard {
+    align-content: left;
+    background: var(--linear-gradient-light);
+    border-radius: var(--border-radius-high);
+    color: var(--color-font-white);
+    height: 130px !important;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.tickerDetailUserCard img {
+    margin-left: auto;
+    display: block; 
+    width: 70px;
+    height:70px;
+}
+
+.tickerDetailUserCardTop {
+    color:var(--color-font-green);
+    display: block;
+    font-size: var(--font-size-title);
+    margin-left: 20px;
+    margin-right:auto;
+    margin-top:auto;
+}
+
+.tickerDetailUserCardBottom {
+    color: var(--color-font-white);
+    display: block;
+    font-size: var(--font-size-body);
+    margin-bottom: auto;
+    margin-left: 20px;
+    margin-right: auto;
+    padding-top:10px;
+}
+
+.tickerDetailCandlestickCard {
+    /* width: 745px; */
+    background:  var(--color-background-white);    
+    border-radius: var(--border-radius-high);
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction:column;
+    height: 500px;
+    justify-content: center;
+    margin-right: 5px;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+#chart-div {
+    border-radius: var(--border-radius-high);
+    height: 98%;
+    margin-top: 20px;
+    margin: 0 auto;
+    width: 96%;
+    z-index: 0;
+}
+
+.tickerDetailTradingViewChart {
+    text-align: left;
+}
+
+.tickerDetailTradingViewButton {
+    color: var(--color-font-white);
+    background: var(--color-font-turk);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    margin-bottom:0;
+}
+
+.tickerDetailTradingViewButtons {
+    padding-left:20px;
+}
+
+.tickerDetailStatisticsCard {
+    background: var(--color-background-white);
+    border-radius: var(--border-radius-high);
+    box-shadow: var(--box-shadow);
+    color:var(--color-font-light);
+    height:500px;
+    margin-left:5px;
+    margin-top:10px;
+    width: 745px;
+}
+.tickerDetailStatisticsCard header {
+    font-size: var(--font-size-subheader);
+    margin-bottom:2 0px;
+    margin-top: 20px;
+    text-align: center;
+}
+.tickerDetailStatisticsCard table {
+    height: 410px;
+    width:100%;
+    text-align: center;
+    border-collapse: collapse;
+    justify-content: center;
+}
+.tickerDetailStatisticsCard td {
+    padding-top:20px;
+}
+
+.tickerDetailStatisticsCard tr:nth-child(odd) {background: var(--color-background-light);}
+
+.tickerDetailStatisticsCardButtonLeft {
+    background:  var(--color-background-turk);
+    border-radius: var(--border-radius-high);
+    border: none;
+    color:var(--color-font-white);
+    padding: 2px 40px;
+}
+.tickerDetailStatisticsCardButtonRight {
+    background:  var(--color-background-hover);
+    border-radius: var(--border-radius-high);
+    border: none;
+    color:var(--color-font-white);
+    padding: 2px 40px;  
+}
+
+
+/* Buy Orders  */
+.tickerDetailBuyOrderbookTable td {
+    color: var(--color-font-light-green);
+}
+.tickerDetailBuyRight {
+    background: var(--color-background-green);
+}
+
+ /* Sell Orderbook  */
+.tickerDetailSellOrderbookTable td {
+    color: var(--color-font-red);
+}
+.tickerDetailSellRight {
+    background: var(--color-background-red);
+}
+
+ /* Buy and Sell Orderbook  */
+.tickerDetailBuyOrderbookCard ,
+.tickerDetailSellOrderbookCard {
+    background: var(--color-background-white);
+    border-radius: var(--border-radius-high);
+    box-shadow: var(--box-shadow);
+    height:500px;
+    margin-right: 5px;
+    margin-top:10px;
+    text-align: center;
+    width:495px;
+}
+
+.tickerDetailBuyOrderbookCardHeader,
+.tickerDetailSellOrderbookCardHeader {
+    font-size: var(--font-size-header);
+    margin-top:3rem;
+}
+
+.tickerDetailOrderbookTableHeader {
+    background: var(--color-background-light);
+    color: var(--color-font-light);
+    font-size: var(--font-size-subheader);
+    height: 30px;
+}
+
+.tickerDetailBuyOrderbookTable,
+.tickerDetailSellOrderbookTable {
+    border-collapse: collapse;
+    height: 400px;
+    margin-top:35px;
+    margin:0 auto;
+    table-layout: fixed;
+}
+
+.tickerDetailBuyOrderbookTableRows, 
+.tickerDetailSellOrderbookTableRows {
+    height:28px;
+}
+.tickerDetailBuyOrderbookTableRows td, 
+.tickerDetailSellOrderbookTableRows td {
+    font-size: var(--font-size-body);
+    padding:0
+}
+
+.tickerDetailBuyOrderbookTable th,
+.tickerDetailSellOrderbookTable th {
+    padding-top:15px;
+    padding-bottom:15px
+}
+
+.tickerDetailBuyOrderbookTable tr th,
+.tickerDetailSellOrderbookTable tr th {
+    background: var(--color-background-light);
+    font-size: var(--font-size-subheader);
+    justify-content: center;
+    width:160px;
+} 
+
+.tickerDetailBuyOrderbookCard header, 
+.tickerDetailSellOrderbookCard header, 
+.tickerDetailOrderSubmissionCard header {
+    color:var(--color-font-black);
+    font-size: var(--font-size-title);
+    margin-bottom:10px;
+    margin-top:30px;
+}
+
+/* Order Submission Card  */
+.tickerDetailOrderSubmissionCard {
+    background:var(--color-background-white);
+    border-radius: var(--border-radius-high);
+    box-shadow: var(--box-shadow);
+    height:500px;
+    margin-left:0;
+    margin-right:0;
+    margin-top:10px;
+    padding-left:0;
+    text-align: center;   
+    width:495px;
+}
+
+.tickerDetailOrderSubmissionField {
+    height: auto !important;;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.tickerDetailOrderSubmissionPlaceOrderLeft {
+    color: var(--color-font-light);
+    font-size:var(--font-size-subheader);
+    text-align: left;
+    width: 100%;
+}
+
+.tickerDetailOrderSelect {
+    background: var(--color-background-light);
+    border-radius: var(--border-radius-low);
+    border: none;
+    height: 40px;
+    padding-left:15px;
+    width: 100%;
+}
+
+.tickerDetailSideSelect {
+    background: var(--color-background-light);
+    border-radius:var(--border-radius-low);
+    border: none;
+    color: var(--color-font-black);
+    height: 40px;
+    padding-left:15px;
+    width: 100%;
+}
+
+.tickerDetailPriceInput {
+    background: var(--color-background-light);
+    border-radius: var(--border-radius-low);
+    border: none;
+    height: 40px;
+    width: 100%;
+}
+
+.tickerDetailPriceInput input {
+    height:38px;
+    margin-left: 20px;
+    width: 130px;
+}
+
+.tickerDetailPriceInput input:focus, 
+.tickerDetailQuantityInput input:focus  {
+    outline: none;
+}
+
+.tickerDetailQuantityInput {
+        /* padding-left:15px; */
+    background: var(--color-background-light);
+    border-radius: var(--border-radius-low);
+    border: none;
+    height:40px;
+    width:100%;
+}
+
+.tickerDetailQuantityInput input {
+    height:38px;
+    margin-left:20px;
+    width:130px;
+}
+
+/* User Stats  */
+.tickerDetailUserStatistics {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.tickerDetailUserStatisticsHeader {
+    color:var(--color-font-dark);
+    font-size: var(--font-size-subheader);
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.tickerDetailUserTableCard {
+    background: var(--color-background-white);
+    border-radius: var(--border-radius-high);
+    box-shadow: var(--box-shadow);
+    color: var(--color-font-green);
+    height: auto;
+    margin-top: 10px;
+    min-height: 500px;
+    width: 100%;
+    position: relative;
+}
+
+.tickerDetailUserTableCard table {
+    align-items: center;
+    border-radius: var(--border-radius-high);
+    height: 100%;
+    margin: 0 auto;
+    padding-bottom: 40px;
+    text-align: center;
+    width: 99%;
+}
+
+.tickerDetailUserTableCard th {
+    color:var(--color-font-dark);
+    font-size: var(--font-size-small-body);
+    padding:20px 20px 16px 20px;
+}
+
+.tickerDetailUserTableCard tr {
+    margin-bottom: 10px;
+}
+
+.tickerDetailUserTableCard td {
+    color: var(--color-font-grey);
+    font-size: var(--font-size-small-body);
+    font-weight: var(--font-weight-lighter);
+    padding-bottom:20px;
+}
+
+.historic-row td {
+    line-height: 10px ;
+    padding: 0;
+}
+
+.tickerDetailUserStatisticsCancelButton {
+    background: var(--color-background-transparent);
+    border-radius: var(--border-radius-low);
+    border: var(--border-thickness-1) var(--border-type) var(--border-color-turk);
+    color: var(--color-font-turk);
+    cursor: pointer;
+    font-size: var(--font-size-super-small);
+    font-weight: var(--font-weight);
+    justify-content: center;
+    padding: 5px 20px;
+}
+
+.tickerDetailUserStatisticsCancelButton:hover {
+    background: var(--color-background-turk);
+    color: var(--color-font-white);
+}
+
+.tickerDetailUserStatisticsButtonContainer {
+    background: var(--color-background-hover);
+    border-radius: var(--border-radius-high);
+    box-shadow: var(--box-shadow);
+    height: 50px !important;
+    width: 100%;
+}
+
+.tickerDetailUserStatisticsButtonLeft {
+    background: var(--color-background-white);
+    border-radius: var(--border-radius-high) 0 0 var(--border-radius-high);
+    border: none;
+    color: var(--color-font-dark-turk);
+    cursor: pointer;
+    font-size: var(--font-size-body);
+    height: 100%;
+    width: 100%;
+}
+
+.tickerDetailUserStatisticsButtonMiddle {
+    background: var(--color-background-white);
+    border-left: var(--border-thickness-1) var(--border-type) #FFF;
+    border: none;
+    color: var(--color-font-dark-turk);
+    cursor: pointer;
+    font-size: var(--font-size-body);
+    height: 100%;
+    width: 100%;
+}
+
+.tickerDetailUserStatisticsButtonRight {
+    background: var(--color-background-white);
+    border-left: var(--border-thickness-1) var(--border-type) var(--color-background-light-grey);
+    border-radius: 0 var(--border-radius-high) var(--border-radius-high) 0;
+    border: none;
+    color: var(--color-font-dark-turk);
+    cursor: pointer;
+    font-size: var(--font-size-body);
+    height: 100%;
+    width: 100%;
+}
+
+.tickerDetailUserStatisticsButtonLeft:hover,
+.tickerDetailUserStatisticsButtonMiddle:hover, 
+.tickerDetailUserStatisticsButtonRight:hover  {
+    background:var(--linear-gradient-light);
+    color:var(--color-font-white);
+}
+
+.tickerDetailUserStatisticsButtonLeft:focus,
+.tickerDetailUserStatisticsButtonMiddle:focus,
+.tickerDetailUserStatisticsButtonRight:focus {
+    background:var(--linear-gradient-light);
+    color:var(--color-font-white);
+}
+
+.tickerDetailSubmitButton {
+    background: var(--color-background-transparent);
+    border-radius: var(--border-radius-high);
+    border: var(--border-thickness-3) var(--border-type) var(--border-color-turk);
+    color: var(--color-font-turk);
+    font-size: var(--font-size-small-body);
+    font-weight: var(--font-weight);
+    justify-content: center;
+    margin-top: 1.6rem;
+    padding: 12px 50px;
+}
+
+.tickerDetailSubmitButton:hover {
+    background: var(--color-background-turk);
+    color:var(--color-font-white);
+}
+
+.tickerDetailOrderSubmitNonUser {
+    color: var(--color-font-light);
+    font-size: var(--font-size-large-body);
+    margin-top: 200px;
+}
+.tickerDetailTableNonUser {
+    color: var(--color-font-light);
+    font-size: var(--font-size-title);
+    margin-bottom:80px;
+    margin-top:80px;
+    text-align: center; 
+}
+
+.tickerDetailUserTableToggle {
+    align-items: center;
+    color:var(--color-font-dark-turk);
+    display: flex;
+    font-size: var(--font-size-body);
+    height:30px;
+    justify-content: center;
+    margin:0 auto;
+    width:260px;
+}
+.tickerDetailUserTableToggleContainer {
+    bottom: 10px; 
+    position: absolute;
+    width:100%;
+}
+
+.tickerDetailUserTableToggle h4 {
+    color: var(--color-font-dark-turk);
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.tickerDetailArrowLeft img {
+    width:20px;
+    height: 20px;
+    transform: rotate(180deg);
+}
+.tickerDetailArrowRight img {
+    width:20px;
+    height: 20px;
+}
+
+
 /* Small device size  */
 @media (600px <= width <= 767px) {
+
+    .tickerDetailOrderSubmissionPlaceOrderLeft {
+        padding-left:10%;
+    }
+    .tickerDetailSideSelect,
+    .tickerDetailOrderSelect {
+        height: 26px;
+        padding-left:15px;
+        width:95%;
+    }
+    .tickerDetailPriceInput,
+    .tickerDetailQuantityInput,
+    .tickerDetailPriceInput input,
+    .tickerDetailQuantityInput input {
+        height: 26px;
+        width: 95%;
+    }
+    .tickerDetailPriceInput input,
+    .tickerDetailQuantityInput input {
+        margin-left:20%;
+        width: 75%;
+        height:25px;
+    }
+   
+    .tickerDetailSubmitButton {
+        padding: 6px 12px;
+    }
+    .tickerDetailBuyOrderbookTable,
+    .tickerDetailSellOrderbookTable {
+        height: 247px;
+        margin-top:10px;
+    }
+
+    .grid_1x3 {
+        height: 300px;
+        grid-template-columns:repeat(3,calc(100%/3));
+    }
+
+    .tickerDetailTradingViewButton {
+        padding: 2px 4px;
+        border-radius: 5px;
+    }
+
+    .tickerDetailBuyOrderbookTable tr td, 
+    .tickerDetailSellOrderbookTable tr td {
+        white-space: nowrap;
+    } 
+
+    .tickerDetailBuyOrderbookTable tr th,
+    .tickerDetailSellOrderbookTable tr th {
+        height: 10px !important;
+        width: 160px;
+        white-space: nowrap;
+    } 
+
+    .tickerDetailCandlestickCard {
+        height: 200px;
+    }
+   
+    .tickerDetailUserStatisticsButtonContainer {
+        height: 20px !important ;
+    }
+
+    .tickerDetailHeader {
+        padding-top: 20px;
+    }
+
+    .tickerDetailBuyOrderbookCard ,
+    .tickerDetailSellOrderbookCard {
+        align-self: start;
+        width: 99%;
+        margin-right:1%;
+        height: 100%;
+        height:300px;
+    }
+
+    .tickerDetailOrderSubmissionCard {
+        width: 100%;
+        height: 300px;
+    }
+    .grid_4x2 {
+        grid-template-rows:repeat(4,calc(200px/4));
+        grid-template-columns: repeat(2,calc(200px/2));
+    }
+
+    .tickerDetailUserCard {
+        height: 60px !important;
+        margin-top: 10px;
+    }
+
+    .tickerDetailUserCard img {
+        width: 30px;
+        height:30px;
+    }
+
     
+    .tickerDetailGameDetails {
+        height:60px !important;
+        margin-top:10px;
+  
+    }
 }
 
 /* Medium screens  */
 @media (768px <= width <= 991px) {
+    .tickerDetailSideSelect,
+    .tickerDetailOrderSelect {
+        height: 30px;
+        padding-left: 15px;
+        width:95%;
+    }
+    .tickerDetailPriceInput,
+    .tickerDetailQuantityInput,
+    .tickerDetailPriceInput input,
+    .tickerDetailQuantityInput input {
+        height: 30px;
+        width: 95%;
+    }
+    .tickerDetailPriceInput input,
+    .tickerDetailQuantityInput input {
+        margin-left:20%;
+        width: 75%;
+        height:29px;
+    }
+
+    .tickerDetailBuyOrderbookCard ,
+    .tickerDetailSellOrderbookCard {
+        width: 99%;
+        margin-right:1%;
+    }
+
+    .tickerDetailOrderSubmissionCard {
+        width: 100%;
+    }
+    .grid_4x2 {
+        grid-template-rows:repeat(4,calc(340px/4));
+        grid-template-columns: repeat(2,calc(240px/2));
+    }
+
+    .tickerDetailUserCard {
+        height: 80px !important;
+        margin-top: 15px;
+    }
+
+    .tickerDetailUserCard img {
+        width: 40px;
+        height:40px;
+    }
     
+    .tickerDetailGameDetails {
+        height:80px !important;
+        margin-top:10px;
+  
+    }
 }
 
 /* Large screens  */
 @media (992px <= width <= 1199px) {
-    
+    .tickerDetailBuyOrderbookCard ,
+    .tickerDetailSellOrderbookCard {
+        width:330px;
+        margin-right:1px
+    }
+    .tickerDetailOrderSubmissionCard {
+        width: 330px;
+        margin-left:0
+    }
+    .grid_4x2 {
+        grid-template-rows:repeat(4,calc(340px/4));
+        grid-template-columns: repeat(2,calc(300px/2));
+    }
+    .tickerDetailUserCard {
+        height: 100px !important;
+        margin-top: 20px;
+    }
+    .tickerDetailUserCard img {
+        width: 50px;
+        height:50px;
+    }
+    .tickerDetailGameDetails {
+        height:100px !important;
+        margin-top:15px;
+  
+    }
 } 
 
 /* Large screens  */
-@media (1200px <= width) {
-    
+@media (1200px <= width <= 1499px) {
+
+    .tickerDetailBuyOrderbookCard ,
+    .tickerDetailSellOrderbookCard {
+        width:399px;
+        margin-right:1px
+    }
+
+    .tickerDetailOrderSubmissionCard {
+        width:399px;
+        margin-left:0
+    }
+    .tickerDetailUserCard img {
+        width: 60px;
+        height:60px;
+    }
 } 
 
-
-.confirmation-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 99;
-}
-
-.confirmation-popup {
-    background: #fff;
-    padding: 20px;
-    border-radius: var(--border-radius-high);
-    text-align: left;
-    width:500px;
-    height:200px;
-    font-size:20px;
-    z-index: 100;
-    font-size: var(--font-size-body);
-}
-#confirmation-message {
-    padding: 20px 40px ;
-}
-
-.confirmation-buttons {
-    margin-top: 20px;
-    text-align: center;
-}
-
-/* Additional styles to your existing CSS */
-.tickerDetailSubmitButton {
-    cursor: pointer;
-}
-
-/* Center the form in the overlay */
-.form__order {
-    margin: 0 auto;
-    text-align: center;
-}
-
-.tickerDetailConfirmButton {
-    background: var(--color-background-white);
-    border: var(--border-thickness-3) var(--border-type) var(--border-color-hover);
-    color: var(--color-font-black);
-    margin-bottom: auto;
-    margin-top: 40px;
-}
-
-.tickerDetailCancelButton {
-    background: var(--color-background-light);
-    border: var(--border-thickness-3) var(--border-type) var(--border-color-turk);
-    color: var(--color-font-black);
-    margin-bottom: auto;
-    margin-top: 40px;
-}
-
-.tickerDetailCancelButton:hover {
-    background:var(--color-background-turk);
-    border: var(--border-thickness-3) var(--border-type) var(--border-color-turk);
-    color: var(--color-font-white);
+/* X-Large screens  */
+@media (1500px <= width) {
+    
 }
