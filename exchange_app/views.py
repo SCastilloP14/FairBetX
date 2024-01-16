@@ -101,7 +101,7 @@ def registration(request):
 def user_login(request):
     next_url = request.GET.get('next')
     user_ip = request.META.get('REMOTE_ADDR')
-    # user_ip = "64.137.146.109"
+    user_ip = "64.137.146.109"
     login_geolocation = get_location_from_ip(user_ip)
     print(login_geolocation)
     if login_geolocation["country"] == "Canada" and login_geolocation["region"] == "ON":
@@ -125,7 +125,7 @@ def user_login(request):
                     return redirect(next_url)
             else:
                 messages.error(request, "User not in fit to play!")
-                return HttpResponse("You must say your are fit to play")
+                return redirect(next_url)
         else:
             return render(request, "exchange_app/login.html", {})
     else:

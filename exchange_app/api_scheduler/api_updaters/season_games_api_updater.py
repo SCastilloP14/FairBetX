@@ -152,7 +152,7 @@ def create_ticker(game: Game):
                 try:
                     Ticker.objects.get(ticker_id=f"TICK-{game.game_id}")
                 except Ticker.DoesNotExist:
-                    print(f"Creating ticker for game {game.season_game_filename}")
+                    print(f"Creating ticker for game {game.game_filename}")
                     new_ticker = Ticker(ticker_id=f"TICK-{game.game_id}",
                                         ticker_game=game,
                                         ticker_status=ticker_status_mapping.get(game.game_status)

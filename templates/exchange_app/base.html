@@ -243,6 +243,12 @@
                                     required>
                                 <label for="terms_agreement">I agree to the terms and conditions</label>
                             </div>
+
+                            {% if messages %}
+                                {% for msg in messages %}
+                                    {{msg}}
+                                {% endfor %}
+                            {%endif%}
                         
                             <div class="card_button">
                                 <input 
