@@ -1,20 +1,620 @@
 @import './styles.css';
-/* Small device size  */
-@media (600px <= width <= 767px) {
-    
+
+
+.gameListHeader {
+    margin-top: 86px;
+    position: relative;
+}    
+
+.gameListHeaderImg {
+    width: 100%;
+    height: 200px;  
 }
 
-/* Medium screens  */
-@media (768px <= width <= 991px) {
-    
+.gameListHeaderCentered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.8rem;
+    color: var(--color-font-white);
+    font-weight: 700;
+}
+
+.grid {
+    display: grid;
+    align-items: center;
+    place-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.grid12 {
+    grid-template-columns: 25% 75%;
+    margin-bottom: 50px;
+}
+
+.grid16 {
+    grid-template-columns: 30% 10% 15% 15% 15% 15%;
+}
+
+.leftCardContainer {
+    align-self: start;
+    background: var(--linear-gradient-light);
+    border-radius: var(--border-radius-high);
+    color: var(--color-font-white);
+    height: auto;
+    line-height: 42px;
+    margin-top: 25px;
+    min-height: 700px;
+    text-align: center;
+    width: 100%;
+}
+
+.rightCardContainer {
+    align-self: start;
+    background: var(--color-background-white);    
+    border-radius: var(--border-radius-high);
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+    color: var(--color-font-black);
+    height: auto;
+    line-height: 42px;
+    margin-left: 25px;
+    margin-top:25px;
+    min-height: 700px;
+    text-align: center;
+    width: 100%;
+}
+
+.rightCardContainerHeader {
+    align-items: center; /* Align items vertically at the center */
+    border-radius: var(--border-radius-high);
+    display: flex;
+    height:60px;
+    justify-content: space-between; 
+    margin-top:30px;
+    text-align: left;
+    width:100%;
+}
+
+.allLeaguesButton {
+    background: var(--linear-gradient-light);
+    border-radius:var(--border-radius-low);
+    color:var(--color-font-white);
+    font-size:var(--font-size-small-body);
+    margin-left: 60px;
+    padding: 10px 12px;
+    text-align: left;
+    text-transform: uppercase;
+    width: 200px;
+}
+
+.allLeaguesButton option {
+    background:var(--color-background-white);
+    color:var(--color-font-black);
+    font-size:var(--font-size-body);
+    margin-bottom:10px;
+}
+
+.dateRange {
+    background: var(--linear-gradient-light);
+    border-radius:var(--border-radius-low);
+    color:var(--color-font-white);
+    font-size:var(--font-size-small-body);
+    margin-left: 60px;
+    padding: 8px 12px;
+    text-align: left;
+    text-transform: uppercase;
+    width: 200px;
+}
+.dateRange option {
+    background:var(--color-background-white);
+    color:var(--color-font-black);
+    font-size:var(--font-size-body);
+    margin-bottom: 10px;
+}
+
+.sportsPage {
+    background: var(--color-background-light);
+    padding-top: 20px;
+}
+.sportsLogo {
+    height: 40px;
+    margin-right: 15px;
+    width: 40px;
+}
+
+
+.dateRangeDropdown,
+.leagueDropdown {
+    background: var(--linear-gradient-light);
+    border-radius: var(--border-radius-low);
+    color: var(--color-font-white);
+    font-size: var(--font-size-small-body);
+    margin-left: 30px;
+    padding: 0px 12px;
+    position: relative;
+    text-align: left;
+    text-transform: uppercase;
+    width: 150px;
+}
+
+.dateRangeDropdown {
+    margin-left: 60px;
+    margin-right: auto;
+}
+
+.dateRangeDropdown-toggle,
+.leagueDropdown-toggle {
+    cursor: pointer;
+}
+
+.dateRangeDropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--color-background-light-grey);
+    box-shadow: var(--box-shadow);
+    z-index: 1;
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto; /* Enable vertical scroll if needed */
+    width:180px;
+}
+
+.leagueDropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--color-background-light-grey);
+    box-shadow: var(--box-shadow);
+    z-index: 1;
+    max-height: 300px; /* Adjust as needed */
+    overflow-y: auto; /* Enable vertical scroll if needed */
+    width:120px;
+    overflow-x: hidden;
+
+}
+
+.dateRangeDropdown-content label,
+.leagueDropdown-content label {
+    display: block;
+    padding: 4px;
+}
+
+.dateRangeDropdown-checkbox,
+.leagueDropdown-checkbox {
+    margin-right: 8px;
+}
+
+.show {
+    display: block;
+}
+.dateRangeDropdown-container,
+.leagueDropdown-container {
+    color:var(--color-font-black)
+}
+
+.searchBar {
+    align-items: center;
+    border-radius: var(--border-radius-high);
+    border: var(--border-thickness-2) var(--border-type) var(--border-color-grey);
+    margin-left: 10px; /* This will push the search bar to the right */
+    margin-right: 30px;
+    padding: 12px 20px;
+    width: 300px;
+}
+
+.searchBarLeftCard {
+    width: 220px;
+    padding: 12px 20px;
+    border-radius: var(--border-radius-high);
+    margin-top:40px;
+    border: var(--border-thickness-2) var(--border-type) var(--border-color-grey);
+}
+
+.nbaLogo {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.leftCardNba {
+    display: flex;
+    margin-left: 50px;
+    align-items: center;
+}
+
+h4 {
+    font-size: var(--font-size-subheader);
+}
+
+.liveButton {
+    background-color: var(--color-background-transparent);
+    border-radius: var(--border-radius-high);
+    border:  var(--border-thickness-3) var(--border-type) var(--color-background-dark-red);
+    color: var(--color-font-red);
+    font-size: var(--font-size-small-body);
+    font-weight: var(--font-weight);
+    margin-left: auto;
+    margin-right: 80px;
+    padding: 10px 50px;
+}
+
+.liveButton:hover {
+    background-color: var(--color-background-dark-red);
+    color: var(--color-font-white);
+}
+
+.liveButton:active {
+    background-color: var(--color-background-dark-red);
+    color: var(--color-font-white);
+}
+
+.liveButton:focus {
+    background-color: var(--color-background-dark-red);
+    color: var(--color-font-white);
+}
+
+.liveButton:not(.active) {
+    background-color: var(--color-background-transparent);
+    color: var(--color-font-dark-red);
+}
+
+.liveButtonSmall {
+    background-color: var(--color-background-red);
+    border-radius: var(--border-radius-high);
+    border: var(--border-thickness-3) var(--border-type) var(--border-color-red);
+    color: var(--color-font-red);
+    display: flex;
+    font-size: var(--font-size-super-small);
+    font-weight: 600;
+    padding: 2px 10px;
+}
+
+.date-dropdown {
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.scheduledButtonSmall {
+    background:var(--color-background-white);
+    border-radius: var(--border-radius-high);
+    border:none;
+    color: var(--color-font-light);
+    display: flex;
+    font-size:var(--font-size-small-body);
+    padding: 4px 10px;
+}
+
+.allEventsButton {
+    background-color: var(--color-background-green);
+    border-radius: var(--border-radius-high);
+    border: var(--border-thickness-1) var(--border-type) var(--border-color-green);
+    color: var(--color-font-turk);
+    font-size: var(--font-size-small-body);
+    font-weight: 600;
+    margin-left: 180px;
+    padding: 12px 40px;
+}
+
+.allEventsButton:hover {
+    background-color: var(--color-background-light-green);
+    border: var(--border-thickness-1) var(--border-type) #15965A;
+    color: var(--color-font-white);
+}
+
+.allEventsButton:focus {
+    background-color: var(--color-background-light-green);
+    border: var(--border-thickness-1) var(--border-type) #15965A;
+    color: var(--color-font-white);
+}
+
+.rightCardContainerMatches {
+    border-radius: var(--border-radius-low);
+    box-shadow: var(--box-shadow);
+    margin:0 auto;
+    width: 98%;
+}
+
+.cardLink {
+    text-decoration: none;
+}
+
+.rightCardMatchCard {
+    align-items: center;
+    background: var(--color-background-light);
+    border-radius: var(--border-radius-low);    
+    height: 160px;
+    margin: 10px 0;
+    width: 100%;
+}
+
+.rightCardMatchCard1 {
+    color: var(--color-font-light);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-body);
+    font-weight: 600;
+    height: 100%;
+    justify-content: space-evenly;
+    padding-left:3rem;
+    text-align: left;
+    width:100%;
+}
+
+.rightCardMatchCard2 {
+    align-items: center;
+    color:var(--color-font-turk);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-large-body);
+    height: 100%;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+
+.rightCardMatchCard3 {
+    align-items: center;
+    color:var(--color-font-light);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-body);
+    height: 100%;
+    justify-content: center;
+    margin-bottom:0.2rem;
+}
+
+.rightCardMatchCard4 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-body);
+    margin-bottom:10px;
+    color:var(--color-font-light)
+}
+
+.rightCardMatchCard5 {
+    align-items: center;
+    color:var(--color-font-light);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-body);
+    height: 100%;
+    justify-content: center;
+    margin-bottom:10px;
+}
+
+.rightCardMatchCard6 {
+    align-items: center;
+    color:var(--color-font-light);
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-size-body);
+    height: 100%;
+    justify-content: center;
+    margin-bottom:10px;
+}
+
+.matchDetailsBuy {
+    background-color: var(--color-background-green);
+    border-radius: var(--border-radius-low);
+    color: var(--color-font-green);
+    display: flex;
+    flex-direction: column;
+    height:75px;
+    justify-content: center;
+    text-align: center;
+    width:100px;
+}
+
+.matchDetailsSell {
+    /* padding: 15px 30px; */
+    background-color: var(--color-background-red);
+    border-radius: var(--border-radius-low);
+    color: var(--color-font-red);
+    display: flex;
+    flex-direction: column;
+    height:75px;
+    justify-content: center;
+    text-align: center;
+    width:100px;
+}
+
+.matchDetailsChange {
+    width:100px;
+    height:75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    /* padding: 15px 30px; */
+    background-color: var(--color-background-white);
+    border-radius: var(--border-radius-low);
+}
+
+/* Style for the custom dropdown container */
+.custom-dropdown {
+    /* position: relative; */
+    /* display: inline-block; */
+    margin-left:50px;
+    margin-top: 30px;
+}
+
+/* Style for the dropdown header */
+.dropdown-header {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+}
+
+/* Style for the header image */
+.header-image {
+    height: 30px; /* Adjust the height as needed */
+    margin-right: 10px; /* Adjust the spacing between image and text */
+    width: 30px; /* Adjust the width as needed */
+}
+
+/* Style for the header text */
+.header-text {
+    color: var(--color-font-white);
+    font-size: var(--font-size-title);
+}
+
+/* Style for the arrow */
+.arrow {
+    height:25px;
+    margin-left: 50px;
+    transform: rotate(180deg);
+    width:25px;
+}
+
+/* Rotate the arrow when the dropdown is open */
+.custom-dropdown.open .arrow {
+    transform: rotate(270deg);
+}
+
+.allSportsArrow {
+    height:10px;
+    margin-left:19px;
+    transform: rotate(180deg);
+    width:10px;
+}
+
+.custom-dropdown.open .allSportsArrow {
+    transform: rotate(270deg);
+}
+
+
+/* Style for the dropdown content */
+.dropdown-content {
+    background-color: var(--color-background-transparent);
+    display: none;
+    font-weight: 400;
+    margin-bottom: 10px;
+    position: relative;
+    text-align: left;
+    z-index: 0;
+}
+
+/* Style for the dropdown options */
+.dropdown-option {
+  padding: 5px;
+  cursor: pointer;
+}
+
+/* Change color on hover */
+.dropdown-option:hover {
+  color: var(--color-font-hover);
+}
+
+/* Show the dropdown content when the dropdown is open */
+.custom-dropdown.open .dropdown-content {
+  display: block;
+}
+
+
+/* X-Small device size  */
+@media (600px <= width <= 767px) {
+    .gameListHeaderImg {
+        height:auto;
+        max-height:100px;
+    }
+}
+
+/* Small screens  */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .custom-dropdown {
+            margin-left:30px;
+            margin-top: 20px;
+        }
+  
+    .searchBarLeftCard {
+        width:60%
+        }
+
+    .gameListHeaderImg {
+        height:auto;
+        max-height:100px;
+    }
+  
+    .rightCardContainer {
+        width:738.25px;
+        margin-left:5px;
+    }
+
+    .rightCardMatchCard {
+        width:100%;
+        max-width: 744.25px;
+        height:140px;
+    }
+
+    .leftCardContainer {
+        min-height: 500px;
+    }
+  
+    .dateRangeDropdown,
+    .leagueDropdown {
+        margin-left: 10px;
+        padding: 0px 4px;
+    }
+    .liveButton {
+        margin-left: 10px;
+        margin-right: auto;
+    }
+
+    .sportsLogo {
+        height: 20px;
+        margin-right: 10px;
+        width: 20px;
+    }
+  .grid12 {
+    max-width: 992px;
+    width: 100%;
+  }
+  .grid16 {
+    width :100%
+  }
 }
 
 /* Large screens  */
 @media (992px <= width <= 1199px) {
-    
+    .gameListHeaderImg {
+        height:auto;
+        max-height:140px;
+        }
+    .searchBarLeftCard {
+        width: 140px;
+    } 
+
+    .dateRangeDropdown,
+    .leagueDropdown {
+        margin-left: 10px;
+        padding: 0px 4px;
+    }
+    .liveButton {
+        margin-left: 10px;
+        margin-right: auto;
+    }
+
+    .sportsLogo {
+        height: 20px;
+        margin-right: 10px;
+        width: 20px;
+    }
+    .leftCardContainer {
+        min-height: 500px;
+        width:100%;
+    }
 } 
 
 /* Large screens  */
-@media (1200px <= width) {
+@media (1200px <= width <= 1499px) {
     
 } 
+
+/* X-Large screens  */
+@media (1500px <= width) {
+    
+}
+

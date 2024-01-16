@@ -121,7 +121,7 @@
         </div>
 
         <!-- Chart + Statistics Card  -->
-        <div>
+        <!-- <div> -->
         <!-- class="grid grid_1x2_tickerDetail" -->
         
             <!-- Candlestick Graph  -->
@@ -196,7 +196,7 @@
                 </table>
             </div> -->
 
-        </div>
+        <!-- </div> -->
 
         <!-- Orderbook + Order Submission Field  -->
         <div class="grid grid_1x3">
@@ -255,6 +255,9 @@
                 </table>
             </div>
 
+            <div class="hidden" id="buy-orders">{{buy_orders}}</div>
+            <div class="hidden" id="sell-orders">{{sell_orders}}</div>
+
             <!-- Order Submission Card  -->
             <div class="tickerDetailOrderSubmissionCard">
                 <header>Place Order</header>
@@ -280,11 +283,24 @@
                         </div>
                         <div class="tickerDetailOrderSubmissionPlaceOrderLeft">Quantity</div>
                         <div class="tickerDetailQuantityInput">
-                            <input class="tickerDetailQuantityInput" type="text" placeholder="0" name="order_quantity">
+                            <input id="order-quantity" class="tickerDetailQuantityInput" type="text" placeholder="0" name="order_quantity">
                         </div>
                     </div>
                     <input type="hidden" name="ticker_id" value="{{ticker_detail.pk}}">
-                    <button class="tickerDetailSubmitButton" type="submit" name="action" value="submit_order">Submit</button>
+                    
+                    
+                    <!-- Add the overlay container -->
+                    <div id="confirmation-overlay" class="confirmation-overlay">
+                        <div class="confirmation-popup">
+                            <span id="confirmation-message"></span>
+                            <div class="confirmation-buttons">
+                                <button onclick="submitOrder()" class="tickerDetailConfirmButton button" name="action" value="submit_order">Confirm</button>
+                                <button onclick="hideConfirmationPopup(event)" class="tickerDetailCancelButton button">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="tickerDetailSubmitButton" type="button" onclick="showConfirmationPopup()">Submit</button>
                 </form>
 
                 <!-- If User is not Authenticated prevent them from trading  -->
