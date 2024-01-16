@@ -131,11 +131,14 @@
                                       type="password"
                                       placeholder="Password"></input>
                               </div>
+
                               <div>
                                 <input 
-                                    name="acknowledge_fit_to_play"
+                                    action="AgeAcknowledgement" 
                                     type="checkbox"
-                                    id="acknowledge_fit_to_play">
+                                    name="acknowledge_fit_to_play"
+                                    id="acknowledge_fit_to_play"
+                                    required>
                                 <label for="acknowledge_fit_to_play">I acknowledge that I am eligible to to play and not under the influence
                                     of alcohol or any other substance that may affect your ability to play</label>
                             </div>
@@ -146,11 +149,11 @@
                             </form>
                             
                             {% if messages %}
-                                {% for msg in messages %}
                                 <div>
+                                {% for msg in messages %}
                                     {{msg}}
-                                </div>
                                 {% endfor %}
+                            </div>
                             {%endif%}
 
                           <div class="cardHorizontalLineSeparator">
@@ -266,7 +269,9 @@
 
                         {% if messages %}
                             {% for msg in messages %}
+                            <div>
                                 {{msg}}
+                            </div>
                             {% endfor %}
                         {%endif%}
                         

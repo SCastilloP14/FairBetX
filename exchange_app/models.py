@@ -210,10 +210,10 @@ class LoginRecord(models.Model):
     login_user = models.ForeignKey(User, on_delete=models.CASCADE)
     login_timestamp = models.DateTimeField(auto_now_add=True)
     login_ip = models.CharField(max_length=20)
-    login_country = models.CharField(max_length=100, null=True, blank=True)
-    login_city = models.CharField(max_length=100, null=True, blank=True)
+    fit_to_play_acknowledgement = models.BooleanField(default=True)
 
-
+    def __str__(self):
+        return f"{self.login_user.username}-{self.login_timestamp}-{self.login_ip}"
         
 class Transaction(models.Model):
     transaction_user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -53,7 +53,8 @@ def registration(request):
         age_acnkowledgment = request.POST.get("age_acnkowledgment")
         terms_agreement = request.POST.get("terms_agreement")
         user_ip = request.META.get('REMOTE_ADDR')
-        # user_ip = "64.137.146.109"
+        print(user_ip, "IP!!!")
+        user_ip = "64.137.146.109" if user_ip == "127.0.0.1" else user_ip
         sign_up_geolocation = get_location_from_ip(user_ip)
         print(sign_up_geolocation)
         if sign_up_geolocation["country"] == "Canada" and sign_up_geolocation["region"] == "ON":
@@ -75,20 +76,25 @@ def registration(request):
                             login(request, user)
                             return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
                         else:
-                            messages.error(request, profile_form.errors)
+                            error_message = 'Please check form. Invalid!'
+                            messages.error(request, error_message)
                             return redirect(next_url)
                     else:
-                        messages.error(request, user_form.errors)
+                        error_message = 'Please check form. Invalid!'
+                        messages.error(request, error_message)
                         return redirect(next_url)
                 else:
-                    messages.error(request, 'PLEASE AGREE TO TERMS AND CONDITIONS')
-                    print("NOT ACCEPTED TERMS")
+                    error_message = 'PLEASE AGREE TO TERMS AND CONDITIONS'
+                    messages.error(request, error_message)
+                    return redirect(next_url)
             else:
-                messages.error(request, 'YOU MUST BE +19 TO PLAY')
-                return HttpResponse("You must be over 19 to play")
+                error_message = 'YOU MUST BE +19 TO PLAY'
+                messages.error(request, error_message)
+                return redirect(next_url)
         else:
-            messages.error(request, "User not in ONTARIO!")
-            return HttpResponse("You must be in Ontario to play")
+            error_message = "You must be in Ontario in order to use the platform"
+            messages.error(request, error_message)
+            return redirect(next_url)
     else:
         user_form = UserForm()
         # profile_form = UserProfileInfoForm()
@@ -101,31 +107,32 @@ def registration(request):
 def user_login(request):
     next_url = request.GET.get('next')
     user_ip = request.META.get('REMOTE_ADDR')
-    print(user_ip, "IP!!!")
     user_ip = "64.137.146.109" if user_ip == "127.0.0.1" else user_ip
     login_geolocation = get_location_from_ip(user_ip)
-    print(login_geolocation)
     if login_geolocation["country"] == "Canada" and login_geolocation["region"] == "ON":
         if request.method == "POST":
             username = request.POST.get("username")
             password = request.POST.get("password")
             acknowledge_fit_to_play = request.POST.get("acknowledge_fit_to_play")
+            print("k", acknowledge_fit_to_play)
             if acknowledge_fit_to_play == 'on':
                 user = authenticate(username=username, password=password)
                 if user:
                     if user.is_active:
                         login(request, user)
-                        # LoginRecord.objects.create(login_user=user, login_ip=user_ip)
+                        LoginRecord.objects.create(login_user=user, login_ip=user_ip)
                         return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
                     else:
-                        messages.error(request, "User is inactive")
+                        error_message = 'User is inactive'
+                        messages.error(request, error_message)
                         return redirect(next_url)
                 else:
-                    print(next_url)
-                    messages.error(request, "Auth Error")
+                    error_message = 'User/Password Incorrect. Please check credentials'
+                    messages.error(request, error_message)
                     return redirect(next_url)
             else:
-                error_message = "User not in fit to play!"
+                print("NOT FIT!!!")
+                error_message = 'Please confirm you are fit ti play to access your account'
                 messages.error(request, error_message)
                 return redirect(next_url)
         else:
