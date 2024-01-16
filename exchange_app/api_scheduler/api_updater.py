@@ -54,7 +54,7 @@ def start():
     for league in leagues_details:
         league_id = league["league_id"]
         league_season = league["league_season"]
-        update_season_game_data(league_id, league_season)
+        # update_season_game_data(league_id, league_season)
         scheduler.add_job(update_season_game_data, "interval", hours=2, id=f"update_{league_id}_season_games", args=[league_id, league_season], replace_existing=True, 
                       next_run_time=datetime.now() + timedelta(hours=1))
 

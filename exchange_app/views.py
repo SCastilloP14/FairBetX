@@ -82,7 +82,7 @@ def registration(request):
                         return redirect(next_url)
                 else:
                     messages.error(request, 'PLEASE AGREE TO TERMS AND CONDITIONS')
-                    return redirect(next_url)
+                    print("NOT ACCEPTED TERMS")
             else:
                 messages.error(request, 'YOU MUST BE +19 TO PLAY')
                 return HttpResponse("You must be over 19 to play")
@@ -101,7 +101,8 @@ def registration(request):
 def user_login(request):
     next_url = request.GET.get('next')
     user_ip = request.META.get('REMOTE_ADDR')
-    user_ip = "64.137.146.109"
+    print(user_ip, "IP!!!")
+    user_ip = "64.137.146.109" if user_ip == "127.0.0.1" else user_ip
     login_geolocation = get_location_from_ip(user_ip)
     print(login_geolocation)
     if login_geolocation["country"] == "Canada" and login_geolocation["region"] == "ON":
@@ -124,7 +125,8 @@ def user_login(request):
                     messages.error(request, "Auth Error")
                     return redirect(next_url)
             else:
-                messages.error(request, "User not in fit to play!")
+                error_message = "User not in fit to play!"
+                messages.error(request, error_message)
                 return redirect(next_url)
         else:
             return render(request, "exchange_app/login.html", {})
