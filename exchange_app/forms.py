@@ -5,10 +5,20 @@ from exchange_app.models import UserProfileInfo, Order, OrderType
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
+    password_confirmation = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model = User
-        fields = ('username', 'email', 'password', 'first_name', 'last_name')
+        fields = ('username', 'email', 'first_name', 'last_name')
 
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get("password")
+        password_confirmation = cleaned_data.get("password_confirmation")
+
+        if password and password_confirmation and password != password_confirmation:
+            raise forms.ValidationError("Passwords no match")
+
+        return cleaned_data
 
 class UserProfileInfoForm(forms.ModelForm):
     class Meta:

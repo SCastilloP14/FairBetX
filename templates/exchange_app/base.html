@@ -87,7 +87,7 @@
                       <a href="{% url 'user_detail' pk=user.id %}">
                           <button class="navButton">My Account</button>
                       </a>    
-                      <a href="{% url 'user_logout' %}">
+                      <a href="{% url 'user_logout' %}?next={{ request.path }}">
                           <button class="navButton">Log Out</button>
                       </a>
                       
@@ -113,7 +113,7 @@
                               <span>New user?</span>
                               <a id="newUserButton">Create an account</a>
                           </div>
-                          <form method="post" class="form" action="{% url "user_login" %}">
+                          <form method="post" class="form" action="{% url "user_login" %}?next={{ request.path }}">
                               {% csrf_token %}
 
                               <div class="cardInputForm">
@@ -131,11 +131,31 @@
                                       type="password"
                                       placeholder="Password"></input>
                               </div>
+
+                              <div>
+                                <input 
+                                    action="AgeAcknowledgement" 
+                                    type="checkbox"
+                                    name="acknowledge_fit_to_play"
+                                    id="acknowledge_fit_to_play"
+                                    required>
+                                <label for="acknowledge_fit_to_play">I acknowledge that I am eligible to to play and not under the influence
+                                    of alcohol or any other substance that may affect your ability to play</label>
+                            </div>
                               <input 
                                   class="loginButton"
                                   type="submit"
                                   value="Log In">
-                              </form>
+                            </form>
+                            
+                            {% if messages %}
+                                <div>
+                                {% for msg in messages %}
+                                    {{msg}}
+                                {% endfor %}
+                            </div>
+                            {%endif%}
+
                           <div class="cardHorizontalLineSeparator">
                               <div class="horizontalLine"></div>
                               <div>Or log in with</div>
@@ -166,9 +186,9 @@
                             <a id="existingUserButton">Log In</a>
                         </div>
 
-                        <form method="post" class="form" action="{% url 'user_registration' %}" enctype="multipart/form-data">
+                        <form method="post" class="form" action="{% url 'user_registration' %}?next={{ request.path }}" enctype="multipart/form-data">
                             {% csrf_token %}
-
+                        
                             <div class="card_input_form card_input_form_small">
                                 <input 
                                     action="First Name" 
@@ -183,7 +203,7 @@
                                     required
                                     placeholder="Last Name"></input>
                             </div>
-                            
+                        
                             <div class="card_input_form">
                                 <input 
                                     action="Email" 
@@ -192,6 +212,7 @@
                                     required
                                     placeholder="Email Address"></input>
                             </div>
+                        
                             <input 
                                 action="Username" 
                                 type="username"
@@ -199,22 +220,60 @@
                                 required
                                 hidden
                                 value="Email"></input>
+                        
                             <div class="card_input_form">
                                 <input 
-                                action="Password" 
-                                type="password"
-                                name="password"
-                                required
-                                placeholder="Password"></input>
+                                    action="Password" 
+                                    type="password"
+                                    name="password"
+                                    required
+                                    placeholder="Password"></input>
                             </div>
+                        
+                            <div class="card_input_form">
+                                <input 
+                                    action="PasswordConfirmation" 
+                                    type="password"
+                                    name="password_confirmation"
+                                    required
+                                    placeholder="Confirm Password"></input>
+                            </div>
+                        
+                            <div>
+                                <input 
+                                    action="AgeAcknowledgement" 
+                                    type="checkbox"
+                                    name="age_acknowledgement"
+                                    id="age_acknowledgement"
+                                    required>
+                                <label for="age_acknowledgement">I confirm that I am +19</label>
+                            </div>
+                        
+                            <div>
+                                <input 
+                                    action="TermsAgreement" 
+                                    type="checkbox"
+                                    name="terms_agreement"
+                                    id="terms_agreement"
+                                    required>
+                                <label for="terms_agreement">I agree to the terms and conditions</label>
+                            </div>
+                        
                             <div class="card_button">
                                 <input 
                                     type="submit"
                                     class="letsBeginButton"
                                     value="Register Now">
-                                <!-- <button class="login_button">Let's Begin</button> -->
                             </div>
                         </form>
+
+                        {% if messages %}
+                            {% for msg in messages %}
+                            <div>
+                                {{msg}}
+                            </div>
+                            {% endfor %}
+                        {%endif%}
                         
                         <div class="card_horizontal_line_seperator">
                             <div class="horizontal-line"></div>

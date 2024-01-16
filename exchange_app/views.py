@@ -1,6 +1,6 @@
 
 from django.shortcuts import render, redirect
-from django.db.models import Sum
+from django.db.models import Sum, Q
 from django.db.models.query import QuerySet
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.http import HttpResponse, HttpResponseRedirect
@@ -8,20 +8,30 @@ from exchange_app.models import *
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from exchange_app.forms import UserForm, UserProfileInfoForm, OrderForm, BalanceForm
+from exchange_app.forms import UserForm, OrderForm, BalanceForm, UserProfileInfoForm
 import random, string
 from django.http import JsonResponse
 from rest_framework import viewsets
 from exchange_app.serializer import TradeSerializer, CustomTradeSerializer
 import json
+import requests
 import pandas as pd
 from datetime import timedelta
 from django.db.models import Min
 from rest_framework.response import Response
-from django.db.models import Q
+from django.contrib import messages
+from geopy.geocoders import Nominatim
+import geoip2.database
 
 
-# Create your views here.
+def get_location_from_ip(ip_address):
+    print("searchinf gor ip", ip_address)
+    location_url = f"http://ip-api.com/json/{ip_address}"
+    location_data = requests.get(location_url)
+    location_dict = json.loads(location_data.text)
+    print(location_dict)
+
+    return location_dict
 
 # --------=======-------- INDEX/WELCOME --------------------
 
@@ -35,26 +45,59 @@ class WelcomeView(TemplateView):
 # ----------------- LOGIN/LOGOUT/SIGN UP -----------------
 
 def registration(request):
+    next_url = request.GET.get('next')
     registered = False
     if request.method == "POST":
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileInfoForm(data=request.POST)
-        if user_form.is_valid() and profile_form.is_valid():
-            user = user_form.save()
-            # This hashes de PW
-            user.set_password(user.password)
-            user.save()
-
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()
-            registered = True
+        age_acnkowledgment = request.POST.get("age_acnkowledgment")
+        terms_agreement = request.POST.get("terms_agreement")
+        user_ip = request.META.get('REMOTE_ADDR')
+        print(user_ip, "IP!!!")
+        user_ip = "64.137.146.109" if user_ip == "127.0.0.1" else user_ip
+        sign_up_geolocation = get_location_from_ip(user_ip)
+        print(sign_up_geolocation)
+        if sign_up_geolocation["country"] == "Canada" and sign_up_geolocation["region"] == "ON":
+            if age_acnkowledgment == 'on':
+                if terms_agreement == 'on':
+                    if user_form.is_valid():
+                        if profile_form.is_valid():
+                            # User Creation
+                            user = user_form.save(commit=False)
+                            user.username = user.email
+                            user.set_password(user.password)
+                            user.save()
+                            # User Profile Info creation
+                            profile = profile_form.save(commit=False)
+                            profile.user = user
+                            profile.save()
+                            # User authentication
+                            user = authenticate(username=user.username, password=request.POST['password'])
+                            login(request, user)
+                            return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
+                        else:
+                            error_message = 'Please check form. Invalid!'
+                            messages.error(request, error_message)
+                            return redirect(next_url)
+                    else:
+                        error_message = 'Please check form. Invalid!'
+                        messages.error(request, error_message)
+                        return redirect(next_url)
+                else:
+                    error_message = 'PLEASE AGREE TO TERMS AND CONDITIONS'
+                    messages.error(request, error_message)
+                    return redirect(next_url)
+            else:
+                error_message = 'YOU MUST BE +19 TO PLAY'
+                messages.error(request, error_message)
+                return redirect(next_url)
         else:
-            print(user_form.errors, profile_form.errors)
-            print("Errors")
+            error_message = "You must be in Ontario in order to use the platform"
+            messages.error(request, error_message)
+            return redirect(next_url)
     else:
         user_form = UserForm()
-        profile_form = UserProfileInfoForm()
+        # profile_form = UserProfileInfoForm()
 
     context_dict = {"user_form": user_form,
                     "profile_form": profile_form,
@@ -62,28 +105,49 @@ def registration(request):
     return render(request, "exchange_app/welcome.html", context_dict)
 
 def user_login(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        user = authenticate(username=username, password=password)
-        if user:
-            if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect(reverse("index"))
+    next_url = request.GET.get('next')
+    user_ip = request.META.get('REMOTE_ADDR')
+    user_ip = "64.137.146.109" if user_ip == "127.0.0.1" else user_ip
+    login_geolocation = get_location_from_ip(user_ip)
+    if login_geolocation["country"] == "Canada" and login_geolocation["region"] == "ON":
+        if request.method == "POST":
+            username = request.POST.get("username")
+            password = request.POST.get("password")
+            acknowledge_fit_to_play = request.POST.get("acknowledge_fit_to_play")
+            print("k", acknowledge_fit_to_play)
+            if acknowledge_fit_to_play == 'on':
+                user = authenticate(username=username, password=password)
+                if user:
+                    if user.is_active:
+                        login(request, user)
+                        LoginRecord.objects.create(login_user=user, login_ip=user_ip)
+                        return redirect('exchange_app:ticker_list') if next_url == "/" else redirect(next_url)
+                    else:
+                        error_message = 'User is inactive'
+                        messages.error(request, error_message)
+                        return redirect(next_url)
+                else:
+                    error_message = 'User/Password Incorrect. Please check credentials'
+                    messages.error(request, error_message)
+                    return redirect(next_url)
             else:
-                return HttpResponse("Account not active!")
+                print("NOT FIT!!!")
+                error_message = 'Please confirm you are fit ti play to access your account'
+                messages.error(request, error_message)
+                return redirect(next_url)
         else:
-            print("Failed login")
-            return HttpResponse("Invalid Login Details")
+            return render(request, "exchange_app/login.html", {})
     else:
-        return render(request, "exchange_app/login.html", {})
+        messages.error(request, "User not in ONTARIO!")
+        return HttpResponse("You must be in Ontario to play")
+
 
 
 @login_required
 def user_logout(request):
+    next_url = request.GET.get('next')
     logout(request)
-    return HttpResponseRedirect(reverse("index"))
-
+    return redirect(next_url)
 
 
 # ---------------------- USER PAGES -------------------------
@@ -239,15 +303,7 @@ class TickerDetailView(DetailView):
             action = request.POST.get("action")
             if action == "submit_order":
                 form = OrderForm(request.POST)
-                # if form.data['order_type'] == OrderType.MARKET.name:
-                #     mutable_data = request.POST.copy()  # Create a mutable copy of the POST data
-                #     mutable_data['order_price'] = None
-                #     del mutable_data['order_price']
-                #     form = OrderForm(data=mutable_data)
-                #     print("NEW FORM DATA", form.data)
-                print(form.data)
                 if form.is_valid():
-                    print("FORM IS VALID!!!")
                     ticker_id = request.POST.get("ticker_id")
                     ticker = Ticker.objects.get(id=ticker_id)
                     user = request.user

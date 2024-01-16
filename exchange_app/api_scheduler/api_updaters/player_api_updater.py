@@ -58,7 +58,7 @@ def parse_player_data(raw_player_data):
 def update_players_data(team_id):
     print("Updating Players for:", team_id)
     parsed_player_data_list = fetch_player_data(team_id)
-    for parsed_player_data in parsed_player_data_list[0:10]:
+    for parsed_player_data in parsed_player_data_list:
         create_or_update_player(**parsed_player_data)
 
 def update_player(existing_player: Player, **kwargs):
@@ -92,7 +92,8 @@ def create_player(**kwargs):
                             player_number=kwargs["player_number"], 
                             player_birth_location=kwargs["player_birth_location"], 
                             player_status=kwargs["player_status"], 
-                            player_description=kwargs["player_description"], 
+                            # player_description=kwargs["player_description"][100], 
+                            player_description="",
                             player_gender=kwargs["player_gender"], 
                             player_position=kwargs["player_position"], 
                             player_height=kwargs["player_height"], 
