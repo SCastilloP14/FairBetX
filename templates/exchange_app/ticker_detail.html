@@ -274,8 +274,8 @@
                         <div class="tickerDetailOrderSubmissionPlaceOrderLeft">Side</div>
                         <select class="tickerDetailSideSelect" name="order_side">
                             <option value="" style="color:#000E10;" disabled selected>Select</option>
-                            <option value="BUY">Buy</option>
-                            <option value="SELL">Sell</option>
+                            <option value="BUY">Buy [{{ticker_detail.ticker_game.game_home_team.team_name}} to win]</option>
+                            <option value="SELL">Sell [{{ticker_detail.ticker_game.game_away_team.team_name}} to win]</option>
                         </select>
                         <div class="tickerDetailOrderSubmissionPlaceOrderLeft">Price</div>
                         <div class="tickerDetailPriceInput">
