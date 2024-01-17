@@ -105,11 +105,11 @@ orderType.addEventListener("change", function (event) {
 
   };
 })
-});
 
 
 
-    function showConfirmationPopup() {
+
+function showConfirmationPopup() {
         // Get form data
         var orderType = document.getElementById("order-type").value;
         var orderSide = document.querySelector(".tickerDetailSideSelect").value;
@@ -277,3 +277,8 @@ orderType.addEventListener("change", function (event) {
     }
 
 
+});
+
+
+
+    
