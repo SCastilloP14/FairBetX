@@ -20,8 +20,6 @@ from datetime import timedelta
 from django.db.models import Min
 from rest_framework.response import Response
 from django.contrib import messages
-from geopy.geocoders import Nominatim
-import geoip2.database
 
 
 def get_location_from_ip(ip_address):
