@@ -379,76 +379,56 @@ class TradeViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         ticker_id_filter = self.request.query_params.get("ticker_id", None)
-    
-        if ticker_id_filter == "":
-            ticker_id_filter = None
-        timeframe_filter = self.request.query_params.get("timeframe", None)
+        timeframe_filter = self.request.query_params.get("timeframe", "5")
        
-        if ticker_id_filter is not None:
-            selected_ticker = Ticker.objects.get(ticker_id=ticker_id_filter)
-            # trades = Trade.objects.filter(trade_ticker=selected_ticker).order_by('timestamp')
-            trades = Trade.objects.filter(trade_ticker=selected_ticker)
+        selected_ticker = Ticker.objects.get(ticker_id=ticker_id_filter)
+        trades = Trade.objects.filter(trade_ticker=selected_ticker).order_by('trade_timestamp')
 
-            if timeframe_filter:
-                # Your OHLC candle calculation logic here
-                ohlc_candles = []  # Store OHLC candle data here
+        ohlc_candles = []  # Store OHLC candle data here
 
-                # Your OHLC candle calculation logic goes here
-                current_candle = None
-                timeframe_minutes = int(timeframe_filter.split(" ")[0])
-                next_candle_timestamp = None
+        current_candle = None
+        timeframe_minutes = int(timeframe_filter.split(" ")[0])
+        next_candle_timestamp = None
 
-                for trade in trades:
-                    if current_candle is None:
-                        print("Trade", trade)
-                        current_candle = {
-                            'ticker': trade.trade_ticker,
-                            'quantity': trade.trade_quantity,
-                            'price': trade.trade_price,
-                            'timestamp': trade.trade_timestamp.replace(second=0, microsecond=0),
-                            'open': trade.trade_price,
-                            'high': trade.trade_price,
-                            'low': trade.trade_price,
-                            'close': trade.trade_price,
-                        }
-                        next_candle_timestamp = current_candle['timestamp'] + timedelta(minutes=timeframe_minutes)
-                    elif trade.trade_timestamp >= next_candle_timestamp:
-                        # Close the current candle and append it to the list
-                        ohlc_candles.append(current_candle)
-
-                        # Calculate the next timestamp for the new candle
-                        next_candle_timestamp += timedelta(minutes=timeframe_minutes)
-
-                        # Start a new candle
-                        current_candle = {
-                            'ticker': trade.trade_ticker,
-                            'quantity': trade.trade_quantity,
-                            'price': trade.trade_price,
-                            'timestamp': next_candle_timestamp,
-                            'open': trade.trade_price,
-                            'high': trade.trade_price,
-                            'low': trade.trade_price,
-                            'close': trade.trade_price,
-                        }
-                    else:
-                        # Update high and low prices within the current candle
-                        current_candle['high'] = max(current_candle['high'], trade.trade_price)
-                        current_candle['low'] = min(current_candle['low'], trade.trade_price)
-                        # Update the close price with each trade
-                        current_candle['close'] = trade.trade_price
-
-                # Append the last candle
-                if current_candle is not None:
-                    ohlc_candles.append(current_candle)
-
-                return ohlc_candles  # Return the list of OHLC candle dictionaries
-
+        for trade in trades:
+            if current_candle is None:
+                rounded_minutes = timeframe_minutes * (trade.trade_timestamp.minute // timeframe_minutes)
+                rounded_timestamp = trade.trade_timestamp.replace(second=0, microsecond=0, minute=rounded_minutes)
+                current_candle = {
+                    'ticker': trade.trade_ticker,
+                    'quantity': trade.trade_quantity,
+                    'price': trade.trade_price,
+                    'timestamp': rounded_timestamp,
+                    'open': trade.trade_price,
+                    'high': trade.trade_price,
+                    'low': trade.trade_price,
+                    'close': trade.trade_price,
+                }
+                next_candle_timestamp = current_candle['timestamp'] + timedelta(minutes=timeframe_minutes)
+            elif trade.trade_timestamp >= next_candle_timestamp:
+                ohlc_candles.append(current_candle)
+                next_candle_timestamp += timedelta(minutes=timeframe_minutes)
+                current_candle = {
+                    'ticker': trade.trade_ticker,
+                    'quantity': trade.trade_quantity,
+                    'price': trade.trade_price,
+                    'timestamp': next_candle_timestamp,
+                    'open': trade.trade_price,
+                    'high': trade.trade_price,
+                    'low': trade.trade_price,
+                    'close': trade.trade_price,
+                }
             else:
-                # If no timeframe is provided, return all trades
-                return trades
+                current_candle['high'] = max(current_candle['high'], trade.trade_price)
+                current_candle['low'] = min(current_candle['low'], trade.trade_price)
+                current_candle['close'] = trade.trade_price
 
-        else:
-            return Trade.objects.none()
+        if current_candle is not None:
+            ohlc_candles.append(current_candle)
+
+        return ohlc_candles  # Return the list of OHLC candle dictionaries
+
+
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
