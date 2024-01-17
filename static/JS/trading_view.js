@@ -1,6 +1,6 @@
   document.addEventListener("DOMContentLoaded", function () {
   var container = document.getElementById("chart-container");
-  container.style.height = container.offsetHeight; // Set the desired height
+  container.style.height = "440px"; // Set the desired height
 
   var chart = LightweightCharts.createChart(container, {
     width: document.getElementById("chart-container").offsetWidth,
