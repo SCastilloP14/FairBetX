@@ -380,7 +380,7 @@ class TradeViewSet(viewsets.ReadOnlyModelViewSet):
     def get_queryset(self):
         ticker_id_filter = self.request.query_params.get("ticker_id", None)
         timeframe_filter = self.request.query_params.get("timeframe", "5")
-       
+   
         selected_ticker = Ticker.objects.get(ticker_id=ticker_id_filter)
         trades = Trade.objects.filter(trade_ticker=selected_ticker).order_by('trade_timestamp')
 
@@ -391,9 +391,30 @@ class TradeViewSet(viewsets.ReadOnlyModelViewSet):
         next_candle_timestamp = None
 
         for trade in trades:
-            if current_candle is None:
-                rounded_minutes = timeframe_minutes * (trade.trade_timestamp.minute // timeframe_minutes)
-                rounded_timestamp = trade.trade_timestamp.replace(second=0, microsecond=0, minute=rounded_minutes)
+            trade_timestamp = trade.trade_timestamp
+            rounded_timestamp = trade_timestamp.replace(second=0, microsecond=0)
+
+            if timeframe_minutes > 0:
+                # Calculate the nearest multiple of timeframe_minutes for minutes
+                rounded_minutes = (trade_timestamp.minute // timeframe_minutes) * timeframe_minutes
+                # Adjust the rounded timestamp
+                rounded_timestamp = rounded_timestamp.replace(minute=rounded_minutes)
+
+            if timeframe_minutes > 60:
+                # Calculate the nearest multiple of timeframe_hours for hours
+                rounded_hours = (trade_timestamp.hour // timeframe_minutes) * timeframe_minutes
+                # Adjust the rounded timestamp
+                rounded_timestamp = rounded_timestamp.replace(hour=rounded_hours)
+
+            if current_candle is None or trade.trade_timestamp >= next_candle_timestamp:
+                # Close the current candle and append it to the list
+                if current_candle is not None:
+                    ohlc_candles.append(current_candle)
+
+                # Calculate the next timestamp for the new candle
+                next_candle_timestamp = rounded_timestamp + timedelta(minutes=timeframe_minutes)
+
+                # Start a new candle
                 current_candle = {
                     'ticker': trade.trade_ticker,
                     'quantity': trade.trade_quantity,
@@ -404,29 +425,18 @@ class TradeViewSet(viewsets.ReadOnlyModelViewSet):
                     'low': trade.trade_price,
                     'close': trade.trade_price,
                 }
-                next_candle_timestamp = current_candle['timestamp'] + timedelta(minutes=timeframe_minutes)
-            elif trade.trade_timestamp >= next_candle_timestamp:
-                ohlc_candles.append(current_candle)
-                next_candle_timestamp += timedelta(minutes=timeframe_minutes)
-                current_candle = {
-                    'ticker': trade.trade_ticker,
-                    'quantity': trade.trade_quantity,
-                    'price': trade.trade_price,
-                    'timestamp': next_candle_timestamp,
-                    'open': trade.trade_price,
-                    'high': trade.trade_price,
-                    'low': trade.trade_price,
-                    'close': trade.trade_price,
-                }
             else:
+                # Update high and low prices within the current candle
                 current_candle['high'] = max(current_candle['high'], trade.trade_price)
                 current_candle['low'] = min(current_candle['low'], trade.trade_price)
+                # Update the close price with each trade
                 current_candle['close'] = trade.trade_price
 
+        # Append the last candle
         if current_candle is not None:
             ohlc_candles.append(current_candle)
 
-        return ohlc_candles  # Return the list of OHLC candle dictionaries
+        return ohlc_candles   # Return the list of O   # Return the list of OHLC candle dictionaries
 
 
 

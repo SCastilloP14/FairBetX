@@ -259,7 +259,8 @@
 
             <div class="hidden" id="buy-orders">{{buy_orders}}</div>
             <div class="hidden" id="sell-orders">{{sell_orders}}</div>
-
+            <div class="hidden" id="buy-team">{{ticker_detail.ticker_game.game_home_team.team_name}}</div>
+            <div class="hidden" id="sell-team">{{ticker_detail.ticker_game.game_away_team.team_name}}</div>
 
             <script>
 
@@ -274,7 +275,8 @@
                         var maxProfit;
                         var maxLoss;
                         var alternativeMessage;
-
+                        var buyTeam = document.getElementById("buy-team").innerHTML;
+                        var sellTeam = document.getElementById("sell-team").innerHTML;
                         // var buyOrdersTable = document.getElementById('buy-orders');
 
                         // Read sell orders data attribute
@@ -286,7 +288,8 @@
                                 // Calculate maximum loss and profit based on the highest sell order
                                 var highestSellOrder = getHighestSellOrder(orderQuantity);
                                 if (highestSellOrder == null) {
-                                    alternativeMessage = "Your Market Order Quantity exceeds the total Volume the Market is currently offering. If you submit the order it might get filled, but there is no guarantee"
+                                    alternativeMessage = "Your Market Order Quantity exceeds the total Volume the Market is currently offering. If you submit the order it might get filled, but there is no guarantee" + "<br>"
+                                    +"<br>"+ "Buying: " + buyTeam;
                                 }
                                 else {
                                     console.log("HighestSellOrders", highestSellOrder);
@@ -302,7 +305,8 @@
                                 // Calculate maximum loss and profit based on the highest buy order
                                 var highestBuyOrder = getHighestBuyOrder(orderQuantity);
                                 if (highestBuyOrder == null) {
-                                    alternativeMessage = "Your Market Order Quantity exceeds the total Volume the Market is currently offering. If you submit the order it might get filled, but there is no guarantee"
+                                    alternativeMessage = "Your Market Order Quantity exceeds the total Volume the Market is currently offering. If you submit the order it might get filled, but there is no guarantee" + ">br>"
+                                    + "<br>" + "Selling: " + sellTeam;
                                 }
                                 else {
                                     var maxProfit = highestBuyOrder.order_price * orderQuantity;
@@ -320,7 +324,7 @@
                                     orderQuantity + " Contracts at the best available price for a TOTAL EXPECTED PRICE of $" + 
                                     totalPrice + "<br>" +
                                     "Maximum Profit: $" + maxProfit + "<br>" +
-                                    "Maximum Loss:  $" + maxLoss;
+                                    "Maximum Loss:  $" + maxLoss ;
                             }
                         } else {
                             // Logic for other order types
@@ -329,7 +333,8 @@
                                 orderQuantity + " Contracts at $" + orderPrice + " for a TOTAL Price of $" + 
                                 (orderPrice * orderQuantity) + "<br>" + "<br>" +
                                 "Maximum Profit: $" + (orderSide === 'BUY' ? (10 - orderPrice) * orderQuantity : orderPrice * orderQuantity) + "<br>" +
-                                "Maximum Loss:   $" + (orderSide === 'BUY' ? orderPrice * orderQuantity : (10 - orderPrice) * orderQuantity);
+                                "Maximum Loss:   $" + (orderSide === 'BUY' ? orderPrice * orderQuantity : (10 - orderPrice) * orderQuantity) +"<br>" +
+                                "Betting to Win: " + (orderSide === 'BUY' ? buyTeam  : sellTeam);
                             ;
                         }
                         // Display the confirmation pop-up

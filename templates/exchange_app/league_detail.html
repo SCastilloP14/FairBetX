@@ -58,7 +58,7 @@
                                 </div>
                             <div class="leagueOverviewHomeTeam">
                                 {% if not ticker.ticker_game.game_away_team_score %}
-                                    <div class="leagueOverviewAwayTeamScore">0</div>
+                                    <div class="leagueOverviewAwayTeamScore">-</div>
                                 {% else %}
                                     <div class="leagueOverviewAwayTeamScore">{{ticker.ticker_game.game_away_team_score}}</div>
                                 {% endif %}
@@ -66,7 +66,7 @@
                             </div>
                             <div class="leagueOverviewAwayTeam">
                                 {% if not ticker.ticker_game.game_home_team_score %}
-                                    <div class="leagueOverviewHomeTeamScore">0</div>
+                                    <div class="leagueOverviewHomeTeamScore">-</div>
                                 {% else %}
                                     <div class="leagueOverviewHomeTeamScore">{{ticker.ticker_game.game_home_team_score}}</div>
                                 {% endif %}
