@@ -613,6 +613,73 @@
 }
 
 
+.confirmation-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+}
+
+.confirmation-popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: var(--border-radius-high);
+    text-align: left;
+    width:500px;
+    height:200px;
+    font-size:20px;
+    z-index: 100;
+    font-size: var(--font-size-body);
+}
+#confirmation-message {
+    padding: 20px 40px ;
+}
+
+.confirmation-buttons {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Additional styles to your existing CSS */
+.tickerDetailSubmitButton {
+    cursor: pointer;
+}
+
+/* Center the form in the overlay */
+.form__order {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tickerDetailConfirmButton {
+    background: var(--color-background-white);
+    border: var(--border-thickness-3) var(--border-type) var(--border-color-hover);
+    color: var(--color-font-black);
+    margin-bottom: auto;
+    margin-top: 40px;
+}
+
+.tickerDetailCancelButton {
+    background: var(--color-background-light);
+    border: var(--border-thickness-3) var(--border-type) var(--border-color-turk);
+    color: var(--color-font-black);
+    margin-bottom: auto;
+    margin-top: 40px;
+}
+
+.tickerDetailCancelButton:hover {
+    background:var(--color-background-turk);
+    border: var(--border-thickness-3) var(--border-type) var(--border-color-turk);
+    color: var(--color-font-white);
+}
+
+
 /* Small device size  */
 @media (600px <= width <= 767px) {
 
