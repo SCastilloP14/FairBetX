@@ -22,13 +22,13 @@ from rest_framework.response import Response
 from django.contrib import messages
 
 
+
 def get_location_from_ip(ip_address):
     print("searchinf gor ip", ip_address)
     location_url = f"http://ip-api.com/json/{ip_address}"
     location_data = requests.get(location_url)
     location_dict = json.loads(location_data.text)
     print(location_dict)
-
     return location_dict
 
 # --------=======-------- INDEX/WELCOME --------------------
