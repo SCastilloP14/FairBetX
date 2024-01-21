@@ -232,6 +232,15 @@ class TickerDetailView(DetailView):
             context["user_orders"] = Order.objects.none()
             context["user_positions"] = Position.objects.none()
             context["user_fills"] = Fill.objects.none()
+
+        # Added Information about Games 
+        league_filter = self.request.GET.get('league')
+        ticker_queryset = Ticker.objects.filter(
+        ticker_game__game_league__league_neame=league_filter,
+        ticker_status__in=[TickerStatus.OPEN.name]) if league_filter else Ticker.objects.filter(
+            ticker_status__in=[TickerStatus.OPEN.name])
+        context['tickers'] = ticker_queryset.order_by('ticker_game__game_start_datetime')
+        
         return context
         
     def post(self, request, *args, **kwargs):

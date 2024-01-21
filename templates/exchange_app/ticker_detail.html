@@ -1,561 +1,899 @@
-{% extends "exchange_app/base.html" %} {% block body_block %}
+
 {% load static %}
-{% load tz %}
-{% get_current_timezone as TIME_ZONE %}
-
- <!-- 
-
-    ticker_detail.html
-
-    Connections:
-        Previous: Ticker List, Team Detail, League Detail  
-        After: Team Detail
-
-    Ticker Detail is a html to show the ticker specific trading page with Game Information, User Stats,
-    Graph, Orderbooks, Order Submission and User Activity Tables.
-    Users can place/cancel orders and see all trades on the candlestick graph. The User activity table allows 
-    them to see all active orders, fills, current position and all orders ever placed. 
-
-    JS Files:
-        trading_view.js                 Candlestick Graph
-        ticker_detail.js                User Tables
-        ticker_detail_pagination.js     User Tables Pagination
-
-    CSS Files:
-        ticker_detail.css
-
- -->
- <head>
-    <script src="../../static/JS/ticker_detail.js"></script>
-    <script src="../../static/JS/ticker_detail_pagination.js"></script>
-    <script src="../../static/JS/trading_view.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternate</title>
+    
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <link rel="stylesheet" href="../../static/CSS/ticker_detail.css" />
- </head>
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<div class="grid gridNav13 page_background">
-    <div class="empty"></div>
-    <div class="middle_section">
-        <!-- Header  -->
-        <div class="tickerDetailHeader">{{ticker_detail.ticker_game.game_league.league_name}}</div>
-        <div class="tickerDetailGameDetails grid grid_1x9">
-            {% if ticker_detail.ticker_game.game_progress %}
-                <div class="tickerDetailGamePeriod">{{ticker_detail.ticker_game.game_progress}}</div>
-            {% else %}
-                <div class="tickerDetailGamePeriod">NS</div>
-            {% endif %}
-            <div class="grid grid_2x1_tickerDetail">
-                <a class="tickerDetailHomeTeam" href="{% url 'exchange_app:team_detail' pk=ticker_detail.ticker_game.game_away_team.pk %}">
-                    <div>{{ticker_detail.ticker_game.game_away_team.team_name}}</div>
-                </a>
-                <a class="tickerDetailAwayTeam" href="{% url 'exchange_app:team_detail' pk=ticker_detail.ticker_game.game_home_team.pk %}">
-                    <div>{{ticker_detail.ticker_game.game_home_team.team_name}}</div>
-                </a>
-                </div>
-            <div class="grid grid_2x1_tickerDetail">
-                {% if not ticker_detail.ticker_game.game_away_team_score %}
-                    <div class="tickerDetailHomeScore">-</div>
-                {% else %}
-                    <div class="tickerDetailHomeScore">{{ticker_detail.ticker_game.game_away_team_score}}</div>
-                {% endif %}
+    <style>
 
-                {% if not ticker_detail.ticker_game.game_home_team_score %}
-                    <div class="tickerDetailHomeScore">-</div>
-                {% else %}
-                    <div class="tickerDetailAwayScore">{{ticker_detail.ticker_game.game_home_team_score}}</div>
-                {% endif %}
+    :root {
+        /* Font Color  */
 
-            </div>
-            <div class="empty"></div>
-            <div>
-                <img class="tickerDetailDateIcon" src="../../../static/img/calendar-icon.png" alt="">
-            </div>
-            <div class="tickerDetailGameDate">
-                {{ticker_detail.ticker_game.game_start_datetime|date:"M. d, Y"}}
-            </div>
-            <div>
-                <img class="tickerDetailTimeIcon" src="../../../static/img/clock-icon.png" alt="">
-            </div>
-            <div class="tickerDetailGameTime">{{ticker_detail.ticker_game.game_start_datetime|date:"g:i A"}}</div>
-             <div>
-                <img  class="tickerDetailLocationIcon" src="../../../static/img/location-icon.png" alt="">
-            </div>
-            <div class="tickerDetailGameLocation">{{ticker_detail.ticker_game.game_city}} / {{ticker_detail.ticker_game.game_country}}</div>
-        </div>
+        /* Light  */
+        --font-color-main-light: #fff;
+        --font-color-secondary-light: #fff;
 
-        <!-- Game + User Info Card  -->
-        <div class="tickerDetailUserCard grid grid_1x10_tickerDetail">
-            
-            <!-- User Balance  -->
-            <img src="../../../static/img/wallet-icon-white.png" alt="">
-            <div class="grid grid_2x1_tickerDetail">
-                <div class="tickerDetailUserCardTop">{{user.userprofileinfo.user_available_balance}}</div>               
-                <div class="tickerDetailUserCardBottom">Balance</div>
-            </div>
+        /* Dark  */
+        --font-color-main-dark: black;
+        --font-color-secondary-dark: #00B4D8;
 
-            <!-- Ticker Status  -->
-            <img src="../../../static/img/file-icon.png" alt="">
-            <div class="grid grid_2x1_tickerDetail">
-                <div class="tickerDetailUserCardTop">{{ticker_detail.ticker_status}}</div>
-                <div class="tickerDetailUserCardBottom">Status</div>
-            </div>
+        /* Font Size */
+        --font-size-title: 20px;
 
-            <!-- Total Ticker Volume  -->
-            <img src="../../../static/img/clipboard-icon.png" alt="">
-            <div class="grid grid_2x1_tickerDetail">
-                <div class="tickerDetailUserCardTop">{{ticker_detail.ticker_volume|floatformat:0}}</div>
-                <div class="tickerDetailUserCardBottom">Volume</div>
-            </div>
-
-            <!-- Last Traded Price  -->
-            <img src="../../../static/img/coin-icon.png" alt="">
-            <div class="grid grid_2x1_tickerDetail">
-                {% if ticker_detail.ticker_last_price%}
-                    <div class="tickerDetailUserCardTop">{{ticker_detail.ticker_last_price}}</div>
-                {% else %}
-                <div class="tickerDetailUserCardTop">-</div>
-                {% endif %}
-                <div class="tickerDetailUserCardBottom">Last Price</div>
-            </div>
-        </div>
-
-        <!-- Chart + Statistics Card  -->
-        <!-- <div> -->
-        <!-- class="grid grid_1x2_tickerDetail" -->
+        /* Background */
+        --background-color-main: #30323D;
+        --background-color-secondary: #4D5061;
+        --background-color-tertiary: #00B4D8;
+        --background-color-quaternary: #050505;
+        --background-color-quinary: #CAF0F8;
         
-            <!-- Candlestick Graph  -->
-            <div class="tickerDetailCandlestickCard">
-                
-                <div id="chart-div" class="tickerDetailTradingViewChart">
-                    <div class="tickerDetailTradingViewButtons">
-                        <button id="btn-1m" class="tickerDetailTradingViewButton">1m</button>
-                        <button id="btn-5m" class="tickerDetailTradingViewButton">5m</button>
-                        <button id="btn-1h" class="tickerDetailTradingViewButton">1H</button>
-                        <button id="btn-6h" class="tickerDetailTradingViewButton">6H</button>
-                        <button id="btn-1d" class="tickerDetailTradingViewButton">1D</button>
-                    </div>
 
-                    <!-- Actual File needed to run TradingView  -->
-                    <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script> 
-                    <div id="chart-container" value="{{ticker_detail.ticker_id}}"></div>
-                </div>
-                
-            </div>
+        /* Border */
+        --border-color-white: white;
+        --border-color-main: #00B4D8;
+    }
 
-            <!-- Statistics Graph  -->
-            <!-- <div class="tickerDetailStatisticsCard">
-                <header>Statistics</header>
-                
-                <table >
-                    <tr>
-                        <td >
-                            <button class="tickerDetailStatisticsCardButtonLeft">X</button>
-                        </td>
-                        <td> </td>
-                        <td>
-                            <button class="tickerDetailStatisticsCardButtonRight">X</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="tickerDetailStatisticsCardButtonLeft">X</button>
-                        </td>
-                        <td> </td>
-                        <td>
-                            <button class="tickerDetailStatisticsCardButtonRight">X</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="tickerDetailStatisticsCardButtonLeft">X</button>
-                        </td>
-                        <td> </td>
-                        <td>
-                            <button class="tickerDetailStatisticsCardButtonRight">X</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="tickerDetailStatisticsCardButtonLeft">X</button>
-                        </td>
-                        <td> </td>
-                        <td>
-                            <button class="tickerDetailStatisticsCardButtonRight">X</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button class="tickerDetailStatisticsCardButtonLeft">X</button>
-                        </td>
-                        <td> </td>
-                        <td>
-                            <button class="tickerDetailStatisticsCardButtonRight">X</button>
-                        </td>
-                    </tr>
-                </table>
-            </div> -->
+        /* Resetting default margin and padding */
+        /* Resetting default margin and padding */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        <!-- </div> -->
+    html, body {
+        max-height: 100vh;
+        color: var(--font-color-main-light);
+        font-family:"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+        /* overflow-y: scroll; */
+    }
 
-        <!-- Orderbook + Order Submission Field  -->
-        <div class="grid grid_1x3">
+    ._verticalAlign {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+    }
 
-            <!-- Buy Orderbook  -->
-            <div class="tickerDetailBuyOrderbookCard">
-                <header>Orderbook Buy</header>
-                <table class="tickerDetailBuyOrderbookTable">
+    ._pageBackground {
+        background: #1C1C22;
+        height: 100vh;
+        width: 100%;
+        /* overflow: hidden; Prevents content from overflowing */
+    }
 
-                    <!-- Orderbook Header  -->
-                    <tr>
-                        <th class="tickerDetailOrderbookTableHeader">Price</th>
-                        <th class="tickerDetailOrderbookTableHeader">Quantity</th>
-                    </tr>
+    ._navBarMain,
+    ._navBarSecondary,
+    ._sideNav {
+        box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+    }
 
-                    <!-- Limit Orderbook to 10 per side  -->
-                    {% for buy_order in buy_orders|slice:":10" %}
-                        <tr class="tickerDetailBuyOrderbookTableRows">
-                            <td data-class="Price">{{buy_order.order_price}}</td>
-                            <td class="tickerDetailBuyRight" data-class="Quantity">{{buy_order.total_quantity}}</td>
-                        </tr>
-                    {% endfor %}
+    ._navBarMain {
+        background: var(--background-color-main);
+        border-bottom: 3px solid var(--border-color-main);
+        font-size: var(--font-size-title);
+        height: 6%;
+        width: 100%;
+        display: flex;
+    }
 
-                    <!-- Last Row of Orderbook, needed for clean formatting  -->
-                    <tr>
-                        <td style="color:white">0</td>
-                        <td class="tickerDetailBuyRight" style="color:#F5E4E5">0</td>
-                    </tr>
-                </table>
-            </div>
+    ._navBarMainInfo {
+        height: 100%;
+        width:40%;
+    }
 
-            <!-- Sell Side  -->
-            <div class="tickerDetailSellOrderbookCard">
-                <header>Orderbook Sell</header>
-                <table class="tickerDetailSellOrderbookTable">
+    ._navBarMainSearchBar {
+        height:100%;
+        width:30%;
+    }
 
-                    <!-- Orderbook Header  -->
-                    <tr>
-                        <th class="tickerDetailOrderbookTableHeader">Price</th>
-                        <th class="tickerDetailOrderbookTableHeader">Quantity</th>
-                    </tr>
+    ._MainSearchBar {
+        height:60%;
+        width:80%;
+        font-size: 20px;
+        padding-left:10% ;
+        border-radius: 8px;
+        margin-right:10%;
+        margin-left:auto;
+    }
 
-                    <!-- Limit Orderbook to 10 per side  -->
-                    {% for sell_order in sell_orders|slice:":10" %}
-                        <tr class="tickerDetailSellOrderbookTableRows">
-                            <td data-class="Price">{{sell_order.order_price}}</td>
-                            <td class="tickerDetailSellRight" data-class="Quantity">{{sell_order.total_quantity}}</td>
-                        </tr>
-                    {% endfor %}
+    ._navBarMainPersonal {
+        height:100%;
+        width:30%;
+        }
 
-                    <!-- Last Row of Orderbook, needed for clean formatting  -->
-                    <tr>
-                        <td style="color:white">0</td>
-                        <td class="tickerDetailSellRight" style="color:#F5E4E5">0</td>
-                    </tr>
-                </table>
-            </div>
+    ._navBarSecondary {
+        background: var(--background-color-secondary);
+        border-bottom: 3px solid var(--border-color-main);
+        padding: 1%;
+        width: 100%;
+        height: 4%;
+    }
 
-            <!-- Order Submission Card  -->
-            <div class="tickerDetailOrderSubmissionCard">
-                <header>Place Order</header>
-                {% if user.is_authenticated %}
-                <form id="order-form" method="POST" action="" class="form__order">
-                {% csrf_token %}
-                    <div class="tickerDetailOrderSubmissionField grid grid_4x2">
-                        <div class="tickerDetailOrderSubmissionPlaceOrderLeft">Order Type</div>
-                        <select id="order-type" class="tickerDetailOrderSelect" name="order_type">
-                            <option value="" style="color:#000E10;" disabled selected>Select</option>
-                            <option value="MARKET">Market</option>
-                            <option value="LIMIT">Limit</option>
-                        </select>
-                        <div class="tickerDetailOrderSubmissionPlaceOrderLeft">Side</div>
-                        <select class="tickerDetailSideSelect" name="order_side">
-                            <option value="" style="color:#000E10;" disabled selected>Select</option>
-                            <option value="BUY">Buy</option>
-                            <option value="SELL">Sell</option>
-                        </select>
-                        <div class="tickerDetailOrderSubmissionPlaceOrderLeft">Price</div>
-                        <div class="tickerDetailPriceInput">
-                            <input id="order-price" class="tickerDetailPriceInput" type="text" placeholder="$0.00" name="order_price">
-                        </div>
-                        <div class="tickerDetailOrderSubmissionPlaceOrderLeft">Quantity</div>
-                        <div class="tickerDetailQuantityInput">
-                            <input class="tickerDetailQuantityInput" type="text" placeholder="0" name="order_quantity">
-                        </div>
-                    </div>
-                    <input type="hidden" name="ticker_id" value="{{ticker_detail.pk}}">
-                    <button class="tickerDetailSubmitButton" type="submit" name="action" value="submit_order">Submit</button>
-                </form>
+    .content {
+        padding: 20px; /* Adjust as needed */
+        height: 100%; /* Ensure content takes up the full height */
+    }
 
-                <!-- If User is not Authenticated prevent them from trading  -->
-                {% else %}
-                    <div class="tickerDetailOrderSubmitNonUser">Please Login to place an Order</div>
-                {% endif %}
-            </div>
-        </div>
+    .sidenav {
+        background: var(--background-color-secondary);
+        border-right: 3px solid var(--border-color-main);
+        max-height: 80%; /* Take up the full height */
+        max-height: 100vh;
+        position: relative;
+        text-align: center;
+        align-self: start;
+        width: 100%; /* Adjust as needed */
+
+        /* background: blue; */
+        /* overflow-y: scroll;
+        -ms-overflow-style: none; 
+        scrollbar-width: none;  */
+    }
+
+    ._sidenavelement {
+        height: 100%;
+        width:100%;
+        overflow-y: scroll;
+        -ms-overflow-style: none; /* for Internet Explorer, Edge */
+        scrollbar-width: none;
+    }
+
+    ._sidenavelement::-webkit-scrollbar {
+        display: none; /* for Chrome, Safari, and Opera */
+    }        
+
+    ._searchBar input {
+        height: 100%;
+        width: 100%;
+        background: transparent;
+        color: var(--font-color-main)
+    }
+
+    ._searchBar {
+        border-bottom: 1px solid var(--border-color-white);
+        height: 40px;
+        margin-bottom: 5%;
+        width: 100%;
+        align-self: flex-start;
+    }
+
+    ._game {
+        padding-top: 2.5%;
+        width: 100%;
+        border-bottom: 1px solid white;
+
+        /* max-height:45px; */
+
+    }
+
+    ._game:hover {
+        color: var(--font-color-secondary-dark);
+    }
+
+    .draggable-container {
+        height: 100%;
+        margin: 20px;
+        position: absolute;
+        width: 100%;
+    }
+
+    .draggable {
+        width: 500px;
+        height: 500px;
+        padding: 10px;
+        background: var(--background-color-main);
+        border: 2px solid white;
+    }
+
+    ._content {
+        width: 100%;
+        height: 100%; /* Ensure _content takes up the full height */
+    }
+
+    .grid {
+        display: grid;
+        align-items: center;
+        place-items: center;
+        height: 100%;
+    }
+
+    .grid_game {
+        display: grid;
+        grid-template-columns: 15% 60% 25%;
+        height: auto;
+    }
+
+    .grid_1x2 {
+        display: grid;
+        grid-template-columns: 12% 88%;
+    }
+
+    .grid_1x4 {
+        display: grid;
+        grid-template-columns: repeat(4,25%);
+     }   
+    .grid_1x5 {
+        display: grid;
+        grid-template-columns: repeat(5,20%);
+    }
+
+    .grid_1x10 {
+        display: grid;
+        grid-template-columns: repeat(10,10%);
+    }
+
+    .grid_1x2_personal {
+        display: grid;
+        grid-template-columns: 40% 10% 40% 5% 5%;
+    }
+
+    .grid_3x1 {
+        display: grid;
+        grid-template-rows: 4% 4% 92%;
+    }
     
-        <!-- User Statistics  -->
-        <div class="tickerDetailUserStatistics">
-            <div class="tickerDetailUserStatisticsHeader">Recent Activity</div>
-            <div class="tickerDetailUserStatisticsButtonContainer grid grid_1x4">
-                <a 
-                    id="orders-tab"
-                    href="#" 
-                    class="tickerDetailUserStatisticsButtonLeft">
-                    <button class="tickerDetailUserStatisticsButtonLeft">Orders</button>
-                </a>
-                <a 
-                    id="fills-tab"
-                    href="#" 
-                    class="tickerDetailUserStatisticsButtonMiddle">
-                    <button class="tickerDetailUserStatisticsButtonMiddle">Fills</button>
-                </a>
-                <a 
-                    id="positions-tab"
-                    href="#" 
-                    class="tickerDetailUserStatisticsButtonMiddle">
-                    <button class="tickerDetailUserStatisticsButtonMiddle">Positions</button>
-                </a>
-                <a 
-                    id="historic-orders-tab"
-                    href="#" 
-                    class="tickerDetailUserStatisticsButtonRight">
-                    <button class="tickerDetailUserStatisticsButtonRight">Historic Orders</button>    
-                </a>    
+    ._leagues:hover {
+        color: var(--background-color-tertiary)
+    }
+
+    ._logo img {
+        height: 50px;
+        width: auto;
+        overflow: hidden;
+        /* padding-bottom: 20px; */
+    }
+    
+
+    .information {
+        width: 100%; /* You can keep it as 100% */
+    }
+
+    .draggable-container {
+        position: relative;
+        width: 100%; /* Ensure it takes up the entire width of the grid column */
+        height: 100%;
+        resize: both;
+        overflow: hidden;
+    }
+
+    .draggable {
+        width: 300px;
+        height: 300px;
+        border: 1px solid #000;
+        padding: 10px;
+    }
+
+    ._myAccount {
+        width: 50%;
+        background: var(--background-color-tertiary);
+        color: var(--font-color-main);
+        padding: 2%;
+        border-radius: 6px;
+        border:none;
+        font-size:large;
+        max-height:90%;
+    }
+
+    ._myAccount:hover {
+        background: var(--background-color-quaternary);
+        color: var(--font-color-main-dark)
+    }
+
+    ._gameInfo {
+        width: 100%;
+        height:5%;
+        margin-right:1%;
+        margin-left: auto;
+   }
+
+   .grid_1x6 {
+        display: grid;
+        grid-template-columns: repeat(6,10%) 40%;
+   }
+
+   .sideNavFilter {
+        width:100%;
+        margin-bottom:2%;
+   }
+
+   .sideNavFilter select {
+        width: 45%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid white;
+        color:black;
+        font-size:medium
+   }
+
+   #draggableContainer {
+        width:100%;
+        height:100%;
+   }
+
+._settings {
+    height:40%;
+    width: auto;
+}
+
+#orderbook_header {
+    text-align: center;
+}
+#orderbook_last_price {
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.8rem;
+}
+.bidSize,
+.bidPrice, 
+.askSize,
+.askPrice {
+    height: 100%;
+    /* background:orange; */
+    /* border-bottom: 1px solid white; */
+    width:100%;
+}
+.bidSize header,
+.bidPrice header, 
+.askSize header,
+.askPrice header {
+    align-self: flex-start;
+    border-bottom: 0.5px solid #d3d3d342;
+    color: #f7f7f7;
+    text-align: center;
+} 
+.bidSizerow,
+.bidPricerow,
+.askSizerow,
+.askPricerow {
+    border-bottom: 0.5px solid #d3d3d342;
+    text-align: center;
+}
+.bidPricerow {
+    background: linear-gradient(to left, rgba(144, 238, 144, 0.3) 50%, transparent 50%);
+    border-right: 0.5px solid  #d3d3d342;
+}
+.askPricerow {
+    background: linear-gradient(to right, rgba(228, 16, 9, 0.3) 50%, transparent 50%);
+}
+
+.bidPrice {
+    color: #32de84;
+}
+.askPrice {
+    background:transparent;
+    color: red
+}
+#draggableDiv,
+#draggableDiv2,
+#draggableDiv3 {
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding:0;
+
+}
+.orderbookRow {
+    text-align: center;
+    border-bottom: 0.5px solid white;
+}
+._userStatistics {
+    display: flex;
+    align-self: flex-start;
+    background:coral;
+    position:relative;
+    padding-top:40px;
+
+    /* height: 600px; */
+    width: 1400px;
+}
+
+.userStatisticsHeader {
+    max-height: 40px;
+    min-height: 10%;
+    text-align: center;
+    width: 100%;
+    /* margin-top:0; */
+    /* margin-bottom: 1rem; */
+    /* position: absolute; */
+    top: 0;
+    background: lightgray;
+}
+
+.userStatisticsHeaderButton {
+    align-items: center; /* Add this line to vertically center the content */
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.userStatisticsHeaderButton:hover {
+    color: var(--font-color-secondary-dark)
+}
+
+.orders-tab{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    /* top: 0; */
+    position: static;
+    /* padding-top:40px; */
+    /* overflow-y: auto; */
+}
+/* Table  */
+.orders-table {
+    width: 100%;
+    text-align: center;
+    /* margin-top:0.2rem; */
+}
+.orders-table tr td {
+    border-bottom: 0.5px solid  #d3d3d342;
+    margin-bottom: 1rem;
+}
+
+.orders-table-header {
+    margin-bottom: 1rem;
+}
+
+.grid_userStat {
+    display: grid;
+    grid-template-rows: 15% 85%;
+}
+    </style>
+</head>
+<body>
+     <script>
+        $(function() {
+            $("#draggableDiv").draggable({
+                containment: "#draggableContainer",
+                cursor: "grabbing",
+                grid: [ 5, 5 ],
+            }).resizable({
+            // minHeight: $("#draggableDiv").height(), 
+
+            resize: function(event, ui) {
+                $(".draggableDiv").not(this).each(function() {
+                    var origPosition = $(this).data("origPosition");
+                    if (origPosition) {
+                        $(this).css({
+                            left: origPosition.left + ui.size.width - ui.originalSize.width,
+                            top: origPosition.top + ui.size.height - ui.originalSize.height
+                        });
+                    }
+                });
+            }}); 
+        });
+        
+        
+        $(function() {
+            $("#draggableDiv2").draggable({
+                containment: "#draggableContainer",
+                cursor: "grabbing",
+                grid: [ 5, 5 ]
+            }).resizable({
+            // Handle the resize event
+            resize: function(event, ui) {
+                // Adjust positions of other draggable elements after resizing
+                $(".draggableDiv").not(this).each(function() {
+                    var origPosition = $(this).data("origPosition");
+                    if (origPosition) {
+                        $(this).css({
+                            left: origPosition.left + ui.size.width - ui.originalSize.width,
+                            top: origPosition.top + ui.size.height - ui.originalSize.height
+                        });
+                    }
+                });
+            }}); // Add resizable functionality
+        });
+        $(function() {
+            $("#draggableDiv3").draggable({
+                containment: "#draggableContainer",
+                cursor: "grabbing",
+                grid: [ 5, 5 ],
+            }).resizable({
+            // Handle the resize event
+            resize: function(event, ui) {
+                // Adjust positions of other draggable elements after resizing
+                $(".draggableDiv").not(this).each(function() {
+                    var origPosition = $(this).data("origPosition");
+                    if (origPosition) {
+                        $(this).css({
+                            left: origPosition.left + ui.size.width - ui.originalSize.width,
+                            top: origPosition.top + ui.size.height - ui.originalSize.height
+                        });
+                    }
+                });
+            }}); // Add resizable functionality
+        });
+        $(function() {
+            $("#draggableDiv4").draggable({
+                containment: ".draggable-container",
+                cursor: "grabbing",
+                grid: [ 5, 5 ],
+            }).resizable({
+            // Handle the resize event
+            resize: function(event, ui) {
+                // Adjust positions of other draggable elements after resizing
+                $(".draggableDiv").not(this).each(function() {
+                    var origPosition = $(this).data("origPosition");
+                    if (origPosition) {
+                        $(this).css({
+                            left: origPosition.left + ui.size.width - ui.originalSize.width,
+                            top: origPosition.top + ui.size.height - ui.originalSize.height
+                        });
+                    }
+                });
+            }}); // Add resizable functionality
+        });
+
+
+        function isColliding(ui, element) {
+        var pos1 = ui.position;
+        var pos2 = element.position();
+        var width1 = ui.helper.outerWidth();
+        var height1 = ui.helper.outerHeight();
+        var width2 = element.outerWidth();
+        var height2 = element.outerHeight();
+
+        return !(pos1.left + width1 < pos2.left ||
+                 pos1.top + height1 < pos2.top ||
+                 pos2.left + width2 < pos1.left ||
+                 pos2.top + height2 < pos1.top);
+    }
+    </script>
+    <div class="_pageBackground">
+
+        <!-- Main Nav Bar -->
+        <div class="_navBarMain">
+
+            <div class="_navBarMainInfo grid grid_1x5 _verticalAlign">
+                <div class="_logo">
+                    <img src="{% static "img/FBX_Logo.png" %}" alt="FBX">
+                </div>
+                <div class="_leagues">
+                    Leagues
+                </div>
+                <div class="_leagues">
+                    Teams
+                </div>
+                <!-- <div class="_leagues">
+                    Wallet
+                </div> -->
+                <div class="_leagues">
+                    About Us
+                </div>
             </div>
 
-            {% if user.is_authenticated %}
+            <div class="_navBarMainSearchBar _verticalAlign">
+                <input type="text" class="_MainSearchBar">
+            </div>
 
-                <!-- Active Orders Table -->
-                <div class="tickerDetailUserTableCard" id="orders-section">
-                    <table id="orders-table">
-                        <tr>
-                            <th>Match</th>
-                            <th>Timestamp</th>
-                            <th>Betting on Team</th>
-                            <th>Order Type</th>
-                            <th>Side</th>
-                            <th>Price</th>
-                            <th>Qty</th>
-                            <th>Filled Qty</th>
-                            <th>Working Qty</th>
-                            <th>Avg. Fill Price</th>
-                            <th>Status</th>
-                            <th>Paid Fees</th>
-                            <th>Cancel</th>
-                        </tr>
-                    {% for order in user_orders|dictsort:"order_creation_timestamp" reversed %}
-                        <tr class="order-row">
-                            <td data-class="Match">{{order.order_ticker.ticker_game.game_short_name}}</td>
-                            <td data-class="Timestamp">{{order.order_creation_timestamp|date:"d/m/y H:i:s"}}</td>
-                            {% if order.order_side == "SELL" %}
-                                <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_away_team.team_name}}</td>
-                            {% else %}
-                                <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_home_team.team_name}}</td>
-                            {% endif %}
-                            <td data-class="Order Type">{{order.order_type}}</td>
-                            <td data-class="Side">{{order.order_side}}</td>
-                            <td data-class="Price">{{order.order_price}}</td>
-                            <td data-class="Qty">{{order.order_quantity}}</td>
-                            <td data-class="Filled Qty">{{order.order_filled_quantity}}</td>
-                            <td data-class="Working Qty">{{order.order_working_quantity}}</td>                   
-                            <td data-class="Avg. Fill Price">{{order.order_avg_fill_price}}</td>
-                            <td data-class="Status">{{order.order_status}}</td>
-                            <td data-class="Paid Fees">{{order.order_paid_fees}}</td>
-                            <td data-class="Cancel"> 
-                                <!-- Cancel Button  -->
-                                <form id="cancellation-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="cancel__order">
-                                    {% csrf_token %}
-                                    <button class="tickerDetailUserStatisticsCancelButton" name="action" type="submit" value="cancel_order">Cancel</button>
-                                    <input type="hidden" name="order_id" value="{{order.order_id}}">
-                                </form>
+            <div class="_navBarMainPersonal grid grid_1x2_personal">
+                <div class="empty"></div>
+                <div>$-.--</div>
+                <button class="_myAccount">Account</button>
+                <div>
+                    <img class="_settings" src="{% static "img/settings-icon.png" %}" alt="Settings Icon">
+                </div>
+                <div class="empty"></div>
 
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </table>
-                    
-                    <div class="tickerDetailUserTableToggleContainer">
-                        <div class="tickerDetailUserTableToggle">
-                            <a href="#" class="tickerDetailArrowLeft" id="prevButtonOrders"> 
-                                <img class="" src="../../../static/img/small-arrow-icon.png" alt="">
-                            </a>
-                            <h4 id="currentPageOrders">Page 1</h4>
-                            <a href="#" class="tickerDetailArrowRight" id="nextButtonOrders"> 
-                                <img class="" src="../../../static/img/small-arrow-icon.png" alt="">
-                            </a>
+            </div>
+
+        </div>
+
+        <!-- Secondary Nav Bar  -->
+        <div class="_navBarSecondary ">
+            <div class="_navBarSecondaryInfo grid grid_1x10 _verticalAlign ">
+                <div class="_leagues">
+                    NBA
+                </div>
+                <div class="_leagues">
+                    NFL
+                </div>
+                <div class="_leagues">
+                    NHL
+                </div>
+                <div class="_leagues">
+                    MLB
+                </div>
+                <div class="_leagues">
+                    CFB
+                </div>
+                <div class="_leagues">
+                    Bundesliga
+                </div>
+                <div class="_leagues">
+                    Premier League
+                </div>
+                <div class="_leagues">
+                    Seria A
+                </div>
+                <div class="_leagues">
+                    La Liga
+                </div>
+                <div class="_leagues">
+                    Ligue 1
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area  -->
+        <div class="_content grid grid_1x2">
+            <!-- Side Nav Bar  -->
+            <div class="sidenav grid grid_3x1">
+
+                <div class="_searchBar">
+                    <input type="text" placeholder="Search Bar">
+                </div>
+
+                <div class="sideNavFilter">
+                    <select name="Sport" id="">
+                        <option value="">Sport</option>
+                        <option value="">Basketball</option>
+                        <option value="">Football</option>
+                        <option value="">Hockey</option>
+                        <option value="">Baseball</option>
+                        <option value="">Soccer</option>
+                    </select>
+                    <select name="League" id="">
+                        <option value="">League</option>
+                        <option value="">MLB</option>
+                        <option value="">MLS</option>
+                        <option value="">NBA</option>
+                        <option value="">NFL</option>
+                        <option value="">NHL</option>
+                    </select>
+                </div>
+
+                <div class="_sidenavelement">
+                {% for ticker in tickers %}
+                    <div class="_game grid grid_game">
+                        <div>
+                            {{ticker.ticker_game.game_league.league_name}}
                         </div>
+                        <div>
+                            {{ticker.ticker_game.game_away_team.team_short_name}}  VS  {{ticker.ticker_game.game_home_team.team_short_name}}
+                        </div>
+                        {% if ticker.ticker_game.game_away_team_score %}
+                            <div>
+                                {{ticker.ticker_game.game_away_team_score}} - {{ticker.ticker_game.game_home_team_score}}
+                            </div>
+                        {% else %}
+                            <div>
+                                 - 
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                </div>
+                <!-- <div class="_game">
+                    <span>Toronto Vs Miami</span>
+                </div>
+                <div class="_game">
+                    <span>Toronto Vs Miami</span>
+                </div>
+                <div class="_game">
+                    <span>Toronto Vs Miami</span>
+                </div>
+                <div class="_game">
+                    <span>Toronto Vs Miami</span>
+                </div>
+                <div class="_game">
+                    <span>Toronto Vs Miami</span>
+                </div>
+                <div class="_game">
+                    <span>Toronto Vs Miami</span>
+                </div> -->
+            </div>
+
+            <!-- Information Field  -->
+            <div class="information draggable-container">
+                <div class="_gameInfo grid grid_1x6">
+                    <div>
+                        <header>Ticker</header>
+                        {{ticker_detail.ticker_game.game_short_name}}
+                    </div>
+                    <div>
+                        <header>Teams</header>
+                        {{ticker_detail.ticker_game.game_alternative_name}}
+                    </div>
+                    <div>
+                        <header>Sport</header>
+                        {{ticker_detail.ticker_game.game_league.league_sport}}
+                    </div>
+                    <div>
+                        <header>League</header>
+                        {% if ticker_detail.ticker_game.game_league %}
+                            {{ticker_detail.ticker_game.game_league.league_name}}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                    <div>
+                        <header>Last Price</header>
+                        {% if ticker_detail.ticker_last_price %}
+                            {{ticker_detail.ticker_last_price}}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </div>
+                    <div>
+                        <header>Total Volume</header>
+                        {{ticker_detail.ticker_volume}}
+                    </div>
+                     <div>
+                        
+                    </div>
+                </div>
+                <div id="draggableContainer">
+                    <div id="draggableDiv" class="draggable _verticalAlign">
+                        I am  Graph
+                    </div>
+
+                    <div id="draggableDiv2" class="draggable _verticalAlign _orderbook">
+                        <header id="orderbook_header">Orderbook</header>
+                        <header id="orderbook_last_price">Last: {{ticker_detail.ticker_last_price}}</header>
+
+                        <div class=" grid grid_1x4">
+
+                            <div class="bidSize">
+                                <header>Bid Size</header>
+                                {% for sell_order in sell_orders %}
+                                    <div class="bidSizerow">
+                                        {{sell_order.total_quantity}}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="bidPrice">
+                                <header>Bid Price</header>
+                                {% for sell_order in sell_orders %}
+                                    <div class="bidPricerow" id="bidPrice_{{ forloop.counter }}">
+                                        {{sell_order.order_price}}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="askPrice">
+                                <header>Ask Price</header>
+                                {% for buy_order in buy_order %}
+                                    <div class="askPricerow" id="askPrice_{{ forloop.counter }}">
+                                        {{buy_order.order_price}}
+                                    </div>
+                                {% endfor %}
+
+                            </div>
+                            <div class="askSize">
+                                <header>Ask Size</header>
+                                {% for buy_order in buy_order %}
+                                    <div class="askSizerow">
+                                        {{buy_order.total_quantity}}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                       
+                       </div>
+
+                        <!-- <div>
+                            <div class="grid grid_1x4" style="align-self: flex-start; border-bottom: 0.5px solid white">
+                                <header>Bid Size</header>
+                                <header>Bid Price</header>
+                                <header>Ask Price</header>
+                                <header>Ask Size</header>
+                            </div>
+                                <div class="orderbookRow">
+                                    <div class="grid grid_1x4">
+                                        
+                                        <div class="askPrice">${{sell_order.order_price}}</div>
+                                        <div class="askSize">{{sell_order.total_quantity}}</div>
+                                    </div>
+                                </div>
+
+                        </div> -->
+
+
+                    </div>
+                    
+                    <div id="draggableDiv3" class="draggable _verticalAlign _userStatistics grid grid_userStat">
+                       <div class="userStatisticsHeader grid grid_1x4">
+                            <div class="userStatisticsHeaderButton" id="orders-tab">Orders</div>
+                            <div class="userStatisticsHeaderButton">Fills</div>
+                            <div class="userStatisticsHeaderButton">Positions</div>
+                            <div class="userStatisticsHeaderButton">Historic Orders</div>
+                       </div>
+
+                       <div class="orders-tab" id="orders-table">
+                            <table class="orders-table">
+                                <tr class="orders-table-header">
+                                    <th class="">Match</th>
+                                    <th class="">Timestamp</th>
+                                    <th class="">Betting to Win</th>
+                                    <th class="">Order Type</th>
+                                    <th class="">Side</th>
+                                    <th class="">Price</th>
+                                    <th class="">Qty</th>
+                                    <th class="">Filled Qty.</th>
+                                    <th class="">Working Qty</th>
+                                    <th class="">Avg. Fill Price</th>
+                                    <th class="">Status</th>
+                                    <th class="">Paid Fees</th>
+                                    <th class="">Cancel</th>
+                                </tr>
+
+                                {% for order in user_orders|dictsort:"order_creation_timestamp" reversed %}
+                                    <tr class="orders-row">
+                                        <td data-class="Match">{{order.order_ticker.ticker_game.game_short_name}}</td>
+                                        <td data-class="Timestamp">{{order.order_creation_timestamp|date:"d/m/y H:i:s"}}</td>
+                                        {% if order.order_side == "SELL" %}
+                                            <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_away_team.team_name}}</td>
+                                        {% else %}
+                                            <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_home_team.team_name}}</td>
+                                        {% endif %}
+                                        <td data-class="Order Type">{{order.order_type}}</td>
+                                        <td data-class="Side">{{order.order_side}}</td>
+                                        <td data-class="Price">{{order.order_price}}</td>
+                                        <td data-class="Qty">{{order.order_quantity}}</td>
+                                        <td data-class="Filled Qty">{{order.order_filled_quantity}}</td>
+                                        
+                                        <td data-class="Working Qty">
+                                            {% if order.order_working_quantity > 0 %}
+                                                {{order.order_working_quantity}}
+                                            {% else %}
+                                            
+                                            {% endif %} 
+                                        </td> 
+                                            
+                                        <td data-class="Avg. Fill Price">
+                                            {% if order.order_avg_fill_price %}
+                                                {{order.order_avg_fill_price}}
+                                            {% else %}
+                                            
+                                            {% endif %}
+                                        </td>
+
+                                        <td data-class="Status">{{order.order_status}}</td>
+                                        <td data-class="Paid Fees">{{order.order_paid_fees}}</td>
+                                        <td data-class="Cancel"> 
+                                            {% if order.order_status == "OPEN" %}
+                                            <!-- Cancel Button  -->
+                                            <form id="cancellation-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="cancel__order">
+                                                {% csrf_token %}
+                                                <button class="tickerDetailUserStatisticsCancelButton" name="action" type="submit" value="cancel_order">Cancel</button>
+                                                <input type="hidden" name="order_id" value="{{order.order_id}}">
+                                            </form>
+                                            {% else %}
+                                                
+                                            {% endif %}
+
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                       </div>
                     </div>
                 </div>
                 
+                <!-- <div id="draggableDiv4" class="draggable _verticalAlign">
+                    Video Screen 
+                </div> -->
+            </div>
 
-                <!-- Fills Table -->
-                <div class="tickerDetailUserTableCard" id="fills-section">
-                    <table id="fills-table">
-                        <tr>
-                            <th>Match</th>
-                            <th>Timestamp</th>
-                            <th>Side</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Order ID</th>
-                        </tr>
-                    {% for fill in user_fills|dictsort:"fill_timestamp" reversed %}
-                        <tr class="fills-row">
-                            <td data-class="Match">{{fill.fill_ticker.ticker_game.game_short_name}}</td>
-                            <td data-class="Timestamp">{{fill.fill_timestamp|date:"d/m/y H:i:s"}}</td>
-                            <td data-class="Side">{{fill.fill_side}}</td>
-                            <td data-class="Price">{{fill.fill_price}}</td>
-                            <td data-class="Quantity">{{fill.fill_quantity}}</td>
-                            <td data-class="Fill ID">{{fill.fill_id}}</td>
-                        </tr>
-                    {% endfor %}
-                    </table>
-                    <div class="tickerDetailUserTableToggleContainer">
-                        <div class="tickerDetailUserTableToggle">
-                            <a href="" class="tickerDetailArrowLeft" id="prevButtonFills"> 
-                                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                            </a>
-                            <h4 id="currentPageFills">Page 1</h4>
-                            <a href="" class="tickerDetailArrowRight" id="nextButtonFills"> 
-                                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Positions Table  -->
-                <div class="tickerDetailUserTableCard" id="positions-section">
-                    <table id="positions-table">
-                        <tr>
-                            <th>Match</th>
-                            <th>Position</th>
-                            <th>Game Score</th>
-                            <th>Average Price</th>
-                            <th>Open PnL</th>
-                            <th>Closed PnL</th>
-                            <th>Settled PnL</th>
-                            <th>Position Settled</th>
-                        </tr>
-                    {% for position in user_positions %}
-                        <tr class="positions-row">
-                            <td data-class="Ticker">{{position.position_ticker.ticker_game.game_short_name}}</td>
-                            <td data-class="Position">{{position.position_quantity}}</td>
-                            {% if position.position_ticker.ticker_game.game_status == "SCHEDULED" %}
-                                <td data-class="Game Score">SCHEDULED</td>
-                            {% elif position.position_ticker.ticker_game.game_status == "PLAYING"%}
-                                <td data-class="Game Score">{{position.position_ticker.ticker_game.game_away_team_score}}-{{position.position_ticker.ticker_game.game_home_team_score}}</td>
-                            {% elif position.position_ticker.ticker_game.game_status == "FINISHED"%}
-                                <td data-class="Game Score">F {{position.position_ticker.ticker_game.game_away_team_score}}-{{position.position_ticker.ticker_game.game_home_team_score}}</td>
-                            {% else %}
-                                <td data-class="Game Score">{{position.position_ticker.ticker_game.game_status}}</td>
-                            {% endif %}
-                            <td data-class="Average Price">{{position.position_average_price}}</td>
-                            <td data-class="Open PnL">{{position.position_open_pnl}}</td>
-                            <td data-class="Closed PnL">{{position.position_closed_pnl}}</td>
-                            <td data-class="Settled PnL">{{position.position_settled_pnl}}</td>
-                            <td data-class="Settled PnL">{{position.position_settled}}</td>
-                        </tr>
-                    {% endfor %}
-                    </table>
-                    <div class="tickerDetailUserTableToggleContainer">
-                        <div class="tickerDetailUserTableToggle">
-                            <a href="" class="tickerDetailArrowLeft" id="prevButtonPositions"> 
-                                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                            </a>
-                            <h4 id="currentPagePositions">Page 1</h4>
-                            <a href="" class="tickerDetailArrowRight"id="nextButtonPositions">  
-                                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- All Orders Table  -->
-                <div class="tickerDetailUserTableCard" id="historic-orders-section">
-                    <table id="historic-table">
-                        <tr>
-                            <th>Match</th>
-                            <th>Timestamp</th>
-                            <th>Betting on Team</th>
-                            <th>Order Type</th>
-                            <th>Side</th>
-                            <th>Price</th>
-                            <th>Qty</th>
-                            <th>Filled Qty</th>
-                            <th>Working Qty</th>
-                            <th>Avg. Fill Price</th>
-                            <th>Status</th>
-                            <th>Paid Fees</th>
-                            <th>Cancel</th>
-                        </tr>
-                    {% for order in user_orders|dictsort:"order_creation_timestamp" reversed %}
-                        <tr class="historic-row" >
-                            <td data-class="Match">{{order.order_ticker.ticker_game.game_short_name}}</td>
-                            <td data-class="Timestamp">{{order.order_creation_timestamp|date:"d/m/y H:i:s"}}</td>
-                            {% if order.order_side == "SELL" %}
-                                <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_away_team.team_name}}</td>
-                            {% else %}
-                                <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_home_team.team_name}}</td>
-                            {% endif %}
-                            <td data-class="Order Type">{{order.order_type}}</td>
-                            <td data-class="Side">{{order.order_side}}</td>
-                            <td data-class="Price">{{order.order_price}}</td>
-                            <td data-class="Qty">{{order.order_quantity}}</td>
-                            <td data-class="Filled Qty">{{order.order_filled_quantity}}</td>
-                            <td data-class="Working Qty">{{order.order_working_quantity}}</td>
-                            {% if order.order_avg_fill_price%}                   
-                                <td data-class="Avg. Fill Price">{{order.order_avg_fill_price}}</td>
-                            {% else %}
-                                <td data-class="Avg. Fill Price">-</td>
-                            {% endif %}
-                            <td data-class="Status">{{order.order_status}}</td>
-                            <td data-class="Paid Fees">{{order.order_paid_fees}}</td>
-                            <td data-class="Cancel">
-                                {% if order.order_status == "CANCELED" %}
-                                    <p>CANCELED</p>
-                                {% elif order.order_status == "TICKER_CANCELED" %}
-                                    <p>TICKER CANCELED</p>
-                                {% elif order.order_status == "SETTLED" %}
-                                    <p>SETTLED</p>
-                                {% elif order.order_status == "FILLED" %}
-                                    <p>FILLED</p>
-                                {% else %}
-                                <!-- Cancel Button  -->
-                                <form id="cancellation-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="cancel__order">
-                                    {% csrf_token %}
-                                    <button class="tickerDetailUserStatisticsCancelButton" name="action" type="submit" value="cancel_order">Cancel</button>
-                                    <input type="hidden" name="order_id" value="{{order.order_id}}">
-                                </form>
-                                {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </table>
-
-                    <!-- User Pagingation -->
-                    <div class="tickerDetailUserTableToggleContainer">
-                        <div class="tickerDetailUserTableToggle">
-                            <a href="#" class="tickerDetailArrowLeft" id="prevButtonHistoric"> 
-                                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                            </a>
-                            <h4 id="currentPageHistoric">Page 1</h4>
-                            <a href="#" class="tickerDetailArrowRight" id="nextButtonHistoric"> 
-                                <img class="" src="../../../static/img/small-arrow-icon.png"alt="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            <!-- If not logged in  -->
-            {% else %}
-                <div class="tickerDetailTableNonUser">Please Login to place an Order</div>
-            {% endif %}
         </div>
-    </div>
+        
 
-    <!-- Right Side  -->
-    <div class="empty"></div>
-  </div>  
-{% endblock %}
+        
+
+
+    </div>
+</body>
+

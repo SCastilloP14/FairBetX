@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternate</title>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <style>
+
+        :root {
+            /* Font Color  */
+
+            /* Light  */
+            --font-color-main-light: #fff;
+            --font-color-secondary-light: #fff;
+
+            /* Dark  */
+            --font-color-main-dark: black;
+            --font-color-secondary-dark: orange;
+
+            /* Font Size */
+            --font-size-title: 20px;
+
+            /* Background */
+            --background-color-main: #30323D;
+            --background-color-secondary: #4D5061;
+            --background-color-tertiary: #00B4D8;
+            --background-color-quaternary: #90E0EF;
+            --background-color-quinary: #CAF0F8;
+            
+
+            /* Border */
+            --border-color-white: white;
+            --border-color-main: #00B4D8;
+        }
+
+        /* Resetting default margin and padding */
+        /* Resetting default margin and padding */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html, body {
+        height: 100%;
+        color: var(--font-color-main-light);
+        font-family:"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+    }
+
+    ._verticalAlign {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+    }
+
+    ._pageBackground {
+        background: #1C1C22;
+        height: 100vh;
+        width: 100%;
+        /* overflow: hidden; Prevents content from overflowing */
+    }
+
+    ._navBarMain,
+    ._navBarSecondary,
+    ._sideNav {
+        box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+    }
+
+    ._navBarMain {
+        background: var(--background-color-main);
+        border-bottom: 3px solid var(--border-color-main);
+        font-size: var(--font-size-title);
+        height: 6%;
+        width: 100%;
+        display: flex;
+    }
+
+    ._navBarMainInfo {
+        height: 100%;
+        width:40%;
+    }
+
+    ._navBarMainSearchBar {
+        height:100%;
+        width:30%;
+    }
+
+    ._MainSearchBar {
+        height:60%;
+        width:80%;
+        font-size: 20px;
+        padding-left:10% ;
+        border-radius: 8px;
+        margin-right:10%;
+        margin-left:auto;
+    }
+
+    ._navBarMainPersonal {
+        height:100%;
+        width:30%;
+        }
+
+    ._navBarSecondary {
+        background: var(--background-color-secondary);
+        border-bottom: 3px solid var(--border-color-main);
+        padding: 1%;
+        width: 100%;
+        height: 4%;
+    }
+
+    .content {
+        padding: 20px; /* Adjust as needed */
+        height: 100%; /* Ensure content takes up the full height */
+    }
+
+    .sidenav {
+        background: var(--background-color-secondary);
+        border-right: 3px solid var(--border-color-main);
+        height: 90%; /* Take up the full height */
+        position: relative;
+        text-align: center;
+        align-self: start;
+        width: 100%; /* Adjust as needed */
+    }
+
+    ._searchBar input {
+        height: 100%;
+        width: 100%;
+        background: transparent;
+        color: var(--font-color-main)
+    }
+
+    ._searchBar {
+        border-bottom: 1px solid var(--border-color-white);
+        height: 40px;
+        margin-bottom: 5%;
+        width: 100%;
+        align-self: flex-start;
+    }
+
+    ._game {
+        padding-top: 2.5%;
+        width: 100%;
+        border-bottom: 1px solid white;
+    }
+
+    ._game:hover {
+        color: var(--font-color-secondary-dark);
+    }
+
+    .draggable-container {
+        height: 100%;
+        margin: 20px;
+        position: absolute;
+        width: 100%;
+    }
+
+    .draggable {
+        width: 500px;
+        height: 500px;
+        padding: 10px;
+        background: var(--background-color-main);
+        border: 2px solid white;
+    }
+
+    ._content {
+        width: 100%;
+        height: 100%; /* Ensure _content takes up the full height */
+    }
+
+    .grid {
+        display: grid;
+        align-items: center;
+        place-items: center;
+        height: 100%;
+    }
+
+    .grid_1x2 {
+        display: grid;
+        grid-template-columns: 12% 88%;
+    }
+    .grid_1x5 {
+        display: grid;
+        grid-template-columns: repeat(5,20%);
+    }
+
+    .grid_1x10 {
+        display: grid;
+        grid-template-columns: repeat(10,10%);
+    }
+
+    .grid_1x2_personal {
+        display: grid;
+        grid-template-columns: 80% 20%;
+    }
+    
+    ._leagues:hover {
+        color: var(--background-color-tertiary)
+    }
+
+    ._logo img {
+        height: 50px;
+        width: auto;
+        overflow: hidden;
+        /* padding-bottom: 20px; */
+    }
+
+    .information {
+        width: 100%; /* You can keep it as 100% */
+    }
+
+    .draggable-container {
+        position: relative;
+        width: 100%; /* Ensure it takes up the entire width of the grid column */
+        height: 100%;
+        resize: both;
+        overflow: hidden;
+    }
+
+    .draggable {
+        width: 300px;
+        height: 300px;
+        border: 1px solid #000;
+        padding: 10px;
+    }
+
+    ._myAccount {
+        width: 100%;
+        background: var(--background-color-tertiary);
+        color: var(--font-color-main);
+        padding: 8%;
+        border-radius: 15px;
+        border:none;
+        font-size:large
+    }
+    ._myAccount:hover {
+        background: var(--background-color-quaternary);
+        color: var(--font-color-main-dark)
+    }
+    ._gameInfo {
+        width: 98%;
+        height:5%;
+        margin-right:1%;
+        margin-left: auto;
+        z-index: 100;
+   }
+   .grid_1x6 {
+        display: grid;
+        grid-template-columns: repeat(6,10%) 40%;
+   }
+
+   .sideNavFilter {
+        width:100%;
+        margin-bottom:2%;
+   }
+   .sideNavFilter select {
+        width: 45%;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid white;
+        color:black;
+        font-size:medium
+   }
+
+    </style>
+</head>
+<body>
+     <script>
+        $(function() {
+            $("#draggableDiv").draggable({
+                containment: ".draggable-container",
+                cursor: "grabbing",
+                grid: [ 5, 5 ],
+            }).resizable({
+            // Handle the resize event
+            resize: function(event, ui) {
+                // Adjust positions of other draggable elements after resizing
+                $(".draggableDiv").not(this).each(function() {
+                    var origPosition = $(this).data("origPosition");
+                    if (origPosition) {
+                        $(this).css({
+                            left: origPosition.left + ui.size.width - ui.originalSize.width,
+                            top: origPosition.top + ui.size.height - ui.originalSize.height
+                        });
+                    }
+                });
+            }}); // Add resizable functionality
+        });
+        
+        $(function() {
+            $("#draggableDiv2").draggable({
+                containment: ".draggable-container",
+                cursor: "grabbing",
+                grid: [ 5, 5 ]
+            }).resizable({
+            // Handle the resize event
+            resize: function(event, ui) {
+                // Adjust positions of other draggable elements after resizing
+                $(".draggableDiv").not(this).each(function() {
+                    var origPosition = $(this).data("origPosition");
+                    if (origPosition) {
+                        $(this).css({
+                            left: origPosition.left + ui.size.width - ui.originalSize.width,
+                            top: origPosition.top + ui.size.height - ui.originalSize.height
+                        });
+                    }
+                });
+            }}); // Add resizable functionality
+        });
+        $(function() {
+            $("#draggableDiv3").draggable({
+                containment: ".draggable-container",
+                cursor: "grabbing",
+                grid: [ 5, 5 ],
+            }).resizable({
+            // Handle the resize event
+            resize: function(event, ui) {
+                // Adjust positions of other draggable elements after resizing
+                $(".draggableDiv").not(this).each(function() {
+                    var origPosition = $(this).data("origPosition");
+                    if (origPosition) {
+                        $(this).css({
+                            left: origPosition.left + ui.size.width - ui.originalSize.width,
+                            top: origPosition.top + ui.size.height - ui.originalSize.height
+                        });
+                    }
+                });
+            }}); // Add resizable functionality
+        });
+        $(function() {
+            $("#draggableDiv4").draggable({
+                containment: ".draggable-container",
+                cursor: "grabbing",
+                grid: [ 5, 5 ],
+            }).resizable({
+            // Handle the resize event
+            resize: function(event, ui) {
+                // Adjust positions of other draggable elements after resizing
+                $(".draggableDiv").not(this).each(function() {
+                    var origPosition = $(this).data("origPosition");
+                    if (origPosition) {
+                        $(this).css({
+                            left: origPosition.left + ui.size.width - ui.originalSize.width,
+                            top: origPosition.top + ui.size.height - ui.originalSize.height
+                        });
+                    }
+                });
+            }}); // Add resizable functionality
+        });
+
+
+        function isColliding(ui, element) {
+        var pos1 = ui.position;
+        var pos2 = element.position();
+        var width1 = ui.helper.outerWidth();
+        var height1 = ui.helper.outerHeight();
+        var width2 = element.outerWidth();
+        var height2 = element.outerHeight();
+
+        return !(pos1.left + width1 < pos2.left ||
+                 pos1.top + height1 < pos2.top ||
+                 pos2.left + width2 < pos1.left ||
+                 pos2.top + height2 < pos1.top);
+    }
+    </script>
+    <div class="_pageBackground">
+
+        <!-- Main Nav Bar -->
+        <div class="_navBarMain">
+
+            <div class="_navBarMainInfo grid grid_1x5 _verticalAlign">
+                <div class="_logo">
+                    <img src="../../static/img/FBX_Logo.png" alt="">
+                </div>
+                <div class="_leagues">
+                    Leagues
+                </div>
+                <div class="_leagues">
+                    Teams
+                </div>
+                <div class="_leagues">
+                    Wallet
+                </div>
+                <div class="_leagues">
+                    About Us
+                </div>
+            </div>
+
+            <div class="_navBarMainSearchBar _verticalAlign">
+                <input type="text" class="_MainSearchBar">
+            </div>
+
+            <div class="_navBarMainPersonal grid grid_1x2_personal">
+                <div>$-.--</div>
+                <button class="_myAccount">Account</button>
+            </div>
+
+        </div>
+
+        <!-- Secondary Nav Bar  -->
+        <div class="_navBarSecondary ">
+            <div class="_navBarSecondaryInfo grid grid_1x10 _verticalAlign ">
+                <div class="_leagues">
+                    NBA
+                </div>
+                <div class="_leagues">
+                    NFL
+                </div>
+                <div class="_leagues">
+                    NHL
+                </div>
+                <div class="_leagues">
+                    MLB
+                </div>
+                <div class="_leagues">
+                    CFB
+                </div>
+                <div class="_leagues">
+                    Bundesliga
+                </div>
+                <div class="_leagues">
+                    Premier League
+                </div>
+                <div class="_leagues">
+                    Seria A
+                </div>
+                <div class="_leagues">
+                    La Liga
+                </div>
+                <div class="_leagues">
+                    Ligue 1
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area  -->
+        <div class="_content grid grid_1x2">
+            <!-- Side Nav Bar  -->
+            <div class="sidenav">
+                <div class="_searchBar">
+                    <input type="text" placeholder="Search Bar">
+                </div>
+                <div class="sideNavFilter">
+                    <select name="Sport" id="">
+                        <option value="">Sport</option>
+                        <option value="">Basketball</option>
+                        <option value="">Football</option>
+                        <option value="">Hockey</option>
+                        <option value="">Baseball</option>
+                        <option value="">Soccer</option>
+                    </select>
+                    <select name="League" id="">
+                        <option value="">League</option>
+                        <option value="">MLB</option>
+                        <option value="">MLS</option>
+                        <option value="">NBA</option>
+                        <option value="">NFL</option>
+                        <option value="">NHL</option>
+                    </select>
+                </div>
+                <div class="_game">
+                    <span>Toronto Vs Miami</span>
+                </div>
+                <div class="_game">
+                    <span>Toronto Vs Miami</span>
+                </div>
+                <div class="_game">
+                    <span>Toronto Vs Miami</span>
+                </div>
+                <div class="_game">
+                    <span>Toronto Vs Miami</span>
+                </div>
+                <div class="_game">
+                    <span>Toronto Vs Miami</span>
+                </div>
+                <div class="_game">
+                    <span>Toronto Vs Miami</span>
+                </div>
+                <div class="_game">
+                    <span>Toronto Vs Miami</span>
+                </div>
+            </div>
+
+            <!-- Information Field  -->
+            <div class="information draggable-container">
+                <div class="_gameInfo grid grid_1x6">
+                    <div>
+                        <header>Ticker</header>
+                        TOR @ LAL
+                    </div>
+                    <div>
+                        <header>Teams</header>
+                        Toronto vs Lakers
+                    </div>
+                    <div>
+                        <header>Sport</header>
+                        Basketball
+                    </div>
+                    <div>
+                        <header>League</header>
+                        NBA
+                    </div>
+                    <div>
+                        <header>Last Price</header>
+                        $5.00
+                    </div>
+                    <div>
+                        <header>Total Volume</header>
+                        9870
+                    </div>
+                     <div>
+                        
+                    </div>
+                </div>
+                <div id="draggableDiv" class="draggable _verticalAlign">
+                    I am  Graph
+                </div>
+                <div id="draggableDiv2" class="draggable _verticalAlign">
+                    I am an Orderbook
+                </div>
+                <div id="draggableDiv3" class="draggable _verticalAlign">
+                    I am User Statistics
+                </div>
+                <!-- <div id="draggableDiv4" class="draggable _verticalAlign">
+                    Statistics Card or Video Screen
+                </div> -->
+            </div>
+
+        </div>
+        
+
+        
+
+
+    </div>
+</body>
+</html>
