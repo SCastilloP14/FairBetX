@@ -13,6 +13,10 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+    <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+    <script src="{% static "JS/trading_view.js" %}"></script>
+
+
     <style>
 
     :root {
@@ -375,13 +379,17 @@
 }
 #draggableDiv,
 #draggableDiv2,
-#draggableDiv3 {
+#draggableDiv3,
+#draggableDiv4 {
     border-radius: 6px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     padding:0;
-
+}
+#draggableDiv {
+    align-items: flex-start;
+    text-align: center;
 }
 .orderbookRow {
     text-align: center;
@@ -390,7 +398,6 @@
 ._userStatistics {
     display: flex;
     align-self: flex-start;
-    background:coral;
     position:relative;
     padding-top:40px;
 
@@ -407,7 +414,6 @@
     /* margin-bottom: 1rem; */
     /* position: absolute; */
     top: 0;
-    background: lightgray;
 }
 
 .userStatisticsHeaderButton {
@@ -447,9 +453,58 @@
     margin-bottom: 1rem;
 }
 
-.grid_userStat {
+.grid_orderSubmission {
     display: grid;
-    grid-template-rows: 15% 85%;
+    grid-template-rows: repeat(5,20%);
+}
+
+._orderSubmission {
+    width: 100%;
+}
+#draggableDiv3 header,
+#draggableDiv4 header {
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom:1rem;
+}
+._orderSubmission input {
+    width:90%;
+    height:60%;
+    border-radius: 10px;
+}
+._orderSubmissionButtons {
+    display: flex;
+    height:100%;
+    justify-content: space-between;
+    width:90%;
+}
+._orderSubmissionBuyButton,
+._orderSubmissionSellButton  {
+    border-radius: 10px;
+    color:white;
+    height:60%;
+    width:49%;
+}
+
+._orderSubmissionBuyButton  {
+    background: green;
+    margin-right:2%;
+}
+
+._orderSubmissionSellButton {
+    background: red;
+}
+._orderSubmissionSummary {
+    height: 100%;
+    width: 90%;
+}
+.grid_orderSubmissionSummary {
+    display: grid;
+    grid-template-columns: repeat(2,50%);
+}
+._orderSubmissionSummaryText {
+    width:100%;
+    height:100%;
 }
     </style>
 </head>
@@ -519,7 +574,7 @@
         });
         $(function() {
             $("#draggableDiv4").draggable({
-                containment: ".draggable-container",
+                containment: "#draggableContainer",
                 cursor: "grabbing",
                 grid: [ 5, 5 ],
             }).resizable({
@@ -738,8 +793,21 @@
                     </div>
                 </div>
                 <div id="draggableContainer">
+
                     <div id="draggableDiv" class="draggable _verticalAlign">
-                        I am  Graph
+                        <div id="chart-div" class="tickerDetailTradingViewChart">
+                            <div class="tickerDetailTradingViewButtons">
+                                <button id="btn-1m" class="tickerDetailTradingViewButton">1m</button>
+                                <button id="btn-5m" class="tickerDetailTradingViewButton">5m</button>
+                                <button id="btn-1h" class="tickerDetailTradingViewButton">1H</button>
+                                <button id="btn-6h" class="tickerDetailTradingViewButton">6H</button>
+                                <button id="btn-1d" class="tickerDetailTradingViewButton">1D</button>
+                            </div>
+
+                            <!-- Actual File needed to run TradingView  -->
+                            <script type="text/javascript" src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script> 
+                            <div id="chart-container" value="{{ticker_detail.ticker_id}}"></div>
+                        </div>
                     </div>
 
                     <div id="draggableDiv2" class="draggable _verticalAlign _orderbook">
@@ -804,7 +872,7 @@
 
                     </div>
                     
-                    <div id="draggableDiv3" class="draggable _verticalAlign _userStatistics grid grid_userStat">
+                    <div id="draggableDiv3" class="draggable _verticalAlign _userStatistics">
                        <div class="userStatisticsHeader grid grid_1x4">
                             <div class="userStatisticsHeaderButton" id="orders-tab">Orders</div>
                             <div class="userStatisticsHeaderButton">Fills</div>
@@ -881,11 +949,36 @@
                             </table>
                        </div>
                     </div>
+                    <div id="draggableDiv4" class="draggable _verticalAlign">
+                        <header>Order Submission</header>
+                        <div class="_orderSubmission grid grid_orderSubmission">
+                            <input type="text" placeholder="Order Type">
+                            <input type="text" placeholder="Quantity">
+                            <input type="text" placeholder="Price">
+                            <div class="_orderSubmissionSummary grid grid_orderSubmissionSummary">
+                                <div class="_orderSubmissionSummaryText" style="border-right: 0.5px solid lightgray">
+                                    <span>Max Profit: <br></span>
+                                    <span>Max Loss:</span>
+                                </div>
+                                <div class="_orderSubmissionSummaryText">
+                                    <span>Max Profit: <br></span>
+                                    <span>Max Loss:</span>
+                                </div>
+                            </div>
+                            <div class="_orderSubmissionButtons">
+                                <button class="_orderSubmissionBuyButton">BUY {{ticker_detail.ticker_game.game_home_team.team_short_name}}</button>
+                                <button class="_orderSubmissionSellButton">SELL {{ticker_detail.ticker_game.game_away_team.team_short_name}}</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- <div id="draggableDiv5" class="draggable _verticalAlign">
+                        Video Screen 
+                    </div> -->
                 </div>
-                
-                <!-- <div id="draggableDiv4" class="draggable _verticalAlign">
-                    Video Screen 
-                </div> -->
+
+
+                 
             </div>
 
         </div>
