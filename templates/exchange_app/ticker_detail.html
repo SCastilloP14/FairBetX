@@ -58,7 +58,7 @@
         max-height: 100vh;
         color: var(--font-color-main-light);
         font-family:"Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
-        /* overflow-y: scroll; */
+        overflow-y: hidden;
     }
 
     ._verticalAlign {
@@ -131,17 +131,15 @@
     .sidenav {
         background: var(--background-color-secondary);
         border-right: 3px solid var(--border-color-main);
-        max-height: 80%; /* Take up the full height */
-        max-height: 100vh;
+        height: 80%; /* Take up the full height */
+        max-height: 90vh;
         position: relative;
         text-align: center;
         align-self: start;
         width: 100%; /* Adjust as needed */
 
-        /* background: blue; */
-        /* overflow-y: scroll;
-        -ms-overflow-style: none; 
-        scrollbar-width: none;  */
+        /* background: lightseagreen; */
+      
     }
 
     ._sidenavelement {
@@ -175,7 +173,8 @@
         padding-top: 2.5%;
         width: 100%;
         border-bottom: 1px solid white;
-
+        color: white;
+        text-decoration: none;
         /* max-height:45px; */
 
     }
@@ -289,7 +288,7 @@
     }
 
     ._myAccount:hover {
-        background: var(--background-color-quaternary);
+        background: var(--background-color-secondary);
         color: var(--font-color-main-dark)
     }
 
@@ -302,7 +301,7 @@
 
    .grid_1x6 {
         display: grid;
-        grid-template-columns: repeat(6,10%) 40%;
+        grid-template-columns: 10% 14% 10% 10% 8% 8% 40%;
    }
 
    .sideNavFilter {
@@ -311,7 +310,7 @@
    }
 
    .sideNavFilter select {
-        width: 45%;
+        width: 48%;
         background: transparent;
         border: none;
         border-bottom: 1px solid white;
@@ -380,7 +379,9 @@
 #draggableDiv,
 #draggableDiv2,
 #draggableDiv3,
-#draggableDiv4 {
+#draggableDiv4,
+#draggableDiv5,
+#draggableDiv6 {
     border-radius: 6px;
     overflow: hidden;
     display: flex;
@@ -461,13 +462,15 @@
 ._orderSubmission {
     width: 100%;
 }
+
 #draggableDiv3 header,
 #draggableDiv4 header {
     text-align: center;
     margin-top: 1rem;
     margin-bottom:1rem;
 }
-._orderSubmission input {
+._orderSubmission input,
+._orderSubmission select {
     width:90%;
     height:60%;
     border-radius: 10px;
@@ -506,6 +509,51 @@
     width:100%;
     height:100%;
 }
+
+
+    /* Style the custom dropdown container */
+    .custom-dropdown {
+      position: relative;
+      display: inline-block;
+      color:black
+    }
+
+    /* Style the custom dropdown button */
+    .custom-dropdown button {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #fff;
+      cursor: pointer;
+    }
+
+    /* Style the dropdown options container */
+    .custom-dropdown .dropdown-options {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 1;
+      display: none;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+    }
+
+    /* Style the individual dropdown options */
+    .custom-dropdown .dropdown-options a {
+      display: block;
+      padding: 8px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    /* Hover effect on options */
+    .custom-dropdown .dropdown-options a:hover {
+      background-color: #f5f5f5;
+    }
+
     </style>
 </head>
 <body>
@@ -519,15 +567,15 @@
             // minHeight: $("#draggableDiv").height(), 
 
             resize: function(event, ui) {
-                $(".draggableDiv").not(this).each(function() {
-                    var origPosition = $(this).data("origPosition");
-                    if (origPosition) {
-                        $(this).css({
-                            left: origPosition.left + ui.size.width - ui.originalSize.width,
-                            top: origPosition.top + ui.size.height - ui.originalSize.height
-                        });
-                    }
-                });
+                // $(".draggableDiv").not(this).each(function() {
+                //     var origPosition = $(this).data("origPosition");
+                //     if (origPosition) {
+                //         $(this).css({
+                //             left: origPosition.left + ui.size.width - ui.originalSize.width,
+                //             top: origPosition.top + ui.size.height - ui.originalSize.height
+                //         });
+                //     }
+                // });
             }}); 
         });
         
@@ -541,15 +589,15 @@
             // Handle the resize event
             resize: function(event, ui) {
                 // Adjust positions of other draggable elements after resizing
-                $(".draggableDiv").not(this).each(function() {
-                    var origPosition = $(this).data("origPosition");
-                    if (origPosition) {
-                        $(this).css({
-                            left: origPosition.left + ui.size.width - ui.originalSize.width,
-                            top: origPosition.top + ui.size.height - ui.originalSize.height
-                        });
-                    }
-                });
+                // $(".draggableDiv").not(this).each(function() {
+                //     var origPosition = $(this).data("origPosition");
+                //     if (origPosition) {
+                //         $(this).css({
+                //             left: origPosition.left + ui.size.width - ui.originalSize.width,
+                //             top: origPosition.top + ui.size.height - ui.originalSize.height
+                //         });
+                //     }
+                // });
             }}); // Add resizable functionality
         });
         $(function() {
@@ -561,15 +609,15 @@
             // Handle the resize event
             resize: function(event, ui) {
                 // Adjust positions of other draggable elements after resizing
-                $(".draggableDiv").not(this).each(function() {
-                    var origPosition = $(this).data("origPosition");
-                    if (origPosition) {
-                        $(this).css({
-                            left: origPosition.left + ui.size.width - ui.originalSize.width,
-                            top: origPosition.top + ui.size.height - ui.originalSize.height
-                        });
-                    }
-                });
+                // $(".draggableDiv").not(this).each(function() {
+                //     var origPosition = $(this).data("origPosition");
+                //     if (origPosition) {
+                //         $(this).css({
+                //             left: origPosition.left + ui.size.width - ui.originalSize.width,
+                //             top: origPosition.top + ui.size.height - ui.originalSize.height
+                //         });
+                //     }
+                // });
             }}); // Add resizable functionality
         });
         $(function() {
@@ -581,17 +629,98 @@
             // Handle the resize event
             resize: function(event, ui) {
                 // Adjust positions of other draggable elements after resizing
-                $(".draggableDiv").not(this).each(function() {
-                    var origPosition = $(this).data("origPosition");
-                    if (origPosition) {
-                        $(this).css({
-                            left: origPosition.left + ui.size.width - ui.originalSize.width,
-                            top: origPosition.top + ui.size.height - ui.originalSize.height
-                        });
-                    }
-                });
+                // $(".draggableDiv").not(this).each(function() {
+                //     var origPosition = $(this).data("origPosition");
+                //     if (origPosition) {
+                //         $(this).css({
+                //             left: origPosition.left + ui.size.width - ui.originalSize.width,
+                //             top: origPosition.top + ui.size.height - ui.originalSize.height
+                //         });
+                //     }
+                // });
             }}); // Add resizable functionality
         });
+        $(function() {
+            $("#draggableDiv5").draggable({
+                containment: "#draggableContainer",
+                cursor: "grabbing",
+                grid: [ 5, 5 ],
+            }).resizable({
+            // Handle the resize event
+            resize: function(event, ui) {
+                // Adjust positions of other draggable elements after resizing
+                // $(".draggableDiv").not(this).each(function() {
+                //     var origPosition = $(this).data("origPosition");
+                //     if (origPosition) {
+                //         $(this).css({
+                //             left: origPosition.left + ui.size.width - ui.originalSize.width,
+                //             top: origPosition.top + ui.size.height - ui.originalSize.height
+                //         });
+                //     }
+                // });
+            }}); // Add resizable functionality
+        });
+        $(function() {
+            $("#draggableDiv6").draggable({
+                containment: "#draggableContainer",
+                cursor: "grabbing",
+                grid: [ 5, 5 ],
+            }).resizable({
+            // Handle the resize event
+            resize: function(event, ui) {
+                // Adjust positions of other draggable elements after resizing
+                // $(".draggableDiv").not(this).each(function() {
+                //     var origPosition = $(this).data("origPosition");
+                //     if (origPosition) {
+                //         $(this).css({
+                //             left: origPosition.left + ui.size.width - ui.originalSize.width,
+                //             top: origPosition.top + ui.size.height - ui.originalSize.height
+                //         });
+                //     }
+                // });
+            }}); // Add resizable functionality
+        });
+        $(function() {
+            $("#draggableDiv7").draggable({
+                containment: "#draggableContainer",
+                cursor: "grabbing",
+                grid: [ 5, 5 ],
+            }).resizable({
+            // Handle the resize event
+            resize: function(event, ui) {
+                // Adjust positions of other draggable elements after resizing
+                // $(".draggableDiv").not(this).each(function() {
+                //     var origPosition = $(this).data("origPosition");
+                //     if (origPosition) {
+                //         $(this).css({
+                //             left: origPosition.left + ui.size.width - ui.originalSize.width,
+                //             top: origPosition.top + ui.size.height - ui.originalSize.height
+                //         });
+                //     }
+                // });
+            }}); // Add resizable functionality
+        });
+        $(function() {
+            $("#draggableDiv8").draggable({
+                containment: "#draggableContainer",
+                cursor: "grabbing",
+                grid: [ 5, 5 ],
+            }).resizable({
+            // Handle the resize event
+            resize: function(event, ui) {
+                // Adjust positions of other draggable elements after resizing
+                // $(".draggableDiv").not(this).each(function() {
+                //     var origPosition = $(this).data("origPosition");
+                //     if (origPosition) {
+                //         $(this).css({
+                //             left: origPosition.left + ui.size.width - ui.originalSize.width,
+                //             top: origPosition.top + ui.size.height - ui.originalSize.height
+                //         });
+                //     }
+                // });
+            }}); // Add resizable functionality
+        });
+
 
 
         function isColliding(ui, element) {
@@ -637,7 +766,7 @@
 
             <div class="_navBarMainPersonal grid grid_1x2_personal">
                 <div class="empty"></div>
-                <div>$-.--</div>
+                <div>${{user.userprofileinfo.user_available_balance}}</div>
                 <button class="_myAccount">Account</button>
                 <div>
                     <img class="_settings" src="{% static "img/settings-icon.png" %}" alt="Settings Icon">
@@ -710,17 +839,53 @@
                         <option value="">NFL</option>
                         <option value="">NHL</option>
                     </select>
+                    
+                    <!-- <script>
+                    function toggleDropdown() {
+                        var dropdown = document.querySelector('.custom-dropdown .dropdown-options');
+                        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                    }
+                    </script>
+                    <div class="custom-dropdown">
+                        <button onclick="toggleDropdown()">League</button>
+                        <div class="dropdown-options">
+                            <a href="#" class="MLB"></a>
+                            <a href="#" class="MLS"></a>
+                            <a href="#" class="NBA"></a>
+                            <a href="#" class="NFL"></a>
+                            <a href="#" class="NHL"></a>
+                        </div>
+                    </div> -->
                 </div>
 
                 <div class="_sidenavelement">
                 {% for ticker in tickers %}
-                    <div class="_game grid grid_game">
-                        <div>
-                            {{ticker.ticker_game.game_league.league_name}}
-                        </div>
+                    <a class="_game grid grid_game" href="{% url 'exchange_app:ticker_detail' pk=ticker.pk %}">
+                        
+                        <!-- League Name, NHL:Black, NBA:Dark Red, NFL:Dark Blue, MLB:white  -->
+                        {% if ticker.ticker_game.game_league.league_name == "NHL" %}
+                            <div style="color:black">
+                                {{ticker.ticker_game.game_league.league_name}}
+                            </div>
+                        {% elif ticker.ticker_game.game_league.league_name == "NBA" %}
+                            <div style="color:darkred">
+                                {{ticker.ticker_game.game_league.league_name}}
+                            </div>
+                        {% elif ticker.ticker_game.game_league.league_name == "NFL" %}
+                            <div style="color:darkblue">
+                                {{ticker.ticker_game.game_league.league_name}}
+                            </div>
+                        {% else %}
+                            <div>
+                                {{ticker.ticker_game.game_league.league_name}}
+                            </div>
+                        {% endif %}
+                        <!-- Short Ticker Name  -->
                         <div>
                             {{ticker.ticker_game.game_away_team.team_short_name}}  VS  {{ticker.ticker_game.game_home_team.team_short_name}}
                         </div>
+
+                        <!-- Team Score if Available -->
                         {% if ticker.ticker_game.game_away_team_score %}
                             <div>
                                 {{ticker.ticker_game.game_away_team_score}} - {{ticker.ticker_game.game_home_team_score}}
@@ -730,7 +895,7 @@
                                  - 
                             </div>
                         {% endif %}
-                    </div>
+                    </a>
                 {% endfor %}
                 </div>
                 <!-- <div class="_game">
@@ -812,8 +977,11 @@
 
                     <div id="draggableDiv2" class="draggable _verticalAlign _orderbook">
                         <header id="orderbook_header">Orderbook</header>
-                        <header id="orderbook_last_price">Last: {{ticker_detail.ticker_last_price}}</header>
-
+                        {% if ticker_detail.ticker_last_price %}
+                            <header id="orderbook_last_price">Last: {{ticker_detail.ticker_last_price}}</header>
+                        {% else %}
+                            <header id="orderbook_last_price">Last: </header>
+                        {% endif %}
                         <div class=" grid grid_1x4">
 
                             <div class="bidSize">
@@ -948,32 +1116,197 @@
                                 {% endfor %}
                             </table>
                        </div>
+
+                       <!-- Fills -->
+                       <div class="orders-tab" id="fills-section" style="display: none;">
+                            <table id="fills-table">
+                                <tr>
+                                    <th>Match</th>
+                                    <th>Timestamp</th>
+                                    <th>Side</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Order ID</th>
+                                </tr>
+                            {% for fill in user_fills|dictsort:"fill_timestamp" reversed %}
+                                <tr class="fills-row">
+                                    <td data-class="Match">{{fill.fill_ticker.ticker_game.game_short_name}}</td>
+                                    <td data-class="Timestamp">{{fill.fill_timestamp|date:"d/m/y H:i:s"}}</td>
+                                    <td data-class="Side">{{fill.fill_side}}</td>
+                                    <td data-class="Price">{{fill.fill_price}}</td>
+                                    <td data-class="Quantity">{{fill.fill_quantity}}</td>
+                                    <td data-class="Fill ID">{{fill.fill_id}}</td>
+                                </tr>
+                            {% endfor %}
+                            </table>
+                       </div>
+
+                       <!-- Positions -->
+                       <div class="" style="display: none;">
+                            <table id="positions-table">
+                                <tr>
+                                    <th>Match</th>
+                                    <th>Position</th>
+                                    <th>Game Score</th>
+                                    <th>Average Price</th>
+                                    <th>Open PnL</th>
+                                    <th>Closed PnL</th>
+                                    <th>Settled PnL</th>
+                                    <th>Position Settled</th>
+                                </tr>
+                            {% for position in user_positions %}
+                                <tr class="positions-row">
+                                    <td data-class="Ticker">{{position.position_ticker.ticker_game.game_short_name}}</td>
+                                    <td data-class="Position">{{position.position_quantity}}</td>
+                                    {% if position.position_ticker.ticker_game.game_status == "SCHEDULED" %}
+                                        <td data-class="Game Score">SCHEDULED</td>
+                                    {% elif position.position_ticker.ticker_game.game_status == "PLAYING"%}
+                                        <td data-class="Game Score">{{position.position_ticker.ticker_game.game_away_team_score}}-{{position.position_ticker.ticker_game.game_home_team_score}}</td>
+                                    {% elif position.position_ticker.ticker_game.game_status == "FINISHED"%}
+                                        <td data-class="Game Score">F {{position.position_ticker.ticker_game.game_away_team_score}}-{{position.position_ticker.ticker_game.game_home_team_score}}</td>
+                                    {% else %}
+                                        <td data-class="Game Score">{{position.position_ticker.ticker_game.game_status}}</td>
+                                    {% endif %}
+                                    <td data-class="Average Price">{{position.position_average_price}}</td>
+                                    <td data-class="Open PnL">{{position.position_open_pnl}}</td>
+                                    <td data-class="Closed PnL">{{position.position_closed_pnl}}</td>
+                                    <td data-class="Settled PnL">{{position.position_settled_pnl}}</td>
+                                    <td data-class="Settled PnL">{{position.position_settled}}</td>
+                                </tr>
+                            {% endfor %}
+                            </table>
+                       </div>
+
+                       <!-- Historic Orders  -->
+                       <div class="" style="display: none;">
+                            <table id="historic-table">
+                                <tr>
+                                    <th>Match</th>
+                                    <th>Timestamp</th>
+                                    <th>Betting on Team</th>
+                                    <th>Order Type</th>
+                                    <th>Side</th>
+                                    <th>Price</th>
+                                    <th>Qty</th>
+                                    <th>Filled Qty</th>
+                                    <th>Working Qty</th>
+                                    <th>Avg. Fill Price</th>
+                                    <th>Status</th>
+                                    <th>Paid Fees</th>
+                                    <th>Cancel</th>
+                                </tr>
+                            {% for order in user_orders|dictsort:"order_creation_timestamp" reversed %}
+                                <tr class="historic-row" >
+                                    <td data-class="Match">{{order.order_ticker.ticker_game.game_short_name}}</td>
+                                    <td data-class="Timestamp">{{order.order_creation_timestamp|date:"d/m/y H:i:s"}}</td>
+                                    {% if order.order_side == "SELL" %}
+                                        <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_away_team.team_name}}</td>
+                                    {% else %}
+                                        <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_home_team.team_name}}</td>
+                                    {% endif %}
+                                    <td data-class="Order Type">{{order.order_type}}</td>
+                                    <td data-class="Side">{{order.order_side}}</td>
+                                    <td data-class="Price">{{order.order_price}}</td>
+                                    <td data-class="Qty">{{order.order_quantity}}</td>
+                                    <td data-class="Filled Qty">{{order.order_filled_quantity}}</td>
+                                    <td data-class="Working Qty">{{order.order_working_quantity}}</td>
+                                    {% if order.order_avg_fill_price%}                   
+                                        <td data-class="Avg. Fill Price">{{order.order_avg_fill_price}}</td>
+                                    {% else %}
+                                        <td data-class="Avg. Fill Price">-</td>
+                                    {% endif %}
+                                    <td data-class="Status">{{order.order_status}}</td>
+                                    <td data-class="Paid Fees">{{order.order_paid_fees}}</td>
+                                    <td data-class="Cancel">
+                                        {% if order.order_status == "CANCELED" %}
+                                            <p>CANCELED</p>
+                                        {% elif order.order_status == "TICKER_CANCELED" %}
+                                            <p>TICKER CANCELED</p>
+                                        {% elif order.order_status == "SETTLED" %}
+                                            <p>SETTLED</p>
+                                        {% elif order.order_status == "FILLED" %}
+                                            <p>FILLED</p>
+                                        {% else %}
+                                        <!-- Cancel Button  -->
+                                        <form id="cancellation-form" method="POST" action="{% url 'exchange_app:ticker_detail' ticker_detail.pk %}" class="cancel__order">
+                                            {% csrf_token %}
+                                            <button class="tickerDetailUserStatisticsCancelButton" name="action" type="submit" value="cancel_order">Cancel</button>
+                                            <input type="hidden" name="order_id" value="{{order.order_id}}">
+                                        </form>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </table>
+                       </div>
+
                     </div>
+
+                    <!-- Div 4 Order Submission  -->
                     <div id="draggableDiv4" class="draggable _verticalAlign">
                         <header>Order Submission</header>
-                        <div class="_orderSubmission grid grid_orderSubmission">
-                            <input type="text" placeholder="Order Type">
-                            <input type="text" placeholder="Quantity">
-                            <input type="text" placeholder="Price">
-                            <div class="_orderSubmissionSummary grid grid_orderSubmissionSummary">
-                                <div class="_orderSubmissionSummaryText" style="border-right: 0.5px solid lightgray">
-                                    <span>Max Profit: <br></span>
-                                    <span>Max Loss:</span>
+                        <form id="order-form" method="POST" action="" class="form__order" style="height:100%;width:100%">
+
+                            <div class="_orderSubmission grid grid_orderSubmission">
+                                <!-- <input type="text" placeholder="Order Type"> -->
+
+                                <select name="" id="order-type" name="order-type">
+                                    <option value="">Order Type</option>
+                                    <option value="">Market</option>
+                                    <option value="">Limit</option>
+                                </select>
+
+                                <input type="text" placeholder="Quantity">
+                                <input type="text" placeholder="Price">
+                                <div class="_orderSubmissionSummary grid grid_orderSubmissionSummary">
+                                    <div class="_orderSubmissionSummaryText" style="border-right: 0.5px solid lightgray">
+                                        <span>Max Profit: <br></span>
+                                        <span>Max Loss:</span>
+                                    </div>
+                                    <div class="_orderSubmissionSummaryText">
+                                        <span>Max Profit: <br></span>
+                                        <span>Max Loss:</span>
+                                    </div>
                                 </div>
-                                <div class="_orderSubmissionSummaryText">
-                                    <span>Max Profit: <br></span>
-                                    <span>Max Loss:</span>
+                                <div class="_orderSubmissionButtons">
+                                    <button class="_orderSubmissionBuyButton">BUY {{ticker_detail.ticker_game.game_home_team.team_short_name}}</button>
+                                    <button class="_orderSubmissionSellButton">SELL {{ticker_detail.ticker_game.game_away_team.team_short_name}}</button>
                                 </div>
-                            </div>
-                            <div class="_orderSubmissionButtons">
-                                <button class="_orderSubmissionBuyButton">BUY {{ticker_detail.ticker_game.game_home_team.team_short_name}}</button>
-                                <button class="_orderSubmissionSellButton">SELL {{ticker_detail.ticker_game.game_away_team.team_short_name}}</button>
                             </div>
 
-                        </div>
+                        </form>
                     </div>
-                    <!-- <div id="draggableDiv5" class="draggable _verticalAlign">
-                        Video Screen 
+
+                    <!-- Div 5 Game Play - by play -->
+                    <div id="draggableDiv5" class="draggable _verticalAlign">
+                        <span>Play by Play</span>
+                    </div>
+
+                    <!-- Div 6 Video Screen -->
+                    <!-- <div id="draggableDiv6" class="draggable _verticalAlign">
+                        <div style="width:100%;height:100%;background:orange">
+                            Video Screen
+                        </div> 
+                    </div> -->
+
+                    <!-- Div 7  -->
+                    <!-- <div id="draggableDiv7" class="draggable _verticalAlign">
+                        Parley bets 
+                    </div> -->
+
+                    <!-- Div 8  -->
+                    <!-- <div id="draggableDiv8" class="draggable _verticalAlign">
+                        Market Trade 
+                    </div> -->
+
+                    <!-- Div 9  -->
+                    <!-- <div id="draggableDiv9" class="draggable _verticalAlign">
+                        Live Stats 
+                    </div> -->
+
+                    <!-- Div 10  -->
+                    <!-- <div id="draggableDiv10" class="draggable _verticalAlign">
+                        Quick Trade, manage other tradable positions
                     </div> -->
                 </div>
 
