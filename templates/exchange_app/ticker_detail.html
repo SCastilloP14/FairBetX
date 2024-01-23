@@ -983,42 +983,119 @@
                             <header id="orderbook_last_price">Last: </header>
                         {% endif %}
                         <div class=" grid grid_1x4">
+                            
+
+                            <div style="display: none;" id="hiddenBuyOrders">{{buy_orders}}</div>
+                            <div style="display: none;" id="hiddenSellOrders">{{sell_orders}}</div>
+
+                            <script>
+                                document.addEventListener("DOMContentLoaded", function() {
+    // Your JavaScript code here
+                                    var totalBuyQuantity = 0;
+                                    var totalSellQuantity = 0;
+
+                                    var hiddenBuyOrders = $('#hiddenBuyOrders').text().match(/\[([^[\]]*)\]/);
+                                    var hiddenSellOrders = $('#hiddenSellOrders').text().match(/\[([^[\]]*)\]/);
+
+                                    // var hiddenSellOrders = document.getElementById('hiddenSellOrders').innerHTML;
+                                    if (hiddenBuyOrders && hiddenBuyOrders.length > 1) {
+                                        // Extract the content within brackets
+                                        const arrayContent = hiddenBuyOrders[1];
+                                        // Parse the content using the custom parser
+                                        const cleanedContent = arrayContent.replace(/Decimal\(/g, "Number(");
+                                        // Use eval to convert the content into a JavaScript array
+                                        const parsedArray = eval(`[${cleanedContent}]`);
+
+                                        parsedArray.forEach(function(order) {
+                                            totalBuyQuantity+=order.total_quantity;
+                                            // Your logic here
+                                        });
+                                        console.log("Total", totalBuyQuantity);
+
+                                        parsedArray.forEach(function(order, index) {
+                                            var percentage = (order.total_quantity / totalBuyQuantity) * 100;
+                                            var elementId = 'bidPrice_' + (index+1);
+                                            var element = document.getElementById(elementId);
+                                            var design = "linear-gradient(to left, rgba(144, 238, 144, 0.3) " + percentage + "%, rgba(144, 238, 144, 0.3) " + percentage + "%, transparent " + percentage + "%)";
+
+                                            element.style.background=design;
+                                        });
+                                    };
+
+                                    // var hiddenSellOrders = document.getElementById('hiddenSellOrders').innerHTML;
+                                    if (hiddenSellOrders && hiddenSellOrders.length > 1) {
+                                        // Extract the content within brackets
+                                        const arrayContent = hiddenSellOrders[1];
+                                        // Parse the content using the custom parser
+                                        const cleanedContent = arrayContent.replace(/Decimal\(/g, "Number(");
+                                        // Use eval to convert the content into a JavaScript array
+                                        const parsedArray = eval(`[${cleanedContent}]`);
+
+                                        parsedArray.forEach(function(order) {
+                                            totalSellQuantity+=order.total_quantity;
+                                            // Your logic here
+                                        });
+                                        console.log("Total", totalSellQuantity);
+
+                                        parsedArray.forEach(function(order, index) {
+                                            var percentage = (order.total_quantity / totalSellQuantity) * 100;
+                                            var elementId = 'askPrice_' + (index+1);
+                                            var element = document.getElementById(elementId);
+// linear-gradient(to right, rgba(228, 16, 9, 0.3) 50%, transparent 50%)                                            
+                                            var design = "linear-gradient(to right, rgba(228, 16, 9, 0.3) " + percentage + "%, rgba(228, 16, 9, 0.3) " + percentage + "%, transparent " + percentage + "%)";
+
+                                            element.style.background=design;
+                                        });
+                                    };
+
+
+
+                                    
+                                    
+
+                                });
+
+                            </script>
 
                             <div class="bidSize">
                                 <header>Bid Size</header>
-                                {% for sell_order in sell_orders %}
-                                    <div class="bidSizerow">
-                                        {{sell_order.total_quantity}}
+                                {% for buy_order in buy_orders %}
+                                    <div class="bidSizerow" id="bidSize_{{ forloop.counter }}">
+                                        {{buy_order.total_quantity}}
                                     </div>
                                 {% endfor %}
                             </div>
                             <div class="bidPrice">
                                 <header>Bid Price</header>
-                                {% for sell_order in sell_orders %}
+                                {% for buy_order in buy_orders %}
                                     <div class="bidPricerow" id="bidPrice_{{ forloop.counter }}">
-                                        {{sell_order.order_price}}
+                                        {{buy_order.order_price}}
                                     </div>
                                 {% endfor %}
                             </div>
                             <div class="askPrice">
                                 <header>Ask Price</header>
-                                {% for buy_order in buy_order %}
-                                    <div class="askPricerow" id="askPrice_{{ forloop.counter }}">
-                                        {{buy_order.order_price}}
+                                {% for sell_order in sell_orders %}
+                                    <div class="askPricerow"  id="askPrice_{{ forloop.counter }}">
+                                        {{sell_order.order_price}}
                                     </div>
                                 {% endfor %}
 
                             </div>
                             <div class="askSize">
                                 <header>Ask Size</header>
-                                {% for buy_order in buy_order %}
+                                {% for sell_order in sell_orders %}
                                     <div class="askSizerow">
-                                        {{buy_order.total_quantity}}
+                                        {{sell_order.total_quantity}}
                                     </div>
                                 {% endfor %}
                             </div>
                        
                        </div>
+
+                       
+
+
 
                         <!-- <div>
                             <div class="grid grid_1x4" style="align-self: flex-start; border-bottom: 0.5px solid white">
@@ -1245,19 +1322,20 @@
                     <!-- Div 4 Order Submission  -->
                     <div id="draggableDiv4" class="draggable _verticalAlign">
                         <header>Order Submission</header>
-                        <form id="order-form" method="POST" action="" class="form__order" style="height:100%;width:100%">
 
+                        <form id="order-form" method="POST" action="" class="form__order" style="height:100%;width:100%">
+                        {% csrf_token %}
                             <div class="_orderSubmission grid grid_orderSubmission">
                                 <!-- <input type="text" placeholder="Order Type"> -->
 
-                                <select name="" id="order-type" name="order-type">
-                                    <option value="">Order Type</option>
-                                    <option value="">Market</option>
-                                    <option value="">Limit</option>
+                                <select id="order-type" name="order_type">
+                                    <option value="" disabled selected>Order Type</option>
+                                    <option value="MARKET">Market</option>
+                                    <option value="LIMIT">Limit</option>
                                 </select>
 
-                                <input type="text" placeholder="Quantity">
-                                <input type="text" placeholder="Price">
+                                <input type="text" placeholder="Quantity" id="order-quantity" name="order_quantity">
+                                <input type="text" placeholder="$0.00" id="order-price" name="order_price">
                                 <div class="_orderSubmissionSummary grid grid_orderSubmissionSummary">
                                     <div class="_orderSubmissionSummaryText" style="border-right: 0.5px solid lightgray">
                                         <span>Max Profit: <br></span>
@@ -1269,9 +1347,17 @@
                                     </div>
                                 </div>
                                 <div class="_orderSubmissionButtons">
-                                    <button class="_orderSubmissionBuyButton">BUY {{ticker_detail.ticker_game.game_home_team.team_short_name}}</button>
-                                    <button class="_orderSubmissionSellButton">SELL {{ticker_detail.ticker_game.game_away_team.team_short_name}}</button>
+                                    <input type="hidden" name="ticker_id" value="{{ticker_detail.pk}}">
+                                    <input type="hidden" name="order_side" id="order-side-input" value="">
+
+                                    <button name="action" value="submit_order" class="_orderSubmissionBuyButton" onclick="setOrderSide('BUY')">BUY {{ticker_detail.ticker_game.game_home_team.team_short_name}}</button>
+                                    <button name="action" value="submit_order" class="_orderSubmissionSellButton" onclick="setOrderSide('SELL')">SELL {{ticker_detail.ticker_game.game_away_team.team_short_name}}</button>
                                 </div>
+                                <script>
+                                    function setOrderSide(side) {
+                                        document.getElementById('order-side-input').value = side;
+                                    }
+                                </script>
                             </div>
 
                         </form>
