@@ -406,6 +406,7 @@
     width: 1400px;
 }
 
+
 .userStatisticsHeader {
     max-height: 40px;
     min-height: 10%;
@@ -443,7 +444,7 @@
 .orders-table {
     width: 100%;
     text-align: center;
-    /* margin-top:0.2rem; */
+    /* margin-top:0.2rem; */    
 }
 .orders-table tr td {
     border-bottom: 0.5px solid  #d3d3d342;
@@ -552,6 +553,14 @@
     /* Hover effect on options */
     .custom-dropdown .dropdown-options a:hover {
       background-color: #f5f5f5;
+    }
+
+    .cancel__order button {
+        width:80%;
+        background: var(--background-color-tertiary);
+        color:white;
+        border-radius: 6px; 
+        
     }
 
     </style>
@@ -1142,19 +1151,27 @@
                                     <th class="">Paid Fees</th>
                                     <th class="">Cancel</th>
                                 </tr>
-
                                 {% for order in user_orders|dictsort:"order_creation_timestamp" reversed %}
                                     <tr class="orders-row">
                                         <td data-class="Match">{{order.order_ticker.ticker_game.game_short_name}}</td>
                                         <td data-class="Timestamp">{{order.order_creation_timestamp|date:"d/m/y H:i:s"}}</td>
+
                                         {% if order.order_side == "SELL" %}
                                             <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_away_team.team_name}}</td>
                                         {% else %}
                                             <td data-class="Betting on Team">{{order.order_ticker.ticker_game.game_home_team.team_name}}</td>
                                         {% endif %}
+
                                         <td data-class="Order Type">{{order.order_type}}</td>
                                         <td data-class="Side">{{order.order_side}}</td>
-                                        <td data-class="Price">{{order.order_price}}</td>
+
+                                        <!-- If order is Market, AVG Price = Price -->
+                                        {% if order.order_type == "MARKET" %}
+                                            <td data-class="Price">{{order.order_avg_fill_price}}</td>
+                                        {% else %}
+                                            <td data-class="Price">{{order.order_price}}</td>
+                                        {% endif %}
+
                                         <td data-class="Qty">{{order.order_quantity}}</td>
                                         <td data-class="Filled Qty">{{order.order_filled_quantity}}</td>
                                         
