@@ -32,7 +32,7 @@ def parse_league_data(raw_team_data):
         "league_description": raw_team_data["strDescriptionEN"],
         "league_badge": raw_team_data["strBadge"],
         "league_logo": raw_team_data["strLogo"],
-        "league_trophy": raw_team_data["strTrophy"]
+        "league_trophy": raw_team_data["strTrophy"],
     }
     return parsed_league_data
 

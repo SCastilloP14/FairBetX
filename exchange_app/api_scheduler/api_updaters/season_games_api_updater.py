@@ -140,7 +140,9 @@ def create_or_update_season_game(**kwargs):
         update_season_game(existing_game, **kwargs)
     except Game.DoesNotExist:
         try:
-             create_season_game(**kwargs)         
+             if datetime.now().astimezone(timezone.utc) - timedelta(days=1) < kwargs['season_game_start_datetime'] < datetime.now().astimezone(timezone.utc) + timedelta(days=10):
+                print(f"Creating game for {kwargs['season_game_filename']}")
+                create_season_game(**kwargs)         
         except Team.DoesNotExist:
             print(f"Missing a team for game {kwargs['season_game_id']}:", kwargs["season_game_home_team_id"], kwargs["season_game_away_team_id"])
 

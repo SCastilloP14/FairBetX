@@ -12,22 +12,18 @@ from exchange_app.models import League, Team, Player, Game
 
 def start():
     leagues = {
-           "MLB": {"league_id": "4424", "season": "2023"}, 
-           "NFL": {"league_id": "4391", "season": "2023"},
-           "NBA": {"league_id": "4387", "season": "2023-2024"},
-           "NHL": {"league_id": "4380", "season": "2023-2024"},
+           "MLB": {"league_id": "4424"}, 
+           "NFL": {"league_id": "4391"},
+           "NBA": {"league_id": "4387"},
+           "NHL": {"league_id": "4380"},
            }
     scheduler = BackgroundScheduler()
     print(datetime.now())
 
-    initial_leagues = League.objects.filter()
-    initial_league_ids = [league.league_id for league in initial_leagues]
-    initial_league_names = [league.league_name for league in initial_leagues]
-
+    # Update Legue data
     for league, info in leagues.items():
         league_id = info['league_id']
-        if league_id not in initial_league_ids:
-            updated_league_data(league_id)
+        updated_league_data(league_id)
         scheduler.add_job(updated_league_data, "interval", hours=24, id=f"update_{league_id}_data", args=[league_id], replace_existing=True, 
                       next_run_time=datetime.now() + timedelta(hours=2))
 
@@ -36,8 +32,6 @@ def start():
     league_ids = [league.league_id for league in leagues]
 
     for league_name in league_names:
-        if league_name not in initial_league_names:
-            updated_team_data(league_name)
         scheduler.add_job(updated_team_data, "interval", hours=24, id=f"update_{league_name}_team_data", args=[league_name], replace_existing=True, 
                       next_run_time=datetime.now() + timedelta(hours=2))
 
@@ -48,14 +42,14 @@ def start():
     
     leagues = League.objects.filter()
     leagues_details = [{"league_id": league.league_id,
-                        "league_season": league.league_current_season
+                        "league_current_season": league.league_current_season
                         } for league in leagues]
         
     for league in leagues_details:
         league_id = league["league_id"]
-        league_season = league["league_season"]
-        # update_season_game_data(league_id, league_season)
-        scheduler.add_job(update_season_game_data, "interval", hours=2, id=f"update_{league_id}_season_games", args=[league_id, league_season], replace_existing=True, 
+        league_current_season = league["league_current_season"]
+        update_season_game_data(league_id, league_current_season)
+        scheduler.add_job(update_season_game_data, "interval", hours=2, id=f"update_{league_id}_season_games", args=[league_id, league_current_season], replace_existing=True, 
                       next_run_time=datetime.now() + timedelta(hours=1))
 
     for league_id in league_ids:
